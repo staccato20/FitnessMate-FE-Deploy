@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import * as S from "./AdminStyledComponents";
 import { Modal } from "../../components/Modal/Modal";
+// import { axios } from "axios";
+import deepCopy, { supplement_type } from "./../../types/Type";
+import { supplementAPI } from "../../apis/API";
+
 const Admin = () => {
   const [modal, setModal] = useState(false);
+  const dummy_supplement_type = deepCopy(supplement_type); // JSON 형식으로 변환된 type
+  const [supplementBatch, setSupplementBatch] = useState([]); // 서버에 저장되어있는 supplement 객체
+  const [supplement, setSupplement] = useState(supplement_type); // 선택된 보충제
+  const [supplementId, setSupplementId] = useState(""); // 선택된 보충제 id
+  const [currentPage, setCurrentPage] = useState(1); // 페이지 이동
   const TabMenu = ["Supplement", "Workout", "BodyPart", "Machine"];
   const CategoryList = [
     "englishName",
@@ -47,6 +56,23 @@ const Admin = () => {
       "삭제",
     ],
   ];
+
+  // CRUD 될때마다 데이터 업데이트
+  const loadSupplementBatch = async () => {
+    // 전체조회(데이터 10개 가져옴)
+    const supplementResponse = await supplementAPI.get(`/list/${currentPage}`);
+    const fitData = supplementResponse.data.map((obj) => {
+      // 받아온 데이터에 보충제 타입 추가
+      return {
+        ...supplement_type,
+        ...obj,
+      };
+    });
+
+    // 데이터 갱신
+    setSupplementBatch(fitData);
+  };
+  console.log(supplementBatch);
 
   return (
     <S.Wrapper modal={modal} className={modal ? "blur" : ""}>

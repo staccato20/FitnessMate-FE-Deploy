@@ -12,7 +12,6 @@ export const ModalWrapper = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  gap: 8px;
   z-index: 2;
   img {
     position: absolute;
@@ -24,25 +23,28 @@ export const ModalWrapper = styled.div`
   }
 `;
 
-export const FormList = styled.div`
+export const FormList = styled.form`
   display: flex;
   flex-direction: column;
   gap: 5px;
-`;
-
-export const FormName = styled.div`
-  font-size: 18px;
-  font-weight: 800;
+  span {
+    line-height: 25px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .FormName {
+    font-size: 18px;
+  }
 `;
 
 export const SubmitButton = styled.button`
+  margin-top: 10px;
   background: #e78111;
   color: #fff;
   text-align: center;
   padding: 10px;
   border-radius: 10px;
   border: none;
-  focus: none;
   outline: none;
   cursor: pointer;
 `;
