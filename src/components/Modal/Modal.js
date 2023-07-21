@@ -1,6 +1,7 @@
-import { React, useRef, useState } from "react";
+import { React, useContext, useEffect, useRef, useState } from "react";
 import * as S from "./ModalStyledComponents";
 import { supplementPostAPI } from "../../apis/API";
+import axios from "axios";
 
 export const Modal = ({ setModal }) => {
   // useRef 쓰는 이유?
@@ -76,9 +77,8 @@ export const Modal = ({ setModal }) => {
       type: "text",
     },
     {
-      id: "fatPerServing",
-      placeholder: "fatPerServing",
-      ref: fatPerServingRef,
+      id: "fileUpload",
+      placeholder: "fileUpload",
       type: "file",
     },
   ];
@@ -97,12 +97,6 @@ export const Modal = ({ setModal }) => {
     flavorRef.current.value = "";
     priceRef.current.value = 1;
     servingsRef.current.value = 1.0;
-    if (carbohydratePerServingRef.current !== null)
-      carbohydratePerServingRef.current.value = 1.0;
-    if (proteinPerServingRef.current !== null)
-      proteinPerServingRef.current.value = 1.0;
-    if (fatPerServingRef.current !== null) fatPerServingRef.current.value = 1.0;
-    if (sourceRef.current !== null) sourceRef.current.value = "";
     if (carbohydratePerServingRef.current !== null)
       carbohydratePerServingRef.current.value = 1.0;
     if (proteinPerServingRef.current !== null)
@@ -161,7 +155,10 @@ export const Modal = ({ setModal }) => {
     const formData = new FormData();
     formData.append("image", imageFile);
     appendFormData(formData, sup);
-    // 서버에 데이터 수정 요청
+    // 서버에 데이터 추가 요청
+    for (let [key, val] of formData) {
+      console.log(`key: ${key} + val ${val}`);
+    }
     const response = await supplementPostAPI.post("", formData);
     //정보 초기화
     initAllInputRefs();
@@ -177,37 +174,33 @@ export const Modal = ({ setModal }) => {
           setModal(false);
         }}
       />
+      <span>Select Supplement Type</span>
+      <select value={submitSupplementType} onChange={onSelect}>
+        <option value="Protein">Protein</option>
+        <option value="Gainer">Gainer</option>
+        <option value="BCAA">BCAA</option>
+      </select>
       <S.FormList onSubmit={handleSupplementSubmit}>
-        <span>Select Supplement Type</span>
-        <select value={submitSupplementType} onChange={onSelect}>
-          <option value="Protein">Protein</option>
-          <option value="Gainer">Gainer</option>
-          <option value="BCAA">BCAA</option>
-        </select>
         {inputFields.map((field, index) => {
-          let InputComponent;
-          if (field.type !== "file") {
-            InputComponent = (
-              <input
-                type={field.type}
-                id={field.id}
-                placeholder={field.placeholder}
-                ref={field.ref}
-              ></input>
-            );
-          } else {
-            InputComponent = (
-              <input
-                type="file"
-                multiple="multiple"
-                onChange={handleSupplementFile}
-              ></input>
-            );
-          }
           return (
             <>
-              <span className="FormName">{field.id}</span>
-              <InputComponent />
+              <span className="FormName" key={field}>
+                {field.id}
+              </span>
+              {field.type !== "file" ? (
+                <input
+                  type={field.type}
+                  id={field.id}
+                  placeholder={field.placeholder}
+                  ref={field.ref}
+                ></input>
+              ) : (
+                <input
+                  type="file"
+                  id="fileUpload"
+                  onChange={handleSupplementFile}
+                ></input>
+              )}
             </>
           );
         })}

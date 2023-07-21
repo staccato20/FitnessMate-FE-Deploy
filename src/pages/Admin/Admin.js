@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as S from "./AdminStyledComponents";
 import { Modal } from "../../components/Modal/Modal";
-// import { axios } from "axios";
+import { axios } from "axios";
+import LoginContext from "../../Contexts/Login";
 import deepCopy, { supplement_type } from "./../../types/Type";
-import { supplementAPI } from "../../apis/API";
+import { loginPostAPI, supplementAPI } from "../../apis/API";
+import { redirect } from "react-router-dom";
 
 const Admin = () => {
   const [modal, setModal] = useState(false);
@@ -12,6 +14,7 @@ const Admin = () => {
   const [supplement, setSupplement] = useState(supplement_type); // 선택된 보충제
   const [supplementId, setSupplementId] = useState(""); // 선택된 보충제 id
   const [currentPage, setCurrentPage] = useState(1); // 페이지 이동
+
   const TabMenu = ["Supplement", "Workout", "BodyPart", "Machine"];
   const CategoryList = [
     "englishName",
@@ -72,7 +75,6 @@ const Admin = () => {
     // 데이터 갱신
     setSupplementBatch(fitData);
   };
-  console.log(supplementBatch);
 
   return (
     <S.Wrapper modal={modal} className={modal ? "blur" : ""}>
