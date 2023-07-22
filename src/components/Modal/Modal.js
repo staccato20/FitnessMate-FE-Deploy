@@ -1,7 +1,6 @@
 import { React, useContext, useEffect, useRef, useState } from "react";
 import * as S from "./ModalStyledComponents";
-import { supplementPostAPI } from "../../apis/API";
-import axios from "axios";
+import { supplementAPI, supplementPostAPI } from "../../apis/API";
 
 export const Modal = ({ setModal }) => {
   // useRef 쓰는 이유?
@@ -156,9 +155,6 @@ export const Modal = ({ setModal }) => {
     formData.append("image", imageFile);
     appendFormData(formData, sup);
     // 서버에 데이터 추가 요청
-    for (let [key, val] of formData) {
-      console.log(`key: ${key} + val ${val}`);
-    }
     const response = await supplementPostAPI.post("", formData);
     //정보 초기화
     initAllInputRefs();

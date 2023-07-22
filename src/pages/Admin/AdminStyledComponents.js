@@ -40,7 +40,7 @@ export const TabMenu = styled.button`
 
 export const Table = styled.div`
   width: 90%;
-  height: 800px;
+  height: 100%;
   background: beige;
   margin: 0 auto;
   margin-top: 100px;
