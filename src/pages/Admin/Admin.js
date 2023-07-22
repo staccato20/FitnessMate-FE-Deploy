@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./AdminStyledComponents";
 import { Modal } from "../../components/Modal/Modal";
-import deepCopy, {
-  supplement_type,
-  supplement_viewtype,
-} from "./../../types/Type";
+import { supplement_type } from "./../../types/Type";
 import { supplementAPI } from "../../apis/API";
 
 const Admin = () => {
-  const [modal, setModal] = useState(false);
-  // const dummy_supplement_type = deepCopy(supplement_type); // JSON 형식으로 변환된 type
+  const [addmodal, setAddModal] = useState(false); // 추가 모달
   const [supplementBatch, setSupplementBatch] = useState([]); // 서버에 저장되어있는 supplement 객체
   const [supplement, setSupplement] = useState(supplement_type); // 선택된 보충제
   const [supplementId, setSupplementId] = useState(""); // 선택된 보충제 id
   const [currentPage, setCurrentPage] = useState(1); // 페이지 이동
-  const displayFields = [
-    "englishName",
-    "koreanName",
-    "flavor",
-    "price",
-    "servings",
-    "조회",
-    "수정",
-    "삭제",
-  ];
-  // 화면에 보여지는 타입
 
   const TabMenu = ["Supplement", "Workout", "BodyPart", "Machine"];
   const CategoryList = [
@@ -56,7 +41,7 @@ const Admin = () => {
   // 처음
   useEffect(() => {
     loadSupplementBatch();
-  }, [modal]);
+  }, [addmodal]);
 
   // 갱신
   useEffect(() => {
@@ -65,8 +50,10 @@ const Admin = () => {
   console.log(supplementBatch);
 
   return (
-    <S.Wrapper modal={modal} className={modal ? "blur" : ""}>
-      {modal && <Modal onClose={() => setModal(false)} setModal={setModal} />}
+    <S.Wrapper addmodal={addmodal} className={addmodal ? "blur" : ""}>
+      {addmodal && (
+        <Modal onClose={() => setAddModal(false)} setAddModal={setAddModal} />
+      )}
       <S.NavBar>
         {TabMenu.map((tab) => {
           return <S.TabMenu>{tab}</S.TabMenu>;
@@ -83,7 +70,7 @@ const Admin = () => {
           {supplementBatch.map((supplement) => {
             return (
               <S.DataItem>
-                {displayFields.map((view, index) => {
+                {CategoryList.map((view, index) => {
                   if (index < 5) {
                     return (
                       <S.DataItemInfo>
@@ -103,7 +90,7 @@ const Admin = () => {
           <S.Button>Next</S.Button>
           <S.Button
             onClick={() => {
-              setModal(!modal);
+              setAddModal(!addmodal);
             }}
           >
             추가
