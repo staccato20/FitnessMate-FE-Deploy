@@ -1,23 +1,18 @@
-import {
-  createBrowserRouter,
-  Route,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
-
-import RootLayout from "../Layout/RootLayout";
+import { Route, Routes } from "react-router-dom";
 import Admin from "./../pages/Admin/Admin";
+import MainLayout from "../Layout/MainLayout";
+import { Home } from "../pages/Home/Home";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route path="admin" element={<Admin />} />
-    </Route>
-  )
-);
-
-const Navigator = (props) => {
-  return <RouterProvider router={router} />;
+const Navigator = () => {
+  return (
+    <Routes>
+      {/* 메인 레이아웃  */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default Navigator;

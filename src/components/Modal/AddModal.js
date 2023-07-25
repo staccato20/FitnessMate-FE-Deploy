@@ -1,8 +1,8 @@
 import { React, useContext, useEffect, useRef, useState } from "react";
-import * as S from "./ModalStyledComponents";
 import { supplementAPI, supplementPostAPI } from "../../apis/API";
+import * as S from "./AddModalStyledComponents";
 
-export const Modal = ({ setModal }) => {
+export const AddModal = ({ setAddModal }) => {
   // useRef 쓰는 이유?
   const eNameRef = useRef("");
   const kNameRef = useRef("");
@@ -82,6 +82,7 @@ export const Modal = ({ setModal }) => {
     },
   ];
 
+  // 초기에 업로드된 파일은 빈 파일
   const [imageFile, setImageFile] = useState(new File([""], ""));
 
   // 보충제 타입(기본 프로틴)
@@ -104,9 +105,9 @@ export const Modal = ({ setModal }) => {
     if (sourceRef.current !== null) sourceRef.current.value = "";
   };
 
-  // 전체 데이터에 보충제 데이터 추가
   const appendFormData = (formData, supplementObj) => {
     Object.entries(supplementObj).forEach(([key, value]) => {
+      console.log(key, value);
       formData.append(key, value);
     });
   };
@@ -158,6 +159,8 @@ export const Modal = ({ setModal }) => {
     const response = await supplementPostAPI.post("", formData);
     //정보 초기화
     initAllInputRefs();
+
+    // 빈 파일 상태로 초기화
     setImageFile(new File([""]), "");
   };
 
@@ -167,7 +170,7 @@ export const Modal = ({ setModal }) => {
         src={require("../../assets/images/xbutton.png")}
         alt="모달 창 닫기 버튼"
         onClick={() => {
-          setModal(false);
+          setAddModal(false);
         }}
       />
       <span>Select Supplement Type</span>
@@ -192,6 +195,7 @@ export const Modal = ({ setModal }) => {
                 ></input>
               ) : (
                 <input
+                  multiple="multiple"
                   type="file"
                   id="fileUpload"
                   onChange={handleSupplementFile}
