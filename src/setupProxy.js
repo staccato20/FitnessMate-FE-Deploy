@@ -5,7 +5,7 @@ module.exports = function (app) {
     "/api",
     createProxyMiddleware({
       // baseUrl
-      target: "http://112.187.189.12:8081",
+      target: "http://112.187.189.12:8080",
       changeOrigin: true,
       pathRewrite: {
         "^/api": "",
