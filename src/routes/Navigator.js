@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Admin from "./../pages/Admin/Admin";
 import MainLayout from "../Layout/MainLayout";
-import { Home } from "../pages/Home/Home";
-
+import { Home, Admin } from "../pages/index";
 const Navigator = () => {
   return (
     <Routes>
@@ -10,6 +8,7 @@ const Navigator = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<div>없는페이지</div>} />
       </Route>
     </Routes>
   );

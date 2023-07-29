@@ -1,8 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { MainLayoutWrapper } from "./StyledMainLayout";
 
-const MainLayout = (props) => {
-  return <Outlet />;
+const MainLayout = () => {
+  return (
+    <MainLayoutWrapper>
+      <Outlet />
+    </MainLayoutWrapper>
+  );
 };
 
 export default MainLayout;

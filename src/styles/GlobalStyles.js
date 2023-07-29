@@ -25,9 +25,8 @@ ${reset}
     body{
         line-height: 1;
         background-color: white;
-        margin-bottom: 100px;
-        
     }
+
     ol, ul{
         list-style: none;
     }

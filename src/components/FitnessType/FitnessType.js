@@ -1,7 +1,10 @@
 import lunge from "../../assets/images/lunge.png";
-import { CardContainer } from "./FitnessTypeStyledComponents";
+import { CardContainer } from "./StyledFitnessType";
 
+// 운동 종목 Card
 const FitnessType = ({ children, part }) => {
+  // children : 운동종류
+  // part : 부위
   return (
     <CardContainer>
       <div className="fitnessPart">{part}</div>

@@ -1,21 +1,15 @@
-import {
-  InputContainer,
-  InputContentBox,
-} from "./BodyCompositionInputStyledComponents";
+import * as S from "./StyledBodyCompositionInput";
+import BodyCompositionInputContent from "./BodyCompositionInputContent";
 
+// 체성분 input
 const BodyCompositionInput = ({ children }) => {
+  // children : 골격근 or 체지방
   return (
-    <InputContainer>
-      <span className="InputName">{children}</span>
-      <InputContentBox>
-        <span className="SubInputName">{`상체 ${children}`}</span>
-        <input className="InputContent" placeholder="공식" />
-      </InputContentBox>
-      <InputContentBox>
-        <span className="SubInputName">{`하체 ${children}`}</span>
-        <input className="InputContent" placeholder="공식" />
-      </InputContentBox>
-    </InputContainer>
+    <S.BodyCompositionInputContainer>
+      <span className="inputName">{children}</span>
+      <BodyCompositionInputContent children={children} bodypart="상체" />
+      <BodyCompositionInputContent children={children} bodypart="하체" />
+    </S.BodyCompositionInputContainer>
   );
 };
 
