@@ -1,30 +1,18 @@
-import ProfileInput from "./../../components/ProfileInput/ProfileInput";
-import { ProfileContainer, SignupContainer } from "./StyledSignup";
+import { Route, Routes } from "react-router-dom";
+import SignupProfile from "./SignupProfile/SignupProfile";
+
+// 회원가입 페이지에 대한 정보를 모두 담는 컴포넌트
 
 const Signup = () => {
   return (
-    <SignupContainer>
-      <span className="signupTitle">
-        <span className="titleEmphasis">회원정보</span>를 입력해주세요
-      </span>
-      <ProfileContainer>
-        <ProfileInput isChecked={true} placeholder="이름g을 입력해주세요">
-          이름
-        </ProfileInput>
-        <ProfileInput
-          isChecked={true}
-          placeholder="생년월일 8자리를 입력해주세요 ex)000315"
-        >
-          생년월일
-        </ProfileInput>
-        <ProfileInput isChecked={true} placeholder="이메일을 입력해주세요">
-          이메일
-        </ProfileInput>
-        <ProfileInput isChecked={true} placeholder="비밀번호를 입력해주세요">
-          비밀번호
-        </ProfileInput>
-      </ProfileContainer>
-    </SignupContainer>
+    <Routes>
+      <Route path="/" element={<SignupProfile />} />
+      <Route path="profile" element={<div>회원 정보</div>} />
+      <Route path="bodyinfo" element={<div>신체 정보</div>} />
+      <Route path="bodyfigure" element={<div>체형</div>} />
+      <Route path="bodyfigure/direct" element={<div>체형 직접입력</div>} />
+      <Route path="complete" element={<div>완성</div>} />
+    </Routes>
   );
 };
 
