@@ -17,13 +17,17 @@ const ProfileInput = ({
   // placeholder : Input창 마다 다양해서 Home에서 받아옴
   // children : 아이디/비밀번호/이메일 등등..
   return (
-    <S.ProfileInputContainer children={children}>
+    <S.ProfileInputContainer content={children}>
       <span className="InputName">
         {children}
         <span className="essentialSymbol"> *</span>
       </span>
       {/* 체크가 되지 않았을때만 Warning 문구 */}
-      <ProfileInputContent isChecked={isChecked} placeholder={placeholder} />
+      <ProfileInputContent
+        isChecked={isChecked}
+        placeholder={placeholder}
+        isEmailChecked={isEmailChecked}
+      />
       {isEmailInput && (
         <button
           className="duplicateButton"

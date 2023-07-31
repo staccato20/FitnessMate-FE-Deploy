@@ -7,7 +7,7 @@ export const ProfileInputContainer = styled.div`
   flex-direction: column;
   position: relative;
   // 비밀번호와 이메일 사이의 18px - gap(4px) = 14px
-  margin-top: ${({ children }) => (children === "비밀번호" ? "14px" : "0")};
+  margin-top: ${({ content }) => (content === "비밀번호" ? "14px" : "0")};
 
   .InputName {
     color: #000;
@@ -42,7 +42,12 @@ export const ProfileInputContainer = styled.div`
 `;
 
 export const ProfileInputContentWrapper = styled.input`
-  border: ${({ isChecked }) => (isChecked ? "none" : "1.5px solid #EB444C")};
+  border: ${({ isChecked, isEmailChecked }) =>
+    isChecked
+      ? isEmailChecked
+        ? "1.5px solid #0b98ff"
+        : "none"
+      : "1.5px solid #eb444c"};
   &::-webkit-input-placeholder {
     color: #9a9798;
   }
