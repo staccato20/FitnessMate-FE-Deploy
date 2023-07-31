@@ -1,12 +1,14 @@
 import styled from "styled-components";
-export const ProfileInputContainer = styled.span`
+export const ProfileInputContainer = styled.div`
   width: 433px;
-  height: 89px;
+  height: 116px;
   gap: 8px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  // 비밀번호와 이메일 사이의 18px - gap(4px) = 14px
+  margin-top: ${({ children }) => (children === "비밀번호" ? "14px" : "0")};
 
-  // input 문자
   .InputName {
     color: #000;
     font-size: 20px;
@@ -20,6 +22,22 @@ export const ProfileInputContainer = styled.span`
   .profileInputWarning {
     color: #eb444c;
     font-size: 16px;
+  }
+  .profileInputChecking {
+    color: #0b98ff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .duplicateButton {
+    position: absolute;
+    color: #0b98ff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.34px;
+    margin: 0;
+    padding: 0;
+    top: 47px;
+    right: 14px;
   }
 `;
 

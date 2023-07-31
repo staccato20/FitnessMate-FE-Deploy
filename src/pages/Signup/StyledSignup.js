@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SignupContainer = styled.div`
+export const SignupContainer = styled.form`
   display: flex;
   padding: 62px 204px 156px 205px;
   flex-direction: column;
@@ -23,5 +23,5 @@ export const SignupContainer = styled.div`
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 4px;
 `;
