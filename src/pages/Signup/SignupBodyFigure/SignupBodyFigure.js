@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import TextCheckbox from "../../../components/TextCheckbox/TextCheckbox";
 import * as S from "../StyledSignup";
+import { useNavigate } from "react-router-dom";
+import { TextCheckbox } from "../../../components/index";
 import rightarrow from "../../../assets/images/rightarrow.svg";
+
 const SignupBodyFigure = () => {
   const navigate = useNavigate();
   const currenturl = window.location.pathname;
@@ -47,7 +48,7 @@ const SignupBodyFigure = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          navigate(`${currenturl}/direct`);
+          navigate(`${currenturl}direct`);
         }}
       >
         가입 완료하기

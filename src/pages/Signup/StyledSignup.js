@@ -18,6 +18,13 @@ export const SignupTitle = styled.span`
   color: #707070;
   font-size: 28px;
   font-weight: 700;
+  .warningNoWrite {
+    display: inline-block;
+    color: #555;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 12px;
+  }
 `;
 
 export const TitleEmphasis = styled.span`
@@ -105,4 +112,10 @@ export const SignupTextContainer = styled.div`
       }
     }
   }
+`;
+
+export const BodyCompositionInputList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
