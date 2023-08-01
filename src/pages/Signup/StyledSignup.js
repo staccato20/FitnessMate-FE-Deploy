@@ -14,6 +14,7 @@ export const SignupContainer = styled.form`
 `;
 
 export const SignupTitle = styled.span`
+  width: 100%;
   color: #707070;
   font-size: 28px;
   font-weight: 700;

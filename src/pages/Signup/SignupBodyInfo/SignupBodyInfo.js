@@ -11,11 +11,11 @@ const SignupBodyInfo = () => {
   const [isSelected, setIsSelected] = useState([false, false]);
   return (
     <S.SignupContainer action="/submit" method="post">
-      <span className="signupTitle">
+      <S.SignupTitle>
         간단한
         <br />
-        <span className="titleEmphasis">신체 정보</span>를 입력해주세요
-      </span>
+        <S.TitleEmphasis>신체 정보</S.TitleEmphasis>를 입력해주세요
+      </S.SignupTitle>
       <S.BodyInfoContainer>
         <div className="genderSelect">
           <InputName>
