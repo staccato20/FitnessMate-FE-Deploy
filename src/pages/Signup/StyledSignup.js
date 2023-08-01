@@ -2,22 +2,27 @@ import styled from "styled-components";
 
 export const SignupContainer = styled.form`
   display: flex;
-  padding: 62px 204px 156px 205px;
+  padding-top: 62px;
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  .signupTitle {
-    width: 100%;
-    text-align: left;
-    color: #707070;
-    font-size: 28px;
-    font-weight: 700;
+  .recommendText {
+    color: #555;
+    font-size: 22px;
+    font-weight: 500;
   }
-  .titleEmphasis {
-    color: #2f3233;
-    font-size: 28px;
-    font-weight: 700;
-  }
+`;
+
+export const SignupTitle = styled.span`
+  color: #707070;
+  font-size: 28px;
+  font-weight: 700;
+`;
+
+export const TitleEmphasis = styled.span`
+  color: #2f3233;
+  font-size: 28px;
+  font-weight: 700;
 `;
 
 export const ProfileContainer = styled.div`
@@ -65,4 +70,38 @@ export const GenderName = styled.span`
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.32px;
+`;
+
+export const SignupTitleContainer = styled.div`
+  display: flex;
+  padding: 0px 76px 39px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`;
+
+export const SignupTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  .directButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    .directbutton {
+      /* 자식 크기에 width 맞추기 */
+      padding: 10px;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0b98ff;
+      font-size: 20px;
+      font-weight: 600;
+      .rightArrow {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 `;

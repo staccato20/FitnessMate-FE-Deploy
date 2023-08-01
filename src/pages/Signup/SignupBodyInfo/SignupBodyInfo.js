@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  BodyInfoContainer,
-  GenderItem,
-  GenderName,
-  SignupContainer,
-} from "./../StyledSignup";
+import * as S from "./../StyledSignup";
 import { ProfileInput } from "../../../components";
 import { InputName } from "../../../components/ProfileInput/StyledProfileInput";
 import female from "../../../assets/images/female.png";
@@ -15,20 +10,20 @@ const SignupBodyInfo = () => {
   const navigate = useNavigate();
   const [isSelected, setIsSelected] = useState([false, false]);
   return (
-    <SignupContainer action="/submit" method="post">
+    <S.SignupContainer action="/submit" method="post">
       <span className="signupTitle">
         간단한
         <br />
         <span className="titleEmphasis">신체 정보</span>를 입력해주세요
       </span>
-      <BodyInfoContainer>
+      <S.BodyInfoContainer>
         <div className="genderSelect">
           <InputName>
             성별
             <span className="essentialSymbol"> *</span>
           </InputName>
           <ul className="genderList">
-            <GenderItem
+            <S.GenderItem
               onClick={(e) => {
                 e.preventDefault();
                 setIsSelected([1, 0]);
@@ -36,9 +31,9 @@ const SignupBodyInfo = () => {
               isSelected={isSelected[0]}
             >
               <img className="genderImg" src={male} alt="성별 이미지(남성)" />
-              <GenderName isSelected={isSelected[0]}>남성</GenderName>
-            </GenderItem>
-            <GenderItem
+              <S.GenderName isSelected={isSelected[0]}>남성</S.GenderName>
+            </S.GenderItem>
+            <S.GenderItem
               onClick={(e) => {
                 e.preventDefault();
                 setIsSelected([0, 1]);
@@ -46,8 +41,8 @@ const SignupBodyInfo = () => {
               isSelected={isSelected[1]}
             >
               <img className="genderImg" src={female} alt="성별 이미지(여성)" />
-              <GenderName isSelected={isSelected[1]}>여성</GenderName>
-            </GenderItem>
+              <S.GenderName isSelected={isSelected[1]}>여성</S.GenderName>
+            </S.GenderItem>
           </ul>
         </div>
         <ProfileInput
@@ -59,7 +54,7 @@ const SignupBodyInfo = () => {
         <ProfileInput isChecked={true} placeholder="몸무게를 입력해주세요">
           몸무게
         </ProfileInput>
-      </BodyInfoContainer>
+      </S.BodyInfoContainer>
       <button
         onClick={(e) => {
           e.preventDefault();
@@ -76,7 +71,7 @@ const SignupBodyInfo = () => {
       >
         다음
       </button>
-    </SignupContainer>
+    </S.SignupContainer>
   );
 };
 

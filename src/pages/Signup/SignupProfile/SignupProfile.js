@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProfileInput } from "../../../components";
-import { ProfileContainer, SignupContainer } from "../StyledSignup";
 import { useNavigate } from "react-router-dom";
+import * as S from "../StyledSignup";
 
 // 회원가입 페이지에 대한 정보를 모두 담는 컴포넌트
 
@@ -12,11 +12,11 @@ const SignupProfile = () => {
   // 이메일 중복 확인
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   return (
-    <SignupContainer action="/submit" method="post">
-      <span className="signupTitle">
-        <span className="titleEmphasis">회원정보</span>를 입력해주세요
-      </span>
-      <ProfileContainer>
+    <S.SignupContainer action="/submit" method="post">
+      <S.SignupTitle>
+        <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
+      </S.SignupTitle>
+      <S.ProfileContainer>
         <ProfileInput isChecked={true} placeholder="이름을 입력해주세요">
           이름
         </ProfileInput>
@@ -37,7 +37,7 @@ const SignupProfile = () => {
         <ProfileInput isChecked={true} placeholder="비밀번호를 입력해주세요">
           비밀번호
         </ProfileInput>
-      </ProfileContainer>
+      </S.ProfileContainer>
       <button
         onClick={() => {
           navigate(`${currenturl}/bodyinfo`);
@@ -45,7 +45,7 @@ const SignupProfile = () => {
       >
         다음으로
       </button>
-    </SignupContainer>
+    </S.SignupContainer>
   );
 };
 
