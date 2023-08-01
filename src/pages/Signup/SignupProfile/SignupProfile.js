@@ -40,7 +40,7 @@ const SignupProfile = () => {
       </S.ProfileContainer>
       <button
         onClick={() => {
-          navigate(`${currenturl}bodyinfo`);
+          navigate(`${currenturl}/bodyinfo`);
         }}
       >
         다음으로

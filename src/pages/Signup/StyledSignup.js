@@ -11,9 +11,22 @@ export const SignupContainer = styled.form`
     font-size: 22px;
     font-weight: 500;
   }
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .congratuImg {
+    width: 249px;
+    height: 274px;
+    margin-top: 60px;
+  }
 `;
 
 export const SignupTitle = styled.span`
+  text-align: ${({ flex }) => (flex ? "center" : "")};
+  display: ${({ flex }) => (flex ? "flex" : "")};
+  flex-direction: ${({ flex }) => (flex ? "column" : "")};
+  align-items: center;
   width: 100%;
   color: #707070;
   font-size: 28px;
@@ -24,6 +37,13 @@ export const SignupTitle = styled.span`
     font-size: 22px;
     font-weight: 500;
     margin-top: 12px;
+  }
+  .congratu {
+    display: inline-block;
+    color: #555;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 18px;
   }
 `;
 

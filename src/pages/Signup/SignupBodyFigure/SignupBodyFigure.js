@@ -48,7 +48,7 @@ const SignupBodyFigure = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          navigate(`${currenturl}direct`);
+          navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
         }}
       >
         가입 완료하기
