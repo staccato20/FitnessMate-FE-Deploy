@@ -2,7 +2,6 @@ import ProfileInputContent from "./ProfileInputContet";
 import * as S from "./StyledProfileInput";
 
 // 회원정보 입력창
-
 const ProfileInput = ({
   isChecked,
   isEmailChecked,
@@ -18,10 +17,10 @@ const ProfileInput = ({
   // children : 아이디/비밀번호/이메일 등등..
   return (
     <S.ProfileInputContainer content={children}>
-      <span className="InputName">
+      <S.InputName>
         {children}
         <span className="essentialSymbol"> *</span>
-      </span>
+        </S.InputName>
       {/* 체크가 되지 않았을때만 Warning 문구 */}
       <ProfileInputContent
         isChecked={isChecked}

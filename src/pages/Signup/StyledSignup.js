@@ -25,3 +25,44 @@ export const ProfileContainer = styled.div`
   flex-direction: column;
   gap: 4px;
 `;
+
+export const BodyInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  .genderSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .genderList {
+    display: flex;
+    gap: 5px;
+  }
+`;
+export const GenderItem = styled.button`
+  border-radius: 16px;
+  background: ${({ isSelected }) => (isSelected ? "#F5F6F7" : "#FFF")};
+  display: flex;
+  width: 126px;
+  height: 126px;
+  padding: 18px 32px 19px 31px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+
+  .genderImg {
+    width: 60px;
+    height: 60px;
+  }
+`;
+
+export const GenderName = styled.span`
+  color: ${({ isSelected }) => (isSelected ? "#2f3233" : "#9A9798")};
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+`;

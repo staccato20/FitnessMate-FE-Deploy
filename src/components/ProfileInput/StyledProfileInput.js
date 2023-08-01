@@ -8,15 +8,7 @@ export const ProfileInputContainer = styled.div`
   position: relative;
   // 비밀번호와 이메일 사이의 18px - gap(4px) = 14px
   margin-top: ${({ content }) => (content === "비밀번호" ? "14px" : "0")};
-
-  .InputName {
-    color: #000;
-    font-size: 20px;
-    .essentialSymbol {
-      color: #eb444c;
-      font-size: 18px;
-    }
-  }
+  
 
   // 경고 문구
   .profileInputWarning {
@@ -39,6 +31,15 @@ export const ProfileInputContainer = styled.div`
     top: 47px;
     right: 14px;
   }
+`;
+
+export const InputName = styled.span`
+color: #000;
+font-size: 20px;
+    .essentialSymbol {
+      color: #eb444c;
+      font-size: 18px;
+    }
 `;
 
 export const ProfileInputContentWrapper = styled.input`
