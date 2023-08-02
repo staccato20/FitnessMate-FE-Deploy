@@ -1,10 +1,10 @@
-// < 가로 길이가 긴 버튼 스타일 >
+// < 가로 길이가 중간인 버튼 스타일 >
 
 import styled from 'styled-components';
 
-export const BigButton = styled.div`
+export const MiddleButton = styled.div`
 	display: flex;
-	width: 433px;
+	width: 294px;
 	height: 62px;
 	padding: 22px 24px;
 	justify-content: center;
@@ -16,8 +16,8 @@ export const BigButton = styled.div`
 	font-weight: 600;
 	cursor: pointer;
 
-	background: ${(props) => props.backcolor || props.theme.Brand};
-	color: ${(props) => props.fontcolor || props.theme.White};
+	background: ${({ theme }) => theme.Brand};
+	color: ${({ theme }) => theme.White};
 
 	&:hover {
     opacity: 0.5;
