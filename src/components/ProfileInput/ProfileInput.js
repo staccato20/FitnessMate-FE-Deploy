@@ -8,6 +8,7 @@ const ProfileInput = ({
   setIsEmailChecked,
   placeholder,
   children,
+  name,
 }) => {
   /* 이메일 input인지 부터 체크 */
   const isEmailInput = children === "이메일";
@@ -20,16 +21,18 @@ const ProfileInput = ({
       <S.InputName>
         {children}
         <span className="essentialSymbol"> *</span>
-        </S.InputName>
+      </S.InputName>
       {/* 체크가 되지 않았을때만 Warning 문구 */}
       <ProfileInputContent
         isChecked={isChecked}
         placeholder={placeholder}
         isEmailChecked={isEmailChecked}
+        name={name}
       />
       {isEmailInput && (
         <button
           className="duplicateButton"
+          type="button"
           onClick={(e) => {
             e.preventDefault();
             setIsEmailChecked(true);

@@ -1,19 +1,26 @@
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import { Home, Admin } from "../pages/index";
 import Signup from "../pages/Signup/Signup";
-const Navigator = () => {
-  return (
-    <Routes>
-      {/* 메인 레이아웃  */}
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/signup/*" element={<Signup />} />
-        <Route path="*" element={<div>없는페이지</div>} />
-      </Route>
-    </Routes>
-  );
-};
+import { signUpAction } from "../pages/Signup/SignupProfile/SignupProfile";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<MainLayout />}>
+      <Route path="/" element={<Home />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/signup/*" element={<Signup />} action={signUpAction} />
+      <Route path="*" element={<div>없는페이지</div>} />
+    </Route>
+  )
+);
+
+const Navigator = (props) => {
+  return <RouterProvider router={router} />;
+};
 export default Navigator;

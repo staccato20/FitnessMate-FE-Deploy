@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignupBodyInfo = () => {
   const navigate = useNavigate();
-  const [isSelected, setIsSelected] = useState([false, false]);
+  const [isSelected, setIsSelected] = useState([0, 0]);
   return (
     <S.SignupContainer action="/submit" method="post">
       <S.SignupTitle>

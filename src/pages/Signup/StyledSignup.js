@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SignupContainer = styled.form`
+export const SignupContainer = styled.div`
   display: flex;
   padding-top: 62px;
   flex-direction: column;
@@ -19,6 +19,12 @@ export const SignupContainer = styled.form`
     width: 249px;
     height: 274px;
     margin-top: 60px;
+  }
+  .nextButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
   }
 `;
 
@@ -53,6 +59,7 @@ export const TitleEmphasis = styled.span`
   font-weight: 700;
 `;
 
+// Form 태그로 인해 사용 X
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
