@@ -1,55 +1,34 @@
 import { atom } from "recoil";
 // 회원가입 input 정보 / 유효성검사 / 중복체크
 
-// 이름
-export const usernameState = atom({
-  key: "username",
-  default: "",
-});
-
-export const isUserNameValidState = atom({
-  key: "isUserNameValidState",
-  default: false,
-});
-//
-
-// 생년월일
-export const birthdateState = atom({
-  key: "birthdate",
-  default: "",
-});
-
-export const isBirthDateValidState = atom({
-  key: "isBirthDateValidState",
-  default: false,
-});
-//
-
-// 이메일
-export const emailState = atom({
-  key: "email",
-  default: "",
-});
-
-export const isEmailValidState = atom({
-  key: "isEmailValidState",
+// 다음버튼
+export const nextButtonValidate = atom({
+  key: "nextButtonValidate",
   default: false,
 });
 
-export const isEmailDuplicateState = atom({
-  key: "isEmailDuplicateState",
-  default: false,
+// 유효성 검사
+export const validationState = atom({
+  key: "validationState",
+  default: {
+    // [value, 유효성검사, 파란색 테두리]
+    username: ["", false, false],
+    email: ["1", false, true],
+    password: ["", false, false],
+    password2: ["", false, false],
+    birthdate: ["", false, false],
+    // 기타 필드
+  },
 });
-//
 
-// 비밀번호
-export const passwordState = atom({
-  key: "password",
-  default: "",
+// 회원정보 state
+export const profileState = atom({
+  key: "profileState",
+  default: {
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+    birthdate: "",
+  },
 });
-
-export const isPasswordValidState = atom({
-  key: "isPasswordValidState",
-  default: false,
-});
-//
