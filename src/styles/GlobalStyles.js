@@ -24,6 +24,7 @@ ${reset}
     }
     body{
         line-height: 1;
+
         background-color: white;
     }
 
