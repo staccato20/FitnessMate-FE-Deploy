@@ -9,6 +9,7 @@ const theme = {
     Gray10: "#F4F4F4",
 		White: "#FFFFFF",
     Brand: "#0B98FF",
+		BrandDark: "#0A89E5",
     BrandMid: "#36ABFF",
 		BrandLight: "#D0EBFF",
 		BrandNon: "#A6CEEC",

@@ -1,11 +1,12 @@
 // < 가로길이가 중간인 버튼 >
 
 import React from "react";
-import * as S from "./StyledMiddleButton";
+import * as S from "./StyledButton";
+import "./StyledButtons.css";
 
 function MiddleButton({ children }) {
 	return (
-			<S.MiddleButton>{ children }</S.MiddleButton>
+			<S.MiddleButton className="Button">{ children }</S.MiddleButton>
 	);
 }
 
