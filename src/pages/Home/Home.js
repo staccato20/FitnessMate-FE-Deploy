@@ -98,7 +98,7 @@ export const Home = () => {
 								<S.FrameTop>
 									<div className="PlofileImg"></div>
 									<div className="PlofileContent">
-										<h1>최시현</h1>
+										<h1>강민정</h1>
 										<div>헬린이 20세 (여자)</div>
 									</div>
 								</S.FrameTop>

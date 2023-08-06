@@ -18,7 +18,6 @@ const theme = {
 		ErrorLight: "#FBEAE9",
     Success: "#76D672",
 		SuccessLight: "#F2FAF0",
-	
 	};
 
 	export default theme;
