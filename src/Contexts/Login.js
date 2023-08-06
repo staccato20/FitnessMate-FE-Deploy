@@ -23,9 +23,7 @@ export const LoginContextProvider = (props) => {
   };
 
   //root
-  useEffect(() => {
-    console.log(isLoggedIn, isAdmin);
-  }, [isLoggedIn, isAdmin]);
+  useEffect(() => {}, [isLoggedIn, isAdmin]);
 
   return (
     <LoginContext.Provider value={loginValue}>

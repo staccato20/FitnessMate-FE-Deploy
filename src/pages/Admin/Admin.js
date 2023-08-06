@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
-import * as S from "./AdminStyledComponents";
-import { Modal } from "../../components/Modal/Modal";
+import * as S from "./StyledAdmin";
 import { supplement_type } from "./../../types/Type";
-import { supplementAPI } from "../../apis/API";
+import { loginAdminPostAPI, supplementAPI } from "../../apis/API";
+import { AddModal } from "../../components/Modal/AddModal";
+
+// 로그인 세션 획득
+const SignIn = async () => {
+  const submission = {
+    loginId: "administrator",
+    password: "administrator",
+  };
+
+  let response = await loginAdminPostAPI.post("", submission);
+};
 
 const Admin = () => {
   const [addmodal, setAddModal] = useState(false); // 추가 모달
@@ -38,21 +48,24 @@ const Admin = () => {
     setSupplementBatch(fitData);
   };
 
-  // 처음
+  // 갱신
   useEffect(() => {
     loadSupplementBatch();
   }, [addmodal]);
 
-  // 갱신
+  // 처음
   useEffect(() => {
+    SignIn();
     loadSupplementBatch();
   }, []);
-  console.log(supplementBatch);
 
   return (
     <S.Wrapper addmodal={addmodal} className={addmodal ? "blur" : ""}>
       {addmodal && (
-        <Modal onClose={() => setAddModal(false)} setAddModal={setAddModal} />
+        <AddModal
+          onClose={() => setAddModal(false)}
+          setAddModal={setAddModal}
+        />
       )}
       <S.NavBar>
         {TabMenu.map((tab) => {

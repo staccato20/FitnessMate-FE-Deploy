@@ -7,8 +7,12 @@ ${reset}
         text-decoration: none;
         color: inherit;
     }
-    *{
+    *,span,input{
         box-sizing: border-box;
+        font-family: 'Pretendard', sans-serif;
+        font-weight:500;
+        line-height:normal;
+
     }
     html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
     a, dl, dt, dd, ol, ul, li, form, label, table{
@@ -20,10 +24,10 @@ ${reset}
     }
     body{
         line-height: 1;
-        font-family: 'Noto Sans KR', sans-serif;
-        background-color: #fff;
-        margin-bottom: 100px;
+
+        background-color: white;
     }
+
     ol, ul{
         list-style: none;
     }
@@ -31,6 +35,12 @@ ${reset}
         border: 0;
         background: transparent;
         cursor: pointer;
+    }
+    // 입력창 클릭 시 테두리, 흰 배경 제거
+    input{
+        outline:none;
+        border:none;
+        background:none;
     }
 `;
 

@@ -5,7 +5,7 @@ import * as S from "./StyledHome";
 import HomeSecondImg1 from "../../assets/images/HomeSecondImg1.png";
 import HomeSecondImg2 from "../../assets/images/HomeSecondImg2.png";
 
-export const Login = () => {
+export const Home = () => {
 	return (
 		<S.Container>
 			<S.Home>
@@ -126,4 +126,4 @@ export const Login = () => {
 	);
 };
 
-export default Login;
+export default Home;
