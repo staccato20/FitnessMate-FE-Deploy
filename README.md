@@ -7,3 +7,7 @@
 - 체형 입력 페이지 : url/signup/bodyfigure
 - 체형 직접입력 페이지 : url/signup/bodyfiguredirect
 - 완료 페이지 : url/signup/complement
+
+## 주소
+
+https://fitmate-test-bq1ibiipz-whoknow77.vercel.app/
