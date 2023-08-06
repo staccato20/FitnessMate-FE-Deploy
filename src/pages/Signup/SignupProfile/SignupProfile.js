@@ -1,7 +1,7 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { ProfileInput } from "../../../components";
-import { Form, redirect, useNavigate } from "react-router-dom";
 import * as S from "../StyledSignup";
+import { useRecoilState } from "recoil";
+import { ProfileInput } from "../../../components";
+import { useNavigate } from "react-router-dom";
 import {
   nextButtonValidate,
   profileState,
@@ -30,7 +30,7 @@ const SignupProfile = () => {
       Object.entries(isValidState).forEach(([key, value]) => {
         isSetProfileState((pre) => ({
           ...pre,
-          [key]: [value[1], true, isValidState[key][2]],
+          [key]: [value[0], value[1], value[2]],
         }));
       });
       navigate(`bodyinfo`);

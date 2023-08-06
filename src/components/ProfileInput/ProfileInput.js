@@ -1,7 +1,7 @@
-import { userIdVerifyAPI } from "../../apis/API";
-import { validationState } from "../../recoil/atom";
-import ProfileInputContent from "./ProfileInputContet";
 import * as S from "./StyledProfileInput";
+import { userIdVerifyAPI } from "../../apis/API";
+import { nextButtonValidate, validationState } from "../../recoil/atom";
+import ProfileInputContent from "./ProfileInputContet";
 import { useRecoilState } from "recoil";
 
 // 회원정보 입력창
@@ -11,11 +11,19 @@ import { useRecoilState } from "recoil";
 const ProfileInput = ({ placeholder, children, name }) => {
   const [isValidateChecked, setIsValidateChecked] =
     useRecoilState(validationState);
+  const [isNextButton, setIsNextButton] = useRecoilState(nextButtonValidate);
 
-  const handleValidation = (name) => {
+  const emailOk = (name) => {
     setIsValidateChecked((pre) => ({
       ...pre,
-      [name]: ["", true, isValidateChecked[name][2]],
+      [name]: [isValidateChecked[name][0], true, isValidateChecked[name][2]],
+    }));
+  };
+
+  const emailNotOk = (name) => {
+    setIsValidateChecked((pre) => ({
+      ...pre,
+      [name]: [isValidateChecked[name][0], false, isValidateChecked[name][2]],
     }));
   };
 
@@ -48,7 +56,9 @@ const ProfileInput = ({ placeholder, children, name }) => {
             // 중복 확인(Promise_)
             duplicateCheck().then((isVerified) => {
               if (isVerified) {
-                handleValidation(name);
+                emailOk(name);
+              } else {
+                emailNotOk(name);
               }
             });
           }}
@@ -56,10 +66,20 @@ const ProfileInput = ({ placeholder, children, name }) => {
           중복확인
         </button>
       )}
-      {/*  우선 isChecked를 통해서 생성 규칙을 검사(입력했는지 안했는지)하고, 통과하면
-      이메일 중복체크를 검사  */}
-      {name === "email" && isValidateChecked[name][1] ? (
-        <span className="profileInputChecking">사용 가능한 이메일 입니다.</span>
+      {isNextButton ? (
+        isValidateChecked[name][1] ? (
+          name === "email" ? (
+            <span className="profileInputChecking">
+              사용 가능한 이메일입니다
+            </span>
+          ) : (
+            ""
+          )
+        ) : (
+          <span className="profileInputWarning">
+            {children} 생성규칙에 맞지 않습니다
+          </span>
+        )
       ) : (
         ""
       )}

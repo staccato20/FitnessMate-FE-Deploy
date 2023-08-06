@@ -46,7 +46,13 @@ export const InputName = styled.span`
 
 export const ProfileInputContentWrapper = styled.input`
   border: ${({ isValidateChecked, isNextButton }) =>
-    isNextButton ? (!isValidateChecked[1] ? "1.5px solid #eb444c" : "") : ""};
+    isNextButton
+      ? isValidateChecked[1]
+        ? isValidateChecked[2]
+          ? "1px solid #0b98ff"
+          : ""
+        : "1px solid #eb444c"
+      : ""};
 
   &::-webkit-input-placeholder {
     color: #9a9798;
