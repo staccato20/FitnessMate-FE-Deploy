@@ -25,6 +25,7 @@ const ProfileInputContent = ({ placeholder, name }) => {
     );
   };
 
+  console.log("gg");
   // 유효성 검사
   const handleChange = (e) => {
     const value = e.currentTarget.value;
