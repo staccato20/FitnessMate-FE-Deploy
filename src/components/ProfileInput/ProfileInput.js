@@ -70,6 +70,11 @@ const ProfileInput = ({ placeholder, children, name }) => {
           중복확인
         </button>
       )}
+
+      {/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}
+      {children === "비밀번호" && (
+        <ProfileInputContent placeholder="비밀번호 재확인" name="password2" />
+      )}
       {isNextButton ? (
         isValidateChecked[name][1] ? (
           name === "email" ? (

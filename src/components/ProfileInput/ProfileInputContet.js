@@ -17,15 +17,12 @@ const ProfileInputContent = ({ placeholder, name }) => {
   const [isNextButton, setIsNextButton] = useRecoilState(nextButtonValidate);
   // 비밀번호 재 확인
 
-  const Validation = (name) => {
-    return;
-  };
-
+  console.log("gg");
   // 유효성 검사
   const handleChange = (e) => {
     const value = e.currentTarget.value;
     const name = e.target.name;
-    let exp = Validation(name);
+    let exp;
     switch (name) {
       case "username":
         exp = usernameExp;
@@ -64,7 +61,6 @@ const ProfileInputContent = ({ placeholder, name }) => {
     } else {
       setIsValidateChecked(updatedValidationState);
     }
-
     // 패스워드가 바뀔때만 검사
     if (name.includes("password")) {
       if (
@@ -73,17 +69,24 @@ const ProfileInputContent = ({ placeholder, name }) => {
       ) {
         setIsValidateChecked((pre) => ({
           ...pre,
-          [name]: [value, true, updatedValidationState[name][2]],
+          password2: [
+            updatedValidationState.password2[0],
+            true,
+            updatedValidationState[name][2],
+          ],
         }));
       } else {
         setIsValidateChecked((pre) => ({
           ...pre,
-          [name]: [value, false, updatedValidationState[name][2]],
+          password2: [
+            updatedValidationState.password2[0],
+            false,
+            updatedValidationState[name][2],
+          ],
         }));
       }
     }
   };
-  console.log(isValidateChecked);
 
   // input 태그
   return (
