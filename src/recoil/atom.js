@@ -13,15 +13,17 @@ export const validationState = atom({
   default: {
     // [value, 유효성검사, 파란색 테두리]
     username: ["", false, false],
-    email: ["1", false, true],
+    email: ["", false, true],
     password: ["", false, false],
     password2: ["", false, false],
     birthdate: ["", false, false],
+    height: ["", false, false],
+    weight: ["", false, false],
     // 기타 필드
   },
 });
 
-// 회원정보 state
+// 회원정보 state(필요없을수도)
 export const profileState = atom({
   key: "profileState",
   default: {
@@ -30,5 +32,7 @@ export const profileState = atom({
     password: "",
     password2: "",
     birthdate: "",
+    height: "",
+    weight: "",
   },
 });
