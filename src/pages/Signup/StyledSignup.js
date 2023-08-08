@@ -4,7 +4,7 @@ export const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 195px;
+  gap: 140px;
   .recommendText {
     color: #555;
     font-size: 22px;
