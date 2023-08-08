@@ -4,7 +4,7 @@ export const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 140px;
   .recommendText {
     color: #555;
     font-size: 22px;
@@ -26,7 +26,7 @@ export const SignupContainer = styled.div`
   }
   .profileForm {
     display: flex;
-    gap: 100px;
+    gap: 12px;
     flex-direction: column;
   }
 `;
@@ -37,6 +37,7 @@ export const SignupTitle = styled.span`
   flex-direction: ${({ flex }) => (flex ? "column" : "")};
   align-items: center;
   width: 100%;
+  margin-bottom: 36px;
 
   color: #707070;
   font-size: 28px;

@@ -12,9 +12,7 @@ const SignupProfile = () => {
   const isValidState = useRecoilValue(validationState);
 
   // 제출
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 모든 유효성 검사 + 이메일 중복 확인을 만족해야 다음으로 버튼 활성화
+  const handleSubmit = () => {
     if (
       Object.entries(isValidState).filter(([key, value]) => {
         return value[1] === true;
@@ -22,44 +20,41 @@ const SignupProfile = () => {
     ) {
       navigate(`bodyinfo`);
     }
+
+    // 모든 유효성 검사 + 이메일 중복 확인을 만족해야 다음으로 버튼 활성화
   };
 
   return (
     <S.SignupContainer>
-      <S.SignupTitle>
-        <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
-      </S.SignupTitle>
-      <form onSubmit={handleSubmit} className="profileForm">
-        <S.ProfileContainer>
-          <ProfileInput
-            placeholder="이름을 입력해주세요 (2자리 이상)"
-            name="username"
-          >
-            이름
-          </ProfileInput>
-          <ProfileInput
-            placeholder="생년월일을 입력해주세요 ex) 1998-06-16"
-            name="birthdate"
-          >
-            생년월일
-          </ProfileInput>
-          <ProfileInput placeholder="이메일을 입력해주세요" name="email">
-            이메일
-          </ProfileInput>
-          <ProfileInput
-            placeholder="비밀번호를 입력해주세요 (문자/숫자 포함 8자리 이상)"
-            name="password"
-          >
-            비밀번호
-          </ProfileInput>
-        </S.ProfileContainer>
-        <BigButton
-          className="nextButton"
-          type="submit" // 버튼이 두개이므로 타입 명시
+      <form className="profileForm">
+        <S.SignupTitle>
+          <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
+        </S.SignupTitle>
+        <ProfileInput
+          placeholder="이름을 입력해주세요 (2자리 이상)"
+          name="username"
         >
-          다음으로
-        </BigButton>
+          이름
+        </ProfileInput>
+        <ProfileInput
+          placeholder="생년월일을 입력해주세요 ex) 1998-06-16"
+          name="birthdate"
+        >
+          생년월일
+        </ProfileInput>
+        <ProfileInput placeholder="이메일을 입력해주세요" name="email">
+          이메일
+        </ProfileInput>
+        <ProfileInput
+          placeholder="비밀번호를 입력해주세요 (영문 숫자 조합 8자리 이상)"
+          name="password"
+        >
+          비밀번호
+        </ProfileInput>
       </form>
+      <BigButton className="nextButton" handleSubmit={handleSubmit}>
+        다음으로
+      </BigButton>
     </S.SignupContainer>
   );
 };
