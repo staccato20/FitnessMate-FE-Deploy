@@ -23,7 +23,11 @@ export const SignupContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+  }
+  .profileForm {
+    display: flex;
+    gap: 100px;
+    flex-direction: column;
   }
 `;
 
@@ -33,6 +37,7 @@ export const SignupTitle = styled.span`
   flex-direction: ${({ flex }) => (flex ? "column" : "")};
   align-items: center;
   width: 100%;
+
   color: #707070;
   font-size: 28px;
   font-weight: 700;
@@ -62,7 +67,7 @@ export const TitleEmphasis = styled.span`
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px;
 `;
 
 export const BodyInfoContainer = styled.div`

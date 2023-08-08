@@ -1,9 +1,8 @@
 import { atom } from "recoil";
 // 회원가입 input 정보 / 유효성검사 / 중복체크
 
-// 다음버튼
-export const nextButtonValidate = atom({
-  key: "nextButtonValidate",
+export const EmailState = atom({
+  key: "EmailState",
   default: false,
 });
 
@@ -11,7 +10,7 @@ export const nextButtonValidate = atom({
 export const validationState = atom({
   key: "validationState",
   default: {
-    // [value, 유효성검사, 파란색 테두리]
+    // [value, 유효성검사, 빨/파 테두리 구분]
     username: ["", false, false],
     email: ["", false, true],
     password: ["", false, false],
@@ -19,20 +18,5 @@ export const validationState = atom({
     birthdate: ["", false, false],
     height: ["", false, false],
     weight: ["", false, false],
-    // 기타 필드
-  },
-});
-
-// 회원정보 state(필요없을수도)
-export const profileState = atom({
-  key: "profileState",
-  default: {
-    username: "",
-    email: "",
-    password: "",
-    password2: "",
-    birthdate: "",
-    height: "",
-    weight: "",
   },
 });

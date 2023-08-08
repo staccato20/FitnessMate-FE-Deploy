@@ -12,7 +12,6 @@ ${reset}
         font-family: 'Pretendard', sans-serif;
         font-weight:500;
         line-height:normal;
-
     }
     html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
     a, dl, dt, dd, ol, ul, li, form, label, table{
@@ -21,6 +20,7 @@ ${reset}
         border: 0;
         font-size: 10px;
         vertical-align: baseline;
+
     }
     body{
         line-height: 1;

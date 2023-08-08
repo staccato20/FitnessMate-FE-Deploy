@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ProfileInputContentWrapper } from "./StyledProfileInput";
-import { nextButtonValidate, validationState } from "../../recoil/atom";
+import { validationState } from "../../recoil/atom";
+import ValidateTest from "./../../utils/exp";
 
 const ProfileInputContent = ({ placeholder, name }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -17,12 +17,15 @@ const ProfileInputContent = ({ placeholder, name }) => {
   const [isNextButton, setIsNextButton] = useRecoilState(nextButtonValidate);
   // 비밀번호 재 확인
 
-  console.log("gg");
+  const Validation = (name) => {
+    return;
+  };
+
   // 유효성 검사
   const handleChange = (e) => {
     const value = e.currentTarget.value;
     const name = e.target.name;
-    let exp;
+    let exp = Validation(name);
     switch (name) {
       case "username":
         exp = usernameExp;
@@ -46,9 +49,10 @@ const ProfileInputContent = ({ placeholder, name }) => {
 
     // 유효성 검사
     const updatedValidationState = {
-      ...isValidateChecked,
-      [name]: [value, exp && exp.test(value), isValidateChecked[name][2]],
+      ...isValidState,
+      [name]: [value, exp && exp.test(value), isValidState[name][2]],
     };
+    setIsValidState(updatedValidationState);
 
     // 이메일은 프론트가 아닌 백에서 검사(중복 + 유효성검사), 값만 업데이트 함
     const updateEmailState = {
@@ -61,6 +65,7 @@ const ProfileInputContent = ({ placeholder, name }) => {
     } else {
       setIsValidateChecked(updatedValidationState);
     }
+
     // 패스워드가 바뀔때만 검사
     if (name.includes("password")) {
       if (
@@ -69,20 +74,12 @@ const ProfileInputContent = ({ placeholder, name }) => {
       ) {
         setIsValidateChecked((pre) => ({
           ...pre,
-          password2: [
-            updatedValidationState.password2[0],
-            true,
-            updatedValidationState[name][2],
-          ],
+          password2: [value, true, updatedValidationState[name][2]],
         }));
       } else {
         setIsValidateChecked((pre) => ({
           ...pre,
-          password2: [
-            updatedValidationState.password2[0],
-            false,
-            updatedValidationState[name][2],
-          ],
+          password2: [value, false, updatedValidationState[name][2]],
         }));
       }
     }
@@ -91,15 +88,15 @@ const ProfileInputContent = ({ placeholder, name }) => {
   // input 태그
   return (
     <ProfileInputContentWrapper
-      isValidateChecked={isValidateChecked[name]}
-      isNextButton={isNextButton}
+      placeholder={isFocused ? "" : placeholder}
       name={name}
-      placeholder={isClicked === true ? "" : placeholder}
+      isFocused={isFocused}
+      isValidState={isValidState[name]}
       onFocus={() => {
-        setIsClicked(true);
+        setIsFocused(true);
       }}
       onBlur={() => {
-        setIsClicked(false);
+        setIsFocused(false);
       }}
       onChange={handleChange}
     />
