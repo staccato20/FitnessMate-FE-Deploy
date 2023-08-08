@@ -3,7 +3,7 @@ name: Push to Test Repo
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   push-to-test:
