@@ -33,10 +33,7 @@ const ProfileInput = ({ placeholder, children, name }) => {
   };
 
   return (
-    <S.ProfileInputContainer
-      content={children}
-      isValidState={isValidState.email[1]}
-    >
+    <S.ProfileInputContainer isValidState={isValidState.email[1]}>
       <S.InputName>
         {children}
         <span className="essentialSymbol"> *</span>

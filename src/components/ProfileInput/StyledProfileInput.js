@@ -6,8 +6,6 @@ export const ProfileInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  // 비밀번호와 이메일 사이의 18px - gap(4px) = 14px
-  margin-top: ${({ content }) => (content === "비밀번호" ? "14px" : "0")};
 
   // 경고 문구
   .profileInputWarning {

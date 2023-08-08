@@ -20,10 +20,10 @@ ${reset}
         border: 0;
         font-size: 10px;
         vertical-align: baseline;
+
     }
     body{
         line-height: 1;
-
         background-color: white;
     }
 

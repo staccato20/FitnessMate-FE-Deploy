@@ -14,7 +14,5 @@ export const Navbar = styled.div`
   padding: 10px 35px 11px 40px;
   justify-content: flex-end;
   align-items: center;
-  gap: 872px;
-  flex-shrink: 0;
   align-self: stretch;
 `;
