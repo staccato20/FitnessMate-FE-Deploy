@@ -4,10 +4,12 @@ import React from "react";
 import * as S from "./StyledButton";
 import "./StyledButtons.css";
 
-function BigButton({ backcolor, fontcolor, children }) {
-	return (
-			<S.BigButton className="Button" backcolor={backcolor} fontcolor={fontcolor}>{ children }</S.BigButton>
-	);
+function BigButton({ children, handleSubmit }) {
+  return (
+    <S.BigButton className="Button" onClick={handleSubmit}>
+      {children}
+    </S.BigButton>
+  );
 }
 
 export default BigButton;

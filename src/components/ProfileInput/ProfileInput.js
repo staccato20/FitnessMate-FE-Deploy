@@ -25,11 +25,13 @@ const ProfileInput = ({ placeholder, children, name }) => {
 
   // 서버로 부터 이메일 중복 체크
   const duplicateCheck = async () => {
-    const verifyResponse = await userIdVerifyAPI.post(isValidState.email[0]);
-    if (verifyResponse.data === "ok") {
-      return true;
+    if (isValidState.email[0] !== "") {
+      const verifyResponse = await userIdVerifyAPI.post(isValidState.email[0]);
+      if (verifyResponse.data === "ok") {
+        return true;
+      }
+      return false;
     }
-    return false;
   };
 
   return (

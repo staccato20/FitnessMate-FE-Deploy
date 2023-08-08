@@ -12,9 +12,7 @@ const SignupProfile = () => {
   const isValidState = useRecoilValue(validationState);
 
   // 제출
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 모든 유효성 검사 + 이메일 중복 확인을 만족해야 다음으로 버튼 활성화
+  const handleSubmit = () => {
     if (
       Object.entries(isValidState).filter(([key, value]) => {
         return value[1] === true;
@@ -22,16 +20,18 @@ const SignupProfile = () => {
     ) {
       navigate(`bodyinfo`);
     }
+
+    // 모든 유효성 검사 + 이메일 중복 확인을 만족해야 다음으로 버튼 활성화
   };
 
   return (
     <S.SignupContainer>
-      <S.SignupTitle>
-        <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
-      </S.SignupTitle>
-      <form onSubmit={handleSubmit}>
+      <form className="profileForm">
+        <S.SignupTitle>
+          <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
+        </S.SignupTitle>
         <ProfileInput
-          placeholder="이름을 입력해주세요 (3자리 이상 10자리 이하)"
+          placeholder="이름을 입력해주세요 (2자리 이상)"
           name="username"
         >
           이름
@@ -46,18 +46,15 @@ const SignupProfile = () => {
           이메일
         </ProfileInput>
         <ProfileInput
-          placeholder="비밀번호를 입력해주세요 (8자리 이상)"
+          placeholder="비밀번호를 입력해주세요 (영문 숫자 조합 8자리 이상)"
           name="password"
         >
           비밀번호
         </ProfileInput>
-        <button
-          className="nextButton"
-          type="submit" // 버튼이 두개이므로 타입 명시
-        >
-          다음으로
-        </BigButton>
       </form>
+      <BigButton className="nextButton" handleSubmit={handleSubmit}>
+        다음으로
+      </BigButton>
     </S.SignupContainer>
   );
 };
