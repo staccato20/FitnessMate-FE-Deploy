@@ -10,4 +10,4 @@
 
 ## 주소
 
-https://fitmate-test-bq1ibiipz-whoknow77.vercel.app/
+https://fitmate-test.vercel.app/
