@@ -20,6 +20,8 @@ export const ProfileInputContainer = styled.div`
     font-weight: 500;
   }
   .duplicateButton {
+    opacity: ${({ isValidState }) => (isValidState ? "1" : "0.3")};
+    cursor: ${({ isValidState }) => (isValidState ? "pointer" : "default")};
     position: absolute;
     color: #0b98ff;
     font-size: 17px;
@@ -45,10 +47,10 @@ export const InputName = styled.span`
 // 이메일은 빨/파/none
 
 export const ProfileInputContentWrapper = styled.input`
-  border: ${({ isValidateChecked, isNextButton }) =>
-    isNextButton
-      ? isValidateChecked[1]
-        ? isValidateChecked[2]
+  border: ${({ isValidState, isFocused }) =>
+    !isFocused
+      ? isValidState[1]
+        ? isValidState[2]
           ? "1px solid #0b98ff"
           : ""
         : "1px solid #eb444c"
