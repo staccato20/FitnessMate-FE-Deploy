@@ -3,15 +3,6 @@
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
-  width: 842px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-`;
-
-export const LoginContent = styled.div`
   width: 433px;
   margin: 0 auto;
   display: flex;

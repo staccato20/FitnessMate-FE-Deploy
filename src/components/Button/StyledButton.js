@@ -50,7 +50,7 @@ export const BeforeButton = styled.button`
 // < 목록 버튼 >
 
 export const ListButton = styled.button`
-  display: flex;
+  display: inline-flex;
   width: auto;
   height: 44px;
   padding: 10px 24px;
