@@ -2,12 +2,12 @@
 
 import React from "react";
 import * as S from "./StyledLogin";
-import { BigButton } from "../../components/Button";
+import { BigButton } from "../../components/index"
 import theme from "../../styles/theme";
 
 export const Login = () => {
     return (
-        <S.Container>
+        <S.Container>ㄴ
 					<S.Login>
 						<S.LoginContent>
 							<S.Title>로그인</S.Title>

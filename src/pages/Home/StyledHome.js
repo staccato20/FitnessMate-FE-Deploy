@@ -7,10 +7,19 @@ export const Container = styled.div`
 	height: 100vh;
 	margin-left: auto;
   margin-right: auto;
+	display: flex;
+
+	@media (max-width: 1440px){
+    width: 1000px;
+	}
+
+	@media (max-width: 1065px){
+    width: calc(100% - 2rem);
+  }
 `;
 
 export const Home = styled.div`
-	width: 1392px;
+	width: 80vw;
 	margin-left: auto;
   margin-right: auto;
 	display: flex;
