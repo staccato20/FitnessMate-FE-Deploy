@@ -1,6 +1,6 @@
 import { React, useContext, useEffect, useRef, useState } from "react";
 import { supplementAPI, supplementPostAPI } from "../../apis/API";
-import * as S from "./AddModalStyledComponents";
+import * as S from "./StyledAddModal";
 
 export const AddModal = ({ setAddModal }) => {
   // useRef 쓰는 이유?

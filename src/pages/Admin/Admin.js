@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as S from "./AdminStyledComponents";
+import * as S from "./StyledAdmin";
 import { supplement_type } from "./../../types/Type";
 import { loginAdminPostAPI, supplementAPI } from "../../apis/API";
 import { AddModal } from "../../components/Modal/AddModal";

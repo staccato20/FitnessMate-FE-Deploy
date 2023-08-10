@@ -1,17 +1,17 @@
 import styled from "styled-components";
-export const InputContainer = styled.div`
+export const BodyCompositionInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 433px;
   height: 160px;
   gap: 8px;
-  .InputName {
+  .inputName {
     color: #000;
     font-size: 20px;
   }
 `;
 
-export const InputContentBox = styled.div`
+export const BodyCompositionInputContentContainer = styled.div`
   display: flex;
   height: 60px;
   padding: 14px;
@@ -21,12 +21,12 @@ export const InputContentBox = styled.div`
   border-radius: 10px;
   background: #f5f6f7;
 
-  .SubInputName {
+  .bodypart {
     color: #555;
     font-size: 14px;
     font-weight: 600;
   }
-  .InputContent {
+  .inputContent {
     &::-webkit-input-placeholder {
       color: #9a9798;
     }
