@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../styles/theme";
 
 export const SignupContainer = styled.form`
   display: flex;
@@ -6,8 +7,10 @@ export const SignupContainer = styled.form`
   align-items: flex-start;
   padding-top: 62px;
   gap: 36px;
+
   .recommendText {
-    color: #555;
+    color: ${({ theme }) => theme.Gray80};
+
     font-size: 22px;
     font-weight: 500;
   }
@@ -18,7 +21,7 @@ export const SignupContainer = styled.form`
   .congratuImg {
     width: 249px;
     height: 274px;
-    margin-top: 60px;
+    padding-top: 60px;
   }
 
   .profileForm {
@@ -40,29 +43,25 @@ export const SignupTitle = styled.span`
   flex-direction: ${({ flex }) => (flex ? "column" : "")};
   align-items: center;
   width: 100%;
-  margin-bottom: 36px;
 
-  color: #707070;
+  color: ${({ theme }) => theme.Gray70};
   font-size: 28px;
   font-weight: 700;
   .warningNoWrite {
     display: inline-block;
-    color: #555;
+    color: ${({ theme }) => theme.Gray80};
     font-size: 22px;
-    font-weight: 500;
-    margin-top: 12px;
+    padding-top: 12px;
   }
   .congratu {
     display: inline-block;
-    color: #555;
+    color: ${({ theme }) => theme.Gray80};
     font-size: 24px;
-    font-weight: 500;
-    margin-top: 18px;
   }
 `;
 
 export const TitleEmphasis = styled.span`
-  color: #2f3233;
+  color: ${({ theme }) => theme.Black};
   font-size: 28px;
   font-weight: 700;
 `;
@@ -76,9 +75,9 @@ export const BodyInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 34px;
+    padding-top: 34px;
     .bodyInfoWarning {
-      color: #eb444c;
+      color: ${({ theme }) => theme.Error};
       font-size: 16px;
     }
   }
@@ -94,10 +93,20 @@ export const ProfileInputcontainer = styled.div`
   flex-direction: column;
   gap: 12px;
 `;
+export const SexName = styled.span`
+  transition: all 0.3s ease-out;
+  color: ${({ sex, theme }) => (sex ? theme.BrandDark : theme.Gray50)};
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+`;
 
 export const SexItem = styled.button`
+  transition: all 0.3s ease-out;
   border-radius: 16px;
-  background: ${({ sex }) => (sex ? "#F5F6F7" : "#FFF")};
+  background: ${({ sex, theme }) => (sex ? theme.Gray10 : theme.White)};
+  border: ${({ sex, theme }) =>
+    sex ? `2px solid ${theme.Brand}` : `2px solid transparent`};
   display: flex;
   width: 126px;
   height: 126px;
@@ -106,21 +115,22 @@ export const SexItem = styled.button`
   align-items: center;
   flex-direction: column;
   gap: 8px;
-
   .sexImg {
     width: 60px;
     height: 60px;
   }
-`;
-
-export const SexName = styled.span`
-  color: ${({ sex }) => (sex ? "#2f3233" : "#9A9798")};
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.32px;
+  &:hover {
+    background: ${({ theme }) => theme.Gray10};
+    border: 2px solid
+      ${({ sex, theme }) => (sex ? `2px solid ${theme.Brand}` : theme.Gray30)};
+  }
+  &:hover ${SexName} {
+    color: ${({ sex, theme }) => (sex ? theme.BrandDark : theme.Black)};
+  }
 `;
 
 export const SignupTextContainer = styled.div`
+  padding-top: 45px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -154,5 +164,7 @@ export const BodyCompositionInputList = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 153px;
+  padding-top: 117px;
 `;
+
+export const ButtonCompleteContainer = styled.div``;
