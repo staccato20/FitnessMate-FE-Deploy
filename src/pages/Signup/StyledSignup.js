@@ -5,6 +5,7 @@ export const SignupContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
   padding-top: 62px;
   gap: 36px;
 
@@ -19,8 +20,8 @@ export const SignupContainer = styled.form`
     flex-direction: column;
   }
   .congratuImg {
-    width: 249px;
-    height: 274px;
+    display: inline-block;
+    margin: 0 auto;
     padding-top: 60px;
   }
 
@@ -28,6 +29,10 @@ export const SignupContainer = styled.form`
     display: flex;
     gap: 12px;
     flex-direction: column;
+  }
+
+  .buttonCompleteContainer {
+    padding-top: 159px;
   }
 `;
 
@@ -145,7 +150,7 @@ export const SignupTextContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #0b98ff;
+      color: ${({ theme }) => theme.Brand};
       font-size: 20px;
       font-weight: 600;
       .rightArrow {
@@ -166,5 +171,3 @@ export const ButtonContainer = styled.div`
   align-items: center;
   padding-top: 117px;
 `;
-
-export const ButtonCompleteContainer = styled.div``;

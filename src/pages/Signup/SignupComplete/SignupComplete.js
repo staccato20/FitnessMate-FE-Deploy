@@ -36,7 +36,7 @@ const SignupComplete = () => {
         </span>
       </S.SignupTitle>
       <img src={confetti} alt="완료 이미지" className="congratuImg" />
-      <S.ButtonCompleteContainer>
+      <div className="buttonCompleteContainer">
         <BigButton handleSubmit={GoRecommendPage}>추천 받기</BigButton>
         <BigButton
           backcolor={theme.White}
@@ -45,7 +45,7 @@ const SignupComplete = () => {
         >
           홈으로
         </BigButton>
-      </S.ButtonCompleteContainer>
+      </div>
     </S.SignupContainer>
   );
 };

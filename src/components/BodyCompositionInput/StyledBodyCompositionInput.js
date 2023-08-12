@@ -6,7 +6,7 @@ export const BodyCompositionInputContainer = styled.div`
   height: 160px;
   gap: 8px;
   .inputName {
-    color: #000;
+    color: ${({ theme }) => theme.Black};
     font-size: 20px;
   }
 `;
@@ -19,18 +19,18 @@ export const BodyCompositionInputContentContainer = styled.div`
   justify-content: center;
   gap: 4px;
   border-radius: 10px;
-  background: #f5f6f7;
+  background: ${({ theme }) => theme.Gray10};
 
   .bodypart {
-    color: #555;
+    color: ${({ theme }) => theme.Gray80};
     font-size: 14px;
     font-weight: 600;
   }
   .inputContent {
     &::-webkit-input-placeholder {
-      color: #9a9798;
+      color: ${({ theme }) => theme.Gray50};
     }
-    color: #9a9798;
+    color: ${({ theme }) => theme.Gray50};
     font-size: 18px;
   }
 `;
