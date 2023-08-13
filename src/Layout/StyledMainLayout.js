@@ -6,6 +6,7 @@ export const MainLayoutWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 64px;
+  width: 100%;
 `;
 
 export const Navbar = styled.div`
