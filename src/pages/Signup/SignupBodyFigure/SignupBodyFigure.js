@@ -53,6 +53,10 @@ const SignupBodyFigure = () => {
         if (key !== "password2") {
           submission[key] = isValidState[key][0];
         }
+        if (key === "birthDate") {
+          console.log(new Date());
+          submission[key] = new Date();
+        }
         if (key === "height" || key === "weight") {
           submission[key] = Number(isValidState[key][0]);
         }
