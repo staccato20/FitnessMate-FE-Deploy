@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { SmallButton } from "../../../components/Button/index";
 import theme from "../../../styles/theme";
 import {
@@ -9,6 +10,10 @@ import {
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
 const RecommendSelectTwo = () => {
+  const navigate = useNavigate();
+  const goNextPage = () => {
+    navigate("/recommend/selectexercisepart");
+  };
   return (
     <RecommendContainer>
       <div>
@@ -26,7 +31,7 @@ const RecommendSelectTwo = () => {
       </div>
       <RecommendImgContainer></RecommendImgContainer>
       <RecommendButtonContainer>
-        <SmallButton>다음</SmallButton>
+        <SmallButton handleSubmit={goNextPage}>다음</SmallButton>
       </RecommendButtonContainer>
     </RecommendContainer>
   );

@@ -25,3 +25,20 @@ export const validationState = atom({
     lowerMuscleMass: ["", false, false],
   },
 });
+
+// 운동 부위 리스트
+export const bodyPartList = atom({
+  key: "bodyPartList",
+  default: {
+    어깨: false,
+    가슴: false,
+    등: false,
+    삼두: false,
+    이두: false,
+    엉덩이: false,
+    허벅지: false,
+    허벅지2: false,
+    종아리: false,
+    복부: false,
+  },
+});
