@@ -2,9 +2,6 @@
 
 import styled from 'styled-components';
 
-// 만들어진 레이아웃 특정 란에 넣으면
-// 거기에 맞게 채워지도록 가로세로 100%로 설정
-// 세부내용도 그에 맞게 줄어들거나 늘어나도록 %와 em으로 설정
 export const ImgCheckbox = styled.button`
   display: flex;
   width: 385px;
