@@ -8,14 +8,14 @@ import { RecoilRoot } from "recoil";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-    <div className="App">
-      <RecoilRoot>
-        <LoginContextProvider>
-          <Navigator />
-        </LoginContextProvider>
-      </RecoilRoot>
-    </div>
-</ThemeProvider>
+      <div className="App">
+        <RecoilRoot>
+          <LoginContextProvider>
+            <Navigator />
+          </LoginContextProvider>
+        </RecoilRoot>
+      </div>
+    </ThemeProvider>
   );
 }
 

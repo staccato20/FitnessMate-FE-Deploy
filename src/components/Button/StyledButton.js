@@ -2,7 +2,6 @@
 
 import styled from 'styled-components';
 
-
 // < 가로 길이가 긴 버튼 >
 
 export const BigButton = styled.button`
