@@ -6,25 +6,24 @@ export const RecommendContainer = styled.div`
   align-items: center;
   gap: 92px;
   padding-top: 78px;
-  .recommendTitle {
-    font-size: 56px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.Black};
-  }
-
-  .emphasisTitle {
-    font-size: 56px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.Gray70};
-  }
-  .emphasisTitle2 {
-    font-size: 56px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.Brand};
-  }
   .goodImg {
     width: 328px;
     height: 232px;
     margin-bottom: 100px;
   }
 `;
+
+export const RecommendTitle = styled.span`
+  font-size: ${({ ftsize }) => ftsize};
+  color: ${({ ftcolor }) => ftcolor};
+  font-weight: ${({ ftweight }) => ftweight};
+`;
+
+export const RecommendButtonContainer = styled.div`
+  margin-top: 186px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const RecommendImgContainer = styled.div``;

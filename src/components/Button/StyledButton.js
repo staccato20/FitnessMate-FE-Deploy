@@ -28,8 +28,8 @@ export const MiddleButton = styled.button`
 
 export const SmallButton = styled.button`
   width: 204px;
-  height: 62px;
   padding: 22px 24px;
+  height: 54px;
 
   background: ${({ theme }) => theme.Brand};
   color: ${({ theme }) => theme.White};
