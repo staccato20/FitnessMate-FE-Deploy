@@ -2,22 +2,6 @@
 
 import styled from 'styled-components';
 
-export const Container = styled.div`
-	width: 1440px;
-	height: 100vh;
-	margin-left: auto;
-  margin-right: auto;
-	display: flex;
-
-	@media (max-width: 1440px){
-    width: 1000px;
-	}
-
-	@media (max-width: 1065px){
-    width: calc(100% - 2rem);
-  }
-`;
-
 export const Home = styled.div`
 	width: 80vw;
 	margin-left: auto;
@@ -27,7 +11,6 @@ export const Home = styled.div`
 	position: relative;
 	align-items: center;
 	gap: 64px;
-	padding-bottom: 300px;
 `;
 
 export const HomeContent = styled.div`

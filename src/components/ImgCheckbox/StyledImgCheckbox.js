@@ -1,18 +1,17 @@
-// < 글만 있는 체크박스 스타일 >
+// < 이미지가 포함된 체크박스 스타일 >
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-// 만들어진 레이아웃 특정 란에 넣으면
-// 거기에 맞게 채워지도록 가로 100%로 설정(디자인에 따라 세로는 설정 X)
-
-export const TextCheckbox = styled.button`
+export const ImgCheckbox = styled.button`
   display: flex;
-  width: 100%;
-  padding: 10px 14px;
+  width: 385px;
+	height: 385px;
+  padding: 24px;
   background: ${({ theme }) => theme.Gray10};
   border-radius: 16px;
-  justify-content: space-between;
-  align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 10px;
   border: 2px solid
     ${({ theme, isSelected }) => (isSelected ? theme.Brand : theme.Gray10)};
 
@@ -46,4 +45,24 @@ export const TextCheckbox = styled.button`
     fill: ${({ isSelected, theme }) =>
       isSelected ? theme.White : theme.Gray30};
   }
+
+	.ImgCheckbox-top {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.ImgCheckbox-bottom {
+		width: 337px;
+		height: 287px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.article-image {
+		border-radius: 2%;
+	}
+
 `;
