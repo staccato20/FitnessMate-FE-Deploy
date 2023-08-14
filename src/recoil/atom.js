@@ -21,7 +21,7 @@ export const validationState = atom({
     password2: ["", false, false],
     upperBodyFat: ["", false, false],
     lowerBodyFat: ["", false, false],
-    upplerMuscleMass: ["", false, false],
+    upperMuscleMass: ["", false, false],
     lowerMuscleMass: ["", false, false],
   },
 });

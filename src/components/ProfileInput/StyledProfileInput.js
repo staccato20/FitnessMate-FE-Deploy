@@ -49,7 +49,6 @@ export const ProfileInputContentWrapper = styled.input`
   &::-webkit-input-placeholder {
     color: ${({ theme }) => theme.Gray50};
   }
-  height: 100%;
   border-radius: 10px;
   padding: 14px;
   background: ${({ theme }) => theme.Gray10};

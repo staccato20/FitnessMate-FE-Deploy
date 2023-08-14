@@ -5,8 +5,9 @@ export const BodyCompositionInputContainer = styled.div`
   width: 433px;
   height: 160px;
   gap: 8px;
+  padding-top: 30px;
   .inputName {
-    color: ${({ theme }) => theme.Black};
+    color: #000;
     font-size: 20px;
   }
 `;
