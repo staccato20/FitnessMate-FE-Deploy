@@ -4,10 +4,10 @@ import React from "react";
 import * as S from "./StyledButton";
 import "./StyledButtons.css";
 
-function MiddleButton({ children }) {
+function MiddleButtonWrapper({ children }) {
 	return (
 			<S.MiddleButton className="Button">{ children }</S.MiddleButton>
 	);
 }
 
-export default MiddleButton;
+export default MiddleButtonWrapper;

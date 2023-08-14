@@ -1,5 +1,5 @@
 import { React } from "react";
-import { LoginContextProvider } from "./Contexts/Login";
+import { LoginContextProvider } from "./Contexts/login-context";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import Navigator from "./routes/Navigator";

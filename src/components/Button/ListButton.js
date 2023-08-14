@@ -4,10 +4,10 @@ import React from "react";
 import * as S from "./StyledButton";
 import "./StyledButtons.css";
 
-function ListButton({ children }) {
+function ListButtonWrapper({ children }) {
 	return (
 			<S.ListButton className="Button">{ children }</S.ListButton>
 	);
 }
 
-export default ListButton;
+export default ListButtonWrapper;

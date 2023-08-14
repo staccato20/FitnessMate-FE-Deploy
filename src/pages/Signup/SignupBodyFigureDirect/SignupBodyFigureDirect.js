@@ -31,6 +31,7 @@ const SignupBodyFigureDirect = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
+					localStorage.setItem("Jwt", "tmp");
           navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
         }}
       >

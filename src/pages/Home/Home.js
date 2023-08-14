@@ -2,12 +2,13 @@
 
 import React from "react";
 import * as S from "./StyledHome";
+import { ScrollContainerWrapper } from "../../Layout/ScrollContainer";
 import HomeSecondImg1 from "../../assets/images/HomeSecondImg1.png";
 import HomeSecondImg2 from "../../assets/images/HomeSecondImg2.png";
 
 export const Home = () => {
 	return (
-		<S.Container>
+		<ScrollContainerWrapper>
 			<S.Home>
 				<S.HomeContent>
 					<S.FirstContent>
@@ -122,7 +123,7 @@ export const Home = () => {
 					</S.ThirdContent>
 				</S.HomeContent>
 			</S.Home>
-		</S.Container>
+		</ScrollContainerWrapper>
 	);
 };
 

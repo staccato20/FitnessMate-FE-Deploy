@@ -1,6 +1,6 @@
 import * as S from "../StyledSignup";
 import { useNavigate } from "react-router-dom";
-import { TextCheckbox } from "../../../components/index";
+import { TextCheckboxWrapper } from "../../../components/index";
 import rightarrow from "../../../assets/images/rightarrow.svg";
 
 const SignupBodyFigure = () => {
@@ -16,10 +16,10 @@ const SignupBodyFigure = () => {
         <span className="recommendText">정확한 추천을 위해 필요해요</span>
       </S.SignupTitleContainer>
       <S.SignupTextContainer>
-        <TextCheckbox>마른 편이에요</TextCheckbox>
-        <TextCheckbox>보통이에요</TextCheckbox>
-        <TextCheckbox>조금 통통한 편이에요</TextCheckbox>
-        <TextCheckbox>뚱뚱해요</TextCheckbox>
+        <TextCheckboxWrapper>마른 편이에요</TextCheckboxWrapper>
+        <TextCheckboxWrapper>보통이에요</TextCheckboxWrapper>
+        <TextCheckboxWrapper>조금 통통한 편이에요</TextCheckboxWrapper>
+        <TextCheckboxWrapper>뚱뚱해요</TextCheckboxWrapper>
         <div className="directButtonContainer">
           <button
             className="directbutton"

@@ -8,8 +8,6 @@ export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 135.5px;
   display: flex;
 `;
 
