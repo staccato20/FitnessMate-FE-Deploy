@@ -10,9 +10,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <RecoilRoot>
-          <LoginContextProvider>
             <Navigator />
-          </LoginContextProvider>
         </RecoilRoot>
       </div>
     </ThemeProvider>
