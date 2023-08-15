@@ -29,6 +29,15 @@ const RecommendSelectExcercisePart = () => {
     const newArr = Array(entries.length).fill(false);
     newArr[idx] = true;
     setIsBodyPartSelect(newArr);
+    const target = entries.find((key, value) => idx === value)[0];
+
+    const updatedExercisePart = Object.fromEntries(
+      Object.entries(isbodyPartListState).map(([key, value]) => [
+        key,
+        key === target,
+      ])
+    );
+    setIsbodyPartListState(updatedExercisePart);
   };
 
   const handleBackPage = () => {

@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
+import theme from "../../styles/theme";
 
 export const RecommendContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 92px;
+  gap: 80px;
   padding: 78px 25px 0 25px;
 
   .goodImg {
@@ -20,6 +21,12 @@ export const RecommendTitle = styled.span`
   font-weight: ${({ ftweight }) => ftweight};
 `;
 
+export const RecommendTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
 export const RecommendButtonContainer = styled.div`
   margin-top: 186px;
   width: 100%;
@@ -29,9 +36,40 @@ export const RecommendButtonContainer = styled.div`
 
 export const RecommendImgContainer = styled.div``;
 
+export const RecommendTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`;
+
 export const TextCheckboxContainer = styled.div`
+  padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 24px;
+`;
+
+export const BorderTextCheckboxContainer = styled.div`
+  padding-top: 40px;
+  border-top: 2px solid ${theme.Gray20};
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  .allSelectButton {
+    color: ${theme.Brand};
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+`;
+
+export const BorderTextCheckboxInnerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 22px;
 `;

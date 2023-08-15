@@ -19,6 +19,12 @@ export const TextCheckboxWrapper = styled.button`
     ${({ theme, isSelected }) => (isSelected ? theme.Brand : `transparent`)};
 
   .choice-article {
+    // 텍스트가 새로운 줄로 넘어가지 않게됨
+    white-space: nowrap;
+    // 텍스트가 요소를 넘어갈 경우 숨기
+    overflow: hidden;
+    // 글자가 길어질 경우 ...으로 표시
+    text-overflow: ellipsis;
     transition: all 0.3s ease-out;
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.Brand : theme.Gray70};
