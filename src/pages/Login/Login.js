@@ -4,13 +4,10 @@ import { React, useState } from "react";
 import * as S from "./StyledLogin";
 import { NoneScrollContainerWrapper } from "../../Layout/NoneScrollContainer";
 import { BigButtonWrapper } from "../../components/index";
-import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
-// import { LoginEmailInput, LoginPWInput } from "./LoginInput";
 import { Link } from "react-router-dom";
-import { loginPostAPI } from "../../apis/API";
-import axios from "axios";
-
+import { loginPostAPI, userAPI } from "../../apis/API";
 
 const Login = (props) => {
 
@@ -30,27 +27,33 @@ const Login = (props) => {
 			loginEmail: email,
 			password: password,
 		}
-		console.log(submission);
+		console.log(submission.loginEmail);
 
 		loginPostAPI.post("", submission)
+		userAPI.get("", submission)
 			.then((res) => {
 				console.log(res.status);
 				if (res.status === 200) {
 					localStorage.setItem("Jwt", "tmp")
-					alert(`로그인 성공`);
-					console.log(res.data)
-					navigate('/');
+					userAPI.get("", submission)
+					.then((data) => {
+						console.log(data.data.loginEmail);
+						if (submission.loginEmail === data.data.loginEmail) {
+							alert(`로그인 성공`);
+								console.log(data.data)
+						} else {
+							alert("입력하신 이메일은 존재하지 않습니다.");
+							console.log(data.data)
+						}
+					})
 				}
 			})
 			.catch(error => {
 				if (error.response.status === 401) {
 					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
 				}
-				if (error.response.code === 400) {
-					alert("ID, Password가 비어있습니다.");
-				}
-				if (error.response.code === 402) {
-					alert("Password가 틀립니다.");
+				else {
+					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
 				}
 			})
 

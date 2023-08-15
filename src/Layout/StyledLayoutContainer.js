@@ -92,5 +92,6 @@ export const NavText = styled.div`
   align-items: center;
   justify-content: center;
 	padding: 10px 24px;
+	font-family: "Pretendard";
 `;
 
