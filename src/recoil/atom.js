@@ -58,3 +58,11 @@ export const fitnessequipment = atom({
     레그익스텐션: false,
   },
 });
+
+export const recommendcategory = atom({
+  key: "recommendcategory",
+  default: {
+    보조제: [false, "protein"],
+    운동: [false, "fitness"],
+  },
+});

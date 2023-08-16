@@ -11,6 +11,8 @@ export const RecommendContainer = styled.div`
   .goodImg {
     width: 328px;
     height: 232px;
+    display: inline-block;
+    margin: 0 auto;
     margin-bottom: 100px;
   }
 `;
@@ -34,7 +36,10 @@ export const RecommendButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-export const RecommendImgContainer = styled.div``;
+export const RecommendImgContainer = styled.div`
+  display: flex;
+  gap: 40px;
+`;
 
 export const RecommendTextContainer = styled.div`
   display: flex;
@@ -72,4 +77,8 @@ export const BorderTextCheckboxInnerContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 22px;
+`;
+
+export const ButonWrapper = styled.div`
+  margin: 0 auto;
 `;
