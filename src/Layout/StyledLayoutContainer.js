@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 // < 스크롤이 있는 nav 아래 container 스타일 >
 
-export const ScrollContainer  = styled.div`
+export const ScrollContainerWrapper  = styled.div`
 	width: 100%;
 	display: flex;
 	margin-top: 64px;
@@ -17,7 +17,7 @@ export const ScrollContainer  = styled.div`
 
 // < 스크롤이 없는 nav 아래 container 스타일 >
 
-export const NoneScrollContainer  = styled.div`
+export const NoneScrollContainerWrapper  = styled.div`
 	width: 100%;
 	min-height: calc(100vh - 64px);
 	display: flex;

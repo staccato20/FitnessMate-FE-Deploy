@@ -2,8 +2,8 @@
 
 import { React, useState } from "react";
 import * as S from "./StyledLogin";
-import { NoneScrollContainerWrapper } from "../../Layout/NoneScrollContainer";
-import { BigButtonWrapper } from "../../components/index";
+import { NoneScrollContainer } from "../../Layout/NoneScrollContainer";
+import { BigButton } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
@@ -61,7 +61,7 @@ const Login = (props) => {
 	}
 
 	return (
-		<NoneScrollContainerWrapper>
+		<NoneScrollContainer>
 			<S.LoginContainer>
 				<S.Title>로그인</S.Title>
 				<form onSubmit={onClickLogin}>
@@ -77,7 +77,7 @@ const Login = (props) => {
 							}}
 							placeholder={isEmailClicked === true ? "" : "이메일"}
 							pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
-							title="email@mail.e와 같은 형식을 준수해주세요"
+							title="fit@mate.com와 같은 형식을 준수해주세요"
 							required />
 						<S.LoginInput 
 							type='password' name='password' 
@@ -94,17 +94,17 @@ const Login = (props) => {
 					</S.InputFrame>
 					<S.AutomaticLogin>
 						<input type="checkbox" />
-						자동 로그인
+						로그인 유지
 					</S.AutomaticLogin>
-					<BigButtonWrapper email={props.email} type="submit">로그인</BigButtonWrapper>
+					<BigButton email={props.email} type="submit">로그인</BigButton>
 				</form>
 				<Link to="/signUp">
-					<BigButtonWrapper backcolor={theme.White} fontcolor={theme.Brand}>
+					<BigButton backcolor={theme.White} fontcolor={theme.Brand}>
 						회원가입
-					</BigButtonWrapper>
+					</BigButton>
 				</Link>
 			</S.LoginContainer>
-		</NoneScrollContainerWrapper>
+		</NoneScrollContainer>
 
 	);
 };

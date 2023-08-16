@@ -5,7 +5,7 @@ import * as S from "./StyledImgCheckbox";
 
 const ImgCheckbox = ({ handleClick, isSelected, children, elementidx, articleimg }) => {
   return (
-    <S.ImgCheckbox
+    <S.ImgCheckboxWrapper
       type="button"
       onClick={() => {
         handleClick(elementidx);
@@ -35,7 +35,7 @@ const ImgCheckbox = ({ handleClick, isSelected, children, elementidx, articleimg
       <div className="ImgCheckbox-bottom">
 				<img className="article-image" src={require(`../../assets/images/${articleimg}.png`)} alt={articleimg}/>
 			</div>
-    </S.ImgCheckbox>
+    </S.ImgCheckboxWrapper>
   );
 };
 

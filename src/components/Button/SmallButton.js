@@ -4,10 +4,10 @@ import React from "react";
 import * as S from "./StyledButton";
 import "./StyledButtons.css";
 
-function SmallButtonWrapper({ children }) {
+function SmallButton({ children }) {
 	return (
-			<S.SmallButton className="Button">{ children }</S.SmallButton>
+			<S.SmallButtonWrapper className="Button">{ children }</S.SmallButtonWrapper>
 	);
 }
 
-export default SmallButtonWrapper;
+export default SmallButton;
