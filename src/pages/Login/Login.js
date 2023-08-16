@@ -7,7 +7,7 @@ import { BigButtonWrapper } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
 import { Link } from "react-router-dom";
-import { loginPostAPI, userAPI } from "../../apis/API";
+import { loginPostAPI, userAPI, bodyDataAPI } from "../../apis/API";
 
 const Login = (props) => {
 
@@ -27,35 +27,36 @@ const Login = (props) => {
 			loginEmail: email,
 			password: password,
 		}
-		console.log(submission.loginEmail);
+		console.log(submission);
 
 		loginPostAPI.post("", submission)
-		userAPI.get("", submission)
-			.then((res) => {
-				console.log(res.status);
-				if (res.status === 200) {
-					localStorage.setItem("Jwt", "tmp")
-					userAPI.get("", submission)
-					.then((data) => {
-						console.log(data.data.loginEmail);
-						if (submission.loginEmail === data.data.loginEmail) {
-							alert(`로그인 성공`);
-								console.log(data.data)
-						} else {
-							alert("입력하신 이메일은 존재하지 않습니다.");
-							console.log(data.data)
+		.then((res) => {
+			console.log(res.status);
+			if (res.status === 200) {
+				userAPI.get("", submission)
+				.then((data) => {
+					console.log(data.data)
+					if (submission.loginEmail === data.data.loginEmail) {
+						// 유저 bodydata 가져오기 시도
+						// const r = bodyDataAPI.get("/1", submission)
+						// console.log(r)
+						localStorage.setItem("Jwt", "tmp")
+						alert(`로그인 성공`);
+						navigate('/')
+					} else {
+							alert("입력하신 회원정보는 존재하지 않습니다.");
 						}
-					})
-				}
-			})
-			.catch(error => {
-				if (error.response.status === 401) {
-					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
-				}
-				else {
-					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
-				}
-			})
+				})
+			}
+		})
+		.catch(error => {
+		if (error.response.status === 401) {
+			alert(`로그인 실패! 권한이 없습니다.`);
+		}
+		else {
+			alert(`로그인 실패! 정보를 다시 확인해주세요.`);
+		}
+		})
 
 	}
 
@@ -75,6 +76,8 @@ const Login = (props) => {
 								setIsEmailClicked(false);
 							}}
 							placeholder={isEmailClicked === true ? "" : "이메일"}
+							pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+							title="email@mail.e와 같은 형식을 준수해주세요"
 							required />
 						<S.LoginInput 
 							type='password' name='password' 
@@ -86,6 +89,7 @@ const Login = (props) => {
 								setIsPWClicked(false);
 							}}
 							placeholder={isPWClicked === true ? "" : "비밀번호"}
+							autocomplete='on'
 							required />
 					</S.InputFrame>
 					<S.AutomaticLogin>
@@ -94,9 +98,9 @@ const Login = (props) => {
 					</S.AutomaticLogin>
 					<BigButtonWrapper email={props.email} type="submit">로그인</BigButtonWrapper>
 				</form>
-				<Link to="/">
+				<Link to="/signUp">
 					<BigButtonWrapper backcolor={theme.White} fontcolor={theme.Brand}>
-						홈으로
+						회원가입
 					</BigButtonWrapper>
 				</Link>
 			</S.LoginContainer>
