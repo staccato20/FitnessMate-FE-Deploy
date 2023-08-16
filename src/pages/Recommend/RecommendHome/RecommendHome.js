@@ -4,15 +4,15 @@ import {
   ButonWrapper,
 } from "../StyledRecommend";
 import thumbs from "../../../../src/assets/images/thumbs.png";
-import BigButton from "./../../../components/Button/BigButton";
+import { BigButton } from "./../../../components/";
 import { useNavigate } from "react-router-dom";
 import theme from "../../../styles/theme";
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
-const RecommendInfo = () => {
+const RecommendHome = () => {
   const navigate = useNavigate();
   const goNextPage = () => {
-    navigate("selecttwo");
+    navigate("category");
   };
   return (
     <RecommendContainer>
@@ -41,4 +41,4 @@ const RecommendInfo = () => {
   );
 };
 
-export default RecommendInfo;
+export default RecommendHome;

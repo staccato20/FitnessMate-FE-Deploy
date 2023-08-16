@@ -7,34 +7,43 @@ import {
   RecommendImgContainer,
   RecommendTitle,
 } from "../StyledRecommend";
-import ImgCheckbox from "../../../components/ImgCheckbox/ImgCheckbox";
+import { ImgCheckbox } from "../../../components";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { recommendcategory } from "../../../recoil/atom";
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
-const RecommendSelectTwo = () => {
+const RecommendCategory = () => {
   const navigate = useNavigate();
-  const goNextPage = () => {
-    navigate("/recommend/selectexercisepart");
-  };
+
+  // 카테고리 배열
   const [isRecommendCategory, setIsRecommendCategory] = useState([]);
 
+  // 카테고리 상태 객체
   const [RecommendCategoryState, setRecommendCategoryState] =
     useRecoilState(recommendcategory);
 
+  const goNextPage = () => {
+    if (isRecommendCategory[1]) {
+      navigate("/recommend/workout");
+    }
+  };
+
   const handleSelect = (idx) => {
     const entries = Object.entries(RecommendCategoryState);
+
+    // 배열 업데이트
     const newArr = Array(entries.length).fill(false);
     newArr[idx] = true;
     setIsRecommendCategory(newArr);
 
+    // 객체(atom) 업데이트
+    // key: 보조제, value: [false, "protein"], index: 0
     const updatedRecommendCatgory = Object.fromEntries(
       entries.map(([key, value], index) => [key, [index === idx, value[1]]])
     );
     setRecommendCategoryState(updatedRecommendCatgory);
   };
-  console.log(RecommendCategoryState);
 
   return (
     <RecommendContainer>
@@ -73,4 +82,4 @@ const RecommendSelectTwo = () => {
   );
 };
 
-export default RecommendSelectTwo;
+export default RecommendCategory;
