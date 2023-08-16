@@ -3,10 +3,10 @@
 import React from "react";
 import * as S from "./StyledLayoutContainer";
 
-export const ScrollContainerWrapper = ({children}) => {
+export const ScrollContainer = ({children}) => {
 	return (
-		<S.ScrollContainer>{children}</S.ScrollContainer>
+		<S.ScrollContainerWrapper>{children}</S.ScrollContainerWrapper>
 	);
 }
 
-export default ScrollContainerWrapper;
+export default ScrollContainer;

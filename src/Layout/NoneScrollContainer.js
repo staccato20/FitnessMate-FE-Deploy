@@ -3,10 +3,10 @@
 import React from "react";
 import * as S from "./StyledLayoutContainer";
 
-export const NoneScrollContainerWrapper = ({children}) => {
+export const NoneScrollContainer = ({children}) => {
 	return (
-		<S.NoneScrollContainer>{children}</S.NoneScrollContainer>
+		<S.NoneScrollContainerWrapper>{children}</S.NoneScrollContainerWrapper>
 	);
 }
 
-export default NoneScrollContainerWrapper;
+export default NoneScrollContainer;

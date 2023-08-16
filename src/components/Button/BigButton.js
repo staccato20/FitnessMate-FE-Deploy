@@ -4,10 +4,10 @@ import React from "react";
 import * as S from "./StyledButton";
 import "./StyledButtons.css";
 
-function BigButtonWrapper({ backcolor, fontcolor, children }) {
+function BigButton({ backcolor, fontcolor, children }) {
 	return (
-			<S.BigButton className="Button" backcolor={backcolor} fontcolor={fontcolor}>{ children }</S.BigButton>
+			<S.BigButtonWrapper className="Button" backcolor={backcolor} fontcolor={fontcolor}>{ children }</S.BigButtonWrapper>
 	);
 }
 
-export default BigButtonWrapper;
+export default BigButton;

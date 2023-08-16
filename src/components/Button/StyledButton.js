@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 // < 가로 길이가 긴 버튼 >
 
-export const BigButton = styled.button`
+export const BigButtonWrapper = styled.button`
 	width: 433px;
 	height: 62px;
 	padding: 22px 24px;
@@ -16,7 +16,7 @@ export const BigButton = styled.button`
 
 // < 가로 길이가 중간인 버튼 >
 
-export const MiddleButton = styled.button`
+export const MiddleButtonWrapper = styled.button`
 	width: 294px;
 	height: 62px;
 	padding: 22px 24px;
@@ -28,7 +28,7 @@ export const MiddleButton = styled.button`
 
 // < 가로 길이가 짧은 버튼 >
 
-export const SmallButton = styled.button`
+export const SmallButtonWrapper = styled.button`
 	width: 204px;
 	height: 62px;
 	padding: 22px 24px;
@@ -40,7 +40,7 @@ export const SmallButton = styled.button`
 
 // < 이전 버튼 >
 
-export const BeforeButton = styled.button`
+export const BeforeButtonWrapper = styled.button`
 	width: 139px;
 	height: 62px;
 	padding: 22px 10px;
@@ -53,7 +53,7 @@ export const BeforeButton = styled.button`
 
 // < 목록 버튼 >
 
-export const ListButton = styled.button`
+export const ListButtonWrapper = styled.button`
 	display: inline-flex;
 	width: auto;
 	height: 44px;
