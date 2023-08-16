@@ -4,32 +4,96 @@ import { React, useState } from "react";
 import * as S from "./StyledLogin";
 import { NoneScrollContainerWrapper } from "../../Layout/NoneScrollContainer";
 import { BigButtonWrapper } from "../../components/index";
-import { Form, redirect, useActionData } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
-// import { LoginEmailInput, LoginPWInput } from "./LoginInput";
 import { Link } from "react-router-dom";
-import { loginPostAPI } from "../../apis/API";
+import { loginPostAPI, userAPI } from "../../apis/API";
 
 const Login = (props) => {
-	// const [isEmailClicked, setIsEmailClicked] = useState(false);
-	// const [isPWClicked, setIsPWClicked] = useState(false);
-	const data = useActionData();
+
+	// placeholder
+	let [isEmailClicked, setIsEmailClicked] = useState(false);
+	let [isPWClicked, setIsPWClicked] = useState(false);
+
+	const navigate = useNavigate();
+
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("");
+
+	const onClickLogin = (e) => {
+		e.preventDefault();
+
+		const submission = {
+			loginEmail: email,
+			password: password,
+		}
+		console.log(submission.loginEmail);
+
+		loginPostAPI.post("", submission)
+		userAPI.get("", submission)
+			.then((res) => {
+				console.log(res.status);
+				if (res.status === 200) {
+					localStorage.setItem("Jwt", "tmp")
+					userAPI.get("", submission)
+					.then((data) => {
+						console.log(data.data.loginEmail);
+						if (submission.loginEmail === data.data.loginEmail) {
+							alert(`로그인 성공`);
+								console.log(data.data)
+						} else {
+							alert("입력하신 이메일은 존재하지 않습니다.");
+							console.log(data.data)
+						}
+					})
+				}
+			})
+			.catch(error => {
+				if (error.response.status === 401) {
+					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
+				}
+				else {
+					alert(`로그인 실패! 정보를 다시 확인해주세요.`);
+				}
+			})
+
+	}
+
 	return (
 		<NoneScrollContainerWrapper>
 			<S.LoginContainer>
 				<S.Title>로그인</S.Title>
-				<Form method="post" action="/login">
+				<form onSubmit={onClickLogin}>
 					<S.InputFrame>
-						<S.LoginInput placeholder="아이디"  type='text' name="email" required ></S.LoginInput>
-						<S.LoginInput placeholder="비밀번호" type='password' name='password' required ></S.LoginInput>
+						<S.LoginInput
+							type='text' name="email"
+							value={email} onChange={(e) => setEmail(e.target.value)}
+							onFocus={() => {
+								setIsEmailClicked(true);
+							}}
+							onBlur={() => {
+								setIsEmailClicked(false);
+							}}
+							placeholder={isEmailClicked === true ? "" : "이메일"}
+							required />
+						<S.LoginInput 
+							type='password' name='password' 
+							value={password} onChange={(e) => setPassword(e.target.value)}
+							onFocus={() => {
+								setIsPWClicked(true);
+							}}
+							onBlur={() => {
+								setIsPWClicked(false);
+							}}
+							placeholder={isPWClicked === true ? "" : "비밀번호"}
+							required />
 					</S.InputFrame>
 					<S.AutomaticLogin>
 						<input type="checkbox" />
 						자동 로그인
 					</S.AutomaticLogin>
-					<BigButtonWrapper email={props.email} onClick={props.onClick} type="submit">로그인</BigButtonWrapper>
-					{data && data.error && <p>{data.error}</p>}
-				</Form>
+					<BigButtonWrapper email={props.email} type="submit">로그인</BigButtonWrapper>
+				</form>
 				<Link to="/">
 					<BigButtonWrapper backcolor={theme.White} fontcolor={theme.Brand}>
 						홈으로
@@ -40,44 +104,5 @@ const Login = (props) => {
 
 	);
 };
-
-export const signInAction = async ({ request }) => {
-
-	const data = await request.formData();
-
-	const submission = {
-		loginEmail: data.get('email'),
-		password: data.get('password'),
-	}
-	console.log(submission);
-
-	//post요청
-	let response;
-	if (submission.loginEmail === "admin") {
-		response = await loginPostAPI.post("", submission);
-	}
-	else {
-		const response = await loginPostAPI.post("", submission);
-		if (response === "ok") {
-			console.log(response.data);
-		}
-		else {
-			return false;
-		}
-	}
-
-	//ok / fail check
-	const responseStatus = response.data;
-	console.log(responseStatus)
-	if (responseStatus === "ok") {
-
-		localStorage.setItem("Jwt", "tmp");
-		return redirect('/');
-	}
-	else {
-		return { error: "Wrong login Info" };
-	}
-}
-
 
 export default Login;

@@ -1,8 +1,9 @@
 // < 네브바 포함 레이아웃 >
 
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./StyledLayoutContainer";
 import { Link, Outlet } from "react-router-dom";
+
 
 export const LayoutContainer = () => {
 	return (
