@@ -24,6 +24,7 @@ const SignupComplete = () => {
     fetchData();
   }, []);
 
+  // 회원 가입시 자동 로그인
   const GoHomePage = (e) => {
     e.preventDefault();
     navigate("/");
@@ -31,7 +32,7 @@ const SignupComplete = () => {
 
   const GoRecommendPage = (e) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/recommend");
   };
 
   return (

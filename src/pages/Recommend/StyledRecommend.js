@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
-import theme from "../../styles/theme";
+import theme from "./../../styles/theme";
 
 export const RecommendContainer = styled.div`
   max-width: 842px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -105,4 +106,49 @@ export const ButonWrapper = styled.div`
 
 export const RecommendMachineResultContainer = styled.div`
   padding-top: 59px;
+`;
+
+export const BudgetContainer = styled.div`
+  width: 100%;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 25px;
+  .warningText {
+    color: #eb444c;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.36px;
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+export const BudgetBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-color: ${({ warnBudget }) =>
+    warnBudget ? theme.Error : theme.Gray10};
+
+  .budget {
+    border-radius: 16px;
+    background: ${theme.Gray10};
+    padding: 21px 74px;
+    color: ${({ warnBudget }) => (warnBudget ? theme.Error : theme.Black)};
+    font-size: 49px;
+    font-weight: 700;
+    letter-spacing: -0.98px;
+  }
+  .plusButton {
+    padding: 26px;
+  }
+  img {
+    cursor: pointer;
+  }
 `;
