@@ -98,3 +98,7 @@ export const BorderTextCheckboxInnerContainer = styled.div`
 export const ButonWrapper = styled.div`
   margin: 0 auto;
 `;
+
+export const RecommendMachineResultContainer = styled.div`
+  padding-top: 59px;
+`;

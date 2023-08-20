@@ -23,7 +23,6 @@ const RecommendWorkout = () => {
   const [selectedBodyPart, setSelectedBodyPart] = useRecoilState(bodyPartState);
   // 운동 부위 배열
   const [isBodyPartSelected, setIsBodyPartSelected] = useState([]);
-
   const fetchData = async () => {
     const response = await userBodyPartAPI.get("", {
       headers: {
@@ -64,7 +63,6 @@ const RecommendWorkout = () => {
         SelectedObj.bodyPartKoreanName.push(item.koreanName);
       }
     });
-    console.log(SelectedObj);
 
     setSelectedBodyPart(SelectedObj);
     navigate("/recommend/machine");
@@ -88,7 +86,7 @@ const RecommendWorkout = () => {
             <SmallTextCheckbox
               key={item.koreanName}
               handleClick={handleSelect}
-              isSelected={isBodyPartSelected[index].isSelected}
+              isSelected={item.isSelected}
               elementidx={index}
             >
               {item.koreanName}

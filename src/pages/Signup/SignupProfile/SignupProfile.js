@@ -10,6 +10,7 @@ import { BigButton } from "./../../../components/";
 const SignupProfile = () => {
   const navigate = useNavigate();
   const isValidState = useRecoilValue(validationState);
+  console.log(isValidState);
 
   // 제출
   const handleSubmit = (e) => {

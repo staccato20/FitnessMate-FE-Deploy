@@ -15,7 +15,11 @@ import {
 } from "./../../../components/";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { nonAdminMachineAPI } from "../../../apis/API";
+import {
+  nonAdminMachineAPI,
+  recommendPostAPI,
+  recommendWorkoutHistoryAPI,
+} from "../../../apis/API";
 import { bodyPartState } from "../../../recoil/atom";
 import { useRecoilState } from "recoil";
 
@@ -25,21 +29,27 @@ const RecommendMachine = () => {
   // 운동 부위 객체
   const [selectedBodyPart, setSelectedBodyPart] = useRecoilState(bodyPartState);
 
-  console.log(selectedBodyPart);
   // 운동 기구 배열
   const [isMachineSelected, setIsMachineSelected] = useState([]);
 
   const fetchData = async () => {
-    const response = await nonAdminMachineAPI.post("/list", selectedBodyPart, {
-      headers: {
-        Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
-      },
-    });
-    const newArr = response.data.map((obj, index) => ({
-      ...obj,
-      isSelected: false,
-    }));
-    setIsMachineSelected(newArr);
+    // 부위를 선택했을때만 서버에서 기구 리스트를 받아옴
+    if (selectedBodyPart.bodyPartKoreanName.length) {
+      const response = await nonAdminMachineAPI.post(
+        "/list",
+        selectedBodyPart,
+        {
+          headers: {
+            Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+          },
+        }
+      );
+      const newArr = response.data.map((obj, index) => ({
+        ...obj,
+        isSelected: false,
+      }));
+      setIsMachineSelected(newArr);
+    }
   };
   // 최초 렌더링 시 운동기구 목록 받아옴
   useEffect(() => {
@@ -55,8 +65,12 @@ const RecommendMachine = () => {
   // 운동 기구 선택
   const handleSelect = (idx) => {
     // 배열 업데이트
-    const newArr = [...isMachineSelected];
-    newArr[idx].isSelected = !newArr[idx].isSelected;
+    const newArr = isMachineSelected.map((item, index) => {
+      if (index === idx) {
+        item.isSelected = !item.isSelected;
+      }
+      return item;
+    });
     setIsMachineSelected(newArr);
 
     // 모르겠어요 비활성화
@@ -86,7 +100,6 @@ const RecommendMachine = () => {
     }));
     setIsMachineSelected(newArr);
     setIsNotSelected(!isNotSelected);
-
     setIsAllSelected(false);
   };
 
@@ -94,8 +107,40 @@ const RecommendMachine = () => {
     navigate(-1);
   };
 
-  const handleNextPage = () => {
+  const handleSubmit = async () => {
     // 선택했을때만 다음으로 넘어가도록
+
+    const checkedMachineList = isMachineSelected
+      .filter((machine) => machine.isSelected)
+      .map((item) => item.koreanName);
+
+    const checkedBodyPartList = Object.entries(selectedBodyPart).map(
+      ([key, value]) => {
+        return value;
+      }
+    )[0];
+
+    const recommendExercise = {
+      // 배열
+      bodyPartKoreanName: checkedBodyPartList, // ["등", "가슴"]
+      machineKoreanName: checkedMachineList, // ["바벨", "케틀벨"]
+    };
+    const response = await recommendPostAPI.post(
+      `/workout`,
+      recommendExercise,
+      {
+        headers: {
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+        },
+      }
+    );
+    const recommendId = response.data;
+    const response2 = await recommendWorkoutHistoryAPI.get(`/${recommendId}`, {
+      headers: {
+        Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+      },
+    });
+    console.log(response2.data);
 
     navigate("/recommend/fitnessequipment");
   };
@@ -126,7 +171,7 @@ const RecommendMachine = () => {
                 <SmallTextCheckbox
                   key={item.koreanName}
                   handleClick={handleSelect}
-                  isSelected={isMachineSelected[index].isSelected}
+                  isSelected={item.isSelected}
                   elementidx={index}
                 >
                   {item.koreanName}
@@ -138,7 +183,7 @@ const RecommendMachine = () => {
       </RecommendTextContainer>
       <RecommendButtonContainer>
         <BeforeButton handleSubmit={handleBackPage}></BeforeButton>
-        <SmallButton handleSubmit={handleNextPage}>추천받기</SmallButton>
+        <SmallButton handleSubmit={handleSubmit}>추천받기</SmallButton>
       </RecommendButtonContainer>
     </RecommendContainer>
   );

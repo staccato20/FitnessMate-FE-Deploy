@@ -5,21 +5,22 @@ import * as S from "./StyledLogin";
 import { BigButton } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
-import { loginPostAPI, userAPI, bodyDataAPI } from "../../apis/API";
-import { useRecoilState } from "recoil";
-import { refreshTokenState } from "../../recoil/atom";
+import { loginPostAPI } from "../../apis/API";
 
 const Login = (props) => {
   // placeholder
 
   let [isEmailClicked, setIsEmailClicked] = useState(false);
   let [isPWClicked, setIsPWClicked] = useState(false);
-  const [refreshState, setRefreshState] = useRecoilState(refreshTokenState);
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignup = () => {
+    navigate("/signup");
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,9 +34,10 @@ const Login = (props) => {
     if (res.status === 200) {
       const accessToken = res.data.accessToken;
       const refreshToken = res.data.refreshToken;
-      localStorage.setItem("Jwt", JSON.stringify(accessToken));
-      // 로그인 토큰 획득
-      setRefreshState(refreshToken);
+      // 토큰 저장
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("rememberMe", true);
       navigate("/");
     } else {
       alert("로그인 실패");
@@ -90,10 +92,7 @@ const Login = (props) => {
       <BigButton
         backcolor={theme.White}
         fontcolor={theme.Brand}
-        onClick={(e) => {
-          e.preventDefault();
-          navigate("/signup");
-        }}
+        handleSubmit={handleSignup}
       >
         회원가입
       </BigButton>

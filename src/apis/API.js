@@ -166,7 +166,7 @@ export const userPasswordAPI = axios.create({
 // 회원 가입 시 email 중복 검사
 export const userIdVerifyAPI = axios.create({
   method: "post",
-  baseURL: "/api/user/verify/email",
+  baseURL: "/api/user/auth/verify/email",
   withCredentials: true,
 });
 

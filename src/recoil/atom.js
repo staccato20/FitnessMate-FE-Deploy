@@ -1,5 +1,4 @@
 import { atom } from "recoil";
-// 회원가입 input 정보 / 유효성검사 / 중복체크
 
 export const EmailState = atom({
   key: "EmailState",
@@ -26,23 +25,9 @@ export const validationState = atom({
   },
 });
 
-// 추천 카테고리
-export const recommendcategory = atom({
-  key: "recommendcategory",
-  default: {
-    보조제: [false, "protein"],
-    운동: [false, "fitness"],
-  },
-});
-
 export const bodyPartState = atom({
   key: "bodyPartState",
   default: {
     bodyPartKoreanName: [],
   },
-});
-
-export const refreshTokenState = atom({
-  key: "refreshTokenState",
-  default: "",
 });

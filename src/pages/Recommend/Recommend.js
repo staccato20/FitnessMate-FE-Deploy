@@ -4,7 +4,8 @@ import {
   RecommendCategory,
   RecommendWorkout,
   RecommendMachine,
-} from "./";
+  RecommendMachineResult,
+} from "./index";
 
 const Recommend = () => {
   return (
@@ -13,6 +14,7 @@ const Recommend = () => {
       <Route path="category" element={<RecommendCategory />} />
       <Route path="workout" element={<RecommendWorkout />} />
       <Route path="machine" element={<RecommendMachine />} />
+      <Route path="machineresult" element={<RecommendMachineResult />} />
     </Routes>
   );
 };

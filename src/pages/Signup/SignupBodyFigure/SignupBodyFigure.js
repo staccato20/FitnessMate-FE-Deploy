@@ -51,17 +51,17 @@ const SignupBodyFigure = () => {
         if (key !== "password2") {
           submission[key] = isValidState[key][0];
         }
-        if (key === "birthDate") {
-          submission[key] = new Date();
-        }
         if (key === "height" || key === "weight") {
           submission[key] = Number(isValidState[key][0]);
         }
       }
 
       const response = await userPostAPI.post("", submission);
-      if (response.data === "ok") {
-        localStorage.setItem("Jwt", "tmp");
+      if (response.data.accessToken) {
+        localStorage.setItem("Jwt", JSON.stringify(response.data.accessToken));
+        setIsValidState({
+          key: ["", false, false],
+        });
         navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
       } else {
         console.log("회원가입 오류");
