@@ -31,7 +31,6 @@ const RecommendWorkoutPart = () => {
         Authorization: "Bearer " + localStorage.getItem("Jwt"),
       },
     });
-
     const newArr = response.data.bodyPartKoreanName.map((obj) => ({
       ...obj,
       isSelected: false,

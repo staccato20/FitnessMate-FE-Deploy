@@ -56,7 +56,6 @@ const SignupBodyFigure = () => {
         }
       }
       const res = await userPostAPI.post("", submission);
-      console.log(res.data);
       if (res.data.accessToken) {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;

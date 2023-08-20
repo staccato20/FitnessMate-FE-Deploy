@@ -1,10 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  BeforeButton,
-  SmallButton,
-  SmallTextCheckbox,
-  TextCheckbox,
-} from "../../../components";
+import { BeforeButton, SmallButton, TextCheckbox } from "../../../components";
 import {
   RecommendButtonContainer,
   RecommendContainer,
@@ -13,15 +8,47 @@ import {
   TextCheckboxContainer,
 } from "../StyledRecommend";
 import theme from "../../../styles/theme";
+import { userSupplementAPI } from "../../../apis/API";
+import { useEffect, useState } from "react";
 
 const RecommendSupplementPurpose = () => {
   const navigate = useNavigate();
+
+  // 목적 객체
+  const [purposeList, setPurposeList] = useState([]);
+  // 목적리스트 받아옴
+  const fetchData = async () => {
+    const response = await userSupplementAPI.get("/purposes", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("Jwt"),
+      },
+    });
+    const newArr = response.data.map((obj) => ({
+      name: obj,
+      isSelected: false,
+    }));
+    setPurposeList(newArr);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // 클릭 이벤트
+  const handleSelect = (idx) => {
+    // 배열 업데이트
+    const newArr = [...purposeList];
+    newArr[idx].isSelected = !newArr[idx].isSelected;
+    setPurposeList(newArr);
+  };
 
   const handleBackPage = () => {
     navigate(-1);
   };
 
-  const handleNextPage = () => {};
+  const handleNextPage = () => {
+    navigate("/recommend/supplementtype");
+  };
+
   return (
     <RecommendContainer>
       <div>
@@ -36,10 +63,16 @@ const RecommendSupplementPurpose = () => {
         <br />
       </div>
       <TextCheckboxContainer>
-        <TextCheckbox>근력 성장</TextCheckbox>
-        <TextCheckbox>체중 감량</TextCheckbox>
-        <TextCheckbox>체중 증가</TextCheckbox>
-        <TextCheckbox>데피니션(근선명도) 증가</TextCheckbox>
+        {purposeList.map((item, idx) => (
+          <TextCheckbox
+            key={item.name}
+            handleClick={handleSelect}
+            elementidx={idx}
+            isSelected={item.isSelected}
+          >
+            {item.name}
+          </TextCheckbox>
+        ))}
       </TextCheckboxContainer>
       <RecommendButtonContainer>
         <BeforeButton handleSubmit={handleBackPage}></BeforeButton>
