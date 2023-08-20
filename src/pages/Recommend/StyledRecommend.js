@@ -30,6 +30,10 @@ export const RecommendTitle = styled.span`
 `;
 
 export const RecommendTitleHide = styled(RecommendTitle)`
+  color: ${theme.Gray80};
+  font-size: 24px;
+  font-weight: 600;
+
   @media screen and (max-width: 660px) {
     display: none;
   }

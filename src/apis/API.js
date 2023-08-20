@@ -131,7 +131,7 @@ export const loginAdminPostAPI = axios.create({
 
 // 사용자 정보 조회(토큰)
 export const userAPI = axios.create({
-  baseURL: "/api/user",
+  baseURL: "/api/user/private",
   withCredentials: true,
 });
 
@@ -230,12 +230,12 @@ export const recommendSupplementHistoryAPI = axios.create({
 });
 
 export const userSupplementAPI = axios.create({
-  baseURL: "/api/supplements",
+  baseURL: "/api/recommendation/supplement",
   withCredentials: true,
 });
 
 export const userSupplementImageAPI = axios.create({
-  baseURL: "/api/supplements",
+  baseURL: "/api/supplement",
   withCredentials: true,
   responseType: "arraybuffer",
 });

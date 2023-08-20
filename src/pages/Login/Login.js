@@ -28,6 +28,7 @@ const Login = (props) => {
     const submission = {
       loginEmail: email,
       password: password,
+      rememberMe: localStorage.getItem("rememberMe"),
     };
 
     const res = await loginPostAPI.post("", submission);

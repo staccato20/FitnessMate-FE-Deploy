@@ -14,10 +14,10 @@ const SignupBodyFigure = () => {
   const [isCategorySelect, setIsCategorySelect] = useState(false);
 
   const categorylist = [
-    ["마른 편이에요", [1, 1, 1, 1]],
-    ["보통이에요", [2, 2, 2, 2]],
-    ["조금 통통한 편이에요", [3, 3, 3, 3]],
-    ["뚱뚱해요", [4, 4, 4, 4]],
+    ["마른 편이에요", [12, 12, 25, 25]],
+    ["보통이에요", [15, 15, 25, 25]],
+    ["조금 통통한 편이에요", [25, 25, 25, 25]],
+    ["뚱뚱해요", [35, 35, 25, 25]],
   ];
 
   const handleClick = (idx) => {
@@ -55,10 +55,17 @@ const SignupBodyFigure = () => {
           submission[key] = Number(isValidState[key][0]);
         }
       }
+      const res = await userPostAPI.post("", submission);
+      console.log(res.data);
+      if (res.data.accessToken) {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        // 토큰 저장
+        localStorage.setItem("Jwt", accessToken);
+        // localStorage.setItem("accessToken", accessToken);
+        // localStorage.setItem("refreshToken", refreshToken);
+        // localStorage.setItem("rememberMe", true);
 
-      const response = await userPostAPI.post("", submission);
-      if (response.data.accessToken) {
-        localStorage.setItem("Jwt", JSON.stringify(response.data.accessToken));
         setIsValidState({
           key: ["", false, false],
         });

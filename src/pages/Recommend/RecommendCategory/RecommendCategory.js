@@ -21,7 +21,7 @@ const RecommendCategory = () => {
 
   const goNextPage = () => {
     if (category.보조제[0]) {
-      navigate("/recommend/supplement");
+      navigate("/recommend/supplementpurpose");
     } else if (category.운동[0]) {
       navigate("/recommend/workout");
     }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   BorderTextCheckboxContainer,
   BorderTextCheckboxInnerContainer,
@@ -7,21 +8,20 @@ import {
   RecommendTitle,
   RecommendTitleContainer,
 } from "./../StyledRecommend";
-import theme from "./../../../styles/theme";
 import {
   SmallButton,
   BeforeButton,
   SmallTextCheckbox,
 } from "./../../../components/";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import theme from "../../../styles/theme";
 import {
   nonAdminMachineAPI,
   recommendPostAPI,
   recommendWorkoutHistoryAPI,
-} from "../../../apis/API";
-import { bodyPartState } from "../../../recoil/atom";
-import { useRecoilState } from "recoil";
+} from "./../../../apis/API";
+import { bodyPartState } from "./../../../recoil/atom";
 
 const RecommendMachine = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const RecommendMachine = () => {
         selectedBodyPart,
         {
           headers: {
-            Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+            Authorization: "Bearer " + localStorage.getItem("Jwt"),
           },
         }
       );

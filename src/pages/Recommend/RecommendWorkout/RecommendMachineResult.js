@@ -1,5 +1,5 @@
-import theme from "../../../styles/theme";
-import * as S from "../StyledRecommend";
+import * as S from "./../StyledRecommend";
+import theme from "./../../../styles/theme";
 
 const RecommendMachineResult = () => {
   return (
