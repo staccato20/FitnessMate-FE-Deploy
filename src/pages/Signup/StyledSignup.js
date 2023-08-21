@@ -11,9 +11,7 @@ export const SignupContainer = styled.form`
 
   .recommendText {
     color: ${theme.Gray80};
-
     font-size: 22px;
-    font-weight: 500;
   }
   .buttonContainer {
     display: flex;

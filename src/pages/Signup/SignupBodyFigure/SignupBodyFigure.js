@@ -19,6 +19,7 @@ const SignupBodyFigure = () => {
     ["조금 통통한 편이에요", [25, 25, 25, 25]],
     ["뚱뚱해요", [35, 35, 25, 25]],
   ];
+  console.log(isValidState);
 
   const handleClick = (idx) => {
     const newArr = Array(categorylist.length).fill(false);
@@ -60,14 +61,18 @@ const SignupBodyFigure = () => {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
         // 토큰 저장
-        localStorage.setItem("Jwt", accessToken);
-        // localStorage.setItem("accessToken", accessToken);
-        // localStorage.setItem("refreshToken", refreshToken);
-        // localStorage.setItem("rememberMe", true);
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("rememberMe", true);
 
-        setIsValidState({
-          key: ["", false, false],
-        });
+        // 회원가입 객체 초기화
+        const updatedState = Object.keys(isValidState).reduce((acc, key) => {
+          acc[key] = ["", false];
+          return acc;
+        }, {});
+
+        setIsValidState(updatedState);
+
         navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
       } else {
         console.log("회원가입 오류");

@@ -40,7 +40,7 @@ const RecommendMachine = () => {
         selectedBodyPart,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("Jwt"),
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
           },
         }
       );
@@ -108,18 +108,19 @@ const RecommendMachine = () => {
   };
 
   const handleSubmit = async () => {
-    // 선택했을때만 다음으로 넘어가도록
-
+    // 선택된 기구
     const checkedMachineList = isMachineSelected
       .filter((machine) => machine.isSelected)
       .map((item) => item.koreanName);
 
+    // 선택된 부위
     const checkedBodyPartList = Object.entries(selectedBodyPart).map(
       ([key, value]) => {
         return value;
       }
     )[0];
 
+    // 선택된 기구 + 부위 객체
     const recommendExercise = {
       // 배열
       bodyPartKoreanName: checkedBodyPartList, // ["등", "가슴"]
@@ -130,17 +131,18 @@ const RecommendMachine = () => {
       recommendExercise,
       {
         headers: {
-          Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+          Authorization:
+            "Bearer " + JSON.parse(localStorage.getItem("accessToken")),
         },
       }
     );
     const recommendId = response.data;
     const response2 = await recommendWorkoutHistoryAPI.get(`/${recommendId}`, {
       headers: {
-        Authorization: "Bearer " + JSON.parse(localStorage.getItem("Jwt")),
+        Authorization:
+          "Bearer " + JSON.parse(localStorage.getItem("accessToken")),
       },
     });
-    console.log(response2.data);
 
     navigate("/recommend/fitnessequipment");
   };

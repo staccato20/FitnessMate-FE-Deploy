@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { ProfileInputContentWrapper } from "./StyledProfileInput";
-import { validationState } from "../../recoil/atom";
+import { EmailState, validationState } from "../../recoil/atom";
 import ValidateTest from "./../../utils/exp";
 
 const ProfileInputContent = ({
@@ -10,6 +10,7 @@ const ProfileInputContent = ({
   setIsFocused,
 }) => {
   const [isValidState, setIsValidState] = useRecoilState(validationState);
+  const [isEmailState, setIsEmailState] = useRecoilState(EmailState);
 
   const handleChange = (e) => {
     const value = e.currentTarget.value;
@@ -41,7 +42,8 @@ const ProfileInputContent = ({
       placeholder={isFocused ? "" : placeholder}
       name={name}
       isFocused={isFocused}
-      isValidState={isValidState[name]}
+      isEmailState={isEmailState}
+      isValidState={isValidState[name][1]}
       onFocus={() => {
         setIsFocused(true);
       }}
