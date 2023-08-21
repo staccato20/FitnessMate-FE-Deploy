@@ -8,7 +8,7 @@ export const RecommendContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 80px;
-  padding: 78px 25px 0 25px;
+  padding: 78px 0 0 25px;
 
   .goodImg {
     width: 328px;
@@ -116,7 +116,7 @@ export const BudgetContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  gap: 25px;
+  gap: 24px;
   .warningText {
     color: #eb444c;
     text-align: center;
@@ -130,16 +130,25 @@ export const BudgetContainer = styled.div`
 
 export const BudgetBox = styled.div`
   width: 100%;
+  max-width: 588px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  border-color: ${({ warnBudget }) =>
-    warnBudget ? theme.Error : theme.Gray10};
+  justify-content: space-between;
 
-  .budget {
+  .budgetWrapper {
+    min-width: 317px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid
+      ${({ warnBudget }) => (warnBudget ? theme.Error : theme.Gray10)};
     border-radius: 16px;
     background: ${theme.Gray10};
-    padding: 21px 74px;
+  }
+  .budget {
     color: ${({ warnBudget }) => (warnBudget ? theme.Error : theme.Black)};
     font-size: 49px;
     font-weight: 700;

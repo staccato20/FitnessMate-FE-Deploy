@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { BeforeButton, SmallButton } from "../../../components/";
+import { useTransition, animated } from "@react-spring/web";
 import theme from "../../../styles/theme";
 import {
   BudgetContainer,
@@ -16,8 +17,34 @@ import plus from "../../../assets/images/plus.svg";
 const RecommendSupplementBudget = () => {
   const navigate = useNavigate();
 
+  // 가격
   const [budget, setBudget] = useState(30000);
+  // 가격 변동 방향
+  const [direction, setDirection] = useState(null);
+  // 가격 한계점
   const [warnBudget, setWarnBudget] = useState(false);
+
+  const transitions = useTransition(budget, {
+    keys: budget,
+    // 처음
+    from: {
+      position: "absolute",
+      opacity: 0,
+      transform:
+        direction === "increase"
+          ? "translate3d(0,-100%,0)"
+          : "translate3d(0,100%,0)",
+    },
+    enter: { opacity: 1, transform: "translate3d(0,0,0)" },
+    leave: {
+      opacity: 0,
+      transform:
+        direction === "increase"
+          ? "translate3d(0,100%,0)"
+          : "translate3d(0,-100%,0)",
+    },
+    config: { tension: 600, friction: 120 },
+  });
 
   const handleBackPage = () => {
     navigate(-1);
@@ -27,14 +54,17 @@ const RecommendSupplementBudget = () => {
     navigate("/recommend/supplementresult");
   };
 
-  // 카테고리 선택
+  // 가격 변화
   const handleUp = () => {
+    setDirection("increase");
     if (budget >= 10000) {
       setWarnBudget(false);
     }
     setBudget((prev) => prev + 10000);
   };
+
   const handleDown = () => {
+    setDirection("decrease");
     if (budget <= 10000) {
       setWarnBudget(true);
     } else {
@@ -62,7 +92,13 @@ const RecommendSupplementBudget = () => {
             className="minusButton"
             onClick={handleDown}
           />
-          <span className="budget">{budget}</span>
+          <div className="budgetWrapper">
+            {transitions((style, item) => (
+              <animated.span style={style} className="budget">
+                {item.toLocaleString()}
+              </animated.span>
+            ))}
+          </div>
           <img
             src={plus}
             alt="금액 증가 버튼"
