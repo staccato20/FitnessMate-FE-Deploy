@@ -19,7 +19,7 @@ const ProfileInputContent = ({
     // 유효성 검사
     const updatedValidationState = {
       ...isValidState,
-      [name]: [value, exp && exp.test(value), isValidState[name][2]],
+      [name]: [value, exp && exp.test(value)],
     };
     setIsValidState(updatedValidationState);
 
@@ -30,11 +30,7 @@ const ProfileInputContent = ({
     if (name.includes("password")) {
       setIsValidState((pre) => ({
         ...pre,
-        password2: [
-          updatedValidationState.password2[0],
-          passwordSame,
-          updatedValidationState[name][2],
-        ],
+        password2: [updatedValidationState.password2[0], passwordSame],
       }));
     }
   };

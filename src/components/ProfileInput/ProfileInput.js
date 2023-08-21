@@ -32,6 +32,16 @@ const ProfileInput = ({ placeholder, children, name }) => {
     }
   };
 
+  const Available = (
+    <span className="profileInputChecking">사용 가능한 이메일입니다</span>
+  );
+
+  const NotAvailable = (
+    <span className="profileInputWarning">
+      이메일 중복확인을 하지 않았거나 중복된 이메일입니다
+    </span>
+  );
+
   return (
     <S.ProfileInputContainer
       isValidState={isValidState.loginEmail[1]}
@@ -78,13 +88,9 @@ const ProfileInput = ({ placeholder, children, name }) => {
         isValidState[name][1] ? (
           name === "loginEmail" ? (
             isEmailState ? (
-              <span className="profileInputChecking">
-                사용 가능한 이메일입니다
-              </span>
+              Available
             ) : (
-              <span className="profileInputWarning">
-                이메일 중복확인을 하지 않았거나 중복된 이메일입니다
-              </span>
+              NotAvailable
             )
           ) : (
             ""
