@@ -1,6 +1,8 @@
 import axios from "axios";
 import { getAccessAPI } from "./API";
 
+// accessToken을 통해 요청하는 API
+
 // api 생성
 const TokenApi = axios.create({
   baseURL: "/api",

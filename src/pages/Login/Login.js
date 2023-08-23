@@ -5,7 +5,6 @@ import * as S from "./StyledLogin";
 import { BigButton } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
-import { loginPostAPI } from "../../apis/API";
 import TokenApi from "../../apis/TokenApi";
 
 const Login = (props) => {
