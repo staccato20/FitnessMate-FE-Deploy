@@ -8,7 +8,7 @@ export const RecommendContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 80px;
-  padding: 78px 0 0 25px;
+  padding: 78px 25px 0 25px;
 
   .goodImg {
     width: 328px;
@@ -73,6 +73,7 @@ export const TextCheckboxContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
   gap: 24px;
 `;
 

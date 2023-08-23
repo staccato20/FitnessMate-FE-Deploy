@@ -63,7 +63,7 @@ const SignupBodyFigure = () => {
         // 토큰 저장
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("rememberMe", true);
+        localStorage.setItem("rememberMe", false);
 
         // 회원가입 객체 초기화
         const updatedState = Object.keys(isValidState).reduce((acc, key) => {

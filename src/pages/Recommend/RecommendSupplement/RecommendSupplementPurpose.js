@@ -8,8 +8,8 @@ import {
   TextCheckboxContainer,
 } from "../StyledRecommend";
 import theme from "../../../styles/theme";
-import { userSupplementAPI } from "../../../apis/API";
 import { useEffect, useState } from "react";
+import TokenApi from "../../../apis/TokenApi";
 
 const RecommendSupplementPurpose = () => {
   const navigate = useNavigate();
@@ -18,16 +18,21 @@ const RecommendSupplementPurpose = () => {
   const [purposeList, setPurposeList] = useState([]);
   // 목적리스트 받아옴
   const fetchData = async () => {
-    const response = await userSupplementAPI.get("/purposes", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("Jwt"),
-      },
-    });
-    const newArr = response.data.map((obj) => ({
-      name: obj,
-      isSelected: false,
-    }));
-    setPurposeList(newArr);
+    try {
+      const response = await TokenApi.get(
+        "/recommendation/supplement/purposes",
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
+      const newArr = response.data.map((obj) => ({
+        name: obj,
+        isSelected: false,
+      }));
+      setPurposeList(newArr);
+    } catch (error) {}
   };
   useEffect(() => {
     fetchData();

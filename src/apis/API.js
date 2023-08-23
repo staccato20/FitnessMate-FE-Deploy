@@ -126,7 +126,7 @@ export const loginPostAPI = axios.create({
   withCredentials: true,
 });
 
-// 로그아웃(토큰)
+// 로그아웃(refresh 토큰)
 export const logoutPutAPI = axios.create({
   method: "put",
   baseURL: "/api/auth/logout",
@@ -136,6 +136,12 @@ export const logoutPutAPI = axios.create({
 /**
  * User API
  */
+
+// accessToken 재발급(refersh 토큰 필요)
+export const getAccessAPI = axios.create({
+  baseURL: "/api/auth/refresh",
+  withCredentials: true,
+});
 
 // 사용자 정보 조회(토큰)
 export const userAPI = axios.create({

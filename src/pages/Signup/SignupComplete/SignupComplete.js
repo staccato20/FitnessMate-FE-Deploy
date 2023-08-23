@@ -14,7 +14,7 @@ const SignupComplete = () => {
   const fetchData = async () => {
     const response = await userAPI.get("", {
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("Jwt"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
     setUserName(response.data.userName);
