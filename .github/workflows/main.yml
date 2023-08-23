@@ -6,23 +6,26 @@ on:
       - test
 
 jobs:
-  push-to-test:
+  push-to-personal-repo:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Frontend repo
         uses: actions/checkout@v2
 
-      - name: Push changes to Test repo
+      - name: Clone test Repo
         run: |
-          # Clone Test repo
-          git clone https://github.com/Fitness-Mate/fitmate-testing.git ../Test
-          # Copy Frontend repo contents to Test repo
-          cp -r ./* ../Test/
-          # CD to Test repo and commit & push changes
-          cd ../Test
+          git clone https://github.com/Whoknow77/fitnessmate-frontend.git ../test
+
+      - name: Copy changes to test Repo
+        run: |
+          cp -r ./* ../test/
+
+      - name: Push changes to test repo main branch
+        run: |
+          cd ../test
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git add .
           git commit -m "Update from Frontend repo by ${{ github.actor }}"
-          git push https://x-access-token:${{ secrets.fitmate }}@github.com/Fitness-Mate/fitmate-testing.git main
+          git push https://x-access-token:${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}@github.com/Whoknow77/fitnessmate-frontend.git main
