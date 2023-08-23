@@ -7,7 +7,9 @@ import { getAccessAPI } from "./API";
 const TokenApi = axios.create({
   baseURL: "/api",
   withCredentials: true,
-  Authorization: "Bearer " + localStorage.getItem("accessToken"),
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("accessToken"),
+  },
 });
 
 // 요청(config), 응답(response)

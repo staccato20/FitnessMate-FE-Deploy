@@ -21,7 +21,6 @@ const SignupBodyFigureDirect = () => {
 
   const navigate = useNavigate();
   const [isValidState, setIsValidState] = useRecoilState(validationState);
-  console.log(isValidState);
 
   const handleBackPage = (e) => {
     e.preventDefault();

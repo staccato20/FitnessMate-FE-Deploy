@@ -5,7 +5,7 @@ import * as S from "./StyledLogin";
 import { BigButton } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import theme from "../../styles/theme";
-import TokenApi from "../../apis/TokenApi";
+import { loginPostAPI } from "../../apis/API";
 
 const Login = (props) => {
   // placeholder
@@ -32,7 +32,7 @@ const Login = (props) => {
       rememberMe: isKeepLoginClicked,
     };
 
-    const res = await TokenApi.post("auth/login", submission);
+    const res = await loginPostAPI.post("", submission);
     if (res.status === 200) {
       const accessToken = res.data.accessToken;
       const refreshToken = res.data.refreshToken;
