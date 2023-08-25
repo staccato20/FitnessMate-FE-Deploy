@@ -5,18 +5,21 @@ import * as S from "./StyledNavbar";
 import { useNavigate } from "react-router-dom";
 import TokenApi from "../../apis/TokenApi";
 import profilImg from "../../assets/images/profileimg.svg";
+import { useRecoilState } from "recoil";
+import { isLoggedInState } from "../../recoil/atom";
 
 // 브라우저 종료 감지
 const Navbar = () => {
   const navigate = useNavigate();
   // 로컬스토리지에 값이 있는 경우 로그인
-  const loginState = localStorage.getItem("accessToken");
-  const [userName, setUserName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [userName, setUserName] = useState(null);
   const [isprofileBox, setIsProfileBox] = useState(false);
 
   // 로그아웃
   const handleLogout = async () => {
-    await TokenApi.put("auth/logout", {});
+    await TokenApi.put("auth/logout");
+    setIsLoggedIn(false);
     localStorage.clear();
     navigate("/");
   };
@@ -41,18 +44,22 @@ const Navbar = () => {
     }
   });
 
-  // 사용자 이름
+  // 사용자 이름 받아오기
   const fetchData = async () => {
     // 로그인 상태일때만
-    if (loginState) {
-      const response = await TokenApi.get("user/private");
-      setUserName(response.data.userName);
+    if (isLoggedIn) {
+      try {
+        const response = await TokenApi.get("user/private");
+        setUserName(response.data.userName);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <S.NavbarContainer>
@@ -75,15 +82,7 @@ const Navbar = () => {
           </S.NavButton>
           <S.NavButton>내 운동</S.NavButton>
         </S.NavTextContainer>
-        {!loginState ? (
-          <S.NavLoginButtonContainer
-            onClick={() => {
-              navigate("login");
-            }}
-          >
-            로그인
-          </S.NavLoginButtonContainer>
-        ) : (
+        {isLoggedIn ? (
           <S.NavLoginButtonContainer
             isprofileBox={isprofileBox}
             onClick={(e) => {
@@ -92,26 +91,33 @@ const Navbar = () => {
           >
             <img src={profilImg} className="profilImg" alt="프로필 이미지" />
             <span className="profileName">{userName}</span>
+            <S.NavProfileBox isprofileBox={isprofileBox}>
+              <span className="profileBoxTitle">
+                안녕하세요
+                <br /> {userName}님
+              </span>
+              <button
+                className="profileBoxItem"
+                onClick={() => {
+                  setIsProfileBox(false);
+                  handleLogout();
+                }}
+              >
+                로그아웃
+              </button>
+              <button className="profileBoxItem">계정 정보 수정</button>
+              <button className="profileBoxItem">신체 정보 수정</button>
+            </S.NavProfileBox>
           </S.NavLoginButtonContainer>
-        )}
-
-        <S.NavProfileBox isprofileBox={isprofileBox}>
-          <span className="profileBoxTitle">
-            안녕하세요
-            <br /> {userName}님
-          </span>
-          <button
-            className="profileBoxItem"
+        ) : (
+          <S.NavLoginButtonContainer
             onClick={() => {
-              setIsProfileBox(false);
-              handleLogout();
+              navigate("login");
             }}
           >
-            로그아웃
-          </button>
-          <button className="profileBoxItem">계정 정보 수정</button>
-          <button className="profileBoxItem">신체 정보 수정</button>
-        </S.NavProfileBox>
+            로그인
+          </S.NavLoginButtonContainer>
+        )}
       </S.NavLink>
     </S.NavbarContainer>
   );
