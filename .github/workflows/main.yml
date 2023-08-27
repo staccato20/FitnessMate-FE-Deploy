@@ -1,26 +1,31 @@
-name: git push into another repo to testing
+name: Push to Test Repo
+
 on:
   push:
-    branches: [main]
+    branches:
+      - test
 
 jobs:
-  build:
+  push-to-personal-repo:
     runs-on: ubuntu-latest
-    container: pandoc/latex
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      - name: creates output
-        run: sh ./build.sh
-      - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.AUTO_LEETCODE_PUSH }}
-        with:
-          source-directory: 'output'
-          destination-github-username: 'rmaomina'
-          destination-repository-name: 'Algorithm'
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+      - name: Checkout Frontend repo
+        uses: actions/checkout@v2
+
+      - name: Clone test Repo
+        run: |
+          git clone https://github.com/Whoknow77/fitnessmate-frontend.git ../test
+
+      - name: Copy changes to test Repo
+        run: |
+          cp -r ./* ../test/
+
+      - name: Push changes to test repo main branch
+        run: |
+          cd ../test
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add .
+          git commit -m "Update from Frontend repo by ${{ github.actor }}"
+          git push https://x-access-token:${{ secrets.fitmate }}@github.com/Whoknow77/fitnessmate-frontend.git main

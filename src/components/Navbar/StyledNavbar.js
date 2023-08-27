@@ -3,28 +3,6 @@
 import styled from "styled-components";
 import theme from "./../../styles/theme";
 
-// < 스크롤이 있는 nav 아래 container 스타일 >
-
-// export const ScrollContainerWrapper = styled.div`
-//   width: 100%;
-//   display: flex;
-//   margin-top: 64px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   padding-bottom: 200px;
-// `;
-
-// < 스크롤이 없는 nav 아래 container 스타일 >
-
-// export const NoneScrollContainerWrapper = styled.div`
-//   width: 100%;
-//   min-height: calc(100vh - 64px);
-//   display: flex;
-//   align-items: center;
-//   margin: 0 auto;
-//   justify-content: center;
-// `;
-
 export const NavbarContainer = styled.div`
   max-width: 1440px;
   width: 100%;
@@ -35,7 +13,6 @@ export const NavbarContainer = styled.div`
   display: flex;
   position: sticky;
   top: 0;
-  z-index: 999;
   justify-content: space-between;
   align-items: center;
   background: ${theme.White};
@@ -48,7 +25,7 @@ export const NavbarContainer = styled.div`
 
 export const NavLink = styled.div`
   display: flex;
-  gap: 43px;
+  gap: 24px;
 `;
 
 export const NavTextContainer = styled.div`
@@ -69,7 +46,7 @@ export const NavButton = styled.button`
   border-radius: 12px;
   color: ${theme.Black};
   display: flex;
-  padding: 10px 24px;
+  padding: 10px 14px;
   justify-content: center;
   align-items: center;
   font-size: 15px;
@@ -82,18 +59,32 @@ export const NavButton = styled.button`
 `;
 
 export const NavLoginButton = styled(NavButton)`
-  background: ${theme.Brand};
-  color: ${theme.White};
+  background: ${theme.BrandLight};
+  color: ${theme.Brand};
   display: block;
 `;
+export const navbar = styled.div`
+  .likes__wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
 
-export const NoneScrollContainerWrapper = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 64px);
-  display: flex;
-  align-items: center;
-  margin-top: 0;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
+  .likes__relavance {
+    position: relative;
+    padding: 0 80px;
+  }
+
+  .likes__list {
+    position: absolute;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    max-height: 150px;
+    left: 0%;
+    z-index: 999;
+    background: white;
+    padding: 10px;
+    border: 1px solid grey;
+    box-shadow: 0 0 2px 2px grey;
+  }
 `;

@@ -1,44 +1,28 @@
-import { Children, useState } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import * as S from "./StyledNavModal";
 import NavModal from "./NavModal";
 
-function ModalButton() {
+function ModalButton({ children, userName }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClickButton = ({Children}) => {
+  const onClickButton = () => {
     setIsOpen(true);
   };
 
   return (
-    <AppWrap>
-      <Button onClick={onClickButton}>{Children}</Button>
-      {isOpen && (<NavModal
-        open={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      />)}
-    </AppWrap>
+    <S.AppWrap>
+      <S.NavButton onClick={onClickButton}>{children}</S.NavButton>
+      {isOpen && (
+        <NavModal
+          userName={userName}
+          open={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        />
+      )}
+    </S.AppWrap>
   );
 }
 
-const Button = styled.button`
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #fa9f98;
-  border-radius: 10px;
-  color: white;
-  font-style: italic;
-  font-weight: 200;
-  cursor: pointer;
-  &:hover {
-    background-color: #fac2be;
-  }
-`;
-
-const AppWrap = styled.div`
-  text-align: center;
-  margin: 50px auto;
-`;
 export default ModalButton;

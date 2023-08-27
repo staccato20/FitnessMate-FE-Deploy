@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import theme from "./../../styles/theme";
+
 export const ProfileInputContainer = styled.div`
   width: 433px;
   height: 116px;
@@ -6,22 +8,22 @@ export const ProfileInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  // 비밀번호와 이메일 사이의 18px - gap(4px) = 14px
-  margin-top: ${({ content }) => (content === "비밀번호" ? "14px" : "0")};
 
   // 경고 문구
   .profileInputWarning {
-    color: #eb444c;
+    color: ${theme.Error};
     font-size: 16px;
   }
   .profileInputChecking {
-    color: #0b98ff;
+    color: ${theme.Brand};
     font-size: 16px;
     font-weight: 500;
   }
   .duplicateButton {
+    opacity: ${({ isValidState }) => (isValidState ? "1" : "0.3")};
+    cursor: ${({ isValidState }) => (isValidState ? "pointer" : "default")};
     position: absolute;
-    color: #0b98ff;
+    color: ${theme.Brand};
     font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.34px;
@@ -33,10 +35,10 @@ export const ProfileInputContainer = styled.div`
 `;
 
 export const InputName = styled.span`
-  color: #000;
+  color: ${theme.Black};
   font-size: 20px;
   .essentialSymbol {
-    color: #eb444c;
+    color: ${theme.Error};
     font-size: 18px;
   }
 `;
@@ -45,16 +47,17 @@ export const InputName = styled.span`
 // 이메일은 빨/파/none
 
 export const ProfileInputContentWrapper = styled.input`
-  border: ${({ isValidateChecked, isNextButton }) =>
-    isNextButton ? (!isValidateChecked[1] ? "1.5px solid #eb444c" : "") : ""};
-
   &::-webkit-input-placeholder {
-    color: #9a9798;
+    color: ${theme.Gray50};
   }
   border-radius: 10px;
   padding: 14px;
-  background: #f5f6f7;
+  background: ${theme.Gray10};
   width: 100%;
-  color: #9a9798;
+  color: ${theme.Gray50};
   font-size: 18px;
+  border: ${({ isFocused, isEmailState, name }) =>
+    !isFocused && isEmailState && name === "loginEmail"
+      ? `1.5px solid ${theme.Brand}`
+      : ""};
 `;
