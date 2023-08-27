@@ -101,6 +101,7 @@ export const NavProfileBox = styled.div`
   transform: scaleY(${({ isprofileBox }) => (isprofileBox ? "1" : "0")});
   position: absolute;
   top: 50px;
+  right: 15px;
   display: flex;
   flex-direction: column;
   gap: 16px;

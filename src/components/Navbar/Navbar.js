@@ -91,23 +91,6 @@ const Navbar = () => {
           >
             <img src={profilImg} className="profilImg" alt="프로필 이미지" />
             <span className="profileName">{userName}</span>
-            <S.NavProfileBox isprofileBox={isprofileBox}>
-              <span className="profileBoxTitle">
-                안녕하세요
-                <br /> {userName}님
-              </span>
-              <button
-                className="profileBoxItem"
-                onClick={() => {
-                  setIsProfileBox(false);
-                  handleLogout();
-                }}
-              >
-                로그아웃
-              </button>
-              <button className="profileBoxItem">계정 정보 수정</button>
-              <button className="profileBoxItem">신체 정보 수정</button>
-            </S.NavProfileBox>
           </S.NavLoginButtonContainer>
         ) : (
           <S.NavLoginButtonContainer
@@ -118,6 +101,23 @@ const Navbar = () => {
             로그인
           </S.NavLoginButtonContainer>
         )}
+        <S.NavProfileBox isprofileBox={isprofileBox}>
+          <span className="profileBoxTitle">
+            안녕하세요
+            <br /> {userName}님
+          </span>
+          <button
+            className="profileBoxItem"
+            onClick={() => {
+              setIsProfileBox(false);
+              handleLogout();
+            }}
+          >
+            로그아웃
+          </button>
+          <button className="profileBoxItem">계정 정보 수정</button>
+          <button className="profileBoxItem">신체 정보 수정</button>
+        </S.NavProfileBox>
       </S.NavLink>
     </S.NavbarContainer>
   );
