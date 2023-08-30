@@ -4,20 +4,23 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, Admin } from "../pages/index";
+import { Home, Admin, Search } from "../pages";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Recommend from "./../pages/Recommend/Recommend";
-import LayoutContainer from "../Layout/LayoutContainer";
+import Mypage from "../pages/MyPage/Mypage";
+import MainLayout from "./../Layout/Mainlayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path ="/" element={<LayoutContainer />}>
+    <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/signup/*" element={<Signup />} />
       <Route path="/login/*" element={<Login />} />
       <Route path="/recommend/*" element={<Recommend />} />
+      <Route path="/search/*" element={<Search />} />
+			<Route path="/mypage/*" element={<Mypage />} />
       <Route path="*" element={<div>없는페이지</div>} />
     </Route>
   )

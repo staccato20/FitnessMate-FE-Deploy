@@ -3,10 +3,8 @@
 import React from "react";
 import * as S from "./StyledLayoutContainer";
 
-export const ScrollContainer = ({children}) => {
-	return (
-		<S.ScrollContainerWrapper>{children}</S.ScrollContainerWrapper>
-	);
-}
+export const ScrollContainer = ({ children }) => {
+  return <S.ScrollContainerWrapper>{children}</S.ScrollContainerWrapper>;
+};
 
 export default ScrollContainer;
