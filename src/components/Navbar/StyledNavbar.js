@@ -8,7 +8,6 @@ export const NavbarContainer = styled.div`
   width: 100%;
   height: 64px;
   padding: 10px 40px;
-  font-size: 15px;
   font-weight: 700;
   display: flex;
   position: sticky;
@@ -43,13 +42,12 @@ export const NavTextContainer = styled.div`
 `;
 
 export const NavButton = styled.button`
-  border-radius: 12px;
   color: ${theme.Black};
   display: flex;
   padding: 10px 14px;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 150%; /* 22.5px */
   letter-spacing: -0.3px;
@@ -61,7 +59,9 @@ export const NavButton = styled.button`
 export const NavLoginButton = styled(NavButton)`
   background: ${theme.BrandLight};
   color: ${theme.Brand};
+  padding: 10px 24px;
   display: block;
+  border-radius: 5px;
 `;
 export const navbar = styled.div`
   .likes__wrapper {
