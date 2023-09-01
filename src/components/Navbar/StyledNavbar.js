@@ -7,6 +7,7 @@ export const NavbarContainer = styled.div`
   position: sticky;
   top: 0;
   background: ${theme.White};
+  z-index: 999;
 
   .stickyContainer {
     max-width: 1440px;
