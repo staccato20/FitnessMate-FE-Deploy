@@ -36,7 +36,11 @@ const Navbar = () => {
       <S.NavLink>
         <S.NavTextContainer>
           <i className="fa-solid fa-bars"></i>
-          <S.NavButton>검색하기</S.NavButton>
+          <S.NavButton
+						onClick={() => {
+              navigate("search");
+            }}
+					>검색하기</S.NavButton>
           <S.NavButton
             onClick={() => {
               navigate("recommend");
