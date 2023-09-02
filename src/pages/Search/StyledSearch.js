@@ -2,24 +2,28 @@ import { styled } from "styled-components";
 import theme from "./../../styles/theme";
 
 export const SearchContainer = styled.div`
-  margin: 0 auto;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   .searchTopWrapper {
     max-width: 812px;
     width: 90%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
     gap: 26px;
+
     .searchTitleWrapper {
       display: flex;
       flex-direction: column;
       gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid ${theme.Gray20};
       .searchTitleTextWrapper {
         display: flex;
         flex-direction: column;
         gap: 8px;
+
         .searchTitle1 {
           text-align: center;
           color: ${theme.Gray50};

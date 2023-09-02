@@ -9,13 +9,16 @@ import SearchBar from "./../../components/SearchBar/SearchBar";
 const Search = () => {
   // 토글
 
+  // 모달
   const [visible, setVisible] = useState(false);
+
+  // 보여질 운동 리스트
   const [machineList, setMachineList] = useState([]);
 
   const fetchData = async () => {
     const request = {
       searchKeyword: "",
-      bodyPartKoreanName: null,
+      bodyPartKoreanName: [],
     };
     // 운동 기구 batch 조회(12개)
     const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
@@ -34,12 +37,27 @@ const Search = () => {
 
   // 운동 검색
   const handleSearch = async (searchValue) => {
-    const request = {};
-    request.searchKeyword = searchValue;
-    request.bodyPartKoreanName = null;
-    const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
-
-    setMachineList(workoutResponse.data);
+    // 현재 선택한 필터 옵션(운동 부위 / 운동명)
+    const currentFilterValue = Object.keys(searchFilterValue).filter((key) => {
+      return searchFilterValue[key];
+    });
+    try {
+      if (currentFilterValue[0] === "운동 부위") {
+        console.log("gg");
+        const request = {};
+        request.searchKeyword = searchValue;
+        request.bodyPartKoreanName = null;
+        const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
+        setMachineList(workoutResponse.data);
+      } else if (currentFilterValue[0] === "운동명") {
+        console.log("gg");
+        const request = {};
+        request.searchKeyword = null;
+        request.bodyPartKoreanName = [searchValue];
+        const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
+        setMachineList(workoutResponse.data);
+      }
+    } catch {}
   };
   // 필터 선택
   const handleToggleValue = (filtervalue) => {
@@ -84,15 +102,15 @@ const Search = () => {
             <p className="searchTitle1">나에게 핏한 </p>
             <p className="searchTitle2">운동 정보를 찾아보세요</p>
           </div>
-        </div>
-        <div className="toggleMenu">
-          <S.Toggle>
-            <div class="toggleSwitch_wrap">
-              <div class="toggleSwitch">
-                <ToggleSwitch labels={labels} onChange={onChange} />
+          <div className="toggleMenu">
+            <S.Toggle>
+              <div class="toggleSwitch_wrap">
+                <div class="toggleSwitch">
+                  <ToggleSwitch labels={labels} onChange={onChange} />
+                </div>
               </div>
-            </div>
-          </S.Toggle>
+            </S.Toggle>
+          </div>
         </div>
 
         {/* 검색 창 */}
