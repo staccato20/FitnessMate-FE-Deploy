@@ -38,7 +38,7 @@ const Navbar = () => {
 
       setuserName(response.data.userName);
     } catch (error) {
-      console.log(error);
+      localStorage.clear();
     }
   };
 
