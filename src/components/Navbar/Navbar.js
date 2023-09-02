@@ -12,7 +12,6 @@ const Navbar = () => {
   const loginState = localStorage.length;
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
-
   const handleSearch = () => {
     navigate("search");
   };
@@ -36,6 +35,7 @@ const Navbar = () => {
   const fetchData = async () => {
     try {
       const response = await TokenApi.get("user/private");
+
       setuserName(response.data.userName);
     } catch (error) {
       console.log(error);

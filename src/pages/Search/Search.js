@@ -2,14 +2,14 @@ import * as S from "./StyledSearch";
 import ToggleSwitch from "./../MyPage/My/toggle";
 import { useEffect, useState } from "react";
 import { FitnessType } from "../../components";
-import { userWorkoutAPI, userWorkoutBatchAPI } from "../../apis/API";
+import { nonAdminMachineAPI, userWorkoutBatchAPI } from "../../apis/API";
+import TokenApi from "../../apis/TokenApi";
 
 const Search = () => {
   // 토글
 
   const [visible, setVisible] = useState(false);
   const [machineList, setMachineList] = useState([]);
-  console.log(machineList);
 
   const fetchData = async () => {
     const request = {
@@ -17,10 +17,8 @@ const Search = () => {
       bodyPartKoreanName: null,
     };
     // 운동 기구 batch 조회(12개)
-    const workoutResponse = await userWorkoutAPI.post(
-      `/search/list/1`,
-      request
-    );
+    const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
+
     setMachineList(workoutResponse.data);
   };
 
@@ -45,19 +43,21 @@ const Search = () => {
 
   return (
     <S.SearchContainer>
-      <section className="searchTitleWrapper">
-        <div className="searchTitleTextWrapper">
-          <p className="searchTitle1">나에게 핏한 </p>
-          <p className="searchTitle2">운동 정보를 찾아보세요</p>
-        </div>
+      <section className="searchTopWrapper">
+        <section className="searchTitleWrapper">
+          <div className="searchTitleTextWrapper">
+            <p className="searchTitle1">나에게 핏한 </p>
+            <p className="searchTitle2">운동 정보를 찾아보세요</p>
+          </div>
+        </section>
         <div className="toggleMenu">
-          {/* <S.Toggle>
+          <S.Toggle>
             <div class="toggleSwitch_wrap">
               <div class="toggleSwitch">
                 <ToggleSwitch labels={labels} onChange={onChange} />
               </div>
             </div>
-          </S.Toggle> */}
+          </S.Toggle>
         </div>
       </section>
       <section className="searchBarWrapper">
@@ -79,8 +79,8 @@ const Search = () => {
         })}
       </section>
       <section className="serachButtonWrapper">
-        <button>이전</button>
-        <button>다음</button>
+        <button className="backBtn">이전</button>
+        <button className="nextBtn">다음</button>
       </section>
     </S.SearchContainer>
   );
