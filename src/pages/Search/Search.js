@@ -5,9 +5,14 @@ import { FitnessType } from "../../components";
 import { userWorkoutBatchAPI } from "../../apis/API";
 import toggleBtn from "../../assets/images/toggle.svg";
 import SearchBar from "./../../components/SearchBar/SearchBar";
+import rightarrow from "../../assets/images/rightarrow.svg";
+import leftarrow from "../../assets/images/leftarrow.svg";
+import { useNavigate, useParams } from "react-router-dom";
+import NoSearch from "../../components/NoSearch/NoSearch";
 
 const Search = () => {
-  // 토글
+  let { pageNum } = useParams();
+  const navigate = useNavigate();
 
   // 모달
   const [visible, setVisible] = useState(false);
@@ -15,15 +20,31 @@ const Search = () => {
   // 보여질 운동 리스트
   const [machineList, setMachineList] = useState([]);
 
+  // 검색결과가 없을 때 페이지
+  const [nosearch, setNoSearch] = useState(false);
+
   const fetchData = async () => {
     const request = {
       searchKeyword: "",
       bodyPartKoreanName: [],
     };
     // 운동 기구 batch 조회(12개)
-    const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
 
-    setMachineList(workoutResponse.data);
+    try {
+      const workoutResponse = await userWorkoutBatchAPI.post(
+        `${pageNum}`,
+        request
+      );
+      if (workoutResponse.data.length) {
+        setNoSearch(false);
+        setMachineList(workoutResponse.data);
+      } else {
+        setNoSearch(true);
+      }
+    } catch (err) {
+      // 페이지넘버가 이상한 경우 오류페이지
+      setNoSearch(true);
+    }
   };
 
   // 필터 토글
@@ -35,6 +56,19 @@ const Search = () => {
     "운동 부위": false,
   });
 
+  // 다음 페이지
+  const handleNextPage = () => {
+    const nextPageNum = parseInt(pageNum, 10) + 1;
+    navigate(`/search/${nextPageNum}`);
+  };
+
+  const handleBackPage = () => {
+    if (Number(pageNum) > 1) {
+      const backPageNum = parseInt(pageNum, 10) - 1;
+      navigate(`/search/${backPageNum}`);
+    }
+  };
+
   // 운동 검색
   const handleSearch = async (searchValue) => {
     // 현재 선택한 필터 옵션(운동 부위 / 운동명)
@@ -42,22 +76,41 @@ const Search = () => {
       return searchFilterValue[key];
     });
     try {
-      if (currentFilterValue[0] === "운동 부위") {
-        console.log("gg");
-        const request = {};
-        request.searchKeyword = searchValue;
-        request.bodyPartKoreanName = null;
-        const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
+      if (searchValue === "") {
+        const request = {
+          searchKeyword: "",
+          bodyPartKoreanName: [],
+        };
+        const workoutResponse = await userWorkoutBatchAPI.post(
+          `${pageNum}`,
+          request
+        );
         setMachineList(workoutResponse.data);
-      } else if (currentFilterValue[0] === "운동명") {
-        console.log("gg");
-        const request = {};
-        request.searchKeyword = null;
-        request.bodyPartKoreanName = [searchValue];
-        const workoutResponse = await userWorkoutBatchAPI.post(`1`, request);
-        setMachineList(workoutResponse.data);
+      } else {
+        if (currentFilterValue[0] === "운동명") {
+          const request = {};
+          request.searchKeyword = searchValue;
+          request.bodyPartKoreanName = null;
+
+          const workoutResponse = await userWorkoutBatchAPI.post(
+            `${pageNum}`,
+            request
+          );
+          setMachineList(workoutResponse.data);
+        } else if (currentFilterValue[0] === "운동 부위") {
+          const request = {};
+          request.searchKeyword = null;
+          request.bodyPartKoreanName = [searchValue];
+          const workoutResponse = await userWorkoutBatchAPI.post(
+            `${pageNum}`,
+            request
+          );
+          setMachineList(workoutResponse.data);
+        }
       }
-    } catch {}
+    } catch (err) {
+      setMachineList([]);
+    }
   };
   // 필터 선택
   const handleToggleValue = (filtervalue) => {
@@ -91,7 +144,7 @@ const Search = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pageNum]);
 
   return (
     <S.SearchContainer>
@@ -150,26 +203,40 @@ const Search = () => {
           <SearchBar handleSearch={handleSearch} />
         </div>
       </section>
-
-      {/* 운동/보조제 리스트 */}
-      <section className="searchContentWrapper">
-        {machineList.map((machine, idx) => {
-          return (
-            // 부위 map으로 처리해야함
-            <FitnessType
-              parts={machine.bodyPartKoreanName}
-              description={machine.description}
-              imgPath={machine.imgPath}
-            >
-              {machine.koreanName}
-            </FitnessType>
-          );
-        })}
-      </section>
-      <section className="serachButtonWrapper">
-        <button className="backBtn">이전</button>
-        <button className="nextBtn">다음</button>
-      </section>
+      {nosearch ? (
+        <NoSearch />
+      ) : (
+        <>
+          <section className="searchContentWrapper">
+            {machineList.map((machine, idx) => {
+              return (
+                // 부위 map으로 처리해야함
+                <FitnessType
+                  parts={machine.bodyPartKoreanName}
+                  description={machine.description}
+                  imgPath={machine.imgPath}
+                >
+                  {machine.koreanName}
+                </FitnessType>
+              );
+            })}
+          </section>
+          <section className="serachButtonWrapper">
+            <button className="BtnWrapper">
+              <img src={leftarrow} alt="이전 버튼" className="backBtnImg" />
+              <span className="backBtnText" onClick={handleBackPage}>
+                이전
+              </span>
+            </button>
+            <button className="BtnWrapper">
+              <span className="nextBtnText" onClick={handleNextPage}>
+                다음
+              </span>
+              <img src={rightarrow} alt="다음 버튼" className="nextBtnImg" />
+            </button>
+          </section>
+        </>
+      )}
     </S.SearchContainer>
   );
 };

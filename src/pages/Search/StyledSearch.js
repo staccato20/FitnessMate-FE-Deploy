@@ -5,6 +5,7 @@ export const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
   .searchTopWrapper {
     max-width: 812px;
     width: 90%;
@@ -95,6 +96,28 @@ export const SearchContainer = styled.div`
     text-align: left;
     @media screen and (max-width: 825px) {
       text-align: center;
+    }
+  }
+
+  .serachButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 58px;
+    .BtnWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      .backBtnText {
+        color: ${theme.BrandNon};
+        font-size: 24px;
+      }
+      .nextBtnText {
+        color: ${theme.Brand};
+        font-size: 24px;
+      }
     }
   }
 `;

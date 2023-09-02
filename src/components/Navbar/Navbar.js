@@ -13,7 +13,7 @@ const Navbar = () => {
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const handleSearch = () => {
-    navigate("search");
+    navigate("search/1");
   };
 
   const handleMyPage = () => {
