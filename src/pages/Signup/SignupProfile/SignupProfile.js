@@ -1,15 +1,20 @@
 import * as S from "../StyledSignup";
 import { useRecoilValue } from "recoil";
-import { ProfileInput } from "../../../components";
+import { BeforeButton, MiddleButton, ProfileInput } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { validationState } from "./../../../recoil/atom";
-import { BigButton } from "./../../../components/";
+import { useState } from "react";
 
 // 회원가입 페이지에 대한 정보를 모두 담는 컴포넌트
 // 우선 이메일은
 const SignupProfile = () => {
   const navigate = useNavigate();
   const isValidState = useRecoilValue(validationState);
+
+  const handleBackPage = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  };
 
   // 제출
   const handleSubmit = (e) => {
@@ -27,7 +32,10 @@ const SignupProfile = () => {
 
   return (
     <S.SignupContainer>
-      <S.SignupTitle>
+      <S.SignupTitle status="1">
+        <div className="statusBar">
+          <div className="statusBar2"></div>
+        </div>
         <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
       </S.SignupTitle>
       <S.ProfileInputcontainer>
@@ -54,7 +62,8 @@ const SignupProfile = () => {
         </ProfileInput>
       </S.ProfileInputcontainer>
       <S.ButtonContainer>
-        <BigButton handleSubmit={handleSubmit}>다음으로</BigButton>
+        <BeforeButton handleSubmit={handleBackPage} />
+        <MiddleButton handleSubmit={handleSubmit}>다음</MiddleButton>
       </S.ButtonContainer>
     </S.SignupContainer>
   );
