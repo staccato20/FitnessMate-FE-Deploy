@@ -1,3 +1,4 @@
+
 // 내 운동 페이지
 
 import * as S from "./StyledMypageHome";
@@ -5,6 +6,8 @@ import "./style.css";
 import { useState } from 'react';
 import AddModal from "./Modal/AddModal";
 import FixModal from "./Modal/FixModal";
+import fix from "../../../assets/images/Fix_Icon.svg";
+import add from "../../../assets/images/Add_Icon.svg";
 import ToggleSwitch from "./toggle";
 
 
@@ -12,14 +15,14 @@ import ToggleSwitch from "./toggle";
 
 export const DUMMY_DATA = [
 	{
-	id: 1,
-	text: '분할 1',
-	name: 'first',
+		id: 1,
+		text: '분할 1',
+		name: 'first',
 	},
 	{
-	id: 2,
-	text: '분할 2',
-	name: 'second',
+		id: 2,
+		text: '분할 2',
+		name: 'second',
 	},
 
 ];
@@ -27,23 +30,35 @@ export const DUMMY_DATA = [
 
 const Mypagehome = () => {
 
+	// Modal
+
+	const [isFixOpen, setIsFixOpen] = useState(false);
+
+	const onClickFixButton = () => {
+		setIsFixOpen(true);
+	};
+
+	const [isAddOpen, setIsAddOpen] = useState(false);
+
+	const onClickAddButton = () => {
+		setIsAddOpen(true);
+	};
+
 	// 루틴 목록
 
 	const [content, setContent] = useState('first');
 	const [btnActive, setBtnActive] = useState(0);
 
-  const handleClickButton = e => {
-    const { name } = e.target;
-    setContent(name);
-		setBtnActive((prev) => {
-      return e.target.value;
-    });
-  };
+	const handleClickButton = (e) => {
+		const { name, value } = e.target;
+		setContent(name);
+		setBtnActive(value);
+	};
 
-  const selectComponent = {
-    first: <div>분할1 내용</div>,
-    second: <div>분할2 내용</div>,
-  };
+	const selectComponent = {
+		first: <div>분할1 내용</div>,
+		second: <div>분할2 내용</div>,
+	};
 
 
 	// Toggle
@@ -98,20 +113,23 @@ const Mypagehome = () => {
 							<div className="contents-title">내 운동 루틴</div>
 							<S.ButtonContainer>
 								{/* 루틴 목록을 map으로 불러옴 */}
-									{DUMMY_DATA.map((data, idx) => {
-										return (
-											<button 
-												name={data.name} 
-												key={data.id}
-												value={idx}
-												className={"btn" + (idx == btnActive ? " active" : "")}
-												onClick={handleClickButton} 
-											>
-												{data.text}
-											</button>
-										);
-									})}
-									<FixModal />
+								{DUMMY_DATA.map((data, idx) => {
+									return (
+										<button
+											name={data.name}
+											key={data.id}
+											value={idx}
+											className={"btn" + (idx == btnActive ? " active" : "")}
+											onClick={handleClickButton}
+										>
+											{data.text}
+										</button>
+									);
+								})}
+								<S.FixModalButton onClick={onClickFixButton}>
+									<img src={fix} alt="편집하기 버튼" />
+									<p>편집</p>
+								</S.FixModalButton>
 							</S.ButtonContainer>
 						</S.ContentsTitle>
 						<div className="height">
@@ -121,9 +139,33 @@ const Mypagehome = () => {
 					</S.SecondContent>
 				)}
 			</S.HomeContent>
+
 			<div className="modalbutton">
-				<AddModal />
+				<S.AddModalButton onClick={onClickAddButton} >
+					<img src={add} alt="추가하기 버튼" />
+					<p>이 목록에 운동 추가하기</p>
+				</S.AddModalButton>
 			</div>
+
+			{/* 편집 버튼 */}
+			{isFixOpen && (
+				<FixModal
+					open={isFixOpen}
+					onClose={() => {
+						setIsFixOpen(false);
+					}}
+				/>
+			)}
+
+			{/* 이 목록에 운동 추가하기 버튼 */}
+			{isAddOpen && (
+				<AddModal
+					open={isAddOpen}
+					onClose={() => {
+						setIsAddOpen(false);
+					}}
+				/>
+			)}
 		</S.HomeContainer>
 	);
 };
