@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as S from "./StyledSearch";
 import ToggleSwitch from "./../MyPage/My/toggle";
 import { useEffect, useState } from "react";
@@ -241,4 +242,5 @@ const Search = () => {
   );
 };
 
-export default Search;
+
+export default Mypagehome;
