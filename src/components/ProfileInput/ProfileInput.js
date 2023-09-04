@@ -20,8 +20,6 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
 
   const [dupCheck, setdupCheck] = useState(false);
 
-  console.log(isValidState);
-
   // 입력했는지 체크(한 번 입력한 순간 쭉 true)
   const [valueHistory, setValueHistory] = useState(false);
 
@@ -101,7 +99,9 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
         placeholder={isFocused ? "" : placeholder}
         name={name}
         defaultValue={defaultValue}
-        value={value}
+        valueHistory={valueHistory}
+        isValidState={isValidState}
+        isFocused={isFocused}
         onFocus={() => {
           setIsFocused(true);
         }}
@@ -130,6 +130,9 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
         <ProfileInputContentWrapper
           placeholder={isFocused ? "" : "비밀번호를 재입력해주세요"}
           name="password2"
+          valueHistory={valueHistory}
+          isValidState={isValidState}
+          isFocused={isFocused}
           onFocus={() => {
             setIsFocused(true);
           }}
