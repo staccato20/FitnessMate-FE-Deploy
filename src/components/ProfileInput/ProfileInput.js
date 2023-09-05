@@ -22,6 +22,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
 
   // 입력했는지 체크(한 번 입력한 순간 쭉 true)
   const [valueHistory, setValueHistory] = useState(false);
+  let NotAvailable = "";
 
   // 서버로 부터 매번 이메일 중복 체크
   const handleEmail = async (value) => {
@@ -45,9 +46,19 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
   );
 
   // 규칙이 맞지 않은 경우
-  const NotAvailable = (
-    <span className="profileInputWarning">{children}을 다시 입력해주세요</span>
-  );
+  if (name === "weight" || name === "height") {
+    NotAvailable = (
+      <span className="profileInputWarning">
+        {children}를 다시 입력해주세요
+      </span>
+    );
+  } else {
+    NotAvailable = (
+      <span className="profileInputWarning">
+        {children}을 다시 입력해주세요
+      </span>
+    );
+  }
 
   // 이메일 중복검사 + 유효성검사를 입력할때마다 해야함
   const handleChange = (e) => {
@@ -65,22 +76,28 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
         }));
       });
     } else {
-      setIsValidState((pre) => ({
-        ...pre,
-        [name]: [value, exp && exp.test(value)],
-      }));
-
-      // 비밀번호 재확인
-      // const passwordSame =
-      //   updatedValidationState.password[0] ===
-      //   updatedValidationState.password2[0];
-      // // 비밀번호 재확인(value는 그대로, 재확인만 함)
-      // if (name.includes("password")) {
-      //   setIsValidState((pre) => ({
-      //     ...pre,
-      //     password2: [updatedValidationState.password2[0], passwordSame],
-      //   }));
-      // }
+      if (name === "password") {
+        // 비밀번호 재확인
+        const passwordSame = value === isValidState.password2[0];
+        setIsValidState((pre) => ({
+          ...pre,
+          password2: [
+            isValidState.password2[0],
+            exp && exp.test(value) && passwordSame,
+          ],
+          password: [value, exp && exp.test(value) && passwordSame],
+        }));
+      } else if (name === "password2") {
+        const passwordSame = value === isValidState.password[0];
+        setIsValidState((pre) => ({
+          ...pre,
+          password2: [value, exp && exp.test(value) && passwordSame],
+          password: [
+            isValidState.password[0],
+            exp && exp.test(value) && passwordSame,
+          ],
+        }));
+      }
     }
 
     if (!valueHistory) {

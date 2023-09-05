@@ -20,7 +20,7 @@ const SignupProfile = () => {
     if (
       Object.entries(isValidState)?.filter(([key, value]) => {
         return value[1] === true;
-      }).length === 6
+      }).length >= 6
     ) {
       navigate(`bodyinfo`);
     }
@@ -32,7 +32,7 @@ const SignupProfile = () => {
         <div className="statusBar">
           <div className="statusBar2"></div>
         </div>
-        <S.TitleEmphasis>회원정보</S.TitleEmphasis>를 입력해주세요.
+        회원 정보를 입력해주세요
       </S.SignupTitle>
       <S.ProfileInputcontainer>
         <ProfileInput placeholder="2자리 이상" name="userName">
