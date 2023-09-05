@@ -116,7 +116,7 @@ export const Contents = styled.div`
 	margin-bottom: 10px;
 	gap: 14px;
 
-	div {
+	.contents-input {
 		display: flex;
 		align-items: center;
 		background-color: ${theme.Gray10};

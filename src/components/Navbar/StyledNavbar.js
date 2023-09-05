@@ -16,6 +16,7 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background: ${theme.White};
+	z-index: 9999;
   .nav-logo {
     background-color: #ff7373;
     width: 110px;
@@ -81,7 +82,6 @@ export const navbar = styled.div`
     overflow-y: scroll;
     max-height: 150px;
     left: 0%;
-    z-index: 999;
     background: white;
     padding: 10px;
     border: 1px solid grey;

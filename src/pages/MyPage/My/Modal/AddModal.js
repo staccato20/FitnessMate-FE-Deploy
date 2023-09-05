@@ -1,15 +1,19 @@
 // 편집 모달
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import * as S from "./StyledAddModal";
 import { TextCheckbox, BigButton, SearchBar } from "../../../../components/index";
 import x from "../../../../assets/images/X_Icon.svg";
+import OutSideClick from "../../../../components/Navbar/OutSideClick";
+
 
 function AddModal({ onClose }) {
 
 	const handleClose = () => {
 		onClose?.();
 	};
+	const modalRef = useRef(null);
+	OutSideClick(modalRef, handleClose);
 
 	useEffect(() => {
 		const $body = document.querySelector("body");
@@ -24,7 +28,7 @@ function AddModal({ onClose }) {
 	return (
 		<S.AppWrap>
 			<S.Overlay>
-				<S.ModalContainer>
+				<S.ModalContainer ref={modalRef}>
 					<S.ModalWrap>
 						<S.Header>
 							<S.ModalTitle>
