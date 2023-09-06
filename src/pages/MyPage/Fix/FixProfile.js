@@ -112,35 +112,3 @@ const FixProfile = (props) => {
 };
 
 export default FixProfile;
-
-// const isValidState = useRecoilValue(validationState);
-
-// 	const handleBackPage = (e) => {
-// 		e.preventDefault();
-// 		navigate(-1);
-// 	};
-
-// 	const [submission, setSubmission] = useState({
-//     userName: '',
-// 		birthDate: '',
-// 		loginEmail: '',
-//   });
-
-// 	const { userName, birthDate, loginEmail } = submission; //비구조화 할당
-
-//   const onChange = (event) => {
-//     const { value, name } = event.target; //event.target에서 name과 value만 가져오기
-//     setSubmission({
-//       ...submission,
-//       [name]: value,
-//     });
-//   };
-
-// 	const fetchData = async () => {
-// 		try {
-// 			const response = await TokenApi.get("user/private");
-// 			setSubmission(response.data);
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	};

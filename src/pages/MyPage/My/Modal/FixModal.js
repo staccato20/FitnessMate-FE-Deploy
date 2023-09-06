@@ -64,7 +64,7 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 						text: newInputText
 					};
 
-					// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 만듭니다.
+					// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 제작
 					const updatedItems = [...items, newItem];
 
 					// items 상태를 업데이트합니다.
@@ -72,6 +72,8 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 
 					// 입력이 완료된 후에 text 상태를 초기화
 					setText("");
+
+					
 				}
 
 				const newIndex = items.length + inputs.length + 1;
@@ -148,32 +150,25 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 
 	const handleSubmit = () => {
 		if (text) { // text에 값이 있는 경우에만 추가
+			const newIndex = data.length; // 현재 데이터의 길이를 사용하여 ID 설정
 			const newItem = {
-				id: items.length + 1, // 아이템 ID 설정
+				id: newIndex, // 아이템 ID 설정
 				text: text
 			};
-
-			// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 만듭니다.
-			const updatedItems = [...items, newItem];
-
-			// items 상태를 업데이트합니다.
-			setItems(updatedItems);
-
+	
+			// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 제작
+			const updatedData = [...data, newItem];
+	
+			// 데이터 상태를 업데이트합니다.
+			onUpdateData(updatedData);
+	
 			// 입력이 완료된 후에 text 상태를 초기화
 			setText("");
 
-			onUpdateData(updatedItems); // 데이터 업데이트
 		}
-
-		onClose(); // 모달 닫기
+		onClose?.(); // 모달 닫기 (입력과 상관없이 항상 모달을 닫도록 이동)
 	};
 
-
-
-
-	useEffect(() => {
-		console.log(inputs); // inputs 배열이 업데이트될 때마다 호출됩니다.
-	}, [inputs]); // inputs 배열이 변경될 때만 호출됩니다.
 
 
 	return (
