@@ -18,7 +18,11 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 
 	const [inputs, setInputs] = useState([]); // 입력 필드 목록
 
-  const [items, setItems] = useState(DUMMY_DATA);
+	const handleDoubleClick = (id) => {
+		setEditableItemId(id);
+		// 모달이 열릴 때 text 상태 초기화
+		setText("");
+	};
 
 	const handleChange = (e, id) => {
 		const updatedItems = items.map((item) => {
@@ -165,12 +169,6 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 		onClose?.(); // 모달 닫기 (입력과 상관없이 항상 모달을 닫도록 이동)
 	};
 
-  const handleAddItem = () => {
-    if (text.trim() !== "") {
-      setItems([...items, { id: Date.now(), text: text }]);
-      setText(""); // 입력 필드 초기화
-    }
-  };
 
 
 	return (
