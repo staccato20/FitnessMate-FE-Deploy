@@ -11,11 +11,12 @@ export const NavbarContainer = styled.div`
   z-index: 999;
   height: 64px;
   display: flex;
-  padding: 0 calc((100% - 1440px) / 2) 0 0;
+  padding: 0 calc((100% - 1440px) / 2);
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(4px);
+  backdrop-filter: ${({ isLoginModal }) =>
+    isLoginModal ? "none" : "blur(4px)"};
   .nav-logo {
     background-color: #ff7373;
     width: 110px;

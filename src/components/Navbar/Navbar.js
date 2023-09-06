@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import NavModal from "./NavModal";
 import TokenApi from "../../apis/TokenApi";
 import LoginModal from "../Modal/LoginModal";
+import { useRecoilState } from "recoil";
+import { isModalState } from "../../recoil/atom";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const Navbar = () => {
   });
 
   return (
-    <S.NavbarContainer>
+    <S.NavbarContainer isLoginModal={isLoginModal}>
       <button
         className="nav-logo"
         onClick={() => {

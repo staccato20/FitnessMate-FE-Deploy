@@ -12,7 +12,6 @@ export const HomeContainer = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 36px;
-  margin-bottom: 300px;
 
   // 1
   .firstContent {
