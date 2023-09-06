@@ -1,30 +1,33 @@
 import * as S from "./StyledProfileInput";
-import { userIdVerifyAPI } from "../../apis/API";
+import { userIdVerifyAPI, verifyMailPost } from "../../apis/API";
 import { EmailState, validationState } from "../../recoil/atom";
-import ProfileInputContent from "./ProfileInputContent";
+import { ProfileInputContentWrapper } from "./StyledProfileInput";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
+import EmailModal from "./../Modal/EmailModal";
+import ValidateTest from "./../../utils/exp";
 
 // placeholder : Input창 마다 다양해서 Home에서 받아옴
 // children : 아이디/비밀번호/이메일 등등..
 
 const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
   // 유효성 검사
-  const isValidState = useRecoilValue(validationState);
+  const [isValidState, setIsValidState] = useRecoilState(validationState);
   // 포커스 검사
   const [isFocused, setIsFocused] = useState(false);
-  // 이메일 중복 체크
-  const [isEmailState, setIsEmailState] = useRecoilState(EmailState);
-  // 서버로부터 이메일 중복확인 + 유효식 검사
-  const emailduplicateCheck = (isVerified) => {
-    setIsEmailState(isVerified);
-  };
-  // 서버로 부터 이메일 중복 체크
-  const handleEmail = async () => {
-    if (isValidState.loginEmail[0] !== "") {
-      const verifyResponse = await userIdVerifyAPI.post(
-        isValidState.loginEmail[0]
-      );
+  // 이메일 중복확인 모달
+  const [isEmailModal, setIsEmailModal] = useState(false);
+
+  const [dupCheck, setdupCheck] = useState(false);
+
+  // 입력했는지 체크(한 번 입력한 순간 쭉 true)
+  const [valueHistory, setValueHistory] = useState(false);
+  let NotAvailable = "";
+
+  // 서버로 부터 매번 이메일 중복 체크
+  const handleEmail = async (value) => {
+    if (value !== "") {
+      const verifyResponse = await userIdVerifyAPI.post(value);
       if (verifyResponse.data === "ok") {
         return true;
       }
@@ -32,17 +35,75 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
     }
   };
 
-  // 중복 체크 한 경우
+  // 이메일 인증을 한 경우
   const Available = (
     <span className="profileInputChecking">사용 가능한 이메일입니다</span>
   );
 
-  // 중복 체크가 안됐거나 규칙이 맞지 않은 경우
-  const NotAvailable = (
-    <span className="profileInputWarning">
-      이메일 중복확인을 하지 않았거나 중복된 이메일입니다
-    </span>
+  // 이메일 인증을 하지 않은 경우
+  const NotCodeAvailable = (
+    <span className="profileInputWarning">이메일 인증을 해주세요</span>
   );
+
+  // 규칙이 맞지 않은 경우
+  if (name === "weight" || name === "height") {
+    NotAvailable = (
+      <span className="profileInputWarning">
+        {children}를 다시 입력해주세요
+      </span>
+    );
+  } else {
+    NotAvailable = (
+      <span className="profileInputWarning">
+        {children}을 다시 입력해주세요
+      </span>
+    );
+  }
+
+  // 이메일 중복검사 + 유효성검사를 입력할때마다 해야함
+  const handleChange = (e) => {
+    const value = e.currentTarget.value;
+    const name = e.target.name;
+    let exp = ValidateTest(name);
+
+    // 매번 서버로부터 중복 체크
+    if (name === "loginEmail") {
+      handleEmail(value).then((isVerified) => {
+        setdupCheck(isVerified);
+        setIsValidState((pre) => ({
+          ...pre,
+          [name]: [value, exp && exp.test(value) && isVerified],
+        }));
+      });
+    } else {
+      if (name === "password") {
+        // 비밀번호 재확인
+        const passwordSame = value === isValidState.password2[0];
+        setIsValidState((pre) => ({
+          ...pre,
+          password2: [
+            isValidState.password2[0],
+            exp && exp.test(value) && passwordSame,
+          ],
+          password: [value, exp && exp.test(value) && passwordSame],
+        }));
+      } else if (name === "password2") {
+        const passwordSame = value === isValidState.password[0];
+        setIsValidState((pre) => ({
+          ...pre,
+          password2: [value, exp && exp.test(value) && passwordSame],
+          password: [
+            isValidState.password[0],
+            exp && exp.test(value) && passwordSame,
+          ],
+        }));
+      }
+    }
+
+    if (!valueHistory) {
+      setValueHistory(true);
+    }
+  };
 
   return (
     <S.ProfileInputContainer isValidState={isValidState.loginEmail[1]}>
@@ -51,13 +112,20 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
         <span className="essentialSymbol"> *</span>
       </S.InputName>
       {/* 체크가 되지 않았을때만 Warning 문구 */}
-      <ProfileInputContent
-        placeholder={placeholder}
+      <ProfileInputContentWrapper
+        placeholder={isFocused ? "" : placeholder}
         name={name}
+        defaultValue={defaultValue}
+        valueHistory={valueHistory}
+        isValidState={isValidState}
         isFocused={isFocused}
-        setIsFocused={setIsFocused}
-				defaultValue={defaultValue}
-				value={value}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
+        onChange={handleChange}
       />
       {name === "loginEmail" && (
         <button
@@ -65,45 +133,45 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
           type="button"
           onClick={(e) => {
             e.preventDefault();
-            // 중복 확인(Promise)
-            handleEmail().then((isVerified) => {
-              emailduplicateCheck(isVerified);
-            });
+            if (dupCheck) {
+              setIsEmailModal(true);
+            }
           }}
         >
-          중복확인
+          인증메일 발송
         </button>
       )}
 
       {/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}
       {children === "비밀번호" && (
-        <ProfileInputContent
-          placeholder="비밀번호 재확인"
+        <ProfileInputContentWrapper
+          placeholder={isFocused ? "" : "비밀번호를 재입력해주세요"}
           name="password2"
+          valueHistory={valueHistory}
+          isValidState={isValidState}
           isFocused={isFocused}
-          setIsFocused={setIsFocused}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
+          onChange={handleChange}
         />
       )}
-      {/* 이메일은 중복체크 까지 해야 함 */}
-      {!isFocused ? (
-        isValidState[name][1] ? (
-          name === "loginEmail" ? (
-            isEmailState ? (
-              Available
-            ) : (
-              NotAvailable
-            )
-          ) : (
-            ""
-          )
-        ) : (
-          <span className="profileInputWarning">
-            {children} 생성규칙에 맞지 않습니다
-          </span>
-        )
-      ) : (
-        ""
-      )}
+
+      {!isFocused && valueHistory
+        ? isValidState[name][1]
+          ? name === "loginEmail"
+            ? isValidState.emailModal[1]
+              ? Available
+              : NotCodeAvailable
+            : ""
+          : ""
+          ? ""
+          : NotAvailable
+        : ""}
+      {isEmailModal && <EmailModal setIsEmailModal={setIsEmailModal} />}
     </S.ProfileInputContainer>
   );
 };

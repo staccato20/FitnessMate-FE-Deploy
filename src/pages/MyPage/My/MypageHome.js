@@ -1,17 +1,15 @@
-
 // 내 운동 페이지
 
 import * as S from "./StyledMypageHome";
 import "./style.css";
-import { useState } from 'react';
+import { useState } from "react";
 import AddModal from "./Modal/AddModal";
 import FixModal from "./Modal/FixModal";
 import fix from "../../../assets/images/Fix_Icon.svg";
 import add from "../../../assets/images/Add_Icon.svg";
 import ToggleSwitch from "./toggle";
 
-
-// 루틴 목록용 더미데이터 
+// 루틴 목록용 더미데이터
 
 export const DUMMY_DATA = [
 	{
@@ -26,7 +24,6 @@ export const DUMMY_DATA = [
 	},
 
 ];
-
 
 const Mypagehome = () => {
 
@@ -180,6 +177,5 @@ const Mypagehome = () => {
 		</S.HomeContainer>
 	);
 };
-
 
 export default Mypagehome;
