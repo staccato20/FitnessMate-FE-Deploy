@@ -22,10 +22,6 @@ export const NavbarContainer = styled.div`
     width: 110px;
     height: 20px;
   }
-  .underline {
-    border-bottom: 1px solid ${theme.Gray20};
-    width: 100vw;
-  }
 `;
 
 export const NavLink = styled.div`
@@ -53,8 +49,7 @@ export const NavButton = styled.button`
   padding: 10px 14px;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
   line-height: 150%; /* 22.5px */
   letter-spacing: -0.3px;
   @media (max-width: 1000px) {
