@@ -15,8 +15,8 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: ${({ isLoginModal }) =>
-    isLoginModal ? "none" : "blur(4px)"};
+  backdrop-filter: ${({ isLoginModal, isCancleModal }) =>
+    isLoginModal || isCancleModal ? "none" : "blur(4px)"};
   .nav-logo {
     background-color: #ff7373;
     width: 110px;

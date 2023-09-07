@@ -6,31 +6,42 @@ import { useNavigate } from "react-router-dom";
 import NavModal from "./NavModal";
 import TokenApi from "../../apis/TokenApi";
 import LoginModal from "../Modal/LoginModal";
-import { useRecoilState } from "recoil";
-import { isModalState } from "../../recoil/atom";
+import CancleModal from "../Modal/CancleModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const loginState = localStorage.length;
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
+  const [isCancleModal, setIsCancleModal] = useState(false);
   const handleSearch = () => {
-    navigate("search/1");
-  };
-
-  const handleMyPage = () => {
-    if (loginState) {
-      navigate("mypage");
+    if (window.location.href.includes("signup")) {
+      setIsCancleModal(true);
     } else {
-      setIsLoginModal(true);
+      navigate("search/1");
+    }
+  };
+  const handleMyPage = () => {
+    if (window.location.href.includes("signup")) {
+      setIsCancleModal(true);
+    } else {
+      if (loginState) {
+        navigate("mypage");
+      } else {
+        setIsLoginModal(true);
+      }
     }
   };
 
   const handleRecommend = () => {
-    if (loginState) {
-      navigate("recommend");
+    if (window.location.href.includes("signup")) {
+      setIsCancleModal(true);
     } else {
-      setIsLoginModal(true);
+      if (loginState) {
+        navigate("recommend");
+      } else {
+        setIsLoginModal(true);
+      }
     }
   };
 
@@ -51,7 +62,10 @@ const Navbar = () => {
   });
 
   return (
-    <S.NavbarContainer isLoginModal={isLoginModal}>
+    <S.NavbarContainer
+      isLoginModal={isLoginModal}
+      isCancleModal={isCancleModal}
+    >
       <button
         className="nav-logo"
         onClick={() => {
@@ -79,6 +93,7 @@ const Navbar = () => {
         )}
       </S.NavLink>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
+      {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
     </S.NavbarContainer>
   );
 };
