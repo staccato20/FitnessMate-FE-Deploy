@@ -220,7 +220,8 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 								</S.AddButton>
 							)}
 						</S.Header>
-						<BigButton handleSubmit={handleSubmit}>수정 완료</BigButton>
+						{/* BigButton이랑 width가 안 맞아서 새로 제작 */}
+						<S.SaveButton onClick={handleSubmit} type="submit">수정 완료</S.SaveButton>
 					</S.ModalWrap>
 				</S.ModalContainer>
 			</S.Overlay>

@@ -120,7 +120,8 @@ function AddModal({ onClose }) {
 								})}
 							</S.Contents>
 						)}
-						<BigButton>선택한 2개의 운동 추가하기</BigButton>
+						{/* BigButton이랑 크기가 안 맞아서 새로 제작 */}
+						<S.SaveButton type="submit">선택한 운동 추가하기</S.SaveButton>
 					</S.ModalWrap>
 				</S.ModalContainer>
 			</S.Overlay>
