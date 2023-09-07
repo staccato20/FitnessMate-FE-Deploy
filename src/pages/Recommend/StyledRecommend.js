@@ -6,7 +6,8 @@ export const RecommendContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 80px;
   padding: 78px 25px 0 25px;
 
@@ -16,6 +17,39 @@ export const RecommendContainer = styled.div`
     display: inline-block;
     margin: 0 auto;
     margin-bottom: 100px;
+  }
+`;
+
+export const RecommendHomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  gap: 48px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  align-items: center;
+  transform: translate(-50%, 50%);
+  .recommendBtnWrapper {
+    display: flex;
+    width: 182px;
+    height: 77px;
+    padding: 24px 28px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: ${theme.Brand};
+    .recommendBtnText {
+      color: ${theme.White};
+      font-size: 24px;
+      letter-spacing: -0.48px;
+    }
+    .recommendBtnImg {
+      width: 29px;
+      height: 29px;
+    }
   }
 `;
 
