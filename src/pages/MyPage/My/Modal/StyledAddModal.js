@@ -106,14 +106,17 @@ export const Contents = styled.div`
   justify-content: center;
 	flex-direction: column;
 	width: 422px;
+	height: 332px;
+	padding-top: 70px;
 	margin-bottom: 10px;
 	gap: 8px;
+	overflow-y: scroll;
 `;
 
 export const CheckboxArea = styled.div`
 	display: flex;
   justify-content: center;
-	width: 422px;
+	width: 400px;
 	height: 60px;
 `;
 
