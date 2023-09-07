@@ -41,7 +41,8 @@ const FixBodyInfo = () => {
 		try {
 			const response_private = await TokenApi.get("user/private");
 			setuserName(response_private.data.userName);
-			const response_body = await TokenApi.get("/bodyData");
+			const response_body = await TokenApi.get("/bodyData", response_private);
+			console.log(response_body)
 			setuserName(response_body.data.height);
 			setuserName(response_body.data.weight);
 		} catch (error) {

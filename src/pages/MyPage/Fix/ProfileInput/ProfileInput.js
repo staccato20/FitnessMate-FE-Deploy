@@ -8,7 +8,7 @@ import ValidateTest from "../../../../utils/exp";
 // placeholder : Input창 마다 다양해서 Home에서 받아옴
 // children : 아이디/비밀번호/이메일 등등..
 
-const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
+const ProfileInput = ({ placeholder, children, name, defaultValue, value, handleChange }) => {
   // 유효성 검사
   const [isValidState, setIsValidState] = useRecoilState(validationState);
   // 포커스 검사
@@ -16,40 +16,6 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
 
   // 입력했는지 체크(한 번 입력한 순간 쭉 true)
   const [valueHistory, setValueHistory] = useState(false);
-
-  // 이메일 중복검사 + 유효성검사를 입력할때마다 해야함
-  const handleChange = (e) => {
-    const value = e.currentTarget.value;
-    const name = e.target.name;
-    let exp = ValidateTest(name);
-
-    // 매번 서버로부터 중복 체크
-      if (name === "password") {
-        // 비밀번호 재확인
-        const passwordSame = value === isValidState.password2[0];
-        setIsValidState((pre) => ({
-          ...pre,
-          password2: [
-            isValidState.password2[0],
-            exp && exp.test(value) && passwordSame,
-          ],
-          password: [value, exp && exp.test(value) && passwordSame],
-        }));
-      } else if (name === "password2") {
-        const passwordSame = value === isValidState.password[0];
-        setIsValidState((pre) => ({
-          ...pre,
-          password2: [value, exp && exp.test(value) && passwordSame],
-          password: [
-            isValidState.password[0],
-            exp && exp.test(value) && passwordSame,
-          ],
-        }));
-      }
-    if (!valueHistory) {
-      setValueHistory(true);
-    }
-  };
 
   return (
     <S.ProfileInputContainer isValidState={isValidState.loginEmail[1]}>
@@ -71,6 +37,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
           setIsFocused(false);
         }}
         onChange={handleChange}
+				value={value}
       />
 
       {/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}

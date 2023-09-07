@@ -8,15 +8,31 @@ import plus from "../../../../assets/images/Plus_Icon.svg";
 import { BigButton } from "../../../../components/index";
 import { DUMMY_DATA } from '../MypageHome';
 import OutSideClick from "../../../../components/Navbar/OutSideClick";
+import { update } from "react-spring";
 
 function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
+
+	// data가 변경될 때마다 items가 업데이트
+	useEffect(() => {
+		setItems([...data]);
+	}, [data]);
 
 	const [items, setItems] = useState([...DUMMY_DATA]); // DUMMY_DATA를 복사하여 초기화
 
 	const [text, setText] = useState();
 	const [editableItemId, setEditableItemId] = useState(null); // 수정 중인 항목의 ID를 관리
 
-	const [inputs, setInputs] = useState([]); // 입력 필드 목록
+	const [inputStates, setInputStates] = useState([]); // 입력 필드 상태 목록
+	const [deletedIds, setDeletedIds] = useState([]);
+	const nextInputId = useRef(Math.max(...items.map((item) => item.id)) + 1); // 다음 입력 필드의 고유 ID를 관리하는 변수
+
+
+	// AddButton을 보이거나 숨기는 상태를 추가
+	const [addButtonVisible, setAddButtonVisible] = useState(items.length === 5 ? false : true);
+
+	useEffect(() => {
+		setAddButtonVisible(items.length < 5);
+	}, [items]);
 
 	const handleDoubleClick = (id) => {
 		setEditableItemId(id);
@@ -25,107 +41,85 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 	};
 
 	const handleChange = (e, id) => {
-		const updatedItems = items.map((item) => {
-			if (item.id === id) {
-				item.text = e.target.value; // 해당 항목의 text 값을 변경
+		const updatedInputStates = inputStates.map((inputState) => {
+			if (inputState.id === id) {
+				inputState.text = e.target.value; // 해당 항목의 text 값을 변경
 			}
-			console.log(item);
-			return item;
+			return inputState;
 		});
 
 		// text 상태 업데이트
 		const newText = e.target.value;
 		setText(newText);
 
-		setItems(updatedItems);
+		setInputStates(updatedInputStates);
 	};
 
 	const handleKeyPress = (e, id) => {
+
 		// Enter 키가 아닌 경우에만 텍스트 업데이트
 		if (e.key !== "Enter") {
-			const updatedItems = items.map((item) => {
-				if (item.id === id) {
-					item.text = e.target.value;
+			const updatedInputStates = inputStates.map((inputState) => {
+				if (inputState.id === id) {
+					inputState.text = e.target.value;
 				}
-				return item;
+				return inputState;
 			});
-			setItems(updatedItems);
+			setInputStates(updatedInputStates);
 		}
 	};
 
 	const handleAddInput = (e) => {
-		if (e.key === "Enter" || e.key === undefined) {
-			if (items.length + inputs.length < 5) {
-				const newInputText = text;
 
-				if (newInputText) {
-					const newItem = {
-						id: items.length + inputs.length + 1, // 새로운 아이템의 ID를 정확히 설정
-						text: newInputText
-					};
+		if (items.length + inputStates.length + 1 === 5) {
+			setAddButtonVisible(false)
+		}
 
-					// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 제작
-					const updatedItems = [...items, newItem];
+		if (items.length < 5) {
 
-					// items 상태를 업데이트합니다.
-					setItems(updatedItems);
+			let newInputId;
 
-					// 입력이 완료된 후에 text 상태를 초기화
-					setText("");
-
-					
-				}
-
-				const newIndex = items.length + inputs.length + 1;
-				console.log(newIndex);
-				const newInput = (
-					<div key={newIndex} className="contents-input">
-						<input
-							type="text"
-							name={`input_${newIndex}`}
-							value={text}
-							onChange={(e) => handleChange(e, newIndex)}
-							onKeyDown={(e) => handleKeyPress(e, newIndex)}
-							placeholder="새 항목 추가"
-						/>
-						<img
-							src={trash}
-							alt="삭제 버튼"
-							onClick={() => handleRemoveInput(newIndex)}
-						/>
-					</div>
-				);
-
-				// 새로운 input을 inputs 상태에 추가합니다.
-				setInputs((prevInputs) => [...prevInputs, newInput]);
-				console.log(inputs)
-
-				if (items.length + inputs.length === 4) {
-					setAddButtonVisible(false);
-				}
+			if (deletedIds.length > 0) {
+				// 삭제된 ID가 있다면 남아있는 ID 중에서 가장 큰 ID를 찾음
+				const maxExistingId = Math.max(...items.map((item) => item.id));
+				// 가장 큰 ID에 1을 더하여 새로운 ID 생성
+				newInputId = maxExistingId + 1;
+				deletedIds.pop(); // 삭제된 ID 배열에서 해당 ID 제거
+			} else {
+				// 삭제된 ID가 없다면 다음 입력 필드의 고유 ID 증가
+				newInputId = nextInputId.current;
+				nextInputId.current += 1;
 			}
+
+			const newInputState = {
+				id: newInputId,
+				text: "", // 비워진 상태로 초기화
+			};
+
+			// 입력 상태 배열 업데이트
+			setInputStates((prevInputs) => [...prevInputs, newInputState]);
+
+
+			// 삭제된 ID 배열 업데이트
+			setDeletedIds([...deletedIds]);
+
+			console.log(inputStates)
+
+			setText("")
 		}
 	};
 
-
-
-
-	// AddButton을 보이거나 숨기는 상태를 추가
-	const [addButtonVisible, setAddButtonVisible] = useState(true);
-
 	const handleRemoveInput = (id) => {
 		// 입력 필드를 삭제하고 items 배열에서도 해당 아이템을 제거
-		const updatedInputs = inputs.filter((input) => input.key !== id);
-		setInputs(updatedInputs);
+		const updatedInputStates = inputStates.filter((input) => input.id !== id);
+		setInputStates(updatedInputStates);
 
 		const deletedItemId = id; // 삭제된 항목의 ID 저장
+		setDeletedIds((prevDeletedIds) => [...prevDeletedIds, deletedItemId]);
 
+		// 입력 필드를 삭제하고 items 배열에서도 해당 아이템을 제거
 		const updatedItems = items.filter((item) => item.id !== id);
 		setItems(updatedItems);
-
-		if (items.length + updatedInputs.length < 4) {
-			setAddButtonVisible(true);
-		}
 
 		// 삭제된 항목의 ID를 Mypagehome으로 전달
 		onDeleteItem?.(deletedItemId);
@@ -149,28 +143,20 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 	OutSideClick(modalRef, handleClose);
 
 	const handleSubmit = () => {
-		if (text) { // text에 값이 있는 경우에만 추가
-			const newIndex = data.length; // 현재 데이터의 길이를 사용하여 ID 설정
-			const newItem = {
-				id: newIndex, // 아이템 ID 설정
-				text: text
-			};
-	
-			// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 제작
-			const updatedData = [...data, newItem];
-	
-			// 데이터 상태를 업데이트합니다.
-			onUpdateData(updatedData);
-	
-			// 입력이 완료된 후에 text 상태를 초기화
-			setText("");
+		// 기존 아이템과 새로운 아이템을 합친 새로운 배열을 제작
+		const updatedData = [...data, ...inputStates];
+		console.log("updatedData", updatedData)
 
-		}
+		// 데이터 상태와 입력 상태를 업데이트
+		onUpdateData(updatedData);
+		setItems(updatedData);
+		setInputStates(updatedData);
+
+		// 입력이 완료된 후에 text 상태를 초기화
+		setText("");
+
 		onClose?.(); // 모달 닫기 (입력과 상관없이 항상 모달을 닫도록 이동)
 	};
-
-
-
 	return (
 		<S.AppWrap>
 			<S.Overlay>
@@ -211,9 +197,20 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
 											onClick={() => handleRemoveInput(item.id)} />
 									</div>
 								))}
-								{inputs.map((input, index) => (
-									<div key={index}>
-										{input}
+								{inputStates.map((input, index) => (
+									<div key={input.id} className="contents-input">
+										<input
+											type="text"
+											value={input.text}
+											onChange={(e) => handleChange(e, input.id)}
+											onKeyDown={(e) => handleKeyPress(e, input.id)}
+											placeholder="새 항목 추가"
+										/>
+										<img
+											src={trash}
+											alt="삭제 버튼"
+											onClick={() => handleRemoveInput(input.id)}
+										/>
 									</div>
 								))}
 							</S.Contents>
