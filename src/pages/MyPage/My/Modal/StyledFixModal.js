@@ -176,3 +176,26 @@ export const Button = styled.button`
     background-color: #898989;
   }
 `;
+
+export const SaveButton = styled.button`
+  width: 433px;
+  height: 68px;
+  padding: 22px 24px;
+
+  background: ${({ theme }) => theme.Brand};
+  color: ${({ theme }) => theme.White};
+
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  border-radius: 12px;
+  font-family: Pretendard;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+`;
