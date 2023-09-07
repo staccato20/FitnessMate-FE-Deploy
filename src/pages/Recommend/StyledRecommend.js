@@ -50,7 +50,7 @@ export const RecommendButtonContainer = styled.div`
   margin-top: 186px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 export const RecommendImgContainer = styled.div`
@@ -72,7 +72,7 @@ export const TextCheckboxContainer = styled.div`
   padding-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   gap: 24px;
 `;
