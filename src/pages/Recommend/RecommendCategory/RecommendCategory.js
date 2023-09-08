@@ -16,6 +16,7 @@ import { AfterArrowButton } from "./../../../components/Button/AfterArrowButton"
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
 const RecommendCategory = () => {
   const navigate = useNavigate();
+  const [isReady, setIsReady] = useState(false);
 
   const [category, setCategory] = useState({
     운동: [false, "fitness"],
@@ -41,6 +42,7 @@ const RecommendCategory = () => {
       entries.map(([key, value], index) => [key, [index === idx, value[1]]])
     );
     setCategory(updatedCategory);
+    setIsReady(true);
   };
 
   return (
@@ -71,7 +73,9 @@ const RecommendCategory = () => {
       </RecommendImgContainer>
       <RecommendButtonContainer>
         <BeforeArrowButton handleClick={goBeforePage} />
-        <AfterArrowButton handleClick={goNextPage} />
+        <AfterArrowButton handleClick={goNextPage} isReady={isReady}>
+          다음
+        </AfterArrowButton>
       </RecommendButtonContainer>
     </RecommendContainer>
   );

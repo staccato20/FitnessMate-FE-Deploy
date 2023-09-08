@@ -6,8 +6,8 @@ export const RecommendContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 80px;
   padding: 78px 25px 0 25px;
 
@@ -57,6 +57,7 @@ export const RecommendTitle = styled.span`
   font-size: ${({ ftsize }) => ftsize};
   color: ${({ ftcolor }) => ftcolor};
   font-weight: ${({ ftweight }) => ftweight};
+  letter-spacing: -0.64px;
   .hide {
     @media screen and (max-width: 800px) {
       display: none;
@@ -68,23 +69,27 @@ export const RecommendTitleHide = styled(RecommendTitle)`
   color: ${theme.Gray80};
   font-size: 24px;
   font-weight: 600;
+  letter-spacing: -0.48px;
 
   @media screen and (max-width: 660px) {
     display: none;
   }
 `;
 
-export const RecommendTitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
+export const RecommendTitleContainer = styled.div``;
 
 export const RecommendButtonContainer = styled.div`
   margin-top: 186px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  .readyWarning {
+    display: ${({ isover }) => (isover ? "bloack" : "none")};
+    color: ${theme.Error};
+    font-size: 22px;
+    letter-spacing: -0.44px;
+  }
 `;
 
 export const RecommendImgContainer = styled.div`
@@ -100,6 +105,24 @@ export const RecommendTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  .allSelectButton {
+    width: 87px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: ${theme.BrandLight};
+    color: ${theme.Brand};
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .allClearButton {
+    color: ${theme.Brand};
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: right;
+  }
 `;
 
 export const TextCheckboxContainer = styled.div`
@@ -112,26 +135,16 @@ export const TextCheckboxContainer = styled.div`
 `;
 
 export const BorderTextCheckboxContainer = styled.div`
-  padding-top: 40px;
-  border-top: 2px solid ${theme.Gray20};
   display: flex;
   flex-direction: column;
   gap: 22px;
-  .allSelectButton {
-    color: ${theme.Brand};
-    font-size: 22px;
-    font-weight: 600;
-    display: flex;
-    padding: 10px;
-    justify-content: flex-start;
-    align-items: center;
-  }
+  position: relative;
 `;
 
 export const BorderTextCheckboxInnerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 22px;
 `;
 

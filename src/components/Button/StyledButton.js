@@ -27,11 +27,17 @@ export const MiddleButtonWrapper = styled.button`
 // < 가로 길이가 짧은 버튼 >
 
 export const SmallButtonWrapper = styled.button`
-  width: 204px;
-  padding: 22px 24px;
-  height: 54px;
-  background: ${theme.Brand};
+  display: flex;
+  height: 62px;
+  padding: 18px 39px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: ${({ isReady }) => (isReady ? theme.Brand : theme.BrandNon)};
+  cursor: ${({ isReady }) => (isReady ? "pointer" : "default")};
   color: ${theme.White};
+  font-size: 22px;
+  letter-spacing: -0.44px;
 `;
 
 // < 이전 버튼 >
@@ -89,8 +95,10 @@ export const AfterArrowButtonWrapper = styled.button`
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  background: ${theme.Brand};
-  .afterArrowBTtText {
+  background: ${({ isReady }) => (isReady ? theme.Brand : theme.BrandNon)};
+  cursor: ${({ isReady }) => (isReady ? "pointer" : "default")};
+
+  .afterArrowBtnText {
     color: ${theme.White};
     font-size: 22px;
     letter-spacing: -0.44px;
