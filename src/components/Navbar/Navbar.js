@@ -14,6 +14,9 @@ const Navbar = () => {
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [isCancleModal, setIsCancleModal] = useState(false);
+  // 추천페이지는 blur X
+  const [isRecommend, setIsRecommend] = useState(false);
+
   const handleSearch = () => {
     if (window.location.href.includes("signup")) {
       setIsCancleModal(true);
@@ -61,10 +64,17 @@ const Navbar = () => {
     }
   });
 
+  useEffect(() => {
+    if (window.location.href.includes("recommend")) {
+      setIsRecommend(true);
+    }
+  }, [window.location.href]);
+
   return (
     <S.NavbarContainer
       isLoginModal={isLoginModal}
       isCancleModal={isCancleModal}
+      isRecommend={isRecommend}
     >
       <button
         className="nav-logo"

@@ -14,9 +14,12 @@ export const NavbarContainer = styled.div`
   padding: 0 calc((100% - 1440px) / 2);
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: ${({ isLoginModal, isCancleModal }) =>
-    isLoginModal || isCancleModal ? "none" : "blur(4px)"};
+  background-color: ${({ isLoginModal, isCancleModal, isRecommend }) =>
+    isLoginModal || isCancleModal || isRecommend
+      ? theme.White
+      : "rgba(255, 255, 255, 0.4)"};
+  backdrop-filter: ${({ isLoginModal, isCancleModal, isRecommend }) =>
+    isLoginModal || isCancleModal || isRecommend ? "none" : "blur(4px)"};
   .nav-logo {
     background-color: #ff7373;
     width: 110px;

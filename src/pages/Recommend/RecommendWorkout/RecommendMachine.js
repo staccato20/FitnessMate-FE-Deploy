@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { bodyPartState } from "./../../../recoil/atom";
+import { RecommendState, bodyPartState } from "./../../../recoil/atom";
 import {
   BorderTextCheckboxContainer,
   BorderTextCheckboxInnerContainer,
@@ -9,23 +9,20 @@ import {
   RecommendContainer,
   RecommendTextContainer,
   RecommendTitle,
-  RecommendTitleContainer,
   RecommendTitleHide,
 } from "./../StyledRecommend";
 import { SmallButton, SmallTextCheckbox } from "./../../../components/";
 import theme from "../../../styles/theme";
-import {
-  recommendPostAPI,
-  recommendWorkoutHistoryAPI,
-} from "./../../../apis/API";
 import TokenApi from "../../../apis/TokenApi";
 import { BeforeArrowButton } from "./../../../components/Button/BeforeArrowButton";
 import { SignupTitle } from "../../Signup/StyledSignup";
+
 const RecommendMachine = () => {
   const navigate = useNavigate();
 
   // 운동 부위 객체
   const [selectedBodyPart, setSelectedBodyPart] = useRecoilState(bodyPartState);
+  const [recommendState, setRecommendState] = useRecoilState(RecommendState);
 
   // 운동 기구 배열
   const [isMachineSelected, setIsMachineSelected] = useState([]);
@@ -94,6 +91,22 @@ const RecommendMachine = () => {
     navigate(-1);
   };
 
+  const makeRequest = async (url, maxAttempts = 30) => {
+    try {
+      const response = await TokenApi.get(url);
+      // 성공한 경우 데이터 반환
+      return response.data;
+    } catch (error) {
+      if (maxAttempts === 0) throw error;
+
+      // 재시도 전에 일정 시간 대기 (예: 1초)
+      await new Promise((res) => setTimeout(res, 1000));
+
+      // 재귀적으로 함수 호출
+      return makeRequest(url, maxAttempts - 1);
+    }
+  };
+
   const handleSubmit = async () => {
     if (isReady) {
       // 선택된 기구
@@ -119,15 +132,13 @@ const RecommendMachine = () => {
         recommendExercise
       );
       const recommendId = response.data;
-      console.log(recommendId);
-      const response2 = await recommendWorkoutHistoryAPI.get(`/100156`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("accessToken"),
-        },
-      });
-      console.log(response2);
 
-      navigate("/recommend/fitnessequipment");
+      makeRequest(`/recommendation/workout/history/${recommendId}`)
+        .then((data) => {
+          setRecommendState(data);
+          navigate("/recommend/machineresult");
+        })
+        .catch((error) => console.error("요청 실패", error));
     }
   };
 

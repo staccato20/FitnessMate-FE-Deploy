@@ -76,7 +76,11 @@ export const RecommendTitleHide = styled(RecommendTitle)`
   }
 `;
 
-export const RecommendTitleContainer = styled.div``;
+export const RecommendTitleContainer = styled.div`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+`;
 
 export const RecommendButtonContainer = styled.div`
   margin-top: 186px;
@@ -154,6 +158,66 @@ export const ButonWrapper = styled.div`
 
 export const RecommendMachineResultContainer = styled.div`
   padding-top: 59px;
+  gap: 28px;
+  display: flex;
+  flex-direction: column;
+  .recommendNavbarWrapper {
+    z-index: 900;
+    display: flex;
+    gap: 32px;
+    padding: 12px 18px;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background: var(--Gray10, #f8f8f8);
+    position: sticky;
+    top: 64px;
+    .recommendNavbarTitle {
+      color: ${theme.Gray80};
+      font-size: 18px;
+      line-height: 150%; /* 27px */
+      letter-spacing: -0.36px;
+    }
+    .recommendNavbarBox {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+
+      .recommendNavbarItem {
+        display: flex;
+        padding: 10px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 6px;
+        background: var(--White, #fff);
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+`;
+
+export const RecommendMachineList = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+  position: absolute;
+  top: 373px;
+  left: 427px;
+`;
+export const RecommendMachine = styled.button`
+  color: ${theme.Gray50};
+  color: ${({ isSelected }) => (isSelected ? theme.Brand : theme.Gray50)};
+  font-size: 20px;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.4px;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 export const BudgetContainer = styled.div`
@@ -207,5 +271,139 @@ export const BudgetBox = styled.div`
   }
   img {
     cursor: pointer;
+  }
+`;
+
+export const RecommendMain = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  gap: 24px;
+  max-width: 553px;
+  width: 100%;
+  .fitnessImg {
+    border-radius: 5px;
+  }
+`;
+export const RecommendMainTopWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const RecommendMainTopTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+export const RecommendMainBodyPart = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  .recommendbodyPart {
+    color: ${theme.Gray30};
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.36px;
+  }
+`;
+export const RecommendMainMachine = styled.span`
+  color: #333d4b;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+`;
+
+export const RecommendMainBtn = styled.button`
+  height: 47px;
+  display: flex;
+  padding: 14px;
+  align-items: center;
+  border-radius: 36px;
+  background: ${theme.Brand};
+  color: ${theme.White};
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+`;
+
+export const RecommendAmountWrapper = styled.div`
+  display: Flex;
+  flex-direction: column;
+  gap: 6px;
+  .amountTitle {
+    color: ${theme.Gray80};
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%; /* 27px */
+    letter-spacing: -0.36px;
+  }
+  .amountContent {
+    display: flex;
+    padding: 24px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    border-radius: 10px;
+    border: ${theme.White};
+    background: ${theme.Gray10};
+    .amountBox {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      .amountText1 {
+        color: ${theme.Gray50};
+        font-size: 16px;
+        letter-spacing: -0.32px;
+      }
+      .amountText2 {
+        color: ${theme.Gray80};
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.36px;
+      }
+    }
+  }
+`;
+
+export const RecommendDescriptionWrapper = styled.div`
+  display: Flex;
+  flex-direction: column;
+  gap: 6px;
+  .descriptionTitle {
+    color: ${theme.Gray80};
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%; /* 27px */
+    letter-spacing: -0.36px;
+  }
+  .description {
+    display: flex;
+    padding: 24px;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid ${theme.White};
+    background: ${theme.Gray10};
+    color: ${theme.Gray80};
+    font-size: 16px;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.32px;
+  }
+`;
+
+export const RecommendVideoWrapper = styled.div`
+  display: Flex;
+  flex-direction: column;
+  gap: 6px;
+  .recommendVideoTitle {
+    color: ${theme.Gray80};
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%; /* 27px */
+    letter-spacing: -0.36px;
+  }
+  .recommendVideo {
+    width: 100%;
+    height: 283px;
   }
 `;
