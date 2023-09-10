@@ -182,21 +182,24 @@ export const RecommendMachineResultContainer = styled.div`
       display: flex;
       gap: 12px;
       align-items: center;
-
-      .recommendNavbarItem {
-        display: flex;
-        padding: 10px 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 6px;
-        background: var(--White, #fff);
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
-        &:hover {
-          opacity: 0.5;
-        }
-      }
     }
+  }
+`;
+
+export const RecommendNavbarItem = styled.button`
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background: ${({ isSelected }) => (isSelected ? theme.Brand : theme.White)};
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+  color: ${({ isSelected }) => (isSelected ? theme.White : theme.Gray80)};
+  font-size: 18px;
+  line-height: 150%; /* 27px */
+  letter-spacing: -0.36px;
+  &:hover {
+    opacity: 0.8;
   }
 `;
 
@@ -210,7 +213,6 @@ export const RecommendMachineList = styled.div`
   left: 427px;
 `;
 export const RecommendMachine = styled.button`
-  color: ${theme.Gray50};
   color: ${({ isSelected }) => (isSelected ? theme.Brand : theme.Gray50)};
   font-size: 20px;
   line-height: 150%; /* 30px */
@@ -279,7 +281,7 @@ export const RecommendMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
+  height: 100%;
   gap: 24px;
   max-width: 553px;
   width: 100%;
@@ -288,7 +290,14 @@ export const RecommendMain = styled.div`
   }
 `;
 export const RecommendMainTopWrapper = styled.div`
+  top: 114px;
+  position: sticky;
   display: flex;
+  padding: ${({ showShadow }) => (showShadow ? "18px" : 0)};
+  border: ${({ showShadow }) => (showShadow ? theme.Gray10 : "none")};
+  box-shadow: ${({ showShadow }) =>
+    showShadow ? `0px 11px 9px 0px rgba(0, 0, 0, 0.05)` : "none"};
+  background: ${({ showShadow }) => (showShadow ? theme.White : "none")};
   justify-content: space-between;
 `;
 export const RecommendMainTopTitleWrapper = styled.div`

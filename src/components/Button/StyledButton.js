@@ -19,8 +19,8 @@ export const MiddleButtonWrapper = styled.button`
   width: 354px;
   height: 62px;
   padding: 22px 24px;
-
-  background: ${theme.Brand};
+  background: ${({ isReady }) =>
+    isReady === undefined || isReady === true ? theme.Brand : theme.BrandLight};
   color: ${theme.White};
 `;
 

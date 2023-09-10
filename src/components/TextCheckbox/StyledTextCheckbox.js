@@ -7,9 +7,9 @@ import styled from "styled-components";
 
 export const TextCheckboxWrapper = styled.button`
   width: 100%;
-  transition: all 0.3s ease-out;
   display: flex;
   padding: 10px 24px;
+  transition: all 0.1s ease-out;
   background: ${({ theme }) => theme.Gray10};
   border-radius: 10px;
   justify-content: space-between;
@@ -25,6 +25,12 @@ export const TextCheckboxWrapper = styled.button`
     overflow: hidden;
     // 글자가 길어질 경우 ...으로 표시
     text-overflow: ellipsis;
+    transition: all 0.3s ease-out;
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme.Brand : theme.Gray70};
+    font-size: 22px;
+  }
+  .choice-articleinput {
     transition: all 0.3s ease-out;
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.Brand : theme.Gray70};

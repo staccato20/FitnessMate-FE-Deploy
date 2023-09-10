@@ -16,6 +16,7 @@ import theme from "../../../styles/theme";
 import TokenApi from "../../../apis/TokenApi";
 import { BeforeArrowButton } from "./../../../components/Button/BeforeArrowButton";
 import { SignupTitle } from "../../Signup/StyledSignup";
+import Loading from "../../../components/Loading/Loading";
 
 const RecommendMachine = () => {
   const navigate = useNavigate();
@@ -23,19 +24,20 @@ const RecommendMachine = () => {
   // 운동 부위 객체
   const [selectedBodyPart, setSelectedBodyPart] = useRecoilState(bodyPartState);
   const [recommendState, setRecommendState] = useRecoilState(RecommendState);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 운동 기구 배열
   const [isMachineSelected, setIsMachineSelected] = useState([]);
 
   // 전체 선택 상태
   const [isAllSelected, setIsAllSelected] = useState(false);
-
   const [isReady, setIsReady] = useState(false);
 
   // 부위를 선택했을때만 서버에서 기구 리스트를 받아옴
   const fetchData = async () => {
     if (selectedBodyPart.bodyPartKoreanName.length) {
       const response = await TokenApi.post("/machines/list", selectedBodyPart);
+      console.log(response.data);
       const newArr = response.data.map((obj, index) => ({
         ...obj,
         isSelected: false,
@@ -95,8 +97,11 @@ const RecommendMachine = () => {
     try {
       const response = await TokenApi.get(url);
       // 성공한 경우 데이터 반환
+      setIsLoading(true);
+      setIsReady(true);
       return response.data;
     } catch (error) {
+      setIsReady(false);
       if (maxAttempts === 0) throw error;
 
       // 재시도 전에 일정 시간 대기 (예: 1초)
@@ -183,6 +188,7 @@ const RecommendMachine = () => {
       </RecommendTextContainer>
       <RecommendButtonContainer>
         <BeforeArrowButton handleClick={handleBackPage}></BeforeArrowButton>
+        {isLoading && <Loading />}
         <SmallButton handleSubmit={handleSubmit} isReady={isReady}>
           추천받기
         </SmallButton>

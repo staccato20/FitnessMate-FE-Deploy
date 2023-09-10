@@ -15,7 +15,7 @@ const RecommendMachineResult = () => {
   const [userName, setuserName] = useState(null);
   const [bodyPart, setBodyPart] = useState([]);
   const [machineList, setMachineList] = useState([]);
-  const [videoLink, setVideoLink] = useState({});
+  const [videoLink, setVideoLink] = useState(null);
   const [currentIdx, setCureentIdx] = useState(0);
   const [recommendAddModal, setRecommendAddModal] = useState(false);
 
@@ -23,12 +23,32 @@ const RecommendMachineResult = () => {
     setCureentIdx(idx);
   };
 
+  const [showShadow, setShowShadow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 스크롤 위치가 첫 번째 내비게이션바 높이만큼 이동했는지 확인
+      if (window.scrollY >= 260) {
+        setShowShadow(true);
+      } else {
+        setShowShadow(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const fetchData = async () => {
     try {
       const response = await TokenApi.get("user/private");
       const response2 = await userWorkoutAPI.get(
         `${recommendState.recommends[currentIdx].workoutId}`
       );
+      console.log(response2);
       const videoId = response2.data.videoLink.split("=")[1];
       setVideoLink(`https://www.youtube.com/embed/${videoId}`);
 
@@ -38,10 +58,9 @@ const RecommendMachineResult = () => {
       localStorage.clear();
     }
   };
-
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [currentIdx]);
   return (
     <S.RecommendMachineResultContainer>
       <S.RecommendTitleContainer>
@@ -56,13 +75,20 @@ const RecommendMachineResult = () => {
       <div className="recommendNavbarWrapper">
         <span className="recommendNavbarTitle">운동 부위</span>
         <div className="recommendNavbarBox">
-          {bodyPart.map((part) => {
-            return <button className="recommendNavbarItem">{part}</button>;
+          {recommendState.recommends.map((machine, idx) => {
+            return (
+              <S.RecommendNavbarItem
+                isSelected={currentIdx === idx}
+                onClick={() => handlecMachineClick(idx)}
+              >
+                {machine.koreanName}
+              </S.RecommendNavbarItem>
+            );
           })}
         </div>
       </div>
       <S.RecommendMain>
-        <S.RecommendMainTopWrapper>
+        <S.RecommendMainTopWrapper showShadow={showShadow}>
           <S.RecommendMainTopTitleWrapper>
             <S.RecommendMainBodyPart>
               {recommendState.recommends[currentIdx].bodyPartKoreanName.map(
@@ -138,19 +164,12 @@ const RecommendMachineResult = () => {
           <iframe src={videoLink} className="recommendVideo" />
         </S.RecommendVideoWrapper>
       </S.RecommendMain>
-      <S.RecommendMachineList>
-        {recommendState.recommends.map((machine, idx) => {
-          return (
-            <S.RecommendMachine
-              isSelected={currentIdx === idx}
-              onClick={() => handlecMachineClick(idx)}
-            >
-              {machine.koreanName}
-            </S.RecommendMachine>
-          );
-        })}
-      </S.RecommendMachineList>
-      {recommendAddModal && <RecommendAddModal />}
+      {recommendAddModal && (
+        <RecommendAddModal
+          setRecommendAddModal={setRecommendAddModal}
+          machine={recommendState.recommends[currentIdx]}
+        />
+      )}
     </S.RecommendMachineResultContainer>
   );
 };
