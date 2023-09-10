@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import theme from "./../../styles/theme";
+import theme from "../../../styles/theme";
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -137,12 +137,12 @@ export const Filter = styled.div`
 
 			.rotate-right {
 				transform: rotate(45deg);
-				transition: transform 0.3s ease;
+				transition: transform 0.1s ease;
 			}
 
 			.rotate-left {
-				transform: rotate(-90deg);
-				transition: transform 0.3s ease;
+				transform: rotate(-0deg);
+				transition: transform 0.1s ease;
 			}
 
 			.addFilter {
