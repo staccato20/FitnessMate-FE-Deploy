@@ -62,7 +62,7 @@ const Navbar = () => {
     if (loginState) {
       fetchData();
     }
-  });
+  }, [loginState]);
 
   useEffect(() => {
     if (window.location.href.includes("recommend")) {

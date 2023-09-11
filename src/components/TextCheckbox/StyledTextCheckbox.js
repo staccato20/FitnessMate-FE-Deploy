@@ -15,7 +15,7 @@ export const TextCheckboxWrapper = styled.button`
   justify-content: space-between;
   align-items: center;
 
-  border: 1px solid
+  border: 2px solid
     ${({ theme, isSelected }) => (isSelected ? theme.Brand : `${theme.Gray20}`)};
 
   .choice-article {
