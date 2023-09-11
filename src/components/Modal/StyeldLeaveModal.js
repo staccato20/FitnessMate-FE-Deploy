@@ -14,7 +14,7 @@ export const ModalBox = styled.div`
 export const ModalWrapper = styled.div`
   display: flex;
   width: 470px;
-  padding: 32px;
+  padding: 28px;
   flex-direction: column;
   justify-content: flex-end;
   gap: 24px;
@@ -25,14 +25,14 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  .loginModalTitle {
+  .leaveModalTitle {
     color: ${theme.Black};
     font-size: 24px;
     font-weight: 600;
     line-height: 130%; /* 31.2px */
     letter-spacing: -0.48px;
   }
-  .loginModalButtonWrapper {
+  .leaveModalButtonWrapper {
     display: flex;
     gap: 5px;
     justify-content: center;
@@ -54,7 +54,7 @@ export const ModalWrapper = styled.div`
       border: 1px solid ${theme.Brand};
     }
 
-    .loginBtn {
+    .leaveBtn {
       color: ${theme.White};
       background: ${theme.Brand};
     }
