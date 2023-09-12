@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { BodyCompositionInput } from "../../../components";
 import * as S from "../StyledSignup";
 import { BeforeButton, MiddleButton } from "../../../components/";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { validationState } from "../../../recoil/atom";
 import { userPostAPI } from "../../../apis/API";
@@ -16,22 +16,31 @@ const SignupBodyFigureDirect = () => {
       muscleMass: ["", false],
     }));
   }, []);
-
   const navigate = useNavigate();
   const [isValidState, setIsValidState] = useRecoilState(validationState);
+  const [isReady, setIsReady] = useState(false);
 
   const handleBackPage = (e) => {
     e.preventDefault();
     navigate(-1);
   };
 
+  const handleValidate = () => {
+    return (
+      Object.entries(isValidState)?.filter(([key, value]) => {
+        return value[1];
+      }).length >= 12
+    );
+  };
+  useEffect(() => {
+    if (handleValidate()) {
+      setIsReady(true);
+    }
+  }, [isValidState]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      Object.entries(isValidState)?.filter(([key, value]) => {
-        return value[1] === true;
-      }).length >= 12
-    ) {
+    if (handleValidate()) {
       // 회원가입 post 요청
       const submission = {};
       for (const key in isValidState) {
@@ -83,7 +92,9 @@ const SignupBodyFigureDirect = () => {
       </S.BodyCompositionInputList>
       <S.ButtonContainer>
         <BeforeButton handleSubmit={handleBackPage} />
-        <MiddleButton handleSubmit={handleSubmit}>회원가입 완료</MiddleButton>
+        <MiddleButton handleSubmit={handleSubmit} isReady={isReady}>
+          회원가입 완료
+        </MiddleButton>
       </S.ButtonContainer>
     </S.SignupContainer>
   );

@@ -48,7 +48,6 @@ const RecommendMachineResult = () => {
       const response2 = await userWorkoutAPI.get(
         `${recommendState.recommends[currentIdx].workoutId}`
       );
-      console.log(response2);
       const videoId = response2.data.videoLink.split("=")[1];
       setVideoLink(`https://www.youtube.com/embed/${videoId}`);
 

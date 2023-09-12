@@ -6,7 +6,7 @@ import styled from "styled-components";
 // 거기에 맞게 채워지도록 가로 100%로 설정(디자인에 따라 세로는 설정 X)
 
 export const TextCheckboxWrapper = styled.button`
-  width: 100%;
+  width: 47%;
   display: flex;
   padding: 10px 24px;
   transition: all 0.1s ease-out;
@@ -61,6 +61,16 @@ export const TextCheckboxWrapper = styled.button`
       color: ${({ isSelected, theme }) =>
         isSelected ? theme.Brand : theme.Black};
     }
+  }
+`;
+
+export const MiddleTextCheckboxWrapper = styled(TextCheckboxWrapper)`
+  width: 47%;
+  @media screen and (max-width: 800px) {
+    width: 47%;
+  }
+  @media screen and (max-width: 660px) {
+    width: 100%;
   }
 `;
 

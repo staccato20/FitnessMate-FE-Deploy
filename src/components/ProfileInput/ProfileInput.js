@@ -10,7 +10,7 @@ import ValidateTest from "./../../utils/exp";
 // placeholder : Input창 마다 다양해서 Home에서 받아옴
 // children : 아이디/비밀번호/이메일 등등..
 
-const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
+const ProfileInput = ({ placeholder, children, name, defaultValue }) => {
   // 유효성 검사
   const [isValidState, setIsValidState] = useRecoilState(validationState);
   // 포커스 검사
@@ -22,7 +22,6 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
 
   // 입력했는지 체크(한 번 입력한 순간 쭉 true)
   const [valueHistory, setValueHistory] = useState(false);
-  let NotAvailable = "";
 
   // 서버로 부터 매번 이메일 중복 체크
   const handleEmail = async (value) => {
@@ -46,6 +45,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
   );
 
   // 규칙이 맞지 않은 경우
+  let NotAvailable = "";
   if (name === "weight" || name === "height") {
     NotAvailable = (
       <span className="profileInputWarning">
@@ -118,7 +118,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
       </S.InputName>
       {/* 체크가 되지 않았을때만 Warning 문구 */}
       <ProfileInputContentWrapper
-        placeholder={isFocused ? "" : placeholder}
+        placeholder={placeholder}
         name={name}
         defaultValue={defaultValue}
         valueHistory={valueHistory}
@@ -150,7 +150,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue, value }) => {
       {/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}
       {children === "비밀번호" && (
         <ProfileInputContentWrapper
-          placeholder={isFocused ? "" : "비밀번호를 재입력해주세요"}
+          placeholder="비밀번호를 재입력해주세요"
           name="password2"
           valueHistory={valueHistory}
           isValidState={isValidState}

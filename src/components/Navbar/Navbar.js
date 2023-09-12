@@ -10,13 +10,12 @@ import CancleModal from "../Modal/CancleModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const loginState = localStorage.length;
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [isCancleModal, setIsCancleModal] = useState(false);
+
   // 추천페이지는 blur X
   const [isRecommend, setIsRecommend] = useState(false);
-
   const handleSearch = () => {
     if (window.location.href.includes("signup")) {
       setIsCancleModal(true);
@@ -28,19 +27,43 @@ const Navbar = () => {
     if (window.location.href.includes("signup")) {
       setIsCancleModal(true);
     } else {
-      if (loginState) {
+      if (userName) {
         navigate("mypage");
       } else {
         setIsLoginModal(true);
       }
     }
   };
+  // 브라우저의 새로고침 감지
+  useEffect(() => {
+    // signup 페이지 && 새로고침 시에만
+    if (
+      localStorage.getItem("refreshed") &&
+      window.performance.navigation.type === 1
+    ) {
+      navigate("/signup");
+      localStorage.removeItem("refreshed"); // 플래그 제거
+    }
+
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      if (window.location.href.includes("signup")) {
+        localStorage.setItem("refreshed", "true");
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [navigate]);
 
   const handleRecommend = () => {
     if (window.location.href.includes("signup")) {
       setIsCancleModal(true);
     } else {
-      if (loginState) {
+      if (userName) {
         navigate("recommend");
       } else {
         setIsLoginModal(true);
@@ -48,21 +71,21 @@ const Navbar = () => {
     }
   };
 
+  // 토큰이 만료되고 새로고침을 누르면 로그인이 풀린다.
+  const handleLocalStorage = () => {
+    return localStorage.length;
+  };
+
   const fetchData = async () => {
     try {
       const response = await TokenApi.get("user/private");
-
       setuserName(response.data.userName);
-    } catch (error) {
-      localStorage.clear();
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
-    if (loginState) {
-      fetchData();
-    }
-  }, [loginState]);
+    fetchData();
+  }, [window.location.href]);
 
   useEffect(() => {
     if (window.location.href.includes("recommend")) {
@@ -89,7 +112,7 @@ const Navbar = () => {
           <S.NavButton onClick={handleRecommend}>추천받기</S.NavButton>
           <S.NavButton onClick={handleMyPage}>내 운동</S.NavButton>
         </S.NavTextContainer>
-        {!loginState ? (
+        {!userName ? (
           <S.NavLoginButton
             className="login"
             onClick={() => {
@@ -99,7 +122,9 @@ const Navbar = () => {
             로그인
           </S.NavLoginButton>
         ) : (
-          <NavModal userName={userName}>{userName} 님</NavModal>
+          <NavModal userName={userName} setuserName={setuserName}>
+            {userName} 님
+          </NavModal>
         )}
       </S.NavLink>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
