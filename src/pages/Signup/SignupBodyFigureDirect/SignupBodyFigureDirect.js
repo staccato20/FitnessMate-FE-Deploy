@@ -8,14 +8,6 @@ import { validationState } from "../../../recoil/atom";
 import { userPostAPI } from "../../../apis/API";
 
 const SignupBodyFigureDirect = () => {
-  // 객체 초기화
-  useEffect(() => {
-    setIsValidState((pre) => ({
-      ...pre,
-      bodyFat: ["", false],
-      muscleMass: ["", false],
-    }));
-  }, []);
   const navigate = useNavigate();
   const [isValidState, setIsValidState] = useRecoilState(validationState);
   const [isReady, setIsReady] = useState(false);
@@ -29,7 +21,7 @@ const SignupBodyFigureDirect = () => {
     return (
       Object.entries(isValidState)?.filter(([key, value]) => {
         return value[1];
-      }).length >= 12
+      }).length >= 11
     );
   };
   useEffect(() => {
@@ -44,15 +36,16 @@ const SignupBodyFigureDirect = () => {
       // 회원가입 post 요청
       const submission = {};
       for (const key in isValidState) {
-        if (key !== "password2") {
+        if (key !== "password2" && key !== "emailModal") {
           submission[key] = isValidState[key][0];
         }
         if (key === "height" || key === "weight") {
-          submission[key] = Number(isValidState[key][0]);
+          submission[key] = parseFloat(isValidState[key][0]);
         }
       }
-
+      console.log(submission);
       const res = await userPostAPI.post("", submission);
+      // 회원가입이 완료되면 로컬에 Token과 사용자 기억을 false로 저장
       if (res.data.accessToken) {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
@@ -66,7 +59,6 @@ const SignupBodyFigureDirect = () => {
           acc[key] = ["", false];
           return acc;
         }, {});
-
         setIsValidState(updatedState);
         navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
       } else {

@@ -1,12 +1,7 @@
 import * as S from "../StyledSignup";
 import { useNavigate } from "react-router-dom";
 import rightarrow from "../../../assets/images/rightarrow.svg";
-import {
-  MiddleButton,
-  BeforeButton,
-  TextCheckbox,
-  SmallTextCheckbox,
-} from "../../../components/";
+import { MiddleButton, BeforeButton } from "../../../components/";
 import { useRecoilState } from "recoil";
 import { validationState } from "../../../recoil/atom";
 import { useEffect, useState } from "react";
@@ -20,6 +15,18 @@ import {
 import MiddleTextCheckbox from "../../../components/TextCheckbox/MiddleTextCheckbox";
 
 const SignupBodyFigure = () => {
+  // balance 문구
+  const handleBalanceText = (value) => {
+    const rangevalue = Number(value);
+    if (rangevalue >= 1 && rangevalue <= 4) {
+      return "하체가 상체보다 더 발달했어요";
+    } else if (rangevalue === 5) {
+      return "둘 다 발달했거나 큰 차이 없어요";
+    } else if (rangevalue >= 6 && rangevalue <= 9) {
+      return "상체가 하체보다 더 발달했어요";
+    }
+  };
+
   const navigate = useNavigate();
   const currenturl = window.location.pathname;
   const [isValidState, setIsValidState] = useRecoilState(validationState);
@@ -28,15 +35,16 @@ const SignupBodyFigure = () => {
   const [isCategorySelect, setIsCategorySelect] = useState(false);
 
   // balance 바
-  const [rangeValue, setRangeValue] = useState(5);
+  const [rangeValue, setRangeValue] = useState(
+    parseFloat(isValidState.upDownBalance) * 10 || 5
+  );
 
   // balacne text
-  const [rangeText, setRangeText] = useState("둘 다 발달했거나 큰 차이 없어요");
+  const [rangeText, setRangeText] = useState(handleBalanceText(rangeValue));
 
   // 버튼 on/off
   const [isReady, setIsReady] = useState(false);
 
-  // ㄹ
   const prcieRangeValueHandler = (e) => {
     setRangeValue(parseInt(e.target.value));
 
@@ -78,17 +86,6 @@ const SignupBodyFigure = () => {
     ["뚱뚱한 체형", [25, 35]],
   ];
 
-  const handleBalanceText = (value) => {
-    const rangevalue = Number(value);
-    if (rangevalue >= 1 && rangevalue <= 4) {
-      return "하체가 상체보다 더 발달했어요";
-    } else if (rangevalue === 5) {
-      return "둘 다 발달했거나 큰 차이 없어요";
-    } else if (rangevalue >= 6 && rangevalue <= 9) {
-      return "상체가 하체보다 더 발달했어요";
-    }
-  };
-
   const handleClick = (idx) => {
     const newArr = Array(categorylist.length).fill(false);
     newArr[idx] = true;
@@ -112,11 +109,15 @@ const SignupBodyFigure = () => {
       const submission = {};
 
       for (const key in isValidState) {
-        // 비밀번호2는 재확인은 빼고 보냄
-        if (key !== "password2") {
+        // 비밀번호 재확인과 이메일 인증은 빼고 보냄
+        if (key !== "password2" && key !== "emailModal") {
           submission[key] = isValidState[key][0];
         }
+        if (key === "height" || key === "weight") {
+          submission[key] = parseFloat(isValidState[key][0]);
+        }
       }
+
       const res = await userPostAPI.post("", submission);
       if (res.data.accessToken) {
         const accessToken = res.data.accessToken;
@@ -158,7 +159,7 @@ const SignupBodyFigure = () => {
             <span className="updownBalanceBarTitle">{rangeText}</span>
             <div className="updownBalanceBarContent">
               <div className="balanceRatioBox">
-                <span className="balanceRatio">하체 비중</span>
+                <span className="balanceRatio">상체 비중</span>
                 <span className="balanceRatioPercent2">{rangeValue * 10}%</span>
               </div>
               <div className="balnaceBar">
@@ -181,7 +182,7 @@ const SignupBodyFigure = () => {
                 </FilterPriceRangeWrap>
               </div>
               <div className="balanceRatioBox">
-                <span className="balanceRatio">상체 비중</span>
+                <span className="balanceRatio">하체 비중</span>
                 <span className="balanceRatioPercent">
                   {100 - rangeValue * 10}%
                 </span>

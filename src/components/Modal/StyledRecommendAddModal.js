@@ -8,8 +8,8 @@ export const RecommendAddModalWrapper = styled.div`
   padding: 24px;
   gap: 32px;
   border-radius: 12px;
-  border: 1px solid var(--gray-20, #e7e7e7);
-  background: var(--White, #fff);
+  border: 1px solid var ${theme.Gray20};
+  background: ${theme.White};
   box-shadow: 0px 4px 5px 0px rgba(133, 132, 132, 0.05);
   top: 50%;
   left: 50%;
@@ -96,7 +96,7 @@ export const ModifyOptionContent = styled.div`
     letter-spacing: -0.96px;
   }
   .saveBtn {
-    color: var(--Brand, #0b98ff);
+    ${theme.Brand};
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.36px;

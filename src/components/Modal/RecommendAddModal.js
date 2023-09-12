@@ -6,6 +6,7 @@ import MiddleButton from "./../Button/MiddleButton";
 import TextCheckbox from "../TextCheckbox/TextCheckbox";
 import rightarrow from "../../assets/images/rightarrow.svg";
 import TokenApi from "./../../apis/TokenApi";
+import MiddleTextCheckbox from "./../TextCheckbox/MiddleTextCheckbox";
 const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
   // my페이지에서는 저장된 값을 가져옴
   const [myDivision, setMyDivsion] = useState([]);

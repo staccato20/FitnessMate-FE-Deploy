@@ -58,10 +58,7 @@ const SignupProfile = () => {
         <ProfileInput placeholder="이메일을 입력해주세요" name="loginEmail">
           이메일
         </ProfileInput>
-        <ProfileInput
-          placeholder="8자리 이상의 영문 숫자 조합 "
-          name="password"
-        >
+        <ProfileInput placeholder="8자리 이상 영문, 숫자 조합" name="password">
           비밀번호
         </ProfileInput>
       </S.ProfileInputcontainer>

@@ -6,7 +6,7 @@ import styled from "styled-components";
 // 거기에 맞게 채워지도록 가로 100%로 설정(디자인에 따라 세로는 설정 X)
 
 export const TextCheckboxWrapper = styled.button`
-  width: 47%;
+  width: 100%;
   display: flex;
   padding: 10px 24px;
   transition: all 0.1s ease-out;

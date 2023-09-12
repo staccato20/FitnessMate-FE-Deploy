@@ -14,10 +14,14 @@ import { validationState } from "../../../recoil/atom";
 
 const SignupBodyInfo = () => {
   const navigate = useNavigate();
-  // 성별 선택
-  const [sex, setSex] = useState([0, 0]);
   const [isValidState, setIsValidState] = useRecoilState(validationState);
+  // 성별 선택
+  const [sex, setSex] = useState([
+    isValidState.sex[0] === "남성" ? 1 : 0,
+    isValidState.sex[0] === "여성" ? 1 : 0,
+  ]);
   const [isReady, setIsReady] = useState(false);
+
   const handleBackPage = (e) => {
     e.preventDefault();
     navigate(-1);
@@ -36,16 +40,14 @@ const SignupBodyInfo = () => {
   useEffect(() => {
     if (handleValidate()) {
       setIsReady(true);
+    } else {
+      setIsReady(false);
     }
   }, [isValidState]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      Object.entries(isValidState).filter(([key, value]) => {
-        return value[1] === true;
-      }).length >= 9
-    ) {
+    if (handleValidate()) {
       navigate("/signup/bodyfigure", { replace: false }); // 절대 경로로 이동
     }
   };

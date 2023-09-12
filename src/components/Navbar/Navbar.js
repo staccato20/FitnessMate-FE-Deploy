@@ -37,6 +37,7 @@ const Navbar = () => {
   // 브라우저의 새로고침 감지
   useEffect(() => {
     // signup 페이지 && 새로고침 시에만
+    console.log("gg");
     if (
       localStorage.getItem("refreshed") &&
       window.performance.navigation.type === 1

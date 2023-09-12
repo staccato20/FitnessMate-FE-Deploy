@@ -1,27 +1,32 @@
 import * as S from "./StyledProfileInput";
-import { userIdVerifyAPI, verifyMailPost } from "../../apis/API";
-import { EmailState, validationState } from "../../recoil/atom";
+import { userIdVerifyAPI } from "../../apis/API";
+import { validationState } from "../../recoil/atom";
 import { ProfileInputContentWrapper } from "./StyledProfileInput";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useState } from "react";
 import EmailModal from "./../Modal/EmailModal";
 import ValidateTest from "./../../utils/exp";
 
-// placeholder : Input창 마다 다양해서 Home에서 받아옴
-// children : 아이디/비밀번호/이메일 등등..
-
-const ProfileInput = ({ placeholder, children, name, defaultValue }) => {
+const ProfileInput = ({ placeholder, children, name }) => {
   // 유효성 검사
   const [isValidState, setIsValidState] = useRecoilState(validationState);
+
   // 포커스 검사
   const [isFocused, setIsFocused] = useState(false);
-  // 이메일 중복확인 모달
+
+  // 이메일 모달
   const [isEmailModal, setIsEmailModal] = useState(false);
 
+  // 이메일 중복체크
   const [dupCheck, setdupCheck] = useState(false);
+
+  const [inputvalue, setInputValue] = useState(isValidState[name][0]);
 
   // 입력했는지 체크(한 번 입력한 순간 쭉 true)
   const [valueHistory, setValueHistory] = useState(false);
+
+  // 비밀번호 재확인 input
+  const [password2, setPassword2] = useState(isValidState[name][0]);
 
   // 서버로 부터 매번 이메일 중복 체크
   const handleEmail = async (value) => {
@@ -64,6 +69,11 @@ const ProfileInput = ({ placeholder, children, name, defaultValue }) => {
   const handleChange = (e) => {
     const value = e.currentTarget.value;
     const name = e.target.name;
+    if (name !== "password2") {
+      setInputValue(value);
+    } else {
+      setPassword2(value);
+    }
     let exp = ValidateTest(name);
 
     // 매번 서버로부터 중복 체크
@@ -120,10 +130,10 @@ const ProfileInput = ({ placeholder, children, name, defaultValue }) => {
       <ProfileInputContentWrapper
         placeholder={placeholder}
         name={name}
-        defaultValue={defaultValue}
         valueHistory={valueHistory}
         isValidState={isValidState}
         isFocused={isFocused}
+        value={inputvalue}
         onFocus={() => {
           setIsFocused(true);
         }}
@@ -155,6 +165,7 @@ const ProfileInput = ({ placeholder, children, name, defaultValue }) => {
           valueHistory={valueHistory}
           isValidState={isValidState}
           isFocused={isFocused}
+          value={password2}
           onFocus={() => {
             setIsFocused(true);
           }}
