@@ -14,7 +14,6 @@ const RecommendMachineResult = () => {
   const [recommendState, setRecommendState] = useRecoilState(RecommendState);
   const [userName, setuserName] = useState(null);
   const [bodyPart, setBodyPart] = useState([]);
-  const [machineList, setMachineList] = useState([]);
   const [videoLink, setVideoLink] = useState(null);
   const [currentIdx, setCureentIdx] = useState(0);
   const [recommendAddModal, setRecommendAddModal] = useState(false);

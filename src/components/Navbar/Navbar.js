@@ -13,9 +13,8 @@ const Navbar = () => {
   const [userName, setuserName] = useState(null);
   const [isLoginModal, setIsLoginModal] = useState(false);
   const [isCancleModal, setIsCancleModal] = useState(false);
-
-  // 추천페이지는 blur X
   const [isRecommend, setIsRecommend] = useState(false);
+
   const handleSearch = () => {
     if (window.location.href.includes("signup")) {
       setIsCancleModal(true);
@@ -37,10 +36,10 @@ const Navbar = () => {
   // 브라우저의 새로고침 감지
   useEffect(() => {
     // signup 페이지 && 새로고침 시에만
-    console.log("gg");
     if (
       localStorage.getItem("refreshed") &&
-      window.performance.navigation.type === 1
+      window.performance.navigation.type === 1 &&
+      window.location.href.includes("signup")
     ) {
       navigate("/signup");
       localStorage.removeItem("refreshed"); // 플래그 제거
@@ -80,15 +79,13 @@ const Navbar = () => {
   const fetchData = async () => {
     try {
       const response = await TokenApi.get("user/private");
+
       setuserName(response.data.userName);
     } catch (error) {}
   };
 
   useEffect(() => {
     fetchData();
-  }, [window.location.href]);
-
-  useEffect(() => {
     if (window.location.href.includes("recommend")) {
       setIsRecommend(true);
     }

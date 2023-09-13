@@ -3,6 +3,7 @@ import * as S from "./StyledNavModal";
 import OutSideClick from "./OutSideClick";
 import { useNavigate } from "react-router-dom";
 import TokenApi from "../../apis/TokenApi";
+import { logoutPutAPI } from "../../apis/API";
 
 function NavModal({ children, userName, setuserName }) {
   const navigate = useNavigate();
@@ -17,10 +18,16 @@ function NavModal({ children, userName, setuserName }) {
 
   // 로그아웃
   const handleLogout = async () => {
-    await TokenApi.put("auth/logout");
-    setuserName(null);
-    localStorage.clear();
-    navigate("/");
+    try {
+      const res = await TokenApi.put("auth/logout");
+      // if (res) {
+      setuserName(null);
+      localStorage.clear();
+      navigate("/");
+      // }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleFixProfile = async () => {

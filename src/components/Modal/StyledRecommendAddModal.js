@@ -95,6 +95,13 @@ export const ModifyOptionContent = styled.div`
     line-height: 150%; /* 72px */
     letter-spacing: -0.96px;
   }
+  .unit {
+    text-align: center;
+    color: #000;
+    font-size: 48px;
+    line-height: 150%; /* 72px */
+    letter-spacing: -0.96px;
+  }
   .saveBtn {
     ${theme.Brand};
     font-size: 18px;

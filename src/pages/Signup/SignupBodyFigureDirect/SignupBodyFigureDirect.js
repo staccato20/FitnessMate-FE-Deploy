@@ -43,7 +43,6 @@ const SignupBodyFigureDirect = () => {
           submission[key] = parseFloat(isValidState[key][0]);
         }
       }
-      console.log(submission);
       const res = await userPostAPI.post("", submission);
       // 회원가입이 완료되면 로컬에 Token과 사용자 기억을 false로 저장
       if (res.data.accessToken) {

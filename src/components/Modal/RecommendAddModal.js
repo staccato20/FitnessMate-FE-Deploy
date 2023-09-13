@@ -6,12 +6,15 @@ import MiddleButton from "./../Button/MiddleButton";
 import TextCheckbox from "../TextCheckbox/TextCheckbox";
 import rightarrow from "../../assets/images/rightarrow.svg";
 import TokenApi from "./../../apis/TokenApi";
-import MiddleTextCheckbox from "./../TextCheckbox/MiddleTextCheckbox";
 const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
   // my페이지에서는 저장된 값을 가져옴
   const [myDivision, setMyDivsion] = useState([]);
   const [isReady, setIsReady] = useState(false);
   const [modifyMachineOption, setModifyMachineOption] = useState(false);
+  // 중량 횟수 세트수
+  const [option, setOption] = useState(["중량", "횟수", "세트 수"]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  console.log(option[currentIdx]);
 
   const handleReady = () => {
     return myDivision.filter((division) => division.isSelected).length;
@@ -25,6 +28,14 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
     setIsReady(false);
     if (handleReady() !== 0) {
       setIsReady(true);
+    }
+  };
+
+  const handleOption = (idx) => {
+    switch (idx) {
+      case 0:
+      case 1:
+      case 2:
     }
   };
 
@@ -84,12 +95,19 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
         {modifyMachineOption ? (
           <>
             <S.ModifyOptionWrapper>
-              <button className="modifyOption">중량</button>
-              <button className="modifyOption">횟수</button>
-              <button className="modifyOption">세트수</button>
+              {option.map((op, idx) => {
+                return (
+                  <button
+                    className="modifyOption"
+                    onClick={(e) => setCurrentIdx(idx)}
+                  >
+                    {op}
+                  </button>
+                );
+              })}
             </S.ModifyOptionWrapper>
             <S.ModifyOptionContent>
-              <input className="modifyInput" value="20 kg" />
+              <input className="modifyInput" value={machine.weight} />
               <button className="saveBtn">저장</button>
             </S.ModifyOptionContent>
           </>
