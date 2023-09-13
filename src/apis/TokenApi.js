@@ -23,13 +23,18 @@ TokenApi.interceptors.request.use((config) => {
 // 응답 데이터의 전처리, 오류 처리, 로깅 등의 용도
 TokenApi.interceptors.response.use(
   (response) => {
-    console.log(response);
     // 응답이 성공적으로 왔을 때의 처리
     return response;
   },
   // 에러가 발생했을 때의 처리(4xx,5xx 에러 => 토큰 만료)
   async (error) => {
-    console.log(error);
+    if (error.response.data.status === "ROUTINE_NOT_FOUND_EXCEPTION") {
+      console.log("routineId와 일치하는 routine이 없습니다");
+    }
+    if (error.response.data.status === "ALREADY_EXIST_MY_WORKOUT_EXCEPTION") {
+      console.log("이미 존재하는 운동입니다");
+    }
+
     // 토큰 만료
     if (error.response.data.status === "EXPIRED_ACCESS_TOKEN_EXCEPTION") {
       console.log("Access Token 만료");

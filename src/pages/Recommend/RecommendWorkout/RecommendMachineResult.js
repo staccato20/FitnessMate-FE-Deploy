@@ -6,7 +6,6 @@ import { useRecoilState } from "recoil";
 import { RecommendState } from "../../../recoil/atom";
 import TokenApi from "../../../apis/TokenApi";
 import { userWorkoutAPI } from "../../../apis/API";
-import YouTube from "react-youtube";
 import bodypartcircle from "../../../assets/images/bodypartcircle.svg";
 import RecommendAddModal from "../../../components/Modal/RecommendAddModal";
 
