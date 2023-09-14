@@ -1,22 +1,64 @@
-import * as S from "../StyledSignup";
+import { useEffect, useState } from "react";
+import * as S from "./StyledFix";
 import { useNavigate } from "react-router-dom";
-import rightarrow from "../../../assets/images/rightarrow.svg";
-import { MiddleButton, BeforeButton, TextCheckbox } from "../../../components/";
+import {
+	MiddleButton,
+	BeforeButton,
+	TextCheckbox,
+} from "./../../../components/";
+import ProfileInput from "./ProfileInput/ProfileInput";
 import { useRecoilState } from "recoil";
 import { validationState } from "../../../recoil/atom";
-import { useEffect, useState } from "react";
-import { userPostAPI } from "../../../apis/API";
+import TokenApi from "../../../apis/TokenApi";
+import rightarrow from "../../../assets/images/rightarrow.svg";
 import {
 	FilterPriceSlide,
 	FilterPriceRangeWrap,
 	FilterPriceRange,
 	FilterPriceSlideInner,
-} from "./StyledBalanceBar";
+} from "../../Signup/SignupBodyFigure/StyledBalanceBar";
 
-const SignupBodyFigure = () => {
+
+const FixBodyInfo = () => {
 	const navigate = useNavigate();
-	const currenturl = window.location.pathname;
+
 	const [isValidState, setIsValidState] = useRecoilState(validationState);
+
+	const handleBackPage = (e) => {
+		e.preventDefault();
+		navigate(-1);
+	};
+
+	const [userName, setuserName] = useState(null);
+	const [height, setHeight] = useState(null);
+	const [weight, setWeight] = useState(null);
+	const [bodyFat, setBodyFat] = useState(null);
+	const [muscleMass, setMuscleMass] = useState(null);
+	const [upDownBalance, setUpDownBalance] = useState(null);
+
+	const fetchData = async () => {
+		try {
+			const response_private = await TokenApi.get("user/private");
+			setuserName(response_private.data.userName);
+			const response_body = await TokenApi.get("bodyData/recent");
+			console.log(response_body)
+			setHeight(response_body.data.height);
+			setWeight(response_body.data.weight);
+			setBodyFat(response_body.data.bodyFat);
+			setMuscleMass(response_body.data.muscleMass);
+			setUpDownBalance(response_body.data.upDownBalance);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	// bodyinfo
+
+	const currenturl = window.location.pathname;
 	const [isCategorySelect, setIsCategorySelect] = useState(false);
 
 	const [rangeValue, setRangeValue] = useState(5);
@@ -33,11 +75,12 @@ const SignupBodyFigure = () => {
 	};
 
 	useEffect(() => {
+		setRangeValue(upDownBalance * 10); // 기본값으로 사용자의 upDownBalance를 사용
 		setIsValidState((pre) => ({
 			...pre,
-			upDownBalance: [5 / 10, true],
+			upDownBalance: [upDownBalance || 5 / 10, true],
 		}));
-	}, []);
+	}, [upDownBalance]);
 
 	// bodyFat, muscleMass
 	const categorylist = [
@@ -58,8 +101,6 @@ const SignupBodyFigure = () => {
 		}
 	};
 
-	console.log(isValidState);
-
 	const handleClick = (idx) => {
 		const newArr = Array(categorylist.length).fill(false);
 		newArr[idx] = true;
@@ -71,66 +112,75 @@ const SignupBodyFigure = () => {
 		}));
 	};
 
-	const handleBackPage = (e) => {
-		e.preventDefault();
-		navigate(-1);
-	};
+	// 입력했는지 체크(한 번 입력한 순간 쭉 true)
+	const [valueHistory, setValueHistory] = useState(false);
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (
-			Object.entries(isValidState)?.filter(([key, value]) => {
-				return value[1];
-			}).length >= 11
-		) {
-			// 회원가입 post 요청
-			const submission = {};
-			for (const key in isValidState) {
-				if (key !== "password2") {
-					submission[key] = isValidState[key][0];
-				}
-				if (key === "height" || key === "weight") {
-					submission[key] = Number(isValidState[key][0]);
-				}
-			}
-			const res = await userPostAPI.post("", submission);
-			if (res.data.accessToken) {
-				const accessToken = res.data.accessToken;
-				const refreshToken = res.data.refreshToken;
-				// 토큰 저장
-				localStorage.setItem("accessToken", accessToken);
-				localStorage.setItem("refreshToken", refreshToken);
-				localStorage.setItem("rememberMe", false);
+	const handleChange = (e) => {
+		const name = e.target.name;
 
-				// 회원가입 객체 초기화
-				const updatedState = Object.keys(isValidState).reduce((acc, key) => {
-					acc[key] = ["", false];
-					return acc;
-				}, {});
-
-				setIsValidState(updatedState);
-
-				navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
-			} else {
-				console.log("회원가입 오류");
-				return { error: "Wrong Input" };
-			}
+		if (name === "height") {
+			setHeight(e.target.value);
+			console.log(height)
+		} else if (name === "weight") {
+			setWeight(e.target.value);
+		}
+		if (!valueHistory) {
+			setValueHistory(true);
 		}
 	};
+
+	// 제출
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const formData = {
+			date: new Date(),
+			height: height,
+			weight: weight,
+			bodyFat: bodyFat,
+			muscleMass: muscleMass,
+			upDownBalance: rangeValue / 10,
+		};
+		console.log("정보:", formData);
+
+		try {
+			// API 호출 및 form 데이터 전송
+			const res = await TokenApi.post("bodyData", formData);
+			console.log("수정:", res.status);
+		} catch (error) {
+			console.log(error);
+			alert("수정 실패. 형식을 준수해주세요.");
+		}
+	};
+
 	return (
 		<S.SignupContainer>
-			<S.SignupTitle status="3">
-				<div className="statusBar">
-					<div className="statusBar2"></div>
-				</div>
-				체형 정보를 입력해주세요
-				<br />
-				<span className="recommendText">맞춤 추천을 위해 필요해요</span>
+			<S.SignupTitle>
+				<S.TitleEmphasis>{userName}님의 신체정보</S.TitleEmphasis>
 			</S.SignupTitle>
+			<S.BodyInfoContainer>
+				<ProfileInput
+					placeholder="숫자만 입력"
+					value={height}
+					name="height"
+					handleChange={handleChange}
+				>
+					키
+				</ProfileInput>
+				<ProfileInput
+					placeholder="숫자만 입력"
+					value={weight}
+					name="weight"
+					handleChange={handleChange}
+				>
+					몸무게
+				</ProfileInput>
+			</S.BodyInfoContainer>
+
 			<S.SignupUpdonwBalanceWrapper>
 				<div className="updownBalanceBox">
 					<span className="updownBalanceTitle">
-						상/하체 균형을 조절해주세요
+						상/하체 균형
 					</span>
 					<div className="updownBalanceBar">
 						<span className="updownBalanceBarTitle">{rangeText}</span>
@@ -155,6 +205,8 @@ const SignupBodyFigure = () => {
 										onChange={(e) => {
 											prcieRangeValueHandler(e);
 										}}
+										name="upDownBalance"
+										handleChange={handleChange}
 									/>
 								</FilterPriceRangeWrap>
 							</div>
@@ -168,7 +220,7 @@ const SignupBodyFigure = () => {
 					</div>
 				</div>
 				<S.SignupTextContainer>
-					<span className="bodyfigureText">어떤 체형인가요?</span>
+					<span className="bodyfigureText">상/하체 균형</span>
 					{categorylist?.map((item, index) => {
 						return (
 							<TextCheckbox
@@ -200,7 +252,7 @@ const SignupBodyFigure = () => {
 					<S.ButtonContainer>
 						<BeforeButton handleSubmit={handleBackPage} />
 						<MiddleButton handleSubmit={handleSubmit}>
-							회원가입 완료
+							수정 완료
 						</MiddleButton>
 					</S.ButtonContainer>
 				</S.SignupTextContainer>
@@ -209,4 +261,4 @@ const SignupBodyFigure = () => {
 	);
 };
 
-export default SignupBodyFigure;
+export default FixBodyInfo;

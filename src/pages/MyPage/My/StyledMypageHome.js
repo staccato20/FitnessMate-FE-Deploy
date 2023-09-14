@@ -189,8 +189,6 @@ export const AddModalButton = styled.button`
   height: 56px;
   border-radius: 35px;
 	background-color: ${theme.Brand};
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-	border: 1px solid ${theme.BrandLight};
   cursor: pointer;
 	display: flex;
   align-items: center;
