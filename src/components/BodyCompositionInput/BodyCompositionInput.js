@@ -5,15 +5,17 @@ import { useState } from "react";
 import ValidateTest from "../../utils/exp";
 
 // 체성분 input
-const BodyCompositionInput = ({ children, name, value }) => {
+const BodyCompositionInput = ({ children, name }) => {
 	// children : 골격근량 or 체지방량
 	const [isFocused, setIsFocused] = useState(false);
 	const [isValidState, setIsValidState] = useRecoilState(validationState);
 	const [valueHistory, setValueHistory] = useState(false);
+	const [inputvalue, setInputValue] = useState(isValidState[name][0]);
 
 	const handleChange = (e) => {
 		const value = e.currentTarget.value;
 		const name = e.target.name;
+		setInputValue(value);
 		let exp = ValidateTest(name);
 
 		const updatedState = {
@@ -43,7 +45,7 @@ const BodyCompositionInput = ({ children, name, value }) => {
 				<input
 					className="inputContent"
 					name={name}
-					value={value}
+					value={inputvalue}
 					placeholder={
 						isFocused
 							? ""

@@ -18,26 +18,9 @@ const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
 	const [valueHistory, setValueHistory] = useState(false);
 	let NotAvailable = "";
 
-	// 규칙이 맞지 않은 경우
-	if (name === "weight" || name === "height") {
-		NotAvailable = (
-			<span className="profileInputWarning">
-				{children}를 다시 입력해주세요
-			</span>
-		);
-	} else {
-		NotAvailable = (
-			<span className="profileInputWarning">
-				{children}을 다시 입력해주세요
-			</span>
-		);
-	}
-
 	return (
 		<S.ProfileInputContainer isValidState={isValidState.loginEmail[1]}>
-			<S.InputName>
-				{children}
-			</S.InputName>
+			<S.InputName>{children}</S.InputName>
 			{/* 체크가 되지 않았을때만 Warning 문구 */}
 			<ProfileInputContentWrapper
 				placeholder={isFocused ? "" : placeholder}
@@ -58,7 +41,8 @@ const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
 			{/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}
 			{children === "신규 비밀번호" && (
 				<ProfileInputContentWrapper
-					placeholder={isFocused ? "" : "신규 비밀번호를 재입력 해주세요"}
+					placeholder={isFocused ? "" : "신규 비밀번호 8자리를 재입력해주세요"}
+					name="password2"
 					valueHistory={valueHistory}
 					isValidState={isValidState}
 					isFocused={isFocused}
@@ -71,13 +55,6 @@ const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
 					onChange={handleChange}
 				/>
 			)}
-
-			{!isFocused && valueHistory
-				? isValidState[name][1]
-					? ""
-					: NotAvailable
-				: ""}
-
 		</S.ProfileInputContainer>
 	);
 };
