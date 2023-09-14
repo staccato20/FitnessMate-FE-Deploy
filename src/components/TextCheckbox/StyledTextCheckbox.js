@@ -7,11 +7,11 @@ import styled from "styled-components";
 
 export const TextCheckboxWrapper = styled.button`
   width: 100%;
-  transition: all 0.3s ease-out;
   display: flex;
-  padding: 10px 14px;
+  padding: 10px 24px;
+  transition: all 0.1s ease-out;
   background: ${({ theme }) => theme.Gray10};
-  border-radius: 16px;
+  border-radius: 10px;
   justify-content: space-between;
   align-items: center;
 
@@ -29,7 +29,12 @@ export const TextCheckboxWrapper = styled.button`
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.Brand : theme.Gray70};
     font-size: 22px;
-    font-weight: 600;
+  }
+  .choice-articleinput {
+    transition: all 0.3s ease-out;
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme.Brand : theme.Gray70};
+    font-size: 22px;
   }
 
   .check-background {
@@ -56,6 +61,16 @@ export const TextCheckboxWrapper = styled.button`
       color: ${({ isSelected, theme }) =>
         isSelected ? theme.Brand : theme.Black};
     }
+  }
+`;
+
+export const MiddleTextCheckboxWrapper = styled(TextCheckboxWrapper)`
+  width: 47%;
+  @media screen and (max-width: 800px) {
+    width: 47%;
+  }
+  @media screen and (max-width: 660px) {
+    width: 100%;
   }
 `;
 

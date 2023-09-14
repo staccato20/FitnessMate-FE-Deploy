@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {
 	MiddleButton,
 	BeforeButton,
-	BodyCompositionInput,
 } from "../../../components/";
 import ProfileInput from "./ProfileInput/ProfileInput";
 import { useRecoilState } from "recoil";
@@ -17,6 +16,7 @@ import {
 	FilterPriceRange,
 	FilterPriceSlideInner,
 } from "../../Signup/SignupBodyFigure/StyledBalanceBar";
+import BodyCompositionInput from "./BodyCompositionInput/BodyCompositionInput"
 
 
 const FixBodyInfo = () => {
@@ -101,7 +101,6 @@ const FixBodyInfo = () => {
 
 		if (name === "height") {
 			setHeight(e.target.value);
-			console.log(height)
 		} else if (name === "weight") {
 			setWeight(e.target.value);
 		} else if (name === "muscleMass") {
@@ -132,6 +131,7 @@ const FixBodyInfo = () => {
 			// API 호출 및 form 데이터 전송
 			const res = await TokenApi.post("bodyData", formData);
 			console.log("수정:", res.status);
+			window.location.replace("fixbodyinfo")
 		} catch (error) {
 			console.log(error);
 			alert("수정 실패. 형식을 준수해주세요.");
@@ -210,12 +210,14 @@ const FixBodyInfo = () => {
 						<BodyCompositionInput
 							value={muscleMass}
 							name="muscleMass"
+							handleChange={handleChange}
 						>
 							골격근량
 						</BodyCompositionInput>
 						<BodyCompositionInput
 							value={bodyFat}
 							name="bodyFat"
+							handleChange={handleChange}
 						>
 							체지방량
 						</BodyCompositionInput>
