@@ -2,141 +2,234 @@ import { useEffect, useState } from "react";
 import * as S from "./StyledFix";
 import { useNavigate } from "react-router-dom";
 import {
-  MiddleButton,
-  BeforeButton,
-  TextCheckbox,
-} from "./../../../components/";
+	MiddleButton,
+	BeforeButton,
+	BodyCompositionInput,
+} from "../../../components/";
 import ProfileInput from "./ProfileInput/ProfileInput";
 import { useRecoilState } from "recoil";
 import { validationState } from "../../../recoil/atom";
 import TokenApi from "../../../apis/TokenApi";
 import rightarrow from "../../../assets/images/rightarrow.svg";
+import {
+	FilterPriceSlide,
+	FilterPriceRangeWrap,
+	FilterPriceRange,
+	FilterPriceSlideInner,
+} from "../../Signup/SignupBodyFigure/StyledBalanceBar";
+
 
 const FixBodyInfo = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const [isValidState, setIsValidState] = useRecoilState(validationState);
-  const handleBackPage = (e) => {
-    e.preventDefault();
-    navigate(-1);
-  };
+	const [isValidState, setIsValidState] = useRecoilState(validationState);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      Object.entries(isValidState).filter(([key, value]) => {
-        return value[1] === true;
-      }).length === 8
-    ) {
-			// 경로 이동 안됨
-      navigate("/mypage/fixbodyfigure", { replace: false }); // 절대 경로로 이동
-    }
-  };
+	const handleBackPage = (e) => {
+		e.preventDefault();
+		navigate(-1);
+	};
 
 	const [userName, setuserName] = useState(null);
 	const [height, setHeight] = useState(null);
 	const [weight, setWeight] = useState(null);
+	const [bodyFat, setBodyFat] = useState(null);
+	const [muscleMass, setMuscleMass] = useState(null);
+	const [upDownBalance, setUpDownBalance] = useState(null);
 
 	const fetchData = async () => {
 		try {
 			const response_private = await TokenApi.get("user/private");
 			setuserName(response_private.data.userName);
-			const response_body = await TokenApi.get("/bodyData", response_private);
+			const response_body = await TokenApi.get("bodyData/recent");
 			console.log(response_body)
-			setuserName(response_body.data.height);
-			setuserName(response_body.data.weight);
+			setHeight(response_body.data.height);
+			setWeight(response_body.data.weight);
+			setBodyFat(response_body.data.bodyFat);
+			setMuscleMass(response_body.data.muscleMass);
+			setUpDownBalance(response_body.data.upDownBalance);
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	// bodyinfo
 
 	const currenturl = window.location.pathname;
 	const [isCategorySelect, setIsCategorySelect] = useState(false);
 
-  const categorylist = [
-    ["마른 편이에요", [1, 1, 1, 1]],
-    ["보통이에요", [2, 2, 2, 2]],
-    ["조금 통통한 편이에요", [3, 3, 3, 3]],
-    ["뚱뚱해요", [4, 4, 4, 4]],
-  ];
+	const [rangeValue, setRangeValue] = useState(5);
+	const [rangeText, setRangeText] = useState("둘 다 발달했거나 큰 차이 없어요");
 
-  const handleClick = (idx) => {
-    const newArr = Array(categorylist.length).fill(false);
-    newArr[idx] = true;
-    setIsCategorySelect(newArr);
-    setIsValidState((pre) => ({
-      ...pre,
-      upperBodyFat: [categorylist[idx][1][0], true, false],
-      lowerBodyFat: [categorylist[idx][1][1], true, false],
-      upperMuscleMass: [categorylist[idx][1][2], true, false],
-      lowerMuscleMass: [categorylist[idx][1][3], true, false],
-    }));
-  };
+	const prcieRangeValueHandler = (e) => {
+		setRangeValue(parseInt(e.target.value));
+
+		setRangeText(handleBalanceText(e.target.value));
+		setIsValidState((pre) => ({
+			...pre,
+			upDownBalance: [e.target.value / 10, true],
+		}));
+	};
 
 	useEffect(() => {
-		fetchData();
-	});
+		setRangeValue(upDownBalance * 10); // 기본값으로 사용자의 upDownBalance를 사용
+		setIsValidState((pre) => ({
+			...pre,
+			upDownBalance: [upDownBalance || 5 / 10, true],
+		}));
+	}, [upDownBalance]);
 
-  return (
-    <S.SignupContainer>
-      <S.SignupTitle>
-        <S.TitleEmphasis>{userName}님의 신체정보</S.TitleEmphasis>
-      </S.SignupTitle>
-      <S.BodyInfoContainer>
-        <ProfileInput
-          value={height}
-          name="height"
-        >
-          키
-        </ProfileInput>
-        <ProfileInput
+	const handleBalanceText = (value) => {
+		const rangevalue = Number(value);
+		if (rangevalue >= 1 && rangevalue <= 4) {
+			return "하체가 상체보다 더 발달했어요";
+		} else if (rangevalue === 5) {
+			return "둘 다 발달했거나 큰 차이 없어요";
+		} else if (rangevalue >= 6 && rangevalue <= 9) {
+			return "상체가 하체보다 더 발달했어요";
+		}
+	};
+
+	// 입력했는지 체크(한 번 입력한 순간 쭉 true)
+	const [valueHistory, setValueHistory] = useState(false);
+
+	const handleChange = (e) => {
+		const name = e.target.name;
+
+		if (name === "height") {
+			setHeight(e.target.value);
+			console.log(height)
+		} else if (name === "weight") {
+			setWeight(e.target.value);
+		} else if (name === "muscleMass") {
+			setMuscleMass(e.target.value);
+		} else if (name === "bodyFat") {
+			setBodyFat(e.target.value);
+		}
+		if (!valueHistory) {
+			setValueHistory(true);
+		}
+	};
+
+	// 제출
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const formData = {
+			date: new Date(),
+			height: height,
+			weight: weight,
+			bodyFat: bodyFat,
+			muscleMass: muscleMass,
+			upDownBalance: rangeValue / 10,
+		};
+		console.log("정보:", formData);
+
+		try {
+			// API 호출 및 form 데이터 전송
+			const res = await TokenApi.post("bodyData", formData);
+			console.log("수정:", res.status);
+		} catch (error) {
+			console.log(error);
+			alert("수정 실패. 형식을 준수해주세요.");
+		}
+	};
+
+	return (
+		<S.SignupContainer>
+			<S.SignupTitle>
+				<S.TitleEmphasis>{userName}님의 신체정보</S.TitleEmphasis>
+			</S.SignupTitle>
+			<S.BodyInfoContainer>
+				<ProfileInput
+					placeholder="숫자만 입력"
+					value={height}
+					name="height"
+					handleChange={handleChange}
+				>
+					키
+				</ProfileInput>
+				<ProfileInput
+					placeholder="숫자만 입력"
 					value={weight}
 					name="weight"
+					handleChange={handleChange}
 				>
-          몸무게
-        </ProfileInput>
-      </S.BodyInfoContainer>
-			<S.SignupTitle>
-        <S.TitleEmphasis>{userName}님의 체형정보</S.TitleEmphasis>
-      </S.SignupTitle>
-			<S.SignupTextContainer>
-        {categorylist?.map((item, index) => {
-          return (
-            <TextCheckbox
-              key={index}
-              handleClick={handleClick}
-              isSelected={isCategorySelect[index]}
-              elementidx={index}
-            >
-              {item[0]}
-            </TextCheckbox>
-          );
-        })}
-        <div className="directButtonContainer">
-          <button
-            className="directbutton"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate(`${currenturl}/direct`);
-            }}
-          >
-            직접 입력하기
-            <img
-              src={rightarrow}
-              className="rightArrow"
-              alt="직접 입력하기 버튼 이미지"
-            />
-          </button>
-        </div>
-				<S.ButtonContainer>
-        <BeforeButton handleSubmit={handleBackPage} />
-        <MiddleButton handleSubmit={handleSubmit}>변경사항 저장하기</MiddleButton>
-      </S.ButtonContainer>
-      </S.SignupTextContainer>
-    </S.SignupContainer>
-  );
+					몸무게
+				</ProfileInput>
+			</S.BodyInfoContainer>
+
+			<S.SignupUpdonwBalanceWrapper>
+				<div className="updownBalanceBox">
+					<span className="updownBalanceTitle">
+						상/하체 균형
+					</span>
+					<div className="updownBalanceBar">
+						<span className="updownBalanceBarTitle">{rangeText}</span>
+						<div className="updownBalanceBarContent">
+							<div className="balanceRatioBox">
+								<span className="balanceRatio">하체 비중</span>
+								<span className="balanceRatioPercent">{rangeValue * 10}%</span>
+							</div>
+							<div className="balnaceBar">
+								<FilterPriceSlide>
+									<FilterPriceSlideInner
+										rangePercent={Number(rangeValue) * 10}
+									/>
+								</FilterPriceSlide>
+								<FilterPriceRangeWrap>
+									<FilterPriceRange
+										type="range"
+										min={1}
+										max={9}
+										step="1"
+										value={rangeValue}
+										onChange={(e) => {
+											prcieRangeValueHandler(e);
+										}}
+										name="upDownBalance"
+										handleChange={handleChange}
+									/>
+								</FilterPriceRangeWrap>
+							</div>
+							<div className="balanceRatioBox">
+								<span className="balanceRatio">상체 비중</span>
+								<span className="balanceRatioPercent">
+									{100 - rangeValue * 10}%
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<S.SignupTextContainer>
+					<span className="bodyfigureText">체형</span>
+					<S.BodyCompositionInputList>
+						<BodyCompositionInput
+							value={muscleMass}
+							name="muscleMass"
+						>
+							골격근량
+						</BodyCompositionInput>
+						<BodyCompositionInput
+							value={bodyFat}
+							name="bodyFat"
+						>
+							체지방량
+						</BodyCompositionInput>
+					</S.BodyCompositionInputList>
+					<S.ButtonContainer>
+						<BeforeButton handleSubmit={handleBackPage} />
+						<MiddleButton handleSubmit={handleSubmit}>
+							수정 완료
+						</MiddleButton>
+					</S.ButtonContainer>
+				</S.SignupTextContainer>
+			</S.SignupUpdonwBalanceWrapper>
+		</S.SignupContainer>
+	);
 };
 
 export default FixBodyInfo;
