@@ -76,16 +76,19 @@ function SupplementAddModal({ onClose, routineId }) {
 			updatedList[idx].isSelected = !updatedList[idx].isSelected;
 			return updatedList;
 		});
-		setFinalSupplement(supplementList[idx]);
+		setFinalSupplement((prevFinalSupplement) => {
+			const selectedSupplement = supplementList[idx].supplementId;
+			return [...prevFinalSupplement, selectedSupplement];
+		});
 	};
 
 	// 선택완료
-	const handleSubmit = async (supplementList) => {
+	const handleSubmit = async () => {
 		console.log(finalSupplement)
 
-		const supplementResponse = await TokenApi.post(`/myfit/routines/supplement/${finalSupplement.supplementId}`);
+		const supplementResponse = await TokenApi.post(`/myfit/routines/supplement`, { supplementIds: finalSupplement });
 		console.log(supplementResponse.status)
-		setSupplementList(supplementResponse.data);
+		setFinalSupplement([]);
 		alert("추가되었습니다!")
 		onClose?.();
 		// 페이지 새로고침
