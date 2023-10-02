@@ -128,7 +128,7 @@ export const loginPostAPI = axios.create({
 
 // 로그아웃(refresh 토큰)
 export const logoutPutAPI = axios.create({
-	method: "put",
+	method: "get",
 	baseURL: "/api/auth/logout",
 	withCredentials: true,
 });
@@ -309,7 +309,7 @@ export const userSupplementBatchAPI = axios.create({
 // 메일 인증 요청
 export const verifyMailPost = axios.create({
 	method: "post",
-	baseURL: "/api/register/verify/mail",
+	baseURL: "/api/user/auth/verify/email",
 	withCredentials: true,
 });
 

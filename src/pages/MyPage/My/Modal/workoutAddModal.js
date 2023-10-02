@@ -16,6 +16,9 @@ function AddModal({ onClose, routineId }) {
 	// 보여질 운동 리스트
 	const [machineList, setMachineList] = useState([]);
 
+	// 루틴에 추가할 운동
+	const [finalWorkout, setFinalWorkout] = useState([]);
+
 	// 검색결과가 없을 때 페이지
 	const [nosearch, setNoSearch] = useState(false);
 
@@ -27,10 +30,12 @@ function AddModal({ onClose, routineId }) {
 		// 운동 기구 batch 조회(12개)
 
 		try {
-			const workoutResponse = await userWorkoutBatchAPI.post(
-				`1`,
-				request
-			);
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			const workoutResponse = await TokenApi.post(`/myfit/routines/workout/search/${routineId}`, "", config);
 			if (workoutResponse.data.length) {
 				setNoSearch(false);
 				setMachineList(workoutResponse.data);
@@ -47,19 +52,16 @@ function AddModal({ onClose, routineId }) {
 	const handleSearch = async (searchValue) => {
 		try {
 			if (searchValue === "") {
-				const request = {
-					searchKeyword: "",
-				};
-				const workoutResponse = await userWorkoutBatchAPI.post(
-					`1`,
-					request
-				);
-				setMachineList(workoutResponse.data);
+				setNoSearch(true);
 			} else {
-				const searchKeyword = searchValue;
-				console.log(searchKeyword)
-				const workoutResponse = await TokenApi.post(`/myfit/routines/workout/search/${routineId}`, searchKeyword);
-				console.log(workoutResponse);
+				setNoSearch(false);
+				const config = {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				};
+				const workoutResponse = await TokenApi.post(`/myfit/routines/workout/search/${routineId}`, JSON.stringify(searchValue), config);
+				console.log(workoutResponse)
 				setMachineList(workoutResponse.data);
 				console.log(machineList)
 			}
@@ -79,11 +81,24 @@ function AddModal({ onClose, routineId }) {
 			updatedList[idx].isSelected = !updatedList[idx].isSelected;
 			return updatedList;
 		});
+		setFinalWorkout(prevFinalWorkout => {
+			const selectedWorkout = machineList[idx].workoutId;
+			return [...prevFinalWorkout, selectedWorkout];
+		});
 	};
 
 	// 선택완료
-	const handleSubmit = async () => {
-		console.log(routineId)
+	const handleSubmit = async (machineList) => {
+
+		console.log(finalWorkout)
+
+		const workoutResponse = await TokenApi.post(`/myfit/routines/workout/${routineId}`, { workoutIds: finalWorkout });
+		console.log("결과:", workoutResponse.status);
+		setFinalWorkout([]);
+		alert("추가되었습니다!")
+		onClose?.();
+		// 페이지 새로고침
+		window.location.reload();
 	}
 
 	//modal
@@ -120,12 +135,12 @@ function AddModal({ onClose, routineId }) {
 									{machineList.map((machine, idx) => {
 										return (
 											<TextCheckbox
-												key={machine.koreanName}
+												key={machine.workoutName}
 												handleClick={handleSelect}
 												isSelected={machine.isSelected}
 												elementidx={idx}
 											>
-												{machine.koreanName}
+												{machine.workoutName}
 											</TextCheckbox>
 										);
 									})}
