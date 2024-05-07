@@ -1,30 +1,29 @@
-import { useNavigate } from "react-router-dom";
-import { BodyCompositionInput } from "../../../components";
-import * as S from "./StyledFix";
-import { BeforeButton, MiddleButton } from "../../../components/";
-import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { validationState } from "../../../recoil/atom";
-import TokenApi from "../../../apis/TokenApi";
+import {useNavigate} from "react-router-dom"
+import {BodyCompositionInput} from "../../../components"
+import * as S from "./StyledFix"
+import {BeforeButton, MiddleButton} from "../../../components"
+import {useEffect, useState} from "react"
+import {useRecoilState} from "recoil"
+import {validationState} from "../../../recoil/atom"
+import TokenApi from "../../../apis/TokenApi"
 
 const SignupBodyFigureDirect = () => {
-
-	const [bodyFat, setBodyFat] = useState(null);
-	const [muscleMass, setMuscleMass] = useState(null);
+	const [bodyFat, setBodyFat] = useState(null)
+	const [muscleMass, setMuscleMass] = useState(null)
 
 	const fetchData = async () => {
 		try {
-			const response_body = await TokenApi.get("bodyData/recent");
-			setBodyFat(response_body.data.bodyFat);
-			setMuscleMass(response_body.data.muscleMass);
+			const response_body = await TokenApi.get("bodyData/recent")
+			setBodyFat(response_body.data.bodyFat)
+			setMuscleMass(response_body.data.muscleMass)
 		} catch (error) {
-			console.log(error);
+			console.log(error)
 		}
-	};
+	}
 
 	useEffect(() => {
-		fetchData();
-	});
+		fetchData()
+	})
 
 	// 객체 초기화
 	useEffect(() => {
@@ -34,35 +33,35 @@ const SignupBodyFigureDirect = () => {
 			lowerBodyFat: ["", false, false],
 			upperMuscleMass: ["", false, false],
 			lowerMuscleMass: ["", false, false],
-		}));
-	}, []);
+		}))
+	}, [])
 
-	const navigate = useNavigate();
-	const [isValidState, setIsValidState] = useRecoilState(validationState);
+	const navigate = useNavigate()
+	const [isValidState, setIsValidState] = useRecoilState(validationState)
 
 	const handleBackPage = (e) => {
-		e.preventDefault();
-		navigate(-1);
-	};
+		e.preventDefault()
+		navigate(-1)
+	}
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		if (
 			Object.entries(isValidState)?.filter(([key, value]) => {
-				return value[1] === true;
+				return value[1] === true
 			}).length === 12
 		) {
 			// 회원가입 post 요청
-			const submission = {};
+			const submission = {}
 			for (const key in isValidState) {
 				if (key !== "password2") {
-					submission[key] = isValidState[key][0];
+					submission[key] = isValidState[key][0]
 				}
 				if (key === "birthDate") {
-					submission[key] = new Date();
+					submission[key] = new Date()
 				}
 				if (key === "height" || key === "weight") {
-					submission[key] = Number(isValidState[key][0]);
+					submission[key] = Number(isValidState[key][0])
 				}
 			}
 
@@ -74,7 +73,7 @@ const SignupBodyFigureDirect = () => {
 			// 	console.log("회원가입 오류");
 			// }
 		}
-	};
+	}
 
 	return (
 		<S.SignupContainer>
@@ -91,14 +90,12 @@ const SignupBodyFigureDirect = () => {
 			<S.BodyCompositionInputList>
 				<BodyCompositionInput
 					value={muscleMass}
-					name="muscleMass"
-				>
+					name="muscleMass">
 					골격근량
 				</BodyCompositionInput>
 				<BodyCompositionInput
 					value={bodyFat}
-					name="bodyFat"
-				>
+					name="bodyFat">
 					체지방량
 				</BodyCompositionInput>
 			</S.BodyCompositionInputList>
@@ -109,7 +106,7 @@ const SignupBodyFigureDirect = () => {
 				</MiddleButton>
 			</S.ButtonContainer>
 		</S.SignupContainer>
-	);
-};
+	)
+}
 
-export default SignupBodyFigureDirect;
+export default SignupBodyFigureDirect

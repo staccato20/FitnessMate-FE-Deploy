@@ -1,20 +1,19 @@
-import React, { useState, useRef } from "react";
-import * as S from "./StyledNavModal";
-import OutSideClick from "./OutSideClick";
-import { useNavigate } from "react-router-dom";
-import TokenApi from "../../apis/TokenApi";
-import { logoutPutAPI } from "../../apis/API";
+import React, {useState, useRef} from "react"
+import * as S from "./StyledNavModal"
+import OutSideClick from "./OutSideClick"
+import {useNavigate} from "react-router-dom"
+import {logoutPutAPI} from "../../apis/API"
 
-function NavModal({ children, userName, setuserName }) {
-	const navigate = useNavigate();
+function NavModal({children, userName, setuserName}) {
+	const navigate = useNavigate()
 
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 
-	const modalRef = useRef(null);
+	const modalRef = useRef(null)
 	const handleClose = () => {
-		setIsOpen(false);
-	};
-	OutSideClick(modalRef, handleClose);
+		setIsOpen(false)
+	}
+	OutSideClick(modalRef, handleClose)
 
 	// 로그아웃
 	const handleLogout = async () => {
@@ -23,33 +22,32 @@ function NavModal({ children, userName, setuserName }) {
 				headers: {
 					Authorization: "Bearer " + localStorage.getItem("refreshToken"),
 				},
-			});
+			})
 			console.log(res)
-			setuserName(null);
-			localStorage.clear();
-			navigate("/");
+			setuserName(null)
+			localStorage.clear()
+			navigate("/")
 		} catch (err) {
-			console.log(err);
+			console.log(err)
 		}
-	};
+	}
 
 	const handleFixProfile = async () => {
-		navigate("/mypage/fixprofile");
-		setIsOpen(false);
-	};
+		navigate("/mypage/fixprofile")
+		setIsOpen(false)
+	}
 
 	const handleFixBodyInfo = async () => {
-		navigate("/mypage/fixbodyinfo");
-		setIsOpen(false);
-	};
+		navigate("/mypage/fixbodyinfo")
+		setIsOpen(false)
+	}
 
 	return (
 		<S.AppWrap ref={modalRef}>
 			<S.NavButton
 				onClick={() => {
-					setIsOpen(!isOpen);
-				}}
-			>
+					setIsOpen(!isOpen)
+				}}>
 				{children}
 			</S.NavButton>
 			{isOpen && (
@@ -68,7 +66,7 @@ function NavModal({ children, userName, setuserName }) {
 				</S.ModalWrap>
 			)}
 		</S.AppWrap>
-	);
+	)
 }
 
-export default NavModal;
+export default NavModal

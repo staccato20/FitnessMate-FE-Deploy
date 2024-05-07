@@ -1,16 +1,16 @@
-import { ModalBox } from "./StyledEmailModal";
-import * as S from "./StyledRecommendAddModal";
-import xbutton2 from "../../assets/images/xbutton2.svg";
-import { useEffect, useState } from "react";
-import MiddleButton from "./../Button/MiddleButton";
-import TextCheckbox from "../TextCheckbox/TextCheckbox";
-import rightarrow from "../../assets/images/rightarrow.svg";
-import TokenApi from "./../../apis/TokenApi";
-const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
+import {ModalBox} from "./StyledEmailModal"
+import * as S from "./StyledRecommendAddModal"
+import xbutton2 from "../../assets/images/xbutton2.svg"
+import {useEffect, useState} from "react"
+import MiddleButton from "../Button/MiddleButton"
+import TextCheckbox from "../TextCheckbox/TextCheckbox"
+import rightarrow from "../../assets/images/rightarrow.svg"
+import TokenApi from "../../apis/TokenApi"
+const RecommendAddModal = ({setRecommendAddModal, machine}) => {
 	// my페이지에서는 저장된 값을 가져옴
-	const [myDivision, setMyDivsion] = useState([]);
-	const [isReady, setIsReady] = useState(false);
-	const [modifyMachineOption, setModifyMachineOption] = useState(false);
+	const [myDivision, setMyDivsion] = useState([])
+	const [isReady, setIsReady] = useState(false)
+	const [modifyMachineOption, setModifyMachineOption] = useState(false)
 
 	// 중량 횟수 세트수
 	const [option, setOption] = useState([
@@ -32,46 +32,46 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 			isSelected: false,
 			unit: "세트",
 		},
-	]);
+	])
 
 	// option 인덱스
-	const [currentIdx, setCurrentIdx] = useState(0);
+	const [currentIdx, setCurrentIdx] = useState(0)
 
 	const handleReady = () => {
-		return myDivision.filter((division) => division.isSelected).length;
-	};
+		return myDivision.filter((division) => division.isSelected).length
+	}
 
 	const handleSelect = (idx) => {
-		const newArr = [...myDivision];
-		newArr[idx].isSelected = !newArr[idx].isSelected;
-		setMyDivsion(newArr);
-		setIsReady(false);
+		const newArr = [...myDivision]
+		newArr[idx].isSelected = !newArr[idx].isSelected
+		setMyDivsion(newArr)
+		setIsReady(false)
 		if (handleReady()) {
-			setIsReady(true);
+			setIsReady(true)
 		}
-	};
+	}
 
 	const handleOptionValue = (e) => {
-		const newArray = [...option];
-		newArray[currentIdx].value = e.target.value;
-		setOption(newArray);
-	};
+		const newArray = [...option]
+		newArray[currentIdx].value = e.target.value
+		setOption(newArray)
+	}
 
 	const handleModifyComplete = async () => {
-		setModifyMachineOption(false);
-	};
+		setModifyMachineOption(false)
+	}
 
 	// 기존 루틴 받아오기(분할1 ~ 분할4)
 	const fetchData = async () => {
 		try {
-			const response = await TokenApi.get("myfit/routines/workout");
+			const response = await TokenApi.get("myfit/routines/workout")
 			const newArr = [...response.data].map((obj, index) => ({
 				...obj,
 				isSelected: false,
-			}));
-			setMyDivsion(newArr);
-		} catch (err) { }
-	};
+			}))
+			setMyDivsion(newArr)
+		} catch (err) {}
+	}
 	// 루틴에 운동 추가하기
 	const handleAdd = () => {
 		const submission = {
@@ -79,7 +79,7 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 			weight: option[0].value,
 			rep: option[1].value,
 			setCount: option[2].value,
-		};
+		}
 		console.log(submission)
 		myDivision.forEach((division) => {
 			if (division.isSelected) {
@@ -88,16 +88,16 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 					submission
 				)
 					.then((response) => {
-						console.log(response);
+						console.log(response)
 						alert("추가되었습니다!")
-						setRecommendAddModal(false);
+						setRecommendAddModal(false)
 					})
 					.catch((err) => {
-						console.log(err);
-					});
+						console.log(err)
+					})
 			}
-		});
-	};
+		})
+	}
 
 	// 루틴이 잘 등록되었는지 확인
 	// const handleRoutine = () => {
@@ -115,8 +115,8 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 	// };
 
 	useEffect(() => {
-		fetchData();
-	}, []);
+		fetchData()
+	}, [])
 
 	return (
 		<ModalBox>
@@ -138,11 +138,10 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 									<S.ModifyOptionButton
 										isSelected={currentIdx === idx}
 										className="modifyOption"
-										onClick={(e) => setCurrentIdx(idx)}
-									>
+										onClick={(e) => setCurrentIdx(idx)}>
 										{op.optionname}
 									</S.ModifyOptionButton>
-								);
+								)
 							})}
 						</S.ModifyOptionWrapper>
 						<S.ModifyOptionContent>
@@ -162,30 +161,35 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 									key={item.routineName}
 									handleClick={handleSelect}
 									isSelected={item.isSelected}
-									elementidx={index}
-								>
+									elementidx={index}>
 									{item.routineName}
 								</TextCheckbox>
-							);
+							)
 						})}
 						<button className="recommendAddModalBtnWrapper">
 							<span
 								className="recommendAddModalModifyBtn"
-								onClick={() => setModifyMachineOption(true)}
-							>
+								onClick={() => setModifyMachineOption(true)}>
 								추천 운동량 수정
 							</span>
-							<img src={rightarrow} alt="추천 운동량 수정 버튼 이미지" />
+							<img
+								src={rightarrow}
+								alt="추천 운동량 수정 버튼 이미지"
+							/>
 						</button>
 					</div>
 				)}
 				{modifyMachineOption ? (
-					<MiddleButton isReady={true} handleSubmit={handleModifyComplete}>
+					<MiddleButton
+						isReady={true}
+						handleSubmit={handleModifyComplete}>
 						수정 완료하고 돌아가기
 					</MiddleButton>
 				) : (
 					<>
-						<MiddleButton isReady={isReady} handleSubmit={handleAdd}>
+						<MiddleButton
+							isReady={isReady}
+							handleSubmit={handleAdd}>
 							추가하기
 						</MiddleButton>
 
@@ -196,7 +200,7 @@ const RecommendAddModal = ({ setRecommendAddModal, machine }) => {
 				)}
 			</S.RecommendAddModalWrapper>
 		</ModalBox>
-	);
-};
+	)
+}
 
-export default RecommendAddModal;
+export default RecommendAddModal

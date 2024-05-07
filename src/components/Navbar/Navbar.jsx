@@ -1,39 +1,39 @@
 // < 네브바 포함 레이아웃 >
 
-import React, { useEffect, useState } from "react";
-import * as S from "./StyledNavbar";
-import { useNavigate } from "react-router-dom";
-import NavModal from "./NavModal";
-import TokenApi from "../../apis/TokenApi";
-import LoginModal from "../Modal/LoginModal";
-import CancleModal from "../Modal/CancleModal";
-import logoimg from "../../assets/images/logo.png";
+import React, {useEffect, useState} from "react"
+import * as S from "./StyledNavbar"
+import {useNavigate} from "react-router-dom"
+import NavModal from "./NavModal"
+import TokenApi from "../../apis/TokenApi"
+import LoginModal from "../Modal/LoginModal"
+import CancleModal from "../Modal/CancleModal"
+import logoimg from "../../assets/images/logo.png"
 
 const Navbar = () => {
-	const navigate = useNavigate();
-	const [userName, setuserName] = useState(null);
-	const [isLoginModal, setIsLoginModal] = useState(false);
-	const [isCancleModal, setIsCancleModal] = useState(false);
-	const [isRecommend, setIsRecommend] = useState(false);
+	const navigate = useNavigate()
+	const [userName, setuserName] = useState(null)
+	const [isLoginModal, setIsLoginModal] = useState(false)
+	const [isCancleModal, setIsCancleModal] = useState(false)
+	const [isRecommend, setIsRecommend] = useState(false)
 
 	const handleSearch = () => {
 		if (window.location.href.includes("signup")) {
-			setIsCancleModal(true);
+			setIsCancleModal(true)
 		} else {
-			navigate("search/1");
+			navigate("search/1")
 		}
-	};
+	}
 	const handleMyPage = () => {
 		if (window.location.href.includes("signup")) {
-			setIsCancleModal(true);
+			setIsCancleModal(true)
 		} else {
 			if (userName) {
-				navigate("mypage");
+				navigate("mypage")
 			} else {
-				setIsLoginModal(true);
+				setIsLoginModal(true)
 			}
 		}
-	};
+	}
 	// 브라우저의 새로고침 감지
 	useEffect(() => {
 		// signup 페이지 && 새로고침 시에만
@@ -42,69 +42,68 @@ const Navbar = () => {
 			window.performance.navigation.type === 1 &&
 			window.location.href.includes("signup")
 		) {
-			navigate("/signup");
-			localStorage.removeItem("refreshed"); // 플래그 제거
+			navigate("/signup")
+			localStorage.removeItem("refreshed") // 플래그 제거
 		}
 
 		const handleBeforeUnload = (e) => {
-			e.preventDefault();
+			e.preventDefault()
 			if (window.location.href.includes("signup")) {
-				localStorage.setItem("refreshed", "true");
+				localStorage.setItem("refreshed", "true")
 			}
-		};
+		}
 
-		window.addEventListener("beforeunload", handleBeforeUnload);
+		window.addEventListener("beforeunload", handleBeforeUnload)
 
 		return () => {
-			window.removeEventListener("beforeunload", handleBeforeUnload);
-		};
-	}, [navigate]);
+			window.removeEventListener("beforeunload", handleBeforeUnload)
+		}
+	}, [navigate])
 
 	const handleRecommend = () => {
 		if (window.location.href.includes("signup")) {
-			setIsCancleModal(true);
+			setIsCancleModal(true)
 		} else {
 			if (userName) {
-				navigate("recommend");
+				navigate("recommend")
 			} else {
-				setIsLoginModal(true);
+				setIsLoginModal(true)
 			}
 		}
-	};
+	}
 
 	// 토큰이 만료되고 새로고침을 누르면 로그인이 풀린다.
 	const handleLocalStorage = () => {
-		return localStorage.length;
-	};
+		return localStorage.length
+	}
 
 	const fetchData = async () => {
 		try {
 			// if 안하고 그냥 바로 받아오면 로그인 안한 상태일 때 accessToken alert 창이 계속 뜸
 			if (localStorage.getItem("accessToken")) {
-				const response = await TokenApi.get("user/private");
-				setuserName(response.data.userName);
+				const response = await TokenApi.get("user/private")
+				setuserName(response.data.userName)
 			}
-		} catch (error) { }
-	};
+		} catch (error) {}
+	}
 
 	useEffect(() => {
-		fetchData();
+		fetchData()
 		if (window.location.href.includes("recommend")) {
-			setIsRecommend(true);
+			setIsRecommend(true)
 		}
-	}, [window.location.href]);
+	}, [window.location.href])
 
 	return (
 		<S.NavbarContainer
 			isLoginModal={isLoginModal}
 			isCancleModal={isCancleModal}
-			isRecommend={isRecommend}
-		>
+			isRecommend={isRecommend}>
 			<img
 				src={logoimg}
 				className="nav-logo"
 				onClick={() => {
-					navigate("/");
+					navigate("/")
 				}}
 				alt="fitmate 로고"
 			/>
@@ -119,13 +118,14 @@ const Navbar = () => {
 					<S.NavLoginButton
 						className="login"
 						onClick={() => {
-							navigate("login");
-						}}
-					>
+							navigate("login")
+						}}>
 						로그인
 					</S.NavLoginButton>
 				) : (
-					<NavModal userName={userName} setuserName={setuserName}>
+					<NavModal
+						userName={userName}
+						setuserName={setuserName}>
 						{userName} 님
 					</NavModal>
 				)}
@@ -133,7 +133,7 @@ const Navbar = () => {
 			{isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
 			{isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
 		</S.NavbarContainer>
-	);
-};
+	)
+}
 
-export default Navbar;
+export default Navbar
