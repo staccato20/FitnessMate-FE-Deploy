@@ -6,6 +6,7 @@ import {useRecoilState} from "recoil"
 import {useState} from "react"
 import EmailModal from "../Modal/EmailModal"
 import ValidateTest from "../../utils/exp"
+import GetProfileStatus from "./GetProfileStatus.jsx"
 
 const ProfileInput = ({placeholder, children, name}) => {
 	// 유효성 검사
@@ -37,32 +38,6 @@ const ProfileInput = ({placeholder, children, name}) => {
 			}
 			return false
 		}
-	}
-
-	// 이메일 인증을 한 경우
-	const Available = (
-		<span className="profileInputChecking">사용 가능한 이메일입니다</span>
-	)
-
-	// 이메일 인증을 하지 않은 경우
-	const NotCodeAvailable = (
-		<span className="profileInputWarning">이메일 인증을 해주세요</span>
-	)
-
-	// 규칙이 맞지 않은 경우
-	let NotAvailable = ""
-	if (name === "weight" || name === "height") {
-		NotAvailable = (
-			<span className="profileInputWarning">
-				{children}를 다시 입력해주세요
-			</span>
-		)
-	} else {
-		NotAvailable = (
-			<span className="profileInputWarning">
-				{children}을 다시 입력해주세요
-			</span>
-		)
 	}
 
 	// 이메일 중복검사 + 유효성검사를 입력할때마다 해야함
@@ -155,7 +130,6 @@ const ProfileInput = ({placeholder, children, name}) => {
 					인증메일 발송
 				</button>
 			)}
-
 			{/* 비밀번호 입력창에만 재확인 입력창을 하나 더 추가 */}
 			{children === "비밀번호" && (
 				<ProfileInputContentWrapper
@@ -174,18 +148,7 @@ const ProfileInput = ({placeholder, children, name}) => {
 					onChange={handleChange}
 				/>
 			)}
-
-			{!isFocused && valueHistory
-				? isValidState[name][1]
-					? name === "loginEmail"
-						? isValidState.emailModal[1]
-							? Available
-							: NotCodeAvailable
-						: ""
-					: ""
-					? ""
-					: NotAvailable
-				: ""}
+			{GetProfileStatus(name, isFocused, valueHistory, isValidState, children)}
 			{isEmailModal && <EmailModal setIsEmailModal={setIsEmailModal} />}
 		</S.ProfileInputContainer>
 	)

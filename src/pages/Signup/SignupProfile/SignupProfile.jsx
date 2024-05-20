@@ -3,7 +3,7 @@ import {useRecoilValue} from "recoil"
 import {BeforeButton, MiddleButton, ProfileInput} from "../../../components"
 import {useNavigate} from "react-router-dom"
 import {validationState} from "./../../../recoil/atom"
-import {useEffect, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 
 const SignupProfile = () => {
@@ -18,19 +18,19 @@ const SignupProfile = () => {
 
 	// 모든 검사를 통과했는지를 반환하는 함수
 	// 이름 생년월일 이메일 이메일인증 패스워드 패스워드2 맞아야 넘어감
-	const handleValidate = () => {
+	const handleValidate = useCallback(() => {
 		return (
 			Object.entries(isValidState)?.filter(([key, value]) => {
 				return value[1]
 			}).length >= 6
 		)
-	}
+	}, [isValidState])
 
 	useEffect(() => {
 		if (handleValidate()) {
 			setIsReady(true)
 		}
-	}, [isValidState])
+	}, [isValidState, handleValidate])
 
 	// 제출
 	const handleSubmit = (e) => {
