@@ -1,81 +1,82 @@
-import * as S from "../StyledSignup";
-import { useNavigate } from "react-router-dom";
-import rightarrow from "../../../assets/images/rightarrow.svg";
-import { MiddleButton, BeforeButton } from "../../../components/";
-import { useRecoilState } from "recoil";
-import { validationState } from "../../../recoil/atom";
-import { useEffect, useState } from "react";
-import { userPostAPI } from "../../../apis/API";
+import * as S from "../StyledSignup"
+import {useNavigate} from "react-router-dom"
+import rightarrow from "../../../assets/images/rightarrow.svg"
+import {MiddleButton, BeforeButton} from "../../../components/"
+import {useRecoilState} from "recoil"
+import {validationState} from "../../../recoil/atom"
+import {useEffect, useState} from "react"
+import {userPostAPI} from "../../../apis/API"
 import {
 	FilterPriceSlide,
 	FilterPriceRangeWrap,
 	FilterPriceRange,
 	FilterPriceSlideInner,
-} from "./StyledBalanceBar";
-import MiddleTextCheckbox from "../../../components/TextCheckbox/MiddleTextCheckbox";
+} from "./StyledBalanceBar"
+import MiddleTextCheckbox from "../../../components/TextCheckbox/MiddleTextCheckbox"
+import StatusBar from "../../../components/StatusBar/StatusBar"
 
 const SignupBodyFigure = () => {
 	// balance 문구
 	const handleBalanceText = (value) => {
-		const rangevalue = Number(value);
+		const rangevalue = Number(value)
 		if (rangevalue >= 1 && rangevalue <= 4) {
-			return "하체가 상체보다 더 발달했어요";
+			return "하체가 상체보다 더 발달했어요"
 		} else if (rangevalue === 5) {
-			return "둘 다 발달했거나 큰 차이 없어요";
+			return "둘 다 발달했거나 큰 차이 없어요"
 		} else if (rangevalue >= 6 && rangevalue <= 9) {
-			return "상체가 하체보다 더 발달했어요";
+			return "상체가 하체보다 더 발달했어요"
 		}
-	};
+	}
 
-	const navigate = useNavigate();
-	const currenturl = window.location.pathname;
-	const [isValidState, setIsValidState] = useRecoilState(validationState);
+	const navigate = useNavigate()
+	const currenturl = window.location.pathname
+	const [isValidState, setIsValidState] = useRecoilState(validationState)
 
 	// 체형 옵션 배열
-	const [isCategorySelect, setIsCategorySelect] = useState(false);
+	const [isCategorySelect, setIsCategorySelect] = useState(false)
 
 	// balance 바
 	const [rangeValue, setRangeValue] = useState(
 		parseFloat(isValidState.upDownBalance) * 10 || 5
-	);
+	)
 
 	// balacne text
-	const [rangeText, setRangeText] = useState(handleBalanceText(rangeValue));
+	const [rangeText, setRangeText] = useState(handleBalanceText(rangeValue))
 
 	// 버튼 on/off
-	const [isReady, setIsReady] = useState(false);
+	const [isReady, setIsReady] = useState(false)
 
 	const prcieRangeValueHandler = (e) => {
-		setRangeValue(parseInt(e.target.value));
+		setRangeValue(parseInt(e.target.value))
 
-		setRangeText(handleBalanceText(e.target.value));
+		setRangeText(handleBalanceText(e.target.value))
 		setIsValidState((pre) => ({
 			...pre,
 			upDownBalance: [e.target.value / 10, true],
-		}));
-	};
+		}))
+	}
 
 	const handleValidate = () => {
 		return (
 			Object.entries(isValidState)?.filter(([key, value]) => {
-				return value[1];
+				return value[1]
 			}).length >= 12
-		);
-	};
+		)
+	}
 
 	useEffect(() => {
 		if (handleValidate()) {
-			setIsReady(true);
+			setIsReady(true)
 		}
-	}, [isValidState]);
+	}, [isValidState])
 
 	// balanace 50%로 초기화
 	useEffect(() => {
 		setIsValidState((pre) => ({
 			...pre,
 			upDownBalance: [5 / 10, true],
-		}));
-	}, []);
+		}))
+	}, [])
 
 	// [bodyFat, muscleMass]
 	const categorylist = [
@@ -84,70 +85,69 @@ const SignupBodyFigure = () => {
 		["보통 체형", [18, 35]],
 		["통통한 체형", [20, 35]],
 		["뚱뚱한 체형", [25, 35]],
-	];
+	]
 
 	const handleClick = (idx) => {
-		const newArr = Array(categorylist.length).fill(false);
-		newArr[idx] = true;
-		setIsCategorySelect(newArr);
+		const newArr = Array(categorylist.length).fill(false)
+		newArr[idx] = true
+		setIsCategorySelect(newArr)
 		setIsValidState((pre) => ({
 			...pre,
 			bodyFat: [categorylist[idx][1][0], true],
 			muscleMass: [categorylist[idx][1][1], true],
-		}));
-	};
+		}))
+	}
 
 	const handleBackPage = (e) => {
-		e.preventDefault();
-		navigate(-1);
-	};
+		e.preventDefault()
+		navigate(-1)
+	}
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		if (isReady) {
 			// 회원가입 요청에 넣을 데이터
-			const submission = {};
+			const submission = {}
 
 			for (const key in isValidState) {
 				// 비밀번호 재확인과 이메일 인증은 빼고 보냄
 				if (key !== "password2" && key !== "emailModal") {
-					submission[key] = isValidState[key][0];
+					submission[key] = isValidState[key][0]
 				}
 				if (key === "height" || key === "weight") {
-					submission[key] = parseFloat(isValidState[key][0]);
+					submission[key] = parseFloat(isValidState[key][0])
 				}
 			}
 
-			const res = await userPostAPI.post("", submission);
+			const res = await userPostAPI.post("", submission)
 			if (res.data.accessToken) {
-				const accessToken = res.data.accessToken;
-				const refreshToken = res.data.refreshToken;
+				const accessToken = res.data.accessToken
+				const refreshToken = res.data.refreshToken
 				// 토큰 저장
-				localStorage.setItem("accessToken", accessToken);
-				localStorage.setItem("refreshToken", refreshToken);
-				localStorage.setItem("rememberMe", true);
+				localStorage.setItem("accessToken", accessToken)
+				localStorage.setItem("refreshToken", refreshToken)
+				localStorage.setItem("rememberMe", true)
 
 				// 회원가입 객체 초기화
 				const updatedState = Object.keys(isValidState).reduce((acc, key) => {
-					acc[key] = ["", false];
-					return acc;
-				}, {});
+					acc[key] = ["", false]
+					return acc
+				}, {})
 
-				setIsValidState(updatedState);
+				setIsValidState(updatedState)
 
-				navigate("/signup/complete", { replace: false }); // 절대 경로로 이동
+				navigate("/signup/complete", {replace: false}) // 절대 경로로 이동
 			} else {
-				console.log("회원가입 오류");
-				return { error: "Wrong Input" };
+				console.log("회원가입 오류")
+				return {error: "Wrong Input"}
 			}
 		}
-	};
+	}
+
 	return (
 		<S.SignupContainer>
-			<S.SignupTitle status="3">
-				<div className="statusBar">
-					<div className="statusBar2"></div>
-				</div>
+			<S.SignupTitle>
+				<StatusBar status={"3"} />
 				체형 정보를 입력해주세요
 			</S.SignupTitle>
 			<S.SignupUpdonwBalanceWrapper>
@@ -176,7 +176,7 @@ const SignupBodyFigure = () => {
 										step="1"
 										value={rangeValue}
 										onChange={(e) => {
-											prcieRangeValueHandler(e);
+											prcieRangeValueHandler(e)
 										}}
 									/>
 								</FilterPriceRangeWrap>
@@ -198,21 +198,19 @@ const SignupBodyFigure = () => {
 								key={index}
 								handleClick={handleClick}
 								isSelected={isCategorySelect[index]}
-								elementidx={index}
-							>
+								elementidx={index}>
 								{item[0]}
 							</MiddleTextCheckbox>
-						);
+						)
 					})}
 				</S.SignupTextContainer>
 				<div className="directButtonContainer">
 					<button
 						className="directbutton"
 						onClick={(e) => {
-							e.preventDefault();
-							navigate(`${currenturl}/direct`);
-						}}
-					>
+							e.preventDefault()
+							navigate(`${currenturl}/direct`)
+						}}>
 						골격근량, 체지방량 직접 입력
 						<img
 							src={rightarrow}
@@ -223,13 +221,15 @@ const SignupBodyFigure = () => {
 				</div>
 				<S.ButtonContainer>
 					<BeforeButton handleSubmit={handleBackPage} />
-					<MiddleButton handleSubmit={handleSubmit} isReady={isReady}>
+					<MiddleButton
+						handleSubmit={handleSubmit}
+						isReady={isReady}>
 						회원가입 완료
 					</MiddleButton>
 				</S.ButtonContainer>
 			</S.SignupUpdonwBalanceWrapper>
 		</S.SignupContainer>
-	);
-};
+	)
+}
 
-export default SignupBodyFigure;
+export default SignupBodyFigure
