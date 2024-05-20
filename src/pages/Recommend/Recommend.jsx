@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom"
 import {
 	RecommendHome,
 	RecommendCategory,
@@ -8,26 +8,47 @@ import {
 	RecommendSupplementResult,
 	RecommendSupplementPurpose,
 	RecommendSupplementBudget,
-} from "./";
+} from "."
 
 const Recommend = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<RecommendHome />} />
-			<Route path="category" element={<RecommendCategory />} />
+			<Route
+				path="/"
+				element={<RecommendHome />}
+			/>
+			<Route
+				path="category"
+				element={<RecommendCategory />}
+			/>
 
-			<Route path="workout" element={<RecommendWorkoutPart />} />
-			<Route path="machine" element={<RecommendMachine />} />
-			<Route path="machineresult" element={<RecommendMachineResult />} />
+			<Route
+				path="workout"
+				element={<RecommendWorkoutPart />}
+			/>
+			<Route
+				path="machine"
+				element={<RecommendMachine />}
+			/>
+			<Route
+				path="machineresult"
+				element={<RecommendMachineResult />}
+			/>
 
-			<Route path="supplementbudget" element={<RecommendSupplementBudget />} />
+			<Route
+				path="supplementbudget"
+				element={<RecommendSupplementBudget />}
+			/>
 			<Route
 				path="supplementpurpose"
 				element={<RecommendSupplementPurpose />}
 			/>
-			<Route path="supplementresult" element={<RecommendSupplementResult />} />
+			<Route
+				path="supplementresult"
+				element={<RecommendSupplementResult />}
+			/>
 		</Routes>
-	);
-};
+	)
+}
 
-export default Recommend;
+export default Recommend
