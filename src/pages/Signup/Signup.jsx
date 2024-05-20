@@ -1,24 +1,25 @@
-import { Route, Routes } from "react-router-dom";
+import {useLocation} from "react-router-dom"
 import {
-  SignupBodyFigure,
-  SignupBodyFigureDirect,
-  SignupBodyInfo,
-  SignupProfile,
-  SignupComplete,
-} from "./";
-
-// 회원가입 페이지에 대한 정보를 모두 담는 컴포넌트
+	SignupBodyFigure,
+	SignupBodyFigureDirect,
+	SignupBodyInfo,
+	SignupProfile,
+	SignupComplete,
+} from "./"
 
 const Signup = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<SignupProfile />} />
-      <Route path="bodyinfo" element={<SignupBodyInfo />} />
-      <Route path="bodyfigure" element={<SignupBodyFigure />} />
-      <Route path="bodyfigure/direct" element={<SignupBodyFigureDirect />} />
-      <Route path="complete" element={<SignupComplete />} />
-    </Routes>
-  );
-};
+	const location = useLocation()
+	return (
+		<>
+			{location.pathname === "/signup" && <SignupProfile />}
+			{location.pathname.includes("bodyinfo") && <SignupBodyInfo />}
+			{location.pathname === "/signup/bodyfigure" && <SignupBodyFigure />}
+			{location.pathname.includes("bodyfigure/direct") && (
+				<SignupBodyFigureDirect />
+			)}
+			{location.pathname.includes("complete") && <SignupComplete />}
+		</>
+	)
+}
 
-export default Signup;
+export default Signup
