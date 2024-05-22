@@ -1,43 +1,21 @@
 import * as S from "../StyledSignup"
-import {useRecoilValue} from "recoil"
-import {BeforeButton, MiddleButton, ProfileInput} from "../../../components"
+import {BeforeButton, MiddleButton} from "../../../components"
 import {useNavigate} from "react-router-dom"
-import {validationState} from "./../../../recoil/atom"
-import {useCallback, useEffect, useState} from "react"
 import StatusBar from "../../../components/StatusBar/StatusBar"
+import SignupProfileInput from "./components/SignupProfileInput"
 
 const SignupProfile = () => {
 	const navigate = useNavigate()
-	const isValidState = useRecoilValue(validationState)
-	const [isReady, setIsReady] = useState(false)
+
+	// 제출
+	const handleNextPage = (e) => {
+		e.preventDefault()
+		navigate(`bodyinfo`)
+	}
 
 	const handleBackPage = (e) => {
 		e.preventDefault()
 		navigate(-1)
-	}
-
-	// 모든 검사를 통과했는지를 반환하는 함수
-	// 이름 생년월일 이메일 이메일인증 패스워드 패스워드2 맞아야 넘어감
-	const handleValidate = useCallback(() => {
-		return (
-			Object.entries(isValidState)?.filter(([key, value]) => {
-				return value[1]
-			}).length >= 6
-		)
-	}, [isValidState])
-
-	useEffect(() => {
-		if (handleValidate()) {
-			setIsReady(true)
-		}
-	}, [isValidState, handleValidate])
-
-	// 제출
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		if (handleValidate() && isReady) {
-			navigate(`bodyinfo`)
-		}
 	}
 
 	return (
@@ -46,35 +24,10 @@ const SignupProfile = () => {
 				<StatusBar status={"1"} />
 				회원 정보를 입력해주세요
 			</S.SignupTitle>
-			<S.ProfileInputcontainer>
-				<ProfileInput
-					placeholder="2자리 이상"
-					name="userName">
-					이름
-				</ProfileInput>
-				<ProfileInput
-					placeholder="YYYY-MM-DD"
-					name="birthDate">
-					생년월일
-				</ProfileInput>
-				<ProfileInput
-					placeholder="이메일을 입력해주세요"
-					name="loginEmail">
-					이메일
-				</ProfileInput>
-				<ProfileInput
-					placeholder="8자리 이상 영문, 숫자 조합"
-					name="password">
-					비밀번호
-				</ProfileInput>
-			</S.ProfileInputcontainer>
+			<SignupProfileInput />
 			<S.ButtonContainer>
 				<BeforeButton handleSubmit={handleBackPage} />
-				<MiddleButton
-					handleSubmit={handleSubmit}
-					isReady={isReady}>
-					다음
-				</MiddleButton>
+				<MiddleButton handleSubmit={handleNextPage}>다음</MiddleButton>
 			</S.ButtonContainer>
 		</S.SignupContainer>
 	)

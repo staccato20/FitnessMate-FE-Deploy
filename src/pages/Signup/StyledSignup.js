@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import theme from "./../../styles/theme"
 
-export const SignupContainer = styled.form`
+export const SignupContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -127,10 +127,11 @@ export const BodyInfoContainer = styled.div`
 	}
 `
 
-export const ProfileInputcontainer = styled.div`
+export const ProfileInputcontainer = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
+	width: 100%;
 `
 export const SexName = styled.span`
 	transition: all 0.3s ease-out;
@@ -267,4 +268,9 @@ export const SignupUpdonwBalanceWrapper = styled.div`
 			}
 		}
 	}
+`
+
+export const InputWarning = styled.span`
+	color: ${theme.Error};
+	font-size: 16px;
 `
