@@ -3,14 +3,18 @@ import {BeforeButton, MiddleButton} from "../../../components"
 import {useNavigate} from "react-router-dom"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 import SignupProfileInput from "./components/SignupProfileInput"
+import {FormProvider, useForm} from "react-hook-form"
 
 const SignupProfile = () => {
 	const navigate = useNavigate()
+	const methods = useForm({mod: "onChange"})
 
 	// 제출
 	const handleNextPage = (e) => {
 		e.preventDefault()
-		navigate(`bodyinfo`)
+		if (methods.formState.isValid) {
+			navigate(`bodyinfo`)
+		}
 	}
 
 	const handleBackPage = (e) => {
@@ -19,17 +23,19 @@ const SignupProfile = () => {
 	}
 
 	return (
-		<S.SignupContainer>
-			<S.SignupTitle>
-				<StatusBar status={"1"} />
-				회원 정보를 입력해주세요
-			</S.SignupTitle>
-			<SignupProfileInput />
-			<S.ButtonContainer>
-				<BeforeButton handleSubmit={handleBackPage} />
-				<MiddleButton handleSubmit={handleNextPage}>다음</MiddleButton>
-			</S.ButtonContainer>
-		</S.SignupContainer>
+		<FormProvider {...methods}>
+			<S.SignupContainer>
+				<S.SignupTitle>
+					<StatusBar status={"1"} />
+					회원 정보를 입력해주세요
+				</S.SignupTitle>
+				<SignupProfileInput />
+				<S.ButtonContainer>
+					<BeforeButton onClick={handleBackPage} />
+					<MiddleButton onClick={handleNextPage}>다음</MiddleButton>
+				</S.ButtonContainer>
+			</S.SignupContainer>
+		</FormProvider>
 	)
 }
 

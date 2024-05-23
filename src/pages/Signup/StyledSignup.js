@@ -269,8 +269,3 @@ export const SignupUpdonwBalanceWrapper = styled.div`
 		}
 	}
 `
-
-export const InputWarning = styled.span`
-	color: ${theme.Error};
-	font-size: 16px;
-`
