@@ -19,7 +19,7 @@ export const InputWarning = styled.span`
 	font-size: 16px;
 `
 
-export const InputWrapper = styled.input`
+export const Input = styled.input`
 	&::-webkit-input-placeholder {
 		color: ${theme.Gray50};
 	}

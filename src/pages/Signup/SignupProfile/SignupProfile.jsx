@@ -7,9 +7,8 @@ import {FormProvider, useForm} from "react-hook-form"
 
 const SignupProfile = () => {
 	const navigate = useNavigate()
-	const methods = useForm({mod: "onChange"})
+	const methods = useForm({mode: "onChange"})
 
-	// 제출
 	const handleNextPage = (e) => {
 		e.preventDefault()
 		if (methods.formState.isValid) {
