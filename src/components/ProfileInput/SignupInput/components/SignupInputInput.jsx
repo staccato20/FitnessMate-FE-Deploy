@@ -12,7 +12,7 @@ const SignupInputInput = ({placeholder, registerOptions}) => {
 	return (
 		<S.Input
 			$isDirty={isDirty}
-			$isValid={error}
+			$isError={error}
 			placeholder={placeholder}
 			{...field}
 		/>

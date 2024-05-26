@@ -1,6 +1,16 @@
 import styled from "styled-components"
 import theme from "../../../styles/theme"
 
+const getBorderStyle = ($isError, $isDirty) => {
+	// input에 변경이 일어나지 않은 경우
+	if (!$isDirty) {
+		return ""
+	}
+
+	// valid 검사
+	return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand}`
+}
+
 export const InputName = styled.div`
 	color: ${theme.Black};
 	font-size: 18px;
@@ -29,10 +39,5 @@ export const Input = styled.input`
 	width: 100%;
 	color: ${theme.Gray50};
 	font-size: 18px;
-	border: ${({$isValid, $isDirty}) =>
-		$isDirty
-			? $isValid
-				? `2px solid ${theme.Error}`
-				: `2px solid ${theme.Brand}`
-			: ""};
+	border: ${({$isError, $isDirty}) => getBorderStyle($isError, $isDirty)};
 `
