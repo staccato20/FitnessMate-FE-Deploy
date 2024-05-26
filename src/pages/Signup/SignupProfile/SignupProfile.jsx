@@ -7,7 +7,16 @@ import {FormProvider, useForm} from "react-hook-form"
 
 const SignupProfile = () => {
 	const navigate = useNavigate()
-	const methods = useForm({mode: "onChange"})
+	const methods = useForm({
+		mode: "onChange",
+		defaultValues: {
+			userName: "",
+			birthDate: "",
+			email: "",
+			password: "",
+			passwordCheck: "",
+		},
+	})
 
 	const handleNextPage = (e) => {
 		e.preventDefault()
