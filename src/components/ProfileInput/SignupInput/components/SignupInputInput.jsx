@@ -1,11 +1,20 @@
-import {useFormContext} from "react-hook-form"
+import {useController, useFormContext} from "react-hook-form"
 import * as S from "../StyledSignupInput.js"
-const SignupInputInput = ({name, placeholder, registerOptions}) => {
-	const {register} = useFormContext()
+const SignupInputInput = ({placeholder, registerOptions}) => {
+	const {control} = useFormContext()
+	const {
+		field,
+		fieldState: {isDirty, error},
+	} = useController({
+		control,
+		...registerOptions,
+	})
 	return (
 		<S.Input
+			$isDirty={isDirty}
+			$isValid={error}
 			placeholder={placeholder}
-			{...register(name, registerOptions)}
+			{...field}
 		/>
 	)
 }

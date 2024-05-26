@@ -9,9 +9,12 @@ const SignupProfileInput = () => {
 	return (
 		<S.ProfileInputcontainer>
 			<SignupInput>
-				<SignupInput.Label isRequired>아이디</SignupInput.Label>
+				<SignupInput.Label
+					isRequired
+					isChecked={formState.isValid}>
+					아이디
+				</SignupInput.Label>
 				<SignupInput.Input
-					name="userName"
 					placeholder="2자리 이상"
 					registerOptions={REGISTER_OPTIONS.USER_NAME}
 				/>
@@ -22,7 +25,6 @@ const SignupProfileInput = () => {
 			<SignupInput>
 				<SignupInput.Label isRequired>생년월일</SignupInput.Label>
 				<SignupInput.Input
-					name="birthDate"
 					placeholder="YYYY-MM-DD"
 					registerOptions={REGISTER_OPTIONS.BIRTH_DATE}
 				/>
@@ -33,7 +35,6 @@ const SignupProfileInput = () => {
 			<SignupInput>
 				<SignupInput.Label isRequired>이메일</SignupInput.Label>
 				<SignupInput.Input
-					name="email"
 					placeholder="이메일을 입력해주세요"
 					registerOptions={REGISTER_OPTIONS.EMAIL}
 				/>
@@ -44,7 +45,6 @@ const SignupProfileInput = () => {
 			<SignupInput>
 				<SignupInput.Label isRequired>비밀번호</SignupInput.Label>
 				<SignupInput.Input
-					name="password"
 					placeholder="8자리 이상 영문, 숫자 조합"
 					registerOptions={REGISTER_OPTIONS.PASSWORD}
 				/>
@@ -54,14 +54,13 @@ const SignupProfileInput = () => {
 			</SignupInput>
 			<SignupInput>
 				<SignupInput.Input
-					name="passwordCheck"
 					placeholder="비밀번호 확인"
 					registerOptions={{
 						...REGISTER_OPTIONS.PASSWORD_CHECK,
 						validate: {
 							matchPassword: (value) => {
 								const {password} = getValues()
-								return password === value
+								return password === value || "비밀번호가 일치하지 않습니다."
 							},
 						},
 					}}
