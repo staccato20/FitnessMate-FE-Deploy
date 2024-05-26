@@ -1,7 +1,8 @@
 import * as S from "../../StyledSignup"
 import {useFormContext} from "react-hook-form"
-import {SignupInput} from "../../../../components/ProfileInput/SignupInput/SignupInput"
+
 import {REGISTER_OPTIONS} from "../constants/REGISTER_OPTIONS"
+import {SignupInput} from "../../../../components/SignupInput/SignupInput"
 
 const SignupProfileInput = () => {
 	const {formState, getValues, trigger} = useFormContext()

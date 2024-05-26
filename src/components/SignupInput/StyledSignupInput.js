@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import theme from "../../../styles/theme"
+import theme from "../../styles/theme"
 
 const getBorderStyle = ($isError, $isDirty) => {
 	// input에 변경이 일어나지 않은 경우
