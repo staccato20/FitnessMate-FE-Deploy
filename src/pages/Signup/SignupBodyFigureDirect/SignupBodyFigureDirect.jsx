@@ -70,7 +70,7 @@ const SignupBodyFigureDirect = () => {
 	return (
 		<S.SignupContainer>
 			<S.SignupTitle>
-				<StatusBar $status={"3"} />
+				<StatusBar status={"3"} />
 				<S.TitleEmphasis>골격근량과 체지방량</S.TitleEmphasis>
 				을 입력해주세요
 				<br />

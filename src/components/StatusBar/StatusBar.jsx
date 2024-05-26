@@ -3,7 +3,7 @@ import {StatusBarBox, StatusBarItem} from "./StyledStatusBar"
 const StatusBar = ({status}) => {
 	return (
 		<>
-			<StatusBarBox status={status}>
+			<StatusBarBox $status={status}>
 				<StatusBarItem $status={status} />
 			</StatusBarBox>
 		</>
