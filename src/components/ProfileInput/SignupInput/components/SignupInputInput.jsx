@@ -2,6 +2,7 @@ import {useController, useFormContext} from "react-hook-form"
 import * as S from "../StyledSignupInput.js"
 const SignupInputInput = ({placeholder, registerOptions}) => {
 	const {control} = useFormContext()
+
 	const {
 		field,
 		fieldState: {isDirty, error},

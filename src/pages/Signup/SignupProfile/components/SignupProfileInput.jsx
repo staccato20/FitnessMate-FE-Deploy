@@ -4,7 +4,7 @@ import {SignupInput} from "../../../../components/ProfileInput/SignupInput/Signu
 import {REGISTER_OPTIONS} from "../constants/REGISTER_OPTIONS"
 
 const SignupProfileInput = () => {
-	const {formState, getValues} = useFormContext()
+	const {formState, getValues, trigger} = useFormContext()
 
 	return (
 		<S.ProfileInputcontainer>
@@ -46,7 +46,16 @@ const SignupProfileInput = () => {
 				<SignupInput.Label isRequired>비밀번호</SignupInput.Label>
 				<SignupInput.Input
 					placeholder="8자리 이상 영문, 숫자 조합"
-					registerOptions={REGISTER_OPTIONS.PASSWORD}
+					registerOptions={{
+						...REGISTER_OPTIONS.PASSWORD,
+						rules: {
+							...REGISTER_OPTIONS.PASSWORD.rules,
+							onChange: () => {
+								Boolean(formState.dirtyFields.passwordCheck) &&
+									trigger("passwordCheck")
+							},
+						},
+					}}
 				/>
 				<SignupInput.Error>
 					{formState.errors?.password?.message}
@@ -57,10 +66,11 @@ const SignupProfileInput = () => {
 					placeholder="비밀번호 확인"
 					registerOptions={{
 						...REGISTER_OPTIONS.PASSWORD_CHECK,
-						validate: {
-							matchPassword: (value) => {
-								const {password} = getValues()
-								return password === value || "비밀번호가 일치하지 않습니다."
+						rules: {
+							...REGISTER_OPTIONS.PASSWORD_CHECK.rules,
+							validate: {
+								matchPassword: (passwordCheckValue) =>
+									passwordCheckValue === getValues("password"),
 							},
 						},
 					}}
