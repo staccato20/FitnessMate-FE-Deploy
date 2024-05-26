@@ -86,7 +86,7 @@ const SignupBodyInfo = () => {
 	return (
 		<S.SignupContainer>
 			<S.SignupTitle>
-				<StatusBar status={"2"} />
+				<StatusBar $status={"2"} />
 				신체 정보를 입력해주세요
 			</S.SignupTitle>
 			<S.BodyInfoContainer>

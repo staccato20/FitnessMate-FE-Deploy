@@ -15,8 +15,8 @@ export const NavbarContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background-color: ${theme.White};
-	backdrop-filter: ${({isLoginModal, isCancleModal, isRecommend}) =>
-		isLoginModal || isCancleModal || isRecommend ? "none" : "blur(4px)"};
+	backdrop-filter: ${({$isLoginModal, $isCancleModal, $isRecommend}) =>
+		$isLoginModal || $isCancleModal || $isRecommend ? "none" : "blur(4px)"};
 	.nav-logo {
 		width: 93px;
 	}

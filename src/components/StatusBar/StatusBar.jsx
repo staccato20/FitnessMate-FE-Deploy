@@ -4,7 +4,7 @@ const StatusBar = ({status}) => {
 	return (
 		<>
 			<StatusBarBox status={status}>
-				<StatusBarItem status={status} />
+				<StatusBarItem $status={status} />
 			</StatusBarBox>
 		</>
 	)

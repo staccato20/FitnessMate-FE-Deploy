@@ -96,9 +96,9 @@ const Navbar = () => {
 
 	return (
 		<S.NavbarContainer
-			isLoginModal={isLoginModal}
-			isCancleModal={isCancleModal}
-			isRecommend={isRecommend}>
+			$isLoginModal={isLoginModal}
+			$isCancleModal={isCancleModal}
+			$isRecommend={isRecommend}>
 			<img
 				src={logoimg}
 				className="nav-logo"

@@ -10,7 +10,7 @@ export const StatusBarBox = styled.div`
 
 export const StatusBarItem = styled.div`
 	position: absolute;
-	width: ${({status}) => `${(100 / 4) * status}%`};
+	width: ${({$status}) => `${(100 / 4) * $status}%`};
 	height: 4px;
 	background: ${theme.Brand};
 `
