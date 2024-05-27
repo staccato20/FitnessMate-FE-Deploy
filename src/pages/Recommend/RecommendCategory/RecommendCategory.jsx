@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom"
-import {SmallButton} from "../../../components/"
+import {CategoryCheckbox} from "../../../components/"
 import theme from "../../../styles/theme"
 import {
 	RecommendButtonContainer,
@@ -7,7 +7,6 @@ import {
 	RecommendImgContainer,
 	RecommendTitle,
 } from "../StyledRecommend"
-import {ImgCheckbox} from "../../../components"
 import {useState} from "react"
 import {SignupTitle} from "../../Signup/StyledSignup"
 import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
@@ -62,14 +61,14 @@ const RecommendCategory = () => {
 			<RecommendImgContainer>
 				{Object.entries(category).map(([key, value], index) => {
 					return (
-						<ImgCheckbox
+						<CategoryCheckbox
 							key={key}
 							handleClick={handleSelect}
 							isSelected={value[0]}
 							elementidx={index}
 							articleimg={value[1]}>
 							{key} 추천 받을래요
-						</ImgCheckbox>
+						</CategoryCheckbox>
 					)
 				})}
 			</RecommendImgContainer>
