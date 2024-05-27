@@ -1,7 +1,7 @@
 import * as S from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
 import rightarrow from "../../../assets/images/rightarrow.svg"
-import {MiddleButton, BeforeButton} from "../../../components"
+import {MiddleButton, BeforeButton} from "../../../components/"
 import {useRecoilState} from "recoil"
 import {validationState} from "../../../recoil/atom"
 import {useEffect, useState} from "react"
@@ -13,6 +13,7 @@ import {
 	FilterPriceSlideInner,
 } from "./StyledBalanceBar"
 import MiddleTextCheckbox from "../../../components/TextCheckbox/MiddleTextCheckbox"
+import StatusBar from "../../../components/StatusBar/StatusBar"
 
 const SignupBodyFigure = () => {
 	// balance 문구
@@ -144,10 +145,8 @@ const SignupBodyFigure = () => {
 	}
 	return (
 		<S.SignupContainer>
-			<S.SignupTitle status="3">
-				<div className="statusBar">
-					<div className="statusBar2"></div>
-				</div>
+			<S.SignupTitle>
+				<StatusBar status={"3"} />
 				체형 정보를 입력해주세요
 			</S.SignupTitle>
 			<S.SignupUpdonwBalanceWrapper>

@@ -1,20 +1,20 @@
-import theme from "../../../styles/theme"
+import theme from "./../../../styles/theme"
 import {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
-import {SmallTextCheckbox} from "../../../components"
+import {SmallTextCheckbox} from "./../../../components/"
 import {useRecoilState} from "recoil"
-import {bodyPartState} from "../../../recoil/atom"
-import {userBodyPartAPI} from "../../../apis/API"
+import {bodyPartState} from "./../../../recoil/atom"
+import {userBodyPartAPI} from "./../../../apis/API"
 
-import {AfterArrowButton} from "../../../components/Button/AfterArrowButton"
+import {AfterArrowButton} from "./../../../components/Button/AfterArrowButton"
 
-import {BeforeArrowButton} from "../../../components/Button/BeforeArrowButton"
+import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
 import {
 	RecommendButtonContainer,
 	RecommendContainer,
 	RecommendTitle,
 	TextCheckboxContainer,
-} from "../StyledRecommend"
+} from "./../StyledRecommend"
 import {SignupTitle} from "../../Signup/StyledSignup"
 
 const RecommendWorkoutPart = () => {
@@ -109,7 +109,7 @@ const RecommendWorkoutPart = () => {
 
 	return (
 		<RecommendContainer>
-			<SignupTitle status="2">
+			<SignupTitle $status={"2"}>
 				<div className="statusBar">
 					<div className="statusBar2"></div>
 				</div>

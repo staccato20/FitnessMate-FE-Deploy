@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom"
-import {SmallButton} from "../../../components"
+import {CategoryCheckbox} from "../../../components/"
 import theme from "../../../styles/theme"
 import {
 	RecommendButtonContainer,
@@ -7,11 +7,10 @@ import {
 	RecommendImgContainer,
 	RecommendTitle,
 } from "../StyledRecommend"
-import {ImgCheckbox} from "../../../components"
 import {useState} from "react"
 import {SignupTitle} from "../../Signup/StyledSignup"
-import {BeforeArrowButton} from "../../../components/Button/BeforeArrowButton"
-import {AfterArrowButton} from "../../../components/Button/AfterArrowButton"
+import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
+import {AfterArrowButton} from "./../../../components/Button/AfterArrowButton"
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
 const RecommendCategory = () => {
@@ -47,7 +46,7 @@ const RecommendCategory = () => {
 
 	return (
 		<RecommendContainer>
-			<SignupTitle status="1">
+			<SignupTitle $status={"1"}>
 				<div className="statusBar">
 					<div className="statusBar2"></div>
 				</div>
@@ -62,14 +61,14 @@ const RecommendCategory = () => {
 			<RecommendImgContainer>
 				{Object.entries(category).map(([key, value], index) => {
 					return (
-						<ImgCheckbox
+						<CategoryCheckbox
 							key={key}
 							handleClick={handleSelect}
 							isSelected={value[0]}
 							elementidx={index}
 							articleimg={value[1]}>
 							{key} 추천 받을래요
-						</ImgCheckbox>
+						</CategoryCheckbox>
 					)
 				})}
 			</RecommendImgContainer>

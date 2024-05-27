@@ -6,13 +6,13 @@ import {RecoilRoot} from "recoil"
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<div className="App">
+		<div className="App">
+			<ThemeProvider theme={theme}>
 				<RecoilRoot>
 					<Navigator />
 				</RecoilRoot>
-			</div>
-		</ThemeProvider>
+			</ThemeProvider>
+		</div>
 	)
 }
 

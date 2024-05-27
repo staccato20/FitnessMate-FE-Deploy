@@ -35,30 +35,30 @@ const Navbar = () => {
 		}
 	}
 	// 브라우저의 새로고침 감지
-	useEffect(() => {
-		// signup 페이지 && 새로고침 시에만
-		if (
-			localStorage.getItem("refreshed") &&
-			window.performance.navigation.type === 1 &&
-			window.location.href.includes("signup")
-		) {
-			navigate("/signup")
-			localStorage.removeItem("refreshed") // 플래그 제거
-		}
+	// useEffect(() => {
+	// 	// signup 페이지 && 새로고침 시에만
+	// 	if (
+	// 		localStorage.getItem("refreshed") &&
+	// 		window.performance.navigation.type === 1 &&
+	// 		window.location.href.includes("signup")
+	// 	) {
+	// 		navigate("/signup")
+	// 		localStorage.removeItem("refreshed") // 플래그 제거
+	// 	}
 
-		const handleBeforeUnload = (e) => {
-			e.preventDefault()
-			if (window.location.href.includes("signup")) {
-				localStorage.setItem("refreshed", "true")
-			}
-		}
+	// 	const handleBeforeUnload = (e) => {
+	// 		e.preventDefault()
+	// 		if (window.location.href.includes("signup")) {
+	// 			localStorage.setItem("refreshed", "true")
+	// 		}
+	// 	}
 
-		window.addEventListener("beforeunload", handleBeforeUnload)
+	// 	window.addEventListener("beforeunload", handleBeforeUnload)
 
-		return () => {
-			window.removeEventListener("beforeunload", handleBeforeUnload)
-		}
-	}, [navigate])
+	// 	return () => {
+	// 		window.removeEventListener("beforeunload", handleBeforeUnload)
+	// 	}
+	// }, [navigate])
 
 	const handleRecommend = () => {
 		if (window.location.href.includes("signup")) {
@@ -96,9 +96,9 @@ const Navbar = () => {
 
 	return (
 		<S.NavbarContainer
-			isLoginModal={isLoginModal}
-			isCancleModal={isCancleModal}
-			isRecommend={isRecommend}>
+			$isLoginModal={isLoginModal}
+			$isCancleModal={isCancleModal}
+			$isRecommend={isRecommend}>
 			<img
 				src={logoimg}
 				className="nav-logo"

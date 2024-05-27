@@ -1,11 +1,12 @@
 import {useNavigate} from "react-router-dom"
 import {BodyCompositionInput} from "../../../components"
 import * as S from "../StyledSignup"
-import {BeforeButton, MiddleButton} from "../../../components"
+import {BeforeButton, MiddleButton} from "../../../components/"
 import {useEffect, useState} from "react"
 import {useRecoilState} from "recoil"
 import {validationState} from "../../../recoil/atom"
 import {userPostAPI} from "../../../apis/API"
+import StatusBar from "../../../components/StatusBar/StatusBar"
 
 const SignupBodyFigureDirect = () => {
 	const navigate = useNavigate()
@@ -68,10 +69,8 @@ const SignupBodyFigureDirect = () => {
 
 	return (
 		<S.SignupContainer>
-			<S.SignupTitle status="3">
-				<div className="statusBar">
-					<div className="statusBar2"></div>
-				</div>
+			<S.SignupTitle>
+				<StatusBar status={"3"} />
 				<S.TitleEmphasis>골격근량과 체지방량</S.TitleEmphasis>
 				을 입력해주세요
 				<br />

@@ -19,7 +19,7 @@ const Login = (props) => {
 	const navigate = useNavigate()
 
 	const handleSignup = () => {
-		navigate("/signup")
+		navigate("/signup/profile")
 	}
 
 	const handleLogin = async (e) => {
