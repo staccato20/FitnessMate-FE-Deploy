@@ -4,12 +4,12 @@ import React from "react"
 import * as S from "./StyledButton"
 import "./StyledButtons.css"
 
-function MiddleButton({children, onClick, isReady}) {
+function MiddleButton({children, onClick, $isValid}) {
 	return (
 		<S.MiddleButtonWrapper
 			className="Button"
 			onClick={onClick}
-			isReady={isReady}>
+			$isValid={$isValid}>
 			{children}
 		</S.MiddleButtonWrapper>
 	)

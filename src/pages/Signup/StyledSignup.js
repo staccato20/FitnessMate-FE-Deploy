@@ -1,13 +1,12 @@
 import styled from "styled-components"
 import theme from "./../../styles/theme"
 
-export const SignupContainer = styled.div`
+export const SignupContainer = styled.form`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
 	justify-content: space-between;
-	gap: 70px;
 	width: 474px;
+	min-height: 700px;
 
 	.recommendText {
 		color: ${theme.Gray80};
@@ -111,6 +110,7 @@ export const BodyInfoContainer = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 24px;
+	width: 100%;
 	.sexSelect {
 		display: flex;
 		flex-direction: column;
@@ -184,8 +184,6 @@ export const BodyCompositionInputList = styled.div`
 export const ButtonContainer = styled.div`
 	display: flex;
 	align-items: center;
-	position: absolute;
-	top: 917px;
 `
 
 export const SignupUpdonwBalanceWrapper = styled.div`
@@ -268,4 +266,10 @@ export const SignupUpdonwBalanceWrapper = styled.div`
 			}
 		}
 	}
+`
+
+export const SexSelect = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 `

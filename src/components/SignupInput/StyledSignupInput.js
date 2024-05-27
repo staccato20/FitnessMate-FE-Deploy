@@ -41,3 +41,8 @@ export const Input = styled.input`
 	font-size: 18px;
 	border: ${({$isError, $isDirty}) => getBorderStyle($isError, $isDirty)};
 `
+
+export const CheckBoxGroup = styled.div`
+	display: flex;
+	gap: 24px;
+`
