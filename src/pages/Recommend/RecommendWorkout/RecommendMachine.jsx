@@ -17,13 +17,6 @@ import TokenApi from "../../../apis/TokenApi"
 import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
 import {SignupTitle} from "../../Signup/StyledSignup"
 import Loading from "../../../components/Loading/Loading"
-} from "../StyledRecommend"
-import {SmallButton, SmallTextCheckbox} from "../../../components"
-import theme from "../../../styles/theme"
-import TokenApi from "../../../apis/TokenApi"
-import {BeforeArrowButton} from "../../../components/Button/BeforeArrowButton"
-import {SignupTitle} from "../../Signup/StyledSignup"
-import Loading from "../../../components/Loading/Loading"
 
 const RecommendMachine = () => {
 	const navigate = useNavigate()

@@ -27,7 +27,7 @@ const SignupBodyInfo = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (methods.formState.isValid) {
-			navigate("bodyfigure")
+			navigate("/signup/bodyfigure")
 		}
 	}
 
