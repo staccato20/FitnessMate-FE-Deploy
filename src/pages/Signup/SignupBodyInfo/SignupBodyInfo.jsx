@@ -81,7 +81,7 @@ const SignupBodyInfo = () => {
 					</SignupInput>
 				</S.BodyInfoContainer>
 				<S.ButtonContainer>
-					<BeforeButton handleSubmit={handleBackPage} />
+					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton
 						onClick={handleSubmit}
 						$isValid={methods.formState.isValid}>

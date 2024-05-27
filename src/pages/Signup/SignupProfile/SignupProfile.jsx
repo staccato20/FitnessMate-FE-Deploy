@@ -20,9 +20,9 @@ const SignupProfile = () => {
 
 	const handleNextPage = (e) => {
 		e.preventDefault()
-		if (methods.formState.isValid) {
-			navigate(`bodyinfo`)
-		}
+		// if (methods.formState.isValid) {
+		navigate(`/signup/bodyinfo`)
+		// }
 	}
 
 	const handleBackPage = (e) => {
@@ -40,7 +40,11 @@ const SignupProfile = () => {
 				<SignupProfileInput />
 				<S.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
-					<MiddleButton onClick={handleNextPage}>다음</MiddleButton>
+					<MiddleButton
+						$isValid={methods.formState.isValid}
+						onClick={handleNextPage}>
+						다음
+					</MiddleButton>
 				</S.ButtonContainer>
 			</S.SignupContainer>
 		</FormProvider>
