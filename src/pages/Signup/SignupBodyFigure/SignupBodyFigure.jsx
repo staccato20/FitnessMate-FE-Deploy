@@ -143,7 +143,6 @@ const SignupBodyFigure = () => {
 			}
 		}
 	}
-
 	return (
 		<S.SignupContainer>
 			<S.SignupTitle>

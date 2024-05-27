@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
 import {useRecoilState} from "recoil"
-import {RecommendState, bodyPartState} from "./../../../recoil/atom"
+import {RecommendState, bodyPartState} from "../../../recoil/atom"
 import {
 	BorderTextCheckboxContainer,
 	BorderTextCheckboxInnerContainer,
@@ -15,6 +15,13 @@ import {SmallButton, SmallTextCheckbox} from "./../../../components/"
 import theme from "../../../styles/theme"
 import TokenApi from "../../../apis/TokenApi"
 import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
+import {SignupTitle} from "../../Signup/StyledSignup"
+import Loading from "../../../components/Loading/Loading"
+} from "../StyledRecommend"
+import {SmallButton, SmallTextCheckbox} from "../../../components"
+import theme from "../../../styles/theme"
+import TokenApi from "../../../apis/TokenApi"
+import {BeforeArrowButton} from "../../../components/Button/BeforeArrowButton"
 import {SignupTitle} from "../../Signup/StyledSignup"
 import Loading from "../../../components/Loading/Loading"
 
@@ -141,6 +148,9 @@ const RecommendMachine = () => {
 			makeRequest(`/recommendation/workout/history/${recommendId}`)
 				.then((data) => {
 					setRecommendState(data)
+					navigate("/recommend/machineresult")
+					setRecommendState(data)
+					console.log(recommendState)
 					navigate("/recommend/machineresult")
 				})
 				.catch((error) => console.error("요청 실패", error))
