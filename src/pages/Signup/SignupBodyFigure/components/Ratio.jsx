@@ -31,7 +31,7 @@ const Ratio = ({ratioValue, ratioText, handleRatio}) => {
 							}}>
 							<S.RatioMinusButtonImg
 								src={minus}
-								alt="상체 비중 증가 버튼"
+								alt="상체 비중 감소 버튼"
 							/>
 						</S.RatioMinusButton>
 					</S.RatioButtonBox>
