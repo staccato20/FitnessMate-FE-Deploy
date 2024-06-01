@@ -17,7 +17,7 @@ export const RatioTitle = styled.span`
 `
 export const RatioBox = styled.div`
 	display: flex;
-	gap: 8px;
+	gap: 20px;
 	align-items: flex-end;
 `
 export const RatioBoxTitle = styled.span`
@@ -33,7 +33,7 @@ export const RatioContent = styled.div`
 	align-items: center;
 `
 export const RatioPercentBox = styled.div`
-	width: 88px;
+	width: 100%;
 	border-radius: 8px;
 	padding: 12px;
 	border: 1px solid var(--gray-20, #f2f4f6);

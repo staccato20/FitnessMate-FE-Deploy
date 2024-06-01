@@ -8,7 +8,7 @@ import {useSlide} from "./hooks/useSlide"
 import Ratio from "./components/Ratio"
 
 const SignupBodyFigure = () => {
-	const {slideVolume, slideText, handleSlide} = useSlide()
+	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const navigate = useNavigate()
 
 	const handleClick = (idx) => {
@@ -33,9 +33,9 @@ const SignupBodyFigure = () => {
 			</S.SignupTitle>
 			<S.SignupUpdonwBalanceWrapper>
 				<Ratio
-					slideVolume={slideVolume}
-					slideText={slideText}
-					handleSlide={handleSlide}
+					ratioValue={ratioValue}
+					ratioText={ratioText}
+					handleRatio={handleRatio}
 				/>
 				<span className="bodyfigureText">체형을 선택해주세요</span>
 				<S.SignupTextContainer>
