@@ -5,7 +5,6 @@ import Recommend from "../pages/Recommend/Recommend"
 import Mypage from "../pages/MyPage/Mypage"
 import MainLayout from "../Layout/Mainlayout"
 import Search from "../pages/Search/Search"
-import SignupBodyFigureDirect from "../pages/MyPage/Fix/FixBodyFigureDirect"
 import SignupBodyInfo from "../pages/Signup/SignupBodyInfo/SignupBodyInfo"
 import SignupProfile from "../pages/Signup/SignupProfile/SignupProfile"
 import SignupBodyFigure from "../pages/Signup/SignupBodyFigure/SignupBodyFigure"
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
 					{path: "profile", element: <SignupProfile />},
 					{path: "bodyinfo", element: <SignupBodyInfo />},
 					{path: "bodyfigure", element: <SignupBodyFigure />},
-					{path: "bodyfigure/direct", element: <SignupBodyFigureDirect />},
 					{path: "complete", element: <SignupComplete />},
 				],
 			},

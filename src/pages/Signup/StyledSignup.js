@@ -7,6 +7,7 @@ export const SignupContainer = styled.form`
 	justify-content: space-between;
 	width: 474px;
 	min-height: 700px;
+	gap: 52px;
 
 	.recommendText {
 		color: ${theme.Gray80};
@@ -191,61 +192,6 @@ export const SignupUpdonwBalanceWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 48px;
-	.updownBalanceBox {
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		.updownBalanceTitle {
-			color: ${theme.Gray80};
-			font-size: 20px;
-			font-weight: 600;
-			letter-spacing: -0.4px;
-		}
-		.updownBalanceBar {
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-			.updownBalanceBarTitle {
-				color: ${theme.Gray80};
-				font-size: 14px;
-				text-align: center;
-			}
-			.updownBalanceBarContent {
-				justify-content: space-between;
-				height: 58px;
-				display: flex;
-				align-items: center;
-				.balanceRatioBox {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					gap: 4px;
-					.balanceRatio {
-						color: ${theme.Gray80};
-						font-size: 18px;
-					}
-					.balanceRatioPercent {
-						color: ${theme.Gray80};
-						font-size: 18px;
-						font-weight: 700;
-					}
-					.balanceRatioPercent2 {
-						color: ${theme.Brand};
-						font-size: 18px;
-						font-weight: 700;
-					}
-				}
-			}
-		}
-		.bodyfigureText {
-			padding-bottom: 10px;
-			color: ${theme.Gray80};
-			font-size: 20px;
-			font-weight: 600;
-			letter-spacing: -0.4px;
-		}
-	}
 	.directButtonContainer {
 		display: flex;
 		justify-content: flex-end;
