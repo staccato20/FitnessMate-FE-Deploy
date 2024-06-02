@@ -16,7 +16,7 @@ export const BodyFigureTitle = styled.span`
 `
 
 export const BodyFigureOptionList = styled.div`
-	display: ${({$isChecked}) => ($isChecked ? "flex" : "none")};
+	display: flex;
 	flex-direction: column;
 	gap: 14px;
 	margin-left: 10px;

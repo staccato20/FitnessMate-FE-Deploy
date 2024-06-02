@@ -2,12 +2,11 @@ import FigureCheckBox from "../../../../../components/CheckBox/FigureCheckBox"
 import * as S from "./StyledBodyFigure"
 const BodyFigureOptionMenuItem = ({
 	children,
-	$isChecked,
 	selectedFigure,
 	handleSelectFigure,
 }) => {
 	return (
-		<S.BodyFigureOptionList $isChecked={$isChecked}>
+		<S.BodyFigureOptionList>
 			{children?.map((figure, index) => (
 				<FigureCheckBox
 					handleCheckItem={handleSelectFigure}

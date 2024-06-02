@@ -19,19 +19,21 @@ const BodyFigure = ({
 					handleCheckItem={handleSelectMenu}>
 					유형으로 선택하기
 				</CheckBox>
-				<BodyFigureOptionMenuItem
-					$isChecked={selectedMenu === 0}
-					selectedFigure={selectedFigure}
-					handleSelectFigure={handleSelectFigure}>
-					{CATEGORY_LIST}
-				</BodyFigureOptionMenuItem>
+				{selectedMenu === 0 && (
+					<BodyFigureOptionMenuItem
+						selectedFigure={selectedFigure}
+						handleSelectFigure={handleSelectFigure}>
+						{CATEGORY_LIST}
+					</BodyFigureOptionMenuItem>
+				)}
+
 				<CheckBox
 					$isChecked={selectedMenu === 1}
 					index={1}
 					handleCheckItem={handleSelectMenu}>
 					직접 입력하기
 				</CheckBox>
-				<BodyFigureOptionDirectItem />
+				{selectedMenu === 1 && <BodyFigureOptionDirectItem />}
 			</S.BodyFigureOptionMenuList>
 		</S.BodyFigureWrapper>
 	)
