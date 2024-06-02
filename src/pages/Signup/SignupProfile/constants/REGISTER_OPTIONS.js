@@ -79,6 +79,7 @@ export const REGISTER_OPTIONS = {
 		name: "bodyFat",
 		rules: {
 			required: true,
+			valueAsNumber: true,
 		},
 	},
 
@@ -86,6 +87,7 @@ export const REGISTER_OPTIONS = {
 		name: "muscleMass",
 		rules: {
 			required: true,
+			valueAsNumber: true,
 		},
 	},
 }

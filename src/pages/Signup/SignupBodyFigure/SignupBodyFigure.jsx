@@ -10,23 +10,43 @@ import Ratio from "./components/Ratio/Ratio"
 import {useSelectMenu} from "./hooks/useSelectMenu"
 import {useSelectFigure} from "./hooks/useSelectFigure"
 import {FormProvider, useForm} from "react-hook-form"
+import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
 const SignupBodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
+
 	const methods = useForm({
 		defaultValues: {
-			bodyFat: "",
-			muscleMass: "",
+			bodyFat: 0,
+			muscleMass: 0,
 		},
 	})
+
 	const navigate = useNavigate()
 
 	const handleBackPage = (e) => {
 		e.preventDefault()
 		navigate(-1)
 	}
-	const onSubmit = (data) => console.log(data)
+	const onSubmit = (figure) => {
+		let submission
+		if (selectedMenu === 0) {
+			submission = {
+				upDownBalance: ratioValue,
+				bodyFat: CATEGORY_LIST[selectedFigure][1][0],
+				muscleMass: CATEGORY_LIST[selectedFigure][1][1],
+			}
+		} else if (selectedMenu === 1) {
+			submission = {
+				upDownBalance: ratioValue,
+				bodyFat: figure.bodyFat,
+				muscleMass: figure.muscleMass,
+			}
+		}
+
+		console.log(submission)
+	}
 
 	return (
 		<S.SignupContainer onSubmit={methods.handleSubmit(onSubmit)}>
@@ -34,25 +54,25 @@ const SignupBodyFigure = () => {
 				<StatusBar status={"3"} />
 				체형 정보를 입력해주세요
 			</S.SignupTitle>
-			<FormProvider {...methods}>
-				<S.SignupUpdonwBalanceWrapper>
-					<Ratio
-						ratioValue={ratioValue}
-						ratioText={ratioText}
-						handleRatio={handleRatio}
-					/>
+			<S.SignupUpdonwBalanceWrapper>
+				<Ratio
+					ratioValue={ratioValue}
+					ratioText={ratioText}
+					handleRatio={handleRatio}
+				/>
+				<FormProvider {...methods}>
 					<BodyFigure
 						selectedMenu={selectedMenu}
 						handleSelectMenu={handleSelectMenu}
 						selectedFigure={selectedFigure}
 						handleSelectFigure={handleSelectFigure}
 					/>
-					<S.ButtonContainer>
-						<BeforeButton onClick={handleBackPage} />
-						<MiddleButton type="submit">회원가입 완료</MiddleButton>
-					</S.ButtonContainer>
-				</S.SignupUpdonwBalanceWrapper>
-			</FormProvider>
+				</FormProvider>
+				<S.ButtonContainer>
+					<BeforeButton onClick={handleBackPage} />
+					<MiddleButton type="submit">회원가입 완료</MiddleButton>
+				</S.ButtonContainer>
+			</S.SignupUpdonwBalanceWrapper>
 		</S.SignupContainer>
 	)
 }
