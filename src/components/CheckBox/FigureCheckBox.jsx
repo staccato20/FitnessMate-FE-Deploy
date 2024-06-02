@@ -2,9 +2,9 @@ import * as S from "./StyledCheckBox"
 import checkedIcon from "../../assets/images/checkedIcon.png"
 import notCheckedIcon from "../../assets/images/notCheckedIcon.png"
 
-const CheckBox = ({children, $isChecked, handleCheckItem, index}) => {
+const FigureCheckBox = ({children, $isChecked, handleCheckItem, index}) => {
 	return (
-		<S.CheckBoxWrapper
+		<S.FigureCheckBoxWrapper
 			$isChecked={$isChecked}
 			onClick={() => {
 				handleCheckItem(index)
@@ -15,9 +15,11 @@ const CheckBox = ({children, $isChecked, handleCheckItem, index}) => {
 				src={$isChecked ? checkedIcon : notCheckedIcon}
 				alt="옵션 선택 이미지"
 			/>
-			<S.CheckBoxText>{children}</S.CheckBoxText>
-		</S.CheckBoxWrapper>
+			<S.FigureCheckBoxText $isChecked={$isChecked}>
+				{children}
+			</S.FigureCheckBoxText>
+		</S.FigureCheckBoxWrapper>
 	)
 }
 
-export default CheckBox
+export default FigureCheckBox

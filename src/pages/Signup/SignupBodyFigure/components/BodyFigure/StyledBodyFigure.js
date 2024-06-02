@@ -13,11 +13,19 @@ export const BodyFigureTitle = styled.span`
 	color: ${theme.Gray80};
 	font-size: 20px;
 	font-weight: 600;
-	letter-spacing: -0.4px;
 `
 
 export const BodyFigureOptionList = styled.div`
-	display: flex;
+	display: ${({$isChecked}) => ($isChecked ? "flex" : "none")};
 	flex-direction: column;
 	gap: 14px;
+	margin-left: 10px;
+	width: 100%;
+	padding: 10px;
+`
+
+export const BodyFigureOptionMenuList = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 `

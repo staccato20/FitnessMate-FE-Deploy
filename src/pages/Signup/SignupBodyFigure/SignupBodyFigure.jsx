@@ -7,9 +7,22 @@ import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useSlide} from "./hooks/useSlide"
 import BodyFigure from "./components/BodyFigure/BodyFigure"
 import Ratio from "./components/Ratio/Ratio"
+import {useState} from "react"
 
 const SignupBodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
+	const [selectedMenu, setSelectedMenu] = useState(-1)
+	const [selectedFigure, setSelectedFigure] = useState(-1)
+
+	console.log("gg")
+	const handleSelectFigure = (idx) => {
+		setSelectedFigure(idx)
+	}
+
+	const handleSelectMenu = (idx) => {
+		setSelectedMenu(idx)
+	}
+
 	const navigate = useNavigate()
 
 	const handleBackPage = (e) => {
@@ -33,7 +46,12 @@ const SignupBodyFigure = () => {
 					ratioText={ratioText}
 					handleRatio={handleRatio}
 				/>
-				<BodyFigure />
+				<BodyFigure
+					selectedMenu={selectedMenu}
+					handleSelectMenu={handleSelectMenu}
+					selectedFigure={selectedFigure}
+					handleSelectFigure={handleSelectFigure}
+				/>
 				<S.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton onClick={handleSubmit}>회원가입 완료</MiddleButton>
