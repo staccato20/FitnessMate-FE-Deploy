@@ -74,4 +74,18 @@ export const REGISTER_OPTIONS = {
 			},
 		},
 	},
+
+	BODY_FAT: {
+		name: "bodyFat",
+		rules: {
+			required: true,
+		},
+	},
+
+	MUSCLE_MASS: {
+		name: "muscleMass",
+		rules: {
+			required: true,
+		},
+	},
 }

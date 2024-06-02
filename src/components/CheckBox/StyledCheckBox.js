@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import theme from "../../styles/theme"
 
 export const CheckBoxWrapper = styled.button`
 	display: flex;
@@ -33,7 +34,12 @@ export const FigureCheckBoxWrapper = styled.button`
 	border-radius: 12px;
 	background: ${({$isChecked}) => ($isChecked ? "#f2f4f6" : "#fff")};
 	height: 50px;
+	&:hover {
+		background: ${({$isChecked}) =>
+			$isChecked ? `#f2f4f6` : `${theme.Gray10}`};
+	}
 `
+
 export const FigureCheckBoxText = styled.span`
 	color: ${({$isChecked}) => ($isChecked ? "#272e38" : "#6b7684")};
 	text-align: center;
