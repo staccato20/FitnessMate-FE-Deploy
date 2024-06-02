@@ -1,20 +1,16 @@
 import * as S from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
-import {MiddleButton, BeforeButton} from "../../../components/"
-import MiddleTextCheckbox from "../../../components/TextCheckbox/MiddleTextCheckbox"
+
+import MiddleButton from "../../../components/Button/MiddleButton"
+import BeforeButton from "../../../components/Button/BeforeButton"
 import StatusBar from "../../../components/StatusBar/StatusBar"
-import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
 import {useSlide} from "./hooks/useSlide"
-import Ratio from "./components/Ratio"
+import BodyFigure from "./components/BodyFigure/BodyFigure"
+import Ratio from "./components/Ratio/Ratio"
 
 const SignupBodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const navigate = useNavigate()
-
-	const handleClick = (idx) => {
-		const newArr = Array(CATEGORY_LIST.length).fill(false)
-		newArr[idx] = true
-	}
 
 	const handleBackPage = (e) => {
 		e.preventDefault()
@@ -37,20 +33,7 @@ const SignupBodyFigure = () => {
 					ratioText={ratioText}
 					handleRatio={handleRatio}
 				/>
-				<span className="bodyfigureText">체형을 선택해주세요</span>
-				<S.SignupTextContainer>
-					{CATEGORY_LIST?.map((item, index) => {
-						return (
-							<MiddleTextCheckbox
-								key={index}
-								handleClick={handleClick}
-								$isSelected
-								elementidx={index}>
-								{item[0]}
-							</MiddleTextCheckbox>
-						)
-					})}
-				</S.SignupTextContainer>
+				<BodyFigure />
 				<S.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton onClick={handleSubmit}>회원가입 완료</MiddleButton>

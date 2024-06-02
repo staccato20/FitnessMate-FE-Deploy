@@ -6,7 +6,6 @@ export const SignupContainer = styled.form`
 	flex-direction: column;
 	justify-content: space-between;
 	width: 474px;
-	min-height: 700px;
 	gap: 52px;
 
 	.recommendText {
@@ -94,13 +93,6 @@ export const ProfileInputcontainer = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	width: 100%;
-`
-
-export const SignupTextContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 14px;
 	width: 100%;
 `
 
