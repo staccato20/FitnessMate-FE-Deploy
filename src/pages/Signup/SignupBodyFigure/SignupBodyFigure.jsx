@@ -7,21 +7,12 @@ import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useSlide} from "./hooks/useSlide"
 import BodyFigure from "./components/BodyFigure/BodyFigure"
 import Ratio from "./components/Ratio/Ratio"
-import {useState} from "react"
-
+import {useSelectMenu} from "./hooks/useSelectMenu"
+import {useSelectFigure} from "./hooks/useSelectFigure"
 const SignupBodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
-	const [selectedMenu, setSelectedMenu] = useState(-1)
-	const [selectedFigure, setSelectedFigure] = useState(-1)
-
-	console.log("gg")
-	const handleSelectFigure = (idx) => {
-		setSelectedFigure(idx)
-	}
-
-	const handleSelectMenu = (idx) => {
-		setSelectedMenu(idx)
-	}
+	const {selectedMenu, handleSelectMenu} = useSelectMenu()
+	const {selectedFigure, handleSelectFigure} = useSelectFigure()
 
 	const navigate = useNavigate()
 
