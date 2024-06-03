@@ -15,7 +15,6 @@ const SignupBodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
-
 	const methods = useForm({
 		defaultValues: {
 			bodyFat: 0,
