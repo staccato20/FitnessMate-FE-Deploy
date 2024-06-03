@@ -1,4 +1,5 @@
 import * as S from "./../StyledSignup"
+import * as GS from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
 import {MiddleButton, BeforeButton} from "./../../../components/"
 import StatusBar from "../../../components/StatusBar/StatusBar"
@@ -32,11 +33,11 @@ const SignupBodyInfo = () => {
 	}
 
 	return (
-		<S.SignupContainer>
-			<S.SignupTitle>
+		<GS.SignupContainer>
+			<GS.SignupTitle>
 				<StatusBar status={"2"} />
 				신체 정보를 입력해주세요
-			</S.SignupTitle>
+			</GS.SignupTitle>
 			<FormProvider {...methods}>
 				<S.BodyInfoContainer>
 					<S.SexSelect>
@@ -89,7 +90,7 @@ const SignupBodyInfo = () => {
 					</MiddleButton>
 				</S.ButtonContainer>
 			</FormProvider>
-		</S.SignupContainer>
+		</GS.SignupContainer>
 	)
 }
 

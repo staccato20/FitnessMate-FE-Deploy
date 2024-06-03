@@ -1,4 +1,5 @@
-import * as S from "../StyledSignup"
+import * as GS from "../StyledSignup"
+import * as S from "./StyledSignupBodyFigure"
 import {useNavigate} from "react-router-dom"
 
 import MiddleButton from "../../../components/Button/MiddleButton"
@@ -48,12 +49,12 @@ const SignupBodyFigure = () => {
 	}
 
 	return (
-		<S.SignupContainer onSubmit={methods.handleSubmit(onSubmit)}>
-			<S.SignupTitle>
+		<GS.SignupContainer onSubmit={methods.handleSubmit(onSubmit)}>
+			<GS.SignupTitle>
 				<StatusBar status={"3"} />
 				체형 정보를 입력해주세요
-			</S.SignupTitle>
-			<S.SignupUpdonwBalanceWrapper>
+			</GS.SignupTitle>
+			<S.SignupBalanceWrapper>
 				<Ratio
 					ratioValue={ratioValue}
 					ratioText={ratioText}
@@ -67,12 +68,12 @@ const SignupBodyFigure = () => {
 						handleSelectFigure={handleSelectFigure}
 					/>
 				</FormProvider>
-				<S.ButtonContainer>
+				<GS.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton type="submit">회원가입 완료</MiddleButton>
-				</S.ButtonContainer>
-			</S.SignupUpdonwBalanceWrapper>
-		</S.SignupContainer>
+				</GS.ButtonContainer>
+			</S.SignupBalanceWrapper>
+		</GS.SignupContainer>
 	)
 }
 

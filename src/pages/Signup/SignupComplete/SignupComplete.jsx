@@ -7,14 +7,10 @@ import {COMPLETE_Nav} from "./constatns/COMPLETE_NAV"
 
 const SignupComplete = () => {
 	const navigate = useNavigate()
-
-	const navigateHome = () => {
-		navigate("/")
-	}
-
 	const handleNavigate = (url) => {
 		navigate(url)
 	}
+
 	return (
 		<GS.SignupContainer>
 			{/* 제목들 중 마지막 페이지만 가운데 정렬 -> 인라인으로 처리 */}
@@ -49,7 +45,9 @@ const SignupComplete = () => {
 			<GS.ButtonContainer>
 				<BigButton
 					type="button"
-					onClick={navigateHome}>
+					onClick={() => {
+						handleNavigate("/")
+					}}>
 					홈으로
 				</BigButton>
 			</GS.ButtonContainer>

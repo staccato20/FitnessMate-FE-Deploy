@@ -1,4 +1,4 @@
-import * as S from "../../StyledSignup"
+import * as S from "../StyledSignupProfile"
 import {useFormContext} from "react-hook-form"
 
 import {REGISTER_OPTIONS} from "../constants/REGISTER_OPTIONS"
