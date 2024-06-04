@@ -1,52 +1,35 @@
 import * as S from "../StyledProfile"
 import {useFormContext} from "react-hook-form"
 
-import {SignupInput} from "../../../../components/SignupInput/SignupInput"
-import {REGISTER_OPTIONS} from "../../REGISTER_OPTIONS"
+import {Input} from "../../../../components"
 
 const ProfileInput = () => {
 	const {formState, getValues, trigger} = useFormContext()
 
 	return (
-		<S.ProfileInputWrapper>
-			<SignupInput>
-				<SignupInput.Label
+		<S.ProfileInputForm>
+			{/* <Input>
+				<Input.Label
 					isRequired
 					isChecked={formState.isValid}>
 					아이디
-				</SignupInput.Label>
-				<SignupInput.Input
-					placeholder="2자리 이상"
-					registerOptions={REGISTER_OPTIONS.USER_NAME}
-				/>
-				<SignupInput.Error>
-					{formState.errors?.userName?.message}
-				</SignupInput.Error>
-			</SignupInput>
-			<SignupInput>
-				<SignupInput.Label isRequired>생년월일</SignupInput.Label>
-				<SignupInput.Input
-					placeholder="YYYY-MM-DD"
-					registerOptions={REGISTER_OPTIONS.BIRTH_DATE}
-				/>
-				<SignupInput.Error>
-					{formState.errors?.birthDate?.message}
-				</SignupInput.Error>
-			</SignupInput>
-			<SignupInput>
-				<SignupInput.Label isRequired>이메일</SignupInput.Label>
-				<SignupInput.Input
-					placeholder="이메일을 입력해주세요"
-					registerOptions={REGISTER_OPTIONS.EMAIL}
-				/>
-				<SignupInput.Error>
-					{formState.errors?.email?.message}
-				</SignupInput.Error>
-			</SignupInput>
-			<SignupInput>
-				<SignupInput.Label isRequired>비밀번호</SignupInput.Label>
-				<SignupInput.Input
-					placeholder="8자리 이상 영문, 숫자 조합"
+				</Input.Label>
+				<Input.Input registerOptions={REGISTER_OPTIONS.USER_NAME} />
+				<Input.Error>{formState.errors?.userName?.message}</Input.Error>
+			</Input>
+			<Input>
+				<Input.Label isRequired>생년월일</Input.Label>
+				<Input.Input registerOptions={REGISTER_OPTIONS.BIRTH_DATE} />
+				<Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
+			</Input>
+			<Input>
+				<Input.Label isRequired>이메일</Input.Label>
+				<Input.Input registerOptions={REGISTER_OPTIONS.EMAIL} />
+				<Input.Error>{formState.errors?.email?.message}</Input.Error>
+			</Input>
+			<Input>
+				<Input.Label isRequired>비밀번호</Input.Label>
+				<Input.Input
 					registerOptions={{
 						...REGISTER_OPTIONS.PASSWORD,
 						rules: {
@@ -58,13 +41,10 @@ const ProfileInput = () => {
 						},
 					}}
 				/>
-				<SignupInput.Error>
-					{formState.errors?.password?.message}
-				</SignupInput.Error>
-			</SignupInput>
-			<SignupInput>
-				<SignupInput.Input
-					placeholder="비밀번호 확인"
+				<Input.Error>{formState.errors?.password?.message}</Input.Error>
+			</Input>
+			<Input>
+				<Input.Input
 					registerOptions={{
 						...REGISTER_OPTIONS.PASSWORD_CHECK,
 						rules: {
@@ -76,11 +56,9 @@ const ProfileInput = () => {
 						},
 					}}
 				/>
-				<SignupInput.Error>
-					{formState.errors?.passwordCheck?.message}
-				</SignupInput.Error>
-			</SignupInput>
-		</S.ProfileInputWrapper>
+				<Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
+			</Input> */}
+		</S.ProfileInputForm>
 	)
 }
 

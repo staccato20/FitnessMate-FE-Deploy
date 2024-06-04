@@ -1,11 +1,12 @@
 import * as S from "./StyledBodyInfo"
 import * as GS from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
-import {MiddleButton, BeforeButton} from "../../../components"
+import {MiddleButton, BeforeButton, Input} from "../../../components"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 import {FormProvider, useForm} from "react-hook-form"
-import {SignupInput} from "../../../components/SignupInput/SignupInput"
-import {REGISTER_OPTIONS} from "../REGISTER_OPTIONS"
+
+import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
+import {formAdapter} from "../../../utils/formadapter"
 
 const BodyInfo = () => {
 	const methods = useForm({
@@ -16,7 +17,6 @@ const BodyInfo = () => {
 			weight: "",
 		},
 	})
-
 	const navigate = useNavigate()
 
 	const handleBackPage = (e) => {
@@ -40,47 +40,61 @@ const BodyInfo = () => {
 			<FormProvider {...methods}>
 				<S.BodyInfoContainer>
 					<S.SexSelect>
-						<SignupInput>
-							<SignupInput.Label
+						<Input>
+							<Input.Label
 								isRequired
 								isChecked={methods.formState.isValid}>
 								성별
-							</SignupInput.Label>
-							<SignupInput.Select />
-							<SignupInput.Error>
+							</Input.Label>
+							<Input.Select />
+							<Input.Error>
 								{methods.formState.errors?.sex?.message}
-							</SignupInput.Error>
-						</SignupInput>
+							</Input.Error>
+						</Input>
 					</S.SexSelect>
 
-					<SignupInput>
-						<SignupInput.Label
+					<Input>
+						<Input.Label
 							isRequired
 							isChecked={methods.formState.isValid}>
 							키
-						</SignupInput.Label>
-						<SignupInput.Input
-							placeholder="숫자만 입력"
-							registerOptions={REGISTER_OPTIONS.HEIGHT}
+						</Input.Label>
+						<Input.Input
+							props={{
+								...formAdapter({
+									register: methods.register,
+									validator: SIGNUP_INPUTS["height"],
+									name: "height",
+									isDirty: methods.getFieldState("height").isDirty,
+									isError: methods.getFieldState("height").error,
+								}),
+							}}
 						/>
-						<SignupInput.Error>
+						<Input.Error>
 							{methods.formState.errors?.height?.message}
-						</SignupInput.Error>
-					</SignupInput>
-					<SignupInput>
-						<SignupInput.Label
+						</Input.Error>
+					</Input>
+					<Input>
+						<Input.Label
 							isRequired
 							isChecked={methods.formState.isValid}>
 							몸무게
-						</SignupInput.Label>
-						<SignupInput.Input
-							placeholder="숫자만 입력"
-							registerOptions={REGISTER_OPTIONS.WEIGHT}
+						</Input.Label>
+						<Input.Input
+							props={{
+								...formAdapter({
+									register: methods.register,
+									validator: SIGNUP_INPUTS["weight"],
+									name: "weight",
+									isDirty: methods.getFieldState("weight").isDirty,
+									isError: methods.getFieldState("weight").error,
+								}),
+							}}
 						/>
-						<SignupInput.Error>
+						<Input.Error>
 							{methods.formState.errors?.weight?.message}
-						</SignupInput.Error>
-					</SignupInput>
+						</Input.Error>
+					</Input>
 				</S.BodyInfoContainer>
 				<GS.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />

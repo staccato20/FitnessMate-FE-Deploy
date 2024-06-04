@@ -1,8 +1,8 @@
-import * as S from "../StyledSignupInput.js"
+import * as S from "../StyledInput.js"
 import male from "../../../assets/images/male.png"
 import female from "../../../assets/images/female.png"
 import ImageCheckBox from "../../ImageCheckBox/ImageCheckBox.jsx"
-const SignupInputSelect = () => {
+const InputSelect = () => {
 	return (
 		<S.CheckBoxGroup>
 			<ImageCheckBox
@@ -19,4 +19,4 @@ const SignupInputSelect = () => {
 	)
 }
 
-export default SignupInputSelect
+export default InputSelect

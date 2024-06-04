@@ -1,4 +1,3 @@
-import {REGISTER_OPTIONS} from "../../../REGISTER_OPTIONS"
 import * as S from "./StyledFigure"
 
 import {useFormContext} from "react-hook-form"
@@ -13,11 +12,11 @@ const FigureOptionDirectItem = () => {
 						골격근량
 					</S.FigureOptionDirectItemOptionTitle>
 					<S.FigureOptionDirectItemOptionBox>
-						<S.FigureOptionDirectItemOptionInput
+						{/* <S.FigureOptionDirectItemOptionInput
 							{...register(REGISTER_OPTIONS.MUSCLE_MASS.name, {
 								...REGISTER_OPTIONS.MUSCLE_MASS.rules,
 							})}
-						/>
+						/> */}
 						<S.FigureOptionDirectItemOptionUnit>
 							kg
 						</S.FigureOptionDirectItemOptionUnit>
@@ -28,11 +27,11 @@ const FigureOptionDirectItem = () => {
 						체지방량
 					</S.FigureOptionDirectItemOptionTitle>
 					<S.FigureOptionDirectItemOptionBox>
-						<S.FigureOptionDirectItemOptionInput
+						{/* <S.FigureOptionDirectItemOptionInput
 							{...register(REGISTER_OPTIONS.BODY_FAT.name, {
 								...REGISTER_OPTIONS.BODY_FAT.rules,
 							})}
-						/>
+						/> */}
 						<S.FigureOptionDirectItemOptionUnit>
 							kg
 						</S.FigureOptionDirectItemOptionUnit>

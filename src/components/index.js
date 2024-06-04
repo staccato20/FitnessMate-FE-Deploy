@@ -1,7 +1,7 @@
 export {default as BodyCompositionInput} from "./BodyCompositionInput/BodyCompositionInput"
 export {default as FitnessType} from "./FitnessType/FitnessType"
 export {default as SupplementType} from "./SupplementType/SupplementType"
-export {default as ProfileInput} from "./ProfileInput/ProfileInput"
+export {default as Input} from "./Input/Input"
 export {default as SearchBar} from "./SearchBar/SearchBar"
 export {default as SearchButton} from "./SearchButton/SearchButton"
 export {default as CategoryCheckbox} from "./CategoryCheckbox/CategoryCheckbox"
