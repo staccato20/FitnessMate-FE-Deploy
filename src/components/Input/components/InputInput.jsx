@@ -1,11 +1,10 @@
 import * as S from "../StyledInput.js"
-const InputInput = ({props}) => {
-	const {isDirty, isError, ...rest} = props
+const InputInput = ({props, ...validateStyle}) => {
 	return (
 		<S.Input
-			$isDirty={isDirty}
-			$isError={isError}
-			{...rest}
+			$isDirty={validateStyle.$isDirty}
+			$isError={validateStyle.$isError}
+			{...props}
 		/>
 	)
 }

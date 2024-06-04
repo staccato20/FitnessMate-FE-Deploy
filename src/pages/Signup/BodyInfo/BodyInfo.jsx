@@ -65,8 +65,8 @@ const BodyInfo = () => {
 									register: methods.register,
 									validator: SIGNUP_INPUTS["height"],
 									name: "height",
-									isDirty: methods.getFieldState("height").isDirty,
-									isError: methods.getFieldState("height").error,
+									$isDirty: methods.getFieldState("height").isDirty,
+									$isError: methods.getFieldState("height").error,
 								}),
 							}}
 						/>
@@ -86,8 +86,8 @@ const BodyInfo = () => {
 									register: methods.register,
 									validator: SIGNUP_INPUTS["weight"],
 									name: "weight",
-									isDirty: methods.getFieldState("weight").isDirty,
-									isError: methods.getFieldState("weight").error,
+									$isDirty: methods.getFieldState("weight").isDirty,
+									$isError: methods.getFieldState("weight").error,
 								}),
 							}}
 						/>
