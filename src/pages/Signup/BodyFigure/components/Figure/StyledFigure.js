@@ -1,21 +1,21 @@
 import styled from "styled-components"
 import theme from "../../../../../styles/theme"
 
-export const BodyFigureWrapper = styled.div`
+export const FigureWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
 	width: 100%;
 `
 
-export const BodyFigureTitle = styled.span`
+export const FigureTitle = styled.span`
 	padding-bottom: 10px;
 	color: ${theme.Gray80};
 	font-size: 20px;
 	font-weight: 600;
 `
 
-export const BodyFigureOptionList = styled.div`
+export const FigureOptionList = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
@@ -24,13 +24,13 @@ export const BodyFigureOptionList = styled.div`
 	padding: 10px;
 `
 
-export const BodyFigureOptionMenuList = styled.div`
+export const FigureOptionItem = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 `
 
-export const BodyFigureOptionDirectItemWrapper = styled.div`
+export const FigureOptionDirectItemWrapper = styled.div`
 	padding-top: 64px;
 	display: flex;
 	flex-direction: column;
@@ -39,37 +39,37 @@ export const BodyFigureOptionDirectItemWrapper = styled.div`
 	align-items: center;
 `
 
-export const BodyFigureOptionDirectItemList = styled.div`
+export const FigureOptionDirectItemList = styled.div`
 	display: flex;
 	justify-content: center;
 	gap: 52px;
 	align-items: center;
 `
 
-export const BodyFigureOptionDirectItemOption = styled.div`
+export const FigureOptionDirectItemOption = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 `
 
-export const BodyFigureOptionDirectItemOptionTitle = styled.span`
+export const FigureOptionDirectItemOptionTitle = styled.span`
 	color: var(--Neutral-800, #4e5968);
 	font-size: 15px;
 `
 
-export const BodyFigureOptionDirectItemOptionBox = styled.div`
+export const FigureOptionDirectItemOptionBox = styled.div`
 	display: flex;
 	gap: 8px;
 	align-items: center;
 `
 
-export const BodyFigureOptionDirectItemOptionUnit = styled.span`
+export const FigureOptionDirectItemOptionUnit = styled.span`
 	color: var(--Neutral-900, #333d4b);
 	font-size: 15px;
 	font-weight: 400;
 `
 
-export const BodyFigureOptionDirectItemOptionInput = styled.input`
+export const FigureOptionDirectItemOptionInput = styled.input`
 	padding: 15px;
 	width: 69px;
 	height: 48px;
@@ -80,7 +80,7 @@ export const BodyFigureOptionDirectItemOptionInput = styled.input`
 	font-weight: 400;
 `
 
-export const BodyFigureOptioneDirectItemMessage = styled.div`
+export const FigureOptioneDirectItemMessage = styled.div`
 	color: var(--Neutral-800, #4e5968);
 	width: 100%;
 	display: flex;
@@ -91,12 +91,12 @@ export const BodyFigureOptioneDirectItemMessage = styled.div`
 	padding: 25px;
 `
 
-export const BodyFigureOptioneDirectItemInnerMessage = styled.span`
+export const FigureOptioneDirectItemInnerMessage = styled.span`
 	color: var(--Neutral-950, #272e38);
 	font-size: 16px;
 `
 
-export const BodyFigureOptioneDirectItemInnerMessage2 = styled.span`
+export const FigureOptioneDirectItemInnerMessage2 = styled.span`
 	color: var(--Neutral-800, #4e5968);
 	font-size: 15px;
 `

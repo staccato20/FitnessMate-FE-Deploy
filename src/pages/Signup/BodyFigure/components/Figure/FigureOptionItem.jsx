@@ -1,12 +1,8 @@
 import FigureCheckBox from "../../../../../components/CheckBox/FigureCheckBox"
-import * as S from "./StyledBodyFigure"
-const BodyFigureOptionMenuItem = ({
-	children,
-	selectedFigure,
-	handleSelectFigure,
-}) => {
+import * as S from "./StyledFigure"
+const FigureOptionItem = ({children, selectedFigure, handleSelectFigure}) => {
 	return (
-		<S.BodyFigureOptionList>
+		<S.FigureOptionList>
 			{children?.map((figure, index) => (
 				<FigureCheckBox
 					handleCheckItem={handleSelectFigure}
@@ -16,8 +12,8 @@ const BodyFigureOptionMenuItem = ({
 					{figure[0]}
 				</FigureCheckBox>
 			))}
-		</S.BodyFigureOptionList>
+		</S.FigureOptionList>
 	)
 }
 
-export default BodyFigureOptionMenuItem
+export default FigureOptionItem

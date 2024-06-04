@@ -2,10 +2,10 @@ import * as S from "../StyledSignup"
 import {BeforeButton, MiddleButton} from "../../../components"
 import {useNavigate} from "react-router-dom"
 import StatusBar from "../../../components/StatusBar/StatusBar"
-import SignupProfileInput from "./components/SignupProfileInput"
+import ProfileInput from "./components/ProfileInput"
 import {FormProvider, useForm} from "react-hook-form"
 
-const SignupProfile = () => {
+const Profile = () => {
 	const navigate = useNavigate()
 	const methods = useForm({
 		mode: "onChange",
@@ -37,7 +37,7 @@ const SignupProfile = () => {
 					<StatusBar status={"1"} />
 					회원 정보를 입력해주세요
 				</S.SignupTitle>
-				<SignupProfileInput />
+				<ProfileInput />
 				<S.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton
@@ -51,4 +51,4 @@ const SignupProfile = () => {
 	)
 }
 
-export default SignupProfile
+export default Profile

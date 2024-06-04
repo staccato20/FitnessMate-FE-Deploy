@@ -1,18 +1,17 @@
 import * as GS from "../StyledSignup"
-import * as S from "./StyledSignupBodyFigure"
+import * as S from "./StyledBodyFigure"
 import {useNavigate} from "react-router-dom"
 
 import MiddleButton from "../../../components/Button/MiddleButton"
 import BeforeButton from "../../../components/Button/BeforeButton"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useSlide} from "./hooks/useSlide"
-import BodyFigure from "./components/BodyFigure/BodyFigure"
+import Figure from "./components/Figure/Figure"
 import Ratio from "./components/Ratio/Ratio"
 import {useSelectMenu} from "./hooks/useSelectMenu"
 import {useSelectFigure} from "./hooks/useSelectFigure"
 import {FormProvider, useForm} from "react-hook-form"
-import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
-const SignupBodyFigure = () => {
+const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
@@ -29,24 +28,7 @@ const SignupBodyFigure = () => {
 		e.preventDefault()
 		navigate(-1)
 	}
-	const onSubmit = (figure) => {
-		let submission
-		if (selectedMenu === 0) {
-			submission = {
-				upDownBalance: ratioValue,
-				bodyFat: CATEGORY_LIST[selectedFigure][1][0],
-				muscleMass: CATEGORY_LIST[selectedFigure][1][1],
-			}
-		} else if (selectedMenu === 1) {
-			submission = {
-				upDownBalance: ratioValue,
-				bodyFat: figure.bodyFat,
-				muscleMass: figure.muscleMass,
-			}
-		}
-
-		console.log(submission)
-	}
+	const onSubmit = (figure) => {}
 
 	return (
 		<GS.SignupContainer onSubmit={methods.handleSubmit(onSubmit)}>
@@ -54,14 +36,14 @@ const SignupBodyFigure = () => {
 				<StatusBar status={"3"} />
 				체형 정보를 입력해주세요
 			</GS.SignupTitle>
-			<S.SignupBalanceWrapper>
+			<S.BodyFigureWrapper>
 				<Ratio
 					ratioValue={ratioValue}
 					ratioText={ratioText}
 					handleRatio={handleRatio}
 				/>
 				<FormProvider {...methods}>
-					<BodyFigure
+					<Figure
 						selectedMenu={selectedMenu}
 						handleSelectMenu={handleSelectMenu}
 						selectedFigure={selectedFigure}
@@ -72,9 +54,9 @@ const SignupBodyFigure = () => {
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton type="submit">회원가입 완료</MiddleButton>
 				</GS.ButtonContainer>
-			</S.SignupBalanceWrapper>
+			</S.BodyFigureWrapper>
 		</GS.SignupContainer>
 	)
 }
 
-export default SignupBodyFigure
+export default BodyFigure

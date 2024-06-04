@@ -1,18 +1,19 @@
-import * as S from "./StyledBodyFigure"
+import * as S from "./StyledFigure"
 import {CATEGORY_LIST} from "../../constants/CATEGORY_LIST"
-import BodyFigureOptionMenuItem from "./BodyFigureOptionMenuItem"
 import CheckBox from "../../../../../components/CheckBox/CheckBox"
-import BodyFigureOptionDirectItem from "./BodyFigureOptionDirectItem"
-const BodyFigure = ({
+import BodyFigureOptionDirectItem from "./FigureOptionDirectItem"
+import FigureOptionItem from "./FigureOptionItem"
+
+const Figure = ({
 	selectedMenu,
 	handleSelectMenu,
 	selectedFigure,
 	handleSelectFigure,
 }) => {
 	return (
-		<S.BodyFigureWrapper>
-			<S.BodyFigureTitle>어떤 체형이신가요?</S.BodyFigureTitle>
-			<S.BodyFigureOptionMenuList>
+		<S.FigureWrapper>
+			<S.FigureTitle>어떤 체형이신가요?</S.FigureTitle>
+			<S.FigureOptionList>
 				<CheckBox
 					$isChecked={selectedMenu === 0}
 					index={0}
@@ -20,11 +21,11 @@ const BodyFigure = ({
 					유형으로 선택하기
 				</CheckBox>
 				{selectedMenu === 0 && (
-					<BodyFigureOptionMenuItem
+					<FigureOptionItem
 						selectedFigure={selectedFigure}
 						handleSelectFigure={handleSelectFigure}>
 						{CATEGORY_LIST}
-					</BodyFigureOptionMenuItem>
+					</FigureOptionItem>
 				)}
 
 				<CheckBox
@@ -34,9 +35,9 @@ const BodyFigure = ({
 					직접 입력하기
 				</CheckBox>
 				{selectedMenu === 1 && <BodyFigureOptionDirectItem />}
-			</S.BodyFigureOptionMenuList>
-		</S.BodyFigureWrapper>
+			</S.FigureOptionList>
+		</S.FigureWrapper>
 	)
 }
 
-export default BodyFigure
+export default Figure

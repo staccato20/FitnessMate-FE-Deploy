@@ -1,25 +1,25 @@
 import styled from "styled-components"
 import theme from "../../../styles/theme"
 
-export const SignupCompleteNav = styled.div`
+export const CompleteNav = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
 	width: 100%;
 `
-export const SignupCompleteNavTitle = styled.span`
+export const CompleteNavTitle = styled.span`
 	color: ${theme.Gray80};
 	font-size: 22px;
 	font-weight: 600;
 `
 
-export const SignupCompleteNavList = styled.span`
+export const CompleteNavList = styled.span`
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
 `
 
-export const SignupCompleteNavItem = styled.button`
+export const CompleteNavItem = styled.button`
 	display: flex;
 	width: 100%;
 	padding: 24px;
@@ -29,7 +29,7 @@ export const SignupCompleteNavItem = styled.button`
 	background: ${theme.Gray10};
 	text-align: left;
 `
-export const SignupCompleteNavItemTitle = styled.div`
+export const CompleteNavItemTitle = styled.div`
 	color: ${theme.Black};
 	font-size: 20px;
 	display: flex;
@@ -37,8 +37,8 @@ export const SignupCompleteNavItemTitle = styled.div`
 	gap: 10px;
 	font-weight: 600;
 `
-export const SignupCompleteNavItemText = styled.span`
+export const CompleteNavItemText = styled.span`
 	color: ${theme.Black};
 	font-size: 16px;
 `
-export const SignupCompleteNavItemImg = styled.img``
+export const CompleteNavItemImg = styled.img``

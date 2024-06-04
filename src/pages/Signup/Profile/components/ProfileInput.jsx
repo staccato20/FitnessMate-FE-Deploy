@@ -1,14 +1,14 @@
-import * as S from "../StyledSignupProfile"
+import * as S from "../StyledProfile"
 import {useFormContext} from "react-hook-form"
 
-import {REGISTER_OPTIONS} from "../constants/REGISTER_OPTIONS"
 import {SignupInput} from "../../../../components/SignupInput/SignupInput"
+import {REGISTER_OPTIONS} from "../../REGISTER_OPTIONS"
 
-const SignupProfileInput = () => {
+const ProfileInput = () => {
 	const {formState, getValues, trigger} = useFormContext()
 
 	return (
-		<S.ProfileInputcontainer>
+		<S.ProfileInputWrapper>
 			<SignupInput>
 				<SignupInput.Label
 					isRequired
@@ -80,8 +80,8 @@ const SignupProfileInput = () => {
 					{formState.errors?.passwordCheck?.message}
 				</SignupInput.Error>
 			</SignupInput>
-		</S.ProfileInputcontainer>
+		</S.ProfileInputWrapper>
 	)
 }
 
-export default SignupProfileInput
+export default ProfileInput

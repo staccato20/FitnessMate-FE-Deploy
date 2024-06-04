@@ -1,14 +1,13 @@
-import * as S from "./../StyledSignup"
+import * as S from "./StyledBodyInfo"
 import * as GS from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
-import {MiddleButton, BeforeButton} from "./../../../components/"
+import {MiddleButton, BeforeButton} from "../../../components"
 import StatusBar from "../../../components/StatusBar/StatusBar"
-
-import {REGISTER_OPTIONS} from "../SignupProfile/constants/REGISTER_OPTIONS"
 import {FormProvider, useForm} from "react-hook-form"
 import {SignupInput} from "../../../components/SignupInput/SignupInput"
+import {REGISTER_OPTIONS} from "../REGISTER_OPTIONS"
 
-const SignupBodyInfo = () => {
+const BodyInfo = () => {
 	const methods = useForm({
 		mode: "onChange",
 		defaultValues: {
@@ -41,15 +40,17 @@ const SignupBodyInfo = () => {
 			<FormProvider {...methods}>
 				<S.BodyInfoContainer>
 					<S.SexSelect>
-						<SignupInput.Label
-							isRequired
-							isChecked={methods.formState.isValid}>
-							성별
-						</SignupInput.Label>
-						<SignupInput.Select />
-						<SignupInput.Error>
-							{methods.formState.errors?.sex?.message}
-						</SignupInput.Error>
+						<SignupInput>
+							<SignupInput.Label
+								isRequired
+								isChecked={methods.formState.isValid}>
+								성별
+							</SignupInput.Label>
+							<SignupInput.Select />
+							<SignupInput.Error>
+								{methods.formState.errors?.sex?.message}
+							</SignupInput.Error>
+						</SignupInput>
 					</S.SexSelect>
 
 					<SignupInput>
@@ -81,17 +82,17 @@ const SignupBodyInfo = () => {
 						</SignupInput.Error>
 					</SignupInput>
 				</S.BodyInfoContainer>
-				<S.ButtonContainer>
+				<GS.ButtonContainer>
 					<BeforeButton onClick={handleBackPage} />
 					<MiddleButton
 						onClick={handleSubmit}
 						$isValid={methods.formState.isValid}>
 						다음
 					</MiddleButton>
-				</S.ButtonContainer>
+				</GS.ButtonContainer>
 			</FormProvider>
 		</GS.SignupContainer>
 	)
 }
 
-export default SignupBodyInfo
+export default BodyInfo
