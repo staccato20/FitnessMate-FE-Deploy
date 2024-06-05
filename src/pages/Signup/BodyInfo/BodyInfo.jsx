@@ -41,11 +41,7 @@ const BodyInfo = () => {
 				<S.BodyInfoContainer>
 					<S.SexSelect>
 						<Input>
-							<Input.Label
-								isRequired
-								isChecked={methods.formState.isValid}>
-								성별
-							</Input.Label>
+							<Input.Label isRequired>성별</Input.Label>
 							<Input.Select />
 							<Input.Error>
 								{methods.formState.errors?.sex?.message}
@@ -54,11 +50,7 @@ const BodyInfo = () => {
 					</S.SexSelect>
 
 					<Input>
-						<Input.Label
-							isRequired
-							isChecked={methods.formState.isValid}>
-							키
-						</Input.Label>
+						<Input.Label isRequired>키</Input.Label>
 						<Input.Input
 							props={{
 								...formAdapter({
@@ -75,11 +67,7 @@ const BodyInfo = () => {
 						</Input.Error>
 					</Input>
 					<Input>
-						<Input.Label
-							isRequired
-							isChecked={methods.formState.isValid}>
-							몸무게
-						</Input.Label>
+						<Input.Label isRequired>몸무게</Input.Label>
 						<Input.Input
 							props={{
 								...formAdapter({

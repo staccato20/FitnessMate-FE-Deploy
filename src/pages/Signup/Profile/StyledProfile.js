@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const ProfileInputForm = styled.form`
+export const ProfileFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 12px;

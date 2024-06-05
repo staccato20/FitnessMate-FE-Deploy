@@ -1,7 +1,7 @@
 import * as S from "../StyledInput"
-const InputLabel = ({children, isRequired}) => {
+const InputLabel = ({children, isRequired, ...props}) => {
 	return (
-		<S.InputName>
+		<S.InputName {...props}>
 			{children}
 			{isRequired && <S.EseentialSymbol>*</S.EseentialSymbol>}
 		</S.InputName>

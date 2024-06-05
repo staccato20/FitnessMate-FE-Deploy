@@ -4,14 +4,13 @@ export const SIGNUP_INPUTS = {
 			placeholder: "2자리 이상",
 		},
 		validate: {
-			required: {value: true, message: "아이디는 필수 입력입니다."},
+			required: {value: true, message: "이름은 필수 입력입니다."},
 			pattern: {
 				value: /^[가-힣]{2,10}$/,
 				message: "유효하지 않은 아이디입니다.",
 			},
 		},
 	},
-
 	birthDate: {
 		attributes: {
 			placeholder: "YYYY-MM-DD",
@@ -24,7 +23,6 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-
 	email: {
 		attributes: {
 			placeholder: "이메일을 입력해주세요",
@@ -37,7 +35,6 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-
 	password: {
 		attributes: {
 			placeholder: "8자리 이상 영문, 숫자 조합",
@@ -50,19 +47,19 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-
 	passwordCheck: {
 		attributes: {
 			placeholder: "비밀번호 확인",
 		},
 		validate: {
 			required: "비밀번호 확인은 필수 입력입니다.",
-			pattern: {
-				message: "비밀번호가 일치하지 않습니다.",
+			matchPassword: (value, getValues) => {
+				return (
+					value === getValues("password") || "비밀번호가 일치하지 않습니다."
+				)
 			},
 		},
 	},
-
 	height: {
 		attributes: {
 			placeholder: "숫자만 입력",
@@ -75,7 +72,6 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-
 	weight: {
 		attributes: {
 			placeholder: "숫자만 입력",
@@ -88,11 +84,9 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-
 	bodyFat: {
 		validate: {required: true, valueAsNumber: true},
 	},
-
 	muscleMass: {
 		validate: {required: true, valueAsNumber: true},
 	},

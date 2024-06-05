@@ -11,7 +11,7 @@ const getBorderStyle = ($isError, $isDirty) => {
 	return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand}`
 }
 
-export const InputName = styled.div`
+export const InputName = styled.label`
 	color: ${theme.Black};
 	font-size: 18px;
 	font-weight: 500;

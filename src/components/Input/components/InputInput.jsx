@@ -1,12 +1,6 @@
 import * as S from "../StyledInput.js"
-const InputInput = ({props, ...validateStyle}) => {
-	return (
-		<S.Input
-			$isDirty={validateStyle.$isDirty}
-			$isError={validateStyle.$isError}
-			{...props}
-		/>
-	)
+const InputInput = ({props}) => {
+	return <S.Input {...props} />
 }
 
 export default InputInput
