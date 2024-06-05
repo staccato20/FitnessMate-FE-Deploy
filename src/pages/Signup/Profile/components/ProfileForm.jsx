@@ -4,6 +4,9 @@ import {formAdapter} from "../../../../utils/formadapter"
 import {SIGNUP_INPUTS} from "../../SIGNUP_INPUTS"
 
 const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
+	const checkPassWord = (value) =>
+		value === getValues("password") || "비밀번호가 일치하지 않습니다."
+
 	return (
 		<S.ProfileFormWrapper>
 			<Input>
@@ -101,11 +104,11 @@ const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 							validator: {
 								...SIGNUP_INPUTS["passwordCheck"],
 								validate: {
-									required: "비밀번호 확인은 필수 입력입니다.",
-									matchPassword: (value) => {
-										const password = getValues("password")
-										return value === password || "비밀번호가 일치하지 않습니다."
+									required: {
+										value: true,
+										message: "비밀번호 확인은 필수 입력입니다.",
 									},
+									validate: checkPassWord,
 								},
 							},
 							name: "passwordCheck",

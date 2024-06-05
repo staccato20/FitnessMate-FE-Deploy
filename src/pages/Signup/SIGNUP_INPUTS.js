@@ -40,7 +40,7 @@ export const SIGNUP_INPUTS = {
 			placeholder: "8자리 이상 영문, 숫자 조합",
 		},
 		validate: {
-			required: "비밀번호는 필수 입력입니다.",
+			required: {value: true, message: "비밀번호는 필수 입력입니다."},
 			pattern: {
 				value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
 				message: "유효하지 않은 비밀번호 입니다.",
@@ -50,14 +50,6 @@ export const SIGNUP_INPUTS = {
 	passwordCheck: {
 		attributes: {
 			placeholder: "비밀번호 확인",
-		},
-		validate: {
-			required: "비밀번호 확인은 필수 입력입니다.",
-			matchPassword: (value, getValues) => {
-				return (
-					value === getValues("password") || "비밀번호가 일치하지 않습니다."
-				)
-			},
 		},
 	},
 	height: {
