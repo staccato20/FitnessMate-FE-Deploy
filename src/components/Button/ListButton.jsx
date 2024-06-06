@@ -1,13 +1,10 @@
 // < 목록 버튼 >
 
-import React from "react";
-import * as S from "./StyledButton";
-import "./StyledButtons.css";
+import React from "react"
+import * as S from "./StyledButton"
 
-function ListButton({ children }) {
-  return (
-    <S.ListButtonWrapper className="Button">{children}</S.ListButtonWrapper>
-  );
+function ListButton({children}) {
+	return <S.ListButtonWrapper>{children}</S.ListButtonWrapper>
 }
 
-export default ListButton;
+export default ListButton

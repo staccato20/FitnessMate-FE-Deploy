@@ -2,12 +2,10 @@
 
 import React from "react"
 import * as S from "./StyledButton"
-import "./StyledButtons.css"
 
 function MiddleButton({children, onClick, $isValid}) {
 	return (
 		<S.MiddleButtonWrapper
-			className="Button"
 			onClick={onClick}
 			$isValid={$isValid}>
 			{children}
