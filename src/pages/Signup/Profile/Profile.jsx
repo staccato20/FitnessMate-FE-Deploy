@@ -31,12 +31,14 @@ const Profile = () => {
 	}
 
 	return (
-		<S.SignupContainer>
-			<S.SignupTitle>
-				<StatusBar status={"1"} />
-				회원 정보를 입력해주세요
-			</S.SignupTitle>
-			<ProfileForm methods={methods} />
+		<S.SignupWrapper>
+			<S.SignupForm>
+				<S.SignupTitle>
+					<StatusBar status={"1"} />
+					회원 정보를 입력해주세요
+				</S.SignupTitle>
+				<ProfileForm methods={methods} />
+			</S.SignupForm>
 			<S.ButtonContainer>
 				<BeforeButton onClick={handleBackPage} />
 				<MiddleButton
@@ -45,7 +47,7 @@ const Profile = () => {
 					다음
 				</MiddleButton>
 			</S.ButtonContainer>
-		</S.SignupContainer>
+		</S.SignupWrapper>
 	)
 }
 

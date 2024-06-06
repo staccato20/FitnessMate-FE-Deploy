@@ -12,7 +12,7 @@ const Complete = () => {
 	}
 
 	return (
-		<GS.SignupContainer>
+		<GS.SignupForm>
 			{/* 제목들 중 마지막 페이지만 가운데 정렬 -> 인라인으로 처리 */}
 			<GS.SignupTitle>회원가입이 완료되었습니다.</GS.SignupTitle>
 			<S.CompleteNavTitle>바로 이용해보세요.</S.CompleteNavTitle>
@@ -49,7 +49,7 @@ const Complete = () => {
 					홈으로
 				</BigButton>
 			</GS.ButtonContainer>
-		</GS.SignupContainer>
+		</GS.SignupForm>
 	)
 }
 

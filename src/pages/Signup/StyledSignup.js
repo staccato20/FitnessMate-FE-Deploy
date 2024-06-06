@@ -1,11 +1,17 @@
 import styled from "styled-components"
 import theme from "./../../styles/theme"
 
-export const SignupContainer = styled.form`
+export const SignupWrapper = styled.div`
+	height: calc(100vh - 150px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 474px;
+	padding-bottom: 30px;
+`
+export const SignupForm = styled.form`
+	display: flex;
+	flex-direction: column;
 	gap: 52px;
 `
 

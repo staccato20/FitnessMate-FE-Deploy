@@ -31,31 +31,33 @@ const BodyFigure = () => {
 	const onSubmit = (figure) => {}
 
 	return (
-		<GS.SignupContainer onSubmit={methods.handleSubmit(onSubmit)}>
-			<GS.SignupTitle>
-				<StatusBar status={"3"} />
-				체형 정보를 입력해주세요
-			</GS.SignupTitle>
-			<S.BodyFigureWrapper>
-				<Ratio
-					ratioValue={ratioValue}
-					ratioText={ratioText}
-					handleRatio={handleRatio}
-				/>
-				<FormProvider {...methods}>
-					<Figure
-						selectedMenu={selectedMenu}
-						handleSelectMenu={handleSelectMenu}
-						selectedFigure={selectedFigure}
-						handleSelectFigure={handleSelectFigure}
+		<GS.SignupWrapper>
+			<GS.SignupForm onSubmit={methods.handleSubmit(onSubmit)}>
+				<GS.SignupTitle>
+					<StatusBar status={"3"} />
+					체형 정보를 입력해주세요
+				</GS.SignupTitle>
+				<S.BodyFigureWrapper>
+					<Ratio
+						ratioValue={ratioValue}
+						ratioText={ratioText}
+						handleRatio={handleRatio}
 					/>
-				</FormProvider>
-				<GS.ButtonContainer>
-					<BeforeButton onClick={handleBackPage} />
-					<MiddleButton type="submit">회원가입 완료</MiddleButton>
-				</GS.ButtonContainer>
-			</S.BodyFigureWrapper>
-		</GS.SignupContainer>
+					<FormProvider {...methods}>
+						<Figure
+							selectedMenu={selectedMenu}
+							handleSelectMenu={handleSelectMenu}
+							selectedFigure={selectedFigure}
+							handleSelectFigure={handleSelectFigure}
+						/>
+					</FormProvider>
+				</S.BodyFigureWrapper>
+			</GS.SignupForm>
+			<GS.ButtonContainer>
+				<BeforeButton onClick={handleBackPage} />
+				<MiddleButton type="submit">회원가입 완료</MiddleButton>
+			</GS.ButtonContainer>
+		</GS.SignupWrapper>
 	)
 }
 

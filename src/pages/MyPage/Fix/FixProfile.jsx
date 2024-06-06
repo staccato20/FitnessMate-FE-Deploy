@@ -83,7 +83,7 @@ const FixProfile = (props) => {
 	}, []) // 빈 의존성 배열을 추가하여 이 효과가 한 번만 실행되도록
 
 	return (
-		<S.SignupContainer>
+		<S.SignupForm>
 			<S.SignupTitle>
 				<S.TitleEmphasis>{name}님의 회원정보</S.TitleEmphasis>
 			</S.SignupTitle>
@@ -121,7 +121,7 @@ const FixProfile = (props) => {
 					변경 사항 저장하기
 				</S.SaveButton>
 			</S.ButtonContainer>
-		</S.SignupContainer>
+		</S.SignupForm>
 	)
 }
 
