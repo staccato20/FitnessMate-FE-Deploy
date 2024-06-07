@@ -7,6 +7,7 @@ import {FormProvider, useForm} from "react-hook-form"
 
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
 import {formAdapter} from "../../../utils/formadapter"
+import useSignupStore from "../../../store/store"
 
 const BodyInfo = () => {
 	const methods = useForm({
@@ -17,6 +18,8 @@ const BodyInfo = () => {
 			weight: "",
 		},
 	})
+	const {formState, handleSubmit, register, getFieldState} = methods
+	const {setBodyInfo} = useSignupStore()
 	const navigate = useNavigate()
 
 	const handleBackPage = (e) => {
@@ -24,9 +27,9 @@ const BodyInfo = () => {
 		navigate(-1)
 	}
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		if (methods.formState.isValid) {
+	const handleNextPage = (bodyInfoForm) => {
+		if (formState.isValid) {
+			setBodyInfo(bodyInfoForm)
 			navigate("/signup/bodyfigure")
 		}
 	}
@@ -34,7 +37,7 @@ const BodyInfo = () => {
 	return (
 		<GS.SignupWrapper>
 			<FormProvider {...methods}>
-				<GS.SignupForm>
+				<GS.SignupForm onSubmit={handleSubmit(handleNextPage)}>
 					<GS.SignupTitle>
 						<StatusBar status={"2"} />
 						신체 정보를 입력해주세요
@@ -44,9 +47,7 @@ const BodyInfo = () => {
 							<Input>
 								<Input.Label isRequired>성별</Input.Label>
 								<Input.Select />
-								<Input.Error>
-									{methods.formState.errors?.sex?.message}
-								</Input.Error>
+								<Input.Error>{formState.errors?.sex?.message}</Input.Error>
 							</Input>
 						</S.SexSelect>
 
@@ -55,45 +56,41 @@ const BodyInfo = () => {
 							<Input.Input
 								props={{
 									...formAdapter({
-										register: methods.register,
+										register: register,
 										validator: SIGNUP_INPUTS["height"],
 										name: "height",
-										$isDirty: methods.getFieldState("height").isDirty,
-										$isError: methods.getFieldState("height").error,
+										$isDirty: getFieldState("height").isDirty,
+										$isError: getFieldState("height").error,
 									}),
 								}}
 							/>
-							<Input.Error>
-								{methods.formState.errors?.height?.message}
-							</Input.Error>
+							<Input.Error>{formState.errors?.height?.message}</Input.Error>
 						</Input>
 						<Input>
 							<Input.Label isRequired>몸무게</Input.Label>
 							<Input.Input
 								props={{
 									...formAdapter({
-										register: methods.register,
+										register: register,
 										validator: SIGNUP_INPUTS["weight"],
 										name: "weight",
-										$isDirty: methods.getFieldState("weight").isDirty,
-										$isError: methods.getFieldState("weight").error,
+										$isDirty: getFieldState("weight").isDirty,
+										$isError: getFieldState("weight").error,
 									}),
 								}}
 							/>
-							<Input.Error>
-								{methods.formState.errors?.weight?.message}
-							</Input.Error>
+							<Input.Error>{formState.errors?.weight?.message}</Input.Error>
 						</Input>
 					</S.BodyInfoContainer>
+					<GS.ButtonContainer>
+						<BeforeButton onClick={handleBackPage} />
+						<MiddleButton
+							type="submit"
+							$isValid={formState.isValid}>
+							다음
+						</MiddleButton>
+					</GS.ButtonContainer>
 				</GS.SignupForm>
-				<GS.ButtonContainer>
-					<BeforeButton onClick={handleBackPage} />
-					<MiddleButton
-						onClick={handleSubmit}
-						$isValid={methods.formState.isValid}>
-						다음
-					</MiddleButton>
-				</GS.ButtonContainer>
 			</FormProvider>
 		</GS.SignupWrapper>
 	)

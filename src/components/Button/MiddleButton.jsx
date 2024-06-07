@@ -1,13 +1,12 @@
-// < 가로길이가 중간인 버튼 >
-
 import React from "react"
 import * as S from "./StyledButton"
 
-function MiddleButton({children, onClick, $isValid}) {
+function MiddleButton({children, onClick, $isValid, ...props}) {
 	return (
 		<S.MiddleButtonWrapper
 			onClick={onClick}
-			$isValid={$isValid}>
+			$isValid={$isValid}
+			{...props}>
 			{children}
 		</S.MiddleButtonWrapper>
 	)

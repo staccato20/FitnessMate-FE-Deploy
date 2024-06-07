@@ -11,6 +11,7 @@ import Ratio from "./components/Ratio/Ratio"
 import {useSelectMenu} from "./hooks/useSelectMenu"
 import {useSelectFigure} from "./hooks/useSelectFigure"
 import {FormProvider, useForm} from "react-hook-form"
+import useSignupStore from "../../../store/store"
 const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
@@ -21,6 +22,8 @@ const BodyFigure = () => {
 			muscleMass: 0,
 		},
 	})
+	const {formState, handleSubmit} = methods
+	const {profile, bodyinfo} = useSignupStore()
 
 	const navigate = useNavigate()
 
@@ -28,36 +31,43 @@ const BodyFigure = () => {
 		e.preventDefault()
 		navigate(-1)
 	}
-	const onSubmit = (figure) => {}
+	const onSubmit = (figure) => {
+		console.log(ratioValue, selectedFigure)
+		if (formState.isValid) {
+			console.log(profile, bodyinfo)
+		}
+	}
 
 	return (
-		<GS.SignupWrapper>
-			<GS.SignupForm onSubmit={methods.handleSubmit(onSubmit)}>
-				<GS.SignupTitle>
-					<StatusBar status={"3"} />
-					체형 정보를 입력해주세요
-				</GS.SignupTitle>
-				<S.BodyFigureWrapper>
-					<Ratio
-						ratioValue={ratioValue}
-						ratioText={ratioText}
-						handleRatio={handleRatio}
+		<GS.SignupForm onSubmit={handleSubmit(onSubmit)}>
+			<GS.SignupTitle>
+				<StatusBar status={"3"} />
+				체형 정보를 입력해주세요
+			</GS.SignupTitle>
+			<S.BodyFigureWrapper>
+				<Ratio
+					ratioValue={ratioValue}
+					ratioText={ratioText}
+					handleRatio={handleRatio}
+				/>
+				<FormProvider {...methods}>
+					<Figure
+						selectedMenu={selectedMenu}
+						handleSelectMenu={handleSelectMenu}
+						selectedFigure={selectedFigure}
+						handleSelectFigure={handleSelectFigure}
 					/>
-					<FormProvider {...methods}>
-						<Figure
-							selectedMenu={selectedMenu}
-							handleSelectMenu={handleSelectMenu}
-							selectedFigure={selectedFigure}
-							handleSelectFigure={handleSelectFigure}
-						/>
-					</FormProvider>
-				</S.BodyFigureWrapper>
-			</GS.SignupForm>
+				</FormProvider>
+			</S.BodyFigureWrapper>
 			<GS.ButtonContainer>
 				<BeforeButton onClick={handleBackPage} />
-				<MiddleButton type="submit">회원가입 완료</MiddleButton>
+				<MiddleButton
+					$isValid={formState.isValid}
+					type="submit">
+					회원가입 완료
+				</MiddleButton>
 			</GS.ButtonContainer>
-		</GS.SignupWrapper>
+		</GS.SignupForm>
 	)
 }
 

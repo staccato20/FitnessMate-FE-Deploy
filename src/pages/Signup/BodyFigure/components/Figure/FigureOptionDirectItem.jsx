@@ -1,9 +1,6 @@
 import * as S from "./StyledFigure"
 
-import {useFormContext} from "react-hook-form"
-
 const FigureOptionDirectItem = () => {
-	const {register} = useFormContext()
 	return (
 		<S.FigureOptionDirectItemWrapper>
 			<S.FigureOptionDirectItemList>
