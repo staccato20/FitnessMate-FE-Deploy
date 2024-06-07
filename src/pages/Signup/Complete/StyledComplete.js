@@ -17,6 +17,7 @@ export const CompleteNavList = styled.span`
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
+	margin-top: 50px;
 `
 
 export const CompleteNavItem = styled.button`

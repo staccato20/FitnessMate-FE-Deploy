@@ -15,10 +15,12 @@ export const SignupForm = styled.form`
 	gap: 52px;
 `
 
+export const SignupContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+`
+
 export const SignupTitle = styled.span`
-	text-align: ${({flex}) => (flex ? "center" : "left")};
-	display: ${({flex}) => (flex ? "flex" : "")};
-	flex-direction: ${({flex}) => (flex ? "column" : "")};
 	align-items: center;
 	width: 100%;
 	color: ${theme.Gray80};
