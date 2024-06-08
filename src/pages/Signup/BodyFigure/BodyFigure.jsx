@@ -1,9 +1,5 @@
 import * as GS from "../StyledSignup"
 import * as S from "./StyledBodyFigure"
-import {useNavigate} from "react-router-dom"
-
-import MiddleButton from "../../../components/Button/MiddleButton"
-import BeforeButton from "../../../components/Button/BeforeButton"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useSlide} from "./hooks/useSlide"
 import Figure from "./components/Figure/Figure"
@@ -12,30 +8,31 @@ import {useSelectMenu} from "./hooks/useSelectMenu"
 import {useSelectFigure} from "./hooks/useSelectFigure"
 import {FormProvider, useForm} from "react-hook-form"
 import useSignupStore from "../../../store/store"
+import SignupButton from "../Button/SignupButton"
+import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
+import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
+
 const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
-	console.log("gg")
-	const methods = useForm({
-		defaultValues: {
-			bodyFat: 0,
-			muscleMass: 0,
-		},
-	})
+
+	const methods = useForm(SIGNUP_INPUTS.DEFAULT_VALUES["BODYFIGURE"])
 	const {formState, handleSubmit} = methods
 	const {profile, bodyinfo} = useSignupStore()
 
-	const navigate = useNavigate()
-
-	const handleBackPage = (e) => {
-		e.preventDefault()
-		navigate(-1)
-	}
-	const onSubmit = (figure) => {
-		console.log(ratioValue, selectedFigure)
+	const onSubmit = () => {
 		if (formState.isValid) {
-			console.log(profile, bodyinfo)
+			const submission = {
+				...profile,
+				...bodyinfo,
+				...{
+					updownBalance: ratioValue,
+					bodyFat: CATEGORY_LIST[selectedFigure][1][0],
+					muscleMass: CATEGORY_LIST[selectedFigure][1][1],
+				},
+			}
+			console.log(submission)
 		}
 	}
 
@@ -60,14 +57,7 @@ const BodyFigure = () => {
 					/>
 				</FormProvider>
 			</S.BodyFigureWrapper>
-			<GS.ButtonContainer>
-				<BeforeButton onClick={handleBackPage} />
-				<MiddleButton
-					$isValid={formState.isValid}
-					type="submit">
-					회원가입 완료
-				</MiddleButton>
-			</GS.ButtonContainer>
+			<SignupButton $isValid={formState.isValid}>회원가입 완료</SignupButton>
 		</GS.SignupForm>
 	)
 }

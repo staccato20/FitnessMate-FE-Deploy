@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom"
 import {BeforeButton, MiddleButton} from "../../../components"
 import * as S from "../StyledSignup"
 
-const SignupButton = ({children, formState}) => {
+const SignupButton = ({children, $isValid}) => {
 	const navigate = useNavigate()
 
 	const handleBackPage = (e) => {
@@ -15,7 +15,7 @@ const SignupButton = ({children, formState}) => {
 			<BeforeButton onClick={handleBackPage} />
 			<MiddleButton
 				type="submit"
-				$isValid={formState.isValid}>
+				$isValid={$isValid}>
 				{children}
 			</MiddleButton>
 		</S.ButtonContainer>

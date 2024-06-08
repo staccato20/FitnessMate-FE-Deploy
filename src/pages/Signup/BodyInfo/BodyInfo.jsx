@@ -13,17 +13,12 @@ import {SEX_GROUP} from "./constants/SEX_GROUP"
 const BodyInfo = () => {
 	const methods = useForm({
 		mode: "onChange",
-		defaultValues: {
-			sex: "male",
-			height: "",
-			weight: "",
-		},
+		defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["BODYINFO"],
 	})
 	const {formState, handleSubmit, register, getFieldState} = methods
 	const {setBodyInfo} = useSignupStore()
 	const navigate = useNavigate()
 	const handleNextPage = (bodyInfoForm) => {
-		console.log(bodyInfoForm)
 		if (formState.isValid) {
 			setBodyInfo(bodyInfoForm)
 			navigate("/signup/bodyfigure")
@@ -80,7 +75,7 @@ const BodyInfo = () => {
 						<Input.Error>{formState.errors?.weight?.message}</Input.Error>
 					</Input>
 				</S.BodyInfoContainer>
-				<SignupButton formState={formState} />
+				<SignupButton $isValid={formState.isValid} />
 			</GS.SignupForm>
 		</GS.SignupWrapper>
 	)

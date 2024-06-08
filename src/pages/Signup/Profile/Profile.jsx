@@ -5,19 +5,14 @@ import {useForm} from "react-hook-form"
 import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {useNavigate} from "react-router-dom"
+import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
 
 const Profile = () => {
 	const {setProfile} = useSignupStore()
 	const navigate = useNavigate()
 	const methods = useForm({
 		mode: "onChange",
-		defaultValues: {
-			userName: "",
-			birthDate: "",
-			email: "",
-			password: "",
-			passwordCheck: "",
-		},
+		defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["PROFILE"],
 	})
 	const {handleSubmit, formState} = methods
 
@@ -35,7 +30,7 @@ const Profile = () => {
 				회원 정보를 입력해주세요
 			</S.SignupTitle>
 			<ProfileForm methods={methods} />
-			<SignupButton formState={methods.formState}>다음</SignupButton>
+			<SignupButton $isValid={formState.isValid}>다음</SignupButton>
 		</S.SignupForm>
 	)
 }

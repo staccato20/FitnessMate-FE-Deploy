@@ -1,4 +1,23 @@
 export const SIGNUP_INPUTS = {
+	DEFAULT_VALUES: {
+		PROFILE: {
+			userName: "",
+			birthDate: "",
+			email: "",
+			password: "",
+			passwordCheck: "",
+		},
+		BODYINFO: {
+			sex: "male",
+			height: "",
+			weight: "",
+		},
+		BODYFIGURE: {
+			updownBalance: 0,
+			bodyFat: 0,
+			muscleMass: 0,
+		},
+	},
 	userName: {
 		attributes: {
 			placeholder: "2자리 이상",
