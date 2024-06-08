@@ -33,19 +33,25 @@ const BodyInfo = () => {
 					신체 정보를 입력해주세요
 				</GS.SignupTitle>
 				<S.BodyInfoContainer>
-					<S.SexSelect>
-						<Input>
-							<Input.Label isRequired>성별</Input.Label>
-							<Input.Select
-								list={SEX_GROUP}
-								methods={methods}
-							/>
-							<Input.Error>{formState.errors?.sex?.message}</Input.Error>
-						</Input>
-					</S.SexSelect>
+					<Input>
+						<Input.Label
+							isRequired
+							htmlFor="sex">
+							성별
+						</Input.Label>
+						<Input.Select
+							list={SEX_GROUP}
+							methods={methods}
+						/>
+						<Input.Error>{formState.errors?.sex?.message}</Input.Error>
+					</Input>
 
 					<Input>
-						<Input.Label isRequired>키</Input.Label>
+						<Input.Label
+							isRequired
+							htmlFor="height">
+							키
+						</Input.Label>
 						<Input.Input
 							props={{
 								...formAdapter({
@@ -60,7 +66,11 @@ const BodyInfo = () => {
 						<Input.Error>{formState.errors?.height?.message}</Input.Error>
 					</Input>
 					<Input>
-						<Input.Label isRequired>몸무게</Input.Label>
+						<Input.Label
+							isRequired
+							htmlFor="weight">
+							몸무게
+						</Input.Label>
 						<Input.Input
 							props={{
 								...formAdapter({

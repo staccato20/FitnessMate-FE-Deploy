@@ -5,7 +5,7 @@ const InputSelect = ({list, methods}) => {
 	const {register, getValues, setValue} = methods
 
 	const handleClick = (value) => {
-		setValue("sex", value)
+		setValue("sex", value, {shouldValidate: true})
 	}
 
 	return (

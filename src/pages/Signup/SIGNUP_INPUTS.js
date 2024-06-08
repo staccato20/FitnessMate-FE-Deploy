@@ -78,7 +78,7 @@ export const SIGNUP_INPUTS = {
 		validate: {
 			required: "키는 필수 입력입니다.",
 			pattern: {
-				value: /^\d{3}$/,
+				value: /\d{3}$/,
 				message: "키는 세자리로만 입력이 가능합니다.",
 			},
 			valueAsNumber: true,
@@ -91,7 +91,7 @@ export const SIGNUP_INPUTS = {
 		validate: {
 			required: "몸무게는 필수 입력입니다.",
 			pattern: {
-				value: /^\d{2,3}$/,
+				value: /\d{2,3}$/,
 				message: "몸무게는 두,세자리까지만 입력이 가능합니다.",
 			},
 			valueAsNumber: true,

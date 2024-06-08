@@ -12,6 +12,7 @@ const ImageSelect = ({value, children, register, handleClick, $isChecked}) => {
 				onClick={() => {
 					handleClick(value)
 				}}
+				type="button"
 				$isChecked={$isChecked}>
 				<S.SelectImg
 					src={`/src/assets/images/${value}.png`}
