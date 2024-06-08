@@ -6,21 +6,26 @@ import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useForm} from "react-hook-form"
 
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
-import {formAdapter} from "../../../utils/formadapter"
+
 import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {SEX_GROUP} from "./constants/SEX_GROUP"
+import {formAdapter} from "../../../utils/formadapter"
 const BodyInfo = () => {
 	const methods = useForm({
 		mode: "onChange",
 		defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["BODYINFO"],
 	})
-	const {formState, handleSubmit, register, getFieldState} = methods
+	const {formState, handleSubmit, register} = methods
 	const {setBodyInfo} = useSignupStore()
 	const navigate = useNavigate()
 	const handleNextPage = (bodyInfoForm) => {
 		if (formState.isValid) {
-			setBodyInfo(bodyInfoForm)
+			setBodyInfo({
+				...bodyInfoForm,
+				height: Number(bodyInfoForm.height),
+				weight: Number(bodyInfoForm.weight),
+			})
 			navigate("/signup/bodyfigure")
 		}
 	}
@@ -53,13 +58,14 @@ const BodyInfo = () => {
 							키
 						</Input.Label>
 						<Input.Input
+							type={"number"}
 							props={{
 								...formAdapter({
-									register: register,
+									register,
 									validator: SIGNUP_INPUTS["height"],
 									name: "height",
-									$isDirty: getFieldState("height").isDirty,
-									$isError: getFieldState("height").error,
+									$isDirty: formState.dirtyFields.height,
+									$isError: formState.errors.height,
 								}),
 							}}
 						/>
@@ -72,13 +78,14 @@ const BodyInfo = () => {
 							몸무게
 						</Input.Label>
 						<Input.Input
+							type={"number"}
 							props={{
 								...formAdapter({
-									register: register,
+									register,
 									validator: SIGNUP_INPUTS["weight"],
 									name: "weight",
-									$isDirty: getFieldState("weight").isDirty,
-									$isError: getFieldState("weight").error,
+									$isDirty: formState.dirtyFields.weight,
+									$isError: formState.errors.weight,
 								}),
 							}}
 						/>

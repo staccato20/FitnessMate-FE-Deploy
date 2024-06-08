@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import {createGlobalStyle} from "styled-components"
+import reset from "styled-reset"
 const GlobalStyles = createGlobalStyle`
 ${reset}
     // 적용시킬 css 입력
@@ -49,12 +49,16 @@ ${reset}
         background:none;
         &:focus{
             outline:none;
-     
         }
     }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+        }
     img{
         max-width:100%;
     }
-`;
+`
 
-export default GlobalStyles;
+export default GlobalStyles

@@ -73,6 +73,7 @@ const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 					비밀번호
 				</Input.Label>
 				<Input.Input
+					type={"password"}
 					props={{
 						...formAdapter({
 							register,
@@ -98,6 +99,7 @@ const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 					비밀번호 확인
 				</Input.Label>
 				<Input.Input
+					type={"password"}
 					props={{
 						...formAdapter({
 							register,

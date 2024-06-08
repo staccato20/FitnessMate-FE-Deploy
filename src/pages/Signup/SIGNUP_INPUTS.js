@@ -13,7 +13,7 @@ export const SIGNUP_INPUTS = {
 			weight: "",
 		},
 		BODYFIGURE: {
-			updownBalance: 0,
+			upDownBalance: 0,
 			bodyFat: 0,
 			muscleMass: 0,
 		},
@@ -76,12 +76,11 @@ export const SIGNUP_INPUTS = {
 			placeholder: "숫자만 입력",
 		},
 		validate: {
-			required: "키는 필수 입력입니다.",
+			required: {value: true, message: "키는 필수 입력입니다."},
 			pattern: {
-				value: /\d{3}$/,
+				value: /^\d{3}$/,
 				message: "키는 세자리로만 입력이 가능합니다.",
 			},
-			valueAsNumber: true,
 		},
 	},
 	weight: {
@@ -89,12 +88,11 @@ export const SIGNUP_INPUTS = {
 			placeholder: "숫자만 입력",
 		},
 		validate: {
-			required: "몸무게는 필수 입력입니다.",
+			required: {value: true, message: "몸무게는 필수 입력입니다."},
 			pattern: {
-				value: /\d{2,3}$/,
+				value: /^\d{2,3}$/,
 				message: "몸무게는 두,세자리까지만 입력이 가능합니다.",
 			},
-			valueAsNumber: true,
 		},
 	},
 	bodyFat: {
