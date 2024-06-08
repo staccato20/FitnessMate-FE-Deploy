@@ -11,6 +11,7 @@ import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
+import {userPostAPI} from "../../../apis/API"
 
 const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
@@ -21,7 +22,7 @@ const BodyFigure = () => {
 	const {formState, handleSubmit} = methods
 	const {profile, bodyinfo} = useSignupStore()
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		if (formState.isValid) {
 			const submission = {
 				...profile,
@@ -32,7 +33,12 @@ const BodyFigure = () => {
 					muscleMass: CATEGORY_LIST[selectedFigure][1][1],
 				},
 			}
-			console.log(submission)
+			try {
+				const response = await userPostAPI.post("", submission)
+				console.log(response)
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	}
 
