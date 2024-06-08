@@ -50,21 +50,21 @@ const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 			<Input>
 				<Input.Label
 					isRequired
-					htmlFor="email">
+					htmlFor="loginEmail">
 					이메일
 				</Input.Label>
 				<Input.Input
 					props={{
 						...formAdapter({
 							register,
-							validator: SIGNUP_INPUTS["email"],
-							name: "email",
-							$isDirty: formState.dirtyFields.email,
-							$isError: formState.errors.email,
+							validator: SIGNUP_INPUTS["loginEmail"],
+							name: "loginEmail",
+							$isDirty: formState.dirtyFields.loginEmail,
+							$isError: formState.errors.loginEmail,
 						}),
 					}}
 				/>
-				<Input.Error>{formState.errors?.email?.message}</Input.Error>
+				<Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
 			</Input>
 			<Input>
 				<Input.Label

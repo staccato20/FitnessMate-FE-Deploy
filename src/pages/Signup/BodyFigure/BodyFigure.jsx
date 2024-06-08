@@ -28,7 +28,7 @@ const BodyFigure = () => {
 				...profile,
 				...bodyinfo,
 				...{
-					updownBalance: ratioValue,
+					upDownBalance: ratioValue,
 					bodyFat: CATEGORY_LIST[selectedFigure][1][0],
 					muscleMass: CATEGORY_LIST[selectedFigure][1][1],
 				},

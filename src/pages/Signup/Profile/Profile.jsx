@@ -18,6 +18,7 @@ const Profile = () => {
 
 	const handleNextPage = (formValue) => {
 		if (formState.isValid) {
+			delete formValue["passwordCheck"]
 			setProfile(formValue)
 			navigate(`/signup/bodyinfo`)
 		}

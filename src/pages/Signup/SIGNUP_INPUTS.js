@@ -3,7 +3,7 @@ export const SIGNUP_INPUTS = {
 		PROFILE: {
 			userName: "",
 			birthDate: "",
-			email: "",
+			loginEmail: "",
 			password: "",
 			passwordCheck: "",
 		},
@@ -25,7 +25,7 @@ export const SIGNUP_INPUTS = {
 		validate: {
 			required: {value: true, message: "이름은 필수 입력입니다."},
 			pattern: {
-				value: /^[가-힣]{2,10}$/,
+				value: /^[가-힣]{3,8}$/,
 				message: "유효하지 않은 아이디입니다.",
 			},
 		},
@@ -42,7 +42,7 @@ export const SIGNUP_INPUTS = {
 			},
 		},
 	},
-	email: {
+	loginEmail: {
 		attributes: {
 			placeholder: "이메일을 입력해주세요",
 		},
