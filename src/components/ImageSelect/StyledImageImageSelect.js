@@ -1,12 +1,12 @@
 import styled from "styled-components"
 import theme from "../../styles/theme"
 
-export const SexList = styled.div`
+export const SelectList = styled.div`
 	display: flex;
 	gap: 10px;
 `
 
-export const SexItem = styled.button`
+export const SelectItem = styled.button`
 	transition: all 0.3s ease-out;
 	border-radius: 16px;
 	background: ${({$isChecked}) => ($isChecked ? theme.Gray10 : theme.White)};
@@ -27,12 +27,12 @@ export const SexItem = styled.button`
 				$isChecked ? `2px solid ${theme.Brand}` : theme.Gray30};
 	}
 `
-export const SexImg = styled.img`
+export const SelectImg = styled.img`
 	width: 60px;
 	height: 60px;
 `
 
-export const SexName = styled.span`
+export const SelectText = styled.span`
 	transition: all 0.3s ease-out;
 	color: ${({$isChecked}) => ($isChecked ? theme.BrandDark : theme.Gray50)};
 	font-size: 16px;

@@ -16,6 +16,7 @@ const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
+	console.log("gg")
 	const methods = useForm({
 		defaultValues: {
 			bodyFat: 0,

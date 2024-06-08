@@ -1,21 +1,26 @@
-import * as S from "../StyledInput.js"
-import male from "../../../assets/images/male.png"
-import female from "../../../assets/images/female.png"
-import ImageCheckBox from "../../ImageCheckBox/ImageCheckBox.jsx"
-const InputSelect = () => {
+import ImageSelect from "../../ImageSelect/ImageSelect"
+import {SelectList} from "../../ImageSelect/StyledImageImageSelect"
+
+const InputSelect = ({list, methods}) => {
+	const {register, getValues, setValue} = methods
+
+	const handleClick = (value) => {
+		setValue("sex", value)
+	}
+
 	return (
-		<S.CheckBoxGroup>
-			<ImageCheckBox
-				name="male"
-				src={male}>
-				남성
-			</ImageCheckBox>
-			<ImageCheckBox
-				name="female"
-				src={female}>
-				여성
-			</ImageCheckBox>
-		</S.CheckBoxGroup>
+		<SelectList>
+			{list.map(([value, text]) => (
+				<ImageSelect
+					key={value}
+					value={value}
+					$isChecked={getValues("sex") === value}
+					handleClick={handleClick}
+					register={register("sex")}>
+					{text}
+				</ImageSelect>
+			))}
+		</SelectList>
 	)
 }
 

@@ -1,10 +1,10 @@
 import * as S from "../StyledSignup"
-import {BeforeButton, MiddleButton} from "../../../components"
-import {useNavigate} from "react-router-dom"
 import StatusBar from "../../../components/StatusBar/StatusBar"
 import ProfileForm from "./components/ProfileForm"
 import {useForm} from "react-hook-form"
 import useSignupStore from "../../../store/store"
+import SignupButton from "../Button/SignupButton"
+import {useNavigate} from "react-router-dom"
 
 const Profile = () => {
 	const {setProfile} = useSignupStore()
@@ -28,11 +28,6 @@ const Profile = () => {
 		}
 	}
 
-	const handleBackPage = (e) => {
-		e.preventDefault()
-		navigate(-1)
-	}
-
 	return (
 		<S.SignupForm onSubmit={handleSubmit(handleNextPage)}>
 			<S.SignupTitle>
@@ -40,14 +35,7 @@ const Profile = () => {
 				회원 정보를 입력해주세요
 			</S.SignupTitle>
 			<ProfileForm methods={methods} />
-			<S.ButtonContainer>
-				<BeforeButton onClick={handleBackPage} />
-				<MiddleButton
-					$isValid={formState.isValid}
-					type="submit">
-					다음
-				</MiddleButton>
-			</S.ButtonContainer>
+			<SignupButton formState={methods.formState}>다음</SignupButton>
 		</S.SignupForm>
 	)
 }

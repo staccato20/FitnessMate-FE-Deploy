@@ -12,6 +12,7 @@ const getBorderStyle = ($isError, $isDirty) => {
 }
 
 export const InputName = styled.label`
+	cursor: default;
 	color: ${theme.Black};
 	font-size: 18px;
 	font-weight: 500;

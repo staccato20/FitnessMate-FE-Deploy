@@ -62,6 +62,7 @@ export const SIGNUP_INPUTS = {
 				value: /^\d{3}$/,
 				message: "키는 세자리로만 입력이 가능합니다.",
 			},
+			valueAsNumber: true,
 		},
 	},
 	weight: {
@@ -74,6 +75,7 @@ export const SIGNUP_INPUTS = {
 				value: /^\d{2,3}$/,
 				message: "몸무게는 두,세자리까지만 입력이 가능합니다.",
 			},
+			valueAsNumber: true,
 		},
 	},
 	bodyFat: {

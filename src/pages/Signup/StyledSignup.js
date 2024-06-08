@@ -30,7 +30,6 @@ export const SignupTitle = styled.span`
 `
 
 export const ButtonContainer = styled.div`
-	padding-top: 200px;
 	display: flex;
 	align-items: center;
 `
