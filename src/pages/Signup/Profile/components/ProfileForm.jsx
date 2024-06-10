@@ -2,6 +2,7 @@ import * as S from "../StyledProfile"
 import {Input} from "../../../../components"
 import {formAdapter} from "../../../../utils/formadapter"
 import {SIGNUP_INPUTS} from "../../SIGNUP_INPUTS"
+import {INPUT_STYLE} from "../../constatns/INPUT_STYLE"
 
 const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 	const checkPassWord = (value) =>
@@ -24,6 +25,7 @@ const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 							$isDirty: formState.dirtyFields.userName,
 							$isError: formState.errors.userName,
 						}),
+						...INPUT_STYLE.PROFILE,
 					}}
 				/>
 				<Input.Error>{formState.errors?.userName?.message}</Input.Error>

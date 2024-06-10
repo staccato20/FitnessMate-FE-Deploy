@@ -43,6 +43,7 @@ export const FigureOptionDirectItemList = styled.div`
 	display: flex;
 	justify-content: center;
 	gap: 52px;
+	width: 50%;
 	align-items: center;
 `
 
@@ -59,23 +60,12 @@ export const FigureOptionDirectItemOptionTitle = styled.span`
 
 export const FigureOptionDirectItemOptionBox = styled.div`
 	display: flex;
+	flex-direction: column;
 	gap: 8px;
-	align-items: center;
 `
 
 export const FigureOptionDirectItemOptionUnit = styled.span`
 	color: var(--Neutral-900, #333d4b);
-	font-size: 15px;
-	font-weight: 400;
-`
-
-export const FigureOptionDirectItemOptionInput = styled.input`
-	padding: 15px;
-	width: 69px;
-	height: 48px;
-	border-radius: 10px;
-	border: 1px solid var(--Neutral-500, #a2b2c2);
-	color: var(--Neutral-500, #a2b2c2);
 	font-size: 15px;
 	font-weight: 400;
 `
@@ -99,4 +89,10 @@ export const FigureOptioneDirectItemInnerMessage = styled.span`
 export const FigureOptioneDirectItemInnerMessage2 = styled.span`
 	color: var(--Neutral-800, #4e5968);
 	font-size: 15px;
+`
+
+export const FigureOptionInputWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 5px;
 `

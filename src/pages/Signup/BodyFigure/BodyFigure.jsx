@@ -10,7 +10,6 @@ import {FormProvider, useForm} from "react-hook-form"
 import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
-import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
 import {userPostAPI} from "../../../apis/API"
 import {useNavigate} from "react-router-dom"
 
@@ -18,7 +17,9 @@ const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
-	const methods = useForm(SIGNUP_INPUTS.DEFAULT_VALUES["BODYFIGURE"])
+	const methods = useForm({
+		mode: "onChange",
+	})
 	const {formState, handleSubmit} = methods
 	const {profile, bodyinfo} = useSignupStore()
 	const navigate = useNavigate()

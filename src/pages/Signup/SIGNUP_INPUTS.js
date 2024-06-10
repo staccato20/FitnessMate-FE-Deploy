@@ -96,9 +96,21 @@ export const SIGNUP_INPUTS = {
 		},
 	},
 	bodyFat: {
-		validate: {required: true, valueAsNumber: true},
+		validate: {
+			required: {value: true, message: ""},
+			pattern: {
+				value: /^\d{2}$/,
+				message: "",
+			},
+		},
 	},
 	muscleMass: {
-		validate: {required: true, valueAsNumber: true},
+		validate: {
+			required: {value: true, message: ""},
+			pattern: {
+				value: /^\d{2}$/,
+				message: "",
+			},
+		},
 	},
 }
