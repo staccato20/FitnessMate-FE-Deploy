@@ -10,14 +10,14 @@ const InputSelect = ({list, methods}) => {
 
 	return (
 		<SelectList>
-			{list.map(([value, text]) => (
+			{list.map((sex) => (
 				<ImageSelect
-					key={value}
-					value={value}
-					$isChecked={getValues("sex") === value}
+					key={sex}
+					value={sex}
+					$isChecked={getValues("sex") === sex}
 					handleClick={handleClick}
 					register={register("sex")}>
-					{text}
+					{sex}
 				</ImageSelect>
 			))}
 		</SelectList>

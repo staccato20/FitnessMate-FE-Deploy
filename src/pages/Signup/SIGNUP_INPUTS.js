@@ -8,7 +8,7 @@ export const SIGNUP_INPUTS = {
 			passwordCheck: "",
 		},
 		BODYINFO: {
-			sex: "male",
+			sex: "남성",
 			height: "",
 			weight: "",
 		},

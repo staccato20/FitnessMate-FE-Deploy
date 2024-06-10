@@ -1,7 +1,4 @@
-export const SEX_GROUP = [
-	["male", "남성"],
-	["female", "여성"],
-]
+export const SEX_GROUP = ["남성", "여성"]
 
 export const BODYINFO_LIST = [
 	["height", "키"],

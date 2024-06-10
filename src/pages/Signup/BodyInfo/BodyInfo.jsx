@@ -6,7 +6,6 @@ import StatusBar from "../../../components/StatusBar/StatusBar"
 import {useForm} from "react-hook-form"
 
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
-
 import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {SEX_GROUP} from "./constants/SEX_GROUP"

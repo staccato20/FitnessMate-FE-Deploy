@@ -12,15 +12,16 @@ import SignupButton from "../Button/SignupButton"
 import {CATEGORY_LIST} from "./constants/CATEGORY_LIST"
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
 import {userPostAPI} from "../../../apis/API"
+import {useNavigate} from "react-router-dom"
 
 const BodyFigure = () => {
 	const {ratioValue, ratioText, handleRatio} = useSlide()
 	const {selectedMenu, handleSelectMenu} = useSelectMenu()
 	const {selectedFigure, handleSelectFigure} = useSelectFigure()
-
 	const methods = useForm(SIGNUP_INPUTS.DEFAULT_VALUES["BODYFIGURE"])
 	const {formState, handleSubmit} = methods
 	const {profile, bodyinfo} = useSignupStore()
+	const navigate = useNavigate()
 
 	const onSubmit = async () => {
 		if (formState.isValid) {
@@ -28,14 +29,16 @@ const BodyFigure = () => {
 				...profile,
 				...bodyinfo,
 				...{
-					upDownBalance: ratioValue,
+					upDownBalance: parseFloat(ratioValue / 10),
 					bodyFat: CATEGORY_LIST[selectedFigure][1][0],
 					muscleMass: CATEGORY_LIST[selectedFigure][1][1],
 				},
 			}
 			try {
 				const response = await userPostAPI.post("", submission)
-				console.log(response)
+				if (response.status === 200) {
+					navigate("/signup/complete")
+				}
 			} catch (error) {
 				console.log(error)
 			}
