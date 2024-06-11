@@ -2,7 +2,6 @@ import styled from "styled-components"
 import theme from "./../../styles/theme"
 
 export const SignupWrapper = styled.div`
-	height: calc(100vh - 150px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -13,6 +12,10 @@ export const SignupForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 52px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 `
 
 export const SignupContainer = styled.div`
