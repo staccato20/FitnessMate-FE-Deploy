@@ -15,6 +15,7 @@ const SignupButton = ({children, $isValid}) => {
 			<BeforeButton onClick={handleBackPage} />
 			<MiddleButton
 				type="submit"
+				disabled={!$isValid}
 				$isValid={$isValid}>
 				{children}
 			</MiddleButton>
