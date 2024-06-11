@@ -62,7 +62,7 @@ const FixPassword = () => {
 	}
 
 	return (
-		<S.SignupContainer>
+		<S.SignupForm>
 			<S.SignupTitle>
 				<S.TitleEmphasis>비밀번호 변경</S.TitleEmphasis>
 			</S.SignupTitle>
@@ -88,7 +88,7 @@ const FixPassword = () => {
 					비밀번호 변경하기
 				</MiddleButton>
 			</S.ButtonContainer>
-		</S.SignupContainer>
+		</S.SignupForm>
 	)
 }
 

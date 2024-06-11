@@ -103,7 +103,7 @@ const Login = (props) => {
 			<BigButton
 				backcolor={theme.White}
 				fontcolor={theme.Brand}
-				handleSubmit={handleSignup}>
+				onClick={handleSignup}>
 				회원가입
 			</BigButton>
 		</S.LoginContainer>

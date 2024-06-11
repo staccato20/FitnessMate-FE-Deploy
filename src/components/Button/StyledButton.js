@@ -3,9 +3,21 @@
 import styled from "styled-components"
 import theme from "./../../styles/theme"
 
+const Button = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 3px;
+	border-radius: 12px;
+	font-size: 22px;
+	&:hover {
+		opacity: 0.5;
+	}
+`
+
 // < 가로 길이가 긴 버튼 >
 
-export const BigButtonWrapper = styled.button`
+export const BigButtonWrapper = styled(Button)`
 	width: 474px;
 	height: 62px;
 	padding: 22px 24px;
@@ -13,6 +25,7 @@ export const BigButtonWrapper = styled.button`
 	color: ${(props) => props.fontcolor || props.theme.White};
 `
 
+export const ButtonWrapper = styled.button``
 // < 가로 길이가 중간인 버튼 >
 
 export const MiddleButtonWrapper = styled.button`
@@ -43,17 +56,19 @@ export const SmallButtonWrapper = styled.button`
 
 // < 이전 버튼 >
 
-export const BeforeButtonWrapper = styled.button`
+export const BeforeButtonWrapper = styled(Button)`
 	width: 134px;
 	height: 62px;
 	padding: 22px 10px;
 	background: ${theme.White};
 	color: ${theme.Brand};
+	border-radius: 8px;
+	border: 2px solid var(--Brand-600, #0b98ff);
 `
 
 // < 목록 버튼 >
 
-export const ListButtonWrapper = styled.button`
+export const ListButtonWrapper = styled(Button)`
 	display: inline-flex;
 	width: auto;
 	height: 44px;

@@ -21,6 +21,10 @@ const theme = {
 	ErrorLight: "#FFEEEF",
 	Success: "#76D672",
 	SuccessLight: "#F2FAF0",
+	Neutral100: "#f9fafb",
+	Neutral300: "#e4eaf0",
+	Neutral800: "#4e5968",
+	Neutral900: "#333d4b",
 }
 
 export default theme

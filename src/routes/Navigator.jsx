@@ -1,17 +1,16 @@
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
-import {Home} from "../pages"
+
 import Login from "../pages/Login/Login"
 import Recommend from "../pages/Recommend/Recommend"
 import Mypage from "../pages/MyPage/Mypage"
 import MainLayout from "../Layout/Mainlayout"
 import Search from "../pages/Search/Search"
-import {
-	SignupBodyFigureDirect,
-	SignupBodyInfo,
-	SignupProfile,
-	SignupBodyFigure,
-	SignupComplete,
-} from "../pages/Signup"
+import {Home} from "../pages/Home/Home"
+
+import Complete from "../pages/Signup/Complete/Complete"
+import BodyInfo from "../pages/Signup/BodyInfo/BodyInfo"
+import Profile from "../pages/Signup/Profile/Profile"
+import BodyFigure from "../pages/Signup/BodyFigure/BodyFigure"
 
 const router = createBrowserRouter([
 	{
@@ -25,11 +24,10 @@ const router = createBrowserRouter([
 			{
 				path: "signup",
 				children: [
-					{path: "profile", element: <SignupProfile />},
-					{path: "bodyinfo", element: <SignupBodyInfo />},
-					{path: "bodyfigure", element: <SignupBodyFigure />},
-					{path: "bodyfigure/direct", element: <SignupBodyFigureDirect />},
-					{path: "complete", element: <SignupComplete />},
+					{path: "profile", element: <Profile />},
+					{path: "bodyinfo", element: <BodyInfo />},
+					{path: "bodyfigure", element: <BodyFigure />},
+					{path: "complete", element: <Complete />},
 				],
 			},
 			{

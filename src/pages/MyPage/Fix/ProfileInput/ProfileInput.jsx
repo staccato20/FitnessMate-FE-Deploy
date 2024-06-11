@@ -1,22 +1,22 @@
-import * as S from "./StyledProfileInput";
-import { EmailState, validationState } from "../../../../recoil/atom";
-import { ProfileInputContentWrapper } from "./StyledProfileInput";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useState } from "react";
-import ValidateTest from "../../../../utils/exp";
+import * as S from "./StyledProfileInput"
+import {EmailState, validationState} from "../../../../recoil/atom"
+import {ProfileInputContentWrapper} from "./StyledProfileInput"
+import {useRecoilState, useRecoilValue} from "recoil"
+import {useState} from "react"
+import ValidateTest from "../../../../utils/exp"
 
 // placeholder : Input창 마다 다양해서 Home에서 받아옴
 // children : 아이디/비밀번호/이메일 등등..
 
-const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
+const ProfileInput = ({placeholder, children, name, value, handleChange}) => {
 	// 유효성 검사
-	const [isValidState, setIsValidState] = useRecoilState(validationState);
+	const [isValidState, setIsValidState] = useRecoilState(validationState)
 	// 포커스 검사
-	const [isFocused, setIsFocused] = useState(false);
+	const [isFocused, setIsFocused] = useState(false)
 
 	// 입력했는지 체크(한 번 입력한 순간 쭉 true)
-	const [valueHistory, setValueHistory] = useState(false);
-	let NotAvailable = "";
+	const [valueHistory, setValueHistory] = useState(false)
+	let NotAvailable = ""
 
 	return (
 		<S.ProfileInputContainer isValidState={isValidState.loginEmail[1]}>
@@ -29,10 +29,10 @@ const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
 				isValidState={isValidState}
 				isFocused={isFocused}
 				onFocus={() => {
-					setIsFocused(true);
+					setIsFocused(true)
 				}}
 				onBlur={() => {
-					setIsFocused(false);
+					setIsFocused(false)
 				}}
 				onChange={handleChange}
 				value={value}
@@ -47,16 +47,16 @@ const ProfileInput = ({ placeholder, children, name, value, handleChange }) => {
 					isValidState={isValidState}
 					isFocused={isFocused}
 					onFocus={() => {
-						setIsFocused(true);
+						setIsFocused(true)
 					}}
 					onBlur={() => {
-						setIsFocused(false);
+						setIsFocused(false)
 					}}
 					onChange={handleChange}
 				/>
 			)}
 		</S.ProfileInputContainer>
-	);
-};
+	)
+}
 
-export default ProfileInput;
+export default ProfileInput
