@@ -10,7 +10,6 @@ export const NavbarContainer = styled.div`
 	width: 100%;
 	z-index: 999;
 	height: 64px;
-	margin-bottom: 62px;
 	display: flex;
 	padding: 0 calc((100% - 1440px) / 2);
 	justify-content: space-between;

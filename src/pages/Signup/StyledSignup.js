@@ -2,20 +2,24 @@ import styled from "styled-components"
 import theme from "./../../styles/theme"
 
 export const SignupWrapper = styled.div`
+	padding-top: 100px;
+	width: 474px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 474px;
+	margin: 0 auto;
+	gap: 52px;
 	padding-bottom: 30px;
 `
 export const SignupForm = styled.form`
+	padding-top: 100px;
+	width: 474px;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	margin: 0 auto;
 	gap: 52px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	padding-bottom: 30px;
 `
 
 export const SignupContainer = styled.div`
