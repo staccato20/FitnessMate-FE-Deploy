@@ -20,7 +20,7 @@ const BodyFigure = () => {
 	const methods = useForm({
 		mode: "onChange",
 	})
-	const {formState, handleSubmit} = methods
+	const {formState, handleSubmit, getValues} = methods
 	const {profile, bodyinfo} = useSignupStore()
 	const navigate = useNavigate()
 
@@ -31,10 +31,17 @@ const BodyFigure = () => {
 				...bodyinfo,
 				...{
 					upDownBalance: parseFloat(ratioValue / 10),
-					bodyFat: CATEGORY_LIST[selectedFigure][1][0],
-					muscleMass: CATEGORY_LIST[selectedFigure][1][1],
+					bodyFat:
+						selectedMenu === 0
+							? CATEGORY_LIST[selectedFigure][1][0]
+							: parseInt(getValues("bodyFat")),
+					muscleMass:
+						selectedMenu === 0
+							? CATEGORY_LIST[selectedFigure][1][1]
+							: parseInt(getValues("muscleMass")),
 				},
 			}
+
 			try {
 				const response = await userPostAPI.post("", submission)
 				if (response.status === 200) {
