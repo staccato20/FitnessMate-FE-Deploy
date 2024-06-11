@@ -10,8 +10,6 @@ const Button = styled.button`
 	gap: 3px;
 	border-radius: 12px;
 	font-size: 22px;
-	font-weight: 500;
-	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
 	}
@@ -64,6 +62,8 @@ export const BeforeButtonWrapper = styled(Button)`
 	padding: 22px 10px;
 	background: ${theme.White};
 	color: ${theme.Brand};
+	border-radius: 8px;
+	border: 2px solid var(--Brand-600, #0b98ff);
 `
 
 // < 목록 버튼 >

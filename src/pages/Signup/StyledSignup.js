@@ -12,6 +12,7 @@ export const SignupWrapper = styled.div`
 	padding-bottom: 30px;
 `
 export const SignupForm = styled.form`
+	position: relative;
 	padding-top: 100px;
 	width: 474px;
 	display: flex;
@@ -37,6 +38,10 @@ export const SignupTitle = styled.span`
 `
 
 export const ButtonContainer = styled.div`
+	margin-left: auto;
+	width: 50%;
+	gap: 10px;
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 `

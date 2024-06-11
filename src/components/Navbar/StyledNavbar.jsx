@@ -11,7 +11,8 @@ export const NavbarContainer = styled.div`
 	z-index: 999;
 	height: 64px;
 	display: flex;
-	padding: 0 calc((100% - 1440px) / 2);
+	margin: 0 auto;
+	padding: 0 15px;
 	justify-content: space-between;
 	align-items: center;
 	background-color: ${theme.White};
