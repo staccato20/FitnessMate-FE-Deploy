@@ -1,8 +1,8 @@
-import {React} from "react"
 import {ThemeProvider} from "styled-components"
 import theme from "./styles/theme"
-import Navigator from "./routes/Navigator"
+
 import {RecoilRoot} from "recoil"
+import Navigator from "./routes/Navigator"
 
 function App() {
 	return (

@@ -1,6 +1,6 @@
 import * as S from "../StyledProfile"
 import {Input} from "../../../../components"
-import {formAdapter} from "../../../../utils/formadapter"
+import {formAdapter} from "../../../../utils/formAdapter"
 import {SIGNUP_INPUTS} from "../../SIGNUP_INPUTS"
 import {INPUT_STYLE} from "../../constatns/INPUT_STYLE"
 

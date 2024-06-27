@@ -2,7 +2,7 @@ import * as S from "./StyledFigure"
 import Input from "../../../../../components/Input/Input"
 
 import {useFormContext} from "react-hook-form"
-import {formAdapter} from "../../../../../utils/formadapter"
+import {formAdapter} from "../../../../../utils/formAdapter"
 import {SIGNUP_INPUTS} from "../../../SIGNUP_INPUTS"
 
 const FigureOptionDirectItem = () => {

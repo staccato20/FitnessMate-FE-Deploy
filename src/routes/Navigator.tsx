@@ -1,16 +1,17 @@
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 
-import Login from "../pages/Login/Login"
-import Recommend from "../pages/Recommend/Recommend"
-import Mypage from "../pages/MyPage/Mypage"
 import MainLayout from "../Layout/Mainlayout"
-import Search from "../pages/Search/Search"
+
 import {Home} from "../pages/Home/Home"
 
 import Complete from "../pages/Signup/Complete/Complete"
 import BodyInfo from "../pages/Signup/BodyInfo/BodyInfo"
 import Profile from "../pages/Signup/Profile/Profile"
 import BodyFigure from "../pages/Signup/BodyFigure/BodyFigure"
+import Mypage from "../pages/MyPage/Mypage"
+import Recommend from "../pages/Recommend/Recommend"
+import Login from "../pages/Login/Login"
+import Search from "../pages/Search/Search"
 
 const router = createBrowserRouter([
 	{

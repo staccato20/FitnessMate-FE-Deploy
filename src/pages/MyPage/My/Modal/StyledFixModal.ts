@@ -1,8 +1,7 @@
 // < nav modal 스타일 >
 
-import styled from "styled-components";
-import theme from "./../../../../styles/theme";
-
+import styled from "styled-components"
+import theme from "../../../../styles/theme"
 
 export const AppWrap = styled.div`
   text-align: center;
@@ -11,43 +10,43 @@ export const AppWrap = styled.div`
 	display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const Overlay = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #00000033;
-  z-index: 9999;
-`;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #00000033;
+	z-index: 9999;
+`
 
 export const ModalContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-`;
+`
 
 export const ModalWrap = styled.div`
-  width: 470px;
-  height: 620px;
+	width: 470px;
+	height: 620px;
 	margin-bottom: 53px;
-  border-radius: 15px;
-  background-color: #fff;
+	border-radius: 15px;
+	background-color: #fff;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	padding: 24px;
 	justify-content: space-between;
-`;
+`
 
 export const Header = styled.div`
 	display: flex;
@@ -57,60 +56,58 @@ export const Header = styled.div`
 	width: 100%;
 	margin-bottom: 32px;
 
-span {
-	color: ${theme.BrandMid};
-	font-size: 16px;
-	font-weight: 500;
-	width: 100%;
-	display: flex;
-	justify-content: start;
-	margin-bottom: 8px;
-}
+	span {
+		color: ${theme.BrandMid};
+		font-size: 16px;
+		font-weight: 500;
+		width: 100%;
+		display: flex;
+		justify-content: start;
+		margin-bottom: 8px;
+	}
 `
 
 export const ModalTitle = styled.div`
-
 	display: grid;
-  grid-template-columns: 24px 1fr 24px;
-  grid-template-rows: 24px;
+	grid-template-columns: 24px 1fr 24px;
+	grid-template-rows: 24px;
 	width: 100%;
 	margin-bottom: 32px;
 
-h1 {
-	grid-column: 2;
-	display: flex;
-	justify-content: center;
-	font-size: 24px;
-	font-weight: 500;
-	color: ${theme.Black};
-	font-family: Pretendard;
-	margin-bottom: 32px;
-}
-`;
+	h1 {
+		grid-column: 2;
+		display: flex;
+		justify-content: center;
+		font-size: 24px;
+		font-weight: 500;
+		color: ${theme.Black};
+		font-family: Pretendard;
+		margin-bottom: 32px;
+	}
+`
 
 export const CloseButton = styled.div`
 	grid-column: 3;
-  border-radius: 23.5px;
+	border-radius: 23.5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  cursor: pointer;
-  img {
-    color: ${theme.Black};
-    font-size: 30px;
+	cursor: pointer;
+	img {
+		color: ${theme.Black};
+		font-size: 30px;
 		width: 17px;
 		height: 17px;
 
 		&:hover {
 			opacity: 0.5;
 		}
-  }
-`;
-
+	}
+`
 
 export const Contents = styled.div`
 	display: flex;
-  justify-content: center;
+	justify-content: center;
 	flex-direction: column;
 	width: 422px;
 	margin-bottom: 10px;
@@ -146,10 +143,10 @@ export const Contents = styled.div`
 		width: 368px;
 		display: flex;
 	}
-`;
+`
 
 export const AddButton = styled.button`
-  height: 34px;
+	height: 34px;
 	width: 34px;
 	border-radius: 8px;
 	background-color: ${theme.BrandLight300};
@@ -160,42 +157,42 @@ export const AddButton = styled.button`
 		height: 14px;
 		width: 14px;
 	}
-`;
+`
 
 export const Button = styled.button`
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ababab;
-  border-radius: 10px;
-  color: white;
-  font-style: italic;
-  font-weight: 200;
-  cursor: pointer;
-  &:hover {
-    background-color: #898989;
-  }
-`;
+	font-size: 14px;
+	padding: 10px 20px;
+	border: none;
+	background-color: #ababab;
+	border-radius: 10px;
+	color: white;
+	font-style: italic;
+	font-weight: 200;
+	cursor: pointer;
+	&:hover {
+		background-color: #898989;
+	}
+`
 
 export const SaveButton = styled.button`
-  width: 433px;
-  height: 68px;
-  padding: 22px 24px;
+	width: 433px;
+	height: 68px;
+	padding: 22px 24px;
 
-  background: ${({ theme }) => theme.Brand};
-  color: ${({ theme }) => theme.White};
+	background: ${({theme}) => theme.Brand};
+	color: ${({theme}) => theme.White};
 
 	display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  border-radius: 12px;
-  font-family: Pretendard;
-  font-size: 22px;
-  font-weight: 600;
-  cursor: pointer;
+	justify-content: center;
+	align-items: center;
+	gap: 3px;
+	border-radius: 12px;
+	font-family: Pretendard;
+	font-size: 22px;
+	font-weight: 600;
+	cursor: pointer;
 
-  &:hover {
-    opacity: 0.5;
-  }
-`;
+	&:hover {
+		opacity: 0.5;
+	}
+`

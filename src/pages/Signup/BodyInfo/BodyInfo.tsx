@@ -9,7 +9,7 @@ import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
 import useSignupStore from "../../../store/store"
 import SignupButton from "../Button/SignupButton"
 import {SEX_GROUP} from "./constants/SEX_GROUP"
-import {formAdapter} from "../../../utils/formadapter"
+import {formAdapter} from "../../../utils/formAdapter"
 const BodyInfo = () => {
 	const methods = useForm({
 		mode: "onChange",
