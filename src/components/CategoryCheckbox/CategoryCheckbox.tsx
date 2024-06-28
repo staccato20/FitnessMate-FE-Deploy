@@ -1,6 +1,5 @@
 // < 이미지가 포함된 체크박스 >
 
-import React from "react"
 import * as S from "./StyledCategoryCheckbox"
 
 const CategoryCheckbox = ({

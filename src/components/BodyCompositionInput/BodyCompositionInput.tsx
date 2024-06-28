@@ -1,8 +1,8 @@
-import * as S from "./StyledBodyCompositionInput";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { validationState } from "../../recoil/atom";
-import { useState } from "react";
 import ValidateTest from "../../utils/exp";
+import * as S from "./StyledBodyCompositionInput";
 
 // 체성분 input
 const BodyCompositionInput = ({ children, name }) => {
