@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { SearchContainer } from "./StyledSearchBar";
-import { SearchInput } from "./SearchInput";
 import Search_Icon from "../../assets/images/Search_Icon.svg";
+import { SearchInput } from "./SearchInput";
+import { SearchContainer } from "./StyledSearchBar";
 
 // 운동명 / 운동 종목 검색
 const SearchBar = ({ handleSearch, name }) => {

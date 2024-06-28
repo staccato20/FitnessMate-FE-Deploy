@@ -1,13 +1,13 @@
 // < 네브바 포함 레이아웃 >
 
-import React, {useEffect, useState} from "react"
-import * as S from "./StyledNavbar"
-import {useNavigate} from "react-router-dom"
-import NavModal from "./NavModal"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import TokenApi from "../../apis/TokenApi"
-import LoginModal from "../Modal/LoginModal"
-import CancleModal from "../Modal/CancleModal"
 import logoimg from "../../assets/images/logo.png"
+import CancleModal from "../Modal/CancleModal"
+import LoginModal from "../Modal/LoginModal"
+import NavModal from "./NavModal"
+import * as S from "./StyledNavbar"
 
 const Navbar = () => {
 	const navigate = useNavigate()

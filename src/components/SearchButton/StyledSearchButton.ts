@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
 export const SearchButtonWrapper = styled.button`
   border-radius: 12px;
   background: ${({ theme }) => theme.White};
@@ -15,4 +16,4 @@ export const SearchButtonWrapper = styled.button`
     background: ${({ theme }) => theme.Gray10};
     color: ${({ theme }) => theme.Brand};
   }
-`;
+`
