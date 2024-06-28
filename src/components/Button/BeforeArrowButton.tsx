@@ -1,5 +1,6 @@
-import { BeforeArrowButtonWrapper } from "./StyledButton";
-import leftarrow from "../../assets/images/leftarrow2.svg";
+import leftarrow from "../../assets/images/leftarrow2.svg"
+import { BeforeArrowButtonWrapper } from "./StyledButton"
+
 export const BeforeArrowButton = ({ handleClick }) => {
   return (
     <BeforeArrowButtonWrapper onClick={handleClick}>
@@ -10,7 +11,7 @@ export const BeforeArrowButton = ({ handleClick }) => {
       />
       <span className="beforeArrowBtnText">이전</span>
     </BeforeArrowButtonWrapper>
-  );
-};
+  )
+}
 
-export default BeforeArrowButton;
+export default BeforeArrowButton

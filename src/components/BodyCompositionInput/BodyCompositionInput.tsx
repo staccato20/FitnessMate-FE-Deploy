@@ -1,9 +1,10 @@
 import { useState } from "react"
 
+import { validationState } from "@recoil/atom"
 import { useRecoilState } from "recoil"
 
-import { validationState } from "../../recoil/atom"
-import ValidateTest from "../../utils/exp"
+import ValidateTest from "@utils/exp"
+
 import * as S from "./StyledBodyCompositionInput"
 
 // 체성분 input

@@ -1,5 +1,7 @@
-import styled from "styled-components";
-import theme from "../../styles/theme";
+import styled from "styled-components"
+
+import theme from "@styles/theme"
+
 export const BodyCompositionInputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,4 +38,4 @@ export const BodyCompositionInputContainer = styled.div`
     color: ${theme.Error};
     font-size: 16px;
   }
-`;
+`
