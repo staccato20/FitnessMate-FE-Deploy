@@ -1,15 +1,18 @@
 import * as S from "./StyledBodyInfo"
 import * as GS from "../StyledSignup"
 import {useNavigate} from "react-router-dom"
-import {Input} from "../../../components"
-import StatusBar from "../../../components/StatusBar/StatusBar"
+
 import {useForm} from "react-hook-form"
 
 import {SIGNUP_INPUTS} from "../SIGNUP_INPUTS"
-import useSignupStore from "../../../store/store"
+
 import SignupButton from "../Button/SignupButton"
-import {SEX_GROUP} from "./constants/SEX_GROUP"
+
 import {formAdapter} from "../../../utils/formAdapter"
+import StatusBar from "../../../components/StatusBar/StatusBar"
+import Input from "../../../components/Input/Input"
+import useSignupStore from "../../../store/store"
+import {SEX_GROUP} from "./constants/SEX_GROUP"
 const BodyInfo = () => {
 	const methods = useForm({
 		mode: "onChange",

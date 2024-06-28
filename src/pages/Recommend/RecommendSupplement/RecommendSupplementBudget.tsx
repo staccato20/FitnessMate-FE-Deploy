@@ -1,14 +1,8 @@
 import {useNavigate} from "react-router-dom"
-import {BeforeButton, SmallButton} from "../../../components"
+
 import {useTransition, animated} from "@react-spring/web"
 import theme from "../../../styles/theme"
-import {
-	BudgetContainer,
-	BudgetBox,
-	RecommendButtonContainer,
-	RecommendContainer,
-	RecommendTitle,
-} from "../StyledRecommend"
+
 import {useState, useEffect} from "react"
 import minus from "../../../assets/images/minus.svg"
 import plus from "../../../assets/images/plus.svg"
@@ -16,6 +10,15 @@ import TokenApi from "../../../apis/TokenApi"
 import Loading from "../../../components/Loading/Loading"
 import {useRecoilState} from "recoil"
 import {purposeState, supplementRecommendState} from "../../../recoil/atom"
+import {BeforeButton} from "../../Search/SearchWorkoutDetail/StyledSearchWorkoutDetail"
+import SmallButton from "../../../components/Button/SmallButton"
+import {
+	BudgetBox,
+	BudgetContainer,
+	RecommendButtonContainer,
+	RecommendContainer,
+	RecommendTitle,
+} from "../StyledRecommend"
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
 const RecommendSupplementBudget = () => {

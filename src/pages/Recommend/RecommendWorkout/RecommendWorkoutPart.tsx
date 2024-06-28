@@ -1,7 +1,7 @@
 import theme from "../../../styles/theme"
 import {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
-import {SmallTextCheckbox} from "../../../components"
+
 import {useRecoilState} from "recoil"
 import {bodyPartState} from "../../../recoil/atom"
 import {userBodyPartAPI} from "../../../apis/API"
@@ -16,6 +16,7 @@ import {
 	TextCheckboxContainer,
 } from "../StyledRecommend"
 import {SignupTitle} from "../../Signup/StyledSignup"
+import SmallTextCheckbox from "../../../components/TextCheckbox/SmallTextCheckbox"
 
 const RecommendWorkoutPart = () => {
 	const navigate = useNavigate()

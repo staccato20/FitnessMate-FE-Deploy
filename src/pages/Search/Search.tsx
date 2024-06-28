@@ -1,5 +1,7 @@
 import {Route, Routes} from "react-router-dom"
-import {SearchHome, SearchWorkoutDetail, SearchSupplementDetail} from "."
+import SearchHome from "./SearchHome/SearchHome"
+import SearchWorkoutDetail from "./SearchWorkoutDetail/SearchWorkoutDetail"
+import SearchSupplementDetail from "./SearchSupplementDetail/SearchSupplementDetail"
 
 // search 페이지에 대한 정보를 모두 담는 컴포넌트
 

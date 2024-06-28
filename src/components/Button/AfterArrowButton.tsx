@@ -1,6 +1,5 @@
 import {AfterArrowButtonWrapper} from "./StyledButton"
 import rightarrow from "../../assets/images/rightarrow3.svg"
-
 export const AfterArrowButton = ({handleClick, children, isReady}) => {
 	return (
 		<AfterArrowButtonWrapper

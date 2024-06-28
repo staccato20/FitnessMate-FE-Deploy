@@ -2,10 +2,11 @@
 
 import {React, useState} from "react"
 import * as S from "./StyledLogin"
-import {BigButton} from "../../components/index"
+
 import {useNavigate} from "react-router-dom"
 import theme from "../../styles/theme"
 import {loginPostAPI} from "../../apis/API"
+import BigButton from "../../components/Button/BigButton"
 
 const Login = (props) => {
 	const [email, setEmail] = useState("")

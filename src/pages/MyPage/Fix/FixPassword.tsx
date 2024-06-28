@@ -3,10 +3,11 @@ import * as S from "./StyledFix"
 import {useRecoilState} from "recoil"
 import {useNavigate} from "react-router-dom"
 import {validationState} from "../../../recoil/atom"
-import ValidateTest from "../../../utils/exp"
-import {MiddleButton, BeforeButton} from "../../../components"
-import ProfileInput from "./ProfileInput/ProfileInput"
+
 import TokenApi from "../../../apis/TokenApi"
+import MiddleButton from "../../../components/Button/MiddleButton"
+import BeforeButton from "../../../components/Button/BeforeButton"
+import ProfileInput from "./ProfileInput/ProfileInput"
 
 // 회원가입 페이지에 대한 정보를 모두 담는 컴포넌트
 // 우선 이메일은

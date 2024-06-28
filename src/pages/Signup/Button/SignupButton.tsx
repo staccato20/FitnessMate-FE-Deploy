@@ -1,6 +1,9 @@
 import {useNavigate} from "react-router-dom"
-import {BeforeButton, MiddleButton} from "../../../components"
+
 import * as S from "../StyledSignup"
+
+import MiddleButton from "../../../components/Button/MiddleButton"
+import BeforeButton from "../../../components/Button/BeforeButton"
 
 const SignupButton = ({children, $isValid}) => {
 	const navigate = useNavigate()

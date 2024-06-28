@@ -1,9 +1,9 @@
 import {useNavigate} from "react-router-dom"
 import * as S from "./StyledComplete"
 import * as GS from "../StyledSignup"
-import {BigButton} from "../../../components"
+
 import rightarrow2 from "../../../assets/images/rightarrow2.svg"
-import {COMPLETE_Nav} from "./constants/COMPLETE_NAV"
+import BigButton from "../../../components/Button/BigButton"
 
 const Complete = () => {
 	const navigate = useNavigate()

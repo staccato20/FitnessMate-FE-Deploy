@@ -1,18 +1,17 @@
 // < 홈 페이지 >
 import * as S from "./StyledHome"
-import HomeSecondImg1 from "../../assets/images/HomeSecondImg1.png"
 import {useNavigate} from "react-router-dom"
-import arrow from "../../assets/images/arrow.svg"
+import arrow from "@assets/images/arrow.svg"
 import {useState} from "react"
-import LoginModal from "../../components/Modal/LoginModal"
-import homebanner from "../../assets/images/homebanner.png"
-import thirdFirstImg from "../../assets/images/thirdFirstImg.svg"
-import thirdSecondImg from "../../assets/images/thirdSecondImg.png"
-import thirdThirdImg from "../../assets/images/thirdThirdImg.png"
-import fourthFirstImg from "../../assets/images/fourthFirstImg.png"
-import fourthSecondImg from "../../assets/images/fourthSecondImg.png"
-import fourthThirdImg from "../../assets/images/fourthThirdImg.png"
-import {getAccessAPI} from "../../apis/API"
+import LoginModal from "@components/Modal/LoginModal"
+import homebanner from "@assets/images/homebanner.png"
+import thirdFirstImg from "@assets/images/thirdFirstImg.svg"
+import thirdSecondImg from "@assets/images/thirdSecondImg.png"
+import thirdThirdImg from "@assets/images/thirdThirdImg.png"
+import fourthFirstImg from "@assets/images/fourthFirstImg.png"
+import fourthSecondImg from "@assets/images/fourthSecondImg.png"
+import fourthThirdImg from "@assets/images/fourthFirstImg.png"
+
 export const Home = () => {
 	const navigate = useNavigate()
 

@@ -1,5 +1,7 @@
 import {Route, Routes} from "react-router-dom"
-import {FixPassword, FixProfile, FixBodyInfo, MypageHome} from "./index"
+import FixPassword from "./Fix/FixPassword"
+import FixProfile from "./Fix/FixProfile"
+import FixBodyInfo from "./Fix/FixBodyInfo"
 
 const Mypage = () => {
 	return (

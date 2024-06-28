@@ -1,94 +1,94 @@
-import { styled } from "styled-components";
-import theme from "../../../styles/theme";
+import {styled} from "styled-components"
+import theme from "../../../styles/theme"
 
 export const SearchContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  width: 100%;
-  .searchTopWrapper {
-    max-width: 812px;
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	gap: 26px;
+	width: 100%;
+	.searchTopWrapper {
+		max-width: 812px;
+		width: 90%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
 
-    .searchTitleWrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      padding: 20px 0;
-      border-bottom: 1px solid ${theme.Gray20};
-      .searchTitleTextWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+		.searchTitleWrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			padding: 20px 0;
+			border-bottom: 1px solid ${theme.Gray20};
+			.searchTitleTextWrapper {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
 
-        .searchTitle1 {
-          text-align: center;
-          color: ${theme.Gray50};
-          font-size: 24px;
-          font-weight: 700;
-        }
-        .searchTitle2 {
-          text-align: center;
-          color: ${theme.Black};
-          font-size: 38px;
-          font-weight: 700;
-        }
-      }
-    }
-  }
+				.searchTitle1 {
+					text-align: center;
+					color: ${theme.Gray50};
+					font-size: 24px;
+					font-weight: 700;
+				}
+				.searchTitle2 {
+					text-align: center;
+					color: ${theme.Black};
+					font-size: 38px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
 
-  .searchContentWrapper {
-    text-align: left;
-    @media screen and (max-width: 825px) {
-      text-align: center;
-    }
-  }
+	.searchContentWrapper {
+		text-align: left;
+		@media screen and (max-width: 825px) {
+			text-align: center;
+		}
+	}
 
-  .serachButtonWrapper {
+	.serachButtonWrapper {
 		margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 58px;
-    .BtnWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
-      .backBtnText {
-        color: ${theme.BrandNon};
-        font-size: 24px;
-      }
-      .nextBtnText {
-        color: ${theme.Brand};
-        font-size: 24px;
-      }
-    }
-  }
-`;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 58px;
+		.BtnWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			padding: 10px;
+			.backBtnText {
+				color: ${theme.BrandNon};
+				font-size: 24px;
+			}
+			.nextBtnText {
+				color: ${theme.Brand};
+				font-size: 24px;
+			}
+		}
+	}
+`
 
 export const Toggle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-  .toggleSwitch_wrap {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
+	.toggleSwitch_wrap {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+	}
 
-  .toggleSwitch {
-    position: relative;
-    display: inline-block;
-    width: 201px;
-    height: 50px;
-  }
-`;
+	.toggleSwitch {
+		position: relative;
+		display: inline-block;
+		width: 201px;
+		height: 50px;
+	}
+`
 
 export const SectionContainer = styled.div`
 	display: flex;
@@ -99,7 +99,7 @@ export const SectionContainer = styled.div`
 	.searchBarWrapper {
 		display: flex;
 		flex-direction: column;
-    gap: 8px;
+		gap: 8px;
 		max-width: 812px;
 		width: 90%;
 		margin: 0 auto;
@@ -107,62 +107,61 @@ export const SectionContainer = styled.div`
 `
 
 export const Filter = styled.div`
-
 	max-width: 812px;
 	display: flex;
 	position: relative;
 
 	.searchBarFilter {
-			gap: 12px;
-      display: flex;
-			max-width: 100%;
-			min-height: 50px;
-      padding: 10px 12px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-			background: ${theme.Gray10};
+		gap: 12px;
+		display: flex;
+		max-width: 100%;
+		min-height: 50px;
+		padding: 10px 12px;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background: ${theme.Gray10};
 
-      .searchBarFilterText {
-        color: ${theme.Gray80};
-        text-align: center;
-        font-size: 18px;
-				font-weight: 500;
-				min-width: 63px;
-      }
+		.searchBarFilterText {
+			color: ${theme.Gray80};
+			text-align: center;
+			font-size: 18px;
+			font-weight: 500;
+			min-width: 63px;
+		}
 
-			img {
-				cursor: pointer;
-				z-index: 800;
-			}
+		img {
+			cursor: pointer;
+			z-index: 800;
+		}
 
-			.rotate-right {
-				transform: rotate(45deg);
-				transition: transform 0.1s ease;
-			}
+		.rotate-right {
+			transform: rotate(45deg);
+			transition: transform 0.1s ease;
+		}
 
-			.rotate-left {
-				transform: rotate(-0deg);
-				transition: transform 0.1s ease;
-			}
+		.rotate-left {
+			transform: rotate(-0deg);
+			transition: transform 0.1s ease;
+		}
 
-			.addFilter {
+		.addFilter {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px;
+
+			button {
 				display: flex;
-				flex-wrap: wrap;
 				gap: 4px;
-
-				button {
-					display: flex;
-					gap: 4px;
-					align-items: center;
-					padding: 4px 8px;
-					border-radius: 4px;
-					background: ${theme.Gray20};
-					color: ${theme.Gray80};
-					font-size: 18px;
-					font-weight: 500;
-				}
+				align-items: center;
+				padding: 4px 8px;
+				border-radius: 4px;
+				background: ${theme.Gray20};
+				color: ${theme.Gray80};
+				font-size: 18px;
+				font-weight: 500;
 			}
+		}
 	}
 
 	.searchFilterModalWrapper {
@@ -171,7 +170,7 @@ export const Filter = styled.div`
 		display: flex;
 		flex-wrap: wrap;
 		width: 247px;
-    height: 108px;
+		height: 108px;
 		padding: 19px 18px;
 		gap: 12px;
 		border-radius: 10px;
@@ -182,9 +181,8 @@ export const Filter = styled.div`
 	}
 	.searchFilterModalWrapper.fitness {
 		width: 342px;
-    height: 190px;
+		height: 190px;
 		bottom: -200px;
-	}
 	}
 
 	.searchFilterModalContent {
@@ -203,7 +201,6 @@ export const Filter = styled.div`
 		&:hover {
 			opacity: 0.8;
 		}
-		
 	}
 	.searchFilterModalContent.active {
 		background: ${theme.Gray20};
@@ -213,5 +210,4 @@ export const Filter = styled.div`
 	.searchFilterModalContent.active img {
 		opacity: 0.3;
 	}
-
 `

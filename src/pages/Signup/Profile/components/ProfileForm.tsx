@@ -1,8 +1,9 @@
 import * as S from "../StyledProfile"
-import {Input} from "../../../../components"
+
 import {formAdapter} from "../../../../utils/formAdapter"
 import {SIGNUP_INPUTS} from "../../SIGNUP_INPUTS"
 import {INPUT_STYLE} from "../../constatns/INPUT_STYLE"
+import Input from "../../../../components/Input/Input"
 
 const ProfileForm = ({methods: {register, formState, trigger, getValues}}) => {
 	const checkPassWord = (value) =>

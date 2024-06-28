@@ -1,16 +1,18 @@
 import {useNavigate} from "react-router-dom"
-import {CategoryCheckbox} from "../../../components/"
+
 import theme from "../../../styles/theme"
+
+import {useState} from "react"
+import {SignupTitle} from "../../Signup/StyledSignup"
+import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
+import {AfterArrowButton} from "./../../../components/Button/AfterArrowButton"
+import CategoryCheckbox from "../../../components/CategoryCheckbox/CategoryCheckbox"
 import {
 	RecommendButtonContainer,
 	RecommendContainer,
 	RecommendImgContainer,
 	RecommendTitle,
 } from "../StyledRecommend"
-import {useState} from "react"
-import {SignupTitle} from "../../Signup/StyledSignup"
-import {BeforeArrowButton} from "./../../../components/Button/BeforeArrowButton"
-import {AfterArrowButton} from "./../../../components/Button/AfterArrowButton"
 
 // 버튼과 이미지의 간격을 어떻게 줄지 고민해 봐야함.
 const RecommendCategory = () => {

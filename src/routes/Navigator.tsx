@@ -2,8 +2,6 @@ import {RouterProvider, createBrowserRouter} from "react-router-dom"
 
 import MainLayout from "../Layout/Mainlayout"
 
-import {Home} from "../pages/Home/Home"
-
 import Complete from "../pages/Signup/Complete/Complete"
 import BodyInfo from "../pages/Signup/BodyInfo/BodyInfo"
 import Profile from "../pages/Signup/Profile/Profile"
@@ -12,6 +10,7 @@ import Mypage from "../pages/MyPage/Mypage"
 import Recommend from "../pages/Recommend/Recommend"
 import Login from "../pages/Login/Login"
 import Search from "../pages/Search/Search"
+import Home from "../pages/Home/Home"
 
 const router = createBrowserRouter([
 	{
