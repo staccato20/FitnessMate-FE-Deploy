@@ -1,4 +1,4 @@
-import { NoSearchWrapper } from "./StyledNoSearch";
+import { NoSearchWrapper } from "./StyledNoSearch"
 
 const NoSearch = () => {
   return (
@@ -10,7 +10,7 @@ const NoSearch = () => {
         혹시 다른 키워드로 검색해보는 건 어떠세요
       </span>
     </NoSearchWrapper>
-  );
-};
+  )
+}
 
-export default NoSearch;
+export default NoSearch

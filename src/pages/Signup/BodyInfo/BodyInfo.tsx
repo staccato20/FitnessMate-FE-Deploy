@@ -1,15 +1,18 @@
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import Input from "../../../components/Input/Input"
-import StatusBar from "../../../components/StatusBar/StatusBar"
-import useSignupStore from "../../../stores/store"
-import { formAdapter } from "../../../utils/formAdapter"
-import SignupButton from "../Button/SignupButton"
-import { SIGNUP_INPUTS } from "../SIGNUP_INPUTS"
+import Input from "@components/Input/Input"
+import StatusBar from "@components/StatusBar/StatusBar"
+
+import { SEX_GROUP } from "@pages/Signup/BodyInfo/constants/SEX_GROUP"
+import SignupButton from "@pages/Signup/Button/SignupButton"
+import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
+import { useSignupStore } from "@pages/Signup/stores/store"
+
+import { formAdapter } from "@utils/formAdapter"
+
 import * as GS from "../StyledSignup"
 import * as S from "./StyledBodyInfo"
-import { SEX_GROUP } from "./constants/SEX_GROUP"
 
 const BodyInfo = () => {
   const methods = useForm({

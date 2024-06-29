@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const ModalWrapper = styled.div`
   width: 400px;
@@ -21,7 +21,7 @@ export const ModalWrapper = styled.div`
     right: 12px;
     cursor: pointer;
   }
-`;
+`
 
 export const FormList = styled.form`
   display: flex;
@@ -35,7 +35,7 @@ export const FormList = styled.form`
   .FormName {
     font-size: 18px;
   }
-`;
+`
 
 export const SubmitButton = styled.button`
   margin-top: 10px;
@@ -47,4 +47,4 @@ export const SubmitButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-`;
+`

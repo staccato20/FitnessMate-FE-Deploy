@@ -1,72 +1,72 @@
 // 토글 구현
+import React from "react"
 
-import React from "react";
-import PropTypes from "prop-types";
-import "./style.css";
+import PropTypes from "prop-types"
+
+import "./style.css"
 
 const valueType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
-  PropTypes.bool
-]);
+  PropTypes.bool,
+])
 
 const propTypes = {
   labels: PropTypes.shape({
     left: {
       title: PropTypes.string.isRequired,
-      value: valueType
+      value: valueType,
     },
     right: {
       title: PropTypes.string.isRequired,
-      value: valueType
-    }
+      value: valueType,
+    },
   }),
   onChange: PropTypes.func.isRequired,
-  styles: PropTypes.object
-};
+  styles: PropTypes.object,
+}
 
 const defaultProps = {
   labels: {
     left: {
       title: "left",
-      value: "left"
+      value: "left",
     },
     right: {
       title: "right",
-      value: "right"
-    }
+      value: "right",
+    },
   },
-};
+}
 
 class ToggleSwitch extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       switchPosition: "left",
-      animation: null
-    };
+      animation: null,
+    }
   }
 
   getSwitchAnimation = (value) => {
-    const { switchPosition } = this.state;
-    let animation = null;
+    const { switchPosition } = this.state
+    let animation = null
     if (value === "right" && switchPosition === "left") {
-      animation = "left-to-right";
+      animation = "left-to-right"
     } else if (value === "left" && switchPosition === "right") {
-      animation = "right-to-left";
+      animation = "right-to-left"
     }
-    this.props.onChange(value);
-    this.setState({ switchPosition: value, animation });
-  };
+    this.props.onChange(value)
+    this.setState({ switchPosition: value, animation })
+  }
 
   render() {
-    const { labels } = this.props;
+    const { labels } = this.props
 
     return (
       <div className="main-container">
         <div
-          className={`switch ${this.state.animation} ${this.state.switchPosition}-position`}
-        ></div>
+          className={`switch ${this.state.animation} ${this.state.switchPosition}-position`}></div>
         <input
           defaultChecked
           onChange={(e) => this.getSwitchAnimation(e.target.value)}
@@ -80,8 +80,7 @@ class ToggleSwitch extends React.Component {
             this.state.switchPosition === "left" && "black-font"
           }`}
           htmlFor="left"
-					id="left-label"
-        >
+          id="left-label">
           <h4>{labels.left.title}</h4>
         </label>
 
@@ -97,16 +96,15 @@ class ToggleSwitch extends React.Component {
             this.state.switchPosition === "right" && "black-font"
           }`}
           htmlFor="right"
-					id="right-label"
-        >
+          id="right-label">
           <h4>{labels.right.title}</h4>
         </label>
       </div>
-    );
+    )
   }
 }
 
-ToggleSwitch.propTypes = propTypes;
-ToggleSwitch.defaultProps = defaultProps;
+ToggleSwitch.propTypes = propTypes
+ToggleSwitch.defaultProps = defaultProps
 
-export default ToggleSwitch;
+export default ToggleSwitch

@@ -1,5 +1,6 @@
-import { styled } from "styled-components";
-import theme from "../../styles/theme";
+import { styled } from "styled-components"
+
+import theme from "@styles/theme"
 
 export const EmailModalContainer = styled.div`
   position: relative;
@@ -28,4 +29,4 @@ export const EmailModalContainer = styled.div`
     font-weight: 600;
     letter-spacing: -0.34px;
   }
-`;
+`

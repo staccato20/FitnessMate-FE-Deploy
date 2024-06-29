@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import theme from "../../styles/theme";
+import styled from "styled-components"
+
+import theme from "@styles/theme"
 
 export const SearchContainer = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ export const SearchContainer = styled.div`
     width: 24px;
     height: 24px;
   }
-`;
+`
 
 export const SearchInputContent = styled.input`
   &::-webkit-input-placeholder {
@@ -29,4 +30,4 @@ export const SearchInputContent = styled.input`
   color: ${({ theme }) => theme.Gray50};
   font-size: 18px;
   font-weight: 500;
-`;
+`

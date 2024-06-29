@@ -1,27 +1,27 @@
 // < 글만 있는 체크박스 >
-import { useEffect, useRef, useState } from "react";
-import * as S from "./StyledTextCheckbox";
+import { useEffect, useRef, useState } from "react"
+
+import * as S from "./StyledTextCheckbox"
 
 const TextCheckbox = ({ handleClick, isSelected, children, elementidx }) => {
-  const [inputvalue, setInputValue] = useState(children);
-  const [isEditing, setIsEditing] = useState(false);
-  const inputRef = useRef(null);
+  const [inputvalue, setInputValue] = useState(children)
+  const [isEditing, setIsEditing] = useState(false)
+  const inputRef = useRef(null)
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select(); // 전체 텍스트 선택
+      inputRef.current.focus()
+      inputRef.current.select() // 전체 텍스트 선택
     }
-  }, [isEditing]);
+  }, [isEditing])
 
   return (
     <S.TextCheckboxWrapper
       type="button"
       onClick={() => {
-        handleClick(elementidx);
+        handleClick(elementidx)
       }}
-      isSelected={isSelected}
-    >
+      isSelected={isSelected}>
       {/* 문구 */}
       {isEditing ? (
         <input
@@ -31,15 +31,14 @@ const TextCheckbox = ({ handleClick, isSelected, children, elementidx }) => {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              setIsEditing(false); // Enter 키를 누를 때 편집 모드 종료
+              setIsEditing(false) // Enter 키를 누를 때 편집 모드 종료
             }
           }}
         />
       ) : (
         <span
           className="choice-article"
-          onDoubleClick={() => setIsEditing(true)}
-        >
+          onDoubleClick={() => setIsEditing(true)}>
           {inputvalue}
         </span>
       )}
@@ -50,10 +49,14 @@ const TextCheckbox = ({ handleClick, isSelected, children, elementidx }) => {
         width="40"
         height="40"
         viewBox="0 0 40 40"
-        fill="none"
-      >
+        fill="none">
         {/* 체크 배경(원) */}
-        <circle className="check-background" cx="20" cy="20" r="16" />
+        <circle
+          className="check-background"
+          cx="20"
+          cy="20"
+          r="16"
+        />
         {/* 체크 색 */}
         <path
           className="check-shape"
@@ -61,7 +64,7 @@ const TextCheckbox = ({ handleClick, isSelected, children, elementidx }) => {
         />
       </svg>
     </S.TextCheckboxWrapper>
-  );
-};
+  )
+}
 
-export default TextCheckbox;
+export default TextCheckbox

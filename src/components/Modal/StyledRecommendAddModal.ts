@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import theme from "../../styles/theme";
+import styled from "styled-components"
+
+import theme from "@styles/theme"
 
 export const RecommendAddModalWrapper = styled.div`
   display: flex;
@@ -56,14 +57,14 @@ export const RecommendAddModalWrapper = styled.div`
       }
     }
   }
-`;
+`
 
 export const ModifyOptionWrapper = styled.div`
   display: flex;
   padding: 12px 18px;
   gap: 12px;
   justify-content: center;
-`;
+`
 
 export const ModifyOptionButton = styled.button`
   color: ${({ isSelected }) => (isSelected ? theme.White : theme.Brand)};
@@ -80,7 +81,7 @@ export const ModifyOptionButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
-`;
+`
 
 export const ModifyOptionContent = styled.div`
   margin-bottom: 80px;
@@ -102,4 +103,4 @@ export const ModifyOptionContent = styled.div`
     line-height: 150%; /* 72px */
     letter-spacing: -0.96px;
   }
-`;
+`

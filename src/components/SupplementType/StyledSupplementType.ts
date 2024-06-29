@@ -1,16 +1,17 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
 export const CardContainer = styled.div`
   display: inline-block;
   width: 23%;
   margin: 10px 12px;
   position: relative;
-	border: 1px solid ${({ theme }) => theme.Gray20};
-	border-radius: 17px;
-	cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.Gray20};
+  border-radius: 17px;
+  cursor: pointer;
 
-	&:hover {
-		box-shadow: 0px 4px 30px #00000040;
-	}
+  &:hover {
+    box-shadow: 0px 4px 30px #00000040;
+  }
 
   @media screen and (max-width: 1400px) {
     width: 31%;
@@ -48,7 +49,7 @@ export const CardContainer = styled.div`
       font-weight: 700;
       letter-spacing: -0.24px;
     }
-		.supplementSource {
+    .supplementSource {
       border-radius: 4px;
       background: ${({ theme }) => theme.BrandLight};
       display: flex;
@@ -75,7 +76,7 @@ export const CardContainer = styled.div`
       font-size: 24px;
       font-weight: 600;
       letter-spacing: -0.48px;
-			margin-bottom: 7px;
+      margin-bottom: 7px;
     }
     .supplementExplain {
       color: ${({ theme }) => theme.Black};
@@ -87,14 +88,14 @@ export const CardContainer = styled.div`
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-			margin-bottom: 14px;
+      margin-bottom: 14px;
     }
-		.supplementPrice {
-			color: ${({ theme }) => theme.Black};
+    .supplementPrice {
+      color: ${({ theme }) => theme.Black};
       font-size: 24px;
-			font-weight: 600;
+      font-weight: 600;
       text-align: left;
       letter-spacing: -0.32px;
-		}
+    }
   }
-`;
+`

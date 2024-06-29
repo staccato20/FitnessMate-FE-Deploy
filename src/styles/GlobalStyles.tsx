@@ -1,5 +1,7 @@
-import {createGlobalStyle} from "styled-components"
 import reset from "styled-reset"
+
+import { createGlobalStyle } from "styled-components"
+
 const GlobalStyles = createGlobalStyle`
 ${reset}
     // 적용시킬 css 입력

@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import StatusBar from "../../../components/StatusBar/StatusBar"
-import useSignupStore from "../../../stores/store"
-import SignupButton from "../Button/SignupButton"
-import { SIGNUP_INPUTS } from "../SIGNUP_INPUTS"
+import StatusBar from "@components/StatusBar/StatusBar"
+
+import SignupButton from "@pages/Signup/Button/SignupButton"
+import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
+import { useSignupStore } from "@pages/Signup/stores/store"
+
 import * as S from "../StyledSignup"
 import ProfileForm from "./components/ProfileForm"
 

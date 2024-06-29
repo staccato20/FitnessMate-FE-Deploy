@@ -1,16 +1,17 @@
-import * as S from "./StyeldLeaveModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+
+import * as S from "./StyeldLeaveModal"
 
 const CancleModal = ({ setIsCancleModal }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleCancle = (e) => {
-    setIsCancleModal(false);
-    navigate("/");
-  };
+    setIsCancleModal(false)
+    navigate("/")
+  }
 
   const handleLeave = (e) => {
-    setIsCancleModal(false);
-  };
+    setIsCancleModal(false)
+  }
   return (
     <S.ModalBox>
       <S.ModalWrapper>
@@ -20,16 +21,20 @@ const CancleModal = ({ setIsCancleModal }) => {
           나가시겠습니까?
         </span>
         <div className="leaveModalButtonWrapper">
-          <button className="cancleBtn" onClick={handleCancle}>
+          <button
+            className="cancleBtn"
+            onClick={handleCancle}>
             네 나갈래요
           </button>
-          <button className="leaveBtn" onClick={handleLeave}>
+          <button
+            className="leaveBtn"
+            onClick={handleLeave}>
             아니요
           </button>
         </div>
       </S.ModalWrapper>
     </S.ModalBox>
-  );
-};
+  )
+}
 
-export default CancleModal;
+export default CancleModal

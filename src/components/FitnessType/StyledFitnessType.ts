@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
 export const CardContainer = styled.div`
   display: inline-block;
   width: 23%;
   margin: 10px 12px;
   text-align: center;
   position: relative;
-	border: 1px solid ${({ theme }) => theme.Gray20};
-	border-radius: 17px;
-	cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.Gray20};
+  border-radius: 17px;
+  cursor: pointer;
 
-	&:hover {
-		box-shadow: 0px 4px 30px #00000040;
-	}
-
+  &:hover {
+    box-shadow: 0px 4px 30px #00000040;
+  }
 
   @media screen and (max-width: 1400px) {
     width: 31%;
@@ -78,4 +78,4 @@ export const CardContainer = styled.div`
       text-overflow: ellipsis;
     }
   }
-`;
+`

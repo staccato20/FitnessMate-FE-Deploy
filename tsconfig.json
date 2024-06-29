@@ -28,6 +28,7 @@
       "@components/*": ["components/*"],
       "@Layout/*": ["Layout/*"],
       "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
       "@recoil/*": ["recoil/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],

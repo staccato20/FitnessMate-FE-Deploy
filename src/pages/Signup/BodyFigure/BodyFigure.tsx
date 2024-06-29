@@ -1,18 +1,21 @@
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import { userPostAPI } from "../../../apis/API"
-import StatusBar from "../../../components/StatusBar/StatusBar"
-import useSignupStore from "../../../stores/store"
-import SignupButton from "../Button/SignupButton"
+import StatusBar from "@components/StatusBar/StatusBar"
+
+import { userPostAPI } from "@apis/API"
+
+import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
+import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
+import { CATEGORY_LIST } from "@pages/Signup/BodyFigure/constants/CATEGORY_LIST"
+import { useSelectFigure } from "@pages/Signup/BodyFigure/hooks/useSelectFigure"
+import { useSelectMenu } from "@pages/Signup/BodyFigure/hooks/useSelectMenu"
+import { useSlide } from "@pages/Signup/BodyFigure/hooks/useSlide"
+import SignupButton from "@pages/Signup/Button/SignupButton"
+import { useSignupStore } from "@pages/Signup/stores/store"
+
 import * as GS from "../StyledSignup"
 import * as S from "./StyledBodyFigure"
-import Figure from "./components/Figure/Figure"
-import Ratio from "./components/Ratio/Ratio"
-import { CATEGORY_LIST } from "./constants/CATEGORY_LIST"
-import { useSelectFigure } from "./hooks/useSelectFigure"
-import { useSelectMenu } from "./hooks/useSelectMenu"
-import { useSlide } from "./hooks/useSlide"
 
 const BodyFigure = () => {
   const { ratioValue, ratioText, handleRatio } = useSlide()

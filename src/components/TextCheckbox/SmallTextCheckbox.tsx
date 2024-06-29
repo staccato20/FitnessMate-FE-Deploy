@@ -1,5 +1,5 @@
 // < 글만 있는 체크박스 >
-import * as S from "./StyledTextCheckbox";
+import * as S from "./StyledTextCheckbox"
 
 const SmallTextCheckbox = ({
   handleClick,
@@ -11,10 +11,9 @@ const SmallTextCheckbox = ({
     <S.SmallTextCheckboxWrapper
       type="button"
       onClick={() => {
-        handleClick(elementidx);
+        handleClick(elementidx)
       }}
-      isSelected={isSelected}
-    >
+      isSelected={isSelected}>
       {/* 문구 */}
       <span className="choice-article">{children}</span>
       {/* 체크 전체(네모박스) */}
@@ -23,10 +22,14 @@ const SmallTextCheckbox = ({
         width="40"
         height="40"
         viewBox="0 0 40 40"
-        fill="none"
-      >
+        fill="none">
         {/* 체크 배경(원) */}
-        <circle className="check-background" cx="20" cy="20" r="16" />
+        <circle
+          className="check-background"
+          cx="20"
+          cy="20"
+          r="16"
+        />
         {/* 체크 색 */}
         <path
           className="check-shape"
@@ -34,7 +37,7 @@ const SmallTextCheckbox = ({
         />
       </svg>
     </S.SmallTextCheckboxWrapper>
-  );
-};
+  )
+}
 
-export default SmallTextCheckbox;
+export default SmallTextCheckbox

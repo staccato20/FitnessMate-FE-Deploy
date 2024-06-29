@@ -1,4 +1,5 @@
-import leftarrow from "../../assets/images/leftarrow2.svg"
+import leftarrow from "@assets/images/leftarrow2.svg"
+
 import { BeforeArrowButtonWrapper } from "./StyledButton"
 
 export const BeforeArrowButton = ({ handleClick }) => {

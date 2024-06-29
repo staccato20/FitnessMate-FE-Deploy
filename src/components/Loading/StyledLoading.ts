@@ -1,6 +1,7 @@
 // Styles.js
-import styled from "styled-components";
-import theme from "../../styles/theme";
+import styled from "styled-components"
+
+import theme from "@styles/theme"
 
 export const Background = styled.div`
   z-index: 999;
@@ -12,7 +13,7 @@ export const Background = styled.div`
     width: 80px;
     height: 80px;
   }
-`;
+`
 
 export const LoadingText = styled.div`
   color: ${theme.Brand};
@@ -20,4 +21,4 @@ export const LoadingText = styled.div`
   font-weight: 600;
   letter-spacing: -0.44px;
   margin-left: -10px;
-`;
+`

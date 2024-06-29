@@ -1,11 +1,11 @@
-import {useState} from "react"
+import { useState } from "react"
 
 export const useSelectMenu = () => {
-	const [selectedMenu, setSelectedMenu] = useState(-1)
+  const [selectedMenu, setSelectedMenu] = useState(-1)
 
-	const handleSelectMenu = (idx) => {
-		setSelectedMenu(idx)
-	}
+  const handleSelectMenu = (idx) => {
+    setSelectedMenu(idx)
+  }
 
-	return {selectedMenu, setSelectedMenu, handleSelectMenu}
+  return { selectedMenu, setSelectedMenu, handleSelectMenu }
 }

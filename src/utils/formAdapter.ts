@@ -1,5 +1,5 @@
-export const formAdapter = ({register, validator, name, ...props}) => {
-	const {validate, attributes} = validator
+export const formAdapter = ({ register, validator, name, ...props }) => {
+  const { validate, attributes } = validator
 
-	return {...register(name, validate), ...attributes, ...props}
+  return { ...register(name, validate), ...attributes, ...props }
 }

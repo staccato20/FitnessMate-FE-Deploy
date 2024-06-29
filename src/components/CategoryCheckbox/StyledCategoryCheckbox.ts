@@ -1,7 +1,7 @@
 // < 이미지가 포함된 체크박스 스타일 >
 import styled from "styled-components"
 
-import theme from "../../styles/theme"
+import theme from "@styles/theme"
 
 export const CategoryCheckboxWrapper = styled.button`
   display: flex;

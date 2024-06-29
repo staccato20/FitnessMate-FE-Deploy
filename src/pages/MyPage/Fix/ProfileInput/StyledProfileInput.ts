@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import theme from "../../../../styles/theme";
+import styled from "styled-components"
+
+import theme from "@styles/theme"
 
 export const ProfileInputContainer = styled.div`
   width: 474px;
@@ -32,17 +33,17 @@ export const ProfileInputContainer = styled.div`
     top: 47px;
     right: 14px;
   }
-`;
+`
 
 export const InputName = styled.span`
   color: ${theme.Black};
   font-size: 18px;
-	font-weight: 500;
+  font-weight: 500;
   .essentialSymbol {
     color: ${theme.Error};
     font-size: 18px;
   }
-`;
+`
 
 export const ProfileInputContentWrapper = styled.input`
   &::-webkit-input-placeholder {
@@ -67,5 +68,5 @@ export const ProfileInputContentWrapper = styled.input`
           : `1.5px solid ${theme.Gray20}`
         : `1.5px solid ${theme.Error}`
       : `1.5px solid ${theme.Gray20}`};
-`;
+`
 // `1.5px solid ${theme.Brand}`

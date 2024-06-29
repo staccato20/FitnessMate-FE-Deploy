@@ -1,7 +1,7 @@
 // < 로그인 스타일 >
+import styled from "styled-components"
 
-import styled from "styled-components";
-import theme from "../../styles/theme";
+import theme from "@styles/theme"
 
 export const LoginContainer = styled.div`
   margin: 0 auto;
@@ -16,13 +16,13 @@ export const LoginContainer = styled.div`
   button {
     margin-top: 37.5px;
   }
-`;
+`
 
 export const Title = styled.h1`
   color: ${theme.Black};
   font-size: 28px;
   font-weight: 700;
-`;
+`
 
 export const InputFrame = styled.div`
   width: 100%;
@@ -31,7 +31,7 @@ export const InputFrame = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-`;
+`
 
 export const LoginInput = styled.input`
   width: 100%;
@@ -46,7 +46,7 @@ export const LoginInput = styled.input`
   &:placeholder {
     color: ${({ theme }) => theme.Gray50};
   }
-`;
+`
 
 export const AutomaticLogin = styled.div`
   width: 100%;
@@ -74,4 +74,4 @@ export const AutomaticLogin = styled.div`
   color: ${({ theme }) => theme.Gray30};
   font-size: 18px;
   margin-bottom: 37.5px;
-`;
+`
