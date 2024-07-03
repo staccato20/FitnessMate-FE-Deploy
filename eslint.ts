@@ -10,10 +10,17 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "eslint-config-prettier",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs", "vite.config.ts"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "react", "@typescript-eslint", "prettier"],
+  plugins: [
+    "react-refresh",
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "@tanstack/query",
+  ],
   settings: {
     react: {
       version: "detect",
@@ -33,5 +40,8 @@ module.exports = {
       },
     ],
     "react/no-unescaped-entities": 0,
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/prefer-query-object-syntax": "error",
+    "@tanstack/query/stable-query-client": "error",
   },
 }
