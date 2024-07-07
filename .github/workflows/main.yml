@@ -4,7 +4,7 @@ name: git push into another repo to deploy to vercel
 
 on:
   push:
-    branches: main
+    branches: test
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
         run: sh ./build.sh
       - name: Pushes to another repository
         id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@test
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_STACCATO20 }}
         with:
@@ -27,7 +27,7 @@ jobs:
           destination-repository-name: FitnessMate-FE-Deploy
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+          target-branch: test
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
 
