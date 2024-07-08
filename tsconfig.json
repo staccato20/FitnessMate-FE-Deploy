@@ -12,9 +12,11 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "emitDeclarationOnly": true,
-    "noEmit": false,
     "jsx": "react-jsx",
+    // --------------
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "noEmit": false,
 
     /* Linting */
     "strict": false,
