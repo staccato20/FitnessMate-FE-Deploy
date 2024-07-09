@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { fn, ButtonProps } from "@storybook/test" // typescript 컴파일러 TS4023 오류 임시 보완
-
-import { Button } from "./Button"
+import { fn } from "@storybook/test"
+import { Button, ButtonProps } from "./Button" // typescript 컴파일러 TS4023 오류 임시 보완
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<ButtonProps> = {
