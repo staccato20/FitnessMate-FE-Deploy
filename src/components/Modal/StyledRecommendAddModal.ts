@@ -66,7 +66,7 @@ export const ModifyOptionWrapper = styled.div`
   justify-content: center;
 `
 
-export const ModifyOptionButton = styled.button`
+export const ModifyOptionButton = styled.button<Props>`
   color: ${({ isSelected }) => (isSelected ? theme.White : theme.Brand)};
   font-size: 18px;
   line-height: 150%; /* 27px */

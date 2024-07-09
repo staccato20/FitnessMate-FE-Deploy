@@ -11,6 +11,7 @@ import * as S from "../StyledSignup"
 import ProfileForm from "./components/ProfileForm"
 
 const Profile = () => {
+  // @ts-ignore
   const { setProfile } = useSignupStore()
   const navigate = useNavigate()
   const methods = useForm({

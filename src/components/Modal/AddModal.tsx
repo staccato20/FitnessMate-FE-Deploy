@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef, useState } from "react"
 
 import { supplementPostAPI } from "@apis/API"

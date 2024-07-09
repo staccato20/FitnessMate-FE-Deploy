@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 interface searchBatchDataProps {
   searchKeyword: string
@@ -19,8 +19,8 @@ const searchBatchData = ({
   return instance.post(`/api/workouts/search/list/${page}`, params)
 }
 
-const workout = {
+const workoutAPI = {
   fetchData,
   searchBatchData,
 }
-export default workout
+export default workoutAPI

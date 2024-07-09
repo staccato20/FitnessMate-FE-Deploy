@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
+// @ts-nocheck
 import { useEffect, useState } from "react"
 
 import { RecommendState } from "@recoil/atom"

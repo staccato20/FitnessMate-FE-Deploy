@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 const supplement = (params) =>
   instance.post(`/api/recommendation/supplement`, params)
@@ -18,7 +18,7 @@ const supplementHistory = (supplementRecommendationId: number) =>
     `/api//recommendation/supplement/history/${supplementRecommendationId}`,
   )
 
-const recommend = {
+const recommendAPI = {
   supplement,
   workout,
   supplementPurpose,
@@ -26,4 +26,4 @@ const recommend = {
   workoutHistoryBatch,
   supplementHistory,
 }
-export default recommend
+export default recommendAPI

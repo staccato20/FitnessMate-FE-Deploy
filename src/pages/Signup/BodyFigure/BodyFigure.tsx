@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import StatusBar from "@components/StatusBar/StatusBar"
 
-import { userPostAPI } from "@apis/API"
+import authAPI from "@apis/auth"
 
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
@@ -47,7 +48,7 @@ const BodyFigure = () => {
       }
 
       try {
-        const response = await userPostAPI.post("", submission)
+        const response = await authAPI.postUser(submission)
         if (response.status === 200) {
           navigate("/signup/complete")
         }

@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 // 사용자 가입
 const postUser = (data) => instance.post("/api/user/auth", data)

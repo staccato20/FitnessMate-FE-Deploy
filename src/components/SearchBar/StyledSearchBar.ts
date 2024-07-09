@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.div<Props>`
   width: 100%;
   height: 56px;
   padding: 14px;

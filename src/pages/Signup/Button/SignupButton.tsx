@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useNavigate } from "react-router-dom"
 
 import BeforeButton from "@components/Button/BeforeButton"

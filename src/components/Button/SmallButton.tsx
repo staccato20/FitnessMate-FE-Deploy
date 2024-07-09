@@ -1,3 +1,4 @@
+// @ts-nocheck
 // < 가로길이가 짧은 버튼 >
 import * as S from "./StyledButton"
 

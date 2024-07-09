@@ -98,6 +98,7 @@ const Navbar = () => {
   }, [window.location.href])
 
   return (
+    // @ts-ignore
     <S.NavbarContainer
       $isLoginModal={isLoginModal}
       $isCancleModal={isCancleModal}

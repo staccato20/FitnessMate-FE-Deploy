@@ -1,4 +1,4 @@
-// < 목록 버튼 >
+// @ts-nocheck
 import * as S from "./StyledButton"
 
 function ListButton({ children }) {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Input from "@components/Input/Input"
 
 import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const ProfileInputContainer = styled.div`
+export const ProfileInputContainer = styled.div<Props>`
   width: 474px;
   gap: 8px;
   display: flex;
@@ -45,7 +45,7 @@ export const InputName = styled.span`
   }
 `
 
-export const ProfileInputContentWrapper = styled.input`
+export const ProfileInputContentWrapper = styled.input<Props>`
   &::-webkit-input-placeholder {
     color: ${theme.Gray50};
   }

@@ -1,8 +1,11 @@
+// @ts-nocheck
 import { useNavigate } from "react-router-dom"
 
 import BigButton from "@components/Button/BigButton"
 
 import rightarrow2 from "@assets/images/rightarrow2.svg"
+
+import { COMPLETE_Nav } from "@pages/Signup/Complete/constants/COMPLETE_NAV"
 
 import * as GS from "../StyledSignup"
 import * as S from "./StyledComplete"

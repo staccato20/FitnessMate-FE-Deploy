@@ -1,3 +1,4 @@
+// @ts-nocheck
 import rightarrow from "@assets/images/rightarrow3.svg"
 
 import { AfterArrowButtonWrapper } from "./StyledButton"

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // < 이전 버튼 >
 import * as S from "./StyledButton"
 

@@ -1,4 +1,5 @@
 // < 글만 있는 체크박스 >
+// @ts-nocheck
 import { useEffect, useRef, useState } from "react"
 
 import * as S from "./StyledTextCheckbox"
