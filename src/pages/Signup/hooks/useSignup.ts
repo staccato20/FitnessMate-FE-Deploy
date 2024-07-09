@@ -8,6 +8,11 @@ import sendMessageAPI from "../apis/sendMessageAPI"
 import { QUERY_KEY_GET_GROUP_MESSAGE_LIST } from "./useMessageGroupList"
 import { QUERY_KEY_GET_MESSAGE_LIST } from "./useMessageList"
 
+import { useModal } from "@/hooks/useModal" // useModal 훅을 import 합니다.
+import AlertModal from "@/components/AlertModal" // AlertModal 컴포넌트를 import 합니다.
+import { DM_ERROR } from "@/constants/errors" // DM_ERROR 상수를 import 합니다.
+import sendNotification from "@/utils/sendNotification" // sendNotification 함수를 import 합니다.
+
 export const QUERY_KEY_SEND_MESSAGE = "SEND_MESSAGE"
 
 const useSendMessage = () => {
