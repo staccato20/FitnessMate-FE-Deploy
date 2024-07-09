@@ -3,7 +3,7 @@ import { fn } from "@storybook/test"
 import { Button, ButtonProps } from "./Button" // typescript 컴파일러 TS4023 오류 임시 보완
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta: Meta<ButtonProps> = {
+const meta: Meta = {
   title: "Example/Button",
   component: Button,
   parameters: {
@@ -20,7 +20,8 @@ const meta: Meta<ButtonProps> = {
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>
 
-export default meta;
+export default meta as Meta<ButtonProps>;
+
 type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
