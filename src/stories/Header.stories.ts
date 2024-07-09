@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { fn } from "@storybook/test"
 
-import { Header } from "./Header"
+import { Header, HeaderProps } from "./Header"
 
-const meta = {
+const meta: Meta<HeaderProps> = {
   title: "Example/Header",
   component: Header,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
@@ -19,7 +19,7 @@ const meta = {
   },
 } satisfies Meta<typeof Header>
 
-export default meta
+export default meta;
 type Story = StoryObj<typeof meta>
 
 export const LoggedIn: Story = {
