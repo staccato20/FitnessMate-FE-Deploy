@@ -33,6 +33,7 @@
       "@components/*": ["components/*"],
       "@Layout/*": ["Layout/*"],
       "@pages/*": ["pages/*"],
+      "@types/*": ["types/*"],
       "@routes/*": ["routes/*"],
       "@recoil/*": ["recoil/*"],
       "@store/*": ["store/*"],
@@ -40,6 +41,6 @@
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["src"],
+  "include": ["**/*.ts", "**/*.tsx", "./src/@types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
