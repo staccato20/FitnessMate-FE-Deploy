@@ -13,7 +13,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     // --------------
-    "declaration": true,          // 타입 정의 파일을 생성
+    // "declaration": true,         
+    // 타입 정의 파일을 생성
     "emitDeclarationOnly": false, // + JavaScript 파일도 생성
     "noEmit": false,
 
