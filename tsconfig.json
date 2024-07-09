@@ -10,7 +10,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // bundler -> node로 임시 수정
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
