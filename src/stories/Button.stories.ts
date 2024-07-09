@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { fn } from "@storybook/test"
+import { fn, ButtonProps } from "@storybook/test" // typescript 컴파일러 TS4023 오류 임시 보완
 
 import { Button } from "./Button"
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-const meta = {
+const meta: Meta<ButtonProps> = {
   title: "Example/Button",
   component: Button,
   parameters: {
@@ -21,7 +21,7 @@ const meta = {
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>
 
-export default meta
+export default meta;
 type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
