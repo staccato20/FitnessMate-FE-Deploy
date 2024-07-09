@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "allowJs": false,
     "checkJs": false,
     "target": "ES2020",
