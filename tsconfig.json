@@ -25,7 +25,7 @@
     "noUnusedParameters": false, // 사용하지 않는 매개 변수에 대한 검사를 비활성화
     "noFallthroughCasesInSwitch": false, // switch 문의 fallthrough 케이스에 대한 검사를 비활성화
 
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "@apis/*": ["apis/*"],
       "@assets/*": ["assets/*"],
