@@ -14,14 +14,14 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     // --------------
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false, // 선언 파일만 생성하지 않도록 설정
     "noEmit": false,
 
     /* Linting */
-    "strict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": false,
+    "strict": false, // 엄격한 타입 검사를 비활성화
+    "noUnusedLocals": false, // 사용하지 않는 지역 변수에 대한 검사를 비활성화
+    "noUnusedParameters": false, // 사용하지 않는 매개 변수에 대한 검사를 비활성화
+    "noFallthroughCasesInSwitch": false, // switch 문의 fallthrough 케이스에 대한 검사를 비활성화
 
     "baseUrl": "./src",
     "paths": {
