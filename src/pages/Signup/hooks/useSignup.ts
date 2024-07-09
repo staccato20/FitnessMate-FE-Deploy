@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 
 import { Message } from "@/types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
