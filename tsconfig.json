@@ -40,6 +40,6 @@
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "./src/@types"],
+  "include": ["**/*.ts", "**/*.tsx", "src/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
