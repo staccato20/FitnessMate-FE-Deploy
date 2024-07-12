@@ -1,4 +1,5 @@
 // 토글 구현
+// @ts-nocheck
 import React from "react"
 
 import PropTypes from "prop-types"

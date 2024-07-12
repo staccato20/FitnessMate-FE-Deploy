@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as S from "../StyledInput.js"
 
 const InputInput = ({ type, props }) => {

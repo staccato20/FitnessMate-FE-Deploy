@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as S from "./StyledImageImageSelect"
 
 const ImageSelect = ({

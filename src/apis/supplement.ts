@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 interface SupplementParams {
   supplementType?: string[]
@@ -27,9 +27,9 @@ const fetchData = (supplementId: number) =>
 const searchData = (pageNum: number) =>
   instance.post(`/api/supplements/search/list/${pageNum}`)
 
-const supplement = {
+const supplementAPI = {
   fetchBatchData,
   fetchData,
   searchData,
 }
-export default supplement
+export default supplementAPI

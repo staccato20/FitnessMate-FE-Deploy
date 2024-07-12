@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const CategoryCheckboxWrapper = styled.button`
+export const CategoryCheckboxWrapper = styled.button<Props>`
   display: flex;
   width: 385px;
   height: 385px;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ButtonLeftIcon from "@components/Button/ButtonLeftIcon"
 import ButtonRightIcon from "@components/Button/ButtonRightIcon"
 

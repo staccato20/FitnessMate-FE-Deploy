@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const BodyCompositionInputContainer = styled.div`
+export const BodyCompositionInputContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   width: 474px;

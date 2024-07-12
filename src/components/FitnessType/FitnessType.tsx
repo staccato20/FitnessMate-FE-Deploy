@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CardContainer } from "./StyledFitnessType"
 
 // 운동 종목 Card

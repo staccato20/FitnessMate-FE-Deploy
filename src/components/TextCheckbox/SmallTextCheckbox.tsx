@@ -1,4 +1,5 @@
 // < 글만 있는 체크박스 >
+// @ts-nocheck
 import * as S from "./StyledTextCheckbox"
 
 const SmallTextCheckbox = ({

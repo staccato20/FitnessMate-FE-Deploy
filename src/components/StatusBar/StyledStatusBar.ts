@@ -9,7 +9,7 @@ export const StatusBarBox = styled.div`
   margin-bottom: 24px;
 `
 
-export const StatusBarItem = styled.div`
+export const StatusBarItem = styled.div<Props>`
   position: absolute;
   width: ${({ $status }) => `${(100 / 4) * $status}%`};
   height: 4px;

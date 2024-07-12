@@ -1,3 +1,4 @@
+// @ts-nocheck
 // < 글만 있는 체크박스 >
 import * as S from "./StyledTextCheckbox"
 

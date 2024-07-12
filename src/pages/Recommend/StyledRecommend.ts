@@ -54,8 +54,8 @@ export const RecommendHomeContainer = styled.div`
   }
 `
 
-export const RecommendTitle = styled.span`
-  font-size: ${({ ftsize }) => ftsize};
+export const RecommendTitle = styled.span<Props>`
+  font-size: ${({ ftsize }: { ftsize: any }) => ftsize};
   color: ${({ ftcolor }) => ftcolor};
   font-weight: ${({ ftweight }) => ftweight};
   letter-spacing: -0.64px;
@@ -83,7 +83,7 @@ export const RecommendTitleContainer = styled.div`
   justify-content: center;
 `
 
-export const RecommendButtonContainer = styled.div`
+export const RecommendButtonContainer = styled.div<Props>`
   margin-top: 186px;
   width: 100%;
   display: flex;
@@ -164,7 +164,7 @@ export const RecommendMachineResultContainer = styled.div`
   flex-direction: column;
 `
 
-export const RecommendNavbarItem = styled.button`
+export const RecommendNavbarItem = styled.button<Props>`
   font-size: 20px;
   line-height: 150%; /* 30px */
   letter-spacing: -0.4px;
@@ -183,7 +183,7 @@ export const RecommendMachineList = styled.div`
   top: 373px;
   left: 427px;
 `
-export const RecommendMachine = styled.button`
+export const RecommendMachine = styled.button<Props>`
   color: ${({ isSelected }) => (isSelected ? theme.Brand : theme.Gray50)};
   font-size: 20px;
   line-height: 150%; /* 30px */
@@ -213,7 +213,7 @@ export const BudgetContainer = styled.div`
   }
 `
 
-export const BudgetBox = styled.div`
+export const BudgetBox = styled.div<Props>`
   width: 100%;
   max-width: 588px;
   display: flex;
@@ -280,7 +280,7 @@ export const RecommendMain = styled.div`
     }
   }
 `
-export const RecommendMainTopWrapper = styled.div`
+export const RecommendMainTopWrapper = styled.div<Props>`
   margin: 0 -18px;
   top: 62px;
   position: sticky;

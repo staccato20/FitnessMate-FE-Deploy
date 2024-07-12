@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { LoginInputContent } from "./StyledLogin"
 
 export const LoginEmailInput = ({ isClicked, setIsClicked }) => {

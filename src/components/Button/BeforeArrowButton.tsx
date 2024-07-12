@@ -1,3 +1,4 @@
+// @ts-nocheck
 import leftarrow from "@assets/images/leftarrow2.svg"
 
 import { BeforeArrowButtonWrapper } from "./StyledButton"

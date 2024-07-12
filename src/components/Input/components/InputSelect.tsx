@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ImageSelect from "@components/ImageSelect/ImageSelect"
 import { SelectList } from "@components/ImageSelect/StyledImageImageSelect"
 

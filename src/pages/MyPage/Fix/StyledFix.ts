@@ -77,7 +77,7 @@ export const SignupTitleContainer = styled.div`
   gap: 12px;
 `
 
-export const SignupTitle = styled.span`
+export const SignupTitle = styled.span<Props>`
   text-align: ${({ flex }) => (flex ? "center" : "")};
   display: ${({ flex }) => (flex ? "flex" : "")};
   flex-direction: ${({ flex }) => (flex ? "column" : "")};
@@ -148,7 +148,7 @@ export const ProfileInputcontainer = styled.div`
   flex-direction: column;
   gap: 12px;
 `
-export const SexName = styled.span`
+export const SexName = styled.span<Props>`
   transition: all 0.3s ease-out;
   color: ${({ sex, theme }) => (sex ? theme.BrandDark : theme.Gray50)};
   font-size: 16px;
@@ -156,7 +156,7 @@ export const SexName = styled.span`
   letter-spacing: -0.32px;
 `
 
-export const SexItem = styled.button`
+export const SexItem = styled.button<Props>`
   transition: all 0.3s ease-out;
   border-radius: 16px;
   background: ${({ sex, theme }) => (sex ? theme.Gray10 : theme.White)};

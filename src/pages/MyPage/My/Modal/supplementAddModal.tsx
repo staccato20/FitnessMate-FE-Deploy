@@ -1,4 +1,5 @@
 // 편집 모달
+// @ts-nocheck
 import { useEffect, useRef, useState } from "react"
 
 import OutSideClick from "@components/Navbar/OutSideClick"

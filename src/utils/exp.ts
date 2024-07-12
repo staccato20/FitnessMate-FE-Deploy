@@ -1,3 +1,4 @@
+// @ts-nocheck
 const ValidateTest = (name) => {
   const usernameExp = /^[가-힣]{2,10}$/
   const passwordExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/

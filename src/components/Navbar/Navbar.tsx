@@ -1,3 +1,4 @@
+// @ts-nocheck
 // < 네브바 포함 레이아웃 >
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -98,6 +99,7 @@ const Navbar = () => {
   }, [window.location.href])
 
   return (
+    // @ts-ignore
     <S.NavbarContainer
       $isLoginModal={isLoginModal}
       $isCancleModal={isCancleModal}

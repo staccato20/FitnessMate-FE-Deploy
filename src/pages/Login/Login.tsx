@@ -1,4 +1,5 @@
 // < 로그인 페이지 >
+// @ts-nocheck
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 

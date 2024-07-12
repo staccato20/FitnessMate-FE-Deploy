@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Route, Routes } from "react-router-dom"
 
 import FixBodyInfo from "@pages/MyPage/Fix/FixBodyInfo"

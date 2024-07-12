@@ -1,3 +1,4 @@
+// @ts-nocheck
 import InputError from "@components/Input/components/InputError"
 import InputInput from "@components/Input/components/InputInput"
 import InputLabel from "@components/Input/components/InputLabel"

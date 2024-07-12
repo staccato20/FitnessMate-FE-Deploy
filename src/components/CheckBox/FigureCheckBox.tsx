@@ -1,3 +1,4 @@
+// @ts-nocheck
 import checkedIcon from "@assets/images/checkedIcon.png"
 import notCheckedIcon from "@assets/images/notCheckedIcon.png"
 

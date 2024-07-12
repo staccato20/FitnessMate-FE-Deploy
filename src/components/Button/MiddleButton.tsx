@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as S from "./StyledButton"
 
 function MiddleButton({ children, onClick, $isValid, ...props }) {

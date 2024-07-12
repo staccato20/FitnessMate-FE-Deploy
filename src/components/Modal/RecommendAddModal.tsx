@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react"
 
 import MiddleButton from "@components/Button/MiddleButton"

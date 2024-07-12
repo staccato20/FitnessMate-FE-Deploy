@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const NavbarContainer = styled.div`
+export const NavbarContainer = styled.div<Props>`
   position: sticky;
   top: 0;
   max-width: 1920px;

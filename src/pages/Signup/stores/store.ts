@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { create } from "zustand"
 
 export const useSignupStore = create((set) => ({

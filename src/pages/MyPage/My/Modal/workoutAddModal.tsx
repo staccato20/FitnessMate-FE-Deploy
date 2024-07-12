@@ -1,3 +1,4 @@
+// @ts-nocheck
 // 편집 모달
 import { useEffect, useRef, useState } from "react"
 

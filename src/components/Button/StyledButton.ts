@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-const Button = styled.button`
+const Button = styled.button<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@ const Button = styled.button`
 
 // < 가로 길이가 긴 버튼 >
 
-export const BigButtonWrapper = styled(Button)`
+export const BigButtonWrapper = styled(Button)<Props>`
   width: 474px;
   height: 62px;
   padding: 22px 24px;
@@ -28,7 +28,7 @@ export const BigButtonWrapper = styled(Button)`
 export const ButtonWrapper = styled.button``
 // < 가로 길이가 중간인 버튼 >
 
-export const MiddleButtonWrapper = styled.button`
+export const MiddleButtonWrapper = styled.button<Props>`
   width: 354px;
   height: 62px;
   padding: 22px 24px;
@@ -40,7 +40,7 @@ export const MiddleButtonWrapper = styled.button`
 
 // < 가로 길이가 짧은 버튼 >
 
-export const SmallButtonWrapper = styled.button`
+export const SmallButtonWrapper = styled.button<Props>`
   display: flex;
   height: 62px;
   padding: 18px 39px;
@@ -102,7 +102,7 @@ export const BeforeArrowButtonWrapper = styled.button`
   }
 `
 
-export const AfterArrowButtonWrapper = styled.button`
+export const AfterArrowButtonWrapper = styled.button<Props>`
   display: flex;
   width: 150px;
   height: 62px;

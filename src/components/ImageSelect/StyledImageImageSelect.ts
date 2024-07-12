@@ -7,7 +7,7 @@ export const SelectList = styled.div`
   gap: 10px;
 `
 
-export const SelectItem = styled.button`
+export const SelectItem = styled.button<Props>`
   transition: all 0.3s ease-out;
   border-radius: 16px;
   background: ${({ $isChecked }) => ($isChecked ? theme.Gray10 : theme.White)};
@@ -33,7 +33,7 @@ export const SelectImg = styled.img`
   height: 60px;
 `
 
-export const SelectText = styled.span`
+export const SelectText = styled.span<Props>`
   transition: all 0.3s ease-out;
   color: ${({ $isChecked }) => ($isChecked ? theme.BrandDark : theme.Gray50)};
   font-size: 16px;

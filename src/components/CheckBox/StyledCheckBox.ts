@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const CheckBoxWrapper = styled.button`
+export const CheckBoxWrapper = styled.button<Props>`
   display: flex;
   width: 100%;
   gap: 10px;
@@ -15,7 +15,7 @@ export const CheckBoxWrapper = styled.button`
   height: 50px;
 `
 
-export const CheckBoxImg = styled.img`
+export const CheckBoxImg = styled.img<Props>`
   width: ${({ $isChecked }) => ($isChecked ? "24px" : "20px")};
   height: ${({ $isChecked }) => ($isChecked ? "24px" : "20px")};
   margin: ${({ $isChecked }) => ($isChecked ? "0px" : "2px")};
@@ -26,7 +26,7 @@ export const CheckBoxText = styled.span`
   font-size: 16px;
 `
 
-export const FigureCheckBoxWrapper = styled.button`
+export const FigureCheckBoxWrapper = styled.button<Props>`
   display: flex;
   width: 100%;
   gap: 10px;
@@ -41,7 +41,7 @@ export const FigureCheckBoxWrapper = styled.button`
   }
 `
 
-export const FigureCheckBoxText = styled.span`
+export const FigureCheckBoxText = styled.span<Props>`
   color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
   text-align: center;
   font-size: 14px;

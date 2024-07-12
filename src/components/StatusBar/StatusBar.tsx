@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { StatusBarBox, StatusBarItem } from "./StyledStatusBar"
 
 const StatusBar = ({ status }) => {

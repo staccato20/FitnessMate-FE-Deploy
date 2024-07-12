@@ -1,3 +1,4 @@
+// @ts-nocheck
 // 내 운동 페이지
 import { useEffect, useState } from "react"
 

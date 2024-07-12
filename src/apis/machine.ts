@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 interface MachinesListParams {
   bodyPartKoreanName: []
@@ -6,5 +6,5 @@ interface MachinesListParams {
 const fetchList = (bodyPartList: MachinesListParams) =>
   instance.post("/api/machines/list", bodyPartList)
 
-const machine = { fetchList }
-export default machine
+const machineAPI = { fetchList }
+export default machineAPI

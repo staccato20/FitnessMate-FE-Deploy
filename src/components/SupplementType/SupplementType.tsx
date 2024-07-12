@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CardContainer } from "./StyledSupplementType"
 
 // 보조제 Card

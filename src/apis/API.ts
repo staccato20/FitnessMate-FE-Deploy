@@ -1,76 +1,335 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios from "axios"
 
-const { VITE_API_BASE_URL } = import.meta.env
-const axiosConfig: AxiosRequestConfig = {
-  baseURL: VITE_API_BASE_URL,
+/**
+ * Manage_Login API
+ */
+
+// 관리자 로그인
+export const loginAdminPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/admin/login",
   withCredentials: true,
-}
-
-export const instance = axios.create(axiosConfig)
-
-//  HTTP 요청을 서버로 보내기 전에 실행
-// 주로 전역적인 요청 설정(예: 헤더 추가), 로깅, 로딩 인디케이터 표시 등의 용도
-instance.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("accessToken")
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
-  return config
 })
 
-// 버로부터 HTTP 응답을 받은 후 실행
-// 응답 데이터의 전처리, 오류 처리, 로깅 등의 용도
-instance.interceptors.response.use(
-  (response) => {
-    // 응답이 성공적으로 왔을 때의 처리
-    return response
-  },
-  // 에러가 발생했을 때의 처리(4xx,5xx 에러 => 토큰 만료)
-  async (error) => {
-    if (error.response.data.status === "ROUTINE_NOT_FOUND_EXCEPTION") {
-      console.log("routineId와 일치하는 routine이 없습니다")
-    }
-    if (error.response.data.status === "ALREADY_EXIST_MY_WORKOUT_EXCEPTION") {
-      console.log("이미 존재하는 운동입니다")
-    }
+/**
+ * Manage_Supplement API
+ */
+export const supplementCategoryAPI = axios.create({
+  baseURL: "/api/admin/supplement",
+  withCredentials: true,
+})
 
-    // 토큰 만료
-    if (error.response.data.status === "EXPIRED_ACCESS_TOKEN_EXCEPTION") {
-      console.log("Access Token 만료")
-      const isKeepLogin = localStorage.getItem("rememberMe")
-      if (isKeepLogin === "true") {
-        alert("토큰이 만료되었습니다. refresh token을 받아볼게요.")
-        // 기존 refreshToken
+export const supplementAPI = axios.create({
+  baseURL: "/api/admin/supplements",
+  withCredentials: true,
+})
 
-        try {
-          const originalRequest = error.config
-          // 새로운 accessToken 요청
-          const response = await getAccessAPI.get("", {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("refreshToken"),
-            },
-          })
-          console.log(response)
-          const newAccessToken = response.data.accessToken
-          // 토큰 재 저장
-          localStorage.setItem("accessToken", newAccessToken)
-          // 새로운 accessToken으로 헤더 변경
-          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
-          console.log("get refresh token")
-          // 새로운 accessToken으로 재 요청
-          return await axios(originalRequest)
-        } catch (err) {
-          console.log(err)
-          // refresh token 만료
-          if (err.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
-            console.log("Refresh Token 만료 재 로그인 해주세요")
-            alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
-          }
-        }
-      } else {
-        console.log("Access Token 만료 재 로그인 해주세요")
-        alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
-      }
-    }
+export const supplementImageAPI = axios.create({
+  baseURL: "/api/admin/supplements",
+  withCredentials: true,
+  responseType: "arraybuffer",
+})
+
+export const supplementPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/admin/supplements",
+  headers: {
+    "Content-Type": "multipart/form-data",
   },
-)
+  withCredentials: true,
+})
+
+export const supplementPutAPI = axios.create({
+  method: "put",
+  baseURL: "/api/admin/supplements",
+  withCredentials: true,
+})
+
+/**
+ * Manage_Workout API
+ */
+
+export const workoutAPI = axios.create({
+  baseURL: "/api/admin/workouts",
+  withCredentials: true,
+})
+
+export const workoutPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/admin/workouts",
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+  withCredentials: true,
+})
+
+export const workoutPutAPI = axios.create({
+  method: "put",
+  baseURL: "/api/admin/workouts",
+  withCredentials: true,
+})
+
+export const workoutImageAPI = axios.create({
+  baseURL: "/api/admin/workouts",
+  withCredentials: true,
+  responseType: "arraybuffer",
+})
+
+/**
+ * Manage_Machine API
+ */
+export const machineAPI = axios.create({
+  baseURL: "/api/admin/machines",
+  withCredentials: true,
+})
+
+export const machinePostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/admin/machines",
+  withCredentials: true,
+})
+
+export const machinePutAPI = axios.create({
+  method: "put",
+  baseURL: "/api/admin/machines",
+  withCredentials: true,
+})
+
+/**
+ * Manage_BodyPart API
+ */
+export const bodyPartAPI = axios.create({
+  baseURL: "/api/admin/bodyParts",
+  withCredentials: true,
+})
+
+export const bodyPartPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/admin/bodyParts",
+  withCredentials: true,
+})
+
+export const bodyPartPutAPI = axios.create({
+  method: "put",
+  baseURL: "/api/admin/bodyParts",
+  withCredentials: true,
+})
+
+// User
+
+/**LoginInfo */
+
+// 로그인 요청
+export const loginPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/auth/login",
+  withCredentials: true,
+})
+
+// 로그아웃(refresh 토큰)
+export const logoutPutAPI = axios.create({
+  method: "get",
+  baseURL: "/api/auth/logout",
+  withCredentials: true,
+})
+
+/**
+ * User API
+ */
+
+// accessToken 재발급(refersh 토큰 필요)
+export const getAccessAPI = axios.create({
+  baseURL: "/api/auth/refresh",
+  withCredentials: true,
+})
+
+// 사용자 정보 조회(토큰)
+export const userAPI = axios.create({
+  method: "get",
+  baseURL: "/api/user/private",
+  withCredentials: true,
+})
+
+// 사용자 가입
+export const userPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/user/auth",
+  withCredentials: true,
+})
+
+// 사용자 정보 수정(토큰)
+export const userPutAPI = axios.create({
+  method: "post",
+  baseURL: "/api/user/private",
+  withCredentials: true,
+})
+
+// 회원 탈퇴(토큰)
+export const userDeleteAPI = axios.create({
+  method: "post",
+  baseURL: "/api/user/delete",
+  withCredentials: true,
+})
+
+// 사용자 비밀번호 수정(토큰)
+export const userPasswordAPI = axios.create({
+  method: "post",
+  baseURL: "/api/user/password",
+  withCredentials: true,
+})
+
+/**
+ * User API
+ */
+
+// bodyData 단건 조회 / bodyData Batch 조회 / 가장 최근 데이터 조회(chat gpt 추천받을 때 필요) (토큰)
+export const bodyDataAPI = axios.create({
+  baseURL: "/api/bodyData",
+  withCredentials: true,
+})
+
+// bodyDate 등록(토큰)
+export const bodyDataPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/bodyData",
+  withCredentials: true,
+})
+
+// bodyData 단건 삭제
+export const bodyDataDeleteAPI = axios.create({
+  method: "post",
+  baseURL: "/api/bodyData/delete",
+  withCredentials: true,
+})
+
+/**
+ * Non-adminAPIs
+ */
+
+// 운동 부위 전체 조회
+export const nonAdminBodyPartAPI = axios.create({
+  method: "get",
+  baseURL: "/api/bodyParts",
+  withCredentials: true,
+})
+
+// gpt질문 중 bodypart선택 시 운동기구 정보 동적 제공을 위한 조회(토큰)
+export const nonAdminMachineAPI = axios.create({
+  method: "post",
+  baseURL: "/api/machines",
+  withCredentials: true,
+})
+
+/**
+ * RecommendationAPIs
+ */
+
+// 운동 목적 전체 리스트 요청
+export const recommendAPI = axios.create({
+  baseURL: "/api/recommendation",
+  withCredentials: true,
+})
+
+// 보조제 추천 요청 or 보조제 추천 요청
+export const recommendPostAPI = axios.create({
+  method: "post",
+  baseURL: "/api/recommendation",
+  withCredentials: true,
+})
+
+// 운동 추천 history batch 요청 or 운동 추천 history 단건 요청
+export const recommendWorkoutHistoryAPI = axios.create({
+  baseURL: "/api/recommendation/workout/history",
+  withCredentials: true,
+})
+
+// (토큰 필요)
+// 보조제 추천 history 단건 요청 or 보조제 추천 history batch 요청
+export const recommendSupplementHistoryAPI = axios.create({
+  baseURL: "/api/recommendation/supplement/history",
+  withCredentials: true,
+})
+
+// (토큰 필요)
+// 보조제 추천 요청 or 운동 목적 전체 리스트 요청
+export const userSupplementAPI = axios.create({
+  baseURL: "/api/recommendation/supplement",
+  withCredentials: true,
+})
+
+/**ServiceInquiry */
+
+// 추천 운동 batch 검색
+export const userWorkoutBatchAPI = axios.create({
+  method: "post",
+  baseURL: "/api/workouts/search/list",
+  withCredentials: true,
+})
+
+// 추천 운동 단일 조회
+export const userWorkoutAPI = axios.create({
+  baseURL: "/api/workouts",
+  withCredentials: true,
+})
+
+// 운동 부위 전체조회
+export const userBodyPartAPI = axios.create({
+  baseURL: "/api/bodyParts/all",
+  withCredentials: true,
+})
+
+// 보조제 검색
+export const userSupplementSearchAPI = axios.create({
+  method: "get",
+  baseURL: "/api/supplements/search/list",
+  withCredentials: true,
+})
+
+// 보조제 단일 조회
+export const userSupplementSingleAPI = axios.create({
+  baseURL: "/api/supplements",
+  withCredentials: true,
+})
+
+// 보조제 batch 조회
+export const userSupplementBatchAPI = axios.create({
+  baseURL: "/api/supplements/list",
+  withCredentials: true,
+})
+
+/* 이메일 인증 관련 API */
+
+// 회원 가입 시 email 중복 검사
+export const userIdVerifyAPI = axios.create({
+  method: "post",
+  baseURL: "/api/user/auth/verify/email",
+  withCredentials: true,
+})
+
+// 메일 인증 요청
+export const verifyMailPost = axios.create({
+  method: "post",
+  baseURL: "/api/user/auth/verify/email",
+  withCredentials: true,
+})
+
+// // 메일 인증 코드 확인
+export const verifyMailCheck = axios.create({
+  method: "post",
+  baseURL: "/api/register/verify/code",
+  withCredentials: true,
+})
+
+// // 메일 인증 요청
+// export const verifyMail = axios.create({
+//   method: "post",
+//   baseURL: "/api/register/verify/mail",
+//   withCredentials: true,
+// });
+
+// // 메일 인증 요청
+// export const verifyMail = axios.create({
+//   method: "post",
+//   baseURL: "/api/register/verify/mail",
+//   withCredentials: true,
+// });

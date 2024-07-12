@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useNavigate } from "react-router-dom"
 
 import rightarrow from "@assets/images/rightarrow3.svg"

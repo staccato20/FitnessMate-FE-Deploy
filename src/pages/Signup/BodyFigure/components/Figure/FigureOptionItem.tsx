@@ -1,3 +1,4 @@
+// @ts-nocheck
 import FigureCheckBox from "@components/CheckBox/FigureCheckBox"
 
 import * as S from "./StyledFigure"

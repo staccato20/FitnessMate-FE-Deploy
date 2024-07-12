@@ -1,4 +1,4 @@
-import { instance } from "@apis/API"
+import { instance } from "@apis/instance"
 
 interface BodyDataParams {
   date: string
@@ -23,7 +23,7 @@ const fetchRecentData = () => instance.get("/api/bodyData/recent")
 const deleteData = (bodyDataId: number) =>
   instance.post(`/api/bodyData/delete/${bodyDataId}`)
 
-const bodyData = {
+const bodyDataAPI = {
   fetchData,
   fetchRecentData,
   fetchBatchData,
@@ -31,4 +31,4 @@ const bodyData = {
   deleteData,
 }
 
-export default bodyData
+export default bodyDataAPI

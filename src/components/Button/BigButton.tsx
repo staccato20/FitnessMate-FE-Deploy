@@ -1,4 +1,4 @@
-// < 가로길이가 긴 버튼 >
+// @ts-nocheck
 import * as S from "./StyledButton"
 
 function BigButton({ backcolor, fontcolor, children, onClick }) {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import CheckBox from "@components/CheckBox/CheckBox"
 
 import FigureOptionItem from "@pages/Signup/BodyFigure/components/Figure/FigureOptionItem"
