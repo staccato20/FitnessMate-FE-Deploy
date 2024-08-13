@@ -21,7 +21,7 @@ jobs:
 
       - name: Copy changes to main Repo
         run: |
-          cp -r ./* main/
+          rsync -av --exclude='.git' --exclude='main/' . main/
 
       - name: Commit and Push changes to main repo main branch
         run: |
