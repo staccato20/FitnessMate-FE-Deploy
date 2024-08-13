@@ -21,9 +21,9 @@ jobs:
 
       - name: Copy changes to main Repo
         run: |
-          rsync -av --exclude='.git' . main/
+          cp -r ./* main/
 
-      - name: Push changes to main repo main branch
+      - name: Commit and Push changes to main repo main branch
         run: |
           cd main
           git config user.name "${{ github.actor }}"
