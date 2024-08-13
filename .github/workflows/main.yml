@@ -1,6 +1,7 @@
 # ---------- staccato20 repository deploy ----------
 
 name: Synchronize to forked repo
+
 on:
   push:
     branches:
@@ -19,15 +20,18 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      - name: Add remote-url
+      - name: Configure Git
         run: |
-          git remote add forked-repo https://github.com/staccato20:${{ secrets.AUTO_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy
-          git config user.name staccato20
-          git config user.email ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
+          git config user.name "staccato20"
+          git config user.email "${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}"
 
-      - name: Push changes to forked-repo
+      - name: Add remote URL
         run: |
-          git push -f forked-repo main
+          git remote add forked-repo https://x-access-token:${{ secrets.AUTO_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy
+
+      - name: Push changes to forked repo
+        run: |
+          git push forked-repo main
 
       - name: Clean up
         run: |
