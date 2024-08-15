@@ -38,6 +38,9 @@ const StyledButton = styled.button<Props>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  &:disabled {
+    cursor: default;
+  }
 `
 
 const SIZES = {
