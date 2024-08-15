@@ -13,7 +13,7 @@ const theme = {
   BrandLight300: "#B5DFFF",
   BrandLight: "#E5F4FF",
   BrandLighter: "#F4FAFF",
-  BrondPale: "#EDF7FF",
+  BrandPale: "#EDF7FF",
   BrandNon: "#A6CEEC",
   Error: "#EB444C",
   ErrorLight: "#FFEEEF",
@@ -25,9 +25,24 @@ const theme = {
   Neutral900: "#333d4b",
 }
 
+export const fontSize = {
+  small: "14px",
+  basic: "16px",
+  mediumSmall: "20px",
+  medium: "24px",
+  large: "32px",
+}
+export const fontWeight = {
+  normal: "400",
+  medium: "500", // 기본 weight
+  semibold: "600",
+  bold: "700",
+  bolder: "800",
+}
+
 // 나중에 사용
 
-// const theme = {
+// const colors = {
 //   Brand50: "#EBF7FF",
 //   Brand100: "#E0F2FF",
 //   Brand150: "#DDEAF4",
