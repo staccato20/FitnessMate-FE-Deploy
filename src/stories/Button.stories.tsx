@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import ButtonBase from "./Button"
+import Button from "./Button"
 
 const meta = {
-  component: ButtonBase,
-} satisfies Meta<typeof ButtonBase>
+  component: Button,
+} satisfies Meta<typeof Button>
 
 export default meta
-type Story = StoryObj<typeof ButtonBase>
+type Story = StoryObj<typeof Button>
 
 export const Primary = {
   args: {
