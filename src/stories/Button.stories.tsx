@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import ButtonBase from "./ButtonBase"
+import ButtonBase from "./Button"
 
 const meta = {
   component: ButtonBase,

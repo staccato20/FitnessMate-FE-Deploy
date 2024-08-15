@@ -5,21 +5,21 @@ import styled, { Interpolation, css } from "styled-components"
 export type Variant = "main" | "weak" | "grey"
 export type Size = "sm" | "md" | "lg"
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface StyledButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: Variant
   size: Size
   sizeStyle: Interpolation<object>
   variantStyle: Interpolation<object>
 }
 
-interface ButtonBaseProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   size?: Size
   variant?: Variant
   children?: string
 }
 
-export type Props = Partial<ButtonProps>
+export type Props = Partial<StyledButtonProps>
 
 const StyledButton = styled.button<Props>`
   ${(p) => p.sizeStyle}
@@ -97,7 +97,7 @@ const ButtonBase = ({
   size = "md",
   variant = "main",
   children,
-}: ButtonBaseProps) => {
+}: ButtonProps) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variant]
   return (
