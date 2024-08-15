@@ -60,21 +60,31 @@ const VARIANTS = {
     color: #fff;
     background-color: #0b98ff;
     &:hover {
-      color: #0a89e5;
+      background: linear-gradient(
+          0deg,
+          rgba(34, 37, 46, 0.18) 0%,
+          rgba(34, 37, 46, 0.18) 100%
+        ),
+        var(--Brand, #0b98ff);
     }
   `,
   weak: css`
     color: #0b98ff;
     background-color: #d2ecff;
     &:hover {
-      color: #d9eefe;
+      background: linear-gradient(
+          0deg,
+          rgba(34, 37, 46, 0.06) 0%,
+          rgba(34, 37, 46, 0.06) 100%
+        ),
+        var(--Brand-Light, #d9eefe);
     }
   `,
   grey: css`
     color: #4e5968;
     background-color: #e4eaf0;
     &:hover {
-      color: #a2b2c2;
+      background-color: #a2b2c2;
     }
   `,
 }

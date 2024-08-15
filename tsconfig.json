@@ -33,7 +33,8 @@
       "@recoil/*": ["recoil/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@stories/*": ["stories/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
