@@ -1,5 +1,3 @@
-// 색상표
-
 const theme = {
   Black: "#191F28",
   Gray80: "#333D4B",
@@ -26,5 +24,38 @@ const theme = {
   Neutral800: "#4e5968",
   Neutral900: "#333d4b",
 }
+
+// 나중에 사용
+
+// const theme = {
+//   Brand50: "#EBF7FF",
+//   Brand100: "#E0F2FF",
+//   Brand150: "#DDEAF4",
+//   Brand200: "#D2ECFF",
+//   Brand300: "#99D4FF",
+//   Brand400: "#6CC1FE",
+//   Brand500: "#3EAEFF",
+//   Brand600: "#0B98FF",
+//   Brand700: "#048EF1",
+//   Brand800: "#0672BF",
+//   Brand900: "#035896",
+//   Brand950: "#013751",
+//   Brand990: "#042741",
+//   Netural0: "#EBF7FF",
+//   Netural50: "#E0F2FF",
+//   Netural100: "#DDEAF4",
+//   Netural200: "#D2ECFF",
+//   Netural300: "#99D4FF",
+//   Netural400: "#6CC1FE",
+//   Netural500: "#3EAEFF",
+//   Netural600: "#048EF1",
+//   Netural700: "#0672BF",
+//   Netural800: "#035896",
+//   Netural900: "#626D7D",
+//   Netural950: "#272E38",
+//   Netural990: "#191F28",
+//   Error: "#EB444C",
+//   Success: "#2EDD6A",
+// }
 
 export default theme
