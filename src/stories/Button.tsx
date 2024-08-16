@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
-export type Variant = "main" | "weak" | "grey"
+export type Variant = "main" | "weak" | "grey" | "text"
 export type Size = "sm" | "md" | "lg"
 
 interface StyledButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -32,6 +32,7 @@ const StyledButton = styled.button<Props>`
   position: relative;
   min-width: 108px;
   border: none;
+  width: 100%;
   border-radius: 10px;
   cursor: pointer;
   user-select: none;
@@ -63,16 +64,14 @@ const VARIANTS = {
     color: #fff;
     background-color: #0b98ff;
     &:hover {
-      background: linear-gradient(
-          0deg,
-          rgba(34, 37, 46, 0.18) 0%,
-          rgba(34, 37, 46, 0.18) 100%
-        ),
-        var(--Brand, #0b98ff);
+      background: #0f84d9;
+    }
+    &:disabled {
+      background-color: #bbc8d6;
     }
   `,
   weak: css`
-    color: #0b98ff;
+    color: #048ef1;
     background-color: #d2ecff;
     &:hover {
       background: linear-gradient(
@@ -82,12 +81,28 @@ const VARIANTS = {
         ),
         var(--Brand-Light, #d9eefe);
     }
+    &:disabled {
+      background-color: #d2ecff;
+    }
   `,
   grey: css`
     color: #4e5968;
     background-color: #e4eaf0;
     &:hover {
       background-color: #a2b2c2;
+    }
+    &:disabled {
+      background-color: #f2f4f6;
+    }
+  `,
+  text: css`
+    color: #4e5968;
+    background: none;
+    &:hover {
+      background-color: #f2f4f6;
+    }
+    &:disabled {
+      color: #a2b2c2;
     }
   `,
 }
