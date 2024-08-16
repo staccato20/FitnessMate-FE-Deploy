@@ -92,7 +92,7 @@ const VARIANTS = {
   `,
 }
 
-const ButtonBase = ({
+const Button = ({
   disabled = false,
   size = "md",
   variant = "main",
@@ -110,4 +110,4 @@ const ButtonBase = ({
   )
 }
 
-export default ButtonBase
+export default Button
