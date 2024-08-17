@@ -37,6 +37,10 @@
       "@stories/*": ["stories/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/components/TyphoGraphy/typhography.mdx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
