@@ -1,6 +1,6 @@
 import { BasicIconType } from "@components/Icon/utils/icons"
 
-interface IconProps {
+export interface IconProps {
   icon: BasicIconType
 }
 
