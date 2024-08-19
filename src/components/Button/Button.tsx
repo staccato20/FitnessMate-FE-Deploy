@@ -17,6 +17,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   variant?: Variant
   children?: string
+  onClick?: (e: React.MouseEvent) => void
 }
 
 export type Props = Partial<StyledButtonProps>
@@ -112,6 +113,8 @@ const Button = ({
   size = "md",
   variant = "main",
   children,
+  onClick,
+  ...props
 }: ButtonProps) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variant]
@@ -119,7 +122,9 @@ const Button = ({
     <StyledButton
       disabled={disabled}
       sizeStyle={sizeStyle}
-      variantStyle={variantStyle}>
+      variantStyle={variantStyle}
+      onClick={onClick}
+      {...props}>
       {children}
     </StyledButton>
   )

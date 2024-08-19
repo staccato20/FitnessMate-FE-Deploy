@@ -23,13 +23,10 @@ const RecommendCategory = () => {
 
   const [category, setCategory] = useState({
     운동: [false, "fitness"],
-    보조제: [false, "protein"],
   })
 
   const goNextPage = () => {
-    if (category.보조제[0]) {
-      navigate("/recommend/supplementpurpose")
-    } else if (category.운동[0]) {
+    if (category.운동[0]) {
       navigate("/recommend/workout")
     }
   }

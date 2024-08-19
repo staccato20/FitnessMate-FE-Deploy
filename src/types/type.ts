@@ -5,22 +5,6 @@ export interface User {
   sex: string
 }
 
-export interface Supplement {
-  id: number
-  englishName: string
-  koreanName: string
-  imgPath: string
-  price: number
-  servings: number
-  description: string
-  marketURL: string
-  supplementType: number
-  fatPerServing: number
-  carbohydratePerServing: number
-  source: string
-  flavor: string
-}
-
 export interface Workout {
   englishName: string
   koreanName: string

@@ -38,34 +38,6 @@ export const MiddleButtonWrapper = styled.button<Props>`
   color: ${theme.White};
 `
 
-// < 가로 길이가 짧은 버튼 >
-
-export const SmallButtonWrapper = styled.button<Props>`
-  display: flex;
-  height: 62px;
-  padding: 18px 39px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background: ${({ isReady }) => (isReady ? theme.Brand : theme.BrandNon)};
-  cursor: ${({ isReady }) => (isReady ? "pointer" : "default")};
-  color: ${theme.White};
-  font-size: 22px;
-  letter-spacing: -0.44px;
-`
-
-// < 이전 버튼 >
-
-export const BeforeButtonWrapper = styled(Button)`
-  width: 134px;
-  height: 62px;
-  padding: 22px 10px;
-  background: ${theme.White};
-  color: ${theme.Brand};
-  border-radius: 8px;
-  border: 2px solid var(--Brand-600, #0b98ff);
-`
-
 // < 목록 버튼 >
 
 export const ListButtonWrapper = styled(Button)`

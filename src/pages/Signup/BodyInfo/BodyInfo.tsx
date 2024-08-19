@@ -6,8 +6,8 @@ import Input from "@components/Input/Input"
 import StatusBar from "@components/StatusBar/StatusBar"
 
 import { SEX_GROUP } from "@pages/Signup/BodyInfo/constants/SEX_GROUP"
-import SignupButton from "@pages/Signup/Button/SignupButton"
 import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
+import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import { formAdapter } from "@utils/formAdapter"

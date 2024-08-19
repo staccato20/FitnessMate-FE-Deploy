@@ -106,9 +106,14 @@ const AddWorkoutModal = ({ setRecommendAddModal, workoutId }) => {
       </div>
       <MiddleButton
         isReady={isReady}
-        handleSubmit={handleAdd}>
+        onClick={handleAdd}>
         추가하기
       </MiddleButton>
+      <Button
+        onClick={handleAdd}
+        variant={isReady ? "main" : "weak"}>
+        추가하기
+      </Button>
     </S.RecommendAddModalWrapper>
   )
 }

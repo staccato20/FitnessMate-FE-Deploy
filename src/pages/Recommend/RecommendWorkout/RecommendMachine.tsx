@@ -6,7 +6,6 @@ import { RecommendState, bodyPartState } from "@recoil/atom"
 import { useRecoilState } from "recoil"
 
 import { BeforeArrowButton } from "@components/Button/BeforeArrowButton"
-import SmallButton from "@components/Button/SmallButton"
 import Loading from "@components/Loading/Loading"
 import SmallTextCheckbox from "@components/TextCheckbox/SmallTextCheckbox"
 
@@ -205,11 +204,11 @@ const RecommendMachine = () => {
       <RecommendButtonContainer>
         <BeforeArrowButton handleClick={handleBackPage}></BeforeArrowButton>
         {isLoading && <Loading />}
-        <SmallButton
-          handleSubmit={handleSubmit}
-          isReady={isReady}>
+        <Button
+          onClick={handleSubmit}
+          variant={isReady ? "main" : "weak"}>
           추천받기
-        </SmallButton>
+        </Button>
       </RecommendButtonContainer>
     </RecommendContainer>
   )

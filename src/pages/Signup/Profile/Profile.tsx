@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom"
 
 import StatusBar from "@components/StatusBar/StatusBar"
 
-import SignupButton from "@pages/Signup/Button/SignupButton"
 import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
+import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import * as S from "../StyledSignup"
