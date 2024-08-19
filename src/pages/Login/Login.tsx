@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import Button from "@components/Button/Button"
+
 import { loginPostAPI } from "@apis/API"
 
 import * as S from "./StyledLogin"
@@ -51,7 +53,7 @@ const Login = (props) => {
   return (
     <S.LoginContainer>
       <S.Title>로그인</S.Title>
-      <form onSubmit={handleLogin}>
+      <S.LoginForm onSubmit={handleLogin}>
         <S.InputFrame>
           <S.LoginInput
             type="text"
@@ -98,18 +100,16 @@ const Login = (props) => {
           onClick={handleLogin}
           variant="main"
           type="submit"
-          disabled={!$isValid}
           size="lg">
           로그인
         </Button>
         <Button
           onClick={handleSignup}
           variant="weak"
-          disabled={!$isValid}
           size="lg">
           회원가입
         </Button>
-      </form>
+      </S.LoginForm>
     </S.LoginContainer>
   )
 }
