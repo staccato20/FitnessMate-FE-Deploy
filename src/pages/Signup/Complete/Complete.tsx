@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useNavigate } from "react-router-dom"
 
-import BigButton from "@components/Button/BigButton"
+import { Button } from "@components/Navbar/StyledNavModal"
 
 import rightarrow2 from "@assets/images/rightarrow2.svg"
 
@@ -46,13 +46,14 @@ const Complete = () => {
         </S.CompleteNavList>
       </GS.SignupContainer>
       <GS.ButtonContainer>
-        <BigButton
-          type="button"
+        <Button
           onClick={() => {
             handleNavigate("/")
-          }}>
+          }}
+          variant="main"
+          size="lg">
           홈으로
-        </BigButton>
+        </Button>
       </GS.ButtonContainer>
     </GS.SignupWrapper>
   )

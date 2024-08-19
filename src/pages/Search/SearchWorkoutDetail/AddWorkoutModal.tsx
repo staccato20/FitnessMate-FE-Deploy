@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useEffect, useState } from "react"
 
-import MiddleButton from "@components/Button/MiddleButton"
+import Button from "@components/Button/Button"
 import * as S from "@components/Modal/StyledRecommendAddModal"
 import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
 
@@ -104,11 +104,11 @@ const AddWorkoutModal = ({ setRecommendAddModal, workoutId }) => {
           )
         })}
       </div>
-      <MiddleButton
+      <Button
         isReady={isReady}
         onClick={handleAdd}>
         추가하기
-      </MiddleButton>
+      </Button>
       <Button
         onClick={handleAdd}
         variant={isReady ? "main" : "weak"}>

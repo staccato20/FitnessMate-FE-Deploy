@@ -3,11 +3,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import BigButton from "@components/Button/BigButton"
-
 import { loginPostAPI } from "@apis/API"
-
-import theme from "@styles/theme"
 
 import * as S from "./StyledLogin"
 
@@ -98,18 +94,22 @@ const Login = (props) => {
         ) : (
           ""
         )}
-        <BigButton
-          email={props.email}
-          type="submit">
+        <Button
+          onClick={handleLogin}
+          variant="main"
+          type="submit"
+          disabled={!$isValid}
+          size="lg">
           로그인
-        </BigButton>
+        </Button>
+        <Button
+          onClick={handleSignup}
+          variant="weak"
+          disabled={!$isValid}
+          size="lg">
+          회원가입
+        </Button>
       </form>
-      <BigButton
-        backcolor={theme.White}
-        fontcolor={theme.Brand}
-        onClick={handleSignup}>
-        회원가입
-      </BigButton>
     </S.LoginContainer>
   )
 }
