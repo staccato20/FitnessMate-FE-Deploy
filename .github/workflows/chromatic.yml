@@ -42,7 +42,6 @@ jobs:
         with:
           message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
       - name: Send StorybookUrl to Discord
-        if: github.event.pull_request != null
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
