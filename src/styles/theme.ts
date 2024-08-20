@@ -1,76 +1,68 @@
-const theme = {
-  Black: "#191F28",
-  Gray80: "#333D4B",
-  Gray70: "#4E5968",
-  Gray50: "#9A9798",
-  Gray30: "#D1D6DB",
-  Gray20: "#F2F4F6",
-  Gray10: "#F9FAFB",
-  White: "#FFFFFF",
-  Brand: "#0B98FF",
-  BrandDark: "#0A89E5",
-  BrandMid: "#36ABFF",
-  BrandLight300: "#B5DFFF",
-  BrandLight: "#E5F4FF",
-  BrandLighter: "#F4FAFF",
-  BrandPale: "#EDF7FF",
-  BrandNon: "#A6CEEC",
-  Error: "#EB444C",
-  ErrorLight: "#FFEEEF",
-  Success: "#76D672",
-  SuccessLight: "#F2FAF0",
-  Neutral100: "#f9fafb",
-  Neutral300: "#e4eaf0",
-  Neutral800: "#4e5968",
-  Neutral900: "#333d4b",
+interface Font {
+  weight: number
+  size: number
+  letterSpacing: number
 }
 
-export const fontSize = {
-  small: "14px",
-  basic: "16px",
-  mediumSmall: "20px",
-  medium: "24px",
-  large: "32px",
-}
-export const fontWeight = {
-  normal: "400",
-  medium: "500", // 기본 weight
-  semibold: "600",
-  bold: "700",
-  bolder: "800",
+const FONT = ({ weight, size, letterSpacing }: Font): string => {
+  return `
+  font-weight:${weight};
+  font-size:${size}px;
+  letter-spacing:${letterSpacing}%;
+  line-height:138%;
+  `
 }
 
-// 나중에 사용
+export const fonts = {
+  h1: FONT({ weight: 700, size: 26, letterSpacing: -2 }),
+  h2: FONT({ weight: 700, size: 24, letterSpacing: -2 }),
+  h3: FONT({ weight: 700, size: 20, letterSpacing: -2 }),
+  h4: FONT({ weight: 700, size: 18, letterSpacing: -2 }),
 
-// const colors = {
-//   Brand50: "#EBF7FF",
-//   Brand100: "#E0F2FF",
-//   Brand150: "#DDEAF4",
-//   Brand200: "#D2ECFF",
-//   Brand300: "#99D4FF",
-//   Brand400: "#6CC1FE",
-//   Brand500: "#3EAEFF",
-//   Brand600: "#0B98FF",
-//   Brand700: "#048EF1",
-//   Brand800: "#0672BF",
-//   Brand900: "#035896",
-//   Brand950: "#013751",
-//   Brand990: "#042741",
-//   Netural0: "#EBF7FF",
-//   Netural50: "#E0F2FF",
-//   Netural100: "#DDEAF4",
-//   Netural200: "#D2ECFF",
-//   Netural300: "#99D4FF",
-//   Netural400: "#6CC1FE",
-//   Netural500: "#3EAEFF",
-//   Netural600: "#048EF1",
-//   Netural700: "#0672BF",
-//   Netural800: "#035896",
-//   Netural900: "#626D7D",
-//   Netural950: "#272E38",
-//   Netural990: "#191F28",
-//   Error: "#EB444C",
-//   Success: "#2EDD6A",
-// }
+  b1: FONT({ weight: 600, size: 18, letterSpacing: -2 }),
+  b2: FONT({ weight: 700, size: 17, letterSpacing: -2 }),
+  b3: FONT({ weight: 700, size: 16, letterSpacing: -2 }),
+  b4: FONT({ weight: 600, size: 16, letterSpacing: -2 }),
+  b5: FONT({ weight: 700, size: 15, letterSpacing: -2 }),
+  b6: FONT({ weight: 600, size: 15, letterSpacing: -2 }),
+  b7: FONT({ weight: 700, size: 15, letterSpacing: -2 }),
+
+  d1: FONT({ weight: 600, size: 13, letterSpacing: 0 }),
+  d2: FONT({ weight: 600, size: 12, letterSpacing: 0 }),
+  d3: FONT({ weight: 600, size: 11, letterSpacing: 0 }),
+}
+
+export const theme = {
+  Brand50: "#ebf7ff",
+  Brand100: "#e0f2ff",
+  Brand150: "#ddeaf4",
+  Brand200: "#d2ecff",
+  Brand300: "#99d4ff",
+  Brand400: "#6cc1fe",
+  Brand500: "#3eaeff",
+  Brand600: "#0b98ff",
+  Brand700: "#048ef1",
+  Brand750: "#0f84d9",
+  Brand800: "#0672bf",
+  Brand900: "#035896",
+  Brand950: "#01375e",
+  Brand990: "#042741",
+  Netural0: "#fff",
+  Netural50: "#fbfcfc",
+  Netural100: "#f9fAfB",
+  Netural200: "#f2f4f6",
+  Netural300: "#e4eaf0",
+  Netural400: "#d0d9e2",
+  Netural450: "#bbc8d6",
+  Netural500: "#a2b2c2",
+  Netural600: "#6b7684",
+  Netural700: "#626d7d",
+  Netural800: "#4e5968",
+  Netural900: "#333d4b",
+  Netural950: "#272e38",
+  Netural990: "#191f28",
+  Error: "#ef444c",
+  Success: "#2edd6a",
+}
 
 export default theme

@@ -2,6 +2,8 @@ import { ButtonHTMLAttributes } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
+import theme, { fonts } from "@styles/theme"
+
 export type Variant = "main" | "weak" | "grey" | "text"
 export type Size = "sm" | "md" | "lg"
 
@@ -35,7 +37,6 @@ const StyledButton = styled.button<Props>`
   border: none;
   width: 100%;
   border-radius: 10px;
-  cursor: pointer;
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
@@ -48,32 +49,32 @@ const StyledButton = styled.button<Props>`
 const SIZES = {
   sm: css`
     padding: 10px 12px;
-    font-size: 14px;
+    ${fonts.b7}
   `,
   md: css`
     padding: 14px 24px;
-    font-size: 15px;
+    ${fonts.b5}
   `,
   lg: css`
     padding: 17px 24px;
-    font-size: 17px;
+    ${fonts.b2}
   `,
 }
 
 const VARIANTS = {
   main: css`
-    color: #fff;
-    background-color: #0b98ff;
+    color: ${theme.Netural0};
+    background-color: ${theme.Brand600};
     &:hover {
-      background: #0f84d9;
+      background: ${theme.Brand750};
     }
     &:disabled {
-      background-color: #bbc8d6;
+      background-color: ${theme.Netural450};
     }
   `,
   weak: css`
-    color: #048ef1;
-    background-color: #d2ecff;
+    color: ${theme.Brand700};
+    background-color: ${theme.Netural200};
     &:hover {
       background: linear-gradient(
           0deg,
@@ -83,27 +84,27 @@ const VARIANTS = {
         var(--Brand-Light, #d9eefe);
     }
     &:disabled {
-      background-color: #d2ecff;
+      background-color: ${theme.Brand200};
     }
   `,
   grey: css`
-    color: #4e5968;
-    background-color: #e4eaf0;
+    color: ${theme.Netural800};
+    background-color: ${theme.Netural300};
     &:hover {
-      background-color: #a2b2c2;
+      background-color: ${theme.Netural400};
     }
     &:disabled {
-      background-color: #f2f4f6;
+      background-color: ${theme.Netural200};
     }
   `,
   text: css`
-    color: #4e5968;
+    color: ${theme.Netural800};
     background: none;
     &:hover {
-      background-color: #f2f4f6;
+      background-color: ${theme.Netural200};
     }
     &:disabled {
-      color: #a2b2c2;
+      color: ${theme.Netural500};
     }
   `,
 }
