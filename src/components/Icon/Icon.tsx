@@ -13,3 +13,4 @@ const Icon = ({ icon }: IconProps) => {
 }
 
 export default Icon
+2
