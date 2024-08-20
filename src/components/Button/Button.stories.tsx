@@ -7,6 +7,16 @@ const meta: Meta<typeof Button> = {
   title: "components/Button",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    leftIcon: {
+      control: "text",
+      description: "Name of the icon for the left side",
+    },
+    rightIcon: {
+      control: "text",
+      description: "Name of the icon for the right side",
+    },
+  },
 }
 
 export default meta
@@ -18,5 +28,7 @@ export const Primary: Story = {
     size: "md",
     variant: "main",
     children: "Button",
+    leftIcon: undefined,
+    rightIcon: undefined,
   },
 }

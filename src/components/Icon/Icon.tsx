@@ -5,12 +5,11 @@ export interface IconProps {
 }
 
 const Icon = ({ icon }: IconProps) => {
-  return (
-    <span className="material-symbols-outlined">
-      {icons.includes(icon) ? icon : ""}
-    </span>
+  return icons.includes(icon) ? (
+    <span className="material-symbols-outlined">{icon}</span>
+  ) : (
+    ""
   )
 }
 
 export default Icon
-2

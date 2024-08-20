@@ -2,6 +2,9 @@ import { ButtonHTMLAttributes } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
+import Icon from "@components/Icon/Icon"
+import { BasicIconType } from "@components/Icon/utils/icons"
+
 import theme, { fonts } from "@styles/theme"
 
 export type Variant = "main" | "weak" | "grey" | "text"
@@ -19,6 +22,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   variant?: Variant
   children?: string
+  leftIcon?: BasicIconType
+  rightIcon?: BasicIconType
   onClick?: (e: React.MouseEvent) => void
 }
 
@@ -28,7 +33,7 @@ const StyledButton = styled.button<Props>`
   ${(p) => p.sizeStyle}
   ${(p) => p.variantStyle}
   display: inline-flex;
-  gap: 3px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   vertical-align: center;
@@ -113,6 +118,8 @@ const Button = ({
   disabled = false,
   size = "md",
   variant = "main",
+  leftIcon,
+  rightIcon,
   children,
   onClick,
   ...props
@@ -126,7 +133,9 @@ const Button = ({
       variantStyle={variantStyle}
       onClick={onClick}
       {...props}>
+      {leftIcon && <Icon icon={leftIcon} />}
       {children}
+      {rightIcon && <Icon icon={rightIcon} />}
     </StyledButton>
   )
 }
