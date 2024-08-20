@@ -10,7 +10,7 @@ const meta: Meta<typeof IconButton> = {
   argTypes: {
     icon: {
       control: "text",
-      description: "Google Material Icon의 정해진 아이콘 라벨만 사용해주세요.",
+      description: "Google Material Icon의 정해진 아이콘 라벨만 사용",
     },
   },
 }
