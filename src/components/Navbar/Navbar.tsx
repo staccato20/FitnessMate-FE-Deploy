@@ -7,16 +7,17 @@ import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logoimg from "@assets/images/logo.png"
 
+import { theme } from "@styles/theme"
+
 import { useUserInfo } from "../../hooks/query/useUserInfo"
 import * as S from "./StyledNavbar"
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { data } = useUserInfo()
-  const userName = data ? data.userName : ""
+  const userName = data ? data.userName : undefined
   const [isLoginModal, setIsLoginModal] = useState(false)
   const [isCancleModal, setIsCancleModal] = useState(false)
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false)
 
   const handleSearch = () => {
     navigate("search/1")
@@ -52,21 +53,18 @@ const Navbar = () => {
           <S.NavButton onClick={handleRecommend}>추천받기</S.NavButton>
           <S.NavButton onClick={handleMyPage}>내 운동</S.NavButton>
         </S.NavTextContainer>
-        <NavDropDown
-          userName={userName}
-          isDropDownOpen={isDropDownOpen}
-          setIsDropDownOpen={setIsDropDownOpen}
-        />
-        {/* {userName ? (
-          <NavDropDown userName={userName}>{userName} 님</NavDropDown>
+
+        {userName ? (
+          <NavDropDown userName={userName} />
         ) : (
-          <Button
+          <S.LoginButton
             variant="text"
-            size="lg"
+            size="md"
+            color={theme.Brand600}
             onClick={handleLogin}>
             로그인
-          </Button>
-        )} */}
+          </S.LoginButton>
+        )}
       </S.NavLink>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
       {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}

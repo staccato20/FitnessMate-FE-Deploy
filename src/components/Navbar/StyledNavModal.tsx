@@ -1,9 +1,6 @@
-// < nav modal 스타일 >
 import styled from "styled-components"
 
-import theme from "@styles/theme"
-
-// nav modal button
+import theme, { fonts } from "@styles/theme"
 
 export const NavButton = styled.button`
   font-size: 18px;
@@ -16,44 +13,32 @@ export const NavButton = styled.button`
   }
 `
 
-export const AppWrap = styled.button`
-  text-align: center;
+export const NavDropDownWrapper = styled.div`
   position: relative;
 `
 
-// modal
-
-export const ModalWrap = styled.div`
+export const NavDropDownListWrapper = styled.div`
   width: 200px;
-  height: 220px;
   border-radius: 16px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${theme.Netural500};
-  background-color: ${theme.Netural200};
+  border: 1px solid ${theme.Netural400};
+  background-color: ${theme.Netural100};
   position: absolute;
-  top: 57px;
-  left: -11px;
-`
-
-export const Contents = styled.div`
+  top: 50px;
+  left: -80px;
   padding-top: 23px;
   padding-bottom: 13px;
   display: flex;
-  gap: 16px;
   flex-direction: column;
-  p {
-    font-size: 16px;
-    color: #000;
-    letter-spacing: -0.02em;
-    font-family: Pretendard;
-    text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: -0.02em;
-  }
-  .modalButton {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
+  gap: 16px;
+`
+
+export const NavDropDownListTitle = styled.span`
+  text-align: center;
+  ${fonts.b4}
+`
+
+export const NavDropDownList = styled.div`
+  display: flex;
+  flex-direction: column;
 `

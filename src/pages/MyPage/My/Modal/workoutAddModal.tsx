@@ -2,7 +2,6 @@
 // 편집 모달
 import { useEffect, useRef, useState } from "react"
 
-import OutSideClick from "@components/Navbar/OutSideClick"
 import NoSearch from "@components/NoSearch/NoSearch"
 import SearchBar from "@components/SearchBar/SearchBar"
 import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
@@ -118,7 +117,7 @@ function AddModal({ onClose, routineId }) {
     onClose?.()
   }
   const modalRef = useRef(null)
-  OutSideClick(modalRef, handleClose)
+  // OutSideClick(modalRef, handleClose)
 
   return (
     <S.AppWrap>

@@ -1,9 +1,9 @@
 // < layout 스타일 >
 import styled from "styled-components"
 
-import { StyledButton } from "@components/Button/Button"
+import Button from "@components/Button/Button"
 
-import theme, { fonts } from "@styles/theme"
+import theme from "@styles/theme"
 
 export const NavbarContainer = styled.div`
   position: sticky;
@@ -36,11 +36,10 @@ export const NavTextContainer = styled.div`
   align-items: center;
 `
 
-export const NavButton = styled(StyledButton)`
+export const NavButton = styled(Button).attrs({
+  variant: "text",
+})`
   color: ${theme.Netural990};
-  padding: 10px 14px;
-  ${fonts.b4}
-
   @media (max-width: 1000px) {
     display: none;
   }
@@ -48,4 +47,8 @@ export const NavButton = styled(StyledButton)`
   &:hover {
     background-color: ${theme.Netural200};
   }
+`
+
+export const LoginButton = styled(Button)`
+  color: ${({ color }) => color || theme.Netural800};
 `

@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 import FitnessType from "@components/FitnessType/FitnessType"
-import OutSideClick from "@components/Navbar/OutSideClick"
 import NoSearch from "@components/NoSearch/NoSearch"
 import SearchBar from "@components/SearchBar/SearchBar"
 
@@ -45,7 +44,7 @@ const SearchHome = () => {
     setIsSearchSupFilterModal(false)
     setIsSearchFitFilterModal(false)
   }
-  OutSideClick(modalRef, handleClose)
+  // OutSideClick(modalRef, handleClose)
 
   // 운동 섹션
 

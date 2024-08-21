@@ -2,8 +2,6 @@
 // @ts-nocheck
 import { useEffect, useRef, useState } from "react"
 
-import OutSideClick from "@components/Navbar/OutSideClick"
-
 import TokenApi from "@apis/TokenApi"
 
 import plus from "@assets/images/Plus_Icon.svg"
@@ -149,7 +147,7 @@ function FixModal({ data, onUpdateData, onClose, onDeleteItem }) {
     onClose?.()
   }
   const modalRef = useRef(null)
-  OutSideClick(modalRef, handleClose)
+  // OutSideClick(modalRef, handleClose)
 
   // 수정완료
   const handleSubmit = async () => {

@@ -1,75 +1,64 @@
-import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
 
+import { useDropDown } from "hooks/useDropDown"
+
 import Button from "@components/Button/Button"
-import OutSideClick from "@components/Navbar/OutSideClick"
 
 import * as S from "./StyledNavModal"
 
 interface NavDropDownProps {
-  userName: string
-  isDropDownOpen: boolean
-  setIsDropDownOpen: (dropDown: boolean) => void
+  userName?: string
 }
 
-const NavDropDown = ({
-  userName,
-  isDropDownOpen,
-  setIsDropDownOpen,
-}: NavDropDownProps) => {
+const NavDropDown = ({ userName }: NavDropDownProps) => {
   const navigate = useNavigate()
-
-  const handleToggle = () => {
-    setIsDropDownOpen(!isDropDownOpen)
-  }
-
-  const modalRef = useRef(null)
-  const handleClose = () => {
-    setIsDropDownOpen(false)
-  }
-  OutSideClick(modalRef, handleClose)
+  const { isOpen, dropDownRef, toggleDropDown } = useDropDown()
 
   const handleLogout = async () => {
     try {
-      // const res = await logoutPutAPI.get("", {
-      //   headers: {
-      //     Authorization: "Bearer " + localStorage.getItem("refreshToken"),
-      //   },
-      // })
-      // localStorage.clear()
-      // navigate("/")
     } catch (err) {}
   }
 
   const handleFixProfile = async () => {
     navigate("/mypage/fixprofile")
-    setIsDropDownOpen(false)
+    toggleDropDown()
   }
 
   const handleFixBodyInfo = async () => {
     navigate("/mypage/fixbodyinfo")
-    setIsDropDownOpen(false)
+    toggleDropDown()
   }
 
   return (
-    <S.AppWrap ref={modalRef}>
-      <S.NavButton onClick={handleToggle}>최훈오님</S.NavButton>
-      {isDropDownOpen && (
-        <S.ModalWrap>
-          <S.Contents>
-            <div>
-              <p>안녕하세요.</p>
-              <p>최훈오님!</p>
-            </div>
-            <div className="modalButton">
-              <Button onClick={handleLogout}>로그아웃</Button>
-              <Button onClick={handleFixProfile}>계정 정보 수정</Button>
-              <Button onClick={handleFixBodyInfo}>신체 정보 수정</Button>
-            </div>
-          </S.Contents>
-        </S.ModalWrap>
+    <S.NavDropDownWrapper ref={dropDownRef}>
+      <S.NavButton onClick={toggleDropDown}>{userName}님</S.NavButton>
+      {isOpen && (
+        <S.NavDropDownListWrapper>
+          <S.NavDropDownListTitle>
+            안녕하세요.
+            <br />
+            {userName}님!
+          </S.NavDropDownListTitle>
+          <S.NavDropDownList>
+            <Button
+              variant="text"
+              onClick={handleLogout}>
+              로그아웃
+            </Button>
+            <Button
+              variant="text"
+              onClick={handleFixProfile}>
+              계정 정보 수정
+            </Button>
+            <Button
+              variant="text"
+              onClick={handleFixBodyInfo}>
+              신체 정보 수정
+            </Button>
+          </S.NavDropDownList>
+        </S.NavDropDownListWrapper>
       )}
-    </S.AppWrap>
+    </S.NavDropDownWrapper>
   )
 }
 
