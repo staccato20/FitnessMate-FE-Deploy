@@ -61,7 +61,7 @@ const BodyFigure = () => {
   return (
     <GS.SignupForm onSubmit={handleSubmit(onSubmit)}>
       <GS.SignupTitle>
-        <StatusBar status={"3"} />
+        <StatusBar status={3} />
         체형 정보를 입력해주세요
       </GS.SignupTitle>
       <S.BodyFigureWrapper>

@@ -37,7 +37,7 @@ const BodyInfo = () => {
   return (
     <GS.SignupForm onSubmit={handleSubmit(handleNextPage)}>
       <GS.SignupTitle>
-        <StatusBar status={"2"} />
+        <StatusBar status={2} />
         신체 정보를 입력해주세요
       </GS.SignupTitle>
       <S.BodyInfoContainer>

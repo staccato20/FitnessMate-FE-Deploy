@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-import IconButton from "@components/IconButton/IconButton"
 import StatusBar from "@components/StatusBar/StatusBar"
-
-import * as S from "../StyledRecommend"
 
 const Prolog = () => {
   const navigate = useNavigate()
@@ -11,15 +8,16 @@ const Prolog = () => {
     navigate(-1)
   }
   return (
-    <S.RecommendWrapper>
-      <S.Status>
-        <IconButton
-          src=""
-          onClick={handleBackPage}
-        />
-        <StatusBar status={"1"} />
-      </S.Status>
-    </S.RecommendWrapper>
+    <div style={{ width: "500px", margin: "0 auto" }}>
+      <StatusBar status={1} />
+    </div>
   )
 }
 export default Prolog
+{
+  /* <S.RecommendWrapper>
+<S.Status>
+  <StatusBar status={1} />
+</S.Status>
+</S.RecommendWrapper> */
+}

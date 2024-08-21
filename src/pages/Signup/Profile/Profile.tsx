@@ -32,7 +32,7 @@ const Profile = () => {
   return (
     <S.SignupForm onSubmit={handleSubmit(handleNextPage)}>
       <S.SignupTitle>
-        <StatusBar status={"1"} />
+        <StatusBar status={1} />
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileForm methods={methods} />
