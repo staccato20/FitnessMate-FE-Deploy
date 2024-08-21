@@ -21,7 +21,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   size?: Size
   variant?: Variant
-  children?: string
+  children: string
   leftIcon?: BasicIconType
   rightIcon?: BasicIconType
   onClick?: (e: React.MouseEvent) => void
@@ -36,7 +36,6 @@ const StyledButton = styled.button<Props>`
   gap: 10px;
   justify-content: center;
   align-items: center;
-  vertical-align: center;
   position: relative;
   min-width: 108px;
   border: none;

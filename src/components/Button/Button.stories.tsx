@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import Button from "./Button"
+import Button from "@components/Button/Button"
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -10,11 +10,11 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     leftIcon: {
       control: "text",
-      description: "Name of the icon for the left side",
+      table: { type: { summary: "Google Material Icon의 정해진 아이콘 라벨" } },
     },
     rightIcon: {
       control: "text",
-      description: "Name of the icon for the right side",
+      table: { type: { summary: "Google Material Icon의 정해진 아이콘 라벨" } },
     },
   },
 }
@@ -28,7 +28,7 @@ export const Primary: Story = {
     size: "md",
     variant: "main",
     children: "Button",
-    leftIcon: undefined,
-    rightIcon: undefined,
+    leftIcon: "",
+    rightIcon: "",
   },
 }

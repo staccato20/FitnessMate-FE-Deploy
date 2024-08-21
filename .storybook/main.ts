@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite"
+import path from "path"
 
 const config: StorybookConfig = {
   core: {
@@ -17,5 +18,15 @@ const config: StorybookConfig = {
     "@storybook/addon-storysource",
   ],
   framework: "@storybook/react-vite",
+  viteFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@": path.resolve(__dirname, "../src"),
+      }
+    }
+    return config
+  },
 }
+
 export default config

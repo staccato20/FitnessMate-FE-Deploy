@@ -1,5 +1,6 @@
 // 요소를 정의하면서 동시에 타입 선언
 export const icons = [
+  "",
   "3d_rotation",
   "ac_unit",
   "access_alarm",
