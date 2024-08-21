@@ -48,7 +48,6 @@ export const Contents = styled.div`
     letter-spacing: -0.02em;
     font-family: Pretendard;
     text-align: center;
-    text-align: center;
     font-weight: 500;
     font-size: 16px;
     letter-spacing: -0.02em;
@@ -57,18 +56,5 @@ export const Contents = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1px;
-  }
-`
-
-export const Button = styled.button`
-  width: 100%;
-  height: 40px;
-  font-size: 16px;
-  padding: 8px 12px;
-  color: ${theme.Black};
-  letter-spacing: -0.02em;
-  background-color: ${theme.White};
-  &:hover {
-    background-color: ${theme.Gray20};
   }
 `

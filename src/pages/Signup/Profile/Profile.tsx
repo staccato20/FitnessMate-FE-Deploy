@@ -36,7 +36,7 @@ const Profile = () => {
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileForm methods={methods} />
-      <SignupButton $isValid={formState.isValid}>다음</SignupButton>
+      <SignupButton $isValid={formState.isValid} />
     </S.SignupForm>
   )
 }
