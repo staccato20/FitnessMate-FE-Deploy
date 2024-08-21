@@ -10,14 +10,13 @@ export const NavButton = styled.button`
   padding: 10px 24px;
   border-radius: 12px;
   font-weight: 700;
-  color: ${theme.Brand};
-  cursor: pointer;
+  color: ${theme.Brand600};
   &:hover {
-    background-color: ${theme.Gray10};
+    background-color: ${theme.Netural200};
   }
 `
 
-export const AppWrap = styled.div`
+export const AppWrap = styled.button`
   text-align: center;
   position: relative;
 `
@@ -29,8 +28,8 @@ export const ModalWrap = styled.div`
   height: 220px;
   border-radius: 16px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${theme.Gray30};
-  background-color: ${theme.Gray10};
+  border: 1px solid ${theme.Netural500};
+  background-color: ${theme.Netural200};
   position: absolute;
   top: 57px;
   left: -11px;

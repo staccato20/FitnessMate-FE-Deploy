@@ -27,17 +27,17 @@ export const Home = () => {
     navigate("search/1")
   }
 
-  const handleMyPage = () => {
+  const handleRecommend = () => {
     if (loginState) {
-      navigate("mypage")
+      navigate("recommend")
     } else {
       setIsLoginModal(true)
     }
   }
 
-  const handleRecommend = () => {
+  const handleMyPage = () => {
     if (loginState) {
-      navigate("recommend")
+      navigate("mypage")
     } else {
       setIsLoginModal(true)
     }
