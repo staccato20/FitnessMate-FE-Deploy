@@ -1,10 +1,23 @@
-// @ts-nocheck
+import { ReactNode } from "react"
+
 import checkedIcon from "@assets/images/checkedIcon.png"
 import notCheckedIcon from "@assets/images/notCheckedIcon.png"
 
 import * as S from "./StyledCheckBox"
 
-const FigureCheckBox = ({ children, $isChecked, handleCheckItem, index }) => {
+interface FigureCheckBoxProps {
+  children: ReactNode
+  $isChecked: boolean
+  handleCheckItem: (index: number) => void
+  index: number
+}
+
+const FigureCheckBox = ({
+  children,
+  $isChecked,
+  handleCheckItem,
+  index,
+}: FigureCheckBoxProps) => {
   return (
     <S.FigureCheckBoxWrapper
       $isChecked={$isChecked}
@@ -17,6 +30,7 @@ const FigureCheckBox = ({ children, $isChecked, handleCheckItem, index }) => {
         src={$isChecked ? checkedIcon : notCheckedIcon}
         alt="옵션 선택 이미지"
       />
+
       <S.FigureCheckBoxText $isChecked={$isChecked}>
         {children}
       </S.FigureCheckBoxText>

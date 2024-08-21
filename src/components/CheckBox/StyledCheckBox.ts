@@ -2,7 +2,11 @@ import styled from "styled-components"
 
 import theme from "@styles/theme"
 
-export const CheckBoxWrapper = styled.button<Props>`
+interface isCheckedProps {
+  $isChecked: boolean
+}
+
+export const CheckBoxWrapper = styled.button<isCheckedProps>`
   display: flex;
   width: 100%;
   gap: 10px;
@@ -15,7 +19,7 @@ export const CheckBoxWrapper = styled.button<Props>`
   height: 50px;
 `
 
-export const CheckBoxImg = styled.img<Props>`
+export const CheckBoxImg = styled.img<isCheckedProps>`
   width: ${({ $isChecked }) => ($isChecked ? "24px" : "20px")};
   height: ${({ $isChecked }) => ($isChecked ? "24px" : "20px")};
   margin: ${({ $isChecked }) => ($isChecked ? "0px" : "2px")};
@@ -26,7 +30,7 @@ export const CheckBoxText = styled.span`
   font-size: 16px;
 `
 
-export const FigureCheckBoxWrapper = styled.button<Props>`
+export const FigureCheckBoxWrapper = styled.button<isCheckedProps>`
   display: flex;
   width: 100%;
   gap: 10px;
@@ -37,11 +41,11 @@ export const FigureCheckBoxWrapper = styled.button<Props>`
   height: 50px;
   &:hover {
     background: ${({ $isChecked }) =>
-      $isChecked ? `#f2f4f6` : `${theme.Gray10}`};
+      $isChecked ? `#f2f4f6` : `${theme.Netural200}`};
   }
 `
 
-export const FigureCheckBoxText = styled.span<Props>`
+export const FigureCheckBoxText = styled.span<isCheckedProps>`
   color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
   text-align: center;
   font-size: 14px;
