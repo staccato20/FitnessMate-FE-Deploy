@@ -1,6 +1,10 @@
 import type { StorybookConfig } from "@storybook/react-vite"
+import path from "path"
 
 const config: StorybookConfig = {
+  core: {
+    builder: "@storybook/builder-vite",
+  },
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-onboarding",
@@ -8,10 +12,21 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
+    "@storybook/addon-viewport",
+    "storybook-addon-theme-provider",
+    "@storybook/addon-themes",
+    "@storybook/addon-storysource",
   ],
-  framework: {
-    name: "@storybook/react-vite",
-    options: {},
+  framework: "@storybook/react-vite",
+  viteFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@": path.resolve(__dirname, "../src"),
+      }
+    }
+    return config
   },
 }
+
 export default config

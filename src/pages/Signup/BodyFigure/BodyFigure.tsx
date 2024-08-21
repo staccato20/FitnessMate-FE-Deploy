@@ -12,7 +12,7 @@ import { CATEGORY_LIST } from "@pages/Signup/BodyFigure/constants/CATEGORY_LIST"
 import { useSelectFigure } from "@pages/Signup/BodyFigure/hooks/useSelectFigure"
 import { useSelectMenu } from "@pages/Signup/BodyFigure/hooks/useSelectMenu"
 import { useSlide } from "@pages/Signup/BodyFigure/hooks/useSlide"
-import SignupButton from "@pages/Signup/Button/SignupButton"
+import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import * as GS from "../StyledSignup"
@@ -61,7 +61,7 @@ const BodyFigure = () => {
   return (
     <GS.SignupForm onSubmit={handleSubmit(onSubmit)}>
       <GS.SignupTitle>
-        <StatusBar status={"3"} />
+        <StatusBar status={3} />
         체형 정보를 입력해주세요
       </GS.SignupTitle>
       <S.BodyFigureWrapper>
