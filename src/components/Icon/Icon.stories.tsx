@@ -7,21 +7,6 @@ const meta: Meta<typeof Icon> = {
   title: "components/Icon",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          backgroundColor: "skyblue",
-          width: "100vw",
-          height: "200px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export default meta

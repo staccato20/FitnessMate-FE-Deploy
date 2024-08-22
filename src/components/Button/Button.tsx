@@ -2,8 +2,7 @@ import { ButtonHTMLAttributes } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
-import Icon from "@components/Icon/Icon"
-import { BasicIconType } from "@components/Icon/utils/icons"
+import Icon, { ICON_MAP } from "@components/Icon/Icon"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -22,8 +21,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   variant?: Variant
   children: string
-  leftIcon?: BasicIconType
-  rightIcon?: BasicIconType
+  leftIcon?: keyof typeof ICON_MAP
+  rightIcon?: keyof typeof ICON_MAP
   onClick?: (e: React.MouseEvent) => void
 }
 

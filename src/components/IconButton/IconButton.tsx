@@ -1,7 +1,9 @@
 import { ButtonHTMLAttributes } from "react"
 
+import Icon, { ICON_MAP } from "@components/Icon/Icon"
+
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: BasicIconType
+  icon: keyof typeof ICON_MAP
   onClick?: (e: React.MouseEvent) => void
 }
 

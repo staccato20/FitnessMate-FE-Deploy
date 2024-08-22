@@ -23,7 +23,7 @@ import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
 
-const ICON_MAP = {
+export const ICON_MAP = {
   Add,
   AddRound,
   ChangeCircle,
@@ -48,7 +48,7 @@ const ICON_MAP = {
   Search,
   Trash,
 }
-type IconPropsType = {
+export type IconPropsType = {
   icon: keyof typeof ICON_MAP
 }
 

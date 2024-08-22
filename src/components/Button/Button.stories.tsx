@@ -28,7 +28,7 @@ export const Primary: Story = {
     size: "md",
     variant: "main",
     children: "Button",
-    leftIcon: "",
-    rightIcon: "",
+    leftIcon: undefined,
+    rightIcon: undefined,
   },
 }
