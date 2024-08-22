@@ -5,8 +5,7 @@ import { ModalBox } from "@components/Modal/StyeldLeaveModal"
 
 import TokenApi from "@apis/TokenApi"
 
-import xbutton2 from "@assets/images/xbutton2.svg"
-
+// import xbutton2 from "@assets/images/xbutton2.svg"
 import * as S from "./StyledRecommendAddModal"
 
 const RecommendWorkrateModal = ({ setRecommendWorkrateModal, myWorkout }) => {

@@ -1,8 +1,7 @@
 // < 홈 스타일 >
 import styled from "styled-components"
 
-import homebackground from "@assets/images/main-background.png"
-
+// import homebackground from s"@assets/images/main-background.png"
 import theme from "@styles/theme"
 
 // 화면 가리기
@@ -25,7 +24,6 @@ export const HomeContainer = styled.ul`
     justify-content: space-between;
     align-items: center;
     height: 861px;
-    background-image: url(${homebackground});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

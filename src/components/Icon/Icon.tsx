@@ -1,15 +1,60 @@
-import { BasicIconType, icons } from "@components/Icon/utils/icons"
+// rightArrow은 나중에 등록
+import Add from "@assets/icon/add.svg?react"
+import AddRound from "@assets/icon/add_round.svg?react"
+import ChangeCircle from "@assets/icon/change_circle.svg?react"
+import Check from "@assets/icon/check.svg?react"
+import CircleChecked from "@assets/icon/circle_checked.svg?react"
+import CircleCheckedGreen from "@assets/icon/circle_checked_green.svg?react"
+import CircleEmpty from "@assets/icon/circle_empty.svg?react"
+import CircleFill from "@assets/icon/circle_fill.svg?react"
+import Close from "@assets/icon/close.svg?react"
+import CloseRound from "@assets/icon/close_round.svg?react"
+import DownArrow from "@assets/icon/down_arrow.svg?react"
+import Ellipsis from "@assets/icon/ellipsis.svg?react"
+import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
+import LeftArrow from "@assets/icon/left_arrow.svg?react"
+import LeftArrowBig from "@assets/icon/left_arrow_big.svg?react"
+import MinusRound from "@assets/icon/minus_round.svg?react"
+import Pencil from "@assets/icon/pencil.svg?react"
+import PencilRound from "@assets/icon/pencil_round.svg?react"
+import PlayRound from "@assets/icon/play_round.svg?react"
+import RightArrowBig from "@assets/icon/right_arrow_big.svg?react"
+import Search from "@assets/icon/search.svg?react"
+import SearchRound from "@assets/icon/search_round.svg?react"
+import Trash from "@assets/icon/trash.svg?react"
 
-export interface IconProps {
-  icon: BasicIconType
+const ICON_MAP = {
+  Add,
+  AddRound,
+  ChangeCircle,
+  Check,
+  Close,
+  CircleCheckedGreen,
+  CircleChecked,
+  CircleEmpty,
+  CircleFill,
+  CloseRound,
+  DownArrow,
+  Ellipsis,
+  ExclamationMark,
+  LeftArrowBig,
+  LeftArrow,
+  MinusRound,
+  PencilRound,
+  Pencil,
+  PlayRound,
+  RightArrowBig,
+  SearchRound,
+  Search,
+  Trash,
+}
+type IconPropsType = {
+  icon: keyof typeof ICON_MAP
 }
 
-const Icon = ({ icon }: IconProps) => {
-  return icons.includes(icon) ? (
-    <span className="material-symbols-outlined">{icon}</span>
-  ) : (
-    ""
-  )
+const Icon = ({ icon, ...props }: IconPropsType) => {
+  const IconComponent = ICON_MAP[icon]
+  return <IconComponent {...props} />
 }
 
 export default Icon

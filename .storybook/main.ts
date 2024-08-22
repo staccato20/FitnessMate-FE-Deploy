@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite"
 import path from "path"
+import svgr from "vite-plugin-svgr"
 
 const config: StorybookConfig = {
   core: {
@@ -25,7 +26,10 @@ const config: StorybookConfig = {
         "@": path.resolve(__dirname, "../src"),
       }
     }
-    return config
+    return {
+      ...config,
+      plugins: [...(config.plugins || []), svgr()],
+    }
   },
 }
 

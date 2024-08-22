@@ -8,8 +8,7 @@ import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
 
 import TokenApi from "@apis/TokenApi"
 
-import x from "@assets/images/X_Icon.svg"
-
+// import x from "@assets/images/X_Icon.svg"
 import * as S from "./StyledAddModal"
 
 function AddModal({ onClose, routineId }) {

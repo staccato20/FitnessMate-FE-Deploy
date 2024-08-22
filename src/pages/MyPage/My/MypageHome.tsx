@@ -6,10 +6,9 @@ import RecommendWorkrateModal from "@components/Modal/RecommendWorkrateModal"
 
 import TokenApi from "@apis/TokenApi"
 
-import add from "@assets/images/Add_Icon.svg"
-import fix from "@assets/images/Fix_Icon.svg"
-import noWorkrate from "@assets/images/noWorkrate.svg"
-
+// import add from "@assets/images/Add_Icon.svg"
+// import fix from "@assets/images/Fix_Icon.svg"
+// import noWorkrate from "@assets/images/noWorkrate.svg"
 import FixModal from "@pages/MyPage/My/Modal/FixModal"
 import ToggleSwitch from "@pages/MyPage/My/toggle"
 

@@ -7,7 +7,7 @@ import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
 
 import authAPI from "@apis/auth"
 
-import xbutton2 from "@assets/images/xbutton2.svg"
+// import xbutton2 from "@assets/images/xbutton2.svg"
 
 const AddWorkoutModal = ({ setRecommendAddModal, workoutId }) => {
   // my페이지에서는 저장된 값을 가져옴

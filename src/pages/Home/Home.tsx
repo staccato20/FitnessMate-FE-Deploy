@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom"
 
 import LoginModal from "@components/Modal/LoginModal"
 
-import arrow from "@assets/images/arrow.svg"
+// import arrow from "@assets/images/arrow.svg"
 import {
   default as fourthFirstImg,
   default as fourthThirdImg,
 } from "@assets/images/fourthFirstImg.png"
 import fourthSecondImg from "@assets/images/fourthSecondImg.png"
 import homebanner from "@assets/images/homebanner.png"
-import thirdFirstImg from "@assets/images/thirdFirstImg.svg"
+// import thirdFirstImg from "@assets/images/thirdFirstImg.svg"
 import thirdSecondImg from "@assets/images/thirdSecondImg.png"
 import thirdThirdImg from "@assets/images/thirdThirdImg.png"
 
@@ -88,7 +88,7 @@ export const Home = () => {
                 <span className="myFitnessBtnText">내 운동 바로 가기</span>
                 <img
                   className="myFitnessBtnImg"
-                  src={arrow}
+                  // src={arrow}
                   alt="보조제 추천 바로 받기 버튼"
                 />
               </button>
@@ -104,7 +104,7 @@ export const Home = () => {
               </S.ThirdContentTitle>
               <img
                 className="thirdFirstImg"
-                src={thirdFirstImg}
+                // src={thirdFirstImg}
               />
             </div>
             <div className="thirdSecondContent">
@@ -195,7 +195,7 @@ export const Home = () => {
             <span className="searchBtnText">검색 바로 가기</span>
             <img
               className="searchBtnImg"
-              src={arrow}
+              // src={arrow}
               alt="검색 바로 가기 버튼"
             />
           </button>
