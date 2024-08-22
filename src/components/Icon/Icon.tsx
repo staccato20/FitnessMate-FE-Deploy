@@ -54,7 +54,7 @@ export type IconPropsType = {
 
 const Icon = ({ icon, ...props }: IconPropsType) => {
   const IconComponent = ICON_MAP[icon]
-  return <IconComponent {...props} />
+  return IconComponent && <IconComponent {...props} />
 }
 
 export default Icon
