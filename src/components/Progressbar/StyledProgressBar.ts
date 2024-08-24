@@ -3,7 +3,7 @@ import styled from "styled-components"
 import theme from "@styles/theme"
 
 interface StatusBarItemProps {
-  $status: number
+  $progress: number
 }
 
 export const ProgressBarBox = styled.div`
@@ -16,7 +16,7 @@ export const ProgressBarBox = styled.div`
 
 export const ProgressBarItem = styled.div<StatusBarItemProps>`
   position: absolute;
-  width: ${({ $status }) => `${(100 / 5) * $status}%`};
+  width: ${({ $progress }) => `${(100 / 5) * $progress}%`};
   height: 100%;
   border-radius: 24px;
   background: ${theme.Brand600};

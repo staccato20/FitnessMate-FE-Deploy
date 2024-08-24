@@ -7,10 +7,7 @@ const meta: Meta<typeof StatusBar> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    status: {
-      control: "select",
-      options: [1, 2, 3, 4],
-    },
+    status: { control: { type: "range", min: 1, max: 4, step: 1 } },
   },
   decorators: [
     (Story) => (

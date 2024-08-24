@@ -1,13 +1,13 @@
 import { ProgressBarBox, ProgressBarItem } from "./StyledProgressBar"
 
 export interface ProgressBarProps {
-  status: number
+  progress: number
 }
 
-const ProgressBar = ({ status }: ProgressBarProps) => {
+const ProgressBar = ({ progress }: ProgressBarProps) => {
   return (
     <ProgressBarBox>
-      <ProgressBarItem $status={status} />
+      <ProgressBarItem $progress={progress} />
     </ProgressBarBox>
   )
 }

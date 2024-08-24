@@ -1,16 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react"
 
-import Progressbar from "@components/Progressbar/Progressbar"
+import ProgressBar from "@components/Progressbar/ProgressBar"
 
-const meta: Meta<typeof Progressbar> = {
-  component: Progressbar,
+const meta: Meta<typeof ProgressBar> = {
+  component: ProgressBar,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    status: {
-      control: "select",
-      options: [1, 2, 3, 4, 5],
-    },
+    progress: { control: { type: "range", min: 1, max: 5, step: 1 } },
   },
   decorators: [
     (Story) => (
@@ -22,10 +19,10 @@ const meta: Meta<typeof Progressbar> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Progressbar>
+type Story = StoryObj<typeof ProgressBar>
 
 export const Primary: Story = {
   args: {
-    status: 1,
+    progress: 1,
   },
 }
