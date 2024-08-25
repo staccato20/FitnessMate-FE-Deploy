@@ -4,8 +4,8 @@ interface InputTextProps {
   children: ReactNode
 }
 
-const Icon = ({ children }: InputTextProps) => {
+const SpecchBubbleIcon = ({ children }: InputTextProps) => {
   return <>{children}</>
 }
 
-export default Icon
+export default SpecchBubbleIcon

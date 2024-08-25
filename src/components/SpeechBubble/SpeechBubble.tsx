@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import Icon from "@components/Icon/Icon"
+import SpecchBubbleIcon from "@components/SpeechBubble/components/Icon"
 import MainText from "@components/SpeechBubble/components/MainText"
 import SubText from "@components/SpeechBubble/components/SubText"
 
@@ -26,7 +26,7 @@ const SpeechBubbleMain = ({ children }: SpeechBubbleMainProps) => (
 const SpeechBubble = Object.assign(SpeechBubbleMain, {
   MainText: MainText,
   SubText: SubText,
-  Icon: Icon,
+  Icon: SpecchBubbleIcon,
 })
 
 export default SpeechBubble
