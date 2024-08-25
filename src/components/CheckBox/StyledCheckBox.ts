@@ -1,6 +1,8 @@
-import styled from "styled-components"
+import styled, { Interpolation } from "styled-components"
 
 import theme from "@styles/theme"
+
+import { fonts } from "../../styles/theme"
 
 interface isCheckedProps {
   $isChecked: boolean
@@ -49,4 +51,31 @@ export const FigureCheckBoxText = styled.span<isCheckedProps>`
   color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
   text-align: center;
   font-size: 14px;
+`
+
+export const ImgCheckBoxWrapper = styled.button<{
+  $sizeStyle: Interpolation<object>
+}>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  ${({ $sizeStyle }) => $sizeStyle};
+  .check {
+    position: absolute;
+    top: 10.5px;
+    left: 10.5px;
+  }
+`
+
+export const ImageCheckBoxImg = styled.img`
+  width: 100%;
+  z-index: -1;
+  border-radius: 18px;
+  border: 3px solid ${theme.Netural300};
+  aspect-ratio: 1 / 1;
+`
+
+export const ImageCheckBoxText = styled.span`
+  ${fonts.b2}
 `

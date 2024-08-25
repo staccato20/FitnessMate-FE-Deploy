@@ -51,12 +51,12 @@ export const ICON_MAP = {
   Star,
 }
 export type IconPropsType = {
-  icon: keyof typeof ICON_MAP
+  icon: keyof typeof ICON_MAP | ""
   className?: string
 }
 
 const Icon = ({ icon, ...props }: IconPropsType) => {
-  const IconComponent = ICON_MAP[icon]
+  const IconComponent = icon && ICON_MAP[icon]
   return IconComponent && <IconComponent {...props} />
 }
 
