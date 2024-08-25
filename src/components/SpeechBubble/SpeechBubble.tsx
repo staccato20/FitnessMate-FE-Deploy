@@ -1,8 +1,10 @@
 import { ReactNode } from "react"
 
-import Icon from "@components/SpeechBubble/components/Icon"
+import Icon from "@components/Icon/Icon"
 import MainText from "@components/SpeechBubble/components/MainText"
 import SubText from "@components/SpeechBubble/components/SubText"
+
+import tooltip from "@assets/images/tooltip.png"
 
 import * as S from "./StyledSpeechBubble"
 
@@ -16,6 +18,7 @@ const SpeechBubbleMain = ({ children }: SpeechBubbleMainProps) => (
     $isIcon={
       Array.isArray(children) && typeof children[0].props.children === "object"
     }>
+    <S.SpeechBubbleTooltip src={tooltip} />
     {children}
   </S.SpeechBubbleWrapper>
 )
