@@ -68,12 +68,13 @@ export const ImgCheckBoxWrapper = styled.button<{
   }
 `
 
-export const ImageCheckBoxImg = styled.img<{ $isSelected: boolean }>`
+export const ImageCheckBoxImg = styled.img<{
+  $borderStyle: Interpolation<object>
+}>`
   width: 100%;
   z-index: -1;
   border-radius: 14px;
-  border: 5px solid
-    ${({ $isSelected }) => ($isSelected ? theme.Brand600 : theme.Netural300)};
+  ${({ $borderStyle }) => $borderStyle};
   aspect-ratio: 1 / 1;
 `
 
