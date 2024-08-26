@@ -81,4 +81,9 @@ export const ImageCheckBoxText = styled.span`
   color: ${theme.Netural600};
   ${fonts.b3};
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `

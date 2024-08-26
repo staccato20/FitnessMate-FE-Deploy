@@ -1,4 +1,3 @@
-// < layout 스타일 >
 import styled from "styled-components"
 
 import Button from "@components/Button/Button"
@@ -40,6 +39,7 @@ export const NavButton = styled(Button).attrs({
   variant: "text",
 })`
   color: ${theme.Netural990};
+  padding: 10px 14px;
   @media (max-width: 1000px) {
     display: none;
   }

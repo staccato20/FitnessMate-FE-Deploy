@@ -24,6 +24,7 @@ import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
 import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
 import Star from "@assets/icon/star.svg?react"
+import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
 
 export const ICON_MAP = {
@@ -53,6 +54,7 @@ export const ICON_MAP = {
   Star,
   LeftArrowBold,
   RightArrowRound,
+  Tooltip,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""
