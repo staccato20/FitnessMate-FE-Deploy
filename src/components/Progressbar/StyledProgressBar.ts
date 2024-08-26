@@ -8,9 +8,9 @@ interface StatusBarItemProps {
 
 export const ProgressBarBox = styled.div`
   position: relative;
+  width: 100%;
   height: 10px;
   background: ${theme.Netural300};
-  margin-bottom: 24px;
   border-radius: 24px;
 `
 

@@ -75,7 +75,7 @@ const VARIANTS = {
   `,
   weak: css`
     color: ${theme.Brand700};
-    background-color: ${theme.Netural200};
+    background-color: ${theme.Brand200};
     &:hover {
       background: linear-gradient(
           0deg,

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { validationState } from "@recoil/atom"
 import { useRecoilState } from "recoil"
 
-import authAPI from "@apis/auth"
+import authAPI from "@apis/domain/auth"
 
 import ProfileInput from "@pages/MyPage/Fix/ProfileInput/ProfileInput"
 
