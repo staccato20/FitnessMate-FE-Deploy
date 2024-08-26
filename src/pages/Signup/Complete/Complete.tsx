@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import Button from "@components/Button/Button"
 
-import rightarrow2 from "@assets/images/rightarrow2.svg"
-
+// import rightarrow2 from "@assets/images/rightarrow2.svg"
 import { COMPLETE_Nav } from "@pages/Signup/Complete/constants/COMPLETE_NAV"
 
 import * as GS from "../StyledSignup"

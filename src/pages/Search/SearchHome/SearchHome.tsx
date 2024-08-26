@@ -3,18 +3,16 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 import FitnessType from "@components/FitnessType/FitnessType"
-import OutSideClick from "@components/Navbar/OutSideClick"
 import NoSearch from "@components/NoSearch/NoSearch"
 import SearchBar from "@components/SearchBar/SearchBar"
 
 import { userWorkoutBatchAPI } from "@apis/API"
 
-import leftarrow from "@assets/images/leftarrow.svg"
-import plusCircle from "@assets/images/plus-circle.svg"
-import plusSimbol from "@assets/images/plus-sm.svg"
-import rightarrow from "@assets/images/rightarrow.svg"
-import FilterClose from "@assets/images/x-close.svg"
-
+// import leftarrow from "@assets/images/leftarrow.svg"
+// import plusCircle from "@assets/images/plus-circle.svg"
+// import plusSimbol from "@assets/images/plus-sm.svg"
+// import rightarrow from "@assets/images/rightarrow.svg"
+// import FilterClose from "@assets/images/x-close.svg"
 import ToggleSwitch from "@pages/MyPage/My/toggle"
 
 import * as S from "./StyledSearchHome"
@@ -45,7 +43,7 @@ const SearchHome = () => {
     setIsSearchSupFilterModal(false)
     setIsSearchFitFilterModal(false)
   }
-  OutSideClick(modalRef, handleClose)
+  // OutSideClick(modalRef, handleClose)
 
   // 운동 섹션
 

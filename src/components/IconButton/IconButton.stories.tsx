@@ -7,12 +7,6 @@ const meta: Meta<typeof IconButton> = {
   title: "components/IconButton",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-  argTypes: {
-    icon: {
-      control: "text",
-      table: { type: { summary: "Google Material Icon의 정해진 아이콘 라벨" } },
-    },
-  },
 }
 
 export default meta
@@ -20,6 +14,6 @@ type Story = StoryObj<typeof IconButton>
 
 export const Primary: Story = {
   args: {
-    icon: "style",
+    icon: "Check",
   },
 }

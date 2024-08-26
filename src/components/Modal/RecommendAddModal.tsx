@@ -7,9 +7,8 @@ import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
 
 import TokenApi from "@apis/TokenApi"
 
-import rightarrow from "@assets/images/rightarrow.svg"
-import xbutton2 from "@assets/images/xbutton2.svg"
-
+// import rightarrow from "@assets/images/rightarrow.svg"
+// import xbutton2 from "@assets/images/xbutton2.svg"
 import * as S from "./StyledRecommendAddModal"
 
 const RecommendAddModal = ({ setRecommendAddModal, machine }) => {

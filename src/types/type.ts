@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export interface User {
   userName: string
   loginId: string
@@ -29,4 +31,8 @@ export interface BodyData {
   bodyFat: number
   muscleMass: number
   upDownBalance: number
+}
+
+export type StrictPropsWithChildren<P = unknown> = P & {
+  children: ReactNode
 }

@@ -2,8 +2,7 @@ import { ButtonHTMLAttributes } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
-import Icon from "@components/Icon/Icon"
-import { BasicIconType } from "@components/Icon/utils/icons"
+import Icon, { ICON_MAP } from "@components/Icon/Icon"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -13,8 +12,8 @@ export type Size = "sm" | "md" | "lg"
 interface StyledButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: Variant
   size: Size
-  sizeStyle: Interpolation<object>
-  variantStyle: Interpolation<object>
+  $sizeStyle: Interpolation<object>
+  $variantStyle: Interpolation<object>
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,24 +21,22 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   variant?: Variant
   children: string
-  leftIcon?: BasicIconType
-  rightIcon?: BasicIconType
+  leftIcon?: keyof typeof ICON_MAP
+  rightIcon?: keyof typeof ICON_MAP
   onClick?: (e: React.MouseEvent) => void
 }
 
 export type Props = Partial<StyledButtonProps>
 
-const StyledButton = styled.button<Props>`
-  ${(p) => p.sizeStyle}
-  ${(p) => p.variantStyle}
+export const StyledButton = styled.button<Props>`
+  ${(p) => p.$sizeStyle}
+  ${(p) => p.$variantStyle}
   display: inline-flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
-  min-width: 108px;
   border: none;
-  width: 100%;
   border-radius: 10px;
   user-select: none;
   white-space: nowrap;
@@ -128,8 +125,8 @@ const Button = ({
   return (
     <StyledButton
       disabled={disabled}
-      sizeStyle={sizeStyle}
-      variantStyle={variantStyle}
+      $sizeStyle={sizeStyle}
+      $variantStyle={variantStyle}
       onClick={onClick}
       {...props}>
       {leftIcon && <Icon icon={leftIcon} />}
