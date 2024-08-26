@@ -1,8 +1,10 @@
-import { ButtonHTMLAttributes, ReactNode } from "react"
+import { ButtonHTMLAttributes } from "react"
 
 import { css } from "styled-components"
 
 import Icon from "@components/Icon/Icon"
+
+import { StrictPropsWithChildren } from "@typpes/type"
 
 import * as S from "./StyledCheckBox"
 
@@ -25,7 +27,6 @@ interface ImgCheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   alt: string
   isSelected: boolean
   setIsSelected: (isSelected: boolean) => void
-  children: ReactNode
 }
 
 const ImgCheckBox = ({
@@ -36,7 +37,7 @@ const ImgCheckBox = ({
   setIsSelected,
   children,
   ...props
-}: ImgCheckBoxProps) => {
+}: StrictPropsWithChildren<ImgCheckBoxProps>) => {
   const sizeStyle = SIZE[variant]
 
   const handleClick = () => {
@@ -52,10 +53,7 @@ const ImgCheckBox = ({
         src={src}
         alt={alt}
       />
-      <Icon
-        icon={isSelected ? "CircleChecked" : ""}
-        className="check"
-      />
+      {isSelected && <Icon icon="CircleChecked" />}
       <S.ImageCheckBoxText>{children}</S.ImageCheckBoxText>
     </S.ImgCheckBoxWrapper>
   )

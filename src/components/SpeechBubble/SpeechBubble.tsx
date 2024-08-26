@@ -1,18 +1,14 @@
-import { ReactNode } from "react"
-
 import SpecchBubbleIcon from "@components/SpeechBubble/components/Icon"
 import MainText from "@components/SpeechBubble/components/MainText"
 import SubText from "@components/SpeechBubble/components/SubText"
 
 import tooltip from "@assets/images/tooltip.png"
 
+import { StrictPropsWithChildren } from "@typpes/type"
+
 import * as S from "./StyledSpeechBubble"
 
-interface SpeechBubbleMainProps {
-  children: ReactNode
-}
-
-const SpeechBubbleMain = ({ children }: SpeechBubbleMainProps) => (
+const SpeechBubbleMain = ({ children }: StrictPropsWithChildren) => (
   <S.SpeechBubbleWrapper
     $isMultiline={Array.isArray(children)}
     $isIcon={

@@ -1,12 +1,8 @@
-import { ReactNode } from "react"
+import { StrictPropsWithChildren } from "@typpes/type"
 
 import * as S from "../StyledSpeechBubble"
 
-interface SubTextProps {
-  children: ReactNode
-}
-
-const SubText = ({ children }: SubTextProps) => {
+const SubText = ({ children }: StrictPropsWithChildren) => {
   return <S.SpeechBubbleSubText>{children}</S.SpeechBubbleSubText>
 }
 

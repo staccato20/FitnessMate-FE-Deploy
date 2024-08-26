@@ -61,7 +61,7 @@ export const ImgCheckBoxWrapper = styled.button<{
   justify-content: space-between;
   position: relative;
   ${({ $sizeStyle }) => $sizeStyle};
-  .check {
+  svg {
     position: absolute;
     top: 10.5px;
     left: 10.5px;

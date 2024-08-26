@@ -1,11 +1,10 @@
-import { ReactNode } from "react"
-
 // import checkedIcon from "@assets/images/checkedIcon.png"
 // import notCheckedIcon from "@assets/images/notCheckedIcon.png"
+import { StrictPropsWithChildren } from "@typpes/type"
+
 import * as S from "./StyledCheckBox"
 
 interface FigureCheckBoxProps {
-  children: ReactNode
   $isChecked: boolean
   handleCheckItem: (index: number) => void
   index: number
@@ -16,7 +15,7 @@ const FigureCheckBox = ({
   $isChecked,
   handleCheckItem,
   index,
-}: FigureCheckBoxProps) => {
+}: StrictPropsWithChildren<FigureCheckBoxProps>) => {
   return (
     <S.FigureCheckBoxWrapper
       $isChecked={$isChecked}

@@ -1,11 +1,5 @@
-import { ReactNode } from "react"
+import { StrictPropsWithChildren } from "@typpes/type"
 
-interface InputTextProps {
-  children: ReactNode
-}
-
-const SpecchBubbleIcon = ({ children }: InputTextProps) => {
-  return <>{children}</>
-}
+const SpecchBubbleIcon = ({ children }: StrictPropsWithChildren) => children
 
 export default SpecchBubbleIcon

@@ -28,7 +28,7 @@
       "@components/*": ["components/*"],
       "@Layout/*": ["Layout/*"],
       "@pages/*": ["pages/*"],
-      "@types/*": ["types/*"],
+      "@typpes/*": ["types/*"],
       "@routes/*": ["routes/*"],
       "@recoil/*": ["recoil/*"],
       "@store/*": ["store/*"],
