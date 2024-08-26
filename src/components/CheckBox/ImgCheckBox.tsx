@@ -26,7 +26,7 @@ interface ImgCheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   src: string
   alt: string
   isSelected: boolean
-  setIsSelected: (isSelected: boolean) => void
+  handleToggle: () => void
 }
 
 const ImgCheckBox = ({
@@ -34,20 +34,16 @@ const ImgCheckBox = ({
   src,
   alt,
   isSelected,
-  setIsSelected,
+  handleToggle,
   children,
   ...props
 }: StrictPropsWithChildren<ImgCheckBoxProps>) => {
   const sizeStyle = SIZE[variant]
 
-  const handleClick = () => {
-    setIsSelected(!isSelected)
-  }
-
   return (
     <S.ImgCheckBoxWrapper
       $sizeStyle={sizeStyle}
-      onClick={handleClick}
+      onClick={handleToggle}
       {...props}>
       <S.ImageCheckBoxImg
         src={src}

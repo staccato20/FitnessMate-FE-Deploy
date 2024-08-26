@@ -26,15 +26,15 @@ export const Primary: Story = {
     children: "스미스 머신",
   },
   render: (args) => {
-    const [{ isSelected }, setIsSelected] = useArgs()
+    const [{ isSelected }, setArgs] = useArgs()
     const handleToggle = () => {
-      setIsSelected({ isSelected: !isSelected })
+      setArgs({ isSelected: !isSelected })
     }
     return (
       <ImgCheckBox
         {...args}
         isSelected={isSelected}
-        setIsSelected={handleToggle}>
+        handleToggle={handleToggle}>
         {args.children}
       </ImgCheckBox>
     )
