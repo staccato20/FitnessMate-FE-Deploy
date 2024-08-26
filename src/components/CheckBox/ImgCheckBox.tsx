@@ -46,6 +46,7 @@ const ImgCheckBox = ({
       onClick={handleToggle}
       {...props}>
       <S.ImageCheckBoxImg
+        $isSelected={isSelected}
         src={src}
         alt={alt}
       />

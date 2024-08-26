@@ -63,19 +63,22 @@ export const ImgCheckBoxWrapper = styled.button<{
   ${({ $sizeStyle }) => $sizeStyle};
   svg {
     position: absolute;
-    top: 10.5px;
-    left: 10.5px;
+    top: 4.5px;
+    left: 4.5px;
   }
 `
 
-export const ImageCheckBoxImg = styled.img`
+export const ImageCheckBoxImg = styled.img<{ $isSelected: boolean }>`
   width: 100%;
   z-index: -1;
-  border-radius: 18px;
-  border: 3px solid ${theme.Netural300};
+  border-radius: 14px;
+  border: 5px solid
+    ${({ $isSelected }) => ($isSelected ? theme.Brand600 : theme.Netural300)};
   aspect-ratio: 1 / 1;
 `
 
 export const ImageCheckBoxText = styled.span`
-  ${fonts.b2}
+  color: ${theme.Netural600};
+  ${fonts.b3};
+  text-align: left;
 `
