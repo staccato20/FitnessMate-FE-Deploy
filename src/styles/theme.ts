@@ -50,6 +50,7 @@ export const theme = {
   Netural0: "#fff",
   Netural50: "#fbfcfc",
   Netural100: "#f9fAfB",
+  Netural150: "#F4F7F9",
   Netural200: "#f2f4f6",
   Netural300: "#e4eaf0",
   Netural400: "#d0d9e2",
