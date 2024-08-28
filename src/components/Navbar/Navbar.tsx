@@ -66,6 +66,7 @@ const Navbar = () => {
           </S.LoginButton>
         )}
       </S.NavLink>
+      <S.NavbarUnderLine>{}</S.NavbarUnderLine>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
       {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
     </S.NavbarContainer>

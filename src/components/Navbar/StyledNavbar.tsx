@@ -52,3 +52,13 @@ export const NavButton = styled(Button).attrs({
 export const LoginButton = styled(Button)`
   color: ${({ color }) => color || theme.Netural800};
 `
+
+export const NavbarUnderLine = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100vw;
+  height: 1px;
+  background-color: ${theme.Netural200};
+  transform: translateX(-50%);
+`
