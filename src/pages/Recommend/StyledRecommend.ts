@@ -3,7 +3,7 @@ import styled from "styled-components"
 import theme, { fonts } from "@styles/theme"
 
 export const RecommendWrapper = styled.div`
-  max-width: 700px;
+  max-width: 752px;
   margin: 0 auto;
   padding-top: 46px;
   display: flex;
@@ -63,4 +63,20 @@ export const UserInfoName = styled.span`
 
 export const UserInfoValue = styled(UserInfoName)`
   color: ${theme.Netural900};
+`
+
+export const RecommendMachineWrapper = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  height: 502px;
+  overflow: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 29px;
+    background: ${theme.Netural300};
+  }
 `

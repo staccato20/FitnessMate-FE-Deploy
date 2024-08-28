@@ -17,4 +17,5 @@ export const TabsListWrapper = styled.div`
 export const TabPanelsWrapper = styled.div`
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 `
