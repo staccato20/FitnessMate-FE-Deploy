@@ -27,7 +27,7 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
     case "small":
       return {
         sizeStyle: css`
-          gap: 3px;
+          gap: 8px;
           width: 144px;
         `,
         borderStyle: css`

@@ -25,7 +25,6 @@ ${reset}
          font-family: 'Pretendard';
          line-height:normal;
 
-
     }
     body{
         width:100%;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Avatar from "@components/Avatar/Avatar"
 import Button from "@components/Button/Button"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
+import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -45,7 +46,7 @@ const BodyPart = () => {
       )
       .filter((v) => v)
     console.log({ bodyPartKoreanName: bodyParts })
-    navigate("recommend/machine")
+    navigate("/recommend/machine")
   }
 
   return (
@@ -103,7 +104,13 @@ const BodyPart = () => {
           })}
         </Tabs.TabPanels>
       </Tabs>
-      <Button onClick={handleNextPage}>다음</Button>
+      <Footer>
+        <Footer.Text>
+          {selectedBodyParts.filter((v) => v).length}개
+          <Footer.SubText> 부위 선택됨</Footer.SubText>
+        </Footer.Text>
+        <Button onClick={handleNextPage}>다음</Button>
+      </Footer>
     </S.RecommendWrapper>
   )
 }

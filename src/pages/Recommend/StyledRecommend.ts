@@ -9,7 +9,7 @@ export const RecommendWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 86px;
+  gap: 48px;
 `
 
 export const Status = styled.div`

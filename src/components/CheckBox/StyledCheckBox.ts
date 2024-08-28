@@ -63,8 +63,6 @@ export const ImgCheckBoxWrapper = styled.button<{
   ${({ $sizeStyle }) => $sizeStyle};
   svg {
     position: absolute;
-    top: 4.5px;
-    left: 4.5px;
   }
 `
 
@@ -80,6 +78,7 @@ export const ImageCheckBoxImg = styled.img<{
 
 export const ImageCheckBoxText = styled.span`
   color: ${theme.Netural600};
+  height: 38px;
   ${fonts.b3};
   text-align: left;
   overflow: hidden;
