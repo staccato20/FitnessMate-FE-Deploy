@@ -24,8 +24,8 @@ export const Primary: Story = {
   render: (_) => {
     const [isExecute, setExecute] = useState(false)
     const [motionValue, setMotionValue] = useState({
-      stifness: 0,
-      damping: 0,
+      stiffness: 100,
+      damping: 100,
     })
 
     return (

@@ -96,7 +96,7 @@ export const animation = {
     damping: 55,
   },
   bounce: {
-    stiffness: 1000,
+    stiffness: 300,
     damping: 10,
   },
 }
