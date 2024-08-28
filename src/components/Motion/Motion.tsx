@@ -5,7 +5,7 @@ const Motion = ({
   motionValue,
 }: {
   isExecute: boolean
-  motionValue: { stifness: number; damping: number }
+  motionValue: { stiffness: number; damping: number }
 }) => {
   const box = {
     width: "200px",
@@ -15,8 +15,8 @@ const Motion = ({
   }
 
   const variants = {
-    initial: { x: 0 },
-    execute: { x: 100 },
+    initial: { x: -200 },
+    execute: { x: 200 },
   }
 
   return (
