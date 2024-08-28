@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 
 import Tabs from "@components/Tabs/Tabs"
 
-const DUMMY_DATE = (
+const DUMMY_DATA = (
   <Tabs>
     <Tabs.TabList>
       <Tabs.Tab
@@ -37,6 +37,6 @@ type Story = StoryObj<typeof Tabs>
 
 export const Primary: Story = {
   render: () => {
-    return DUMMY_DATE
+    return DUMMY_DATA
   },
 }

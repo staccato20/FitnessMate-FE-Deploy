@@ -66,4 +66,39 @@ export const theme = {
   Success: "#2edd6a",
 }
 
+export const animation = {
+  slow: {
+    stifness: 70,
+    damping: 20,
+  },
+  basic: {
+    stifness: 200,
+    damping: 30,
+  },
+  small: {
+    stifness: 480,
+    damping: 50,
+  },
+  medium: {
+    stifness: 270,
+    damping: 25,
+  },
+  large: {
+    stifness: 100,
+    damping: 15,
+  },
+  quick: {
+    stifness: 800,
+    damping: 55,
+  },
+  rapid: {
+    stifness: 1000,
+    damping: 55,
+  },
+  bounce: {
+    stifness: 1000,
+    damping: 10,
+  },
+}
+
 export default theme
