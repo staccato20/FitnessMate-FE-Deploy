@@ -58,52 +58,58 @@ const BodyPart = () => {
         />
         <ProgressBar progress={1} />
       </S.Status>
-      <S.RecommendGuide>
-        <Avatar />
-        <SpeechBubble>
-          <SpeechBubble.MainText>
-            어떤 부위의 운동을 추천해드릴까요?
-          </SpeechBubble.MainText>
-        </SpeechBubble>
-      </S.RecommendGuide>
-      <Tabs>
-        <Tabs.TabList>
-          {Object.entries(DUMMY_BODYPART).map(([pos, bodypart], index) => {
-            return (
-              <Tabs.Tab
-                index={index}
-                variant="line"
-                key={index}
-                count={bodypart.length}>
-                {pos}
-              </Tabs.Tab>
-            )
-          })}
-        </Tabs.TabList>
-        <Tabs.TabPanels>
-          {Object.entries(DUMMY_BODYPART).map(([pos, bodyparts], posIndex) => {
-            return (
-              <Tabs.TabPanel
-                index={posIndex}
-                key={pos}>
-                {bodyparts.map((bodypart, bodyPartIdx) => (
-                  <ImgCheckBox
-                    key={bodypart}
-                    src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                    alt="테스트 이미지를 설명"
-                    isSelected={selectedBodyParts[posIndex * 6 + bodyPartIdx]}
-                    handleToggle={() => {
-                      handleBodyPart(posIndex * 6 + bodyPartIdx)
-                    }}
-                    variant="small">
-                    {bodypart}
-                  </ImgCheckBox>
-                ))}
-              </Tabs.TabPanel>
-            )
-          })}
-        </Tabs.TabPanels>
-      </Tabs>
+      <S.RecommendInner>
+        <S.RecommendGuide>
+          <Avatar />
+          <SpeechBubble>
+            <SpeechBubble.MainText>
+              어떤 부위의 운동을 추천해드릴까요?
+            </SpeechBubble.MainText>
+          </SpeechBubble>
+        </S.RecommendGuide>
+        <Tabs>
+          <Tabs.TabList>
+            {Object.entries(DUMMY_BODYPART).map(([pos, bodypart], index) => {
+              return (
+                <Tabs.Tab
+                  index={index}
+                  variant="line"
+                  key={index}
+                  count={bodypart.length}>
+                  {pos}
+                </Tabs.Tab>
+              )
+            })}
+          </Tabs.TabList>
+          <Tabs.TabPanels>
+            {Object.entries(DUMMY_BODYPART).map(
+              ([pos, bodyparts], posIndex) => {
+                return (
+                  <Tabs.TabPanel
+                    index={posIndex}
+                    key={pos}>
+                    {bodyparts.map((bodypart, bodyPartIdx) => (
+                      <ImgCheckBox
+                        key={bodypart}
+                        src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
+                        alt="테스트 이미지를 설명"
+                        isSelected={
+                          selectedBodyParts[posIndex * 6 + bodyPartIdx]
+                        }
+                        handleToggle={() => {
+                          handleBodyPart(posIndex * 6 + bodyPartIdx)
+                        }}
+                        variant="small">
+                        {bodypart}
+                      </ImgCheckBox>
+                    ))}
+                  </Tabs.TabPanel>
+                )
+              },
+            )}
+          </Tabs.TabPanels>
+        </Tabs>
+      </S.RecommendInner>
       <Footer>
         <Footer.Text>
           {selectedBodyParts.filter((v) => v).length}개

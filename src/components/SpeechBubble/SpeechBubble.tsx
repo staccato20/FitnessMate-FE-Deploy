@@ -7,6 +7,8 @@ import { StrictPropsWithChildren } from "@typpes/type"
 
 import * as S from "./StyledSpeechBubble"
 
+export type Pos = "row" | "column"
+
 const SpeechBubbleMain = ({ children }: StrictPropsWithChildren) => (
   <S.SpeechBubbleWrapper
     $isMultiline={Array.isArray(children)}
