@@ -9,16 +9,25 @@ import * as S from "./StyledSpeechBubble"
 
 export type Pos = "row" | "column"
 
-const SpeechBubbleMain = ({ children }: StrictPropsWithChildren) => (
+interface SpeechBubbleProps {
+  isIcon: boolean
+}
+
+const SpeechBubbleMain = ({
+  children,
+  isIcon,
+}: StrictPropsWithChildren<SpeechBubbleProps>) => (
   <S.SpeechBubbleWrapper
     $isMultiline={Array.isArray(children)}
     $isIcon={
       Array.isArray(children) && typeof children[0].props.children === "object"
     }>
-    <Icon
-      icon={"Tooltip"}
-      className="tooltip"
-    />
+    {isIcon && (
+      <Icon
+        icon={"Tooltip"}
+        className="tooltip"
+      />
+    )}
     {children}
   </S.SpeechBubbleWrapper>
 )

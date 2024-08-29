@@ -53,7 +53,7 @@ const Machine = () => {
           <ProgressBar progress={1} />
           <S.RecommendSwitchGuide $isGuideSwitch={isLeftGuide}>
             <Avatar />
-            <SpeechBubble>
+            <SpeechBubble isIcon={false}>
               <SpeechBubble.MainText>
                 사용 가능한 기구를 선택해주세요!
               </SpeechBubble.MainText>
@@ -65,7 +65,7 @@ const Machine = () => {
             ref={targetRef}
             $isGuideSwitch={isGuide}>
             <Avatar />
-            <SpeechBubble>
+            <SpeechBubble isIcon>
               <SpeechBubble.MainText>
                 사용 가능한 기구를 선택해주세요!
               </SpeechBubble.MainText>
