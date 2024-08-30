@@ -1,8 +1,9 @@
+// StyledRecommend.ts
 import { motion } from "framer-motion"
 
 import styled from "styled-components"
 
-import theme, { fonts } from "@styles/theme"
+import theme from "@styles/theme"
 
 export const RecommendWrapper = styled.div`
   max-width: 752px;
@@ -15,12 +16,11 @@ export const RecommendWrapper = styled.div`
 `
 
 export const RecommendInner = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 300px);
   gap: 116px;
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -59,44 +59,6 @@ export const RecommendSwitchGuide = styled(motion.div)<{
   transition: opacity 0.5s ease-in-out;
   align-items: center;
   z-index: 10;
-`
-
-export const RecommendUserInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 272px;
-`
-
-export const UserName = styled.span`
-  color: ${theme.Netural950};
-  ${fonts.h4}
-  &::after {
-    content: " 님";
-    color: ${theme.Netural600};
-  }
-`
-
-export const UserInfoList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-bottom: 12px;
-`
-
-export const UserInfoItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const UserInfoName = styled.span`
-  color: ${theme.Netural600};
-  ${fonts.b6}
-`
-
-export const UserInfoValue = styled(UserInfoName)`
-  color: ${theme.Netural900};
 `
 
 export const RecommendMachineWrapper = styled.ul`

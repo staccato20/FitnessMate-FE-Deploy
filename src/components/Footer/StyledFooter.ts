@@ -3,12 +3,12 @@ import styled from "styled-components"
 import theme, { fonts } from "@styles/theme"
 
 export const FooterWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   max-width: 720px;
   width: 100%;
   height: 90px;
-  z-index: 999;
+  z-index: 500;
   margin: 0 auto;
   display: flex;
   align-items: center;

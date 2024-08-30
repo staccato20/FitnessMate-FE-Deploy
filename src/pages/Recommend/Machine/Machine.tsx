@@ -28,19 +28,17 @@ const Machine = () => {
     navigate(-1)
   }
 
-  const targetHeight = (targetRef && targetRef.current?.clientHeight) || 0
-  const isGuide = position > targetHeight - 40
-  const isLeftGuide = position > targetHeight
-
   const handleBodyPart = (machineIdx: number) => {
-    setSelectedMachines(
-      selectedMachines.map((machine, idx) =>
+    setSelectedMachines((prevSelected) =>
+      prevSelected.map((machine, idx) =>
         idx === machineIdx ? !machine : machine,
       ),
     )
   }
 
-  const handleNextPage = () => {}
+  const handleNextPage = () => {
+    // 추천 시작하기 버튼 클릭 처리
+  }
 
   return (
     <>
@@ -51,7 +49,7 @@ const Machine = () => {
             onClick={handleBackPage}
           />
           <ProgressBar progress={1} />
-          <S.RecommendSwitchGuide $isGuideSwitch={isLeftGuide}>
+          <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
             <Avatar />
             <SpeechBubble isIcon={false}>
               <SpeechBubble.MainText>
@@ -63,7 +61,7 @@ const Machine = () => {
         <S.RecommendInner ref={scrollRef}>
           <S.RecommendGuide
             ref={targetRef}
-            $isGuideSwitch={isGuide}>
+            $isGuideSwitch={position > 143}>
             <Avatar />
             <SpeechBubble isIcon>
               <SpeechBubble.MainText>
@@ -82,15 +80,12 @@ const Machine = () => {
                 src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
                 alt="테스트 이미지를 설명"
                 isSelected={selectedMachines[machineIdx]}
-                handleToggle={() => {
-                  handleBodyPart(machineIdx)
-                }}
+                handleToggle={() => handleBodyPart(machineIdx)}
                 variant="big">
                 {machine}
               </ImgCheckBox>
             ))}
           </S.RecommendMachineWrapper>
-          {}
         </S.RecommendInner>
 
         <Footer>
@@ -104,4 +99,5 @@ const Machine = () => {
     </>
   )
 }
+
 export default Machine
