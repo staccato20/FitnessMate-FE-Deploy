@@ -14,7 +14,10 @@ import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
 import LeftArrow from "@assets/icon/left_arrow.svg?react"
 import LeftArrowBig from "@assets/icon/left_arrow_big.svg?react"
+import LeftArrowBlack from "@assets/icon/left_arrow_black.svg?react"
 import LeftArrowBold from "@assets/icon/left_arrow_bold.svg?react"
+import LeftArrowGrey from "@assets/icon/left_arrow_grey.svg?react"
+import LeftArrowWhite from "@assets/icon/left_arrow_white.svg?react"
 import MinusRound from "@assets/icon/minus_round.svg?react"
 import Pencil from "@assets/icon/pencil.svg?react"
 import PencilRound from "@assets/icon/pencil_round.svg?react"
@@ -55,6 +58,9 @@ export const ICON_MAP = {
   LeftArrowBold,
   RightArrowRound,
   Tooltip,
+  LeftArrowBlack,
+  LeftArrowWhite,
+  LeftArrowGrey,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

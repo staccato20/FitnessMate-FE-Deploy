@@ -78,7 +78,6 @@ export const ImageCheckBoxImg = styled.img<{
 
 export const ImageCheckBoxText = styled.span`
   color: ${theme.Netural600};
-  height: 38px;
   ${fonts.b3};
   text-align: left;
   overflow: hidden;

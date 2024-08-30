@@ -38,7 +38,7 @@ export const Status = styled.div`
   align-items: center;
 `
 
-export const RecommendGuide = styled(motion.div)<{ $isGuideSwitch: boolean }>`
+export const RecommendGuide = styled(motion.div)<{ $isGuideSwitch?: boolean }>`
   gap: 16px;
   display: flex;
   opacity: ${({ $isGuideSwitch }) => ($isGuideSwitch ? 0 : 1)};

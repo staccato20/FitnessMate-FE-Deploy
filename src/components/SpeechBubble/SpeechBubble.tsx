@@ -10,7 +10,7 @@ import * as S from "./StyledSpeechBubble"
 export type Pos = "row" | "column"
 
 interface SpeechBubbleProps {
-  isIcon: boolean
+  isIcon?: boolean
 }
 
 const SpeechBubbleMain = ({
