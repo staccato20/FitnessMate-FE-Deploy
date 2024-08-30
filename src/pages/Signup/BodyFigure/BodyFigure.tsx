@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 import StatusBar from "@components/StatusBar/StatusBar"
 
-import authAPI from "@apis/auth"
+import authAPI from "@apis/domain/auth"
 
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"

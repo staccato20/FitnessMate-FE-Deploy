@@ -5,7 +5,7 @@ import Button from "@components/Button/Button"
 import * as S from "@components/Modal/StyledRecommendAddModal"
 import TextCheckbox from "@components/TextCheckbox/TextCheckbox"
 
-import authAPI from "@apis/auth"
+import authAPI from "@apis/domain/auth"
 
 // import xbutton2 from "@assets/images/xbutton2.svg"
 

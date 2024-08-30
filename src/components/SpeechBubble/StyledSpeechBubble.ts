@@ -17,18 +17,15 @@ export const SpeechBubbleWrapper = styled.div<{
   border: 1px solid ${theme.Netural800};
   background: ${theme.Netural0};
   border-collapse: collapse;
+  .tooltip {
+    position: absolute;
+    top: -10px;
+  }
 `
-
-// export const SpeechBubbleTooltip = styled.
 
 export const SpeechBubbleMainText = styled.span`
   color: ${theme.Netural900};
   ${fonts.h4};
-`
-
-export const SpeechBubbleTooltip = styled.img`
-  position: absolute;
-  top: -11px;
 `
 
 export const SpeechBubbleSubText = styled.span`

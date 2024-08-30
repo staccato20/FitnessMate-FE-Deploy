@@ -1,17 +1,12 @@
-// < 홈 페이지 >
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import LoginModal from "@components/Modal/LoginModal"
 
 // import arrow from "@assets/images/arrow.svg"
-import {
-  default as fourthFirstImg,
-  default as fourthThirdImg,
-} from "@assets/images/fourthFirstImg.png"
-import fourthSecondImg from "@assets/images/fourthSecondImg.png"
+import fourthFirstImg from "@assets/images/fourthFirstImg.png"
+import fourthThirdImg from "@assets/images/fourthThirdImg.png"
 import homebanner from "@assets/images/homebanner.png"
-// import thirdFirstImg from "@assets/images/thirdFirstImg.svg"
 import thirdSecondImg from "@assets/images/thirdSecondImg.png"
 import thirdThirdImg from "@assets/images/thirdThirdImg.png"
 
@@ -151,19 +146,6 @@ export const Home = () => {
                   정확한 운동 자세, 방법 등
                   <br />
                   운동 강의 영상을 제공해요.
-                </p>
-              </div>
-            </S.FourthBodyItem>
-            <S.FourthBodyItem>
-              <div className="itemLogo">
-                <img src={fourthSecondImg} />
-              </div>
-              <div className="itemText">
-                <span className="itemTextTitle">보조제 구매 링크</span>
-                <p className="itemTextContent">
-                  추천/ 검색 보조제의
-                  <br />
-                  구매 링크를 제공해요.
                 </p>
               </div>
             </S.FourthBodyItem>

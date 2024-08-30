@@ -7,7 +7,7 @@ const meta: Meta<typeof ProgressBar> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    progress: { control: { type: "range", min: 1, max: 5, step: 1 } },
+    progress: { control: { type: "range", min: 1, max: 4, step: 1 } },
   },
   decorators: [
     (Story) => (

@@ -1,5 +1,5 @@
 import { StrictPropsWithChildren } from "@typpes/type"
 
-const SpecchBubbleIcon = ({ children }: StrictPropsWithChildren) => children
+const SpeechBubbleIcon = ({ children }: StrictPropsWithChildren) => children
 
-export default SpecchBubbleIcon
+export default SpeechBubbleIcon

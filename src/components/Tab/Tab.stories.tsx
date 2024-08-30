@@ -16,7 +16,7 @@ export const Primary: Story = {
   args: {
     children: "가슴",
     variant: "fill",
-    isSelected: false,
     count: 2,
+    index: 0,
   },
 }

@@ -6,19 +6,40 @@ import Icon from "@components/Icon/Icon"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
+import theme from "@styles/theme"
+
 import * as S from "./StyledCheckBox"
 
 type Variant = "big" | "small"
 
-const SIZE = {
-  big: css`
-    gap: 12px;
-    width: 169px;
-  `,
-  small: css`
-    gap: 8px;
-    width: 144px;
-  `,
+const getVariant = (variant: Variant, isSelected: boolean) => {
+  switch (variant) {
+    case "big":
+      return {
+        sizeStyle: css`
+          gap: 12px;
+          width: 169px;
+        `,
+        borderStyle: css`
+          border: 3.5px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+        `,
+      }
+    case "small":
+      return {
+        sizeStyle: css`
+          gap: 8px;
+          width: 144px;
+        `,
+        borderStyle: css`
+          border: 3px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+        `,
+      }
+    default:
+      return {
+        sizeStyle: css``,
+        borderStyle: css``,
+      }
+  }
 }
 
 interface ImgCheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,7 +59,7 @@ const ImgCheckBox = ({
   children,
   ...props
 }: StrictPropsWithChildren<ImgCheckBoxProps>) => {
-  const sizeStyle = SIZE[variant]
+  const { sizeStyle, borderStyle } = getVariant(variant, isSelected)
 
   return (
     <S.ImgCheckBoxWrapper
@@ -46,6 +67,7 @@ const ImgCheckBox = ({
       onClick={handleToggle}
       {...props}>
       <S.ImageCheckBoxImg
+        $borderStyle={borderStyle}
         src={src}
         alt={alt}
       />

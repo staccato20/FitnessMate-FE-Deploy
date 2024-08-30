@@ -63,19 +63,26 @@ export const ImgCheckBoxWrapper = styled.button<{
   ${({ $sizeStyle }) => $sizeStyle};
   svg {
     position: absolute;
-    top: 10.5px;
-    left: 10.5px;
   }
 `
 
-export const ImageCheckBoxImg = styled.img`
+export const ImageCheckBoxImg = styled.img<{
+  $borderStyle: Interpolation<object>
+}>`
   width: 100%;
   z-index: -1;
-  border-radius: 18px;
-  border: 3px solid ${theme.Netural300};
+  border-radius: 14px;
+  ${({ $borderStyle }) => $borderStyle};
   aspect-ratio: 1 / 1;
 `
 
 export const ImageCheckBoxText = styled.span`
-  ${fonts.b2}
+  color: ${theme.Netural600};
+  ${fonts.b3};
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `

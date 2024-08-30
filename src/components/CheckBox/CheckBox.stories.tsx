@@ -13,6 +13,14 @@ const meta: Meta<typeof ImgCheckBox> = {
   title: "components/ImgCheckBox",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    variant: {
+      control: {
+        type: "radio",
+      },
+      options: ["big", "small"],
+    },
+  },
 }
 
 export default meta
@@ -23,7 +31,7 @@ export const Primary: Story = {
     variant: "big",
     ...DUMMY,
     isSelected: false,
-    children: "스미스 머신",
+    children: "기구 이름이 너무 길어서 두줄이 넘어가는 경우",
   },
   render: (args) => {
     const [{ isSelected }, setArgs] = useArgs()

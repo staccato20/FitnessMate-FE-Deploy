@@ -5,7 +5,8 @@ import CancleModal from "@components/Modal/CancleModal"
 import LoginModal from "@components/Modal/LoginModal"
 import NavDropDown from "@components/Navbar/NavDropDown"
 
-// import logoimg from "@assets/images/logo.png"
+import logo from "@assets/images/logo.png"
+
 import { theme } from "@styles/theme"
 
 import { useUserInfo } from "../../hooks/query/useUserInfo"
@@ -42,7 +43,7 @@ const Navbar = () => {
     <S.NavbarContainer>
       <S.LogoButton onClick={handleHome}>
         <S.Logo
-          // src={logoimg}
+          src={logo}
           alt="fitmate 로고"
         />
       </S.LogoButton>
@@ -65,6 +66,7 @@ const Navbar = () => {
           </S.LoginButton>
         )}
       </S.NavLink>
+      <S.NavbarUnderLine>{}</S.NavbarUnderLine>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
       {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
     </S.NavbarContainer>

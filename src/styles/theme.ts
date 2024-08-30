@@ -50,6 +50,7 @@ export const theme = {
   Netural0: "#fff",
   Netural50: "#fbfcfc",
   Netural100: "#f9fAfB",
+  Netural150: "#F4F7F9",
   Netural200: "#f2f4f6",
   Netural300: "#e4eaf0",
   Netural400: "#d0d9e2",
@@ -63,6 +64,41 @@ export const theme = {
   Netural990: "#191f28",
   Error: "#ef444c",
   Success: "#2edd6a",
+}
+
+export const animation = {
+  slow: {
+    stiffness: 70,
+    damping: 20,
+  },
+  basic: {
+    stiffness: 200,
+    damping: 30,
+  },
+  small: {
+    stiffness: 480,
+    damping: 50,
+  },
+  medium: {
+    stiffness: 270,
+    damping: 25,
+  },
+  large: {
+    stiffness: 100,
+    damping: 15,
+  },
+  quick: {
+    stiffness: 800,
+    damping: 55,
+  },
+  rapid: {
+    stiffness: 1000,
+    damping: 55,
+  },
+  bounce: {
+    stiffness: 300,
+    damping: 10,
+  },
 }
 
 export default theme

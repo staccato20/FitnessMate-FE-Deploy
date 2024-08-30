@@ -1,12 +1,8 @@
 // < 홈 스타일 >
 import styled from "styled-components"
 
-// import homebackground from s"@assets/images/main-background.png"
 import theme from "@styles/theme"
 
-// 화면 가리기
-
-// 홈
 export const HomeContainer = styled.ul`
   width: 100%;
   display: flex;

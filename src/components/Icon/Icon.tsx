@@ -14,14 +14,20 @@ import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
 import LeftArrow from "@assets/icon/left_arrow.svg?react"
 import LeftArrowBig from "@assets/icon/left_arrow_big.svg?react"
+import LeftArrowBlack from "@assets/icon/left_arrow_black.svg?react"
+import LeftArrowBold from "@assets/icon/left_arrow_bold.svg?react"
+import LeftArrowGrey from "@assets/icon/left_arrow_grey.svg?react"
+import LeftArrowWhite from "@assets/icon/left_arrow_white.svg?react"
 import MinusRound from "@assets/icon/minus_round.svg?react"
 import Pencil from "@assets/icon/pencil.svg?react"
 import PencilRound from "@assets/icon/pencil_round.svg?react"
 import PlayRound from "@assets/icon/play_round.svg?react"
 import RightArrowBig from "@assets/icon/right_arrow_big.svg?react"
+import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
 import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
 import Star from "@assets/icon/star.svg?react"
+import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
 
 export const ICON_MAP = {
@@ -49,6 +55,12 @@ export const ICON_MAP = {
   Search,
   Trash,
   Star,
+  LeftArrowBold,
+  RightArrowRound,
+  Tooltip,
+  LeftArrowBlack,
+  LeftArrowWhite,
+  LeftArrowGrey,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

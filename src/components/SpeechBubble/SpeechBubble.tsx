@@ -1,20 +1,33 @@
-import SpecchBubbleIcon from "@components/SpeechBubble/components/Icon"
+import Icon from "@components/Icon/Icon"
+import SpeechBubbleIcon from "@components/SpeechBubble/components/Icon"
 import MainText from "@components/SpeechBubble/components/MainText"
 import SubText from "@components/SpeechBubble/components/SubText"
-
-import tooltip from "@assets/images/tooltip.png"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
 import * as S from "./StyledSpeechBubble"
 
-const SpeechBubbleMain = ({ children }: StrictPropsWithChildren) => (
+export type Pos = "row" | "column"
+
+interface SpeechBubbleProps {
+  isIcon?: boolean
+}
+
+const SpeechBubbleMain = ({
+  children,
+  isIcon,
+}: StrictPropsWithChildren<SpeechBubbleProps>) => (
   <S.SpeechBubbleWrapper
     $isMultiline={Array.isArray(children)}
     $isIcon={
       Array.isArray(children) && typeof children[0].props.children === "object"
     }>
-    <S.SpeechBubbleTooltip src={tooltip} />
+    {isIcon && (
+      <Icon
+        icon={"Tooltip"}
+        className="tooltip"
+      />
+    )}
     {children}
   </S.SpeechBubbleWrapper>
 )
@@ -22,7 +35,7 @@ const SpeechBubbleMain = ({ children }: StrictPropsWithChildren) => (
 const SpeechBubble = Object.assign(SpeechBubbleMain, {
   MainText: MainText,
   SubText: SubText,
-  Icon: SpecchBubbleIcon,
+  Icon: SpeechBubbleIcon,
 })
 
 export default SpeechBubble
