@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
+import { DUMMY_RECOOMEND } from "constants/DUMMY"
+
 import Accordion from "@components/Accordion/Accordion"
 import Avatar from "@components/Avatar/Avatar"
 import Icon from "@components/Icon/Icon"
@@ -15,8 +17,6 @@ const Result = () => {
   const handleBackPage = () => {
     navigate(-1)
   }
-
-  const handleUpdate = () => {}
 
   return (
     <S.RecommendWrapper>
@@ -39,10 +39,37 @@ const Result = () => {
         </SpeechBubble>
       </S.RecommendGuide>
 
-      <Accordion>
-        <Accordion.Header>gg</Accordion.Header>
-        <Accordion.Content>gg</Accordion.Content>
-      </Accordion>
+      <S.ResultList>
+        {DUMMY_RECOOMEND.map(
+          ({
+            recommendId,
+            koreanName,
+            videoLink,
+            description,
+            requestedBodyParts,
+            weight,
+            repeat,
+            set,
+          }) => (
+            <Accordion key={recommendId}>
+              <Accordion.Header
+                onClick={() => {
+                  console.log("1")
+                }}
+                bodyParts={requestedBodyParts.toString()}
+                count={1}>
+                {koreanName}
+              </Accordion.Header>
+              <Accordion.Content
+                videoId={videoLink.split("=")[1]}
+                recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
+                {description}
+              </Accordion.Content>
+              <Accordion.Trigger />
+            </Accordion>
+          ),
+        )}
+      </S.ResultList>
     </S.RecommendWrapper>
   )
 }

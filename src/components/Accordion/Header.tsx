@@ -12,15 +12,15 @@ import Title from "@components/Title/Title"
 import { StrictPropsWithChildren } from "@typpes/type"
 
 interface HeaderProps {
-  subTitle: string
-  count: number
+  bodyParts: string
+  count?: number
   onClick: () => void
 }
 
 const Header = ({
   children,
   onClick,
-  subTitle,
+  bodyParts,
   count,
 }: StrictPropsWithChildren<HeaderProps>) => {
   const { visible } = useAccordion()
@@ -31,12 +31,12 @@ const Header = ({
         <HeaderLeft>
           <Title variant="big">
             {children}
-            <Title.SubBottomTitle>{subTitle}</Title.SubBottomTitle>
+            <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
           </Title>
         </HeaderLeft>
         <HeaderRight>
           <HeaderRightInfo>
-            {count > 0 && `${count}개 루틴에 이미 추가됨`}
+            {count && count > 0 && `${count}개 루틴에 이미 추가됨`}
           </HeaderRightInfo>
           <RoundButton
             leftIcon="Add"

@@ -146,3 +146,10 @@ export const RecommendResultKeyWord = styled.div`
   color: ${theme.Netural900};
   ${fonts.d2};
 `
+
+export const ResultList = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+`

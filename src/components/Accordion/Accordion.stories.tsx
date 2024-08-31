@@ -8,8 +8,8 @@ const DUMMY_DATA = (
       onClick={() => {
         console.log("1")
       }}
-      subTitle={"가슴, 등"}
-      count={0}>
+      bodyParts={"가슴, 등"}
+      count={1}>
       푸쉬업
     </Accordion.Header>
     <Accordion.Content
