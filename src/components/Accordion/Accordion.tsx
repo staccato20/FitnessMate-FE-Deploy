@@ -1,8 +1,7 @@
 import { createContext, useContext, useState } from "react"
 
-import styled, { css } from "styled-components"
-
 import Header from "@components/Accordion/Header"
+import { AccordianWrapper } from "@components/Accordion/StyledAccordion"
 import Trigger from "@components/Accordion/Trigger"
 
 import { StrictPropsWithChildren } from "@typpes/type"
@@ -48,22 +47,3 @@ Accordion.Content = Content
 Accordion.Trigger = Trigger
 
 export default Accordion
-
-export const AccordianWrapper = styled.div<{ $visible: boolean }>`
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  ${({ $visible }) =>
-    $visible &&
-    css`
-      padding: 24px 22px 0px 22px;
-      gap: 24px;
-    `}
-
-  align-items: center;
-
-  border-radius: 0px 0px 16px 16px;
-  box-shadow: 0px 4px 8.1px 0px rgba(0, 0, 0, 0.03);
-  background: var(--Grayscale-Neutral0, #fff);
-`
