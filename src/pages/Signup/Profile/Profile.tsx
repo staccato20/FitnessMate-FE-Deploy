@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import StatusBar from "@components/StatusBar/StatusBar"
+import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
@@ -32,7 +31,7 @@ const Profile = () => {
   return (
     <S.SignupForm onSubmit={handleSubmit(handleNextPage)}>
       <S.SignupTitle>
-        <StatusBar status={1} />
+        <ProgressBar progress={1} />
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileForm methods={methods} />

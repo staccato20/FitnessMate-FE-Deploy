@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import Input from "@components/Input/Input"
-import StatusBar from "@components/StatusBar/StatusBar"
+import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import { SEX_GROUP } from "@pages/Signup/BodyInfo/constants/SEX_GROUP"
 import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
@@ -37,7 +37,7 @@ const BodyInfo = () => {
   return (
     <GS.SignupForm onSubmit={handleSubmit(handleNextPage)}>
       <GS.SignupTitle>
-        <StatusBar status={2} />
+        <ProgressBar status={2} />
         신체 정보를 입력해주세요
       </GS.SignupTitle>
       <S.BodyInfoContainer>
