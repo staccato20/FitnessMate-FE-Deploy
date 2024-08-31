@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 import styled from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
 
 export const RecommendWrapper = styled.div`
   max-width: 752px;
@@ -66,4 +66,83 @@ export const RecommendMachineWrapper = styled.ul`
   flex-wrap: wrap;
   gap: 16px;
   height: 502px;
+`
+
+export const RecommendUserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 272px;
+`
+
+export const UserName = styled.span`
+  color: ${theme.Netural950};
+  ${fonts.h4}
+  &::after {
+    content: " 님";
+    color: ${theme.Netural600};
+  }
+`
+
+export const UserInfoList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 12px;
+`
+
+export const UserInfoItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const UserInfoName = styled.span`
+  color: ${theme.Netural600};
+  ${fonts.b6}
+`
+
+export const UserInfoValue = styled(UserInfoName)`
+  color: ${theme.Netural900};
+`
+
+export const RecommendResultWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 32px;
+`
+
+export const RecommendResultTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  align-self: stretch;
+`
+
+export const RecommendResultTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`
+export const RecommendResultTitle = styled.div`
+  color: ${theme.Netural990};
+`
+
+export const RecommendResultSubTitle = styled.div`
+  display: flex;
+  padding-left: 4px;
+  align-items: center;
+  gap: 12px;
+`
+
+export const RecommendResultKeyWordList = styled.div`
+  display: flex;
+  gap: 5px;
+`
+export const RecommendResultKeyWord = styled.div`
+  padding: 4px 6px;
+  color: ${theme.Netural900};
+  ${fonts.d2};
 `

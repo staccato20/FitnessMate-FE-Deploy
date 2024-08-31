@@ -15,7 +15,7 @@ interface SpeechBubbleProps {
 
 const SpeechBubbleMain = ({
   children,
-  isIcon,
+  isIcon = true,
 }: StrictPropsWithChildren<SpeechBubbleProps>) => (
   <S.SpeechBubbleWrapper
     $isMultiline={Array.isArray(children)}
