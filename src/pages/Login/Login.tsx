@@ -1,22 +1,28 @@
-// < 로그인 페이지 >
-// @ts-nocheck
-import { useState } from "react"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import Button from "@components/Button/Button"
+import Input from "@components/Input/Input"
 
-import { loginPostAPI } from "@apis/API"
+import authAPI from "@apis/domain/auth"
+
+import { LOGIN_INPUTS } from "@pages/Signup/LOGIN_INPUTS"
+import { INPUT_STYLE } from "@pages/Signup/constatns/INPUT_STYLE"
+
+import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "./StyledLogin"
 
-const Login = (props) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [isEmailClicked, setIsEmailClicked] = useState(false)
-  const [isPWClicked, setIsPWClicked] = useState(false)
-  // 로그인 유지
-  const [isKeepLoginClicked, setIsKeppLoginClicked] = useState(false)
-  const [isError, setIsError] = useState(false)
+const Login = () => {
+  const keepLoginRef = useRef<HTMLInputElement>(null)
+
+  const methods = useForm({
+    mode: "onChange",
+    defaultValues: LOGIN_INPUTS.DEFAULT_VALUES,
+  })
+
+  const { handleSubmit, register, getValues } = methods
 
   const navigate = useNavigate()
 
@@ -24,91 +30,104 @@ const Login = (props) => {
     navigate("/signup/profile")
   }
 
-  const handleLogin = async (e) => {
-    console.log(isKeepLoginClicked)
-    e.preventDefault()
+  const handleAuto = () => {
+    if (keepLoginRef && keepLoginRef.current) {
+      keepLoginRef.current.checked = !keepLoginRef.current.checked
+    }
+  }
 
+  const handleLogin = async () => {
+    const userName = getValues("userName")
+    const password = getValues("password")
     const submission = {
-      loginEmail: email,
-      password: password,
-      // (false일 경우 토큰관련 오류가 존재)??
-      rememberMe: isKeepLoginClicked,
+      loginEmail: userName,
+      password,
+      rememberMe: keepLoginRef && keepLoginRef.current?.checked,
     }
-    try {
-      const res = await loginPostAPI.post("", submission)
-      if (res.status === 200) {
-        const accessToken = res.data.accessToken
-        const refreshToken = res.data.refreshToken
-        // 토큰 저장
-        localStorage.setItem("accessToken", accessToken)
-        localStorage.setItem("refreshToken", refreshToken)
-        localStorage.setItem("rememberMe", isKeepLoginClicked)
-        navigate("/")
-      }
-    } catch (err) {
-      setIsError(true)
-    }
+    const res = await authAPI.login(submission)
+    console.log(res)
+
+    // console.log(isKeepLoginClicked)
+    // e.preventDefault()
+    // const submission = {
+    //   loginEmail: email,
+    //   password: password,
+    //   // (false일 경우 토큰관련 오류가 존재)??
+    //   rememberMe: isKeepLoginClicked,
+    // }
+    // try {
+    //   const res = await loginPostAPI.post("", submission)
+    //   if (res.status === 200) {
+    //     const accessToken = res.data.accessToken
+    //     const refreshToken = res.data.refreshToken
+    //     // 토큰 저장
+    //     localStorage.setItem("accessToken", accessToken)
+    //     localStorage.setItem("refreshToken", refreshToken)
+    //     localStorage.setItem("rememberMe", isKeepLoginClicked)
+    //     navigate("/")
+    //   }
+    // } catch (err) {
+    //   setIsError(true)
+    // }
   }
 
   return (
     <S.LoginContainer>
       <S.Title>로그인</S.Title>
-      <S.LoginForm onSubmit={handleLogin}>
+      <S.LoginForm onSubmit={handleSubmit(handleLogin)}>
         <S.InputFrame>
-          <S.LoginInput
-            type="text"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onFocus={() => {
-              setIsEmailClicked(true)
-            }}
-            onBlur={() => {
-              setIsEmailClicked(false)
-            }}
-            placeholder={"이메일"}
-          />
-          <S.LoginInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onFocus={() => {
-              setIsPWClicked(true)
-            }}
-            onBlur={() => {
-              setIsPWClicked(false)
-            }}
-            placeholder={"비밀번호"}
-          />
+          <Input>
+            <Input.Input
+              type="userName"
+              props={{
+                ...formAdapter({
+                  register,
+                  validator: LOGIN_INPUTS["userName"],
+                  name: "userName",
+                }),
+                ...INPUT_STYLE.PROFILE,
+              }}
+            />
+          </Input>
+          <Input>
+            <Input.Input
+              type="password"
+              props={{
+                ...formAdapter({
+                  register,
+                  validator: LOGIN_INPUTS["password"],
+                  name: "password",
+                }),
+                ...INPUT_STYLE.PROFILE,
+              }}
+            />
+          </Input>
+          <S.AutomaticLogin onClick={handleAuto}>
+            <S.AutoCheckBox
+              type="checkbox"
+              ref={keepLoginRef}
+            />
+            <S.AutomaticLoginLabel htmlFor="keepLogin">
+              로그인 유지
+            </S.AutomaticLoginLabel>
+          </S.AutomaticLogin>
         </S.InputFrame>
-        <S.AutomaticLogin>
-          <input
-            type="checkbox"
-            onClick={() => setIsKeppLoginClicked(!isKeepLoginClicked)}
-          />
-          로그인 유지
-        </S.AutomaticLogin>
-        {isError ? (
-          <span className="warning">
-            이메일 또는 비밀번호를 잘못 입력하셨습니다
-          </span>
-        ) : (
-          ""
-        )}
-        <Button
-          onClick={handleLogin}
-          variant="main"
-          type="submit"
-          size="lg">
-          로그인
-        </Button>
-        <Button
-          onClick={handleSignup}
-          variant="weak"
-          size="lg">
-          회원가입
-        </Button>
+
+        <S.ButtonContainer>
+          <Button
+            onClick={handleLogin}
+            variant="main"
+            type="submit"
+            size="lg">
+            로그인
+          </Button>
+          <Button
+            onClick={handleSignup}
+            variant="weak"
+            size="lg">
+            회원가입
+          </Button>
+        </S.ButtonContainer>
       </S.LoginForm>
     </S.LoginContainer>
   )

@@ -2,9 +2,7 @@ import axios, { AxiosRequestConfig } from "axios"
 
 import { getAccessAPI } from "@apis/API"
 
-const { VITE_API_BASE_URL } = import.meta.env
 const axiosConfig: AxiosRequestConfig = {
-  baseURL: VITE_API_BASE_URL,
   withCredentials: true,
 }
 
@@ -18,8 +16,6 @@ instance.interceptors.request.use((config) => {
   return config
 })
 
-// 버로부터 HTTP 응답을 받은 후 실행
-// 응답 데이터의 전처리, 오류 처리, 로깅 등의 용도
 instance.interceptors.response.use(
   (response) => {
     // 응답이 성공적으로 왔을 때의 처리
@@ -58,7 +54,7 @@ instance.interceptors.response.use(
           console.log("get refresh token")
           // 새로운 accessToken으로 재 요청
           return await axios(originalRequest)
-        } catch (err) {
+        } catch (err: any) {
           // refresh token 만료
           if (err.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
             console.log("Refresh Token 만료 재 로그인 해주세요")
