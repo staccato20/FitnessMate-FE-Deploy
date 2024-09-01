@@ -7,8 +7,6 @@ import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
 
-import { theme } from "@styles/theme"
-
 import { useUserInfo } from "../../hooks/query/useUserInfo"
 import * as S from "./StyledNavbar"
 
@@ -60,7 +58,6 @@ const Navbar = () => {
           <S.LoginButton
             variant="text"
             size="md"
-            color={theme.Brand600}
             onClick={handleLogin}>
             로그인
           </S.LoginButton>

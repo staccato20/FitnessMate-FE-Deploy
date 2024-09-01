@@ -64,8 +64,10 @@ const Title = ({ variant, children }: StrictPropsWithChildren<TitleProps>) => {
 const SubTopTitle = ({ children }: StrictPropsWithChildren) => (
   <S.SubTopTitleText className="topTitleText">{children}</S.SubTopTitleText>
 )
-const SubBottomTitle = ({ children }: StrictPropsWithChildren) => (
-  <S.SubBottomTitleText className="bottomTitleText">
+const SubBottomTitle = ({ children, ...props }: StrictPropsWithChildren) => (
+  <S.SubBottomTitleText
+    className="bottomTitleText"
+    {...props}>
     {children}
   </S.SubBottomTitleText>
 )

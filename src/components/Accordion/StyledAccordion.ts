@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
@@ -6,11 +8,12 @@ export const AccordianWrapper = styled.div<{ $visible: boolean }>`
   width: 100%;
   position: relative;
   display: flex;
+  gap: 18px;
   flex-direction: column;
+  padding: 24px 22px 0px 22px;
   ${({ $visible }) =>
     $visible &&
     css`
-      padding: 24px 22px 0px 22px;
       gap: 24px;
     `}
 
@@ -28,11 +31,6 @@ export const HeaderWrapper = styled.div`
 `
 export const HeaderTop = styled.div<{ $visible: boolean }>`
   display: flex;
-  ${({ $visible }) =>
-    !$visible &&
-    css`
-      padding: 24px 22px 18px 22px;
-    `}
   justify-content: space-between;
   align-items: center;
 
@@ -50,24 +48,24 @@ export const HeaderRightInfo = styled.span`
   ${fonts.d1}
 `
 
-export const VideoWrapper = styled.div`
+export const VideoWrapper = styled(motion.div)`
   border-radius: 12px;
   overflow: hidden;
 `
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `
 
-export const ContentText = styled.span`
+export const ContentText = styled(motion.span)`
   color: ${theme.Netural800};
   ${fonts.b4};
   line-height: 165%;
   letter-spacing: -0.16px;
 `
-export const ContentAI = styled.span`
+export const ContentAI = styled(motion.span)`
   display: flex;
   padding: 14px 16px;
   align-items: center;
@@ -77,7 +75,7 @@ export const ContentAI = styled.span`
   background: #eef7ff;
 `
 
-export const ContentAIleft = styled.div`
+export const ContentAIleft = styled(motion.span)`
   color: ${theme.Brand600};
   ${fonts.b6};
   display: flex;
@@ -121,4 +119,10 @@ export const TopLine = styled.div`
   transform: translateX(-50%);
   background-color: ${theme.Netural200};
   left: 50%;
+`
+
+export const AnimationWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `
