@@ -9,13 +9,14 @@ export const TextCheckboxWrapper = styled.button<Props>`
   display: flex;
   padding: 10px 24px;
   transition: all 0.1s ease-out;
-  background: ${({ theme }) => theme.Gray10};
+  background: ${({ theme }) => theme.Netural100};
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
 
   border: 2px solid
-    ${({ theme, isSelected }) => (isSelected ? theme.Brand : `${theme.Gray20}`)};
+    ${({ theme, isSelected }) =>
+      isSelected ? theme.Brand600 : `${theme.Netural200}`};
 
   .choice-article {
     // 텍스트가 새로운 줄로 넘어가지 않게됨
@@ -26,39 +27,39 @@ export const TextCheckboxWrapper = styled.button<Props>`
     text-overflow: ellipsis;
     transition: all 0.3s ease-out;
     color: ${({ isSelected, theme }) =>
-      isSelected ? theme.Brand : theme.Gray70};
+      isSelected ? theme.Brand600 : theme.Netural800};
     font-size: 22px;
   }
   .choice-articleinput {
     transition: all 0.3s ease-out;
     color: ${({ isSelected, theme }) =>
-      isSelected ? theme.Brand : theme.Gray70};
+      isSelected ? theme.Brand600 : theme.Netural800};
     font-size: 22px;
   }
 
   .check-background {
     transition: all 0.3s ease-out;
     fill: ${({ $isSelected, theme }) =>
-      $isSelected ? theme.Brand : theme.Gray10};
+      $isSelected ? theme.Brand600 : theme.Netural100};
   }
 
   .check-shape {
     transition: all 0.3s ease-out;
     fill: ${({ $isSelected, theme }) =>
-      $isSelected ? theme.White : theme.Gray30};
+      $isSelected ? theme.Netural0 : "#e4e7eb"};
   }
   &:hover {
     border: 2px solid
-      ${({ $isSelected, theme }) => ($isSelected ? theme.Brand : theme.Gray30)};
+      ${({ $isSelected, theme }) => ($isSelected ? theme.Brand600 : "#e4e7eb")};
 
     .check-shape {
       fill: ${({ $isSelected, theme }) =>
-        $isSelected ? theme.White : theme.Black};
+        $isSelected ? theme.Netural0 : theme.Netural990};
     }
 
     .choice-article {
       color: ${({ $isSelected, theme }) =>
-        $isSelected ? theme.Brand : theme.Black};
+        $isSelected ? theme.Brand600 : theme.Netural990};
     }
   }
 `

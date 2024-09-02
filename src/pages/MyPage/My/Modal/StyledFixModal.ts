@@ -57,7 +57,7 @@ export const Header = styled.div`
   margin-bottom: 32px;
 
   span {
-    color: ${theme.BrandMid};
+    color: ${theme.Brand400};
     font-size: 16px;
     font-weight: 500;
     width: 100%;
@@ -80,7 +80,7 @@ export const ModalTitle = styled.div`
     justify-content: center;
     font-size: 24px;
     font-weight: 500;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-family: Pretendard;
     margin-bottom: 32px;
   }
@@ -94,7 +94,7 @@ export const CloseButton = styled.div`
   align-items: center;
   cursor: pointer;
   img {
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-size: 30px;
     width: 17px;
     height: 17px;
@@ -116,8 +116,8 @@ export const Contents = styled.div`
   .contents-input {
     display: flex;
     align-items: center;
-    background-color: ${theme.Gray10};
-    border: 1px solid ${theme.Gray20};
+    background-color: ${theme.Netural100};
+    border: 1px solid ${theme.Netural200};
     border-radius: 10px;
     gap: 14px;
     height: 56px;
@@ -149,7 +149,7 @@ export const AddButton = styled.button`
   height: 34px;
   width: 34px;
   border-radius: 8px;
-  background-color: ${theme.BrandLight300};
+  background-color: ${theme.Brand400};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,8 +179,8 @@ export const SaveButton = styled.button`
   height: 68px;
   padding: 22px 24px;
 
-  background: ${({ theme }) => theme.Brand};
-  color: ${({ theme }) => theme.White};
+  background: ${({ theme }) => theme.Brand600};
+  color: ${({ theme }) => theme.Netural0};
 
   display: flex;
   justify-content: center;

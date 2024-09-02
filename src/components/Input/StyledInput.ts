@@ -1,3 +1,4 @@
+// @ts-nocheck
 import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"

@@ -19,15 +19,15 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 24px;
-  border: 1px solid ${theme.Gray30};
+  border: 1px solid "#e4e7eb";
   border-radius: 16px;
-  background: ${theme.White};
+  background: ${theme.Netural0};
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   .leaveModalTitle {
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-size: 24px;
     font-weight: 600;
     line-height: 130%; /* 31.2px */
@@ -52,12 +52,12 @@ export const ModalWrapper = styled.div`
     }
     .cancleBtn {
       color: var(--Brand, #0b98ff);
-      border: 1px solid ${theme.Brand};
+      border: 1px solid ${theme.Brand600};
     }
 
     .leaveBtn {
-      color: ${theme.White};
-      background: ${theme.Brand};
+      color: ${theme.Netural0};
+      background: ${theme.Brand600};
     }
   }
 `

@@ -10,9 +10,10 @@ export const SelectList = styled.div`
 export const SelectItem = styled.button<Props>`
   transition: all 0.3s ease-out;
   border-radius: 16px;
-  background: ${({ $isChecked }) => ($isChecked ? theme.Gray10 : theme.White)};
+  background: ${({ $isChecked }) =>
+    $isChecked ? theme.Netural100 : theme.Netural0};
   border: ${({ $isChecked }) =>
-    $isChecked ? `2px solid ${theme.Brand}` : `2px solid transparent`};
+    $isChecked ? `2px solid ${theme.Brand600}` : `2px solid transparent`};
   display: flex;
   width: 126px;
   height: 126px;
@@ -22,10 +23,10 @@ export const SelectItem = styled.button<Props>`
   flex-direction: column;
   gap: 8px;
   &:hover {
-    background: ${theme.Gray10};
+    background: ${theme.Netural100};
     border: 2px solid
       ${({ $isChecked }) =>
-        $isChecked ? `2px solid ${theme.Brand}` : theme.Gray30};
+        $isChecked ? `2px solid ${theme.Brand600}` : "#e4e7eb"};
   }
 `
 export const SelectImg = styled.img`
@@ -35,7 +36,8 @@ export const SelectImg = styled.img`
 
 export const SelectText = styled.span<Props>`
   transition: all 0.3s ease-out;
-  color: ${({ $isChecked }) => ($isChecked ? theme.BrandDark : theme.Gray50)};
+  color: ${({ $isChecked }) =>
+    $isChecked ? theme.Brand950 : theme.Netural100};
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.32px;

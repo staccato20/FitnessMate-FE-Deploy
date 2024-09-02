@@ -9,7 +9,7 @@ export const CompleteNav = styled.div`
   width: 100%;
 `
 export const CompleteNavTitle = styled.span`
-  color: ${theme.Gray80};
+  color: ${theme.Netural900};
   font-size: 22px;
   font-weight: 600;
 `
@@ -28,11 +28,11 @@ export const CompleteNavItem = styled.button`
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  background: ${theme.Gray10};
+  background: ${theme.Netural100};
   text-align: left;
 `
 export const CompleteNavItemTitle = styled.div`
-  color: ${theme.Black};
+  color: ${theme.Netural990};
   font-size: 20px;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ export const CompleteNavItemTitle = styled.div`
   font-weight: 600;
 `
 export const CompleteNavItemText = styled.span`
-  color: ${theme.Black};
+  color: ${theme.Netural990};
   font-size: 16px;
 `
 export const CompleteNavItemImg = styled.img``

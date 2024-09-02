@@ -68,7 +68,7 @@ export const ModalTitle = styled.div`
     justify-content: center;
     font-size: 24px;
     font-weight: 500;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-family: Pretendard;
     margin-bottom: 32px;
   }
@@ -82,7 +82,7 @@ export const CloseButton = styled.div`
   align-items: center;
   cursor: pointer;
   img {
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-size: 30px;
     width: 17px;
     height: 17px;
@@ -114,7 +114,7 @@ export const Contents = styled.div`
     width: 35px;
   }
   .ScrollArea::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.White};
+    background: ${({ theme }) => theme.Netural0};
   }
   .ScrollArea::-webkit-scrollbar-thumb {
     background: #ebedef;
@@ -150,8 +150,8 @@ export const SaveButton = styled.button`
   height: 68px;
   padding: 22px 24px;
 
-  background: ${({ theme }) => theme.Brand};
-  color: ${({ theme }) => theme.White};
+  background: ${({ theme }) => theme.Brand600};
+  color: ${({ theme }) => theme.Netural0};
 
   display: flex;
   justify-content: center;
