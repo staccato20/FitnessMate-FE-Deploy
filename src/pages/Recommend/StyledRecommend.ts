@@ -138,7 +138,7 @@ export const Title = styled.span`
 
 export const TitleLeft = styled.span`
   color: ${theme.Netural990};
-  ${fonts.h1}
+  ${fonts.h1};
   font-weight: 400;
   .bold {
     ${fonts.h1}
