@@ -6,7 +6,7 @@ const DUMMY_DATA = (
   <Accordion>
     <Accordion.Header
       onClick={() => {
-        console.log("1")
+        console.log("2")
       }}
       bodyParts={"가슴, 등"}
       count={1}>
