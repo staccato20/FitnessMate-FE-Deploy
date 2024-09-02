@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import { useUserInfo } from "hooks/query/useUserInfo"
+
+import Button from "@components/Button/Button"
 import LoginModal from "@components/Modal/LoginModal"
 
 // import arrow from "@assets/images/arrow.svg"
@@ -14,8 +17,9 @@ import * as S from "./StyledHome"
 
 export const Home = () => {
   const navigate = useNavigate()
+  const { data } = useUserInfo()
+  const loginState = data ? true : false
 
-  const loginState = localStorage.length
   const [isLoginModal, setIsLoginModal] = useState(false)
 
   const handleSearch = () => {
@@ -41,26 +45,25 @@ export const Home = () => {
   return (
     <S.HomeContainer>
       <S.HomeContent>
-        <section className="firstContent">
-          <div className="firstCotntentItem">
-            <span className="firstTitle1">AI 기반의</span>
-            <span className="firstTitle2">
+        <S.First>
+          <S.FirstContainer>
+            <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
+            <S.FirstTitle>
               정확하고 빠른
               <br />
               개인맞춤 추천
-            </span>
-            <button
-              className="recommendBtn"
+            </S.FirstTitle>
+            <Button
+              variant="main"
               onClick={handleRecommend}>
               바로 추천받기
-            </button>
-          </div>
-          <img
-            className="homebanner"
+            </Button>
+          </S.FirstContainer>
+          <S.HomeBanner
             src={homebanner}
             alt="홈 배너"
           />
-        </section>
+        </S.First>
       </S.HomeContent>
       <S.HomeContent>
         <section className="secondContent">

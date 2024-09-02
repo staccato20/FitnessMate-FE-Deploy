@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import CancleModal from "@components/Modal/CancleModal"
 import LoginModal from "@components/Modal/LoginModal"
@@ -38,7 +38,7 @@ const Navbar = () => {
   }
 
   return (
-    <S.NavbarContainer>
+    <S.NavbarContainer $isHome={useLocation().pathname === "/"}>
       <S.LogoButton onClick={handleHome}>
         <S.Logo
           src={logo}
@@ -63,7 +63,9 @@ const Navbar = () => {
           </S.LoginButton>
         )}
       </S.NavLink>
-      <S.NavbarUnderLine>{}</S.NavbarUnderLine>
+      <S.NavbarUnderLine $isHome={useLocation().pathname === "/"}>
+        {}
+      </S.NavbarUnderLine>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
       {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
     </S.NavbarContainer>

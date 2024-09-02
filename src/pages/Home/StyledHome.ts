@@ -1,74 +1,61 @@
 // < 홈 스타일 >
 import styled from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
+
+export const FirstSubTitle = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.h1};
+  font-size: 32px;
+`
+export const FirstTitle = styled(FirstSubTitle)`
+  font-size: 82px;
+`
+
+export const HomeContent = styled.li`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100vw;
+    height: 861px;
+    background: linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);
+  }
+`
+
+export const HomeBanner = styled.img`
+  width: 766px;
+  height: 765px;
+`
+
+export const First = styled.section`
+  display: flex;
+  width: 90%;
+  z-index: 10;
+  justify-content: space-between;
+  align-items: center;
+`
+export const FirstContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`
 
 export const HomeContainer = styled.ul`
   width: 100%;
+  margin: 0 auto;
+  max-width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 36px;
-
-  // 1
-  .firstContent {
-    max-width: 1920px;
-    // padding: 0 calc((100% - 1440px) / 2);
-    padding: 0 169px 0 194px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    height: 861px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    .firstCotntentItem {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      .firstTitle1 {
-        color: ${theme.Gray80};
-        font-size: 32px;
-        line-height: 120%; /* 38.4px */
-        letter-spacing: -0.64px;
-        font-weight: 600;
-        padding-left: 4px;
-      }
-
-      .firstTitle2 {
-        color: ${theme.Gray80};
-        font-size: 82px;
-        font-weight: 600;
-        line-height: 120%; /* 98.4px */
-        letter-spacing: -1.64px;
-      }
-      .recommendBtn {
-        margin-top: 46px;
-        width: 176px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        font-size: 24px;
-        padding: 18px 24px;
-        background: ${({ theme }) => theme.Brand};
-        color: ${({ theme }) => theme.White};
-        letter-spacing: -0.48px;
-
-        &:hover {
-          opacity: 0.5;
-        }
-      }
-    }
-
-    .homebanner {
-      width: 766px;
-      height: 765px;
-    }
-  }
 
   // 2
   .secondContent {
@@ -80,7 +67,7 @@ export const HomeContainer = styled.ul`
     font-weight: 600;
     line-height: 130%; /* 57.2px */
     letter-spacing: -0.88px;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
   }
 
   // 3
@@ -237,14 +224,6 @@ export const HomeContainer = styled.ul`
       }
     }
   }
-`
-
-export const HomeContent = styled.li`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 export const ThirdContentTitle = styled.div`

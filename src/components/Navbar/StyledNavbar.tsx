@@ -4,7 +4,7 @@ import Button from "@components/Button/Button"
 
 import theme from "@styles/theme"
 
-export const NavbarContainer = styled.div`
+export const NavbarContainer = styled.div<{ $isHome: boolean }>`
   position: sticky;
   top: 0;
   max-width: 1920px;
@@ -16,7 +16,10 @@ export const NavbarContainer = styled.div`
   padding: 0 15px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${theme.Netural0};
+  background-color: ${({ $isHome }) =>
+    $isHome
+      ? "linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);"
+      : theme.Netural0};
 `
 
 export const LogoButton = styled.button``
@@ -53,12 +56,12 @@ export const LoginButton = styled(Button)`
   color: ${({ color }) => color || theme.Netural800};
 `
 
-export const NavbarUnderLine = styled.div`
+export const NavbarUnderLine = styled.div<{ $isHome: boolean }>`
   position: absolute;
   left: 50%;
   bottom: 0;
   width: 100vw;
   height: 1px;
-  background-color: ${theme.Netural200};
+  background-color: ${({ $isHome }) => ($isHome ? "none" : theme.Netural200)};
   transform: translateX(-50%);
 `
