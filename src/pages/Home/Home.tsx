@@ -45,8 +45,8 @@ export const Home = () => {
   return (
     <S.HomeContainer>
       <S.HomeContent>
-        <section className="firstContent">
-          <div className="firstCotntentItem">
+        <S.First>
+          <S.FirstContainer>
             <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
             <S.FirstTitle>
               정확하고 빠른
@@ -58,13 +58,12 @@ export const Home = () => {
               onClick={handleRecommend}>
               바로 추천받기
             </Button>
-          </div>
-          <img
-            className="homebanner"
+          </S.FirstContainer>
+          <S.HomeBanner
             src={homebanner}
             alt="홈 배너"
           />
-        </section>
+        </S.First>
       </S.HomeContent>
       <S.HomeContent>
         <section className="secondContent">

@@ -29,6 +29,25 @@ export const HomeContent = styled.li`
   }
 `
 
+export const HomeBanner = styled.img`
+  width: 766px;
+  height: 765px;
+`
+
+export const First = styled.section`
+  display: flex;
+  width: 90%;
+  z-index: 10;
+  justify-content: space-between;
+  align-items: center;
+`
+export const FirstContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`
+
 export const HomeContainer = styled.ul`
   width: 100%;
   margin: 0 auto;
@@ -37,43 +56,6 @@ export const HomeContainer = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 36px;
-
-  // 1
-  .firstContent {
-    display: flex;
-    width: 90%;
-    z-index: 10;
-    justify-content: space-between;
-    align-items: center;
-
-    .firstCotntentItem {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      .firstTitle1 {
-        color: ${theme.Gray80};
-        font-size: 32px;
-        line-height: 120%; /* 38.4px */
-        letter-spacing: -0.64px;
-        font-weight: 600;
-        padding-left: 4px;
-      }
-
-      .firstTitle2 {
-        color: ${theme.Gray80};
-        font-size: 82px;
-        font-weight: 600;
-        line-height: 120%; /* 98.4px */
-        letter-spacing: -1.64px;
-      }
-    }
-
-    .homebanner {
-      width: 766px;
-      height: 765px;
-    }
-  }
 
   // 2
   .secondContent {
@@ -85,7 +67,7 @@ export const HomeContainer = styled.ul`
     font-weight: 600;
     line-height: 130%; /* 57.2px */
     letter-spacing: -0.88px;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
   }
 
   // 3
