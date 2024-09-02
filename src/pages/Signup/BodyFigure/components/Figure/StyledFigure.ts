@@ -11,7 +11,7 @@ export const FigureWrapper = styled.div`
 
 export const FigureTitle = styled.span`
   padding-bottom: 10px;
-  color: ${theme.Gray80};
+  color: ${theme.Netural900};
   font-size: 20px;
   font-weight: 600;
 `

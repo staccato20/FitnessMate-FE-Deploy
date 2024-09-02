@@ -16,7 +16,7 @@ export const ProfileInputContainer = styled.div<Props>`
     font-size: 16px;
   }
   .profileInputChecking {
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
     font-size: 16px;
     font-weight: 500;
   }
@@ -24,7 +24,7 @@ export const ProfileInputContainer = styled.div<Props>`
     opacity: ${({ isValidState }) => (isValidState ? "1" : "0.3")};
     cursor: ${({ isValidState }) => (isValidState ? "pointer" : "default")};
     position: absolute;
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
     font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.34px;
@@ -36,7 +36,7 @@ export const ProfileInputContainer = styled.div<Props>`
 `
 
 export const InputName = styled.span`
-  color: ${theme.Black};
+  color: ${theme.Netural990};
   font-size: 18px;
   font-weight: 500;
   .essentialSymbol {
@@ -47,26 +47,25 @@ export const InputName = styled.span`
 
 export const ProfileInputContentWrapper = styled.input<Props>`
   &::-webkit-input-placeholder {
-    color: ${theme.Gray50};
+    color: ${theme.Netural100};
   }
-  border: 1.5px solid ${theme.Gray20};
+  border: 1.5px solid ${theme.Netural200};
   border-radius: 10px;
   padding: 14px;
-  background: ${theme.Gray10};
+  background: ${theme.Netural100};
   width: 100%;
-  color: ${theme.Black};
+  color: ${theme.Netural990};
   font-size: 18px;
   border: ${({ isFocused, name, valueHistory, isValidState }) =>
     !isFocused && valueHistory
       ? isValidState[name][1]
-        ? `1.5px solid ${theme.Gray20}`
+        ? `1.5px solid ${theme.Netural200}`
           ? name === "loginEmail"
             ? isValidState.emailModal[1]
-              ? `1.5px solid ${theme.Brand}`
+              ? `1.5px solid ${theme.Brand600}`
               : `1.5px solid ${theme.Error}`
-            : `1.5px solid ${theme.Gray20}`
-          : `1.5px solid ${theme.Gray20}`
+            : `1.5px solid ${theme.Netural200}`
+          : `1.5px solid ${theme.Netural200}`
         : `1.5px solid ${theme.Error}`
-      : `1.5px solid ${theme.Gray20}`};
+      : `1.5px solid ${theme.Netural200}`};
 `
-// `1.5px solid ${theme.Brand}`

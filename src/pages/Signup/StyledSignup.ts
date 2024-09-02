@@ -32,7 +32,7 @@ export const SignupContainer = styled.div`
 export const SignupTitle = styled.span`
   align-items: center;
   width: 100%;
-  color: ${theme.Gray80};
+  color: ${theme.Netural800};
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.6px;

@@ -19,9 +19,9 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 24px;
-  border: 1px solid ${theme.Gray30};
+  border: 1px solid "#e4e7eb";
   border-radius: 16px;
-  background: ${theme.White};
+  background: ${theme.Netural0};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -42,7 +42,7 @@ export const ModalWrapper = styled.div`
       }
     }
     .emailModalTitle {
-      color: ${theme.Black};
+      color: ${theme.Netural990};
       font-size: 24px;
       font-weight: 600;
       line-height: 130%; /* 31.2px */
@@ -52,7 +52,7 @@ export const ModalWrapper = styled.div`
       display: flex;
       gap: 12px;
       .emailModalContent {
-        color: var(--Gray80, #4e5968);
+        color: ${theme.Netural800};
         font-size: 16px;
         font-weight: 600;
         letter-spacing: -0.32px;

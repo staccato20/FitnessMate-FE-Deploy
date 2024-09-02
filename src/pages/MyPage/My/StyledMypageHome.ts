@@ -39,7 +39,7 @@ export const FirstContent = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${theme.Gray50};
+    color: ${theme.Netural100};
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -56,7 +56,7 @@ export const FirstContent = styled.div`
 
   .firstMiddle p {
     text-align: center;
-    color: ${({ theme }) => theme.Black};
+    color: ${({ theme }) => theme.Netural990};
     font-size: 38px;
     font-weight: 700;
   }
@@ -104,7 +104,7 @@ export const ContentsTitle = styled.div`
   align-items: center;
   justify-content: center;
   gap: 32px;
-  background: ${({ theme }) => theme.Gray10};
+  background: ${({ theme }) => theme.Netural100};
   height: 75px;
   margin-bottom: 24px;
   position: sticky;
@@ -112,7 +112,7 @@ export const ContentsTitle = styled.div`
 
   .contents-title {
     font-size: 18px;
-    color: ${({ theme }) => theme.Gray80};
+    color: ${({ theme }) => theme.Netural800};
     font-weight: 500;
   }
 `
@@ -128,16 +128,16 @@ export const ButtonContainer = styled.div`
     justify-content: center;
     padding: 10px 20px;
     height: 47px;
-    color: ${({ theme }) => theme.Brand};
+    color: ${({ theme }) => theme.Brand600};
     font-size: 18px;
     letter-spacing: -0.36px;
-    background-color: ${({ theme }) => theme.White};
+    background-color: ${({ theme }) => theme.Netural0};
     box-shadow: 0px 4px 8px #0000000d;
     border-radius: 6px;
 
     &.active {
-      color: ${({ theme }) => theme.White};
-      background-color: ${({ theme }) => theme.Brand};
+      color: ${({ theme }) => theme.Netural0};
+      background-color: ${({ theme }) => theme.Brand600};
     }
 
     &:hover {
@@ -160,7 +160,7 @@ export const WorkoutContent = styled.div`
   }
 
   &:hover .item_workoutName {
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
   }
 
   &:hover .deleteContent {
@@ -197,13 +197,13 @@ export const WorkoutContent = styled.div`
     letter-spacing: -0.32px;
     line-height: 24px;
     margin-top: -1px;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
   }
 
   .item_workoutName {
     font-size: 30px;
     font-weight: 600;
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     letter-spacing: -0.6px;
     line-height: 45px;
   }
@@ -214,13 +214,13 @@ export const WorkoutContent = styled.div`
   }
 
   .bottomTitle {
-    border: 1px solid ${theme.Gray80};
+    border: 1px solid ${theme.Netural800};
     border-radius: 35px;
     padding: 10px;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.28px;
-    color: ${theme.Gray80};
+    color: ${theme.Netural800};
     margin-top: -1px;
   }
 
@@ -239,19 +239,19 @@ export const WorkoutContent = styled.div`
   .workrateTitle {
     font-size: 18px;
     font-weight: 500;
-    color: ${theme.Gray30};
+    color: "#e4e7eb";
     letter-spacing: -0.36px;
   }
 
   .workrateContent {
     font-size: 20px;
     font-weight: 500;
-    color: ${theme.Gray80};
+    color: ${theme.Netural900};
     letter-spacing: -0.4px;
   }
 
   .noWorkrate {
-    background: ${theme.Gray10};
+    background: ${theme.Netural100};
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -261,7 +261,7 @@ export const WorkoutContent = styled.div`
   }
 
   .noWorkrateContent {
-    color: ${theme.Gray80};
+    color: ${theme.Netural900};
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.28px;
@@ -277,7 +277,7 @@ export const WorkoutContent = styled.div`
   .recommendWorkrate {
     font-size: 14px;
     font-weight: 500;
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
     letter-spacing: -0.28px;
   }
 
@@ -289,7 +289,7 @@ export const WorkoutContent = styled.div`
   .deleteContent {
     border-radius: 36px;
     padding: 14px 24px;
-    background: ${theme.ErrorLight};
+    background: ${theme.Error};
     cursor: pointer;
     color: ${theme.Error};
     font-size: 16px;
@@ -307,7 +307,7 @@ export const FixModalButton = styled.button`
   width: 109px;
   height: 48px;
   border-radius: 6px;
-  background-color: ${theme.BrandLighter};
+  background-color: ${theme.Brand400};
   box-shadow: 0px 4px 8px #0000000d;
   cursor: pointer;
   display: flex;
@@ -322,7 +322,7 @@ export const FixModalButton = styled.button`
 
   p {
     font-weight: 500;
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
     font-size: 18px;
     letter-spacing: -0.36px;
   }
@@ -332,7 +332,7 @@ export const AddModalButton = styled.button`
   width: 237px;
   height: 56px;
   border-radius: 35px;
-  background-color: ${theme.Brand};
+  background-color: ${theme.Brand600};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -340,7 +340,7 @@ export const AddModalButton = styled.button`
   gap: 12px;
 
   &:hover {
-    background-color: ${theme.BrandDark};
+    background-color: ${theme.Brand950};
   }
 
   img {
@@ -350,7 +350,7 @@ export const AddModalButton = styled.button`
 
   p {
     font-weight: 500;
-    color: ${theme.White};
+    color: ${theme.Netural0};
     font-size: 18px;
     letter-spacing: -0.36px;
   }

@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   margin: 10px 12px;
   text-align: center;
   position: relative;
-  border: 1px solid ${({ theme }) => theme.Gray20};
+  border: 1px solid ${({ theme }) => theme.Netural200};
   border-radius: 17px;
   cursor: pointer;
 
@@ -39,13 +39,13 @@ export const CardContainer = styled.div`
     flex-wrap: wrap;
     .fitnessPart {
       border-radius: 4px;
-      background: ${({ theme }) => theme.BrandLight};
+      background: ${({ theme }) => theme.Brand400};
       display: flex;
       padding: 6px 13px;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      color: ${({ theme }) => theme.Brand};
+      color: ${({ theme }) => theme.Brand600};
       font-size: 12px;
       font-weight: 700;
       letter-spacing: -0.24px;
@@ -55,19 +55,19 @@ export const CardContainer = styled.div`
     height: 145px;
     padding: 24px 10px 20px 16px;
     border-radius: 0px 0px 16px 16px;
-    background: ${({ theme }) => theme.Gray10};
+    background: ${({ theme }) => theme.Netural100};
     display: flex;
     flex-direction: column;
     gap: 7px;
     align-items: flex-start;
     .fitnessTitle {
-      color: ${({ theme }) => theme.Black};
+      color: ${({ theme }) => theme.Netural990};
       font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.48px;
     }
     .fitnessExplain {
-      color: ${({ theme }) => theme.Gray80};
+      color: ${({ theme }) => theme.Netural900};
       font-size: 16px;
       text-align: left;
       letter-spacing: -0.32px;
