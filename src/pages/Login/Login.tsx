@@ -42,33 +42,21 @@ const Login = () => {
     const submission = {
       loginEmail: userName,
       password,
-      rememberMe: keepLoginRef && keepLoginRef.current?.checked,
+      rememberMe: keepLoginRef && !!keepLoginRef.current?.checked,
     }
-    const res = await authAPI.login(submission)
-    console.log(res)
+    try {
+      const res = await authAPI.login(submission)
+      if (res.status === 200) {
+        const { accessToken, refreshToken, rememberMe } = res.data
 
-    // console.log(isKeepLoginClicked)
-    // e.preventDefault()
-    // const submission = {
-    //   loginEmail: email,
-    //   password: password,
-    //   // (false일 경우 토큰관련 오류가 존재)??
-    //   rememberMe: isKeepLoginClicked,
-    // }
-    // try {
-    //   const res = await loginPostAPI.post("", submission)
-    //   if (res.status === 200) {
-    //     const accessToken = res.data.accessToken
-    //     const refreshToken = res.data.refreshToken
-    //     // 토큰 저장
-    //     localStorage.setItem("accessToken", accessToken)
-    //     localStorage.setItem("refreshToken", refreshToken)
-    //     localStorage.setItem("rememberMe", isKeepLoginClicked)
-    //     navigate("/")
-    //   }
-    // } catch (err) {
-    //   setIsError(true)
-    // }
+        localStorage.setItem("accessToken", accessToken)
+        localStorage.setItem("refreshToken", refreshToken)
+        localStorage.setItem("rememberMe", rememberMe.toString())
+        navigate("/")
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
