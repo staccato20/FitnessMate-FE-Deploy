@@ -1,18 +1,17 @@
-// @ts-nocheck
 import styled, { css } from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
 
-const getBorderStyle = ($isError, $isDirty) => {
+const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
   if (!$isDirty) {
     return ""
   }
-  return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand}`
+  return $isError ? `2px solid ${theme.Error}` : `1px solid ${theme.Brand600}`
 }
 
 export const InputName = styled.label`
   cursor: default;
-  color: ${theme.Black};
+  color: ${theme.Netural990};
   font-size: 18px;
   display: flex;
   gap: 5px;
@@ -30,11 +29,13 @@ export const InputWarning = styled.span`
 
 export const Input = styled.input<Props>`
   &::-webkit-input-placeholder {
-    color: ${theme.Gray50};
+    color: ${theme.Netural500};
+    ${fonts.b4}
   }
-  background: ${theme.Netural100};
+  background: ${theme.Netural0};
   border-radius: 10px;
-  padding: 14px;
+  border: 1px solid ${theme.Netural400};
+  padding: 16px;
   width: 100%;
   ${(props) => css`
     ${Object.keys(props)

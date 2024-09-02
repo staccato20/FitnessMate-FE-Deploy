@@ -6,8 +6,8 @@ export const StyledButton = styled.button<{
   $sizeStyle: Interpolation<object>
   $variantStyle: Interpolation<object>
 }>`
-  ${(p) => p.$sizeStyle}
-  ${(p) => p.$variantStyle}
+  ${({ $sizeStyle }) => $sizeStyle};
+  ${({ $variantStyle }) => $variantStyle};
   display: inline-flex;
   gap: 10px;
   justify-content: center;
@@ -41,8 +41,8 @@ export const SIZES = {
 
 export const VARIANTS = {
   main: css`
+    background: ${theme.Brand600};
     color: ${theme.Netural0};
-    background-color: ${theme.Brand600};
     &:hover {
       background: ${theme.Brand750};
     }
@@ -51,8 +51,8 @@ export const VARIANTS = {
     }
   `,
   weak: css`
+    background: ${theme.Brand200};
     color: ${theme.Brand700};
-    background-color: ${theme.Brand200};
     &:hover {
       background: linear-gradient(
           0deg,
