@@ -13,30 +13,18 @@ import {
   UpdateUserPayload,
 } from "@typpes/type"
 
-export interface fetchUserProps {
-  userName: string
-  loginEmail: string
-  sex: string
-  birthDate: string
-}
-
-// 사용자 가입
 const postUser = (data: SignupPayload) =>
   instance.post<SignupResponse>("/api/user/auth", data)
 
-// 사용자 정보 수정(토큰)
 const modifyUser = (data: UpdateUserPayload) =>
   instance.post("/api/user/private", data)
 
-// 사용자 비밀번호 수정(토큰)
 const modifyPassword = (data: PostNewPasswordPayload) =>
   instance.post<PostNewPasswordResponse>("/api/user/private/password", data)
 
-// 사용자 정보 조회(토큰)
 const fetchUser = () =>
   instance.get<GetUserInfoResponse>("/api/user/private").then((res) => res.data)
 
-// 회원 탈퇴(토큰)
 const deleteUser = (data: PostUserDeletePayload) =>
   instance.post("/api/user/delete", data)
 
@@ -46,8 +34,9 @@ const login = (data: PostLoginPayload) =>
 // refresh토큰 필요
 const logout = () => instance.get("/api/auth/logout")
 
-// accessToken 재발급(refersh 토큰 필요)
+// refersh 토큰 필요
 const getAccessToken = () =>
+  // header에 refreshToken 넣기
   instance.get<GetAccessTokenResponse>("/api/auth/refresh")
 
 const authAPI = {

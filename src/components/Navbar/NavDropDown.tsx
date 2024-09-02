@@ -4,6 +4,8 @@ import { useDropDown } from "hooks/useDropDown"
 
 import Button from "@components/Button/Button"
 
+import authAPI from "@apis/domain/auth"
+
 import * as S from "./StyledNavModal"
 
 interface NavDropDownProps {
@@ -16,6 +18,8 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
 
   const handleLogout = async () => {
     try {
+      await authAPI.logout()
+      navigate("/")
     } catch (err) {}
   }
 
