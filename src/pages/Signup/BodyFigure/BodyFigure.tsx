@@ -2,7 +2,7 @@
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import StatusBar from "@components/StatusBar/StatusBar"
+import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import authAPI from "@apis/domain/auth"
 
@@ -61,7 +61,7 @@ const BodyFigure = () => {
   return (
     <GS.SignupForm onSubmit={handleSubmit(onSubmit)}>
       <GS.SignupTitle>
-        <StatusBar status={3} />
+        <ProgressBar status={3} />
         체형 정보를 입력해주세요
       </GS.SignupTitle>
       <S.BodyFigureWrapper>

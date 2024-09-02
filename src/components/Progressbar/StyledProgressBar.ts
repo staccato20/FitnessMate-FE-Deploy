@@ -1,23 +1,29 @@
-import styled from "styled-components"
+import styled, { Interpolation, css } from "styled-components"
+
+import { Variant } from "@components/Progressbar/ProgressBar"
 
 import theme from "@styles/theme"
 
-interface StatusBarItemProps {
-  $progress: number
-}
-
-export const ProgressBarBox = styled.div`
+export const ProgressBarBox = styled.div<{
+  $variantStyle: Interpolation<object>
+}>`
   position: relative;
-  width: 100%;
-  height: 10px;
-  background: ${theme.Netural300};
-  border-radius: 24px;
+  ${({ $variantStyle }) => $variantStyle}
 `
 
-export const ProgressBarItem = styled.div<StatusBarItemProps>`
+export const ProgressBarItem = styled.div<{
+  $progress: number
+  $variant: Variant
+}>`
   position: absolute;
-  width: ${({ $progress }) => `${(100 / 5) * $progress}%`};
-  height: 100%;
-  border-radius: 24px;
+  width: ${({ $progress }) => `${(100 / 4) * $progress}%`};
   background: ${theme.Brand600};
+  height: 100%;
+
+  ${({ $variant, $progress }) =>
+    $variant === "round" &&
+    css`
+    border-radius: 24px;
+      width: {(100 / 4) * ${$progress}%;
+    `}
 `

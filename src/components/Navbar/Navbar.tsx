@@ -7,8 +7,6 @@ import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
 
-import { theme } from "@styles/theme"
-
 import { useUserInfo } from "../../hooks/query/useUserInfo"
 import * as S from "./StyledNavbar"
 
@@ -20,7 +18,7 @@ const Navbar = () => {
   const [isCancleModal, setIsCancleModal] = useState(false)
 
   const handleSearch = () => {
-    navigate("search/1")
+    navigate("searchworkout/1")
   }
 
   const handleMyPage = () => {
@@ -60,7 +58,6 @@ const Navbar = () => {
           <S.LoginButton
             variant="text"
             size="md"
-            color={theme.Brand600}
             onClick={handleLogin}>
             로그인
           </S.LoginButton>
