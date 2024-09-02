@@ -25,7 +25,7 @@ const FigureCheckBox = ({
       type="button">
       <S.CheckBoxImg
         $isChecked={$isChecked}
-        src={$isChecked ? checkedIcon : notCheckedIcon}
+        // src={$isChecked ? checkedIcon : notCheckedIcon}
         alt="옵션 선택 이미지"
       />
 

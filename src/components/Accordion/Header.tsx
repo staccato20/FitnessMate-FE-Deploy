@@ -11,8 +11,6 @@ import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-import { theme } from "@styles/theme"
-
 interface HeaderProps {
   bodyParts: string
   count?: number
