@@ -1,0 +1,5 @@
+import{j as t}from"./jsx-runtime-2aae9559.js";import{u as r}from"./index-571eae1e.js";import"./index-ff614419.js";import{ae as s,aj as i}from"./index-ee803c5f.js";import"./iframe-57a275b8.js";import"../sb-preview/runtime.js";import"./index-4da86cf0.js";import"./index-1b441bc2.js";import"./index-db52ff5b.js";import"./index-356e4a49.js";function o(e){const n={h1:"h1",p:"p",strong:"strong",...r(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(s,{title:"Getting Started/Typography"}),`
+`,t.jsx(n.h1,{id:"base-typography",children:"Base Typography"}),`
+`,t.jsxs(n.p,{children:[t.jsx(n.strong,{children:"Font:"})," Pretendard"]}),`
+`,t.jsxs(n.p,{children:[t.jsx(n.strong,{children:"Weights:"})," 600(semiBold), 700(Bold)"]}),`
+`,t.jsx(i,{fontSizes:[11,12,13,15,16,17,18,20,24,26],fontWeight:600,sampleText:"What is TyphoGraphy?",fontFamily:"Pretendard"})]})}function y(e={}){const{wrapper:n}={...r(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(o,{...e})}):o(e)}export{y as default};
