@@ -19,6 +19,11 @@ jobs:
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
 
+      # 기존 캐시 무시 단계 추가
+      - name: Install Dependencies without Cache
+        run: |
+          npm install
+
       # 토큰 환경변수 설정 여부 확인 단계 추가
       - name: Print environment variable for debugging
         run: |
