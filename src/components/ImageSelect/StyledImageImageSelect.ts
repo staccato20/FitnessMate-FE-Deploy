@@ -37,7 +37,7 @@ export const SelectImg = styled.img`
 export const SelectText = styled.span<Props>`
   transition: all 0.3s ease-out;
   color: ${({ $isChecked }) =>
-    $isChecked ? theme.Brand950 : theme.Netural100};
+    $isChecked ? theme.Brand950 : theme.Netural800};
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.32px;
