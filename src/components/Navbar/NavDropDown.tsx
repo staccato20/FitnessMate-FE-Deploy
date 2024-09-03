@@ -19,8 +19,14 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
   const handleLogout = async () => {
     try {
       await authAPI.logout()
+      localStorage.clear()
       navigate("/")
-    } catch (err) {}
+      window.location.reload()
+    } catch (err) {
+      localStorage.clear()
+      navigate("/")
+      window.location.reload()
+    }
   }
 
   const handleFixProfile = async () => {
