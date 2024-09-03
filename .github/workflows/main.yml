@@ -21,8 +21,8 @@ jobs:
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
 
-      # 기존 캐시 무시 단계 추가
-      - name: Install Dependencies without Cache
+      # 종속성 설치 단계
+      - name: Install Dependencies
         run: |
           cd main
           npm install
@@ -31,7 +31,7 @@ jobs:
       - name: Build Storybook
         run: |
           cd main
-          npm run build-storybook --output-dir /tmp/chromatic-build || (echo "Build failed" && exit 1)
+          npx storybook build --output-dir /tmp/chromatic-build || (echo "Build failed" && exit 1)
 
       # 스토리북 로그 출력 추가
       - name: Display Storybook build logs
