@@ -31,7 +31,8 @@ jobs:
       - name: Build Storybook
         run: |
           cd main
-          npx run build-storybook -- --output-dir storybook-static
+          npm run build-storybook
+          mv ./storybook-static ./build/storybook
 
       # 스토리북 로그 출력 추가
       - name: Display Storybook build logs
@@ -48,9 +49,11 @@ jobs:
 
       # Chromatic 실행 단계
       - name: Run Chromatic
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          cd main
+          npm run chromatic
 
       - name: Copy changes to main Repo
         run: |
