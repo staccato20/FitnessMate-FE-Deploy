@@ -36,7 +36,7 @@ jobs:
       # 스토리북 로그 출력 추가
       - name: Display Storybook build logs
         run: |
-          ls -l /tmp/chromatic-build || (echo "No files found in /tmp/chromatic-build" && exit 1)
+          ls -l main/storybook-static || (echo "No files found in /tmp/chromatic-build" && exit 1)
 
       # 토큰 환경변수 설정 여부 확인 단계 추가
       - name: Print environment variable for debugging
