@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -8,18 +8,11 @@ export const AccordianWrapper = styled.div<{ $visible: boolean }>`
   width: 100%;
   position: relative;
   display: flex;
-  gap: 18px;
   flex-direction: column;
   padding: 24px 22px 0px 22px;
-  ${({ $visible }) =>
-    $visible &&
-    css`
-      gap: 24px;
-    `}
 
   align-items: center;
-
-  border-radius: 0px 0px 16px 16px;
+  border-radius: 20px 20px 16px 16px;
   box-shadow: 0px 4px 8.1px 0px rgba(0, 0, 0, 0.03);
   background: var(--Grayscale-Neutral0, #fff);
 `
@@ -34,7 +27,7 @@ export const HeaderTop = styled.div<{ $visible: boolean }>`
   justify-content: space-between;
   align-items: center;
 
-  border-radius: 12px 12px 0px 0px;
+  padding-bottom: 18px;
   background: var(--Grayscale-Neutral0, #fff);
 `
 export const HeaderLeft = styled.div``
@@ -114,7 +107,7 @@ export const HeaderTrigger = styled.button`
 export const TopLine = styled.div`
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 1px;
   transform: translateX(-50%);
   background-color: ${theme.Netural200};

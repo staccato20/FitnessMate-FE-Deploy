@@ -5,7 +5,7 @@ import { DUMMY_MACHINE } from "constants/DUMMY"
 import { useScroll } from "hooks/useScroll"
 
 import Avatar from "@components/Avatar/Avatar"
-import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
@@ -18,6 +18,8 @@ const Machine = () => {
   const [selectedMachines, setSelectedMachines] = useState(
     Array(DUMMY_MACHINE.length).fill(false),
   )
+
+  const isReady = selectedMachines.some((v) => v)
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLDivElement>(null)
@@ -38,6 +40,7 @@ const Machine = () => {
 
   const handleNextPage = () => {
     // 추천 시작하기 버튼 클릭 처리
+    navigate("/recommend/result")
   }
 
   return (
@@ -48,7 +51,10 @@ const Machine = () => {
             icon="LeftArrowBold"
             onClick={handleBackPage}
           />
-          <ProgressBar progress={1} />
+          <ProgressBar
+            progress={3}
+            variant="round"
+          />
           <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
             <Avatar />
             <SpeechBubble isIcon={false}>
@@ -88,12 +94,19 @@ const Machine = () => {
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
-        <Footer>
+        <Footer flex="space-between">
           <Footer.Text>
             {selectedMachines.filter((v) => v).length}개
             <Footer.SubText> 기구 선택됨</Footer.SubText>
           </Footer.Text>
-          <Button onClick={handleNextPage}>추천 시작하기</Button>
+          <RoundButton
+            onClick={handleNextPage}
+            variant="blue"
+            rightIcon="RightArrowWhite"
+            size="big"
+            disabled={!isReady}>
+            추천 시작하기
+          </RoundButton>
         </Footer>
       </S.RecommendWrapper>
     </>

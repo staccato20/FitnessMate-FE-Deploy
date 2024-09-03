@@ -28,7 +28,7 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
       return {
         sizeStyle: css`
           gap: 8px;
-          width: 144px;
+          width: 114px;
         `,
         borderStyle: css`
           border: 3px solid ${isSelected ? theme.Brand600 : theme.Netural300};

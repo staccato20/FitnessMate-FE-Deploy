@@ -21,6 +21,12 @@ const meta: Meta<typeof RoundButton> = {
       },
       options: Object.keys(ICON_MAP),
     },
+    size: {
+      control: {
+        type: "radio",
+      },
+      options: ["big", "small"],
+    },
   },
 }
 
@@ -34,5 +40,6 @@ export const Primary: Story = {
     children: "다음",
     leftIcon: "",
     rightIcon: "LeftArrowWhite",
+    size: "big",
   },
 }

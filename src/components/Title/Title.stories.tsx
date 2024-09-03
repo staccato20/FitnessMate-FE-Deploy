@@ -38,30 +38,41 @@ type Story = StoryObj<typeof Title>
 export const Primary: Story = {
   render: () => <Title variant="big">메인 타이틀</Title>,
 }
-export const WithTop: Story = {
+export const Big: Story = {
   render: () => (
     <Title variant="big">
-      <Title.SubTopTitle>보조 타이틀</Title.SubTopTitle>
-      메인 타이틀
+      <Title.SubTopTitle>보조 타이틀이에요</Title.SubTopTitle>
+      헤드 타이틀이에요
+      <Title.SubBottomTitle>보조 타이틀이에요</Title.SubBottomTitle>
     </Title>
   ),
 }
 
-export const WithBottom: Story = {
+export const midA: Story = {
   render: () => (
-    <Title variant="mid">
-      메인 타이틀
-      <Title.SubBottomTitle>보조 타이틀</Title.SubBottomTitle>
+    <Title variant="midA">
+      <Title.SubTopTitle>보조 타이틀이에요</Title.SubTopTitle>
+      헤드 타이틀이에요
+      <Title.SubBottomTitle>보조 타이틀이에요</Title.SubBottomTitle>
     </Title>
   ),
 }
 
-export const WithTopBottom: Story = {
+export const midB: Story = {
+  render: () => (
+    <Title variant="midB">
+      헤드 타이틀이에요
+      <Title.SubBottomTitle>보조 타이틀이에요</Title.SubBottomTitle>
+    </Title>
+  ),
+}
+
+export const small: Story = {
   render: () => (
     <Title variant="small">
-      <Title.SubTopTitle>보조 타이틀</Title.SubTopTitle>
-      메인 타이틀
-      <Title.SubBottomTitle>보조 타이틀</Title.SubBottomTitle>
+      <Title.SubTopTitle>보조 타이틀이에요</Title.SubTopTitle>
+      헤드 타이틀이에요
+      <Title.SubBottomTitle>보조 타이틀이에요</Title.SubBottomTitle>
     </Title>
   ),
 }
