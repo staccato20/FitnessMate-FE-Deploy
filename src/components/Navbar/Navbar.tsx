@@ -26,7 +26,7 @@ const Navbar = () => {
   }
 
   const handleRecommend = () => {
-    userName ? navigate("recommend") : setIsLoginModal(true)
+    userName ? navigate("recommend/prolog") : setIsLoginModal(true)
   }
 
   const handleHome = () => {

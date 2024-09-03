@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+import styled from "styled-components"
+
 import Avatar from "@components/Avatar/Avatar"
-import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 import Tabs from "@components/Tabs/Tabs"
+
+import { theme } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
 
@@ -24,6 +28,8 @@ const BodyPart = () => {
   const [selectedBodyParts, setSelectedBodyParts] = useState(
     Array(bodyPartsLength).fill(false),
   )
+
+  const isReady = selectedBodyParts.some((v) => v)
 
   const navigate = useNavigate()
 
@@ -49,6 +55,15 @@ const BodyPart = () => {
     navigate("/recommend/machine")
   }
 
+  const UnderLine = styled.div`
+    width: 100%;
+    height: 0.5px;
+    background: ${theme.Netural400};
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+  `
+
   return (
     <S.RecommendWrapper>
       <S.Status>
@@ -56,7 +71,10 @@ const BodyPart = () => {
           icon="LeftArrowBold"
           onClick={handleBackPage}
         />
-        <ProgressBar progress={1} />
+        <ProgressBar
+          progress={2}
+          variant="round"
+        />
       </S.Status>
       <S.RecommendInner>
         <S.RecommendGuide>
@@ -80,6 +98,7 @@ const BodyPart = () => {
                 </Tabs.Tab>
               )
             })}
+            <UnderLine />
           </Tabs.TabList>
           <Tabs.TabPanels>
             {Object.entries(DUMMY_BODYPART).map(
@@ -110,12 +129,19 @@ const BodyPart = () => {
           </Tabs.TabPanels>
         </Tabs>
       </S.RecommendInner>
-      <Footer>
+      <Footer flex="space-between">
         <Footer.Text>
           {selectedBodyParts.filter((v) => v).length}개
           <Footer.SubText> 부위 선택됨</Footer.SubText>
         </Footer.Text>
-        <Button onClick={handleNextPage}>다음</Button>
+        <RoundButton
+          onClick={handleNextPage}
+          variant="black"
+          size="big"
+          rightIcon="RightArrowWhite"
+          disabled={!isReady}>
+          다음
+        </RoundButton>
       </Footer>
     </S.RecommendWrapper>
   )

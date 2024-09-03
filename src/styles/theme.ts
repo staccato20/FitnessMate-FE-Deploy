@@ -72,6 +72,7 @@ export const theme = {
   Netural990: "#191f28",
   Error: "#ef444c",
   Success: "#2edd6a",
+  Purple: "#5950D3",
 }
 
 export const animation = {

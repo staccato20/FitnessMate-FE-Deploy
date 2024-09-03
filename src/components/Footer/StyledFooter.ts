@@ -1,8 +1,8 @@
-import styled from "styled-components"
+import styled, { Interpolation } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
-export const FooterWrapper = styled.div`
+export const FooterWrapper = styled.div<{ $flex: Interpolation<object> }>`
   position: fixed;
   bottom: 0;
   max-width: 720px;
@@ -12,7 +12,7 @@ export const FooterWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ $flex }) => $flex};
   background: ${theme.Netural0};
 `
 
@@ -27,11 +27,11 @@ export const FooterTopLine = styled.div`
 `
 
 export const FooterText = styled.span`
-  ${fonts.b3}
-  color:${theme.Brand600}
+  ${fonts.b3};
+  color: ${theme.Brand600};
 `
 
 export const FooterSubText = styled.span`
-  ${fonts.b4}
-  color:${theme.Netural800}
+  ${fonts.b4};
+  color: ${theme.Netural800};
 `

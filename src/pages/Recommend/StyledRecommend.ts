@@ -22,6 +22,7 @@ export const RecommendWrapper = styled.div`
 `
 
 export const RecommendInner = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 300px);

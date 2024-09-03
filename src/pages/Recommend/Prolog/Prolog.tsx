@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom"
 
 import Avatar from "@components/Avatar/Avatar"
 import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
+import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -15,7 +17,13 @@ const Prolog = () => {
     navigate(-1)
   }
 
-  const handleUpdate = () => {}
+  const handleNextPage = () => {
+    navigate("/recommend/bodypart")
+  }
+
+  const handleUpdate = () => {
+    navigate("/mypage")
+  }
 
   return (
     <S.RecommendWrapper>
@@ -24,7 +32,10 @@ const Prolog = () => {
           icon="LeftArrowBold"
           onClick={handleBackPage}
         />
-        <ProgressBar progress={1} />
+        <ProgressBar
+          progress={1}
+          variant="round"
+        />
       </S.Status>
       <S.RecommendGuide>
         <Avatar />
@@ -56,6 +67,14 @@ const Prolog = () => {
           수정하기
         </Button>
       </S.RecommendUserInfo>
+      <Footer flex="flex-end">
+        <RoundButton
+          rightIcon="RightArrowWhite"
+          onClick={handleNextPage}
+          size="big">
+          시작하기
+        </RoundButton>
+      </Footer>
     </S.RecommendWrapper>
   )
 }

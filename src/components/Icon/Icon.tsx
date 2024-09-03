@@ -24,6 +24,7 @@ import PencilRound from "@assets/icon/pencil_round.svg?react"
 import PlayRound from "@assets/icon/play_round.svg?react"
 import RightArrowBig from "@assets/icon/right_arrow_big.svg?react"
 import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
+import RightArrowWhite from "@assets/icon/right_arrow_white.svg?react"
 import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
 import Star from "@assets/icon/star.svg?react"
@@ -61,6 +62,7 @@ export const ICON_MAP = {
   LeftArrowBlack,
   LeftArrowWhite,
   LeftArrowGrey,
+  RightArrowWhite,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

@@ -26,7 +26,7 @@ const Result = () => {
                 <br />
                 <span className="bold">4가지 운동</span>을 추천했어요.
               </S.TitleLeft>
-              <S.TitleRight onClick={handleHomePage}>{"홈으로 →"}</S.TitleRight>
+              <S.TitleRight onClick={handleHomePage}>{"홈으로"}</S.TitleRight>
             </S.TitleInfo>
           </S.TitleContainer>
           <S.KeyWordWrapper>

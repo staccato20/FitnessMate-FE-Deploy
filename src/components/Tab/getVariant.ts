@@ -36,7 +36,7 @@ export const getVariant = (variant: Variant, isSelected: boolean) => {
             bottom: 0;
             width: calc(100% - 20px);
             border-radius: 2px;
-            border-bottom: 2px solid ${theme.Netural900};
+            border-bottom: 3px solid ${theme.Netural900};
           }
         `}
       `
