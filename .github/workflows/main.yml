@@ -14,10 +14,40 @@ jobs:
     steps:
       - name: Checkout Frontend repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Clone main Repo
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
+
+      # 종속성 설치 단계
+      - name: Install Dependencies
+        run: |
+          cd main
+          npm install
+
+      # Storybook 빌드 단계
+      - name: Build Storybook
+        run: |
+          cd main
+          npm run build-storybook
+
+      # 토큰 환경변수 설정 여부 확인 단계 추가
+      - name: Print environment variable for debugging
+        run: |
+          echo "CHROMATIC_PROJECT_TOKEN is set: ${CHROMATIC_PROJECT_TOKEN:+true}"
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookDirectory: storybook-static
+
+      # Chromatic 실행 단계
+      - name: Run Chromatic
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          cd main
+          npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
 
       - name: Copy changes to main Repo
         run: |

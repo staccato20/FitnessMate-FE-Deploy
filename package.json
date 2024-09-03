@@ -58,7 +58,7 @@
     "prepare": "husky install",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --cache",
     "lint-staged": "lint-staged",
-    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -101,6 +101,7 @@
     "@storybook/addon-viewport": "^8.2.9",
     "@storybook/blocks": "^8.2.9",
     "@storybook/builder-vite": "^8.2.9",
+    "@storybook/cli": "^8.2.9",
     "@storybook/react": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
     "@storybook/test": "^8.2.9",
