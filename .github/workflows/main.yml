@@ -27,11 +27,16 @@ jobs:
           cd main
           npm install
 
-      # Storybook 빌드 단계 추가
+      # Storybook 빌드 단계
       - name: Build Storybook
         run: |
           cd main
-          npm run build-storybook
+          npm run build-storybook --output-dir /tmp/chromatic-build
+
+      # 스토리북 로그 출력 추가
+      - name: Display build-storybook logs
+        run: |
+          cat /home/runner/work/Frontend/Frontend/build-storybook.log
 
       # 토큰 환경변수 설정 여부 확인 단계 추가
       - name: Print environment variable for debugging
@@ -40,7 +45,7 @@ jobs:
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
-      # Chromatic 실행 단계 추가
+      # Chromatic 실행 단계
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
