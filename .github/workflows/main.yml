@@ -31,7 +31,7 @@ jobs:
       - name: Build Storybook
         run: |
           cd main
-          npm run build-storybook -- --output-dir storybook-static
+          npx run build-storybook -- --output-dir storybook-static
 
       # 스토리북 로그 출력 추가
       - name: Display Storybook build logs
@@ -44,6 +44,7 @@ jobs:
           echo "CHROMATIC_PROJECT_TOKEN is set: ${CHROMATIC_PROJECT_TOKEN:+true}"
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookDirectory: storybook-static
 
       # Chromatic 실행 단계
       - name: Run Chromatic
