@@ -40,6 +40,7 @@ const Machine = () => {
 
   const handleNextPage = () => {
     // 추천 시작하기 버튼 클릭 처리
+    navigate("/recommend/result")
   }
 
   return (

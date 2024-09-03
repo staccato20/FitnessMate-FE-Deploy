@@ -7,14 +7,14 @@ import theme, { fonts } from "@styles/theme"
 
 export const RecommendAllWrapper = styled.div`
   width: 100vw;
-  height: calc(100vh - 58px);
+  height: 100vh;
   background: ${theme.Netural200};
 `
 
 export const RecommendWrapper = styled.div`
   max-width: 752px;
   margin: 0 auto;
-  padding-top: 57px;
+  padding-top: 46px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,13 +178,23 @@ export const KeyWordItem = styled.div`
   ${fonts.d2};
   font-weight: 600;
   border-radius: 6px;
-  border: 1px solid ${theme.Netural500};
-  background: ${theme.Netural200};
+  border: 1px solid ${theme.Netural400};
+  background: ${theme.Netural300};
 `
 
 export const ResultList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 10px;
   gap: 12px;
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 29px;
+    background: ${theme.Netural300};
+  }
 `

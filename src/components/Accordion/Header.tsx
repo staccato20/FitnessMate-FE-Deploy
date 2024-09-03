@@ -29,7 +29,7 @@ const Header = ({
     <HeaderWrapper>
       <HeaderTop $visible={visible}>
         <HeaderLeft>
-          <Title variant="big">
+          <Title variant="midB">
             {children}
             <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
           </Title>
@@ -41,6 +41,7 @@ const Header = ({
           <RoundButton
             leftIcon="Add"
             variant="blue"
+            size="small"
             onClick={onClick}>
             루틴에 추가
           </RoundButton>

@@ -1,57 +1,13 @@
-import { css } from "styled-components"
-
 import { StrictPropsWithChildren } from "@typpes/type"
 
-import { fonts } from "@styles/theme"
-import { theme } from "@styles/theme"
-
 import * as S from "./StyledTitle"
+import { VARIANTS } from "./StyledTitle"
 
 interface TitleProps {
   variant: (typeof Variant)[number]
 }
 
-export const Variant = ["big", "mid", "small"] as const
-
-export const VARIANTS = {
-  big: css`
-    color: ${theme.Netural900};
-    ${fonts.h1};
-    .topTitleText {
-      color: ${theme.Brand750};
-      ${fonts.b6};
-    }
-
-    .bottomTitleText {
-      color: ${theme.Netural800};
-      ${fonts.b4};
-    }
-  `,
-  mid: css`
-    color: ${theme.Netural990};
-    ${fonts.h2};
-    .topTitleText {
-      color: ${theme.Brand750};
-      ${fonts.d1};
-    }
-    .bottomTitleText {
-      color: ${theme.Netural800};
-      ${fonts.b4};
-    }
-  `,
-  small: css`
-    color: ${theme.Netural990};
-    ${fonts.h3};
-    .topTitleText {
-      color: ${theme.Brand750};
-      ${fonts.d2};
-    }
-    .bottomTitleText {
-      color: ${theme.Netural800};
-      ${fonts.b6};
-    }
-  `,
-}
+export const Variant = ["big", "midA", "midB", "small"] as const
 
 const Title = ({ variant, children }: StrictPropsWithChildren<TitleProps>) => {
   const variantStyle = VARIANTS[variant]
