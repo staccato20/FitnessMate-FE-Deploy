@@ -47,7 +47,7 @@ jobs:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         run: |
           cd main
-          npm run chromatic
+          npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
 
       - name: Copy changes to main Repo
         run: |
