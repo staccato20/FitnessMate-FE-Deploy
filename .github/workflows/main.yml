@@ -19,6 +19,12 @@ jobs:
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
 
+# Chromatic 실행 단계 추가
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          token: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
       - name: Copy changes to main Repo
         run: |
           rsync -av --exclude='.git' --exclude='main/' . main/
