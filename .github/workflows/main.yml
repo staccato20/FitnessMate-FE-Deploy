@@ -19,7 +19,12 @@ jobs:
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
 
-# Chromatic 실행 단계 추가
+      # 기존 캐시 무시 단계 추가
+      - name: Install Dependencies without Cache
+        run: |
+          npm install
+
+      # Chromatic 실행 단계 추가
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
