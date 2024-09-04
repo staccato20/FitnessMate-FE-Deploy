@@ -26,7 +26,7 @@ const SignupButton = ({ $isValid, nextUrl }: SignupButtonProps) => {
     <S.ButtonContainer>
       <Button
         onClick={handleBackPage}
-        variant="main"
+        variant="weak"
         size="lg">
         이전
       </Button>

@@ -13,7 +13,7 @@ export const SelectItem = styled.button<Props>`
   background: ${({ $isChecked }) =>
     $isChecked ? theme.Netural100 : theme.Netural0};
   border: ${({ $isChecked }) =>
-    $isChecked ? `2px solid ${theme.Brand600}` : `2px solid transparent`};
+    $isChecked ? `3px solid ${theme.Brand600}` : `3px solid transparent`};
   display: flex;
   width: 126px;
   height: 126px;

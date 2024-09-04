@@ -51,6 +51,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.birthDate,
               $isError: formState.errors.birthDate,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
@@ -70,6 +71,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.loginEmail,
               $isError: formState.errors.loginEmail,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
@@ -96,6 +98,7 @@ const ProfileForm = ({
                 }
               },
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.password?.message}</Input.Error>
@@ -125,6 +128,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.passwordCheck,
               $isError: formState.errors.passwordCheck,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
