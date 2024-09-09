@@ -4,7 +4,7 @@ export const COMPLETE_Nav = [
     {
       title: "추천 받기",
       message: "AI가 신체 정보에 알맞은 운동/보조제를 추천해드려요.",
-      url: "/recommend",
+      url: "/recommend/prolog",
     },
   ],
   [
@@ -20,7 +20,7 @@ export const COMPLETE_Nav = [
     {
       title: "검색하기",
       message: "다양한 종류의 운동/보조제를 검색해보세요.",
-      url: "/search",
+      url: "/searchworkout/1",
     },
   ],
 ]

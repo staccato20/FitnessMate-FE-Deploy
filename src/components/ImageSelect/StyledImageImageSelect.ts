@@ -13,7 +13,7 @@ export const SelectItem = styled.button<Props>`
   background: ${({ $isChecked }) =>
     $isChecked ? theme.Netural100 : theme.Netural0};
   border: ${({ $isChecked }) =>
-    $isChecked ? `2px solid ${theme.Brand600}` : `2px solid transparent`};
+    $isChecked ? `3px solid ${theme.Brand600}` : `3px solid transparent`};
   display: flex;
   width: 126px;
   height: 126px;
@@ -37,7 +37,7 @@ export const SelectImg = styled.img`
 export const SelectText = styled.span<Props>`
   transition: all 0.3s ease-out;
   color: ${({ $isChecked }) =>
-    $isChecked ? theme.Brand950 : theme.Netural100};
+    $isChecked ? theme.Brand950 : theme.Netural800};
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.32px;
