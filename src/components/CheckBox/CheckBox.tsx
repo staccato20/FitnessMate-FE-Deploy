@@ -1,6 +1,6 @@
 // @ts-nocheck
-// import checkedIcon from "@assets/images/checkedIcon.png"
-// import notCheckedIcon from "@assets/images/notCheckedIcon.png"
+import Icon from "@components/Icon/Icon"
+
 import * as S from "./StyledCheckBox"
 
 const CheckBox = ({ children, $isChecked, handleCheckItem, index }) => {
@@ -11,10 +11,9 @@ const CheckBox = ({ children, $isChecked, handleCheckItem, index }) => {
         handleCheckItem(index)
       }}
       type="button">
-      <S.CheckBoxImg
+      <Icon
         $isChecked={$isChecked}
-        src={$isChecked ? checkedIcon : notCheckedIcon}
-        alt="옵션 선택 이미지"
+        icon={$isChecked ? "CircleFill" : "CircleEmpty"}
       />
       <S.CheckBoxText>{children}</S.CheckBoxText>
     </S.CheckBoxWrapper>

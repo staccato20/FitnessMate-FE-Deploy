@@ -5,9 +5,9 @@ import theme, { fonts } from "@styles/theme"
 
 const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
   if (!$isDirty) {
-    return ""
+    return ``
   }
-  return $isError ? `2px solid ${theme.Error}` : `1px solid ${theme.Brand600}`
+  return $isError ? `3px solid ${theme.Error}` : `3px solid ${theme.Brand600}`
 }
 
 export const InputName = styled.label`
@@ -35,7 +35,6 @@ export const Input = styled.input<Props>`
   }
   background: ${theme.Netural0};
   border-radius: 10px;
-  border: 1px solid ${theme.Netural400};
   padding: 16px;
   width: 100%;
   ${(props) => css`

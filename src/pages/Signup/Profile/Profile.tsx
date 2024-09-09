@@ -12,7 +12,6 @@ import * as S from "../StyledSignup"
 import ProfileForm from "./components/ProfileForm"
 
 const Profile = () => {
-  // @ts-ignore
   const { setProfile } = useSignupStore()
   const navigate = useNavigate()
   const methods = useForm({
@@ -22,6 +21,7 @@ const Profile = () => {
   const { handleSubmit, formState } = methods
 
   const handleNextPage = (formValue) => {
+    console.log("gg")
     if (formState.isValid) {
       delete formValue["passwordCheck"]
       setProfile(formValue)
@@ -36,7 +36,10 @@ const Profile = () => {
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileForm methods={methods} />
-      <SignupButton $isValid={formState.isValid} />
+      <SignupButton
+        $isValid={formState.isValid}
+        nextUrl="bodyinfo"
+      />
     </S.SignupForm>
   )
 }

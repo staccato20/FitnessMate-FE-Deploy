@@ -1,6 +1,6 @@
 // @ts-nocheck
-// import minus from "@assets/images/minus.png"
-// import plus from "@assets/images/plus.png"
+import IconButton from "@components/IconButton/IconButton"
+
 import * as S from "./StyledRatio"
 
 const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
@@ -16,26 +16,16 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
             </S.RatioPercentBox>
           </S.RatioContent>
           <S.RatioButtonBox>
-            <S.RatioPlusButton
-              onClick={() => {
-                handleRatio("+")
-              }}
-              type="button">
-              <S.RatioPlusButtonImg
-                src={plus}
-                alt="상체 비중 증가 버튼"
-              />
-            </S.RatioPlusButton>
-            <S.RatioMinusButton
+            <IconButton
               type="button"
-              onClick={() => {
-                handleRatio("-")
-              }}>
-              <S.RatioMinusButtonImg
-                src={minus}
-                alt="상체 비중 감소 버튼"
-              />
-            </S.RatioMinusButton>
+              icon="AddRound"
+              onClick={() => handleRatio("+")}
+            />
+            <IconButton
+              type="button"
+              icon="MinusRound"
+              onClick={() => handleRatio("-")}
+            />
           </S.RatioButtonBox>
         </S.RatioBox>
         <S.RatioBox>
@@ -46,26 +36,16 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
             </S.RatioPercentBox>
           </S.RatioContent>
           <S.RatioButtonBox>
-            <S.RatioPlusButton
-              onClick={() => {
-                handleRatio("-")
-              }}
-              type="button">
-              <S.RatioPlusButtonImg
-                src={plus}
-                alt="하체 비중 증가 버튼"
-              />
-            </S.RatioPlusButton>
-            <S.RatioMinusButton
+            <IconButton
+              icon="MinusRound"
               type="button"
-              onClick={() => {
-                handleRatio("+")
-              }}>
-              <S.RatioMinusButtonImg
-                src={minus}
-                alt="하체 비중 감소 버튼"
-              />
-            </S.RatioMinusButton>
+              onClick={() => handleRatio("-")}
+            />
+            <IconButton
+              icon="AddRound"
+              type="button"
+              onClick={() => handleRatio("+")}
+            />
           </S.RatioButtonBox>
         </S.RatioBox>
       </S.RatioBoxWrapper>
