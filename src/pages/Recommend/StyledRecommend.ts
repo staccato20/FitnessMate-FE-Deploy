@@ -133,54 +133,6 @@ export const TitleContainer = styled.div`
   align-items: flex-start;
   gap: 5px;
 `
-export const Title = styled.span`
-  color: ${theme.Netural990};
-`
-
-export const TitleLeft = styled.span`
-  color: ${theme.Netural990};
-  ${fonts.h1};
-  font-weight: 400;
-  .bold {
-    ${fonts.h1}
-    font-weight: 700;
-  }
-`
-
-export const TitleRight = styled.button`
-  color: ${theme.Netural900};
-  ${fonts.b4};
-`
-
-export const TitleInfo = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
-
-export const KeyWordWrapper = styled.div`
-  display: flex;
-  padding-left: 4px;
-  align-items: center;
-  gap: 12px;
-  color: ${theme.Netural600};
-  ${fonts.b6};
-`
-
-export const KeyWordList = styled.div`
-  display: flex;
-  gap: 5px;
-  align-items: center;
-`
-export const KeyWordItem = styled.div`
-  padding: 4px 6px;
-  color: ${theme.Netural900};
-  ${fonts.d2};
-  font-weight: 600;
-  border-radius: 6px;
-  border: 1px solid ${theme.Netural400};
-  background: ${theme.Netural300};
-`
 
 export const ResultList = styled.div`
   display: flex;

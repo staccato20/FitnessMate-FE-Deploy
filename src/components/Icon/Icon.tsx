@@ -1,4 +1,3 @@
-// rightArrow은 나중에 등록
 import Add from "@assets/icon/add.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
 import ChangeCircle from "@assets/icon/change_circle.svg?react"

@@ -8,11 +8,11 @@ import authAPI from "@apis/domain/auth"
 
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
-import { CATEGORY_LIST } from "@pages/Signup/BodyFigure/constants/CATEGORY_LIST"
 import { useSelectFigure } from "@pages/Signup/BodyFigure/hooks/useSelectFigure"
 import { useSelectMenu } from "@pages/Signup/BodyFigure/hooks/useSelectMenu"
 import { useSlide } from "@pages/Signup/BodyFigure/hooks/useSlide"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
+import { CATEGORY_LIST } from "@pages/Signup/constants/Constants"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import * as GS from "../StyledSignup"

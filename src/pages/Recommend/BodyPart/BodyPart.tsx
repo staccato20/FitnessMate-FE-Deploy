@@ -12,6 +12,8 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 import Tabs from "@components/Tabs/Tabs"
 
+import { useRecommendStore } from "@pages/Recommend/store"
+
 import { theme } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
@@ -28,6 +30,8 @@ const BodyPart = () => {
   const [selectedBodyParts, setSelectedBodyParts] = useState(
     Array(bodyPartsLength).fill(false),
   )
+
+  const { setBodyPart } = useRecommendStore()
 
   const isReady = selectedBodyParts.some((v) => v)
 
@@ -51,18 +55,9 @@ const BodyPart = () => {
         v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : false,
       )
       .filter((v) => v)
-    console.log({ bodyPartKoreanName: bodyParts })
+    setBodyPart(bodyParts)
     navigate("/recommend/machine")
   }
-
-  const UnderLine = styled.div`
-    width: 100%;
-    height: 0.5px;
-    background: ${theme.Netural400};
-    position: absolute;
-    bottom: 0;
-    z-index: -1;
-  `
 
   return (
     <S.RecommendWrapper>
@@ -111,7 +106,7 @@ const BodyPart = () => {
                       <ImgCheckBox
                         key={bodypart}
                         src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                        alt="테스트 이미지를 설명"
+                        alt="테스트 이미지"
                         isSelected={
                           selectedBodyParts[posIndex * 6 + bodyPartIdx]
                         }
@@ -147,3 +142,12 @@ const BodyPart = () => {
   )
 }
 export default BodyPart
+
+const UnderLine = styled.div`
+  width: 100%;
+  height: 0.5px;
+  background: ${theme.Netural400};
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+`

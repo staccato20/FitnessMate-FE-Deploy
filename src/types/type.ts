@@ -1,5 +1,8 @@
 import { ReactNode } from "react"
 
+export type StrictPropsWithChildren<P = unknown> = P & {
+  children: ReactNode
+}
 export interface User {
   userName: string
   loginEmail: string
@@ -96,6 +99,66 @@ export interface GetVerifyCodePayload {
 
 export type GetVerifyCodeResponse = PostNewPasswordResponse
 
-export type StrictPropsWithChildren<P = unknown> = P & {
-  children: ReactNode
+export interface PostRecommendIdPayload {
+  bodyPartKoreanName: string[]
+}
+
+export interface Recommend {
+  workoutId: number
+  koreanName: string
+  englishName: string
+  machineName: string
+  bodyPartKoreanName: string[]
+  description: string
+  imgPath: string
+  weight: string
+  repeat: string
+  set: string
+}
+
+export interface PostRecommendIdResponse {
+  workoutRecommendationID: number
+}
+
+export interface PostRecommendResponse {
+  date: string
+  requestedBodyParts: string[]
+  recommends: Recommend[]
+}
+
+export interface PostBodyDataPayload {
+  date: string
+  height: number
+  weight: number
+  bodyFat: number
+  muscleMass: number
+  upDownBalance: number
+}
+
+export interface GetBodyDataResponse extends PostBodyDataPayload {
+  bodyDataId: number
+}
+
+export interface DeleteBodyDataResponse {
+  status: "ok" | "fail"
+  message: string
+}
+
+export interface GetWorkoutsPayload {
+  page: number
+  searchKeyword?: string
+  bodyPartKoreanName: string[]
+}
+
+export interface GetWorkoutsResponse extends Workout {
+  id: number
+}
+
+export interface MachineList {
+  englishName: string
+  koreanName: string
+}
+
+export interface PostMachineListPayload {
+  bodyPartKoreanName: string[]
 }
