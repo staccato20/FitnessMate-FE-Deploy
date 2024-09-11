@@ -13,17 +13,14 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import usePostMachineList from "@pages/Recommend/hooks/usePostMachineList"
 
-import { MachineList } from "@typpes/type"
-
 import * as S from "../StyledRecommend"
 
 // useQuery로 바꾸기
 const Machine = () => {
-  const [machines, setMachines] = useState<MachineList[]>([])
-  const { data } = usePostMachineList()
-  if (data && machines.length === 0) {
-    setMachines(data)
-  }
+  const { data: machines, isLoading } = usePostMachineList()
+
+  const [machinesById, setMachinesById] = useState(new Set<number>())
+  const numChecked = machinesById.size
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLDivElement>(null)
@@ -34,19 +31,29 @@ const Machine = () => {
     navigate(-1)
   }
 
-  // const handleBodyPart = (machineIdx: number) => {
-  //   setMachines((prevSelected) =>
-  //     prevSelected.map((machine, idx) =>
-  //       idx === machineIdx ? !machine : machine,
-  //     ),
-  //   )
-  // }
+  const updateSet = (set: Set<number>, id: number) => {
+    const updatedSet = new Set(set)
 
-  const handleNextPage = () => {
-    // 추천 시작하기 버튼 클릭 처리
-    console.log(["등"])
+    if (updatedSet.has(id)) {
+      updatedSet.delete(id)
+    } else {
+      updatedSet.add(id)
+    }
+
+    return updatedSet
+  }
+
+  const handleBodyPart = (id: number) => {
+    setMachinesById((prevSet) => updateSet(prevSet, id))
+  }
+
+  const handleRecommend = () => {
     // postRecommend()
     navigate("/recommend/result")
+  }
+
+  if (isLoading) {
+    return <div>gg</div>
   }
 
   return (
@@ -86,28 +93,26 @@ const Machine = () => {
           </S.RecommendGuide>
 
           <S.RecommendMachineWrapper>
-            {machines.length > 0 &&
-              machines.map(({ englishName, koreanName }, machineIdx) => (
-                <ImgCheckBox
-                  key={englishName}
-                  src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                  alt="테스트 이미지를 설명"
-                  // isSelected={machines[machineIdx]}
-                  // handleToggle={() => handleBodyPart(machineIdx)}
-                  variant="big">
-                  {koreanName}
-                </ImgCheckBox>
-              ))}
+            {machines?.map(({ englishName, koreanName, id }) => (
+              <ImgCheckBox
+                key={englishName}
+                src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
+                alt="테스트 이미지를 설명"
+                isSelected={machinesById.has(id)}
+                handleToggle={() => handleBodyPart(id)}
+                variant="big">
+                {koreanName}
+              </ImgCheckBox>
+            ))}
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
         <Footer flex="space-between">
           <Footer.Text>
-            {machines.filter((v) => v).length}개
-            <Footer.SubText> 기구 선택됨</Footer.SubText>
+            {numChecked}개<Footer.SubText> 기구 선택됨</Footer.SubText>
           </Footer.Text>
           <RoundButton
-            onClick={handleNextPage}
+            onClick={handleRecommend}
             variant="blue"
             rightIcon="RightArrowWhite"
             size="big"
