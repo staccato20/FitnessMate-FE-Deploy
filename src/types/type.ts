@@ -101,6 +101,7 @@ export type GetVerifyCodeResponse = PostNewPasswordResponse
 
 export interface PostRecommendIdPayload {
   bodyPartKoreanName: string[]
+  machineKoreanName: string[]
 }
 
 export interface Recommend {
@@ -115,11 +116,6 @@ export interface Recommend {
   repeat: string
   set: string
 }
-
-export interface PostRecommendIdResponse {
-  workoutRecommendationID: number
-}
-
 export interface PostRecommendResponse {
   date: string
   requestedBodyParts: string[]
