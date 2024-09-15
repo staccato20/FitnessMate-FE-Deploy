@@ -1,18 +1,21 @@
 import { instance } from "@apis/instance"
 
-import {
-  PostRecommendIdPayload,
-  PostRecommendIdResponse,
-  PostRecommendResponse,
-} from "../../types/type"
+import { PostRecommendIdPayload, PostRecommendResponse } from "../../types/type"
 
-const workoutId = (params: PostRecommendIdPayload) =>
-  instance.post<PostRecommendIdResponse>(`/api/recommendation/workout`, params)
+const workoutId = async (params: PostRecommendIdPayload) => {
+  const { data } = await instance.post<number>(
+    `/api/recommendation/workout`,
+    params,
+  )
+  return data
+}
 
-const workoutHistory = (workoutRecommendationId: number) =>
-  instance.get<PostRecommendResponse>(
+const workoutHistory = async (workoutRecommendationId: number) => {
+  const { data } = await instance.get<PostRecommendResponse>(
     `/api/recommendation/workout/history/${workoutRecommendationId}`,
   )
+  return data
+}
 
 const recommendAPI = {
   workoutId,

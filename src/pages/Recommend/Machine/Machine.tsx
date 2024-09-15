@@ -12,12 +12,17 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import usePostMachineList from "@pages/Recommend/hooks/usePostMachineList"
+import { usePostRecommend } from "@pages/Recommend/hooks/usePostRecommend"
+import { usePostRecommendId } from "@pages/Recommend/hooks/usePostRecommendId"
+import { useRecommendStore } from "@pages/Recommend/store"
 
 import * as S from "../StyledRecommend"
 
-// useQuery로 바꾸기
 const Machine = () => {
-  const { data: machines, isLoading } = usePostMachineList()
+  const { data: machines = [], isLoading } = usePostMachineList()
+  const { bodyPart } = useRecommendStore()
+  const { mutate: postRecommendId } = usePostRecommendId()
+  const { mutate: postRecommend, data: RecommendData } = usePostRecommend()
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
   const numChecked = machinesById.size
@@ -48,12 +53,22 @@ const Machine = () => {
   }
 
   const handleRecommend = () => {
-    // postRecommend()
-    navigate("/recommend/result")
+    const payload = {
+      bodyPartKoreanName: bodyPart,
+      machineKoreanName: [...machinesById].map((id) => machines[id].koreanName),
+    }
+
+    postRecommendId(payload, {
+      onSuccess: (workoutRecommendationId) => {
+        postRecommend(workoutRecommendationId)
+        // zustand로 데이터 담기
+        // navigate("/recommend/result")
+      },
+    })
   }
 
   if (isLoading) {
-    return <div>gg</div>
+    return <div>로딩중..</div>
   }
 
   return (
@@ -116,8 +131,7 @@ const Machine = () => {
             variant="blue"
             rightIcon="RightArrowWhite"
             size="big"
-            // disabled={!isReady}
-          >
+            disabled={!numChecked}>
             추천 시작하기
           </RoundButton>
         </Footer>
