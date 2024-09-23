@@ -7,7 +7,7 @@ export const usePostRecommend = () => {
     mutationKey: ["usePostRecommendId"],
     mutationFn: (workoutRecommendationId: number) =>
       recommendAPI.workoutHistory(workoutRecommendationId),
-    retry: 30,
+    retry: 120,
     retryDelay: 1000 * 1,
 
     onError: () => {

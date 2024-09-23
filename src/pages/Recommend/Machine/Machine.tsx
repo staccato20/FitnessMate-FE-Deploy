@@ -11,7 +11,7 @@ import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import usePostMachineList from "@pages/Recommend/hooks/usePostMachineList"
+import useGetMachineList from "@pages/Recommend/hooks/useGetMachineList"
 import { usePostRecommend } from "@pages/Recommend/hooks/usePostRecommend"
 import { usePostRecommendId } from "@pages/Recommend/hooks/usePostRecommendId"
 import { useRecommendStore } from "@pages/Recommend/store"
@@ -19,7 +19,7 @@ import { useRecommendStore } from "@pages/Recommend/store"
 import * as S from "../StyledRecommend"
 
 const Machine = () => {
-  const { data: machines = [], isLoading } = usePostMachineList()
+  const { data: machines = [], isLoading } = useGetMachineList()
   const { bodyPart } = useRecommendStore()
   const { mutate: postRecommendId } = usePostRecommendId()
   const { mutate: postRecommend, data: RecommendData } = usePostRecommend()

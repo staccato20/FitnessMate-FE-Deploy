@@ -67,8 +67,6 @@ export interface UpdateUserPasswordPayload {
 }
 export interface UpdateUserPasswordResponse {}
 
-export type GetUserInfoResponse = User
-
 export interface PostUserDeletePayload {
   password: string
 }
