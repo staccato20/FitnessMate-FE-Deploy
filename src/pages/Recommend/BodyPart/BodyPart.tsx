@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import styled from "styled-components"
-
 import Avatar from "@components/Avatar/Avatar"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
@@ -10,11 +8,8 @@ import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
-import Tabs from "@components/Tabs/Tabs"
 
 import { useRecommendStore } from "@pages/Recommend/store"
-
-import { theme } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
 
@@ -52,7 +47,7 @@ const BodyPart = () => {
   const handleNextPage = () => {
     const bodyParts = selectedBodyParts
       .map((v, idx) =>
-        v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : false,
+        v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : "",
       )
       .filter((v) => v)
     setBodyPart(bodyParts)
@@ -80,49 +75,32 @@ const BodyPart = () => {
             </SpeechBubble.MainText>
           </SpeechBubble>
         </S.RecommendGuide>
-        <Tabs>
-          <Tabs.TabList>
-            {Object.entries(DUMMY_BODYPART).map(([pos, bodypart], index) => {
-              return (
-                <Tabs.Tab
-                  index={index}
-                  variant="line"
-                  key={index}
-                  count={bodypart.length}>
-                  {pos}
-                </Tabs.Tab>
-              )
-            })}
-            <UnderLine />
-          </Tabs.TabList>
-          <Tabs.TabPanels>
-            {Object.entries(DUMMY_BODYPART).map(
-              ([pos, bodyparts], posIndex) => {
-                return (
-                  <Tabs.TabPanel
-                    index={posIndex}
-                    key={pos}>
-                    {bodyparts.map((bodypart, bodyPartIdx) => (
-                      <ImgCheckBox
-                        key={bodypart}
-                        src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                        alt="테스트 이미지"
-                        isSelected={
-                          selectedBodyParts[posIndex * 6 + bodyPartIdx]
-                        }
-                        handleToggle={() => {
-                          handleBodyPart(posIndex * 6 + bodyPartIdx)
-                        }}
-                        variant="small">
-                        {bodypart}
-                      </ImgCheckBox>
-                    ))}
-                  </Tabs.TabPanel>
-                )
-              },
-            )}
-          </Tabs.TabPanels>
-        </Tabs>
+        <S.BodyPartWrapper>
+          {Object.entries(DUMMY_BODYPART).map(([pos, bodyparts], posIndex) => {
+            return (
+              <S.TabWrapper>
+                <S.TabTitle>{pos}</S.TabTitle>
+                <S.TabList>
+                  {bodyparts.map((bodypart, bodyPartIndex) => (
+                    <ImgCheckBox
+                      key={bodypart}
+                      src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
+                      alt="테스트 이미지"
+                      handleToggle={() => {
+                        handleBodyPart(posIndex * 6 + bodyPartIndex)
+                      }}
+                      isSelected={
+                        selectedBodyParts[posIndex * 6 + bodyPartIndex]
+                      }
+                      variant="small">
+                      {bodypart}
+                    </ImgCheckBox>
+                  ))}
+                </S.TabList>
+              </S.TabWrapper>
+            )
+          })}
+        </S.BodyPartWrapper>
       </S.RecommendInner>
       <Footer flex="space-between">
         <Footer.Text>
@@ -142,12 +120,3 @@ const BodyPart = () => {
   )
 }
 export default BodyPart
-
-const UnderLine = styled.div`
-  width: 100%;
-  height: 0.5px;
-  background: ${theme.Netural400};
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-`
