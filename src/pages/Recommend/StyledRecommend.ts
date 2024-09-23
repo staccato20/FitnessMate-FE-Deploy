@@ -84,7 +84,7 @@ export const RecommendUserInfo = styled.div`
 
 export const UserName = styled.span`
   color: ${theme.Netural950};
-  ${fonts.h4}
+  ${fonts.h4};
   &::after {
     content: " 님";
     color: ${theme.Netural600};

@@ -43,7 +43,7 @@ instance.interceptors.response.use(
     if (error.response.data.status === "EXPIRED_ACCESS_TOKEN_EXCEPTION") {
       const isKeepLogin = localStorage.getItem("rememberMe")
       if (isKeepLogin === "true") {
-        alert("토큰이 만료되었습니다. refresh token을 받아볼게요.")
+        // alert("토큰이 만료되었습니다. refresh token을 받아볼게요.")
         // 기존 refreshToken
 
         try {
@@ -62,12 +62,12 @@ instance.interceptors.response.use(
           // refresh token 만료
           if (err.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
             console.log("Refresh Token 만료 재 로그인 해주세요")
-            alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
+            // alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
           }
         }
       } else {
         console.log("Access Token 만료 재 로그인 해주세요")
-        alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
+        // alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
       }
     }
   },

@@ -1,5 +1,6 @@
 import Add from "@assets/icon/add.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
+import Avatar from "@assets/icon/avatar.svg?react"
 import ChangeCircle from "@assets/icon/change_circle.svg?react"
 import Check from "@assets/icon/check.svg?react"
 import CircleChecked from "@assets/icon/circle_checked.svg?react"
@@ -62,6 +63,7 @@ export const ICON_MAP = {
   LeftArrowWhite,
   LeftArrowGrey,
   RightArrowWhite,
+  Avatar,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

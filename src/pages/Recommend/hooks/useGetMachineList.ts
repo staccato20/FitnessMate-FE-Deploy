@@ -4,14 +4,14 @@ import machineAPI from "@apis/domain/machine"
 
 import { useRecommendStore } from "@pages/Recommend/store"
 
-export const usePostMachineList = () => {
+export const useGetMachineList = () => {
   const { bodyPart } = useRecommendStore()
   return useQuery({
-    queryKey: ["postMachineList"],
+    queryKey: ["getMachineList"],
     queryFn: async () =>
       await machineAPI.fetchList({ bodyPartKoreanName: bodyPart }),
     select: (data) => data.map((machine, idx) => ({ ...machine, id: idx })),
   })
 }
 
-export default usePostMachineList
+export default useGetMachineList
