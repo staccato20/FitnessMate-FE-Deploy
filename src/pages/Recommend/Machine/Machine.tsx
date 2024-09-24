@@ -79,6 +79,10 @@ const Machine = () => {
       {postRecommend.isPending && (
         <S.CoverWrapper>
           <Icon icon="LoadingBackground" />
+          <span>
+            추천을 위한
+            <br /> 분석을 시작했어요
+          </span>
         </S.CoverWrapper>
       )}
       <S.RecommendWrapper>
