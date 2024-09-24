@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
 
-import { DUMMY_RECOOMEND } from "constants/DUMMY"
-
 import Accordion from "@components/Accordion/Accordion"
+import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
+import Title from "@components/Title/Title"
+
+import { useRecommendStore } from "@pages/Recommend/store"
 
 import * as S from "../StyledRecommend"
 
@@ -14,58 +16,55 @@ const Result = () => {
     navigate("/")
   }
 
+  const { result } = useRecommendStore()
+
   return (
     <S.RecommendAllWrapper>
       <S.RecommendWrapper>
         <S.TitleWrapper>
           <S.TitleContainer>
             <Icon icon="Star" />
-            <S.TitleInfo>
-              <S.TitleLeft>
-                김정욱님에게 맞는
-                <br />
-                <span className="bold">4가지 운동</span>을 추천했어요.
-              </S.TitleLeft>
-              <S.TitleRight onClick={handleHomePage}>{"홈으로"}</S.TitleRight>
-            </S.TitleInfo>
+            <Title variant="big">
+              김정욱님에게 맞는
+              <br />
+              4가지 운동을 추천했어요.
+              <Title.SubBottomTitle>
+                내 운동 루틴에 추가해보세요.
+              </Title.SubBottomTitle>
+            </Title>
           </S.TitleContainer>
-          <S.KeyWordWrapper>
-            적용된 추천 키워드
-            <S.KeyWordList>
-              <S.KeyWordItem>운동추천</S.KeyWordItem>
-              <S.KeyWordItem>
-                {DUMMY_RECOOMEND[0].requestedBodyParts[0]}
-              </S.KeyWordItem>
-              <S.KeyWordItem>
-                {`${DUMMY_RECOOMEND.length}가지의 운동기구`}
-              </S.KeyWordItem>
-            </S.KeyWordList>
-          </S.KeyWordWrapper>
+          <Button
+            size="lg"
+            variant="text"
+            onClick={handleHomePage}>
+            홈으로
+          </Button>
         </S.TitleWrapper>
 
         <S.ResultList>
-          {DUMMY_RECOOMEND.map(
+          {result.recommends.map(
             ({
-              recommendId,
+              // recommendId,
               koreanName,
-              videoLink,
+              // videoLink,
               description,
-              requestedBodyParts,
+              bodyPartKoreanName,
               weight,
               repeat,
+              workoutId,
               set,
             }) => (
-              <Accordion key={recommendId}>
+              <Accordion key={workoutId}>
                 <Accordion.Header
                   onClick={() => {
                     console.log("1")
                   }}
-                  bodyParts={requestedBodyParts.toString()}
+                  bodyParts={bodyPartKoreanName.toString()}
                   count={1}>
                   {koreanName}
                 </Accordion.Header>
                 <Accordion.Content
-                  videoId={videoLink.split("=")[1]}
+                  // videoId={videoLink.split("=")[1]}
                   recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
                   {description}
                 </Accordion.Content>

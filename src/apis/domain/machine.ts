@@ -1,10 +1,14 @@
 import { instance } from "@apis/instance"
 
-interface MachinesListParams {
-  bodyPartKoreanName: []
+import { MachineList, PostMachineListPayload } from "@typpes/type"
+
+const fetchList = async (bodyPartList: PostMachineListPayload) => {
+  const response = await instance.post<MachineList[]>(
+    "/api/machines/list",
+    bodyPartList,
+  )
+  return response.data
 }
-const fetchList = (bodyPartList: MachinesListParams) =>
-  instance.post("/api/machines/list", bodyPartList)
 
 const machineAPI = { fetchList }
 export default machineAPI

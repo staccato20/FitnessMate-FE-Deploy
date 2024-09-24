@@ -8,10 +8,13 @@ import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
+import { useGetUser } from "@pages/Recommend/hooks/useGetUser"
+
 import * as S from "../StyledRecommend"
 
 const Prolog = () => {
   const navigate = useNavigate()
+  const userInfo = useGetUser()
 
   const handleBackPage = () => {
     navigate(-1)
@@ -46,7 +49,7 @@ const Prolog = () => {
         </SpeechBubble>
       </S.RecommendGuide>
       <S.RecommendUserInfo>
-        <S.UserName>김정욱</S.UserName>
+        <S.UserName>{userInfo?.userName}</S.UserName>
         <S.UserInfoList>
           <S.UserInfoItem>
             <S.UserInfoName>키</S.UserInfoName>

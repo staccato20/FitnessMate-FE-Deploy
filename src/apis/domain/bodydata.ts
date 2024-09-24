@@ -1,27 +1,25 @@
 import { instance } from "@apis/instance"
 
-interface BodyDataParams {
-  date: string
-  height: number
-  weight: number
-  bodyFat: number
-  muscleMass: number
-  upDownBalance: number
-}
+import {
+  DeleteBodyDataResponse,
+  GetBodyDataResponse,
+  PostBodyDataPayload,
+} from "../../types/type"
 
-const postData = (bodyData: BodyDataParams) =>
+const postData = (bodyData: PostBodyDataPayload) =>
   instance.post("/api/bodyData", bodyData)
 
 const fetchData = (bodyDataId: number) =>
-  instance.get(`/api/bodyData/${bodyDataId}`)
+  instance.get<GetBodyDataResponse>(`/api/bodyData/${bodyDataId}`)
 
 const fetchBatchData = (pageNum: number) =>
-  instance.get(`/api/bodyData/list/${pageNum}`)
+  instance.get<GetBodyDataResponse[]>(`/api/bodyData/list/${pageNum}`)
 
-const fetchRecentData = () => instance.get("/api/bodyData/recent")
+const fetchRecentData = () =>
+  instance.get<GetBodyDataResponse>("/api/bodyData/recent")
 
 const deleteData = (bodyDataId: number) =>
-  instance.post(`/api/bodyData/delete/${bodyDataId}`)
+  instance.post<DeleteBodyDataResponse>(`/api/bodyData/delete/${bodyDataId}`)
 
 const bodyDataAPI = {
   fetchData,

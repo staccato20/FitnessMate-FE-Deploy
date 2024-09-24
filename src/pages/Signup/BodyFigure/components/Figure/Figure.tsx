@@ -2,7 +2,7 @@
 import CheckBox from "@components/CheckBox/CheckBox"
 
 import FigureOptionItem from "@pages/Signup/BodyFigure/components/Figure/FigureOptionItem"
-import { CATEGORY_LIST } from "@pages/Signup/BodyFigure/constants/CATEGORY_LIST"
+import { CATEGORY_LIST } from "@pages/Signup/constants/Constants"
 
 import BodyFigureOptionDirectItem from "./FigureOptionDirectItem"
 import * as S from "./StyledFigure"

@@ -8,7 +8,14 @@ export const TitleWrapper = styled.div<{
   display: flex;
   gap: 4px;
   flex-direction: column;
-  ${({ $variantStyle }) => $variantStyle}
+  ${({ $variantStyle }) => $variantStyle};
+  font-weight: 500;
+  &.bold {
+    font-weight: 700;
+  }
+  &.thin {
+    font-weight: 400;
+  }
 `
 
 export const SubTopTitleText = styled.span`

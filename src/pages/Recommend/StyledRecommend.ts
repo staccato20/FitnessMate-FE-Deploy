@@ -7,18 +7,34 @@ import theme, { fonts } from "@styles/theme"
 
 export const RecommendAllWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: ${theme.Netural200};
 `
 
 export const RecommendWrapper = styled.div`
   max-width: 752px;
   margin: 0 auto;
-  padding-top: 46px;
+  padding-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 34px;
+`
+
+export const CoverWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  svg {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 export const RecommendInner = styled.div`
@@ -84,7 +100,7 @@ export const RecommendUserInfo = styled.div`
 
 export const UserName = styled.span`
   color: ${theme.Netural950};
-  ${fonts.h4}
+  ${fonts.h4};
   &::after {
     content: " 님";
     color: ${theme.Netural600};
@@ -123,7 +139,8 @@ export const ResultWrapper = styled.div`
 export const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 14px;
 `
 
@@ -133,54 +150,6 @@ export const TitleContainer = styled.div`
   align-items: flex-start;
   gap: 5px;
 `
-export const Title = styled.span`
-  color: ${theme.Netural990};
-`
-
-export const TitleLeft = styled.span`
-  color: ${theme.Netural990};
-  ${fonts.h1};
-  font-weight: 400;
-  .bold {
-    ${fonts.h1}
-    font-weight: 700;
-  }
-`
-
-export const TitleRight = styled.button`
-  color: ${theme.Netural900};
-  ${fonts.b4};
-`
-
-export const TitleInfo = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
-
-export const KeyWordWrapper = styled.div`
-  display: flex;
-  padding-left: 4px;
-  align-items: center;
-  gap: 12px;
-  color: ${theme.Netural600};
-  ${fonts.b6};
-`
-
-export const KeyWordList = styled.div`
-  display: flex;
-  gap: 5px;
-  align-items: center;
-`
-export const KeyWordItem = styled.div`
-  padding: 4px 6px;
-  color: ${theme.Netural900};
-  ${fonts.d2};
-  font-weight: 600;
-  border-radius: 6px;
-  border: 1px solid ${theme.Netural400};
-  background: ${theme.Netural300};
-`
 
 export const ResultList = styled.div`
   display: flex;
@@ -188,13 +157,30 @@ export const ResultList = styled.div`
   width: 100%;
   padding: 10px;
   gap: 12px;
-  max-height: calc(100vh - 300px);
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 29px;
-    background: ${theme.Netural300};
-  }
+  padding-bottom: 100px;
+`
+
+export const BodyPartWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
+`
+
+export const TabWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+`
+
+export const TabTitle = styled.div`
+  color: ${theme.Netural800};
+  ${fonts.b3};
+`
+
+export const TabList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
 `

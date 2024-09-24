@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 
-import { COMPLETE_Nav } from "@pages/Signup/Complete/constants/COMPLETE_NAV"
+import { COMPLETE_Nav } from "@pages/Signup/constants/Constants"
 
 import * as GS from "../StyledSignup"
 import * as S from "./StyledComplete"

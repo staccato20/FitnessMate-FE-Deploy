@@ -47,6 +47,7 @@ interface ImgCheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   src: string
   alt: string
   isSelected: boolean
+
   handleToggle: () => void
 }
 

@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom"
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
-import { SEX_GROUP } from "@pages/Signup/BodyInfo/constants/SEX_GROUP"
-import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
+import { SEX_GROUP, SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import { formAdapter } from "@utils/formAdapter"
