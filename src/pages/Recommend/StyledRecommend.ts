@@ -35,14 +35,14 @@ export const CoverWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  span {
-    position: absolute;
-    top: 59%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    ${fonts.h3};
-    text-align: center;
-  }
+`
+export const LoadingText = styled.span`
+  position: absolute;
+  top: 59%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  ${fonts.h3};
+  text-align: center;
 `
 
 export const RecommendInner = styled.div`
