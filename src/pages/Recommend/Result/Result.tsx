@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 
-import { DUMMY_RECOOMEND } from "constants/DUMMY"
-
 import Accordion from "@components/Accordion/Accordion"
 import Icon from "@components/Icon/Icon"
 import Title from "@components/Title/Title"
+
+import { useRecommendStore } from "@pages/Recommend/store"
 
 import * as S from "../StyledRecommend"
 
@@ -14,6 +14,8 @@ const Result = () => {
   const handleHomePage = () => {
     navigate("/")
   }
+
+  const { result } = useRecommendStore()
 
   return (
     <S.RecommendAllWrapper>
@@ -33,28 +35,29 @@ const Result = () => {
         </S.TitleWrapper>
 
         <S.ResultList>
-          {DUMMY_RECOOMEND.map(
+          {result.recommends.map(
             ({
-              recommendId,
+              // recommendId,
               koreanName,
-              videoLink,
+              // videoLink,
               description,
-              requestedBodyParts,
+              bodyPartKoreanName,
               weight,
               repeat,
+              workoutId,
               set,
             }) => (
-              <Accordion key={recommendId}>
+              <Accordion key={workoutId}>
                 <Accordion.Header
                   onClick={() => {
                     console.log("1")
                   }}
-                  bodyParts={requestedBodyParts.toString()}
+                  bodyParts={bodyPartKoreanName.toString()}
                   count={1}>
                   {koreanName}
                 </Accordion.Header>
                 <Accordion.Content
-                  videoId={videoLink.split("=")[1]}
+                  // videoId={videoLink.split("=")[1]}
                   recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
                   {description}
                 </Accordion.Content>

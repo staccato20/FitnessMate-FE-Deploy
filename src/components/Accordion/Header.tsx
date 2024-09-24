@@ -43,7 +43,7 @@ const Header = ({
             variant="blue"
             size="small"
             onClick={onClick}>
-            루틴에 추가
+            운동 루틴
           </RoundButton>
         </HeaderRight>
       </HeaderTop>

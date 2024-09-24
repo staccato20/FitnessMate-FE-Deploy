@@ -78,7 +78,7 @@ const BodyPart = () => {
         <S.BodyPartWrapper>
           {Object.entries(DUMMY_BODYPART).map(([pos, bodyparts], posIndex) => {
             return (
-              <S.TabWrapper>
+              <S.TabWrapper key={pos}>
                 <S.TabTitle>{pos}</S.TabTitle>
                 <S.TabList>
                   {bodyparts.map((bodypart, bodyPartIndex) => (

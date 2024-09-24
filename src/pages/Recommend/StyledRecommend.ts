@@ -7,8 +7,10 @@ import theme, { fonts } from "@styles/theme"
 
 export const RecommendAllWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: ${theme.Netural200};
+  background-attachment: fixed;
+  background-size: cover;
 `
 
 export const RecommendWrapper = styled.div`
@@ -141,14 +143,6 @@ export const ResultList = styled.div`
   padding: 10px;
   gap: 12px;
   max-height: calc(100vh - 300px);
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 29px;
-    background: ${theme.Netural300};
-  }
 `
 
 export const BodyPartWrapper = styled.div`
