@@ -19,10 +19,11 @@ import { useRecommendStore } from "@pages/Recommend/store"
 import * as S from "../StyledRecommend"
 
 const Machine = () => {
-  const { data: machines = [], isLoading } = useGetMachineList()
+  const { data: machines = [] } = useGetMachineList()
   const { bodyPart } = useRecommendStore()
-  const { mutate: postRecommendId } = usePostRecommendId()
-  const { mutate: postRecommend, data: RecommendData } = usePostRecommend()
+  const postRecommendId = usePostRecommendId()
+  const postRecommend = usePostRecommend()
+  const { setResult } = useRecommendStore()
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
   const numChecked = machinesById.size
@@ -60,15 +61,14 @@ const Machine = () => {
 
     postRecommendId(payload, {
       onSuccess: (workoutRecommendationId) => {
-        postRecommend(workoutRecommendationId)
-        // zustand로 데이터 담기
-        // navigate("/recommend/result")
+        postRecommend(workoutRecommendationId, {
+          onSuccess: (result) => {
+            setResult(result)
+            navigate("/recommend/result")
+          },
+        })
       },
     })
-  }
-
-  if (isLoading) {
-    return <div>로딩중..</div>
   }
 
   return (

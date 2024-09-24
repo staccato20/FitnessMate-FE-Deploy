@@ -16,5 +16,5 @@ export const usePostRecommendId = () => {
     },
   })
 
-  return postRecommendId
+  return postRecommendId.mutate
 }
