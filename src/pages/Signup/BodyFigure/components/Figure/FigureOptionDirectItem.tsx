@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form"
 
 import Input from "@components/Input/Input"
 
-import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
+import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
 import { formAdapter } from "@utils/formAdapter"
 

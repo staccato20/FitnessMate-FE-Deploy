@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom"
 
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
-import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
+import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import * as S from "../StyledSignup"
@@ -21,7 +21,6 @@ const Profile = () => {
   const { handleSubmit, formState } = methods
 
   const handleNextPage = (formValue) => {
-    console.log("gg")
     if (formState.isValid) {
       delete formValue["passwordCheck"]
       setProfile(formValue)

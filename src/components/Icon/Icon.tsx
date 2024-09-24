@@ -1,6 +1,6 @@
-// rightArrow은 나중에 등록
 import Add from "@assets/icon/add.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
+import Avatar from "@assets/icon/avatar.svg?react"
 import ChangeCircle from "@assets/icon/change_circle.svg?react"
 import Check from "@assets/icon/check.svg?react"
 import CircleChecked from "@assets/icon/circle_checked.svg?react"
@@ -10,6 +10,7 @@ import CircleFill from "@assets/icon/circle_fill.svg?react"
 import Close from "@assets/icon/close.svg?react"
 import CloseRound from "@assets/icon/close_round.svg?react"
 import DownArrow from "@assets/icon/down_arrow.svg?react"
+import DownArrowGray from "@assets/icon/downarrow.svg?react"
 import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
 import LeftArrow from "@assets/icon/left_arrow.svg?react"
@@ -30,6 +31,7 @@ import SearchRound from "@assets/icon/search_round.svg?react"
 import Star from "@assets/icon/star.svg?react"
 import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
+import LoadingBackground from "@assets/images/loadingbackground.svg?react"
 
 export const ICON_MAP = {
   Add,
@@ -63,6 +65,9 @@ export const ICON_MAP = {
   LeftArrowWhite,
   LeftArrowGrey,
   RightArrowWhite,
+  Avatar,
+  DownArrowGray,
+  LoadingBackground,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

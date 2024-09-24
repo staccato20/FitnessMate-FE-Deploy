@@ -7,7 +7,7 @@ import Input from "@components/Input/Input"
 
 import authAPI from "@apis/domain/auth"
 
-import { LOGIN_INPUTS } from "@pages/Signup/LOGIN_INPUTS"
+import { LOGIN_INPUTS } from "@pages/Login/constants/Constants"
 
 import { formAdapter } from "@utils/formAdapter"
 
