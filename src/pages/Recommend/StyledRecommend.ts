@@ -9,14 +9,12 @@ export const RecommendAllWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   background: ${theme.Netural200};
-  background-attachment: fixed;
-  background-size: cover;
 `
 
 export const RecommendWrapper = styled.div`
   max-width: 752px;
   margin: 0 auto;
-  padding-top: 46px;
+  padding-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,7 +140,7 @@ export const ResultList = styled.div`
   width: 100%;
   padding: 10px;
   gap: 12px;
-  max-height: calc(100vh - 300px);
+  padding-bottom: 100px;
 `
 
 export const BodyPartWrapper = styled.div`
