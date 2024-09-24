@@ -19,7 +19,7 @@ export const SearchContainer = styled.div`
       flex-direction: column;
       gap: 24px;
       padding: 20px 0;
-      border-bottom: 1px solid ${theme.Gray20};
+      border-bottom: 1px solid ${theme.Netural200};
       .searchTitleTextWrapper {
         display: flex;
         flex-direction: column;
@@ -27,13 +27,13 @@ export const SearchContainer = styled.div`
 
         .searchTitle1 {
           text-align: center;
-          color: ${theme.Gray50};
+          color: ${theme.Netural100};
           font-size: 24px;
           font-weight: 700;
         }
         .searchTitle2 {
           text-align: center;
-          color: ${theme.Black};
+          color: ${theme.Netural990};
           font-size: 38px;
           font-weight: 700;
         }
@@ -61,11 +61,11 @@ export const SearchContainer = styled.div`
       gap: 10px;
       padding: 10px;
       .backBtnText {
-        color: ${theme.BrandNon};
+        color: ${theme.Brand200};
         font-size: 24px;
       }
       .nextBtnText {
-        color: ${theme.Brand};
+        color: ${theme.Brand600};
         font-size: 24px;
       }
     }
@@ -121,10 +121,10 @@ export const Filter = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background: ${theme.Gray10};
+    background: ${theme.Netural100};
 
     .searchBarFilterText {
-      color: ${theme.Gray80};
+      color: ${theme.Netural800};
       text-align: center;
       font-size: 18px;
       font-weight: 500;
@@ -157,8 +157,8 @@ export const Filter = styled.div`
         align-items: center;
         padding: 4px 8px;
         border-radius: 4px;
-        background: ${theme.Gray20};
-        color: ${theme.Gray80};
+        background: ${theme.Netural200};
+        color: ${theme.Netural800};
         font-size: 18px;
         font-weight: 500;
       }
@@ -175,8 +175,8 @@ export const Filter = styled.div`
     padding: 19px 18px;
     gap: 12px;
     border-radius: 10px;
-    border: 1px solid ${theme.Gray20};
-    background: ${theme.White};
+    border: 1px solid ${theme.Netural200};
+    background: ${theme.Netural0};
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.25);
     z-index: 900;
   }
@@ -190,9 +190,9 @@ export const Filter = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    color: ${theme.Gray80};
-    border: 1px solid ${theme.Gray30};
-    background: ${theme.Gray10};
+    color: ${theme.Netural800};
+    border: 1px solid "#e4e7eb";
+    background: ${theme.Netural100};
     border-radius: 4px;
     font-size: 18px;
     font-weight: 500;
@@ -204,8 +204,8 @@ export const Filter = styled.div`
     }
   }
   .searchFilterModalContent.active {
-    background: ${theme.Gray20};
-    color: ${theme.Gray30};
+    background: ${theme.Netural200};
+    color: "#e4e7eb";
   }
 
   .searchFilterModalContent.active img {

@@ -7,8 +7,7 @@ import Input from "@components/Input/Input"
 
 import authAPI from "@apis/domain/auth"
 
-import { LOGIN_INPUTS } from "@pages/Signup/LOGIN_INPUTS"
-import { INPUT_STYLE } from "@pages/Signup/constatns/INPUT_STYLE"
+import { LOGIN_INPUTS } from "@pages/Login/constants/Constants"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -73,7 +72,6 @@ const Login = () => {
                   validator: LOGIN_INPUTS["userName"],
                   name: "userName",
                 }),
-                ...INPUT_STYLE.PROFILE,
               }}
             />
           </Input>
@@ -86,7 +84,6 @@ const Login = () => {
                   validator: LOGIN_INPUTS["password"],
                   name: "password",
                 }),
-                ...INPUT_STYLE.PROFILE,
               }}
             />
           </Input>

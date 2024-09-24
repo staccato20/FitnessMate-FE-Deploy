@@ -88,7 +88,7 @@ export const HomeContainer = styled.ul`
         gap: 48px;
 
         .thirdTitleText {
-          color: ${theme.Black};
+          color: ${theme.Netural990};
           font-size: 58px;
           font-weight: 600;
           line-height: 130%; /* 75.4px */
@@ -99,7 +99,7 @@ export const HomeContainer = styled.ul`
           gap: 10px;
           display: flex;
           align-items: center;
-          color: ${theme.Brand};
+          color: ${theme.Brand600};
           .myFitnessBtnText {
             font-size: 32px;
             font-weight: 700;
@@ -159,7 +159,7 @@ export const HomeContainer = styled.ul`
         font-size: 52px;
         font-weight: 700;
         letter-spacing: -1.04px;
-        color: ${theme.Black};
+        color: ${theme.Netural990};
         text-align: center;
       }
     }
@@ -177,7 +177,7 @@ export const HomeContainer = styled.ul`
     align-items: center;
     flex-direction: column;
     padding: 206px 0 205px 0;
-    background: ${theme.Gray20};
+    background: ${theme.Netural200};
     max-width: 1920px;
     width: 100%;
 
@@ -191,7 +191,7 @@ export const HomeContainer = styled.ul`
         font-weight: 600;
         line-height: 130%;
         letter-spacing: -0.64px;
-        color: ${theme.Gray50};
+        color: ${theme.Netural100};
         text-align: center;
       }
 
@@ -200,7 +200,7 @@ export const HomeContainer = styled.ul`
         font-weight: 600;
         line-height: 130%; /* 88.4px */
         letter-spacing: -2.04px;
-        color: ${theme.Black};
+        color: ${theme.Netural990};
         text-align: center;
       }
     }
@@ -209,11 +209,11 @@ export const HomeContainer = styled.ul`
       gap: 10px;
       margin: 0 auto;
       padding: 10px;
-      color: ${theme.Brand};
+      color: ${theme.Brand600};
       display: flex;
       align-items: center;
       .searchBtnText {
-        color: ${theme.Brand};
+        color: ${theme.Brand600};
         font-size: 26px;
         font-weight: 600;
         letter-spacing: -0.52px;
@@ -239,8 +239,8 @@ export const ThirdContentTitle = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 62px;
-    color: ${theme.Gray80};
-    background: ${theme.Gray20};
+    color: ${theme.Netural800};
+    background: ${theme.Netural200};
     font-size: 36px;
     font-weight: 600;
     line-height: 130%;
@@ -248,7 +248,7 @@ export const ThirdContentTitle = styled.div`
   }
 
   .thirdContentTitleText {
-    color: ${theme.Black};
+    color: ${theme.Netural990};
     font-size: 42px;
     font-weight: 600;
     line-height: 140%;
@@ -268,7 +268,7 @@ export const FourthBodyItem = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 22px;
-    background: ${theme.BrandLighter};
+    background: ${theme.Brand400};
   }
 
   .itemText {
@@ -278,17 +278,17 @@ export const FourthBodyItem = styled.div`
 
     .itemTextTitle {
       text-align: center;
-      color: ${theme.Black};
+      color: ${theme.Netural990};
       font-size: 40px;
       font-weight: 600;
       letter-spacing: -0.8px;
       padding-bottom: 24px;
-      border-bottom: 2px solid ${theme.Gray30};
+      border-bottom: 2px solid "#e4e7eb";
     }
 
     .itemTextContent {
       font-size: 24px;
-      color: ${theme.Gray70};
+      color: ${theme.Netural800};
       font-weight: 500;
       line-height: 150%;
       letter-spacing: -0.48px;

@@ -1,17 +1,24 @@
-// @ts-nocheck
 import { instance } from "@apis/instance"
 
-const workout = (params) => instance.post(`/api/recommendation/workout`, params)
+import { PostRecommendIdPayload, PostRecommendResponse } from "../../types/type"
 
-const workoutHistory = (params) =>
-  instance.get(`/api/recommendation/workout`, params)
+const workoutId = async (params: PostRecommendIdPayload) => {
+  const { data } = await instance.post<number>(
+    `/api/recommendation/workout`,
+    params,
+  )
+  return data
+}
 
-const workoutHistoryBatch = (workoutRecommendationId: number) =>
-  instance.get(`/api/recommendation/workout/history/${workoutRecommendationId}`)
+const workoutHistory = async (workoutRecommendationId: number) => {
+  const { data } = await instance.get<PostRecommendResponse>(
+    `/api/recommendation/workout/history/${workoutRecommendationId}`,
+  )
+  return data
+}
 
 const recommendAPI = {
-  workout,
+  workoutId,
   workoutHistory,
-  workoutHistoryBatch,
 }
 export default recommendAPI

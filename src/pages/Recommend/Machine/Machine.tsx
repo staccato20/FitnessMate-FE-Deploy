@@ -1,23 +1,35 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
 
-import { DUMMY_MACHINE } from "constants/DUMMY"
 import { useScroll } from "hooks/useScroll"
 
 import Avatar from "@components/Avatar/Avatar"
-import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
+import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
+import useGetMachineList from "@pages/Recommend/hooks/useGetMachineList"
+import { usePostRecommend } from "@pages/Recommend/hooks/usePostRecommend"
+import { usePostRecommendId } from "@pages/Recommend/hooks/usePostRecommendId"
+import { useRecommendStore } from "@pages/Recommend/store"
+
 import * as S from "../StyledRecommend"
 
 const Machine = () => {
-  const [selectedMachines, setSelectedMachines] = useState(
-    Array(DUMMY_MACHINE.length).fill(false),
-  )
+  const { data: machines = [] } = useGetMachineList()
+  const { bodyPart } = useRecommendStore()
+  const postRecommendId = usePostRecommendId()
+  const postRecommend = usePostRecommend()
+
+  const { setResult } = useRecommendStore()
+
+  const [machinesById, setMachinesById] = useState(new Set<number>())
+  const numChecked = machinesById.size
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLDivElement>(null)
@@ -28,27 +40,61 @@ const Machine = () => {
     navigate(-1)
   }
 
-  const handleBodyPart = (machineIdx: number) => {
-    setSelectedMachines((prevSelected) =>
-      prevSelected.map((machine, idx) =>
-        idx === machineIdx ? !machine : machine,
-      ),
-    )
+  const updateSet = (set: Set<number>, id: number) => {
+    const updatedSet = new Set(set)
+
+    if (updatedSet.has(id)) {
+      updatedSet.delete(id)
+    } else {
+      updatedSet.add(id)
+    }
+
+    return updatedSet
   }
 
-  const handleNextPage = () => {
-    // 추천 시작하기 버튼 클릭 처리
+  const handleBodyPart = (id: number) => {
+    setMachinesById((prevSet) => updateSet(prevSet, id))
+  }
+
+  const handleRecommend = () => {
+    const payload = {
+      bodyPartKoreanName: bodyPart,
+      machineKoreanName: [...machinesById].map((id) => machines[id].koreanName),
+    }
+
+    postRecommendId(payload, {
+      onSuccess: (workoutRecommendationId) => {
+        postRecommend.mutate(workoutRecommendationId, {
+          onSuccess: (result) => {
+            setResult(result)
+            navigate("/recommend/result")
+          },
+        })
+      },
+    })
   }
 
   return (
     <>
+      {postRecommend.isPending && (
+        <S.CoverWrapper>
+          <Icon icon="LoadingBackground" />
+          <S.LoadingText>
+            추천을 위한
+            <br /> 분석을 시작했어요
+          </S.LoadingText>
+        </S.CoverWrapper>
+      )}
       <S.RecommendWrapper>
         <S.Status>
           <IconButton
             icon="LeftArrowBold"
             onClick={handleBackPage}
           />
-          <ProgressBar progress={1} />
+          <ProgressBar
+            progress={3}
+            variant="round"
+          />
           <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
             <Avatar />
             <SpeechBubble isIcon={false}>
@@ -74,26 +120,41 @@ const Machine = () => {
           </S.RecommendGuide>
 
           <S.RecommendMachineWrapper>
-            {DUMMY_MACHINE.map(({ koreanName: machine }, machineIdx) => (
+            {machines?.map(({ englishName, koreanName, id }) => (
               <ImgCheckBox
-                key={machine}
+                key={englishName}
                 src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
                 alt="테스트 이미지를 설명"
-                isSelected={selectedMachines[machineIdx]}
-                handleToggle={() => handleBodyPart(machineIdx)}
+                isSelected={machinesById.has(id)}
+                handleToggle={() => handleBodyPart(id)}
                 variant="big">
-                {machine}
+                {koreanName}
               </ImgCheckBox>
             ))}
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
-        <Footer>
+        <Footer flex="space-between">
           <Footer.Text>
-            {selectedMachines.filter((v) => v).length}개
-            <Footer.SubText> 기구 선택됨</Footer.SubText>
+            {numChecked}개<Footer.SubText> 기구 선택됨</Footer.SubText>
           </Footer.Text>
-          <Button onClick={handleNextPage}>추천 시작하기</Button>
+          <RoundButton
+            onClick={handleRecommend}
+            variant="blue"
+            rightIcon="RightArrowWhite"
+            size="big"
+            isPending={postRecommend.isPending}
+            disabled={!numChecked}>
+            {postRecommend.isPending ? (
+              <BeatLoader
+                size="7"
+                color="#DDEAF4"
+                margin={6}
+              />
+            ) : (
+              "바로 추천받기"
+            )}
+          </RoundButton>
         </Footer>
       </S.RecommendWrapper>
     </>

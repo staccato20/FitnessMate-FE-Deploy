@@ -14,7 +14,7 @@ export const SpeechBubbleWrapper = styled.div<{
   justify-content: center;
   align-items: center;
   border-radius: 66px;
-  border: 1px solid ${theme.Netural800};
+  border: 1px solid ${theme.Netural400};
   background: ${theme.Netural0};
   border-collapse: collapse;
   .tooltip {

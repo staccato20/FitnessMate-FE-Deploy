@@ -20,7 +20,7 @@ export const BeforeButton = styled.button`
   span {
     font-size: 20px;
     font-weight: 700;
-    color: ${theme.Brand};
+    color: ${theme.Brand600};
   }
 `
 
@@ -31,14 +31,14 @@ export const TopContainer = styled.div`
   margin-bottom: 24px;
 
   button {
-    background: ${theme.Brand};
+    background: ${theme.Brand600};
     border-radius: 36px;
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.32px;
     margin-top: -1px;
-    color: ${theme.White};
+    color: ${theme.Netural0};
 
     &:hover {
       opacity: 0.5;
@@ -56,7 +56,7 @@ export const WorkoutName = styled.div`
   font-size: 40px;
   font-weight: 700;
   letter-spacing: -0.8px;
-  color: ${theme.Black};
+  color: ${theme.Netural990};
 `
 
 export const MiddleContainer = styled.div`
@@ -66,7 +66,7 @@ export const MiddleContainer = styled.div`
 
   img {
     border-radius: 12px;
-    border: 1px solid ${theme.Gray30};
+    border: 1px solid "#e4e7eb";
     height: 226px;
     width: 327px;
   }
@@ -76,7 +76,7 @@ export const InformationContainer = styled.div`
   display: flex;
   gap: 38px;
   border-radius: 10px;
-  background: ${theme.Gray10};
+  background: ${theme.Netural100};
   padding: 24px;
   flex-direction: column;
 
@@ -94,7 +94,7 @@ export const InformationContainer = styled.div`
   .description {
     font-size: 15px;
     font-weight: 500;
-    color: ${theme.Gray80};
+    color: ${theme.Netural800};
     letter-spacing: -0.3px;
     line-height: 22.5px;
   }
@@ -116,8 +116,8 @@ export const BodyPartContainer = styled.div`
 
   p {
     padding: 6px 13px;
-    background: ${theme.BrandLight};
-    color: ${theme.Brand};
+    background: ${theme.Brand400};
+    color: ${theme.Brand600};
     font-size: 12px;
     font-weight: 700;
     letter-spacing: -0.24px;

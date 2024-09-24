@@ -8,7 +8,8 @@ export const SearchContainer = styled.div<Props>`
   padding: 14px;
   border-radius: 10px;
   border: 1px solid
-    ${({ theme, isClicked }) => (isClicked ? theme.Gray10 : theme.Gray70)};
+    ${({ theme, isClicked }) =>
+      isClicked ? theme.Netural100 : theme.Netural800};
   display: flex;
   gap: 14px;
   align-items: center;

@@ -11,8 +11,6 @@ import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-import { theme } from "@styles/theme"
-
 interface HeaderProps {
   bodyParts: string
   count?: number
@@ -31,7 +29,7 @@ const Header = ({
     <HeaderWrapper>
       <HeaderTop $visible={visible}>
         <HeaderLeft>
-          <Title variant="big">
+          <Title variant="midB">
             {children}
             <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
           </Title>
@@ -43,8 +41,9 @@ const Header = ({
           <RoundButton
             leftIcon="Add"
             variant="blue"
+            size="small"
             onClick={onClick}>
-            루틴에 추가
+            운동 루틴
           </RoundButton>
         </HeaderRight>
       </HeaderTop>

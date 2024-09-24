@@ -7,9 +7,16 @@ import {
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-const Footer = ({ children }: StrictPropsWithChildren) => {
+interface FooterProps {
+  flex?: string
+}
+
+const Footer = ({
+  children,
+  flex = "flex-end",
+}: StrictPropsWithChildren<FooterProps>) => {
   return (
-    <FooterWrapper>
+    <FooterWrapper $flex={flex}>
       {children}
       <FooterTopLine>{}</FooterTopLine>
     </FooterWrapper>

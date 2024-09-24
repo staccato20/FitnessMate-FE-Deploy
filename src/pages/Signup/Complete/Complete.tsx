@@ -2,9 +2,9 @@
 import { useNavigate } from "react-router-dom"
 
 import Button from "@components/Button/Button"
+import Icon from "@components/Icon/Icon"
 
-// import rightarrow2 from "@assets/images/rightarrow2.svg"
-import { COMPLETE_Nav } from "@pages/Signup/Complete/constants/COMPLETE_NAV"
+import { COMPLETE_Nav } from "@pages/Signup/constants/Constants"
 
 import * as GS from "../StyledSignup"
 import * as S from "./StyledComplete"
@@ -33,10 +33,7 @@ const Complete = () => {
                     <br />
                     <S.CompleteNavItemText>{nav.message}</S.CompleteNavItemText>
                   </S.CompleteNavItemTitle>
-                  <S.CompleteNavItemImg
-                    src={rightarrow2}
-                    alt="회원가입 완료 후 이동 버튼"
-                  />
+                  <Icon icon="RightArrowBig" />
                 </S.CompleteNavItem>
               </S.CompleteNav>
             )

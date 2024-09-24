@@ -12,6 +12,7 @@ export const TabsListWrapper = styled.div`
   gap: 2px;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
 `
 
 export const TabPanelsWrapper = styled.div`

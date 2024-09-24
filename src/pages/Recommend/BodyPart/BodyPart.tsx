@@ -2,13 +2,14 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import Avatar from "@components/Avatar/Avatar"
-import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
-import Tabs from "@components/Tabs/Tabs"
+
+import { useRecommendStore } from "@pages/Recommend/store"
 
 import * as S from "../StyledRecommend"
 
@@ -24,6 +25,10 @@ const BodyPart = () => {
   const [selectedBodyParts, setSelectedBodyParts] = useState(
     Array(bodyPartsLength).fill(false),
   )
+
+  const { setBodyPart } = useRecommendStore()
+
+  const isReady = selectedBodyParts.some((v) => v)
 
   const navigate = useNavigate()
 
@@ -42,10 +47,10 @@ const BodyPart = () => {
   const handleNextPage = () => {
     const bodyParts = selectedBodyParts
       .map((v, idx) =>
-        v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : false,
+        v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : "",
       )
       .filter((v) => v)
-    console.log({ bodyPartKoreanName: bodyParts })
+    setBodyPart(bodyParts)
     navigate("/recommend/machine")
   }
 
@@ -56,7 +61,10 @@ const BodyPart = () => {
           icon="LeftArrowBold"
           onClick={handleBackPage}
         />
-        <ProgressBar progress={1} />
+        <ProgressBar
+          progress={2}
+          variant="round"
+        />
       </S.Status>
       <S.RecommendInner>
         <S.RecommendGuide>
@@ -67,55 +75,46 @@ const BodyPart = () => {
             </SpeechBubble.MainText>
           </SpeechBubble>
         </S.RecommendGuide>
-        <Tabs>
-          <Tabs.TabList>
-            {Object.entries(DUMMY_BODYPART).map(([pos, bodypart], index) => {
-              return (
-                <Tabs.Tab
-                  index={index}
-                  variant="line"
-                  key={index}
-                  count={bodypart.length}>
-                  {pos}
-                </Tabs.Tab>
-              )
-            })}
-          </Tabs.TabList>
-          <Tabs.TabPanels>
-            {Object.entries(DUMMY_BODYPART).map(
-              ([pos, bodyparts], posIndex) => {
-                return (
-                  <Tabs.TabPanel
-                    index={posIndex}
-                    key={pos}>
-                    {bodyparts.map((bodypart, bodyPartIdx) => (
-                      <ImgCheckBox
-                        key={bodypart}
-                        src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                        alt="테스트 이미지를 설명"
-                        isSelected={
-                          selectedBodyParts[posIndex * 6 + bodyPartIdx]
-                        }
-                        handleToggle={() => {
-                          handleBodyPart(posIndex * 6 + bodyPartIdx)
-                        }}
-                        variant="small">
-                        {bodypart}
-                      </ImgCheckBox>
-                    ))}
-                  </Tabs.TabPanel>
-                )
-              },
-            )}
-          </Tabs.TabPanels>
-        </Tabs>
+        <S.BodyPartWrapper>
+          {Object.entries(DUMMY_BODYPART).map(([pos, bodyparts], posIndex) => {
+            return (
+              <S.TabWrapper key={pos}>
+                <S.TabTitle>{pos}</S.TabTitle>
+                <S.TabList>
+                  {bodyparts.map((bodypart, bodyPartIndex) => (
+                    <ImgCheckBox
+                      key={bodypart}
+                      src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
+                      alt="테스트 이미지"
+                      handleToggle={() => {
+                        handleBodyPart(posIndex * 6 + bodyPartIndex)
+                      }}
+                      isSelected={
+                        selectedBodyParts[posIndex * 6 + bodyPartIndex]
+                      }
+                      variant="small">
+                      {bodypart}
+                    </ImgCheckBox>
+                  ))}
+                </S.TabList>
+              </S.TabWrapper>
+            )
+          })}
+        </S.BodyPartWrapper>
       </S.RecommendInner>
-      <Footer>
+      <Footer flex="space-between">
         <Footer.Text>
           {selectedBodyParts.filter((v) => v).length}개
           <Footer.SubText> 부위 선택됨</Footer.SubText>
         </Footer.Text>
-        <Button onClick={handleNextPage}>다음</Button>
+        <RoundButton
+          onClick={handleNextPage}
+          variant="black"
+          size="big"
+          rightIcon="RightArrowWhite"
+          disabled={!isReady}>
+          다음
+        </RoundButton>
       </Footer>
     </S.RecommendWrapper>
   )

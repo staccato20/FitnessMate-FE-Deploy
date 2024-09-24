@@ -19,7 +19,7 @@ export const NoSearchWrapper = styled.div`
       lightgray -72.809px -46.148px / 188.979% 160.165% no-repeat;
   }
   .warningText {
-    color: ${theme.Gray80};
+    color: ${theme.Netural900};
     text-align: center;
     font-size: 17px;
     font-weight: 700;

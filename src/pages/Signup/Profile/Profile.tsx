@@ -1,17 +1,17 @@
+// @ts-nocheck
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
-import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
+import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 import { useSignupStore } from "@pages/Signup/stores/store"
 
 import * as S from "../StyledSignup"
 import ProfileForm from "./components/ProfileForm"
 
 const Profile = () => {
-  // @ts-ignore
   const { setProfile } = useSignupStore()
   const navigate = useNavigate()
   const methods = useForm({
@@ -35,7 +35,10 @@ const Profile = () => {
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileForm methods={methods} />
-      <SignupButton $isValid={formState.isValid} />
+      <SignupButton
+        $isValid={formState.isValid}
+        nextUrl="bodyinfo"
+      />
     </S.SignupForm>
   )
 }

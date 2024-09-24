@@ -1,12 +1,22 @@
 // @ts-nocheck
 import Input from "@components/Input/Input"
 
-import { SIGNUP_INPUTS } from "@pages/Signup/SIGNUP_INPUTS"
-import { INPUT_STYLE } from "@pages/Signup/constatns/INPUT_STYLE"
+import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
+
+import theme from "@styles/theme"
 
 import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "../StyledProfile"
+
+const INPUT_STYLE = {
+  PROFILE: { background: `${theme.Netural100}` },
+  FIGURE: {
+    background: `${theme.Netural0}`,
+    width: "70px",
+    border: "1px solid #A2B2C2",
+  },
+}
 
 const ProfileForm = ({
   methods: { register, formState, trigger, getValues },
@@ -51,6 +61,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.birthDate,
               $isError: formState.errors.birthDate,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
@@ -70,6 +81,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.loginEmail,
               $isError: formState.errors.loginEmail,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
@@ -96,6 +108,7 @@ const ProfileForm = ({
                 }
               },
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.password?.message}</Input.Error>
@@ -125,6 +138,7 @@ const ProfileForm = ({
               $isDirty: formState.dirtyFields.passwordCheck,
               $isError: formState.errors.passwordCheck,
             }),
+            ...INPUT_STYLE.PROFILE,
           }}
         />
         <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>

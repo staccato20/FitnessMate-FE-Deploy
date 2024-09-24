@@ -7,13 +7,12 @@ import theme from "@styles/theme"
 export const NavbarContainer = styled.div<{ $isHome: boolean }>`
   position: sticky;
   top: 0;
-  max-width: 1920px;
   width: 100%;
   z-index: 999;
   height: 64px;
   display: flex;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0px calc(50% - 720px);
   justify-content: space-between;
   align-items: center;
   background-color: ${({ $isHome }) =>

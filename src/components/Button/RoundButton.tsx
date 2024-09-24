@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes, ReactNode } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
@@ -8,6 +8,8 @@ import { IconPropsType } from "@components/Icon/Icon"
 import theme, { fonts } from "@styles/theme"
 
 export type Variant = "black" | "blue" | "grey"
+
+export type Size = "big" | "small"
 
 const VARIANTS = {
   black: css`
@@ -36,36 +38,60 @@ const VARIANTS = {
     }
   `,
 }
+
+const SIZE = {
+  big: css`
+    padding: 14px 20px 14px 24px;
+    ${fonts.b2};
+    gap: 8px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  `,
+  small: css`
+    padding: 10px 16px 10px 12px;
+    ${fonts.b7};
+    gap: 4px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  `,
+}
+
 export const StyledRoundButton = styled.button<{
   $variantStyle: Interpolation<object>
+  $sizeStyle: Interpolation<object>
   $variant: Interpolation<object>
 }>`
-  ${(p) => p.$variantStyle}
+  ${({ $variantStyle }) => $variantStyle};
+  ${({ $sizeStyle }) => $sizeStyle};
   display: inline-flex;
-  gap: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
   border: none;
-  padding: 14px 20px;
   border-radius: 56px;
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  ${fonts.b2}
   &:disabled {
     cursor: default;
   }
+  font-weight: 500;
 `
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   variant?: Variant
-  children: string
+  children: ReactNode
   onClick?: (e: React.MouseEvent) => void
   leftIcon?: IconPropsType["icon"]
   rightIcon?: IconPropsType["icon"]
+  size?: Size
+  isPending?: boolean
 }
 const RoundButton = ({
   disabled = false,
@@ -74,19 +100,23 @@ const RoundButton = ({
   onClick,
   leftIcon,
   rightIcon,
+  isPending = false,
+  size = "big",
   ...props
 }: ButtonProps) => {
   const variantStyle = VARIANTS[variant]
+  const sizeStyle = SIZE[size]
   return (
     <StyledRoundButton
       disabled={disabled}
       $variantStyle={variantStyle}
+      $sizeStyle={sizeStyle}
       $variant={variant}
       onClick={onClick}
       {...props}>
-      {leftIcon && <Icon icon={leftIcon} />}
+      {leftIcon && !isPending && <Icon icon={leftIcon} />}
       {children}
-      {rightIcon && <Icon icon={rightIcon} />}
+      {rightIcon && !isPending && <Icon icon={rightIcon} />}
     </StyledRoundButton>
   )
 }

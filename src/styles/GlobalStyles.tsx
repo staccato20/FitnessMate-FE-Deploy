@@ -1,8 +1,11 @@
+import { usePathStore } from "@store/usePathStore"
 import reset from "styled-reset"
 
 import { createGlobalStyle } from "styled-components"
 
-const GlobalStyles = createGlobalStyle`
+import { theme } from "@styles/theme"
+
+const GlobalStyle = createGlobalStyle<{ $isRecommendPage: boolean }>`
 ${reset}
     // 적용시킬 css 입력
     a{
@@ -30,8 +33,9 @@ ${reset}
         width:100%;
         height:100vh;
         overflow-x:hidden;
-        line-height: 1;
-        background-color: white; 
+        line-height: 1;    
+        background:${({ $isRecommendPage }) => ($isRecommendPage ? theme.Netural200 : theme.Netural0)}
+        
     }
 
     ol, ul{
@@ -63,5 +67,11 @@ ${reset}
         max-width:100%;
     }
 `
+
+const GlobalStyles = () => {
+  const { isRecommendPage } = usePathStore()
+
+  return <GlobalStyle $isRecommendPage={isRecommendPage} />
+}
 
 export default GlobalStyles
