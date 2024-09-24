@@ -31,6 +31,7 @@ import SearchRound from "@assets/icon/search_round.svg?react"
 import Star from "@assets/icon/star.svg?react"
 import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
+import LoadingBackground from "@assets/images/loadingbackground.svg?react"
 
 export const ICON_MAP = {
   Add,
@@ -66,6 +67,7 @@ export const ICON_MAP = {
   RightArrowWhite,
   Avatar,
   DownArrowGray,
+  LoadingBackground,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

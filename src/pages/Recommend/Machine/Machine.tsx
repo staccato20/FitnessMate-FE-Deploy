@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
 
 import { useScroll } from "hooks/useScroll"
 
@@ -7,6 +8,7 @@ import Avatar from "@components/Avatar/Avatar"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
+import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -23,6 +25,7 @@ const Machine = () => {
   const { bodyPart } = useRecommendStore()
   const postRecommendId = usePostRecommendId()
   const postRecommend = usePostRecommend()
+
   const { setResult } = useRecommendStore()
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
@@ -61,7 +64,7 @@ const Machine = () => {
 
     postRecommendId(payload, {
       onSuccess: (workoutRecommendationId) => {
-        postRecommend(workoutRecommendationId, {
+        postRecommend.mutate(workoutRecommendationId, {
           onSuccess: (result) => {
             setResult(result)
             navigate("/recommend/result")
@@ -73,6 +76,11 @@ const Machine = () => {
 
   return (
     <>
+      {postRecommend.isPending && (
+        <S.CoverWrapper>
+          <Icon icon="LoadingBackground" />
+        </S.CoverWrapper>
+      )}
       <S.RecommendWrapper>
         <S.Status>
           <IconButton
@@ -131,8 +139,17 @@ const Machine = () => {
             variant="blue"
             rightIcon="RightArrowWhite"
             size="big"
+            isPending={postRecommend.isPending}
             disabled={!numChecked}>
-            추천 시작하기
+            {postRecommend.isPending ? (
+              <BeatLoader
+                size="7"
+                color="#DDEAF4"
+                margin={6}
+              />
+            ) : (
+              "바로 추천받기"
+            )}
           </RoundButton>
         </Footer>
       </S.RecommendWrapper>

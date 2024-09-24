@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes, ReactNode } from "react"
 
 import styled, { Interpolation, css } from "styled-components"
 
@@ -86,11 +86,12 @@ export const StyledRoundButton = styled.button<{
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   variant?: Variant
-  children: string
+  children: ReactNode
   onClick?: (e: React.MouseEvent) => void
   leftIcon?: IconPropsType["icon"]
   rightIcon?: IconPropsType["icon"]
   size?: Size
+  isPending?: boolean
 }
 const RoundButton = ({
   disabled = false,
@@ -99,6 +100,7 @@ const RoundButton = ({
   onClick,
   leftIcon,
   rightIcon,
+  isPending = false,
   size = "big",
   ...props
 }: ButtonProps) => {
@@ -112,9 +114,9 @@ const RoundButton = ({
       $variant={variant}
       onClick={onClick}
       {...props}>
-      {leftIcon && <Icon icon={leftIcon} />}
+      {leftIcon && !isPending && <Icon icon={leftIcon} />}
       {children}
-      {rightIcon && <Icon icon={rightIcon} />}
+      {rightIcon && !isPending && <Icon icon={rightIcon} />}
     </StyledRoundButton>
   )
 }
