@@ -10,6 +10,7 @@ export const StyledButton = styled.button<{
   ${({ $variantStyle }) => $variantStyle};
   display: inline-flex;
   gap: 10px;
+  height: fit-content;
   justify-content: center;
   align-items: center;
   border: none;

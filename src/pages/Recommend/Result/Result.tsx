@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 import Accordion from "@components/Accordion/Accordion"
+import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import Title from "@components/Title/Title"
 
@@ -32,6 +33,12 @@ const Result = () => {
               </Title.SubBottomTitle>
             </Title>
           </S.TitleContainer>
+          <Button
+            size="lg"
+            variant="text"
+            onClick={handleHomePage}>
+            홈으로
+          </Button>
         </S.TitleWrapper>
 
         <S.ResultList>

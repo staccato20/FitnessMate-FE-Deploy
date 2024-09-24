@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query"
 import recommendAPI from "@apis/domain/recommend"
 
 export const usePostRecommend = () => {
-  const usePostRecommend = useMutation({
+  return useMutation({
     mutationKey: ["usePostRecommendId"],
     mutationFn: async (workoutRecommendationId: number) =>
       recommendAPI.workoutHistory(workoutRecommendationId),
@@ -14,5 +14,4 @@ export const usePostRecommend = () => {
       console.log("에러")
     },
   })
-  return usePostRecommend.mutate
 }

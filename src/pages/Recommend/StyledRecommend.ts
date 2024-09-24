@@ -21,6 +21,22 @@ export const RecommendWrapper = styled.div`
   gap: 34px;
 `
 
+export const CoverWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  svg {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`
+
 export const RecommendInner = styled.div`
   width: 100%;
   display: flex;
@@ -123,7 +139,8 @@ export const ResultWrapper = styled.div`
 export const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 14px;
 `
 
