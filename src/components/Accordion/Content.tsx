@@ -66,7 +66,6 @@ const Content = ({
             <VideoWrapper>
               <YouTube
                 opts={opts}
-                // videoId={videoId}
                 loading="lazy" // iframe 비동기 로딩
               />
             </VideoWrapper>
