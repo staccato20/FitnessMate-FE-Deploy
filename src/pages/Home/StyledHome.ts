@@ -97,13 +97,63 @@ export const SecondText2 = styled(SecondText)`
   }
 `
 
-export const Third = styled.div`
+export const Third = styled.li`
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
   justify-content: center;
+  width: 100vw;
+  background: ${theme.Netural200};
+  height: 950px;
+`
+export const SlideList = styled.ul`
+  display: flex;
+  gap: 24px;
+  align-items: center;
 `
 
-export const SlideListWrapper = styled.div`
+export const SlideTextWrapper = styled.div``
+
+export const Title = styled.span`
+  ${fonts.h1};
+  font-size: 47px;
+  position: absolute;
+  top: 62px;
+  left: 70px;
+`
+
+export const Slide = styled.li`
+  overflow: hidden;
+  width: 1118px;
+  height: 602px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 32px;
+  border: 1px solid var(--Gray-40, #b0b8c1);
+  background: #f9fafc;
+  position: relative;
+  button {
+    position: absolute;
+    bottom: 58px;
+    left: 58px;
+  }
+`
+
+export const SlideImg = styled.img`
+  object-fit: contain;
+  position: absolute;
+  top: 57px;
+  right: -190px;
+  width: 927px;
+  height: 537px;
+`
+
+export const SlideWrapper = styled.div``
+
+export const TabListWrapper = styled.div`
   position: relative;
   background-color: #e2e3eb;
   border-radius: 48px;
@@ -112,36 +162,33 @@ export const SlideListWrapper = styled.div`
   width: 370px;
 `
 
-export const SlideList = styled.ul`
+export const TabList = styled.ul`
   display: flex;
-  gap: 4px;
   width: 100%;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `
 
-export const SlideButton = styled.button`
-  position: relative;
-  z-index: 2;
-  padding: 10px 16px 10px 12px;
-  ${fonts.b1};
+export const TabButton = styled.button`
+  z-index: 1;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
-
+  ${fonts.b1};
   &.active {
-    color: white;
+    color: ${theme.Netural0};
   }
 `
 
-export const SliderBackground = styled(motion.div)`
+export const TabBackground = styled(motion.div)`
   position: absolute;
   top: 5px;
-  left: 15px;
+  left: 10px;
   width: calc((100% / 3) - 5px);
   height: calc(100% - 10px);
   background-color: #191f28;
-  border-radius: 20px;
+  border-radius: 42px;
   display: flex;
   align-items: center;
 `

@@ -2,20 +2,19 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
-import { motion } from "framer-motion"
 import { useUserInfo } from "hooks/query/useUserInfo"
 
 import Button from "@components/Button/Button"
-import RoundButton from "@components/Button/RoundButton"
 import Icon from "@components/Icon/Icon"
 import LoginModal from "@components/Modal/LoginModal"
 
-// import arrow from "@assets/images/arrow.svg"
 import fourthFirstImg from "@assets/images/fourthFirstImg.png"
 import fourthThirdImg from "@assets/images/fourthThirdImg.png"
 import homebanner from "@assets/images/homebanner.png"
-import thirdSecondImg from "@assets/images/thirdSecondImg.png"
-import thirdThirdImg from "@assets/images/thirdThirdImg.png"
+import slide2 from "@assets/images/slide2.png"
+import slide from "@assets/images/slide.png"
+
+import { Title } from "@pages/Login/StyledLogin"
 
 import * as S from "./StyledHome"
 
@@ -100,23 +99,51 @@ export const Home = () => {
         </Link>
       </S.Second>
       <S.Third>
-        <S.SlideListWrapper>
-          <S.SliderBackground
+        <S.SlideList>
+          <S.Slide>
+            <S.Title>
+              추천을 위한
+              <br />
+              예리한 질문들
+            </S.Title>
+            <Button size="lg">추천 받기</Button>
+
+            <S.SlideImg
+              src={slide2}
+              alt="슬라이드 이미지"
+            />
+          </S.Slide>
+
+          <S.Slide>
+            <S.Title>
+              루틴도
+              <br />한 번에 관리하세요
+            </S.Title>
+            <Button size="lg">루틴 관리</Button>
+
+            <S.SlideImg
+              src={slide}
+              alt="슬라이드 이미지"
+            />
+          </S.Slide>
+        </S.SlideList>
+        <S.TabListWrapper>
+          <S.TabBackground
             initial={false}
-            animate={{ x: selectedSlideNum * 93 + "%" }}
-            transition={{ type: "tween", duration: 0.2 }}></S.SliderBackground>
-          <S.SlideList>
+            animate={{ x: selectedSlideNum * 100 + "%" }}
+            transition={{ type: "tween", duration: 0.2 }}></S.TabBackground>
+          <S.TabList>
             {TABS.map(({ title, id }) => (
-              <S.SlideButton
+              <S.TabButton
                 key={id}
                 onClick={() => handleSlideNum(id)}
                 className={selectedSlideNum === id ? "active" : ""}>
                 {selectedSlideNum === id && <Icon icon="CircleEmptyBlue" />}
                 {title}
-              </S.SlideButton>
+              </S.TabButton>
             ))}
-          </S.SlideList>
-        </S.SlideListWrapper>
+          </S.TabList>
+        </S.TabListWrapper>
       </S.Third>
       <S.HomeContent>
         <section
