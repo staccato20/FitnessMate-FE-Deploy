@@ -1,4 +1,6 @@
 // < 홈 스타일 >
+import { motion } from "framer-motion"
+
 import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
@@ -93,6 +95,55 @@ export const SecondText2 = styled(SecondText)`
     right: 0px;
     bottom: 0px;
   }
+`
+
+export const Third = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+`
+
+export const SlideListWrapper = styled.div`
+  position: relative;
+  background-color: #e2e3eb;
+  border-radius: 48px;
+  overflow: hidden;
+  padding: 5px;
+  width: 370px;
+`
+
+export const SlideList = styled.ul`
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+export const SlideButton = styled.button`
+  position: relative;
+  z-index: 2;
+  padding: 10px 16px 10px 12px;
+  ${fonts.b1};
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.active {
+    color: white;
+  }
+`
+
+export const SliderBackground = styled(motion.div)`
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  width: calc((100% / 3) - 5px);
+  height: calc(100% - 10px);
+  background-color: #191f28;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
 `
 
 export const HomeContainer = styled.ul`

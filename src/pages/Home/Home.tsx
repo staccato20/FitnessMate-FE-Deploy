@@ -2,8 +2,11 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
+import { motion } from "framer-motion"
 import { useUserInfo } from "hooks/query/useUserInfo"
 
+import Button from "@components/Button/Button"
+import RoundButton from "@components/Button/RoundButton"
 import Icon from "@components/Icon/Icon"
 import LoginModal from "@components/Modal/LoginModal"
 
@@ -16,10 +19,32 @@ import thirdThirdImg from "@assets/images/thirdThirdImg.png"
 
 import * as S from "./StyledHome"
 
+const TABS = [
+  {
+    title: "추천 받고",
+    id: 0,
+  },
+  {
+    title: "결과 보고",
+    id: 1,
+  },
+  {
+    title: "루틴 까지",
+    id: 2,
+  },
+]
+
 export const Home = () => {
   const navigate = useNavigate()
   const { data } = useUserInfo()
   const loginState = data ? true : false
+  const [selectedSlideNum, setSelectedSlideNum] = useState(0)
+
+  const handleSlideNum = (idx: number) => {
+    setSelectedSlideNum(idx)
+  }
+
+  console.log(setSelectedSlideNum)
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
@@ -27,21 +52,21 @@ export const Home = () => {
     navigate("search/1")
   }
 
-  const handleRecommend = () => {
-    if (loginState) {
-      navigate("recommend/prolog")
-    } else {
-      setIsLoginModal(true)
-    }
-  }
+  // const handleRecommend = () => {
+  //   if (loginState) {
+  //     navigate("recommend/prolog")
+  //   } else {
+  //     setIsLoginModal(true)
+  //   }
+  // }
 
-  const handleMyPage = () => {
-    if (loginState) {
-      navigate("mypage")
-    } else {
-      setIsLoginModal(true)
-    }
-  }
+  // const handleMyPage = () => {
+  //   if (loginState) {
+  //     navigate("mypage")
+  //   } else {
+  //     setIsLoginModal(true)
+  //   }
+  // }
 
   return (
     <S.HomeContainer>
@@ -74,67 +99,25 @@ export const Home = () => {
           </S.SecondButtonWrapper>
         </Link>
       </S.Second>
-
-      <S.HomeContent>
-        <section className="thirdContent">
-          <div className="thirdHeader">
-            <div className="thirdTitle">
-              <span className="thirdTitleText">
-                3단계면 끝나는
-                <br />내 운동 루틴 관리
-              </span>
-              <button
-                className="myFitnessBtn"
-                onClick={handleMyPage}>
-                <span className="myFitnessBtnText">내 운동 바로 가기</span>
-                <img
-                  className="myFitnessBtnImg"
-                  // src={arrow}
-                  alt="보조제 추천 바로 받기 버튼"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="thirdBody">
-            <div className="thirdFirstContent">
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">1</div>
-                <div className="thirdContentTitleText">
-                  골격근량, 체지방량을 입력하면
-                </div>
-              </S.ThirdContentTitle>
-              <img
-                className="thirdFirstImg"
-                // src={thirdFirstImg}
-              />
-            </div>
-            <div className="thirdSecondContent">
-              <img src={thirdSecondImg} />
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">2</div>
-                <div className="thirdContentTitleText">
-                  AI가 나에게 딱 맞는 운동과
-                  <br />
-                  최적화된 가이드를 제공해요.
-                </div>
-              </S.ThirdContentTitle>
-            </div>
-            <div className="thirdThirdContent">
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">3</div>
-                <div className="thirdContentTitleText">
-                  추천 운동을
-                  <br />
-                  내 운동 목록에 추가하여
-                  <br />
-                  루틴을 관리해보세요.
-                </div>
-              </S.ThirdContentTitle>
-              <img src={thirdThirdImg} />
-            </div>
-          </div>
-        </section>
-      </S.HomeContent>
+      <S.Third>
+        <S.SlideListWrapper>
+          <S.SliderBackground
+            initial={false}
+            animate={{ x: selectedSlideNum * 93 + "%" }}
+            transition={{ type: "tween", duration: 0.2 }}></S.SliderBackground>
+          <S.SlideList>
+            {TABS.map(({ title, id }) => (
+              <S.SlideButton
+                key={id}
+                onClick={() => handleSlideNum(id)}
+                className={selectedSlideNum === id ? "active" : ""}>
+                {selectedSlideNum === id && <Icon icon="CircleEmptyBlue" />}
+                {title}
+              </S.SlideButton>
+            ))}
+          </S.SlideList>
+        </S.SlideListWrapper>
+      </S.Third>
       <S.HomeContent>
         <section
           className="fourthContent"
