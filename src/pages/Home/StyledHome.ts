@@ -34,9 +34,9 @@ export const HomeBanner = styled.img`
   height: 765px;
 `
 
-export const First = styled.section`
+export const First = styled.li`
   display: flex;
-  width: 90%;
+  width: 100%;
   z-index: 10;
   justify-content: space-between;
   align-items: center;
@@ -48,6 +48,53 @@ export const FirstContainer = styled.div`
   gap: 12px;
 `
 
+export const SecondTextWrapper = styled.div``
+export const Second = styled.li`
+  height: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`
+
+export const SecondButtonWrapper = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 18px 8px 18px;
+  color: ${theme.Brand600};
+  ${fonts.h3};
+  border-radius: 18px;
+  background: ${theme.Netural200};
+  svg {
+    height: 40px;
+  }
+`
+export const SecondText = styled.p`
+  color: ${theme.Netural900};
+  ${fonts.h2};
+  font-weight: 500;
+`
+export const SecondText2 = styled(SecondText)`
+  font-size: 34px;
+  position: relative;
+  font-weight: 600;
+  padding-left: 145px;
+  &::before {
+    content: "";
+    background-image: url("/src/assets/images/logo.png");
+    background-size: 136px 32px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+`
+
 export const HomeContainer = styled.ul`
   width: 100%;
   margin: 0 auto;
@@ -56,19 +103,6 @@ export const HomeContainer = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 36px;
-
-  // 2
-  .secondContent {
-    height: 545px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-size: 44px;
-    font-weight: 600;
-    line-height: 130%; /* 57.2px */
-    letter-spacing: -0.88px;
-    color: ${theme.Netural990};
-  }
 
   // 3
   .thirdContent {

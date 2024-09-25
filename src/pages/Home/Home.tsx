@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-scroll"
 
 import { useUserInfo } from "hooks/query/useUserInfo"
 
-import Button from "@components/Button/Button"
+import Icon from "@components/Icon/Icon"
 import LoginModal from "@components/Modal/LoginModal"
 
 // import arrow from "@assets/images/arrow.svg"
@@ -44,34 +45,36 @@ export const Home = () => {
 
   return (
     <S.HomeContainer>
-      <S.HomeContent>
-        <S.First>
-          <S.FirstContainer>
-            <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
-            <S.FirstTitle>
-              정확하고 빠른
-              <br />
-              개인맞춤 추천
-            </S.FirstTitle>
-            <Button
-              variant="main"
-              onClick={handleRecommend}>
-              바로 추천받기
-            </Button>
-          </S.FirstContainer>
-          <S.HomeBanner
-            src={homebanner}
-            alt="홈 배너"
-          />
-        </S.First>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="secondContent">
-          이제껏 경험하지 못했던
-          <br />
-          운동 코칭 경험, 핏메이트에서 경험해보세요.
-        </section>
-      </S.HomeContent>
+      <S.First>
+        <S.FirstContainer>
+          <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
+          <S.FirstTitle>
+            정확하고 빠른
+            <br />
+            개인맞춤 추천
+          </S.FirstTitle>
+        </S.FirstContainer>
+        <S.HomeBanner
+          src={homebanner}
+          alt="홈 배너"
+        />
+      </S.First>
+      <S.Second>
+        <S.SecondTextWrapper>
+          <S.SecondText>이제껏 경험하지 못했던 운동 코칭 경험</S.SecondText>
+          <S.SecondText2>에서 경험해 보세요</S.SecondText2>
+        </S.SecondTextWrapper>
+        <Link
+          to="link"
+          spy={true}
+          smooth={true}>
+          <S.SecondButtonWrapper>
+            경험하기
+            <Icon icon="DownArrow" />
+          </S.SecondButtonWrapper>
+        </Link>
+      </S.Second>
+
       <S.HomeContent>
         <section className="thirdContent">
           <div className="thirdHeader">
@@ -133,7 +136,9 @@ export const Home = () => {
         </section>
       </S.HomeContent>
       <S.HomeContent>
-        <section className="fourthContent">
+        <section
+          className="fourthContent"
+          name="link">
           <div className="fourthTitle">
             <span className="fourthTitleText">핏메이트,</span>
             <span className="fourthTitleText">이런 서비스도 있어요.</span>
