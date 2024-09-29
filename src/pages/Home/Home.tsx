@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
@@ -13,8 +14,15 @@ import logo from "@assets/images/logo.png"
 import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
 
+import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
+
 import Input from "../../components/Input/Input"
+import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
+
+type Search = {
+  search: string
+}
 
 // const TABS = [
 //   {
@@ -36,10 +44,12 @@ export const Home = () => {
   const { data } = useUserInfo()
   const loginState = data ? true : false
 
+  const { register, handleSubmit } = useForm<Search>()
+
   const [isLoginModal, setIsLoginModal] = useState(false)
 
-  const handleSearch = () => {
-    navigate("search/1")
+  const onSubmit = (data: Search) => {
+    console.log(data)
   }
 
   const handleRecommend = () => {
@@ -151,11 +161,17 @@ export const Home = () => {
             <S.SearchTitle>핏메이트가 다 알려줄게요</S.SearchTitle>
             <S.SearchSubTitle>궁금한 운동을 검색해 보세요!</S.SearchSubTitle>
           </S.SearchTop>
-          <S.SearchKeywordContent>
+          <S.SearchKeywordForm onSubmit={handleSubmit(onSubmit)}>
             <Input>
               <Input.Input
-                type={"search"}
-                props={{}}
+                type="search"
+                props={{
+                  ...formAdapter({
+                    register,
+                    validator: SEARCH_INPUTS["search"],
+                    name: "search",
+                  }),
+                }}
               />
             </Input>
 
@@ -165,7 +181,7 @@ export const Home = () => {
                 {["#데드리프트", "#데드리프트", "#데드리프트", "#데드리프트"]}
               </S.SearchKeywordList>
             </S.SearchKeywordWrapper>
-          </S.SearchKeywordContent>
+          </S.SearchKeywordForm>
         </S.SearchWrapper>
       </S.Fourth>
       <S.Footer>

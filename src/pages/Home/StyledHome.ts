@@ -15,8 +15,8 @@ export const FirstTitle = styled(FirstSubTitle)`
 `
 
 export const HomeBanner = styled.img`
-  width: 766px;
-  height: 765px;
+  max-width: 766px;
+  width: 40%;
 `
 
 export const First = styled.li`
@@ -24,6 +24,8 @@ export const First = styled.li`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  min-height: 800px;
+  padding: 0px 50px;
   &::after {
     z-index: -1;
     position: absolute;
@@ -31,7 +33,7 @@ export const First = styled.li`
     left: 0;
     content: "";
     width: 100vw;
-    height: 861px;
+    height: 888px;
     background: linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);
   }
 `
@@ -44,7 +46,7 @@ export const FirstContainer = styled.div`
 
 export const SecondTextWrapper = styled.div``
 export const Second = styled.li`
-  height: 950px;
+  min-height: 950px;
   display: flex;
   flex-direction: column;
   gap: 200px;
@@ -285,7 +287,7 @@ export const SearchSubTitle = styled.span`
   text-align: center;
 `
 
-export const SearchKeywordContent = styled.div`
+export const SearchKeywordForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
