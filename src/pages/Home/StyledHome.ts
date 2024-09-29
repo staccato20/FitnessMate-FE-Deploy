@@ -194,7 +194,7 @@ export const Fourth = styled.li`
   height: 656px;
 `
 
-export const Footer = styled.li`
+export const Footer = styled.div`
   position: relative;
   width: 100vw;
   height: 589px;
@@ -211,12 +211,12 @@ export const FooterWrapper = styled.div`
     width: 60px;
   }
 `
-export const FooterInfoList = styled.li`
+export const FooterInfoList = styled.div`
   display: flex;
   gap: 133px;
 `
 
-export const HomeContainer = styled.ul`
+export const HomeContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: 1920px;

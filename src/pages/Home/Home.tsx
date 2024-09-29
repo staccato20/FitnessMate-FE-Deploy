@@ -48,8 +48,8 @@ export const Home = () => {
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
-  const onSubmit = (data: Search) => {
-    console.log(data)
+  const handleSearch = (data: Search) => {
+    navigate("searchworkout/1", { state: { keyword: data } })
   }
 
   const handleRecommend = () => {
@@ -161,7 +161,7 @@ export const Home = () => {
             <S.SearchTitle>핏메이트가 다 알려줄게요</S.SearchTitle>
             <S.SearchSubTitle>궁금한 운동을 검색해 보세요!</S.SearchSubTitle>
           </S.SearchTop>
-          <S.SearchKeywordForm onSubmit={handleSubmit(onSubmit)}>
+          <S.SearchKeywordForm onSubmit={handleSubmit(handleSearch)}>
             <Input>
               <Input.Input
                 type="search"
