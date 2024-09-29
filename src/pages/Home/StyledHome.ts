@@ -14,23 +14,6 @@ export const FirstTitle = styled(FirstSubTitle)`
   font-size: 82px;
 `
 
-export const HomeContent = styled.li`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    width: 100vw;
-    height: 861px;
-    background: linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);
-  }
-`
-
 export const HomeBanner = styled.img`
   width: 766px;
   height: 765px;
@@ -39,9 +22,18 @@ export const HomeBanner = styled.img`
 export const First = styled.li`
   display: flex;
   width: 100%;
-  z-index: 10;
   justify-content: space-between;
   align-items: center;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100vw;
+    height: 861px;
+    background: linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);
+  }
 `
 export const FirstContainer = styled.div`
   display: flex;
@@ -106,12 +98,15 @@ export const Third = styled.li`
   justify-content: center;
   width: 100vw;
   background: ${theme.Netural200};
-  height: 950px;
+  min-height: 950px;
+  padding: 50px;
 `
 export const SlideList = styled.ul`
   display: flex;
   gap: 24px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 export const SlideTextWrapper = styled.div``
@@ -146,7 +141,7 @@ export const SlideImg = styled.img`
   object-fit: contain;
   position: absolute;
   top: 57px;
-  right: -190px;
+  right: -110px;
   width: 927px;
   height: 537px;
 `
@@ -159,7 +154,6 @@ export const TabListWrapper = styled.div`
   border-radius: 48px;
   overflow: hidden;
   padding: 5px;
-  width: 370px;
 `
 
 export const TabList = styled.ul`
@@ -185,12 +179,39 @@ export const TabBackground = styled(motion.div)`
   position: absolute;
   top: 5px;
   left: 10px;
-  width: calc((100% / 3) - 5px);
+  width: calc((100% / 2) - 5px);
   height: calc(100% - 10px);
   background-color: #191f28;
   border-radius: 42px;
   display: flex;
   align-items: center;
+`
+
+export const Fourth = styled.li`
+  width: 100%;
+  height: 656px;
+`
+
+export const Footer = styled.li`
+  position: relative;
+  width: 100vw;
+  height: 589px;
+  background: ${theme.Netural200};
+`
+export const FooterWrapper = styled.div`
+  display: flex;
+  position: absolute;
+  top: 112px;
+  left: 10%;
+  flex-direction: column;
+  gap: 35px;
+  img {
+    width: 60px;
+  }
+`
+export const FooterInfoList = styled.li`
+  display: flex;
+  gap: 133px;
 `
 
 export const HomeContainer = styled.ul`
@@ -200,231 +221,93 @@ export const HomeContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 36px;
-
-  // 3
-  .thirdContent {
-    display: flex;
-    padding: 270px 0 311px 0;
-    flex-direction: column;
-    gap: 159px;
-
-    .thirdHeader {
-      padding-left: 43.5px;
-      width: 100%;
-      // justify-self를 flex에서는 지원하지 않는다.
-
-      .thirdTitle {
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
-
-        .thirdTitleText {
-          color: ${theme.Netural990};
-          font-size: 58px;
-          font-weight: 600;
-          line-height: 130%; /* 75.4px */
-          letter-spacing: -1.16px;
-        }
-        .myFitnessBtn {
-          padding: 10px;
-          gap: 10px;
-          display: flex;
-          align-items: center;
-          color: ${theme.Brand600};
-          .myFitnessBtnText {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.64px;
-          }
-          .myFitnessBtnImg {
-            width: 29px;
-            height: 29px;
-          }
-        }
-      }
-    }
-
-    .thirdBody {
-      display: flex;
-      flex-direction: column;
-      gap: 125px;
-
-      .thirdFirstContent {
-        display: flex;
-        gap: 199px;
-        flex-wrap: wrap;
-      }
-
-      .thirdSecondContent {
-        display: flex;
-        gap: 233px;
-        flex-wrap: wrap-reverse;
-      }
-
-      .thirdThirdContent {
-        display: flex;
-        gap: 546px;
-        flex-wrap: wrap;
-      }
-
-      .thirdFirstImg {
-        width: 593px;
-        height: 595px;
-      }
-    }
-  }
-
-  //4
-  .fourthContent {
-    display: flex;
-    padding: 221.5px 335px;
-    flex-direction: column;
-    gap: 138px;
-
-    .fourthTitle {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      .fourthTitleText {
-        font-size: 52px;
-        font-weight: 700;
-        letter-spacing: -1.04px;
-        color: ${theme.Netural990};
-        text-align: center;
-      }
-    }
-
-    .fourthBody {
-      display: flex;
-      gap: 100px;
-    }
-  }
-
-  //5
-  .fifthContent {
-    display: flex;
-    gap: 48px;
-    align-items: center;
-    flex-direction: column;
-    padding: 206px 0 205px 0;
-    background: ${theme.Netural200};
-    max-width: 1920px;
-    width: 100%;
-
-    .fifthTitle {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      .fifthFirstText {
-        font-size: 32px;
-        font-weight: 600;
-        line-height: 130%;
-        letter-spacing: -0.64px;
-        color: ${theme.Netural100};
-        text-align: center;
-      }
-
-      .fifthSecondText {
-        font-size: 68px;
-        font-weight: 600;
-        line-height: 130%; /* 88.4px */
-        letter-spacing: -2.04px;
-        color: ${theme.Netural990};
-        text-align: center;
-      }
-    }
-
-    .searchBtn {
-      gap: 10px;
-      margin: 0 auto;
-      padding: 10px;
-      color: ${theme.Brand600};
-      display: flex;
-      align-items: center;
-      .searchBtnText {
-        color: ${theme.Brand600};
-        font-size: 26px;
-        font-weight: 600;
-        letter-spacing: -0.52px;
-      }
-      .searchBtnImg {
-        width: 29px;
-        height: 29px;
-      }
-    }
-  }
 `
 
-export const ThirdContentTitle = styled.div`
+export const FooterInfoContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 32px;
-
-  .thirdContentTitleNum {
-    display: flex;
-    width: 64px;
-    height: 64px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 62px;
-    color: ${theme.Netural800};
-    background: ${theme.Netural200};
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 130%;
-    letter-spacing: -0.72px;
-  }
-
-  .thirdContentTitleText {
-    color: ${theme.Netural990};
-    font-size: 42px;
-    font-weight: 600;
-    line-height: 140%;
-    letter-spacing: -0.84px;
-  }
+`
+export const FooterInfoContentTitle = styled.div`
+  color: ${theme.Netural990};
+  ${fonts.b7};
+`
+export const FooterInfoContent = styled.div`
+  color: ${theme.Netural800};
+  font-size: 14px;
+  font-weight: 400;
 `
 
-export const FourthBodyItem = styled.div`
+export const FooterInfoContentList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 43px;
+  gap: 18px;
+`
 
-  .itemLogo {
-    display: flex;
-    width: 350px;
-    height: 280px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 22px;
-    background: ${theme.Brand400};
-  }
+export const FooterInfoSubContentWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+`
+export const FooterInfoSubContentTitle = styled.span`
+  color: ${theme.Netural500};
+  font-size: 14px;
+  font-weight: 400;
+`
 
-  .itemText {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+export const SearchWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 79.5px;
+  width: 100%;
+  height: 100%;
+  max-width: 627px;
+  width: 100%;
+  margin: 0 auto;
+`
 
-    .itemTextTitle {
-      text-align: center;
-      color: ${theme.Netural990};
-      font-size: 40px;
-      font-weight: 600;
-      letter-spacing: -0.8px;
-      padding-bottom: 24px;
-      border-bottom: 2px solid "#e4e7eb";
-    }
+export const SearchTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+`
+export const SearchTitle = styled.span`
+  color: ${theme.Brand700};
+  ${fonts.h3};
+  font-weight: 500;
+`
+export const SearchSubTitle = styled.span`
+  color: ${theme.Netural990};
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+`
 
-    .itemTextContent {
-      font-size: 24px;
-      color: ${theme.Netural800};
-      font-weight: 500;
-      line-height: 150%;
-      letter-spacing: -0.48px;
-      text-align: center;
-    }
-  }
+export const SearchKeywordContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+`
+export const SearchKeywordWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  justify-content: space-between;
+`
+
+export const SearchKeywordTitle = styled.span`
+  color: ${theme.Netural600};
+  ${fonts.b4};
+`
+
+export const SearchKeywordList = styled.ul`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 8px;
 `

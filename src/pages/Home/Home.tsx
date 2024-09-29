@@ -8,42 +8,33 @@ import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import LoginModal from "@components/Modal/LoginModal"
 
-import fourthFirstImg from "@assets/images/fourthFirstImg.png"
-import fourthThirdImg from "@assets/images/fourthThirdImg.png"
 import homebanner from "@assets/images/homebanner.png"
+import logo from "@assets/images/logo.png"
 import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
 
-import { Title } from "@pages/Login/StyledLogin"
-
+import Input from "../../components/Input/Input"
 import * as S from "./StyledHome"
 
-const TABS = [
-  {
-    title: "추천 받고",
-    id: 0,
-  },
-  {
-    title: "결과 보고",
-    id: 1,
-  },
-  {
-    title: "루틴 까지",
-    id: 2,
-  },
-]
+// const TABS = [
+//   {
+//     title: "추천 받고",
+//     id: 0,
+//   },
+//   // {
+//   //   title: "결과 보고",
+//   //   id: 1,
+//   // },
+//   {
+//     title: "루틴 까지",
+//     id: 2,
+//   },
+// ]
 
 export const Home = () => {
   const navigate = useNavigate()
   const { data } = useUserInfo()
   const loginState = data ? true : false
-  const [selectedSlideNum, setSelectedSlideNum] = useState(0)
-
-  const handleSlideNum = (idx: number) => {
-    setSelectedSlideNum(idx)
-  }
-
-  console.log(setSelectedSlideNum)
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
@@ -51,21 +42,21 @@ export const Home = () => {
     navigate("search/1")
   }
 
-  // const handleRecommend = () => {
-  //   if (loginState) {
-  //     navigate("recommend/prolog")
-  //   } else {
-  //     setIsLoginModal(true)
-  //   }
-  // }
+  const handleRecommend = () => {
+    if (loginState) {
+      navigate("recommend/prolog")
+    } else {
+      setIsLoginModal(true)
+    }
+  }
 
-  // const handleMyPage = () => {
-  //   if (loginState) {
-  //     navigate("mypage")
-  //   } else {
-  //     setIsLoginModal(true)
-  //   }
-  // }
+  const handleMyPage = () => {
+    if (loginState) {
+      navigate("mypage")
+    } else {
+      setIsLoginModal(true)
+    }
+  }
 
   return (
     <S.HomeContainer>
@@ -106,7 +97,11 @@ export const Home = () => {
               <br />
               예리한 질문들
             </S.Title>
-            <Button size="lg">추천 받기</Button>
+            <Button
+              size="lg"
+              onClick={handleRecommend}>
+              추천 받기
+            </Button>
 
             <S.SlideImg
               src={slide2}
@@ -119,7 +114,11 @@ export const Home = () => {
               루틴도
               <br />한 번에 관리하세요
             </S.Title>
-            <Button size="lg">루틴 관리</Button>
+            <Button
+              size="lg"
+              onClick={handleMyPage}>
+              루틴 관리
+            </Button>
 
             <S.SlideImg
               src={slide}
@@ -127,10 +126,11 @@ export const Home = () => {
             />
           </S.Slide>
         </S.SlideList>
-        <S.TabListWrapper>
+
+        {/* <S.TabListWrapper>
           <S.TabBackground
             initial={false}
-            animate={{ x: selectedSlideNum * 100 + "%" }}
+            animate={{ x: selectedSlideNum * 45 + "%" }}
             transition={{ type: "tween", duration: 0.2 }}></S.TabBackground>
           <S.TabList>
             {TABS.map(({ title, id }) => (
@@ -143,64 +143,69 @@ export const Home = () => {
               </S.TabButton>
             ))}
           </S.TabList>
-        </S.TabListWrapper>
+        </S.TabListWrapper>  */}
       </S.Third>
-      <S.HomeContent>
-        <section
-          className="fourthContent"
-          name="link">
-          <div className="fourthTitle">
-            <span className="fourthTitleText">핏메이트,</span>
-            <span className="fourthTitleText">이런 서비스도 있어요.</span>
-          </div>
-          <div className="fourthBody">
-            <S.FourthBodyItem>
-              <div className="itemLogo">
-                <img src={fourthFirstImg} />
-              </div>
-              <div className="itemText">
-                <span className="itemTextTitle">운동 가이드 영상</span>
-                <p className="itemTextContent">
-                  정확한 운동 자세, 방법 등
-                  <br />
-                  운동 강의 영상을 제공해요.
-                </p>
-              </div>
-            </S.FourthBodyItem>
-            <S.FourthBodyItem>
-              <div className="itemLogo">
-                <img src={fourthThirdImg} />
-              </div>
-              <div className="itemText">
-                <span className="itemTextTitle">개인 맞춤형 가이드</span>
-                <p className="itemTextContent">
-                  개인 맞춤형
-                  <br />
-                  운동량 수정이 가능해요.
-                </p>
-              </div>
-            </S.FourthBodyItem>
-          </div>
-        </section>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="fifthContent">
-          <div className="fifthTitle">
-            <p className="fifthFirstText">모든 정보가 한 눈에</p>
-            <span className="fifthSecondText">운동, 보조제 정보 검색</span>
-          </div>
-          <button
-            className="searchBtn"
-            onClick={handleSearch}>
-            <span className="searchBtnText">검색 바로 가기</span>
-            <img
-              className="searchBtnImg"
-              // src={arrow}
-              alt="검색 바로 가기 버튼"
-            />
-          </button>
-        </section>
-      </S.HomeContent>
+      <S.Fourth>
+        <S.SearchWrapper>
+          <S.SearchTop>
+            <S.SearchTitle>핏메이트가 다 알려줄게요</S.SearchTitle>
+            <S.SearchSubTitle>궁금한 운동을 검색해 보세요!</S.SearchSubTitle>
+          </S.SearchTop>
+          <S.SearchKeywordContent>
+            <Input>
+              <Input.Input
+                type={"search"}
+                props={{}}
+              />
+            </Input>
+
+            <S.SearchKeywordWrapper>
+              <S.SearchKeywordTitle>인기 검색 키워드</S.SearchKeywordTitle>
+              <S.SearchKeywordList>
+                {["#데드리프트", "#데드리프트", "#데드리프트", "#데드리프트"]}
+              </S.SearchKeywordList>
+            </S.SearchKeywordWrapper>
+          </S.SearchKeywordContent>
+        </S.SearchWrapper>
+      </S.Fourth>
+      <S.Footer>
+        <S.FooterWrapper>
+          <img src={logo} />
+          <S.FooterInfoList>
+            <S.FooterInfoContentWrapper>
+              <S.FooterInfoContentList>
+                <S.FooterInfoContentTitle>개발</S.FooterInfoContentTitle>
+                <S.FooterInfoContent>이찬하</S.FooterInfoContent>
+                <S.FooterInfoContent>정지성</S.FooterInfoContent>
+                <S.FooterInfoContent>강민정</S.FooterInfoContent>
+                <S.FooterInfoContent>최훈오</S.FooterInfoContent>
+              </S.FooterInfoContentList>
+              <S.FooterInfoContentList>
+                <S.FooterInfoContentTitle>디자인</S.FooterInfoContentTitle>
+                <S.FooterInfoContent>김정욱</S.FooterInfoContent>
+                <S.FooterInfoContent>최시현</S.FooterInfoContent>
+              </S.FooterInfoContentList>
+            </S.FooterInfoContentWrapper>
+            <S.FooterInfoContentList>
+              <S.FooterInfoContentTitle>서비스</S.FooterInfoContentTitle>
+              <S.FooterInfoContent>검색하기</S.FooterInfoContent>
+              <S.FooterInfoContent>추천받기</S.FooterInfoContent>
+              <S.FooterInfoContent>내 운동</S.FooterInfoContent>
+            </S.FooterInfoContentList>
+            <S.FooterInfoContentList>
+              <S.FooterInfoContentTitle>문의</S.FooterInfoContentTitle>
+              <S.FooterInfoSubContentWrapper>
+                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
+                <S.FooterInfoContent>010-8544-1013</S.FooterInfoContent>
+              </S.FooterInfoSubContentWrapper>
+              <S.FooterInfoSubContentWrapper>
+                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
+                <S.FooterInfoContent>jeuk1013@naver.com</S.FooterInfoContent>
+              </S.FooterInfoSubContentWrapper>
+            </S.FooterInfoContentList>
+          </S.FooterInfoList>
+        </S.FooterWrapper>
+      </S.Footer>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
     </S.HomeContainer>
   )
