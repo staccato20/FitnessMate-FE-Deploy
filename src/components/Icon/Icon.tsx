@@ -1,4 +1,3 @@
-import CircleEmptyBlue from "@assets/icon/CircleEmptyBlue.svg?react"
 import Add from "@assets/icon/add.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
 import Avatar from "@assets/icon/avatar.svg?react"
@@ -66,7 +65,6 @@ export const ICON_MAP = {
   LeftArrowWhite,
   LeftArrowGrey,
   RightArrowWhite,
-  CircleEmptyBlue,
   Avatar,
   DownArrowGray,
   LoadingBackground,
