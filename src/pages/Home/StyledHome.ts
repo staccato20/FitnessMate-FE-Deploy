@@ -294,6 +294,17 @@ export const SearchKeywordForm = styled.form`
   gap: 40px;
   align-items: flex-start;
 `
+
+export const SearchInputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+`
+
 export const SearchKeywordWrapper = styled.div`
   display: flex;
   flex-direction: column;

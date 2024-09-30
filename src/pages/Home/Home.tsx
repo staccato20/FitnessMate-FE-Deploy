@@ -6,7 +6,9 @@ import { Link } from "react-scroll"
 import { useUserInfo } from "hooks/query/useUserInfo"
 
 import Button from "@components/Button/Button"
+import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
+import IconButton from "@components/IconButton/IconButton"
 import LoginModal from "@components/Modal/LoginModal"
 
 import homebanner from "@assets/images/homebanner.png"
@@ -44,12 +46,17 @@ export const Home = () => {
   const { data } = useUserInfo()
   const loginState = data ? true : false
 
-  const { register, handleSubmit } = useForm<Search>()
+  const { register, handleSubmit, setValue, setFocus } = useForm<Search>()
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
   const handleSearch = (data: Search) => {
     navigate("searchworkout/1", { state: { keyword: data } })
+  }
+
+  const handleKeyWord = (item: string) => {
+    setValue("search", item)
+    setFocus("search")
   }
 
   const handleRecommend = () => {
@@ -162,23 +169,44 @@ export const Home = () => {
             <S.SearchSubTitle>궁금한 운동을 검색해 보세요!</S.SearchSubTitle>
           </S.SearchTop>
           <S.SearchKeywordForm onSubmit={handleSubmit(handleSearch)}>
-            <Input>
-              <Input.Input
-                type="search"
-                props={{
-                  ...formAdapter({
-                    register,
-                    validator: SEARCH_INPUTS["search"],
-                    name: "search",
-                  }),
+            <S.SearchInputWrapper>
+              <Input>
+                <Input.Input
+                  type="search"
+                  props={{
+                    ...formAdapter({
+                      register,
+                      validator: SEARCH_INPUTS["search"],
+                      name: "search",
+                    }),
+                  }}
+                />
+              </Input>
+              <IconButton
+                icon="CloseRound"
+                type="button"
+                onClick={() => {
+                  setValue("search", "")
                 }}
               />
-            </Input>
+            </S.SearchInputWrapper>
 
             <S.SearchKeywordWrapper>
               <S.SearchKeywordTitle>인기 검색 키워드</S.SearchKeywordTitle>
               <S.SearchKeywordList>
-                {["#데드리프트", "#데드리프트", "#데드리프트", "#데드리프트"]}
+                {[
+                  "데드리프트",
+                  "풀업",
+                  "스쿼트",
+                  "인클라인 덤벨 벤치프레스",
+                ].map((item) => (
+                  <Chip
+                    key={item}
+                    type="button"
+                    onClick={() => handleKeyWord(item)}>
+                    {item}
+                  </Chip>
+                ))}
               </S.SearchKeywordList>
             </S.SearchKeywordWrapper>
           </S.SearchKeywordForm>
