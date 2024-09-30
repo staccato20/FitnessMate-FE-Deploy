@@ -153,6 +153,10 @@ export interface MachineList {
   koreanName: string
 }
 
+export interface GetBodyParts {
+  bodyPartKoreanName: MachineList[]
+}
+
 export interface PostMachineListPayload {
   bodyPartKoreanName: string[]
 }
