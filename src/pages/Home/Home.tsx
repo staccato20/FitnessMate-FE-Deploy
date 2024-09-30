@@ -1,29 +1,62 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-scroll"
 
 import { useUserInfo } from "hooks/query/useUserInfo"
 
 import Button from "@components/Button/Button"
+import Chip from "@components/Chip/Chip"
+import Icon from "@components/Icon/Icon"
+import IconButton from "@components/IconButton/IconButton"
 import LoginModal from "@components/Modal/LoginModal"
 
-// import arrow from "@assets/images/arrow.svg"
-import fourthFirstImg from "@assets/images/fourthFirstImg.png"
-import fourthThirdImg from "@assets/images/fourthThirdImg.png"
 import homebanner from "@assets/images/homebanner.png"
-import thirdSecondImg from "@assets/images/thirdSecondImg.png"
-import thirdThirdImg from "@assets/images/thirdThirdImg.png"
+import logo from "@assets/images/logo.png"
+import slide2 from "@assets/images/slide2.png"
+import slide from "@assets/images/slide.png"
 
+import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
+
+import Input from "../../components/Input/Input"
+import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
+
+type Search = {
+  search: string
+}
+
+// const TABS = [
+//   {
+//     title: "추천 받고",
+//     id: 0,
+//   },
+//   // {
+//   //   title: "결과 보고",
+//   //   id: 1,
+//   // },
+//   {
+//     title: "루틴 까지",
+//     id: 2,
+//   },
+// ]
 
 export const Home = () => {
   const navigate = useNavigate()
   const { data } = useUserInfo()
   const loginState = data ? true : false
 
+  const { register, handleSubmit, setValue, setFocus } = useForm<Search>()
+
   const [isLoginModal, setIsLoginModal] = useState(false)
 
-  const handleSearch = () => {
-    navigate("search/1")
+  const handleSearch = (data: Search) => {
+    navigate("searchworkout/1", { state: { keyword: data } })
+  }
+
+  const handleKeyWord = (item: string) => {
+    setValue("search", item)
+    setFocus("search")
   }
 
   const handleRecommend = () => {
@@ -44,148 +77,179 @@ export const Home = () => {
 
   return (
     <S.HomeContainer>
-      <S.HomeContent>
-        <S.First>
-          <S.FirstContainer>
-            <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
-            <S.FirstTitle>
-              정확하고 빠른
+      <S.First>
+        <S.FirstContainer>
+          <S.FirstSubTitle>AI 기반의</S.FirstSubTitle>
+          <S.FirstTitle>
+            정확하고 빠른
+            <br />
+            개인맞춤 추천
+          </S.FirstTitle>
+        </S.FirstContainer>
+        <S.HomeBanner
+          src={homebanner}
+          alt="홈 배너"
+        />
+      </S.First>
+      <S.Second>
+        <S.SecondTextWrapper>
+          <S.SecondText>이제껏 경험하지 못했던 운동 코칭 경험</S.SecondText>
+          <S.SecondText2>에서 경험해 보세요</S.SecondText2>
+        </S.SecondTextWrapper>
+        <Link
+          to="link"
+          spy={true}
+          smooth={true}>
+          <S.SecondButtonWrapper>
+            경험하기
+            <Icon icon="DownArrow" />
+          </S.SecondButtonWrapper>
+        </Link>
+      </S.Second>
+      <S.Third>
+        <S.SlideList>
+          <S.Slide>
+            <S.Title>
+              추천을 위한
               <br />
-              개인맞춤 추천
-            </S.FirstTitle>
+              예리한 질문들
+            </S.Title>
             <Button
-              variant="main"
+              size="lg"
               onClick={handleRecommend}>
-              바로 추천받기
+              추천 받기
             </Button>
-          </S.FirstContainer>
-          <S.HomeBanner
-            src={homebanner}
-            alt="홈 배너"
-          />
-        </S.First>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="secondContent">
-          이제껏 경험하지 못했던
-          <br />
-          운동 코칭 경험, 핏메이트에서 경험해보세요.
-        </section>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="thirdContent">
-          <div className="thirdHeader">
-            <div className="thirdTitle">
-              <span className="thirdTitleText">
-                3단계면 끝나는
-                <br />내 운동 루틴 관리
-              </span>
-              <button
-                className="myFitnessBtn"
-                onClick={handleMyPage}>
-                <span className="myFitnessBtnText">내 운동 바로 가기</span>
-                <img
-                  className="myFitnessBtnImg"
-                  // src={arrow}
-                  alt="보조제 추천 바로 받기 버튼"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="thirdBody">
-            <div className="thirdFirstContent">
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">1</div>
-                <div className="thirdContentTitleText">
-                  골격근량, 체지방량을 입력하면
-                </div>
-              </S.ThirdContentTitle>
-              <img
-                className="thirdFirstImg"
-                // src={thirdFirstImg}
-              />
-            </div>
-            <div className="thirdSecondContent">
-              <img src={thirdSecondImg} />
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">2</div>
-                <div className="thirdContentTitleText">
-                  AI가 나에게 딱 맞는 운동과
-                  <br />
-                  최적화된 가이드를 제공해요.
-                </div>
-              </S.ThirdContentTitle>
-            </div>
-            <div className="thirdThirdContent">
-              <S.ThirdContentTitle>
-                <div className="thirdContentTitleNum">3</div>
-                <div className="thirdContentTitleText">
-                  추천 운동을
-                  <br />
-                  내 운동 목록에 추가하여
-                  <br />
-                  루틴을 관리해보세요.
-                </div>
-              </S.ThirdContentTitle>
-              <img src={thirdThirdImg} />
-            </div>
-          </div>
-        </section>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="fourthContent">
-          <div className="fourthTitle">
-            <span className="fourthTitleText">핏메이트,</span>
-            <span className="fourthTitleText">이런 서비스도 있어요.</span>
-          </div>
-          <div className="fourthBody">
-            <S.FourthBodyItem>
-              <div className="itemLogo">
-                <img src={fourthFirstImg} />
-              </div>
-              <div className="itemText">
-                <span className="itemTextTitle">운동 가이드 영상</span>
-                <p className="itemTextContent">
-                  정확한 운동 자세, 방법 등
-                  <br />
-                  운동 강의 영상을 제공해요.
-                </p>
-              </div>
-            </S.FourthBodyItem>
-            <S.FourthBodyItem>
-              <div className="itemLogo">
-                <img src={fourthThirdImg} />
-              </div>
-              <div className="itemText">
-                <span className="itemTextTitle">개인 맞춤형 가이드</span>
-                <p className="itemTextContent">
-                  개인 맞춤형
-                  <br />
-                  운동량 수정이 가능해요.
-                </p>
-              </div>
-            </S.FourthBodyItem>
-          </div>
-        </section>
-      </S.HomeContent>
-      <S.HomeContent>
-        <section className="fifthContent">
-          <div className="fifthTitle">
-            <p className="fifthFirstText">모든 정보가 한 눈에</p>
-            <span className="fifthSecondText">운동, 보조제 정보 검색</span>
-          </div>
-          <button
-            className="searchBtn"
-            onClick={handleSearch}>
-            <span className="searchBtnText">검색 바로 가기</span>
-            <img
-              className="searchBtnImg"
-              // src={arrow}
-              alt="검색 바로 가기 버튼"
+
+            <S.SlideImg
+              src={slide2}
+              alt="슬라이드 이미지"
             />
-          </button>
-        </section>
-      </S.HomeContent>
+          </S.Slide>
+
+          <S.Slide>
+            <S.Title>
+              루틴도
+              <br />한 번에 관리하세요
+            </S.Title>
+            <Button
+              size="lg"
+              onClick={handleMyPage}>
+              루틴 관리
+            </Button>
+
+            <S.SlideImg
+              src={slide}
+              alt="슬라이드 이미지"
+            />
+          </S.Slide>
+        </S.SlideList>
+
+        {/* <S.TabListWrapper>
+          <S.TabBackground
+            initial={false}
+            animate={{ x: selectedSlideNum * 45 + "%" }}
+            transition={{ type: "tween", duration: 0.2 }}></S.TabBackground>
+          <S.TabList>
+            {TABS.map(({ title, id }) => (
+              <S.TabButton
+                key={id}
+                onClick={() => handleSlideNum(id)}
+                className={selectedSlideNum === id ? "active" : ""}>
+                {selectedSlideNum === id && <Icon icon="CircleEmptyBlue" />}
+                {title}
+              </S.TabButton>
+            ))}
+          </S.TabList>
+        </S.TabListWrapper>  */}
+      </S.Third>
+      <S.Fourth>
+        <S.SearchWrapper>
+          <S.SearchTop>
+            <S.SearchTitle>핏메이트가 다 알려줄게요</S.SearchTitle>
+            <S.SearchSubTitle>궁금한 운동을 검색해 보세요!</S.SearchSubTitle>
+          </S.SearchTop>
+          <S.SearchKeywordForm onSubmit={handleSubmit(handleSearch)}>
+            <S.SearchInputWrapper>
+              <Input>
+                <Input.Input
+                  type="search"
+                  props={{
+                    ...formAdapter({
+                      register,
+                      validator: SEARCH_INPUTS["search"],
+                      name: "search",
+                    }),
+                  }}
+                />
+              </Input>
+              <IconButton
+                icon="CloseRound"
+                type="button"
+                onClick={() => {
+                  setValue("search", "")
+                }}
+              />
+            </S.SearchInputWrapper>
+
+            <S.SearchKeywordWrapper>
+              <S.SearchKeywordTitle>인기 검색 키워드</S.SearchKeywordTitle>
+              <S.SearchKeywordList>
+                {[
+                  "데드리프트",
+                  "풀업",
+                  "스쿼트",
+                  "인클라인 덤벨 벤치프레스",
+                ].map((item) => (
+                  <Chip
+                    key={item}
+                    type="button"
+                    onClick={() => handleKeyWord(item)}>
+                    {item}
+                  </Chip>
+                ))}
+              </S.SearchKeywordList>
+            </S.SearchKeywordWrapper>
+          </S.SearchKeywordForm>
+        </S.SearchWrapper>
+      </S.Fourth>
+      <S.Footer>
+        <S.FooterWrapper>
+          <img src={logo} />
+          <S.FooterInfoList>
+            <S.FooterInfoContentWrapper>
+              <S.FooterInfoContentList>
+                <S.FooterInfoContentTitle>개발</S.FooterInfoContentTitle>
+                <S.FooterInfoContent>이찬하</S.FooterInfoContent>
+                <S.FooterInfoContent>정지성</S.FooterInfoContent>
+                <S.FooterInfoContent>강민정</S.FooterInfoContent>
+                <S.FooterInfoContent>최훈오</S.FooterInfoContent>
+              </S.FooterInfoContentList>
+              <S.FooterInfoContentList>
+                <S.FooterInfoContentTitle>디자인</S.FooterInfoContentTitle>
+                <S.FooterInfoContent>김정욱</S.FooterInfoContent>
+                <S.FooterInfoContent>최시현</S.FooterInfoContent>
+              </S.FooterInfoContentList>
+            </S.FooterInfoContentWrapper>
+            <S.FooterInfoContentList>
+              <S.FooterInfoContentTitle>서비스</S.FooterInfoContentTitle>
+              <S.FooterInfoContent>검색하기</S.FooterInfoContent>
+              <S.FooterInfoContent>추천받기</S.FooterInfoContent>
+              <S.FooterInfoContent>내 운동</S.FooterInfoContent>
+            </S.FooterInfoContentList>
+            <S.FooterInfoContentList>
+              <S.FooterInfoContentTitle>문의</S.FooterInfoContentTitle>
+              <S.FooterInfoSubContentWrapper>
+                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
+                <S.FooterInfoContent>010-8544-1013</S.FooterInfoContent>
+              </S.FooterInfoSubContentWrapper>
+              <S.FooterInfoSubContentWrapper>
+                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
+                <S.FooterInfoContent>jeuk1013@naver.com</S.FooterInfoContent>
+              </S.FooterInfoSubContentWrapper>
+            </S.FooterInfoContentList>
+          </S.FooterInfoList>
+        </S.FooterWrapper>
+      </S.Footer>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
     </S.HomeContainer>
   )

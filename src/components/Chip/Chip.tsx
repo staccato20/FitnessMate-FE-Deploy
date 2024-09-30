@@ -1,10 +1,16 @@
+import { ButtonHTMLAttributes } from "react"
+
 import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
-const Chip = ({ children }: { children: string }) => {
-  return <ChipWrapper># {children}</ChipWrapper>
+interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: string
 }
+
+const Chip = ({ children, ...props }: ChipProps) => (
+  <ChipWrapper {...props}># {children}</ChipWrapper>
+)
 
 export default Chip
 

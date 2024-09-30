@@ -13,7 +13,6 @@ export const StyledButton = styled.button<{
   height: fit-content;
   justify-content: center;
   align-items: center;
-  position: relative;
   border: none;
   border-radius: 10px;
   user-select: none;

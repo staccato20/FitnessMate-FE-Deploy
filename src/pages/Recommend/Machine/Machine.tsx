@@ -97,7 +97,7 @@ const Machine = () => {
           />
           <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
             <Avatar />
-            <SpeechBubble isIcon={false}>
+            <SpeechBubble>
               <SpeechBubble.MainText>
                 사용 가능한 기구를 선택해주세요!
               </SpeechBubble.MainText>

@@ -65,7 +65,7 @@ const Login = () => {
         <S.InputFrame>
           <Input>
             <Input.Input
-              type="userName"
+              type="text"
               props={{
                 ...formAdapter({
                   register,
