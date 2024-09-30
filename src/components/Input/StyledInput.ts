@@ -33,7 +33,7 @@ export const Input = styled.input<Props>`
     color: ${theme.Netural500};
     ${fonts.b4}
   }
-  background: ${theme.Netural0};
+  background: ${theme.Netural200};
   border-radius: 10px;
   padding: 16px;
   width: 100%;

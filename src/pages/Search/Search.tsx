@@ -1,21 +1,9 @@
-import { Route, Routes } from "react-router-dom"
-
-import SearchHome from "@pages/Search/SearchHome/SearchHome"
-import SearchWorkoutDetail from "@pages/Search/SearchWorkoutDetail/SearchWorkoutDetail"
+import { useLocation } from "react-router-dom"
 
 const Search = () => {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={<SearchHome />}
-      />
-      <Route
-        path="workoutdetail"
-        element={<SearchWorkoutDetail />}
-      />
-    </Routes>
-  )
+  const location = useLocation()
+  const keyword = location.state?.keyword
+  return <div></div>
 }
 
 export default Search
