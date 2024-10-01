@@ -1,0 +1,20 @@
+import styled from "styled-components"
+
+import theme, { fonts } from "@styles/theme"
+
+export const CardWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+`
+
+export const CardImg = styled.img`
+  border-radius: 12px;
+  border: 1px solid #f2f4f6;
+  max-width: 312px;
+  height: 250px;
+`
+export const CardContents = styled.div``
+export const CardText = styled.span`
+  color: ${theme.Netural990};
+  ${fonts.h3};
+`
