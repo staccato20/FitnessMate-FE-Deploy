@@ -61,8 +61,18 @@ export const SearchBar = styled.button`
   ${fonts.b6};
   font-size: 14px;
 `
-export const CardWrapper = styled.div``
-export const CardTitle = styled.span``
-export const CardList = styled.ul``
+export const CardWrapper = styled.div`
+  width: 100%;
+  max-width: 1032px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`
+
+export const CardList = styled.ul`
+  display: grid;
+  gap: 24px 48px;
+  grid-template-columns: repeat(auto-fit, minmax(29%, auto));
+`
 export const PaginationWrapper = styled.div``
 export const PaginationList = styled.ul``

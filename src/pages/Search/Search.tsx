@@ -41,12 +41,19 @@ const Search = () => {
           </S.SearchBar>
         </S.TabsWrapper>
         <S.CardWrapper>
-          <S.CardTitle>전체{}</S.CardTitle>
           <S.CardList>
             {/* <Tabs.TabPanel
               index={1}
               key={1}></Tabs.TabPanel> */}
-            {workouts?.map((workout) => <Card></Card>)}
+            {workouts?.map(
+              ({ id, imgPath, koreanName, bodyPartKoreanName }) => (
+                <Card
+                  key={id}
+                  src={imgPath}
+                  title={koreanName}
+                  badges={bodyPartKoreanName}></Card>
+              ),
+            )}
           </S.CardList>
         </S.CardWrapper>
       </S.SearchContent>
