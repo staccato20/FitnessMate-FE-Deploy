@@ -10,8 +10,8 @@ import { useGetWorkout } from "@pages/Search/hooks/useGetWorkout"
 import * as S from "./StyledSearch"
 
 const Search = () => {
-  const location = useLocation()
-  const keyword = location.state?.keyword
+  // const location = useLocation()
+  // const keyword = location.state?.keyword
   const { bodyParts } = useGetBodyPart()
   const { workouts } = useGetWorkout()
 
