@@ -85,6 +85,7 @@ const Machine = () => {
           </S.LoadingText>
         </S.CoverWrapper>
       )}
+
       <S.RecommendWrapper>
         <S.Status>
           <IconButton

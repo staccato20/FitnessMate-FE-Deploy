@@ -31,14 +31,14 @@ export const CoverWrapper = styled.div`
   z-index: 900;
   svg {
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 `
 export const LoadingText = styled.span`
   position: absolute;
-  top: 59%;
+  top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
   ${fonts.h3};
