@@ -1,9 +1,11 @@
 import { useLocation } from "react-router-dom"
 
+import Card from "@components/Card/Card"
 import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
 import { useGetBodyPart } from "@pages/Search/hooks/useGetBodyPart"
+import { useGetWorkout } from "@pages/Search/hooks/useGetWorkout"
 
 import * as S from "./StyledSearch"
 
@@ -11,6 +13,7 @@ const Search = () => {
   const location = useLocation()
   const keyword = location.state?.keyword
   const { bodyParts } = useGetBodyPart()
+  const { workouts } = useGetWorkout()
 
   return (
     <S.SearchWrapper>
@@ -43,6 +46,7 @@ const Search = () => {
             {/* <Tabs.TabPanel
               index={1}
               key={1}></Tabs.TabPanel> */}
+            {workouts?.map((workout) => <Card></Card>)}
           </S.CardList>
         </S.CardWrapper>
       </S.SearchContent>

@@ -103,13 +103,15 @@ export interface PostRecommendIdPayload {
 }
 
 export interface Recommend {
-  workoutId: number
-  koreanName: string
+  id: number
   englishName: string
+  koreanName: string
+  imgPath: string
+  videoLink: string
+  description: string
+  atcetera: null
   machineName: string
   bodyPartKoreanName: string[]
-  description: string
-  imgPath: string
   weight: string
   repeat: string
   set: string
@@ -140,12 +142,8 @@ export interface DeleteBodyDataResponse {
 
 export interface GetWorkoutsPayload {
   page: number
-  searchKeyword?: string
-  bodyPartKoreanName: string[]
-}
-
-export interface GetWorkoutsResponse extends Workout {
-  id: number
+  searchKeyword: string
+  bodyPartKoreanName: string[] | []
 }
 
 export interface MachineList {
