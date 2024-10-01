@@ -1,4 +1,3 @@
-// import { useLocation } from "react-router-dom"
 import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
