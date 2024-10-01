@@ -5,6 +5,7 @@ import theme, { fonts } from "@styles/theme"
 export const CardWrapper = styled.button`
   height: 100%;
   width: 100%;
+  user-select: none;
 `
 
 export const CardImg = styled.img`

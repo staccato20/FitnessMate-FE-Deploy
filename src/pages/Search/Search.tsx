@@ -1,5 +1,4 @@
-import { useLocation } from "react-router-dom"
-
+// import { useLocation } from "react-router-dom"
 import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
@@ -8,8 +7,8 @@ import { useGetBodyPart } from "@pages/Search/hooks/useGetBodyPart"
 import * as S from "./StyledSearch"
 
 const Search = () => {
-  const location = useLocation()
-  const keyword = location.state?.keyword
+  // const location = useLocation()
+  // const keyword = location.state?.keyword
   const { bodyParts } = useGetBodyPart()
 
   return (
