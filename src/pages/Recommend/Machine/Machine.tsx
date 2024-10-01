@@ -32,8 +32,6 @@ const Machine = () => {
   const numChecked = machinesById.size
 
   const scrollRef = useRef<HTMLDivElement>(null)
-  const targetRef = useRef<HTMLDivElement>(null)
-  const position = useScroll(scrollRef)
   const navigate = useNavigate()
 
   const handleBackPage = () => {
@@ -96,21 +94,11 @@ const Machine = () => {
             progress={3}
             variant="round"
           />
-          <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
-            <Avatar />
-            <SpeechBubble>
-              <SpeechBubble.MainText>
-                사용 가능한 기구를 선택해주세요!
-              </SpeechBubble.MainText>
-            </SpeechBubble>
-          </S.RecommendSwitchGuide>
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
-          <S.RecommendGuide
-            ref={targetRef}
-            $isGuideSwitch={position > 143}>
+          <S.RecommendGuide>
             <Avatar />
-            <SpeechBubble isIcon>
+            <SpeechBubble>
               <SpeechBubble.MainText>
                 사용 가능한 기구를 선택해주세요!
               </SpeechBubble.MainText>

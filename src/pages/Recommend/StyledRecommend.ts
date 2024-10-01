@@ -1,6 +1,3 @@
-// StyledRecommend.ts
-import { motion } from "framer-motion"
-
 import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
@@ -18,7 +15,7 @@ export const RecommendWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 34px;
+  gap: 56px;
 `
 
 export const CoverWrapper = styled.div`
@@ -52,12 +49,10 @@ export const RecommendInner = styled.div`
   max-height: calc(100vh - 300px);
   gap: 116px;
   overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 29px;
-    background: ${theme.Netural300};
+    display: none; /* Chrome, Safari, Opera*/
   }
 `
 
@@ -69,25 +64,19 @@ export const Status = styled.div`
   align-items: center;
 `
 
-export const RecommendGuide = styled(motion.div)<{ $isGuideSwitch?: boolean }>`
+export const RecommendGuide = styled.div`
   gap: 16px;
   display: flex;
-  opacity: ${({ $isGuideSwitch }) => ($isGuideSwitch ? 0 : 1)};
-  transition: opacity 0.5s ease-in-out;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
 
-export const RecommendSwitchGuide = styled(motion.div)<{
-  $isGuideSwitch: boolean
-}>`
+export const RecommendSwitchGuide = styled.div`
   position: absolute;
   top: 85px;
   gap: 16px;
   display: flex;
-  opacity: ${({ $isGuideSwitch }) => ($isGuideSwitch ? 1 : 0)};
-  transition: opacity 0.5s ease-in-out;
   align-items: center;
   z-index: 10;
 `
