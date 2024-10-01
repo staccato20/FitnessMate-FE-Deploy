@@ -10,7 +10,7 @@ import * as S from "./StyledSearch"
 const Search = () => {
   const location = useLocation()
   const keyword = location.state?.keyword
-  const bodyPartKoreanName = useGetBodyPart()
+  const { bodyParts } = useGetBodyPart()
 
   return (
     <S.SearchWrapper>
@@ -22,7 +22,7 @@ const Search = () => {
         <S.TabsWrapper>
           <Tabs>
             <Tabs.TabList>
-              {bodyPartKoreanName?.map(({ koreanName }, index) => (
+              {bodyParts?.map(({ koreanName }, index) => (
                 <Tabs.Tab
                   index={index}
                   variant="fill"

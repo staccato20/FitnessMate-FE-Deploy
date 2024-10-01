@@ -3,8 +3,14 @@ import { useQuery } from "@tanstack/react-query"
 import bodyPartAPI from "@apis/domain/bodypart"
 
 export const useGetBodyPart = () => {
-  return useQuery({
+  const getBodyPart = useQuery({
     queryKey: ["getBodyPart"],
     queryFn: async () => await bodyPartAPI.fetchData(),
-  }).data?.bodyPartKoreanName
+    select: (data) => [
+      { englishName: "total", koreanName: "전체" },
+      ...data.bodyPartKoreanName.filter((item) => item.englishName !== "all"),
+    ],
+  })
+
+  return { bodyParts: getBodyPart.data }
 }

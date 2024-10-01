@@ -1,5 +1,7 @@
 import styled from "styled-components"
 
+import theme, { fonts } from "@styles/theme"
+
 export const SearchWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -28,21 +30,13 @@ export const TitleWrapper = styled.div`
   width: 100%;
 `
 export const Title = styled.span`
-  color: var(--Gray50, #6b7684);
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  color: ${theme.Netural600};
+  ${fonts.h3};
 `
 export const SubTitle = styled.span`
-  color: var(--Black, #191f28);
-  font-family: Pretendard;
+  color: ${theme.Netural990};
+  ${fonts.h1};
   font-size: 30px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.6px;
 `
 
 export const TabsWrapper = styled.div`
@@ -50,26 +44,22 @@ export const TabsWrapper = styled.div`
   height: 60px;
   display: flex;
   justify-content: space-evenly;
-  padding: 9px calc(50% - 1042px);
-  border: 1px solid var(--Neutral-200, #f2f4f6);
-  background: var(--Neutral-100, #f9fafb);
+  padding: 9px 0px;
+  border: 1px solid ${theme.Netural200};
+  background: ${theme.Netural100};
 `
 
 export const SearchBar = styled.button`
   border-radius: 37px;
-  border: 1px solid var(--Neutral-500, #a2b2c2);
-  background: var(--Neutral-0, #fff);
+  border: 1px solid ${theme.Netural500};
+  background: ${theme.Netural0};
   display: flex;
   padding: 10px 16px;
   justify-content: center;
   gap: 6px;
-  color: var(--Neutral-500, #a2b2c2);
-  font-family: Pretendard;
+  color: ${theme.Netural500};
+  ${fonts.b6};
   font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.28px;
 `
 export const CardWrapper = styled.div``
 export const CardTitle = styled.span``
