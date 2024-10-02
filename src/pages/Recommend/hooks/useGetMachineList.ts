@@ -13,5 +13,3 @@ export const useGetMachineList = () => {
     select: (data) => data.map((machine, idx) => ({ ...machine, id: idx })),
   })
 }
-
-export default useGetMachineList

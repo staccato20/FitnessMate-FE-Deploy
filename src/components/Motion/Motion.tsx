@@ -5,7 +5,7 @@ const Motion = ({
   motionValue,
 }: {
   isExecute: boolean
-  motionValue: { stiffness: number; damping: number }
+  motionValue: { type: "spring"; stiffness: number; damping: number }
 }) => {
   const box = {
     width: "200px",
@@ -25,7 +25,7 @@ const Motion = ({
         style={box}
         variants={variants}
         animate={isExecute ? "execute" : "initial"}
-        transition={{ type: "spring", ...motionValue }}
+        transition={{ ...motionValue }}
       />
     </>
   )

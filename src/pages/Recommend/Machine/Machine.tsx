@@ -2,7 +2,6 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
-import { AnimatePresence } from "framer-motion"
 import { useScroll } from "hooks/useScroll"
 
 import Avatar from "@components/Avatar/Avatar"
@@ -14,10 +13,12 @@ import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import useGetMachineList from "@pages/Recommend/hooks/useGetMachineList"
+import { useGetMachineList } from "@pages/Recommend/hooks/useGetMachineList"
 import { usePostRecommend } from "@pages/Recommend/hooks/usePostRecommend"
 import { usePostRecommendId } from "@pages/Recommend/hooks/usePostRecommendId"
 import { useRecommendStore } from "@pages/Recommend/store"
+
+import { animation } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
 
@@ -28,6 +29,7 @@ const Machine = () => {
   const postRecommend = usePostRecommend()
   const scrollRef = useRef<HTMLDivElement>(null)
   const [_, isScrollTop] = useScroll(scrollRef)
+  console.log(isScrollTop)
 
   const { setResult } = useRecommendStore()
 
@@ -97,28 +99,24 @@ const Machine = () => {
           />
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
-          <AnimatePresence>
-            {isScrollTop && (
-              <S.RecommendGuide
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: false }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}>
-                <Avatar />
-                <SpeechBubble>
-                  <SpeechBubble.MainText>
-                    사용 가능한 기구를 선택해주세요!
-                  </SpeechBubble.MainText>
-                  {/* <SpeechBubble.SubText>
-              선택한 부위에 필요한 기구만 보여드렸어요
-            </SpeechBubble.SubText> */}
-                </SpeechBubble>
-              </S.RecommendGuide>
-            )}
-          </AnimatePresence>
+          <S.RecommendGuide
+            animate={
+              isScrollTop
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.8, y: -20 }
+            }
+            transition={{ duration: 0.8, ...animation.quick }}>
+            <Avatar />
+            <SpeechBubble>
+              <SpeechBubble.MainText>
+                사용 가능한 기구를 선택해주세요!
+              </SpeechBubble.MainText>
+            </SpeechBubble>
+          </S.RecommendGuide>
 
-          <S.RecommendMachineWrapper>
+          <S.RecommendMachineWrapper
+            animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
+            transition={{ duration: 0.8, ...animation.small }}>
             {machines?.map(({ englishName, koreanName, id }) => (
               <ImgCheckBox
                 key={englishName}

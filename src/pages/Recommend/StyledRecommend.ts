@@ -48,7 +48,6 @@ export const RecommendInner = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 300px);
   gap: 116px;
   overflow: auto;
   -ms-overflow-style: none; /* IE and Edge */
@@ -56,6 +55,8 @@ export const RecommendInner = styled.div`
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
+  height: calc(100vh - 400px);
+  position: relative;
 `
 
 export const Status = styled.div`
@@ -84,6 +85,9 @@ export const RecommendSwitchGuide = styled.div`
 `
 
 export const RecommendMachineWrapper = styled(motion.ul)`
+  position: absolute;
+  top: 400px;
+  max-width: 752px;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
