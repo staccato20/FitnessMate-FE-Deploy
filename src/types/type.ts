@@ -149,6 +149,7 @@ export interface GetWorkoutsPayload {
 export interface MachineList {
   englishName: string
   koreanName: string
+  imgPath: string
 }
 
 export interface GetBodyParts {

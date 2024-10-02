@@ -8,7 +8,7 @@ import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import { useGetUser } from "@pages/Recommend/hooks/useGetUser"
+import { useGetUser } from "@hooks/query/useGetUser"
 
 import * as S from "../StyledRecommend"
 

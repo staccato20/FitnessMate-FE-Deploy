@@ -48,7 +48,6 @@ export const RecommendInner = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 116px;
   overflow: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -71,7 +70,7 @@ export const RecommendGuide = styled(motion.div)`
   gap: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
 
@@ -165,7 +164,7 @@ export const ResultList = styled.div`
 export const BodyPartWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 54px;
+  gap: 48px;
 `
 
 export const TabWrapper = styled.div`

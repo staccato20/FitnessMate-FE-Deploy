@@ -5,8 +5,8 @@ import Card from "@components/Card/Card"
 import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
-import { useGetBodyPart } from "@pages/Search/hooks/useGetBodyPart"
-import { useGetWorkout } from "@pages/Search/hooks/useGetWorkout"
+import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
+import { useGetWorkout } from "@hooks/query/useGetWorkout"
 
 import * as S from "./StyledSearch"
 

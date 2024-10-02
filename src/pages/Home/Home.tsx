@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
-import { useUserInfo } from "hooks/query/useUserInfo"
-
 import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
@@ -17,6 +15,8 @@ import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
 
 import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
+
+import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import Input from "../../components/Input/Input"
 import { formAdapter } from "../../utils/formAdapter"

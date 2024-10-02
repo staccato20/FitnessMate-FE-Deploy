@@ -201,6 +201,8 @@ export const Footer = styled.div`
   background: ${theme.Netural200};
 `
 export const FooterWrapper = styled.div`
+  max-width: 1080px;
+  width: 100%;
   display: flex;
   position: absolute;
   top: 112px;

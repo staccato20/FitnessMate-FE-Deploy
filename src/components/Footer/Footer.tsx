@@ -17,8 +17,8 @@ const Footer = ({
   flex = "center",
 }: StrictPropsWithChildren<FooterProps>) => {
   return (
-    <FooterWrapper $flex={flex}>
-      <FooterInner>{children}</FooterInner>
+    <FooterWrapper>
+      <FooterInner $flex={flex}>{children}</FooterInner>
 
       <FooterTopLine>{}</FooterTopLine>
     </FooterWrapper>
