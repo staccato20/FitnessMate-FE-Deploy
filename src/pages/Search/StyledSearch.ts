@@ -42,11 +42,17 @@ export const SubTitle = styled.span`
 export const TabsWrapper = styled.div`
   width: 100vw;
   height: 60px;
-  display: flex;
-  justify-content: space-evenly;
   padding: 9px 0px;
   border: 1px solid ${theme.Netural200};
   background: ${theme.Netural100};
+`
+
+export const TabsBox = styled.div`
+  max-width: 1042px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const SearchBar = styled.button`

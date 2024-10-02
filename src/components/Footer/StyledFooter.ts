@@ -5,8 +5,7 @@ import theme, { fonts } from "@styles/theme"
 export const FooterWrapper = styled.div<{ $flex: Interpolation<object> }>`
   position: fixed;
   bottom: 0;
-  max-width: 720px;
-  width: 100%;
+  width: 100vw;
   height: 90px;
   z-index: 500;
   margin: 0 auto;
@@ -14,6 +13,13 @@ export const FooterWrapper = styled.div<{ $flex: Interpolation<object> }>`
   align-items: center;
   justify-content: ${({ $flex }) => $flex};
   background: ${theme.Netural0};
+`
+export const FooterInner = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 720px;
+  width: 100%;
 `
 
 export const FooterTopLine = styled.div`

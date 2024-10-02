@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
+import { AnimatePresence } from "framer-motion"
 import { useScroll } from "hooks/useScroll"
 
 import Avatar from "@components/Avatar/Avatar"
@@ -25,13 +26,13 @@ const Machine = () => {
   const { bodyPart } = useRecommendStore()
   const postRecommendId = usePostRecommendId()
   const postRecommend = usePostRecommend()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [_, isScrollTop] = useScroll(scrollRef)
 
   const { setResult } = useRecommendStore()
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
   const numChecked = machinesById.size
-
-  const scrollRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
   const handleBackPage = () => {
@@ -96,17 +97,26 @@ const Machine = () => {
           />
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
-          <S.RecommendGuide>
-            <Avatar />
-            <SpeechBubble>
-              <SpeechBubble.MainText>
-                사용 가능한 기구를 선택해주세요!
-              </SpeechBubble.MainText>
-              <SpeechBubble.SubText>
-                선택한 부위에 필요한 기구만 보여드렸어요
-              </SpeechBubble.SubText>
-            </SpeechBubble>
-          </S.RecommendGuide>
+          <AnimatePresence>
+            {isScrollTop && (
+              <S.RecommendGuide
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}>
+                <Avatar />
+                <SpeechBubble>
+                  <SpeechBubble.MainText>
+                    사용 가능한 기구를 선택해주세요!
+                  </SpeechBubble.MainText>
+                  {/* <SpeechBubble.SubText>
+              선택한 부위에 필요한 기구만 보여드렸어요
+            </SpeechBubble.SubText> */}
+                </SpeechBubble>
+              </S.RecommendGuide>
+            )}
+          </AnimatePresence>
 
           <S.RecommendMachineWrapper>
             {machines?.map(({ englishName, koreanName, id }) => (
@@ -123,7 +133,7 @@ const Machine = () => {
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
-        <Footer flex="space-between">
+        <Footer flex="center">
           <Footer.Text>
             {numChecked}개<Footer.SubText> 기구 선택됨</Footer.SubText>
           </Footer.Text>

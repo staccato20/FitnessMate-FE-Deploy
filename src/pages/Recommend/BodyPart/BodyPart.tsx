@@ -102,7 +102,7 @@ const BodyPart = () => {
           })}
         </S.BodyPartWrapper>
       </S.RecommendInner>
-      <Footer flex="space-between">
+      <Footer flex="center">
         <Footer.Text>
           {selectedBodyParts.filter((v) => v).length}개
           <Footer.SubText> 부위 선택됨</Footer.SubText>

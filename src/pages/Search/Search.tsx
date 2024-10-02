@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 
 import Card from "@components/Card/Card"
 import Icon from "@components/Icon/Icon"
@@ -10,10 +11,23 @@ import { useGetWorkout } from "@pages/Search/hooks/useGetWorkout"
 import * as S from "./StyledSearch"
 
 const Search = () => {
-  // const location = useLocation()
-  // const keyword = location.state?.keyword
-  const { bodyParts } = useGetBodyPart()
-  const { workouts } = useGetWorkout()
+  const { bodyParts = [] } = useGetBodyPart()
+  const [activeTab, setActiveTab] = useState(0)
+  const { pageId } = useParams()
+
+  const handleTabChange = (index: number) => {
+    if (!bodyParts) {
+      return
+    }
+    setActiveTab(index)
+  }
+
+  const { workouts } = useGetWorkout({
+    page: Number(pageId),
+    searchKeyword: "",
+    bodyPartKoreanName:
+      activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
+  })
 
   return (
     <S.SearchWrapper>
@@ -23,28 +37,28 @@ const Search = () => {
           <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
         </S.TitleWrapper>
         <S.TabsWrapper>
-          <Tabs>
-            <Tabs.TabList>
-              {bodyParts?.map(({ koreanName }, index) => (
-                <Tabs.Tab
-                  index={index}
-                  variant="fill"
-                  key={koreanName}>
-                  {koreanName}
-                </Tabs.Tab>
-              ))}
-            </Tabs.TabList>
-          </Tabs>
-          <S.SearchBar>
-            <Icon icon="Search" />
-            운동 이름으로 검색
-          </S.SearchBar>
+          <S.TabsBox>
+            <Tabs>
+              <Tabs.TabList>
+                {bodyParts?.map(({ koreanName }, index) => (
+                  <Tabs.Tab
+                    index={index}
+                    variant="fill"
+                    key={index}
+                    onTabChange={handleTabChange}>
+                    {koreanName}
+                  </Tabs.Tab>
+                ))}
+              </Tabs.TabList>
+            </Tabs>
+            <S.SearchBar>
+              <Icon icon="Search" />
+              운동 이름으로 검색
+            </S.SearchBar>
+          </S.TabsBox>
         </S.TabsWrapper>
         <S.CardWrapper>
           <S.CardList>
-            {/* <Tabs.TabPanel
-              index={1}
-              key={1}></Tabs.TabPanel> */}
             {workouts?.map(
               ({ id, imgPath, koreanName, bodyPartKoreanName }) => (
                 <Card

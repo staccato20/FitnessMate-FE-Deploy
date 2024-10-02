@@ -51,10 +51,10 @@ const Result = () => {
               bodyPartKoreanName,
               weight,
               repeat,
-              workoutId,
+              id,
               set,
             }) => (
-              <Accordion key={workoutId}>
+              <Accordion key={id}>
                 <Accordion.Header
                   onClick={() => {
                     console.log("1")

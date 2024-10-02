@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
@@ -64,7 +66,7 @@ export const Status = styled.div`
   align-items: center;
 `
 
-export const RecommendGuide = styled.div`
+export const RecommendGuide = styled(motion.div)`
   gap: 16px;
   display: flex;
   flex-direction: column;
@@ -81,7 +83,7 @@ export const RecommendSwitchGuide = styled.div`
   z-index: 10;
 `
 
-export const RecommendMachineWrapper = styled.ul`
+export const RecommendMachineWrapper = styled(motion.ul)`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -152,7 +154,6 @@ export const ResultList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 10px;
   gap: 12px;
   padding-bottom: 100px;
 `
