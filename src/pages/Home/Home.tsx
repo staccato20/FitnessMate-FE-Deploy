@@ -43,8 +43,8 @@ type Search = {
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { data } = useUserInfo()
-  const loginState = data ? true : false
+  const { userInfo } = useUserInfo()
+  const loginState = userInfo ? true : false
 
   const { register, handleSubmit, setValue, setFocus } = useForm<Search>()
 

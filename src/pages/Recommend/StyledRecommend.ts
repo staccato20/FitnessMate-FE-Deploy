@@ -20,7 +20,7 @@ export const RecommendWrapper = styled.div`
   gap: 56px;
 `
 
-export const CoverWrapper = styled.div`
+export const CoverWrapper = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background: transparent;

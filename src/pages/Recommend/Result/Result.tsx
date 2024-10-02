@@ -7,6 +7,7 @@ import Title from "@components/Title/Title"
 
 import { useRecommendStore } from "@pages/Recommend/store"
 
+import { useUserInfo } from "../../../hooks/query/useUserInfo"
 import * as S from "../StyledRecommend"
 
 const Result = () => {
@@ -17,6 +18,7 @@ const Result = () => {
   }
 
   const { result } = useRecommendStore()
+  const { userInfo } = useUserInfo()
 
   return (
     <S.RecommendAllWrapper>
@@ -25,7 +27,7 @@ const Result = () => {
           <S.TitleContainer>
             <Icon icon="Star" />
             <Title variant="big">
-              김정욱님에게 맞는
+              {userInfo && userInfo.userName}님에게 맞는
               <br />
               4가지 운동을 추천했어요.
               <Title.SubBottomTitle>

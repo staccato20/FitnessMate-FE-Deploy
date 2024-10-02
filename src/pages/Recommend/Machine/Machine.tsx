@@ -2,6 +2,8 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
+import { useTime, useTransform } from "framer-motion"
+
 import Avatar from "@components/Avatar/Avatar"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
@@ -29,6 +31,16 @@ const Machine = () => {
   const postRecommend = usePostRecommend()
   const scrollRef = useRef<HTMLDivElement>(null)
   const [_, isScrollTop] = useScroll(scrollRef)
+
+  const time = useTime()
+
+  const rotate = useTransform(time, [0, 6000], [0, 360], {
+    clamp: false,
+  })
+
+  const scale = useTransform(time, [0, 3000, 6000], [1, 1.5, 1], {
+    clamp: false,
+  })
 
   const { setResult } = useRecommendStore()
 
@@ -77,7 +89,7 @@ const Machine = () => {
   return (
     <>
       {postRecommend.isPending && (
-        <S.CoverWrapper>
+        <S.CoverWrapper style={{ rotate, scale }}>
           <Icon icon="LoadingBackground" />
           <S.LoadingText>
             추천을 위한
