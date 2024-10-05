@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 
-import { useDropDown } from "hooks/useDropDown"
-
 import Button from "@components/Button/Button"
 
 import authAPI from "@apis/domain/auth"
+
+import { useDropDown } from "@hooks/useDropDown"
 
 import * as S from "./StyledNavModal"
 

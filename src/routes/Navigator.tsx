@@ -6,7 +6,6 @@ import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
 import Mypage from "@pages/MyPage/Mypage"
 import BodyPart from "@pages/Recommend/BodyPart/BodyPart"
-import Loading from "@pages/Recommend/Loading/Loading"
 import Machine from "@pages/Recommend/Machine/Machine"
 import Prolog from "@pages/Recommend/Prolog/Prolog"
 import Result from "@pages/Recommend/Result/Result"
@@ -44,13 +43,15 @@ const router = createBrowserRouter([
           { path: "prolog", element: <Prolog /> },
           { path: "bodypart", element: <BodyPart /> },
           { path: "machine", element: <Machine /> },
-          { path: "loading", element: <Loading /> },
           { path: "result", element: <Result /> },
         ],
       },
       {
-        path: "searchworkout/1",
+        path: "searchworkout/:pageId",
         element: <Search />,
+      },
+      {
+        path: "workoutdetail/:workoutId",
       },
       {
         path: "mypage",

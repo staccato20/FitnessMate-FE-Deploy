@@ -2,18 +2,24 @@ import styled, { Interpolation } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
-export const FooterWrapper = styled.div<{ $flex: Interpolation<object> }>`
+export const FooterWrapper = styled.div`
   position: fixed;
   bottom: 0;
-  max-width: 720px;
-  width: 100%;
+  width: 100vw;
   height: 90px;
   z-index: 500;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: ${({ $flex }) => $flex};
   background: ${theme.Netural0};
+`
+export const FooterInner = styled.div<{ $flex: Interpolation<object> }>`
+  display: flex;
+  align-items: center;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: ${({ $flex }) => $flex};
 `
 
 export const FooterTopLine = styled.div`

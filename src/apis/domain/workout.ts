@@ -1,6 +1,6 @@
 import { instance } from "@apis/instance"
 
-import { GetWorkoutsPayload, GetWorkoutsResponse } from "@typpes/type"
+import { GetWorkoutsPayload, Recommend } from "@typpes/type"
 
 const fetchData = (workoutId: number) =>
   instance.get(`/api/workouts/${workoutId}`)
@@ -11,10 +11,9 @@ const searchBatchData = ({
   bodyPartKoreanName,
 }: GetWorkoutsPayload) => {
   const params = { searchKeyword, bodyPartKoreanName }
-  return instance.post<GetWorkoutsResponse[]>(
-    `/api/workouts/search/list/${page}`,
-    params,
-  )
+  return instance
+    .post<Recommend[]>(`/api/workouts/search/list/${page}`, params)
+    .then((res) => res.data)
 }
 
 const workoutAPI = {

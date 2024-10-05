@@ -7,13 +7,14 @@ import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
 
-import { useUserInfo } from "../../hooks/query/useUserInfo"
+import { useUserInfo } from "@hooks/query/useUserInfo"
+
 import * as S from "./StyledNavbar"
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const { data } = useUserInfo()
-  const userName = data ? data.userName : undefined
+  const { userInfo } = useUserInfo()
+  const userName = userInfo ? userInfo.userName : undefined
   const [isLoginModal, setIsLoginModal] = useState(false)
   const [isCancleModal, setIsCancleModal] = useState(false)
 

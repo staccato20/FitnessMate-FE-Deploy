@@ -1,4 +1,5 @@
 import {
+  FooterInner,
   FooterSubText,
   FooterText,
   FooterTopLine,
@@ -13,11 +14,12 @@ interface FooterProps {
 
 const Footer = ({
   children,
-  flex = "flex-end",
+  flex = "center",
 }: StrictPropsWithChildren<FooterProps>) => {
   return (
-    <FooterWrapper $flex={flex}>
-      {children}
+    <FooterWrapper>
+      <FooterInner $flex={flex}>{children}</FooterInner>
+
       <FooterTopLine>{}</FooterTopLine>
     </FooterWrapper>
   )

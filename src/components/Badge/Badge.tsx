@@ -4,6 +4,8 @@ import { StrictPropsWithChildren } from "@typpes/type"
 
 import theme from "@styles/theme"
 
+import { fonts } from "../../styles/theme"
+
 export type BadgeVariant = "default" | "fill"
 
 interface BadgeProps {
@@ -36,6 +38,8 @@ const StyledBadge = styled.div<{ $variantStyle: Interpolation<object> }>`
   justify-content: center;
   align-items: center;
   ${({ $variantStyle }) => $variantStyle};
+  ${fonts.b6};
+  font-size: 14px;
 `
 
 export default Badge

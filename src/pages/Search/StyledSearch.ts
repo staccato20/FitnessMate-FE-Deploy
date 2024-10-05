@@ -42,11 +42,17 @@ export const SubTitle = styled.span`
 export const TabsWrapper = styled.div`
   width: 100vw;
   height: 60px;
-  display: flex;
-  justify-content: space-evenly;
   padding: 9px 0px;
   border: 1px solid ${theme.Netural200};
   background: ${theme.Netural100};
+`
+
+export const TabsBox = styled.div`
+  max-width: 1042px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const SearchBar = styled.button`
@@ -61,8 +67,18 @@ export const SearchBar = styled.button`
   ${fonts.b6};
   font-size: 14px;
 `
-export const CardWrapper = styled.div``
-export const CardTitle = styled.span``
-export const CardList = styled.ul``
+export const CardWrapper = styled.div`
+  width: 100%;
+  max-width: 1032px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`
+
+export const CardList = styled.ul`
+  display: grid;
+  gap: 24px 48px;
+  grid-template-columns: repeat(auto-fit, minmax(29%, auto));
+`
 export const PaginationWrapper = styled.div``
 export const PaginationList = styled.ul``

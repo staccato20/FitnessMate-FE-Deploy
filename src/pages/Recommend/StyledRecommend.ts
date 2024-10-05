@@ -1,4 +1,3 @@
-// StyledRecommend.ts
 import { motion } from "framer-motion"
 
 import styled from "styled-components"
@@ -18,47 +17,42 @@ export const RecommendWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 34px;
+  gap: 56px;
 `
 
-export const CoverWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+export const CoverWrapper = styled(motion.div)`
+  width: 452px;
+  height: 438px;
   background: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 900;
-  svg {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`
-export const LoadingText = styled.span`
+  background-image: url("/src/assets/images/loadingbackground.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
-  top: 59%;
-  left: 51%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+`
+export const LoadingText = styled(motion.span)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   ${fonts.h3};
   text-align: center;
+  z-index: 100;
 `
 
 export const RecommendInner = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 300px);
-  gap: 116px;
   overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
-    width: 6px;
+    display: none; /* Chrome, Safari, Opera*/
   }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 29px;
-    background: ${theme.Netural300};
-  }
+  height: calc(100vh - 400px);
+  position: relative;
 `
 
 export const Status = styled.div`
@@ -69,30 +63,27 @@ export const Status = styled.div`
   align-items: center;
 `
 
-export const RecommendGuide = styled(motion.div)<{ $isGuideSwitch?: boolean }>`
+export const RecommendGuide = styled(motion.div)`
   gap: 16px;
   display: flex;
-  opacity: ${({ $isGuideSwitch }) => ($isGuideSwitch ? 0 : 1)};
-  transition: opacity 0.5s ease-in-out;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
 
-export const RecommendSwitchGuide = styled(motion.div)<{
-  $isGuideSwitch: boolean
-}>`
+export const RecommendSwitchGuide = styled.div`
   position: absolute;
   top: 85px;
   gap: 16px;
   display: flex;
-  opacity: ${({ $isGuideSwitch }) => ($isGuideSwitch ? 1 : 0)};
-  transition: opacity 0.5s ease-in-out;
   align-items: center;
   z-index: 10;
 `
 
-export const RecommendMachineWrapper = styled.ul`
+export const RecommendMachineWrapper = styled(motion.ul)`
+  position: absolute;
+  top: 400px;
+  max-width: 752px;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -163,7 +154,6 @@ export const ResultList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 10px;
   gap: 12px;
   padding-bottom: 100px;
 `
@@ -171,7 +161,7 @@ export const ResultList = styled.div`
 export const BodyPartWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 54px;
+  gap: 48px;
 `
 
 export const TabWrapper = styled.div`

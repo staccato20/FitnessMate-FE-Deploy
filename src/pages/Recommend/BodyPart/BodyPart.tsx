@@ -11,20 +11,14 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { useRecommendStore } from "@pages/Recommend/store"
 
+import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
+
 import * as S from "../StyledRecommend"
 
-const DUMMY_BODYPART = {
-  상체: ["등", "가슴", "어깨", "이두", "삼두", "복부"],
-  하체: ["엉덩이", "허벅지(앞)", "허벅지(뒤)", "종아리"],
-}
-
-const bodyPartsLength =
-  DUMMY_BODYPART["상체"].length + DUMMY_BODYPART["하체"].length
-
 const BodyPart = () => {
-  const [selectedBodyParts, setSelectedBodyParts] = useState(
-    Array(bodyPartsLength).fill(false),
-  )
+  const { bodyParts = [] } = useGetBodyPart("recommend")
+
+  const [selectedBodyParts, setSelectedBodyParts] = useState<number[]>([])
 
   const { setBodyPart } = useRecommendStore()
 
@@ -37,20 +31,18 @@ const BodyPart = () => {
   }
 
   const handleBodyPart = (bodyPartIdx: number) => {
-    setSelectedBodyParts(
-      selectedBodyParts.map((bodyPart, idx) =>
-        idx === bodyPartIdx ? !bodyPart : bodyPart,
-      ),
-    )
+    selectedBodyParts.includes(bodyPartIdx)
+      ? setSelectedBodyParts([
+          ...selectedBodyParts.filter((idx) => idx !== bodyPartIdx),
+        ])
+      : setSelectedBodyParts([...selectedBodyParts, bodyPartIdx])
   }
 
   const handleNextPage = () => {
-    const bodyParts = selectedBodyParts
-      .map((v, idx) =>
-        v ? Object.values(DUMMY_BODYPART).flatMap((item) => item)[idx] : "",
-      )
-      .filter((v) => v)
-    setBodyPart(bodyParts)
+    const koreanBodyParts = selectedBodyParts.map(
+      (idx) => bodyParts[idx].koreanName,
+    )
+    setBodyPart(koreanBodyParts)
     navigate("/recommend/machine")
   }
 
@@ -76,35 +68,51 @@ const BodyPart = () => {
           </SpeechBubble>
         </S.RecommendGuide>
         <S.BodyPartWrapper>
-          {Object.entries(DUMMY_BODYPART).map(([pos, bodyparts], posIndex) => {
-            return (
-              <S.TabWrapper key={pos}>
-                <S.TabTitle>{pos}</S.TabTitle>
-                <S.TabList>
-                  {bodyparts.map((bodypart, bodyPartIndex) => (
-                    <ImgCheckBox
-                      key={bodypart}
-                      src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
-                      alt="테스트 이미지"
-                      handleToggle={() => {
-                        handleBodyPart(posIndex * 6 + bodyPartIndex)
-                      }}
-                      isSelected={
-                        selectedBodyParts[posIndex * 6 + bodyPartIndex]
-                      }
-                      variant="small">
-                      {bodypart}
-                    </ImgCheckBox>
-                  ))}
-                </S.TabList>
-              </S.TabWrapper>
-            )
-          })}
+          <S.TabWrapper key="상체">
+            <S.TabTitle>{"상체"}</S.TabTitle>
+            <S.TabList>
+              {bodyParts
+                .slice(0, 6)
+                .map(({ englishName, koreanName, imgPath }, posIndex) => (
+                  <ImgCheckBox
+                    key={englishName}
+                    src={imgPath}
+                    alt="테스트 이미지"
+                    handleToggle={() => {
+                      handleBodyPart(posIndex)
+                    }}
+                    isSelected={selectedBodyParts.includes(posIndex)}
+                    variant="small">
+                    {koreanName}
+                  </ImgCheckBox>
+                ))}
+            </S.TabList>
+          </S.TabWrapper>
+          <S.TabWrapper key="하체">
+            <S.TabTitle>{"하체"}</S.TabTitle>
+            <S.TabList>
+              {bodyParts
+                .slice(6)
+                .map(({ englishName, koreanName, imgPath }, posIndex) => (
+                  <ImgCheckBox
+                    key={englishName}
+                    src={imgPath}
+                    alt="테스트 이미지"
+                    handleToggle={() => {
+                      handleBodyPart(posIndex + 6)
+                    }}
+                    isSelected={selectedBodyParts.includes(posIndex + 6)}
+                    variant="small">
+                    {koreanName}
+                  </ImgCheckBox>
+                ))}
+            </S.TabList>
+          </S.TabWrapper>
         </S.BodyPartWrapper>
       </S.RecommendInner>
       <Footer flex="space-between">
         <Footer.Text>
-          {selectedBodyParts.filter((v) => v).length}개
+          {selectedBodyParts.length}개
           <Footer.SubText> 부위 선택됨</Footer.SubText>
         </Footer.Text>
         <RoundButton
