@@ -11,7 +11,6 @@ export const useScroll = (scrollRef: RefObject<HTMLDivElement>) => {
       return
     }
     setPosition(scrollRef.current.scrollTop)
-    console.log(scrollRef.current.scrollTop)
     if (scrollRef.current.scrollTop > 10) {
       setIsScrollTop(false)
     } else {

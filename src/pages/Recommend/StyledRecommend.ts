@@ -21,27 +21,24 @@ export const RecommendWrapper = styled.div`
 `
 
 export const CoverWrapper = styled(motion.div)`
-  width: 100vw;
-  height: 100vh;
+  width: 452px;
+  height: 438px;
   background: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 900;
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`
-export const LoadingText = styled.span`
+  background-image: url("/src/assets/images/loadingbackground.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
   top: 50%;
-  left: 51%;
-  transform: translate(-50%, -50%);
+  left: 50%;
+  z-index: 50;
+`
+export const LoadingText = styled(motion.span)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   ${fonts.h3};
   text-align: center;
+  z-index: 100;
 `
 
 export const RecommendInner = styled.div`

@@ -41,7 +41,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/components/TyphoGraphy/typhography.mdx"
+    "src/components/TyphoGraphy/typhography.mdx",
+    "src/pages/Home/Home.ㅓsx"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

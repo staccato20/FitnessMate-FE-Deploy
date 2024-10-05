@@ -2,13 +2,12 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
-import { useTime, useTransform } from "framer-motion"
+import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 
 import Avatar from "@components/Avatar/Avatar"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import Footer from "@components/Footer/Footer"
-import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -32,14 +31,18 @@ const Machine = () => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [_, isScrollTop] = useScroll(scrollRef)
 
-  const time = useTime()
-
-  const rotate = useTransform(time, [0, 6000], [0, 360], {
-    clamp: false,
+  const time = useMotionValue(0)
+  const rotate = useTransform(time, [0, 6000], [0, 360], { clamp: false })
+  const scale = useTransform(time, [0, 3000, 6000], [1, 1.2, 1], {
+    clamp: true,
   })
 
-  const scale = useTransform(time, [0, 3000, 6000], [1, 1.5, 1], {
-    clamp: false,
+  useAnimationFrame(() => {
+    if (time.get() >= 6000) {
+      time.set(0)
+    } else {
+      time.set(time.get() + 16) // time 값을 지속적으로 증가시켜 rotate 애니메이션 적용
+    }
   })
 
   const { setResult } = useRecommendStore()
@@ -89,13 +92,31 @@ const Machine = () => {
   return (
     <>
       {postRecommend.isPending && (
-        <S.CoverWrapper style={{ rotate, scale }}>
-          <Icon icon="LoadingBackground" />
-          <S.LoadingText>
+        <>
+          <S.CoverWrapper
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }} // 첫 시작 위치 및 애니메이션 설정
+            animate={{
+              x: "-50%",
+              y: "-50%",
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={animation.slow}
+            style={{ rotate, scale }}
+          />
+          <S.LoadingText
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }} // 첫 시작 위치 및 애니메이션 설정
+            animate={{
+              x: "-50%",
+              y: "-50%",
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={animation.slow}>
             추천을 위한
             <br /> 분석을 시작했어요
           </S.LoadingText>
-        </S.CoverWrapper>
+        </>
       )}
 
       <S.RecommendWrapper>

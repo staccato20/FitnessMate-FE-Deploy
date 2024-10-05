@@ -46,9 +46,8 @@ const Result = () => {
         <S.ResultList>
           {result.recommends.map(
             ({
-              // recommendId,
               koreanName,
-              // videoLink,
+              videoLink,
               description,
               bodyPartKoreanName,
               weight,
@@ -66,7 +65,7 @@ const Result = () => {
                   {koreanName}
                 </Accordion.Header>
                 <Accordion.Content
-                  // videoId={videoLink.split("=")[1]}
+                  videoId={videoLink.split("=")[1]}
                   recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
                   {description}
                 </Accordion.Content>
