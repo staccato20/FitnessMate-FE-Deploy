@@ -5,9 +5,9 @@ import { BeatLoader } from "react-spinners"
 import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 
 import Avatar from "@components/Avatar/Avatar"
+import Bottom from "@components/Bottom/Bottom"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
-import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -163,10 +163,10 @@ const Machine = () => {
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
-        <Footer flex="space-between">
-          <Footer.Text>
-            {numChecked}개<Footer.SubText> 기구 선택됨</Footer.SubText>
-          </Footer.Text>
+        <Bottom flex="space-between">
+          <Bottom.Text>
+            {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
+          </Bottom.Text>
           <RoundButton
             onClick={handleRecommend}
             variant="blue"
@@ -184,7 +184,7 @@ const Machine = () => {
               "추천 시작하기"
             )}
           </RoundButton>
-        </Footer>
+        </Bottom>
       </S.RecommendWrapper>
     </>
   )

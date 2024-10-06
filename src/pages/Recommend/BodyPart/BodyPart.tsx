@@ -2,9 +2,9 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import Avatar from "@components/Avatar/Avatar"
+import Bottom from "@components/Bottom/Bottom"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
-import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -110,11 +110,11 @@ const BodyPart = () => {
           </S.TabWrapper>
         </S.BodyPartWrapper>
       </S.RecommendInner>
-      <Footer flex="space-between">
-        <Footer.Text>
+      <Bottom flex="space-between">
+        <Bottom.Text>
           {selectedBodyParts.length}개
-          <Footer.SubText> 부위 선택됨</Footer.SubText>
-        </Footer.Text>
+          <Bottom.SubText> 부위 선택됨</Bottom.SubText>
+        </Bottom.Text>
         <RoundButton
           onClick={handleNextPage}
           variant="black"
@@ -123,7 +123,7 @@ const BodyPart = () => {
           disabled={!isReady}>
           다음
         </RoundButton>
-      </Footer>
+      </Bottom>
     </S.RecommendWrapper>
   )
 }

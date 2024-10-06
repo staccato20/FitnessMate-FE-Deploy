@@ -123,6 +123,15 @@ const Search = () => {
             )}
           </S.CardList>
         </S.CardWrapper>
+        <S.PaginationWrapper>
+          <IconButton icon="LeftArrowBig" />
+          <S.PaginationList>
+            <S.PaginationButton>1</S.PaginationButton>
+            <S.PaginationButton>2</S.PaginationButton>
+            <S.PaginationButton>3</S.PaginationButton>
+          </S.PaginationList>
+          <IconButton icon="RightArrowBig" />
+        </S.PaginationWrapper>
       </S.SearchContent>
     </S.SearchWrapper>
   )

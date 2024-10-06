@@ -10,7 +10,6 @@ import IconButton from "@components/IconButton/IconButton"
 import LoginModal from "@components/Modal/LoginModal"
 
 import homebanner from "@assets/images/homebanner.png"
-import logo from "@assets/images/logo.png"
 import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
 
@@ -212,44 +211,6 @@ export const Home = () => {
           </S.SearchKeywordForm>
         </S.SearchWrapper>
       </S.Fourth>
-      <S.Footer>
-        <S.FooterWrapper>
-          <img src={logo} />
-          <S.FooterInfoList>
-            <S.FooterInfoContentWrapper>
-              <S.FooterInfoContentList>
-                <S.FooterInfoContentTitle>개발</S.FooterInfoContentTitle>
-                <S.FooterInfoContent>이찬하</S.FooterInfoContent>
-                <S.FooterInfoContent>정지성</S.FooterInfoContent>
-                <S.FooterInfoContent>강민정</S.FooterInfoContent>
-                <S.FooterInfoContent>최훈오</S.FooterInfoContent>
-              </S.FooterInfoContentList>
-              <S.FooterInfoContentList>
-                <S.FooterInfoContentTitle>디자인</S.FooterInfoContentTitle>
-                <S.FooterInfoContent>김정욱</S.FooterInfoContent>
-                <S.FooterInfoContent>최시현</S.FooterInfoContent>
-              </S.FooterInfoContentList>
-            </S.FooterInfoContentWrapper>
-            <S.FooterInfoContentList>
-              <S.FooterInfoContentTitle>서비스</S.FooterInfoContentTitle>
-              <S.FooterInfoContent>검색하기</S.FooterInfoContent>
-              <S.FooterInfoContent>추천받기</S.FooterInfoContent>
-              <S.FooterInfoContent>내 운동</S.FooterInfoContent>
-            </S.FooterInfoContentList>
-            <S.FooterInfoContentList>
-              <S.FooterInfoContentTitle>문의</S.FooterInfoContentTitle>
-              <S.FooterInfoSubContentWrapper>
-                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
-                <S.FooterInfoContent>010-8544-1013</S.FooterInfoContent>
-              </S.FooterInfoSubContentWrapper>
-              <S.FooterInfoSubContentWrapper>
-                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
-                <S.FooterInfoContent>jeuk1013@naver.com</S.FooterInfoContent>
-              </S.FooterInfoSubContentWrapper>
-            </S.FooterInfoContentList>
-          </S.FooterInfoList>
-        </S.FooterWrapper>
-      </S.Footer>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
     </S.HomeContainer>
   )

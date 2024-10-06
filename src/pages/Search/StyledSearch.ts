@@ -121,5 +121,19 @@ export const CardList = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
 `
 
-export const PaginationWrapper = styled.div``
-export const PaginationList = styled.ul``
+export const PaginationWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+  align-items: center;
+`
+export const PaginationList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`
+
+export const PaginationButton = styled.button`
+  padding: 6px;
+  ${theme.Netural800};
+  ${fonts.b6};
+`
