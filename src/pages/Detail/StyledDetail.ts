@@ -3,13 +3,12 @@ import styled from "styled-components"
 import theme, { fonts } from "@styles/theme"
 
 export const TotalWrapper = styled.div`
-  padding-top: 56px;
   display: flex;
   gap: 12px;
   flex-direction: column;
   max-width: 842px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding: 50px;
 `
 
 export const BeforeButton = styled.button`
@@ -56,14 +55,16 @@ export const ContentBox = styled.div`
 export const ContentImg = styled.img`
   border-radius: 12px;
   border: 1px solid #d1d6db;
-  width: 40%;
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `
 export const ContentInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px;
   gap: 24px;
-  width: 60%;
+  width: 100%;
   background: ${theme.Netural100};
   border-radius: 12px;
 `
