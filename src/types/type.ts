@@ -11,12 +11,13 @@ export interface User {
 }
 
 export interface Workout {
+  id: number
   englishName: string
   koreanName: string
-  imageURL: string
+  imgPath: string
   videoLink: string
   description: string
-  bodyPartKoreanName: string
+  bodyPartKoreanName: string[]
 }
 
 export interface Machine {

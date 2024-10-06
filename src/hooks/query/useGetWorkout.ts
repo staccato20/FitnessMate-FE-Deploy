@@ -1,24 +1,12 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 
 import workoutAPI from "@apis/domain/workout"
 
-import { GetWorkoutsPayload } from "@typpes/type"
-
-export const useGetWorkout = ({
-  page = 1,
-  searchKeyword = "",
-  bodyPartKoreanName = [],
-}: GetWorkoutsPayload) => {
+export const useGetWorkout = (workoutId: number) => {
   const getWorkout = useQuery({
-    queryKey: ["getWorkout", page, searchKeyword, bodyPartKoreanName],
-    queryFn: async () =>
-      await workoutAPI.searchBatchData({
-        page,
-        searchKeyword,
-        bodyPartKoreanName,
-      }),
-    placeholderData: keepPreviousData,
+    queryKey: ["getWorkout", workoutId],
+    queryFn: async () => await workoutAPI.fetchData(workoutId),
   })
 
-  return { workouts: getWorkout.data }
+  return { workout: getWorkout.data }
 }
