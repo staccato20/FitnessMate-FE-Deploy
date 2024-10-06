@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import MainLayout from "@Layout/Mainlayout"
 
+import Detail from "@pages/Detail/Detail"
 import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
 import Mypage from "@pages/MyPage/Mypage"
@@ -52,7 +53,9 @@ const router = createBrowserRouter([
       },
       {
         path: "workoutdetail/:workoutId",
+        element: <Detail />,
       },
+
       {
         path: "mypage",
         element: <Mypage />,

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 import Card from "@components/Card/Card"
 import Icon from "@components/Icon/Icon"
@@ -14,6 +14,7 @@ const Search = () => {
   const { bodyParts = [] } = useGetBodyPart()
   const [activeTab, setActiveTab] = useState(0)
   const { pageId } = useParams()
+  const navigate = useNavigate()
 
   const handleTabChange = (index: number) => {
     if (!bodyParts) {
@@ -28,6 +29,10 @@ const Search = () => {
     bodyPartKoreanName:
       activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
   })
+
+  const handleCard = (workoutId: number) => {
+    navigate(`/workoutdetail/${workoutId}`)
+  }
 
   return (
     <S.SearchWrapper>
@@ -65,7 +70,8 @@ const Search = () => {
                   key={id}
                   src={imgPath}
                   title={koreanName}
-                  badges={bodyPartKoreanName}></Card>
+                  badges={bodyPartKoreanName}
+                  onClick={() => handleCard(id)}></Card>
               ),
             )}
           </S.CardList>
