@@ -7,6 +7,7 @@ import Card from "@components/Card/Card"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
+import SearchField from "@components/SearchField/SearchField"
 import Tabs from "@components/Tabs/Tabs"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
@@ -78,20 +79,29 @@ const Search = () => {
           {isSearchMode && (
             <S.DropDownWrapper
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "408px", opacity: 1, gap: "0" }}
+              animate={{ height: "408px", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={animation.basic}>
+              transition={animation.small}>
               <IconButton
                 icon="CloseBold"
                 className="close"
                 onClick={handleToggle}
+              />
+              <SearchField
+                placeholder="어떤 운동이 좋을까요?"
+                width="100%"
               />
               <S.DropDownKeywordWrapper>
                 <S.DropDownKeywordTitle>
                   추천 검색 키워드
                 </S.DropDownKeywordTitle>
                 <S.DropDownKeywordList>
-                  {["마이 프로틴", "BCAA"].map((keyword) => (
+                  {[
+                    "데드 리프트",
+                    "풀업",
+                    "스쿼트",
+                    "인클라인 덤벨 프레스",
+                  ].map((keyword) => (
                     <Chip key={keyword}>{keyword}</Chip>
                   ))}
                 </S.DropDownKeywordList>

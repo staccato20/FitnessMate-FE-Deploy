@@ -10,6 +10,7 @@ import CircleFill from "@assets/icon/circle_fill.svg?react"
 import Close from "@assets/icon/close.svg?react"
 import CloseBold from "@assets/icon/close_bold.svg?react"
 import CloseRound from "@assets/icon/close_round.svg?react"
+import CloseRoundSmall from "@assets/icon/close_round_small.svg?react"
 import DownArrow from "@assets/icon/down_arrow.svg?react"
 import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
@@ -68,6 +69,7 @@ export const ICON_MAP = {
   RightArrowWhite,
   Avatar,
   LoadingBackground,
+  CloseRoundSmall,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

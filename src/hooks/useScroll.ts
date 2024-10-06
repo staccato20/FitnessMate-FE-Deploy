@@ -2,7 +2,6 @@ import { RefObject, useEffect, useState } from "react"
 
 export const useScroll = (scrollRef: RefObject<HTMLDivElement>) => {
   const [position, setPosition] = useState(0)
-  console.log(position)
 
   const [isScrollTop, setIsScrollTop] = useState(true)
 

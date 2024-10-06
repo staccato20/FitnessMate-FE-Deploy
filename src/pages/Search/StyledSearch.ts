@@ -75,7 +75,7 @@ export const SearchToggle = styled.button`
 
 export const DropDownWrapper = styled(motion.div)`
   height: 408px;
-  width: 43%;
+  width: 45%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -84,7 +84,7 @@ export const DropDownWrapper = styled(motion.div)`
   justify-content: center;
   .close {
     position: absolute;
-    top: 180;
+    top: 180px;
     right: 30px;
   }
 `
