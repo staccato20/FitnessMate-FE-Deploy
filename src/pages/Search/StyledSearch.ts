@@ -132,8 +132,14 @@ export const PaginationList = styled.ul`
   gap: 12px;
 `
 
-export const PaginationButton = styled.button`
+export const PaginationButton = styled.button<{ $isSelected?: boolean }>`
   padding: 6px;
-  ${theme.Netural800};
+  color: ${({ $isSelected }) =>
+    $isSelected ? theme.Netural0 : theme.Netural800};
   ${fonts.b6};
+  border-radius: 16px;
+  background: ${({ $isSelected }) =>
+    $isSelected ? theme.Netural900 : theme.Netural0};
+  width: 30px;
+  height: 30px;
 `

@@ -64,7 +64,11 @@ const Detail = () => {
                 <S.ContentInfoBottomTitle>운동 부위</S.ContentInfoBottomTitle>
                 <S.ContentInfoBottomList>
                   {workout?.bodyPartKoreanName.map((badge) => (
-                    <Badge variant="fill">{badge}</Badge>
+                    <Badge
+                      variant="fill"
+                      key={badge}>
+                      {badge}
+                    </Badge>
                   ))}
                 </S.ContentInfoBottomList>
               </S.ContentInfoBottomWrapper>

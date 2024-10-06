@@ -17,6 +17,8 @@ import { animation } from "@styles/theme"
 
 import * as S from "./StyledSearch"
 
+const totalPageLength = 4
+
 const Search = () => {
   const [isSearchMode, setIsSearchMode] = useState(false)
 
@@ -30,21 +32,37 @@ const Search = () => {
       return
     }
     setActiveTab(index)
+    navigate(`/searchworkout/1`)
   }
 
-  const { workouts } = useGetWorkoutBatch({
+  const { workouts = [] } = useGetWorkoutBatch({
     page: Number(pageId),
     searchKeyword: "",
     bodyPartKoreanName:
       activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
   })
 
+  const pageNum =
+    activeTab === 0 ? totalPageLength : Math.ceil(workouts?.length / 12)
+
   const handleCard = (workoutId: number) => {
     navigate(`/workoutdetail/${workoutId}`)
   }
 
+  const handlePagination = (pageId: number) => {
+    navigate(`/searchworkout/${pageId}`)
+  }
+
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
+  }
+
+  const handleNextPage = () => {
+    navigate(`/searchworkout/${Number(pageId) + 1}`)
+  }
+
+  const handlePreviousPage = () => {
+    navigate(`/searchworkout/${Number(pageId) - 1}`)
   }
 
   return (
@@ -124,13 +142,28 @@ const Search = () => {
           </S.CardList>
         </S.CardWrapper>
         <S.PaginationWrapper>
-          <IconButton icon="LeftArrowBig" />
+          <IconButton
+            icon="LeftArrowBig"
+            onClick={handlePreviousPage}
+            disabled={Number(pageId) === 1}
+          />
           <S.PaginationList>
-            <S.PaginationButton>1</S.PaginationButton>
-            <S.PaginationButton>2</S.PaginationButton>
-            <S.PaginationButton>3</S.PaginationButton>
+            {Array.from({ length: pageNum }, (_, i: number) => i + 1).map(
+              (item) => (
+                <S.PaginationButton
+                  key={item}
+                  $isSelected={Number(pageId) === item}
+                  onClick={() => handlePagination(item)}>
+                  {item}
+                </S.PaginationButton>
+              ),
+            )}
           </S.PaginationList>
-          <IconButton icon="RightArrowBig" />
+          <IconButton
+            icon="RightArrowBig"
+            onClick={handleNextPage}
+            disabled={Number(pageId) === totalPageLength}
+          />
         </S.PaginationWrapper>
       </S.SearchContent>
     </S.SearchWrapper>

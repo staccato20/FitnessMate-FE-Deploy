@@ -20,5 +20,8 @@ export const useGetWorkoutBatch = ({
     placeholderData: keepPreviousData,
   })
 
-  return { workouts: getWorkout.data }
+  return {
+    workouts: getWorkout.data,
+    isPlaceholderData: getWorkout.isPlaceholderData,
+  }
 }
