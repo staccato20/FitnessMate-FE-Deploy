@@ -6,7 +6,7 @@ export const TotalWrapper = styled.div`
   display: flex;
   gap: 12px;
   flex-direction: column;
-  max-width: 842px;
+  max-width: 942px;
   margin: 0 auto;
   padding: 50px;
 `

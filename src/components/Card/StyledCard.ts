@@ -38,5 +38,6 @@ export const BadgeList = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 4px;
 `
