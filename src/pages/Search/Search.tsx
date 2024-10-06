@@ -6,7 +6,7 @@ import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
-import { useGetWorkout } from "@hooks/query/useGetWorkout"
+import { useGetWorkoutBatch } from "@hooks/query/useGetWorkoutBatch"
 
 import * as S from "./StyledSearch"
 
@@ -23,7 +23,7 @@ const Search = () => {
     setActiveTab(index)
   }
 
-  const { workouts } = useGetWorkout({
+  const { workouts } = useGetWorkoutBatch({
     page: Number(pageId),
     searchKeyword: "",
     bodyPartKoreanName:

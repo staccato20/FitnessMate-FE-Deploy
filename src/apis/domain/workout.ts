@@ -1,9 +1,9 @@
 import { instance } from "@apis/instance"
 
-import { GetWorkoutsPayload, Recommend } from "@typpes/type"
+import { GetWorkoutsPayload, Recommend, Workout } from "@typpes/type"
 
 const fetchData = (workoutId: number) =>
-  instance.get(`/api/workouts/${workoutId}`)
+  instance.get<Workout>(`/api/workouts/${workoutId}`).then((res) => res.data)
 
 const searchBatchData = ({
   page,

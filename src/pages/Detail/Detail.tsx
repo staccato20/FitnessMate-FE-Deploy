@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import YouTube, { YouTubeProps } from "react-youtube"
 
 import Badge from "@components/Badge/Badge"
 import RoundButton from "@components/Button/RoundButton"
 
 import Icon from "../../components/Icon/Icon"
+import { useGetWorkout } from "../../hooks/query/useGetWorkout"
 import * as S from "./StyledDetail"
 
 const opts: YouTubeProps["opts"] = {
@@ -17,6 +18,10 @@ const opts: YouTubeProps["opts"] = {
 }
 
 const Detail = () => {
+  const { workoutId } = useParams()
+
+  const { workout } = useGetWorkout(Number(workoutId))
+
   const navigate = useNavigate()
   const handleRoutine = () => {
     alert("수정 중인 기능입니다!")
@@ -34,7 +39,7 @@ const Detail = () => {
       </S.BeforeButton>
       <S.DetailWrapper>
         <S.TitleWrapper>
-          <S.Title>데드리프트</S.Title>
+          <S.Title>{workout?.koreanName}</S.Title>
           <RoundButton
             leftIcon="Add"
             variant="blue"
@@ -45,22 +50,20 @@ const Detail = () => {
         <S.ContentWrapper>
           <S.ContentBox>
             <S.ContentImg
-              src="https://fitness-mate.s3.ap-northeast-2.amazonaws.com/images/workout/8b8e358d-488e-4897-9389-eaab33ea7018.png"
+              src={workout?.imgPath}
               alt="운동 이미지"
             />
             <S.ContentInfoWrapper>
               <S.ContentInfoTopWrapper>
                 <S.ContentInfoTopTitle>운동 설명</S.ContentInfoTopTitle>
                 <S.ContentInfoTopText>
-                  펙 덱 플라이(pec-deck-fly)는 대흉근을 발달시켜주는 운동이다.
-                  패드에 팔을 고정하고 팔꿈치로 동작을 이끌며 천천히 양팔의
-                  각도를 좁히고 벌리며 운동한다.
+                  {workout?.description}
                 </S.ContentInfoTopText>
               </S.ContentInfoTopWrapper>
               <S.ContentInfoBottomWrapper>
                 <S.ContentInfoBottomTitle>운동 부위</S.ContentInfoBottomTitle>
                 <S.ContentInfoBottomList>
-                  {["가슴", "등", "어깨"].map((badge) => (
+                  {workout?.bodyPartKoreanName.map((badge) => (
                     <Badge variant="fill">{badge}</Badge>
                   ))}
                 </S.ContentInfoBottomList>
@@ -71,7 +74,7 @@ const Detail = () => {
             <YouTube
               opts={opts}
               loading="lazy"
-              videoId="Og9pgOtL-04"
+              videoId={workout?.videoLink.split("=")[1]}
             />
           </S.VideoWrapper>
         </S.ContentWrapper>

@@ -63,7 +63,6 @@ export const ContentInfoWrapper = styled.div`
   flex-direction: column;
   padding: 24px;
   gap: 24px;
-  height: 197px;
   width: 60%;
   background: ${theme.Netural100};
   border-radius: 12px;
