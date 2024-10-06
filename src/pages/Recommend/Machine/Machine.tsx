@@ -29,7 +29,7 @@ const Machine = () => {
   const postRecommendId = usePostRecommendId()
   const postRecommend = usePostRecommend()
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [_, isScrollTop] = useScroll(scrollRef)
+  const { isScrollTop } = useScroll(scrollRef)
 
   const time = useMotionValue(0)
   const rotate = useTransform(time, [0, 6000], [0, 360], { clamp: false })

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -43,12 +43,20 @@ export const SubTitle = styled.span`
   font-size: 30px;
 `
 
-export const TabsWrapper = styled.div`
+export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>`
+  z-index: 998;
   width: 100vw;
   height: 60px;
   padding: 9px 0px;
   border: 1px solid ${theme.Netural200};
   background: ${theme.Netural100};
+  ${({ $isTabFixed }) =>
+    $isTabFixed
+      ? css`
+          position: sticky;
+          top: 62px;
+        `
+      : css``}
 `
 
 export const TabsBox = styled.div`

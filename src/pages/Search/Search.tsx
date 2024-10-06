@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 import { AnimatePresence } from "framer-motion"
@@ -12,6 +12,7 @@ import Tabs from "@components/Tabs/Tabs"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
 import { useGetWorkoutBatch } from "@hooks/query/useGetWorkoutBatch"
+import { useScroll } from "@hooks/useScroll"
 
 import { animation } from "@styles/theme"
 
@@ -26,6 +27,16 @@ const Search = () => {
   const [activeTab, setActiveTab] = useState(0)
   const { pageId } = useParams()
   const navigate = useNavigate()
+  const { position } = useScroll()
+
+  const targetRef = useRef<HTMLDivElement>(null)
+
+  const targetHeight = targetRef.current
+    ? targetRef.current?.getBoundingClientRect().top -
+      targetRef.current?.clientHeight
+    : -1
+
+  const isTabFixed = position > targetHeight
 
   const handleTabChange = (index: number) => {
     if (!bodyParts) {
@@ -72,7 +83,9 @@ const Search = () => {
         <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
       </S.TitleWrapper>
       <S.SearchContent>
-        <S.TabsWrapper>
+        <S.TabsWrapper
+          $isTabFixed={isTabFixed}
+          ref={targetRef}>
           <S.TabsBox>
             <Tabs>
               <Tabs.TabList>

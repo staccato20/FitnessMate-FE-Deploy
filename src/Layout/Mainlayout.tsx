@@ -9,6 +9,7 @@ import Navbar from "@components/Navbar/Navbar"
 const MainLayout = () => {
   const location = useLocation()
   const path = location.pathname
+  const isRecommend = path.includes("recommend")
   const { setIsRecommendPage } = usePathStore()
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const MainLayout = () => {
     <>
       <Navbar />
       <Outlet />
-      <Footer />
+      {!isRecommend && <Footer />}
     </>
   )
 }
