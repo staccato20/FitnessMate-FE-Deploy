@@ -153,8 +153,8 @@ export interface MachineList {
   imgPath: string
 }
 
-export interface GetBodyParts {
-  bodyPartKoreanName: MachineList[]
+export interface BodyPartList extends MachineList {
+  bodyPartId: number
 }
 
 export interface PostMachineListPayload {

@@ -80,7 +80,7 @@ export const SecondText2 = styled(SecondText)`
   padding-left: 145px;
   &::before {
     content: "";
-    background-image: url("/src/assets/images/logo.png");
+    background-image: url("src/assets/images/logo.png");
     background-size: 136px 32px;
     background-repeat: no-repeat;
     position: absolute;

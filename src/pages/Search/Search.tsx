@@ -25,11 +25,12 @@ const totalPageLength = 4
 
 const Search = () => {
   const navigate = useNavigate()
-  const { register, setFocus, handleSubmit } = useForm<SearchTypes>()
-  const methods = useForm()
+  const methods = useForm<SearchTypes>()
 
   const [isSearchMode, setIsSearchMode] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
+  const [keyword, setKeyword] = useState("")
+
   const targetRef = useRef<HTMLDivElement>(null)
   const { pageId } = useParams()
 
@@ -51,13 +52,13 @@ const Search = () => {
     navigate(`/searchworkout/1`)
   }
 
-  const handleSearch = (search: SearchTypes) => {
-    console.log(search)
+  const handleSearch = ({ search }: SearchTypes) => {
+    setKeyword(search)
   }
 
   const { workouts = [] } = useGetWorkoutBatch({
     page: Number(pageId),
-    searchKeyword: "",
+    searchKeyword: isSearchMode ? keyword : "",
     bodyPartKoreanName:
       activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
   })
@@ -75,7 +76,12 @@ const Search = () => {
 
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
-    setFocus("search")
+    methods.setFocus("search")
+    setKeyword("")
+  }
+
+  const triggerSubmit = () => {
+    methods.handleSubmit(handleSearch)()
   }
 
   const handleNextPage = () => {
@@ -86,9 +92,9 @@ const Search = () => {
     navigate(`/searchworkout/${Number(pageId) - 1}`)
   }
 
-  // const handleSearchErase = () => {
-  //   setValue("search", "")
-  // }
+  const handleClickKeyword = (keyword: string) => {
+    methods.setValue("search", keyword)
+  }
 
   return (
     <S.SearchWrapper>
@@ -104,11 +110,11 @@ const Search = () => {
           <S.TabsBox>
             <Tabs>
               <Tabs.TabList>
-                {bodyParts?.map(({ koreanName }, index) => (
+                {bodyParts?.map(({ koreanName, bodyPartId }) => (
                   <Tabs.Tab
-                    index={index}
+                    index={bodyPartId}
                     variant="fill"
-                    key={index}
+                    key={bodyPartId}
                     onTabChange={handleTabChange}>
                     {koreanName}
                   </Tabs.Tab>
@@ -124,38 +130,46 @@ const Search = () => {
         <AnimatePresence>
           {isSearchMode && (
             <S.DropDownForm
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "408px", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
+              layout
+              initial={{ opacity: 0, y: 0, height: 0 }} // 초기 상태: 투명하고 위쪽에 위치하며, 높이는 0
+              animate={{ opacity: 1, y: 0, height: "428px" }} // 애니메이션: 불투명하고 제자리로 내려오며, 높이는 auto
+              exit={{ opacity: 0, y: "100px", height: 0 }} // 사라질 때: 높이가 위에서 아래로 줄어듦
               transition={animation.small}
-              onSubmit={handleSubmit(handleSearch)}>
-              <IconButton
-                icon="CloseBold"
-                className="close"
-                onClick={handleToggle}
-              />
-              <FormProvider {...methods}>
-                <SearchField
-                  register={register("search")}
-                  placeholder="어떤 운동이 좋을까요?"
-                  width="100%"
+              onSubmit={methods.handleSubmit(handleSearch)}>
+              <S.DropDownBox>
+                <IconButton
+                  icon="CloseBold"
+                  className="close"
+                  onClick={handleToggle}
                 />
-              </FormProvider>
-              <S.DropDownKeywordWrapper>
-                <S.DropDownKeywordTitle>
-                  추천 검색 키워드
-                </S.DropDownKeywordTitle>
-                <S.DropDownKeywordList>
-                  {[
-                    "데드 리프트",
-                    "풀업",
-                    "스쿼트",
-                    "인클라인 덤벨 프레스",
-                  ].map((keyword) => (
-                    <Chip key={keyword}>{keyword}</Chip>
-                  ))}
-                </S.DropDownKeywordList>
-              </S.DropDownKeywordWrapper>
+                <FormProvider {...methods}>
+                  <SearchField
+                    triggerSubmit={triggerSubmit}
+                    name="search"
+                    placeholder="어떤 운동이 좋 을까요?"
+                    width="100%"
+                  />
+                </FormProvider>
+                <S.DropDownKeywordWrapper>
+                  <S.DropDownKeywordTitle>
+                    추천 검색 키워드
+                  </S.DropDownKeywordTitle>
+                  <S.DropDownKeywordList>
+                    {[
+                      "데드 리프트",
+                      "풀업",
+                      "스쿼트",
+                      "인클라인 덤벨 프레스",
+                    ].map((keyword) => (
+                      <Chip
+                        key={keyword}
+                        onClick={() => handleClickKeyword(keyword)}>
+                        {keyword}
+                      </Chip>
+                    ))}
+                  </S.DropDownKeywordList>
+                </S.DropDownKeywordWrapper>
+              </S.DropDownBox>
             </S.DropDownForm>
           )}
         </AnimatePresence>
