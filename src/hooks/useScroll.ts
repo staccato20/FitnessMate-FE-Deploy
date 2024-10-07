@@ -1,28 +1,35 @@
 import { RefObject, useEffect, useState } from "react"
 
-export const useScroll = (scrollRef: RefObject<HTMLDivElement>) => {
+export const useScroll = (scrollRef?: RefObject<HTMLDivElement>) => {
   const [position, setPosition] = useState(0)
-  console.log(position)
 
   const [isScrollTop, setIsScrollTop] = useState(true)
 
   const handleScroll = () => {
-    if (!scrollRef.current) {
-      return
-    }
-    setPosition(scrollRef.current.scrollTop)
-    if (scrollRef.current.scrollTop > 10) {
-      setIsScrollTop(false)
+    if (scrollRef && scrollRef.current) {
+      setPosition(scrollRef.current.scrollTop)
+      if (scrollRef.current.scrollTop > 10) {
+        setIsScrollTop(false)
+      } else {
+        setIsScrollTop(true)
+      }
     } else {
-      setIsScrollTop(true)
+      setPosition(window.scrollY)
     }
   }
 
   useEffect(() => {
-    scrollRef.current?.addEventListener("scroll", handleScroll)
+    if (scrollRef) {
+      scrollRef.current?.addEventListener("scroll", handleScroll)
+    } else {
+      window.addEventListener("scroll", handleScroll)
+    }
     return () => {
-      scrollRef.current?.removeEventListener("scroll", handleScroll)
+      if (scrollRef) {
+        scrollRef.current?.removeEventListener("scroll", handleScroll)
+      }
+      window.removeEventListener("scroll", handleScroll)
     }
   }, [])
-  return [position, isScrollTop]
+  return { position, isScrollTop }
 }

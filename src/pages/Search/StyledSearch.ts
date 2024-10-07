@@ -1,14 +1,18 @@
-import styled from "styled-components"
+import { motion } from "framer-motion"
+
+import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
 export const SearchWrapper = styled.div`
   width: 100%;
+  max-width: 1032px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 82px;
   padding-top: 62px;
+  padding-bottom: 50px;
 `
 
 export const SearchContent = styled.div`
@@ -18,7 +22,7 @@ export const SearchContent = styled.div`
   flex-direction: column;
   gap: 52px;
   align-items: center;
-  padding: 0 20px;
+  position: relative;
 `
 
 export const TitleWrapper = styled.div`
@@ -26,7 +30,7 @@ export const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
-  max-width: 1032px;
+
   width: 100%;
 `
 export const Title = styled.span`
@@ -39,12 +43,20 @@ export const SubTitle = styled.span`
   font-size: 30px;
 `
 
-export const TabsWrapper = styled.div`
+export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>`
+  z-index: 998;
   width: 100vw;
   height: 60px;
   padding: 9px 0px;
   border: 1px solid ${theme.Netural200};
   background: ${theme.Netural100};
+  ${({ $isTabFixed }) =>
+    $isTabFixed
+      ? css`
+          position: sticky;
+          top: 62px;
+        `
+      : css``}
 `
 
 export const TabsBox = styled.div`
@@ -55,18 +67,54 @@ export const TabsBox = styled.div`
   justify-content: space-between;
 `
 
-export const SearchBar = styled.button`
+export const SearchToggle = styled.button`
   border-radius: 37px;
   border: 1px solid ${theme.Netural500};
-  background: ${theme.Netural0};
   display: flex;
-  padding: 10px 16px;
+  align-items: center;
+  padding: 10px 18px;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
   color: ${theme.Netural500};
-  ${fonts.b6};
+  background: ${theme.Netural0};
+  ${fonts.d1};
   font-size: 14px;
 `
+
+export const DropDownWrapper = styled(motion.div)`
+  height: 408px;
+  width: 45%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: center;
+  .close {
+    position: absolute;
+    top: 180px;
+    right: 30px;
+  }
+`
+
+export const DropDownKeywordWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+`
+
+export const DropDownKeywordTitle = styled.span`
+  ${fonts.b4};
+  color: ${theme.Netural600};
+`
+export const DropDownKeywordList = styled.ul`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+`
+
 export const CardWrapper = styled.div`
   width: 100%;
   max-width: 1032px;
@@ -80,5 +128,26 @@ export const CardList = styled.ul`
   gap: 24px 48px;
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
 `
-export const PaginationWrapper = styled.div``
-export const PaginationList = styled.ul``
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+  align-items: center;
+`
+export const PaginationList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`
+
+export const PaginationButton = styled.button<{ $isSelected?: boolean }>`
+  padding: 6px;
+  color: ${({ $isSelected }) =>
+    $isSelected ? theme.Netural0 : theme.Netural800};
+  ${fonts.b6};
+  border-radius: 16px;
+  background: ${({ $isSelected }) =>
+    $isSelected ? theme.Netural900 : theme.Netural0};
+  width: 30px;
+  height: 30px;
+`

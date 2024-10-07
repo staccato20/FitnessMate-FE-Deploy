@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 
 import Avatar from "@components/Avatar/Avatar"
+import Bottom from "@components/Bottom/Bottom"
 import Button from "@components/Button/Button"
 import RoundButton from "@components/Button/RoundButton"
-import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
@@ -70,14 +70,14 @@ const Prolog = () => {
           수정하기
         </Button>
       </S.RecommendUserInfo>
-      <Footer flex="flex-end">
+      <Bottom flex="flex-end">
         <RoundButton
           rightIcon="RightArrowWhite"
           onClick={handleNextPage}
           size="big">
           시작하기
         </RoundButton>
-      </Footer>
+      </Bottom>
     </S.RecommendWrapper>
   )
 }
