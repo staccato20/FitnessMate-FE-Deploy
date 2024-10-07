@@ -17,6 +17,10 @@ const Result = () => {
     navigate("/")
   }
 
+  const handleRoutine = () => {
+    alert("수정 중인 페이지입니다!")
+  }
+
   const { result } = useRecommendStore()
   const { userInfo } = useUserInfo()
 
@@ -57,9 +61,7 @@ const Result = () => {
             }) => (
               <Accordion key={id}>
                 <Accordion.Header
-                  onClick={() => {
-                    console.log("1")
-                  }}
+                  onClick={handleRoutine}
                   bodyParts={bodyPartKoreanName.toString()}
                   count={1}>
                   {koreanName}

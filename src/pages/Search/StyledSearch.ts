@@ -44,7 +44,7 @@ export const SubTitle = styled.span`
 `
 
 export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>`
-  z-index: 998;
+  z-index: 997;
   width: 100vw;
   height: 60px;
   padding: 9px 0px;
@@ -81,18 +81,20 @@ export const SearchToggle = styled.button`
   font-size: 14px;
 `
 
-export const DropDownWrapper = styled(motion.div)`
+export const DropDownForm = styled(motion.form)`
   height: 408px;
-  width: 45%;
+  width: 100%;
+  max-width: 627px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
   align-items: flex-start;
   justify-content: center;
+  z-index: 105;
   .close {
     position: absolute;
-    top: 180px;
+    top: 150px;
     right: 30px;
   }
 `
@@ -150,4 +152,15 @@ export const PaginationButton = styled.button<{ $isSelected?: boolean }>`
     $isSelected ? theme.Netural900 : theme.Netural0};
   width: 30px;
   height: 30px;
+`
+
+export const BackOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${theme.Netural0};
+  opacity: 0.5;
+  z-index: 103;
 `

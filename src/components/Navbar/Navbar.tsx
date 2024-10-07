@@ -23,7 +23,7 @@ const Navbar = () => {
   }
 
   const handleMyPage = () => {
-    userName ? navigate("mypage") : setIsLoginModal(true)
+    userName ? alert("수정 중인 페이지입니다!") : setIsLoginModal(true)
   }
 
   const handleRecommend = () => {

@@ -10,6 +10,7 @@ const MainLayout = () => {
   const location = useLocation()
   const path = location.pathname
   const isRecommend = path.includes("recommend")
+  const isLogin = path.includes("login")
   const { setIsRecommendPage } = usePathStore()
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const MainLayout = () => {
     <>
       <Navbar />
       <Outlet />
-      {!isRecommend && <Footer />}
+      {!isRecommend && !isLogin && <Footer />}
     </>
   )
 }
