@@ -73,15 +73,19 @@ const BodyPart = () => {
             <S.TabList>
               {bodyParts
                 .slice(0, 6)
-                .map(({ englishName, koreanName, imgPath }, posIndex) => (
+                .map(({ koreanName, imgPath, bodyPartId }) => (
                   <ImgCheckBox
-                    key={englishName}
-                    src={imgPath}
+                    key={bodyPartId}
+                    src={
+                      imgPath
+                        ? imgPath
+                        : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
+                    }
                     alt="테스트 이미지"
                     handleToggle={() => {
-                      handleBodyPart(posIndex)
+                      handleBodyPart(bodyPartId)
                     }}
-                    isSelected={selectedBodyParts.includes(posIndex)}
+                    isSelected={selectedBodyParts.includes(bodyPartId)}
                     variant="small">
                     {koreanName}
                   </ImgCheckBox>
@@ -93,15 +97,19 @@ const BodyPart = () => {
             <S.TabList>
               {bodyParts
                 .slice(6)
-                .map(({ englishName, koreanName, imgPath }, posIndex) => (
+                .map(({ englishName, koreanName, imgPath, bodyPartId }) => (
                   <ImgCheckBox
                     key={englishName}
-                    src={imgPath}
+                    src={
+                      imgPath
+                        ? imgPath
+                        : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
+                    }
                     alt="테스트 이미지"
                     handleToggle={() => {
-                      handleBodyPart(posIndex + 6)
+                      handleBodyPart(bodyPartId)
                     }}
-                    isSelected={selectedBodyParts.includes(posIndex + 6)}
+                    isSelected={selectedBodyParts.includes(bodyPartId)}
                     variant="small">
                     {koreanName}
                   </ImgCheckBox>

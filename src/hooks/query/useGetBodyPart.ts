@@ -9,12 +9,15 @@ export const useGetBodyPart = (type = "search") => {
     select: (data) =>
       type === "search"
         ? [
-            { englishName: "total", koreanName: "전체", imgPath: "" },
-            ...data.bodyPartKoreanName.filter(
-              (item) => item.englishName !== "all",
-            ),
+            {
+              englishName: "total",
+              koreanName: "전체",
+              imgPath: "",
+              bodyPartId: 0,
+            },
+            ...data.filter((item) => item.englishName !== "all"),
           ]
-        : [...data.bodyPartKoreanName],
+        : [...data],
   })
 
   return { bodyParts: getBodyPart.data }

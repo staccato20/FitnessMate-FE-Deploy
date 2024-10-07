@@ -82,16 +82,12 @@ export const SearchToggle = styled.button`
 `
 
 export const DropDownForm = styled(motion.form)`
-  height: 408px;
+  align-items: center;
   width: 100%;
-  max-width: 627px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: flex-start;
   justify-content: center;
   z-index: 105;
+  overflow: hidden;
   .close {
     position: absolute;
     top: 150px;
@@ -103,13 +99,23 @@ export const DropDownKeywordWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`
+
+export const DropDownBox = styled.div`
+  max-width: 627px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   justify-content: space-between;
 `
 
 export const DropDownKeywordTitle = styled.span`
   ${fonts.b4};
   color: ${theme.Netural600};
+  padding-left: 6px;
 `
+
 export const DropDownKeywordList = styled.ul`
   display: flex;
   gap: 8px;

@@ -1,67 +1,46 @@
-import styled from "styled-components"
+import { useFormContext } from "react-hook-form"
 
 import IconButton from "@components/IconButton/IconButton"
 
-import theme from "@styles/theme"
+import * as S from "./StyledSearchField"
 
 interface SearchFieldProps {
   placeholder?: string
   width?: string
-  register: any
+  name: string
+  triggerSubmit: () => void
 }
 
 const SearchField = ({
   placeholder,
   width = "auto",
-  register,
+  name,
+  triggerSubmit,
 }: SearchFieldProps) => {
+  const methods = useFormContext()
+
+  const handleClose = () => {
+    methods.setValue(name, "")
+  }
+
   return (
-    <InputWrapper $width={width}>
-      <Input
+    <S.InputWrapper $width={width}>
+      <S.Input
         placeholder={placeholder}
-        {...register}
+        {...methods.register(name)}
       />
-      <IconButtonWrapper>
+      <S.IconButtonWrapper>
         <IconButton
           icon="CloseWhite"
-          onClick={() => {}}
+          onClick={handleClose}
         />
         <IconButton
           icon="SearchWhite"
-          onClick={() => {}}
+          onClick={triggerSubmit}
         />
-      </IconButtonWrapper>
-    </InputWrapper>
+      </S.IconButtonWrapper>
+    </S.InputWrapper>
   )
 }
-
-const InputWrapper = styled.div<{ $width: string }>`
-  display: flex;
-  padding: 10px 12px 10px 20px;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 16px;
-  background: ${theme.Netural900};
-  box-shadow: 0px 4px 23.4px 0px rgba(0, 0, 0, 0.15);
-  width: ${({ $width }) => $width};
-  height: 64px;
-`
-
-export const IconButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  button {
-    padding: 8px;
-  }
-`
-
-const Input = styled.input`
-  width: 100%;
-  color: ${theme.Netural0};
-  &::-webkit-input-placeholder {
-    color: ${theme.Netural0};
-  }
-`
 
 export default SearchField
