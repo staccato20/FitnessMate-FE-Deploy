@@ -7,19 +7,27 @@ import theme from "@styles/theme"
 interface SearchFieldProps {
   placeholder?: string
   width?: string
+  register: any
 }
 
-const SearchField = ({ placeholder, width = "auto" }: SearchFieldProps) => {
+const SearchField = ({
+  placeholder,
+  width = "auto",
+  register,
+}: SearchFieldProps) => {
   return (
     <InputWrapper $width={width}>
-      <Input placeholder={placeholder} />
+      <Input
+        placeholder={placeholder}
+        {...register}
+      />
       <IconButtonWrapper>
         <IconButton
-          icon="CloseRound"
+          icon="CloseWhite"
           onClick={() => {}}
         />
         <IconButton
-          icon="Search"
+          icon="SearchWhite"
           onClick={() => {}}
         />
       </IconButtonWrapper>
@@ -43,9 +51,13 @@ export const IconButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  button {
+    padding: 8px;
+  }
 `
 
 const Input = styled.input`
+  width: 100%;
   color: ${theme.Netural0};
   &::-webkit-input-placeholder {
     color: ${theme.Netural0};

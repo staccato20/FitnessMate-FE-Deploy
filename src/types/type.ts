@@ -160,3 +160,7 @@ export interface GetBodyParts {
 export interface PostMachineListPayload {
   bodyPartKoreanName: string[]
 }
+
+export type SearchTypes = {
+  search: string
+}

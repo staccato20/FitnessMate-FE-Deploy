@@ -15,15 +15,13 @@ import slide from "@assets/images/slide.png"
 
 import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
 
+import { SearchTypes } from "@typpes/type"
+
 import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import Input from "../../components/Input/Input"
 import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
-
-type Search = {
-  search: string
-}
 
 // const TABS = [
 //   {
@@ -45,11 +43,11 @@ export const Home = () => {
   const { userInfo } = useUserInfo()
   const loginState = userInfo ? true : false
 
-  const { register, handleSubmit, setValue, setFocus } = useForm<Search>()
+  const { register, handleSubmit, setValue, setFocus } = useForm<SearchTypes>()
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
-  const handleSearch = (data: Search) => {
+  const handleSearch = (data: SearchTypes) => {
     navigate("searchworkout/1", { state: { keyword: data } })
   }
 

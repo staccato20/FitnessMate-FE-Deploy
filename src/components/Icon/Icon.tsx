@@ -11,6 +11,7 @@ import Close from "@assets/icon/close.svg?react"
 import CloseBold from "@assets/icon/close_bold.svg?react"
 import CloseRound from "@assets/icon/close_round.svg?react"
 import CloseRoundSmall from "@assets/icon/close_round_small.svg?react"
+import CloseWhite from "@assets/icon/close_white.svg?react"
 import DownArrow from "@assets/icon/down_arrow.svg?react"
 import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
@@ -29,6 +30,7 @@ import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
 import RightArrowWhite from "@assets/icon/right_arrow_white.svg?react"
 import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
+import SearchWhite from "@assets/icon/search_white.svg?react"
 import Star from "@assets/icon/star.svg?react"
 import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
@@ -70,6 +72,8 @@ export const ICON_MAP = {
   Avatar,
   LoadingBackground,
   CloseRoundSmall,
+  SearchWhite,
+  CloseWhite,
 }
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP | ""

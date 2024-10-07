@@ -15,6 +15,6 @@ type Story = StoryObj<typeof SearchField>
 export const Primary: Story = {
   args: {
     placeholder: "어떤 운동이 좋을까요?",
-    width: "300px",
+    width: "500px",
   },
 }

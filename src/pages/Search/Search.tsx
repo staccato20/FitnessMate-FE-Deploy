@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
+import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router-dom"
 
 import { AnimatePresence } from "framer-motion"
@@ -9,6 +10,8 @@ import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import SearchField from "@components/SearchField/SearchField"
 import Tabs from "@components/Tabs/Tabs"
+
+import { SearchTypes } from "@typpes/type"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
 import { useGetWorkoutBatch } from "@hooks/query/useGetWorkoutBatch"
@@ -21,15 +24,18 @@ import * as S from "./StyledSearch"
 const totalPageLength = 4
 
 const Search = () => {
+  const navigate = useNavigate()
+  const { register, setFocus, handleSubmit, formState, setValue } =
+    useForm<SearchTypes>()
+  const methods = useForm()
+
   const [isSearchMode, setIsSearchMode] = useState(false)
+  const [activeTab, setActiveTab] = useState(0)
+  const targetRef = useRef<HTMLDivElement>(null)
+  const { pageId } = useParams()
 
   const { bodyParts = [] } = useGetBodyPart()
-  const [activeTab, setActiveTab] = useState(0)
-  const { pageId } = useParams()
-  const navigate = useNavigate()
   const { position } = useScroll()
-
-  const targetRef = useRef<HTMLDivElement>(null)
 
   const targetHeight = targetRef.current
     ? targetRef.current?.getBoundingClientRect().top -
@@ -44,6 +50,10 @@ const Search = () => {
     }
     setActiveTab(index)
     navigate(`/searchworkout/1`)
+  }
+
+  const handleSearch = (search: SearchTypes) => {
+    console.log(search)
   }
 
   const { workouts = [] } = useGetWorkoutBatch({
@@ -66,6 +76,7 @@ const Search = () => {
 
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
+    setFocus("search")
   }
 
   const handleNextPage = () => {
@@ -76,8 +87,13 @@ const Search = () => {
     navigate(`/searchworkout/${Number(pageId) - 1}`)
   }
 
+  const handleSearchErase = () => {
+    setValue("search", "")
+  }
+
   return (
     <S.SearchWrapper>
+      {isSearchMode && <S.BackOverlay />}
       <S.TitleWrapper>
         <S.Title>나에게 핏한</S.Title>
         <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
@@ -108,20 +124,24 @@ const Search = () => {
         </S.TabsWrapper>
         <AnimatePresence>
           {isSearchMode && (
-            <S.DropDownWrapper
+            <S.DropDownForm
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "408px", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={animation.small}>
+              transition={animation.small}
+              onSubmit={handleSubmit(handleSearch)}>
               <IconButton
                 icon="CloseBold"
                 className="close"
                 onClick={handleToggle}
               />
-              <SearchField
-                placeholder="어떤 운동이 좋을까요?"
-                width="100%"
-              />
+              <FormProvider {...methods}>
+                <SearchField
+                  register={register("search")}
+                  placeholder="어떤 운동이 좋을까요?"
+                  width="100%"
+                />
+              </FormProvider>
               <S.DropDownKeywordWrapper>
                 <S.DropDownKeywordTitle>
                   추천 검색 키워드
@@ -137,7 +157,7 @@ const Search = () => {
                   ))}
                 </S.DropDownKeywordList>
               </S.DropDownKeywordWrapper>
-            </S.DropDownWrapper>
+            </S.DropDownForm>
           )}
         </AnimatePresence>
         <S.CardWrapper>
@@ -175,7 +195,7 @@ const Search = () => {
           <IconButton
             icon="RightArrowBig"
             onClick={handleNextPage}
-            disabled={Number(pageId) === totalPageLength}
+            disabled={Number(pageId) === pageNum}
           />
         </S.PaginationWrapper>
       </S.SearchContent>
