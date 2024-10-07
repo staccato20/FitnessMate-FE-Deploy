@@ -106,7 +106,7 @@ export const Home = () => {
           </S.SecondButtonWrapper>
         </Link>
       </S.Second>
-      <S.Third>
+      <S.Third id="link">
         <S.SlideList>
           <S.Slide>
             <S.Title>
