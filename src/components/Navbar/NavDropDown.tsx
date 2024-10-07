@@ -30,12 +30,14 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
   }
 
   const handleFixProfile = async () => {
-    navigate("/mypage/fixprofile")
+    alert("현재 수정중인 페이지입니다!")
+    // navigate("/mypage/fixprofile")
     toggleDropDown()
   }
 
   const handleFixBodyInfo = async () => {
-    navigate("/mypage/fixbodyinfo")
+    alert("현재 수정중인 페이지입니다!")
+    // navigate("/mypage/fixbodyinfo")
     toggleDropDown()
   }
 

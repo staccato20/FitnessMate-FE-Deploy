@@ -72,6 +72,9 @@ const Machine = () => {
   }
 
   const handleRecommend = () => {
+    if (postRecommend.isPending) {
+      return
+    }
     const payload = {
       bodyPartKoreanName: bodyPart,
       machineKoreanName: [...machinesById].map((id) => machines[id].koreanName),

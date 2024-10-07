@@ -68,7 +68,8 @@ export const Home = () => {
 
   const handleMyPage = () => {
     if (loginState) {
-      navigate("mypage")
+      alert("수정 중인 페이지입니다!")
+      // navigate("mypage")
     } else {
       setIsLoginModal(true)
     }
