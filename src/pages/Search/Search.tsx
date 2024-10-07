@@ -25,8 +25,7 @@ const totalPageLength = 4
 
 const Search = () => {
   const navigate = useNavigate()
-  const { register, setFocus, handleSubmit, formState, setValue } =
-    useForm<SearchTypes>()
+  const { register, setFocus, handleSubmit } = useForm<SearchTypes>()
   const methods = useForm()
 
   const [isSearchMode, setIsSearchMode] = useState(false)
@@ -87,9 +86,9 @@ const Search = () => {
     navigate(`/searchworkout/${Number(pageId) - 1}`)
   }
 
-  const handleSearchErase = () => {
-    setValue("search", "")
-  }
+  // const handleSearchErase = () => {
+  //   setValue("search", "")
+  // }
 
   return (
     <S.SearchWrapper>

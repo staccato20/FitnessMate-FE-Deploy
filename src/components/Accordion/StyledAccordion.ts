@@ -99,6 +99,7 @@ export const HeaderTrigger = styled.button`
   width: 100%;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   background: ${theme.Netural0};
   color: ${theme.Netural700};
 

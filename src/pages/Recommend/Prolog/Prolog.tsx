@@ -25,7 +25,8 @@ const Prolog = () => {
   }
 
   const handleUpdate = () => {
-    navigate("/mypage")
+    alert("현재 수정중인 기능입니다!")
+    // navigate("/mypage")
   }
 
   return (
