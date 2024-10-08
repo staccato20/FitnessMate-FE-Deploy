@@ -10,10 +10,10 @@ export const useGetBodyPart = (type = "search") => {
       type === "search"
         ? [
             {
+              bodyPartId: 0,
               englishName: "total",
               koreanName: "전체",
               imgPath: "",
-              bodyPartId: 0,
             },
             ...data.filter((item) => item.englishName !== "all"),
           ]

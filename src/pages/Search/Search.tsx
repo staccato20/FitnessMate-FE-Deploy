@@ -35,6 +35,7 @@ const Search = () => {
   const { pageId } = useParams()
 
   const { bodyParts = [] } = useGetBodyPart()
+  console.log(bodyParts)
   const { position } = useScroll()
 
   const targetHeight = targetRef.current
