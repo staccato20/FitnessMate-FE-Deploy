@@ -19,9 +19,15 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
         sizeStyle: css`
           gap: 12px;
           width: 169px;
+          svg {
+            width: 58px;
+            height: 58px;
+          }
         `,
         borderStyle: css`
-          border: 3.5px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+          border: ${isSelected
+            ? `3.5px solid ${theme.Brand600}`
+            : `1px solid ${theme.Netural300}`};
         `,
       }
     case "small":
@@ -31,7 +37,9 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
           width: 114px;
         `,
         borderStyle: css`
-          border: 3px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+          border: ${isSelected
+            ? `3px solid ${theme.Brand600}`
+            : `1px solid ${theme.Netural300}`};
         `,
       }
     default:

@@ -76,38 +76,14 @@ export const theme = {
 }
 
 export const animation = {
-  slow: {
-    stiffness: 70,
-    damping: 20,
-  },
-  basic: {
-    stiffness: 200,
-    damping: 30,
-  },
-  small: {
-    stiffness: 480,
-    damping: 50,
-  },
-  medium: {
-    stiffness: 270,
-    damping: 25,
-  },
-  large: {
-    stiffness: 100,
-    damping: 15,
-  },
-  quick: {
-    stiffness: 800,
-    damping: 55,
-  },
-  rapid: {
-    stiffness: 1000,
-    damping: 55,
-  },
-  bounce: {
-    stiffness: 300,
-    damping: 10,
-  },
+  slow: { type: "spring", stiffness: 70, damping: 20 },
+  basic: { type: "spring", stiffness: 200, damping: 30 },
+  small: { type: "spring", stiffness: 480, damping: 50 },
+  medium: { type: "spring", stiffness: 270, damping: 25 },
+  large: { type: "spring", stiffness: 100, damping: 15 },
+  quick: { type: "spring", stiffness: 800, damping: 55 },
+  rapid: { type: "spring", stiffness: 1000, damping: 55 },
+  bounce: { type: "spring", stiffness: 300, damping: 10 },
 }
 
 export default theme

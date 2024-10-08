@@ -27,14 +27,14 @@ const opts: YouTubeProps["opts"] = {
 }
 
 interface ContentProps {
-  // videoId: string
+  videoId: string
   recommend: string[]
 }
 
 const Content = ({
   children,
   recommend,
-  // videoId,
+  videoId,
 }: StrictPropsWithChildren<ContentProps>) => {
   const { visible } = useAccordion()
 
@@ -66,7 +66,8 @@ const Content = ({
             <VideoWrapper>
               <YouTube
                 opts={opts}
-                loading="lazy" // iframe 비동기 로딩
+                loading="lazy"
+                videoId={videoId}
               />
             </VideoWrapper>
           </AnimationWrapper>

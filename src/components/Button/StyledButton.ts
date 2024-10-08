@@ -19,7 +19,6 @@ export const StyledButton = styled.button<{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
   &:disabled {
     cursor: default;
   }

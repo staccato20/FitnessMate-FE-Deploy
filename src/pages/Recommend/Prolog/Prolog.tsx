@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom"
 
 import Avatar from "@components/Avatar/Avatar"
+import Bottom from "@components/Bottom/Bottom"
 import Button from "@components/Button/Button"
 import RoundButton from "@components/Button/RoundButton"
-import Footer from "@components/Footer/Footer"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import { useGetUser } from "@pages/Recommend/hooks/useGetUser"
+import { useGetUser } from "@hooks/query/useGetUser"
 
 import * as S from "../StyledRecommend"
 
@@ -25,7 +25,8 @@ const Prolog = () => {
   }
 
   const handleUpdate = () => {
-    navigate("/mypage")
+    alert("현재 수정중인 기능입니다!")
+    // navigate("/mypage")
   }
 
   return (
@@ -70,14 +71,14 @@ const Prolog = () => {
           수정하기
         </Button>
       </S.RecommendUserInfo>
-      <Footer flex="flex-end">
+      <Bottom flex="flex-end">
         <RoundButton
           rightIcon="RightArrowWhite"
           onClick={handleNextPage}
           size="big">
           시작하기
         </RoundButton>
-      </Footer>
+      </Bottom>
     </S.RecommendWrapper>
   )
 }
