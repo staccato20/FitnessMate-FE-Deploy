@@ -3,7 +3,7 @@
 name: Push to forked Repo
 
 on:
-  pull_request:
+  push:
     branches: [main]
     paths:
       - "**.stories.tsx"
