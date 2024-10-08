@@ -20,7 +20,7 @@ jobs:
 
       - name: Copy changes to main Repo
         run: |
-          rsync -av --exclude='.git' --exclude='node_modules/' --exclude='main/' . main/
+          rsync -av --delte --exclude='.git' --exclude='node_modules/' --exclude='main/' . main/
           ls -al main/  # 복사된 파일 목록 확인
 
       - name: Commit and Push changes to main repo main branch
