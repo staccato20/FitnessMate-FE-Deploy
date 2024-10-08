@@ -3,9 +3,10 @@
 name: Push to forked Repo
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [main]
+    paths:
+      - "**.stories.tsx"
 
 jobs:
   push-to-personal-repo:
