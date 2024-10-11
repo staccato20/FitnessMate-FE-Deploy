@@ -45,6 +45,8 @@ const Search = () => {
     }
     setActiveTab(index)
     navigate(`/searchworkout/1`)
+    setKeyword("")
+    methods.reset()
   }
 
   return (

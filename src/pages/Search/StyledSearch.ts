@@ -123,12 +123,13 @@ export const DropDownKeywordList = styled.ul`
   justify-content: flex-start;
 `
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
   max-width: 1032px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 32px;
+  z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `
 
 export const CardList = styled.ul`
@@ -146,6 +147,12 @@ export const PaginationList = styled.ul`
   display: flex;
   align-items: center;
   gap: 12px;
+`
+
+export const CardSearchTitle = styled.span`
+  color: ${theme.Netural800};
+  ${fonts.h1};
+  font-size: 28px;
 `
 
 export const PaginationButton = styled.button<{ $isSelected?: boolean }>`

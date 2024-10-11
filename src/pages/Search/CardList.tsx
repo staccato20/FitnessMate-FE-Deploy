@@ -48,8 +48,15 @@ const CardList = ({
     )
   }, [activeTab, pageId, keyword])
 
+  const isShow = isSearchMode && keyword !== ""
+
   return (
-    <S.CardWrapper>
+    <S.CardWrapper $isShow={isShow}>
+      {isShow && (
+        <S.CardSearchTitle>
+          '{keyword}'이 포함된 검색 결과 {workouts.length}개를 찾았어요.
+        </S.CardSearchTitle>
+      )}
       <S.CardList>
         {workouts?.map(({ id, imgPath, koreanName, bodyPartKoreanName }) => (
           <Card
