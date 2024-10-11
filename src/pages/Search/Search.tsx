@@ -1,6 +1,5 @@
 import { Suspense, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate, useParams } from "react-router-dom"
 
 import { AnimatePresence } from "framer-motion"
 
@@ -19,9 +18,6 @@ import * as S from "./StyledSearch"
 import TabList from "./TabList"
 
 const Search = () => {
-  const navigate = useNavigate()
-  const { pageId } = useParams()
-
   const methods = useForm<SearchTypes>()
 
   const { bodyParts = [] } = useGetBodyPart()
@@ -29,6 +25,7 @@ const Search = () => {
   const [isSearchMode, setIsSearchMode] = useState(false)
   const [keyword, setKeyword] = useState("")
   const [activeTab, setActiveTab] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
@@ -38,6 +35,7 @@ const Search = () => {
 
   const handleSearch = ({ search }: SearchTypes) => {
     setKeyword(search)
+    setCurrentPage(1)
   }
 
   const handleTabChange = (index: number) => {
@@ -45,9 +43,13 @@ const Search = () => {
       return
     }
     setActiveTab(index)
-    navigate(`/searchworkout/1`)
+    setCurrentPage(1)
     setKeyword("")
     methods.reset()
+  }
+
+  const handlePage = (page: number) => {
+    setCurrentPage(page)
   }
 
   return (
@@ -82,13 +84,16 @@ const Search = () => {
           }>
           <CardList
             bodyParts={bodyParts}
-            pageId={Number(pageId)}
+            currentPage={currentPage}
             keyword={keyword}
             activeTab={activeTab}
             isSearchMode={isSearchMode}
           />
         </Suspense>
-        <Pagination pageId={Number(pageId)} />
+        <Pagination
+          currentPage={currentPage}
+          handlePage={handlePage}
+        />
       </S.SearchContent>
     </S.SearchWrapper>
   )

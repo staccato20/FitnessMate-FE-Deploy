@@ -48,7 +48,7 @@ export const Home = () => {
   const [isLoginModal, setIsLoginModal] = useState(false)
 
   const handleSearch = (data: SearchTypes) => {
-    navigate("searchworkout/1", { state: { keyword: data } })
+    navigate("searchworkout", { state: { keyword: data } })
   }
 
   const handleKeyWord = (item: string) => {

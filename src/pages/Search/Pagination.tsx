@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom"
-
 import IconButton from "@components/IconButton/IconButton"
 
 import { usePageNumStore } from "@pages/Search/store/usePageNumStore"
@@ -7,22 +5,17 @@ import { usePageNumStore } from "@pages/Search/store/usePageNumStore"
 import * as S from "./StyledSearch"
 
 interface PaginationProps {
-  pageId: number
+  currentPage: number
+  handlePage: (page: number) => void
 }
 
-const Pagination = ({ pageId }: PaginationProps) => {
-  const navigate = useNavigate()
-
-  const handlePagination = (pageId: number) => {
-    navigate(`/searchworkout/${pageId}`)
-  }
-
+const Pagination = ({ currentPage, handlePage }: PaginationProps) => {
   const handleNextPage = () => {
-    navigate(`/searchworkout/${Number(pageId) + 1}`)
+    handlePage(currentPage + 1)
   }
 
   const handlePreviousPage = () => {
-    navigate(`/searchworkout/${Number(pageId) - 1}`)
+    handlePage(currentPage - 1)
   }
 
   const { pageNum } = usePageNumStore()
@@ -32,16 +25,16 @@ const Pagination = ({ pageId }: PaginationProps) => {
       <IconButton
         icon="LeftArrowBig"
         onClick={handlePreviousPage}
-        disabled={Number(pageId) === 1}
+        disabled={currentPage === 1}
       />
       <S.PaginationList>
         {Array.from({ length: pageNum }, (_, i: number) => i + 1).map(
-          (item) => (
+          (page) => (
             <S.PaginationButton
-              key={item}
-              $isSelected={Number(pageId) === item}
-              onClick={() => handlePagination(item)}>
-              {item}
+              key={page}
+              $isSelected={currentPage === page}
+              onClick={() => handlePage(page)}>
+              {page}
             </S.PaginationButton>
           ),
         )}
@@ -49,7 +42,7 @@ const Pagination = ({ pageId }: PaginationProps) => {
       <IconButton
         icon="RightArrowBig"
         onClick={handleNextPage}
-        disabled={Number(pageId) === pageNum}
+        disabled={currentPage === pageNum}
       />
     </S.PaginationWrapper>
   )

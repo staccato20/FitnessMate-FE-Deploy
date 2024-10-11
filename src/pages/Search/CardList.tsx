@@ -12,29 +12,29 @@ import { useGetWorkoutBatch } from "@hooks/query/useGetWorkoutBatch"
 import * as S from "./StyledSearch"
 
 interface CardListProps {
-  pageId: number
+  currentPage: number
   isSearchMode: boolean
   activeTab: number
   keyword: string
   bodyParts: BodyPartList[]
 }
 
-const totalPageLength = 4
-
 const CardList = ({
-  pageId,
+  currentPage,
   isSearchMode,
   activeTab,
   keyword,
   bodyParts,
 }: CardListProps) => {
   const navigate = useNavigate()
-  const { workouts } = useGetWorkoutBatch({
-    page: Number(pageId),
+  const { workouts, pageNum } = useGetWorkoutBatch({
+    page: currentPage,
     searchKeyword: isSearchMode ? keyword : "",
     bodyPartKoreanName:
       activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
   })
+
+  console.log(pageNum)
 
   const handleCard = (workoutId: number) => {
     navigate(`/workoutdetail/${workoutId}`)
@@ -43,10 +43,8 @@ const CardList = ({
   const { setPageNum } = usePageNumStore()
 
   useEffect(() => {
-    setPageNum(
-      activeTab === 0 ? totalPageLength : Math.ceil(workouts?.length / 12),
-    )
-  }, [activeTab, pageId, keyword])
+    setPageNum(pageNum)
+  }, [activeTab, currentPage, keyword])
 
   const isShow = isSearchMode && keyword !== ""
 

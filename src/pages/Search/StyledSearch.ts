@@ -134,6 +134,7 @@ export const CardList = styled.ul`
   display: grid;
   padding-top: 52px;
   gap: 24px 48px;
+  padding-bottom: 92px;
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
 `
 

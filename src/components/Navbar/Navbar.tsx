@@ -19,7 +19,7 @@ const Navbar = () => {
   const [isCancleModal, setIsCancleModal] = useState(false)
 
   const handleSearch = () => {
-    navigate("searchworkout/1")
+    navigate("searchworkout")
   }
 
   const handleMyPage = () => {
