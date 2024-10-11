@@ -81,7 +81,7 @@ export const SearchToggle = styled.button`
   font-size: 14px;
 `
 
-export const DropDownForm = styled(motion.form)`
+export const DropdownFormWrapper = styled(motion.form)`
   align-items: center;
   width: 100%;
   display: flex;

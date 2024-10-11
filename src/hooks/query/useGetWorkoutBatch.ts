@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 
 import workoutAPI from "@apis/domain/workout"
 
@@ -9,7 +9,7 @@ export const useGetWorkoutBatch = ({
   searchKeyword = "",
   bodyPartKoreanName = [],
 }: GetWorkoutsPayload) => {
-  const getWorkout = useQuery({
+  const getWorkout = useSuspenseQuery({
     queryKey: ["getWorkoutBatch", page, searchKeyword, bodyPartKoreanName],
     queryFn: async () =>
       await workoutAPI.searchBatchData({
@@ -17,11 +17,10 @@ export const useGetWorkoutBatch = ({
         searchKeyword,
         bodyPartKoreanName,
       }),
-    placeholderData: keepPreviousData,
   })
 
   return {
     workouts: getWorkout.data,
-    isPlaceholderData: getWorkout.isPlaceholderData,
+    isFetching: getWorkout.isFetching,
   }
 }
