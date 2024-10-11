@@ -5,6 +5,7 @@ import { usePathStore } from "@store/usePathStore"
 
 import Footer from "@components/Footer/Footer"
 import Navbar from "@components/Navbar/Navbar"
+import ScrollToTop from "@components/ScrollTop/ScrollTop"
 
 const MainLayout = () => {
   const location = useLocation()
@@ -19,6 +20,7 @@ const MainLayout = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Outlet />
       {!isRecommend && !isLogin && <Footer />}

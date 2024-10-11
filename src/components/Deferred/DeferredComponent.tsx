@@ -1,13 +1,12 @@
 import { PropsWithChildren, useEffect, useState } from "react"
 
-// ** 지연시간 200ms 미만일 때 스켈레톤 미노출 / 200ms 이상일 때 스켈레톤 노출 **
 const DeferredComponent = ({ children }: PropsWithChildren) => {
   const [isDeferred, setIsDeferred] = useState(false)
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setIsDeferred(true)
-    }, 1000)
+    }, 200)
     return () => clearTimeout(timeOut)
   }, [])
 
