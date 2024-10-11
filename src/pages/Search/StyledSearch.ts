@@ -124,12 +124,15 @@ export const DropDownKeywordList = styled.ul`
 export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
   max-width: 1032px;
-  padding-top: 52px;
+  gap: 36px;
+  flex-direction: column;
+  display: flex;
   z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `
 
 export const CardList = styled.ul`
   display: grid;
+  padding-top: 52px;
   gap: 24px 48px;
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
 `
