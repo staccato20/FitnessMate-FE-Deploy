@@ -31,11 +31,12 @@ const DropdownForm = ({
 
   return (
     <S.DropdownFormWrapper
-      layout
-      initial={{ opacity: 0, y: 0, height: 0 }} // 초기 상태: 투명하고 위쪽에 위치하며, 높이는 0
-      animate={{ opacity: 1, y: 0, height: "428px" }} // 애니메이션: 불투명하고 제자리로 내려오며, 높이는 auto
-      exit={{ opacity: 0, y: "100px", height: 0 }} // 사라질 때: 높이가 위에서 아래로 줄어듦
-      transition={animation.small}
+      initial={{ opacity: 0, height: 0 }} // 초기 상태: 투명하고 높이 0
+      animate={{ opacity: 1, height: "428px" }} // 나타날 때: 높이가 점점 커지면서 나타남
+      exit={{ opacity: 0, height: 0 }} // 사라질 때: 높이가 0으로 줄어들면서 사라짐
+      transition={{ duration: 0.4, ease: "easeInOut" }} // 애니메이션 지속 시간 및 이징 설정
+      layout // 레이아웃을 변경하면서 부드럽게 애니메이션 적용
+      style={{ overflow: "hidden" }} // 높이가 줄어들 때 콘텐츠가 잘리도록 설정을 absolute로 설정하여 애니메이션 시 레이아웃에 영향 없음
       onSubmit={methods.handleSubmit(handleSearch)}>
       <S.DropDownBox>
         <IconButton

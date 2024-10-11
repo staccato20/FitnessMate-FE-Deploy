@@ -20,7 +20,6 @@ export const SearchContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 52px;
   align-items: center;
   position: relative;
 `
@@ -126,9 +125,7 @@ export const DropDownKeywordList = styled.ul`
 export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
   max-width: 1032px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  padding-top: 52px;
   z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `
 
