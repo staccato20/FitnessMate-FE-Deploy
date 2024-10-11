@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
 
 import CardSkeleton from "@components/Card/CardSkeleton"
+import DeferredComponent from "@components/Deferred/DeferredComponent"
 
 import DropdownForm from "@pages/Search/DropdownForm"
 import Pagination from "@pages/Search/Pagination"
@@ -73,7 +74,12 @@ const Search = () => {
           )}
         </AnimatePresence>
 
-        <Suspense fallback={<CardSkeleton />}>
+        <Suspense
+          fallback={
+            <DeferredComponent>
+              <CardSkeleton />
+            </DeferredComponent>
+          }>
           <CardList
             bodyParts={bodyParts}
             pageId={Number(pageId)}

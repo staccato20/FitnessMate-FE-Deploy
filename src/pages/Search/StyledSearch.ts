@@ -29,7 +29,6 @@ export const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
-
   width: 100%;
 `
 export const Title = styled.span`

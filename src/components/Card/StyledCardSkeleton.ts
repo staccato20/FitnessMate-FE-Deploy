@@ -5,6 +5,7 @@ import { theme } from "@styles/theme"
 export const CardWrapper = styled.div`
   width: 100%;
   max-width: 1032px;
+  padding-top: 52px;
   display: flex;
   flex-direction: column;
   gap: 18px;
