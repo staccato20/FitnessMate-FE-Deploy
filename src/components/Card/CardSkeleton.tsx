@@ -7,8 +7,8 @@ const CardSkeleton = () => {
       <CardList>
         {Array(12)
           .fill(0)
-          .map(() => (
-            <S.CardBox>
+          .map((_, idx) => (
+            <S.CardBox key={idx}>
               <S.CardImg />
               <S.CardContents>
                 <S.CardTextBox></S.CardTextBox>

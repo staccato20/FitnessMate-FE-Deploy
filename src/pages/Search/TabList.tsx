@@ -13,12 +13,14 @@ interface TabListProps {
   handleTabChange: (index: number) => void
   handleToggle: () => void
   bodyParts: BodyPartList[]
+  activeTab: number
 }
 
 const TabList = ({
   handleTabChange,
   handleToggle,
   bodyParts,
+  activeTab,
 }: TabListProps) => {
   const { position } = useScroll()
   const targetRef = useRef<HTMLDivElement>(null)
@@ -34,7 +36,9 @@ const TabList = ({
       $isTabFixed={isTabFixed}
       ref={targetRef}>
       <S.TabsBox>
-        <Tabs>
+        <Tabs
+          activeTab={activeTab}
+          onTabChange={handleTabChange}>
           <Tabs.TabList>
             {bodyParts?.map(({ koreanName, bodyPartId }) => (
               <Tabs.Tab

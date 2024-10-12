@@ -29,7 +29,6 @@ const Search = () => {
 
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
-    setActiveTab(0)
     methods.setFocus("search")
     setKeyword("")
   }
@@ -37,6 +36,7 @@ const Search = () => {
   const handleSearch = ({ search }: SearchTypes) => {
     setKeyword(search)
     setCurrentPage(1)
+    setActiveTab(0)
   }
 
   const handleTabChange = (index: number) => {
@@ -67,6 +67,7 @@ const Search = () => {
           handleTabChange={handleTabChange}
           handleToggle={handleToggle}
           bodyParts={bodyParts}
+          activeTab={activeTab}
         />
 
         <AnimatePresence>
