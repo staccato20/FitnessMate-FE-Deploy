@@ -7,9 +7,10 @@ import * as S from "./StyledSearch"
 interface PaginationProps {
   currentPage: number
   handlePage: (page: number) => void
+  isShow: boolean
 }
 
-const Pagination = ({ currentPage, handlePage }: PaginationProps) => {
+const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
   const handleNextPage = () => {
     handlePage(currentPage + 1)
   }
@@ -21,7 +22,7 @@ const Pagination = ({ currentPage, handlePage }: PaginationProps) => {
   const { pageNum } = usePageNumStore()
 
   return (
-    <S.PaginationWrapper>
+    <S.PaginationWrapper $isShow={isShow}>
       <IconButton
         icon="LeftArrowBig"
         onClick={handlePreviousPage}

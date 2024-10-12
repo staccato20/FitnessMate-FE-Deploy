@@ -29,5 +29,6 @@ export const useGetWorkoutBatch = ({
   return {
     workouts: getWorkout[page - 1].data,
     pageNum: getWorkout.filter((query) => query.data.length).length,
+    cardLength: getWorkout.reduce((prev, cur) => prev + cur.data.length, 0),
   }
 }

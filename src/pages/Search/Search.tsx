@@ -29,6 +29,7 @@ const Search = () => {
 
   const handleToggle = () => {
     setIsSearchMode(!isSearchMode)
+    setActiveTab(0)
     methods.setFocus("search")
     setKeyword("")
   }
@@ -93,6 +94,7 @@ const Search = () => {
         <Pagination
           currentPage={currentPage}
           handlePage={handlePage}
+          isShow={isSearchMode && keyword !== ""}
         />
       </S.SearchContent>
     </S.SearchWrapper>

@@ -138,10 +138,11 @@ export const CardList = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
 `
 
-export const PaginationWrapper = styled.div`
+export const PaginationWrapper = styled.div<{ $isShow: boolean }>`
   display: flex;
   gap: 18px;
   align-items: center;
+  z-index: ${({ $isShow }) => ($isShow ? 103 : 0)};
 `
 export const PaginationList = styled.ul`
   display: flex;

@@ -27,14 +27,12 @@ const CardList = ({
   bodyParts,
 }: CardListProps) => {
   const navigate = useNavigate()
-  const { workouts, pageNum } = useGetWorkoutBatch({
+  const { workouts, pageNum, cardLength } = useGetWorkoutBatch({
     page: currentPage,
     searchKeyword: isSearchMode ? keyword : "",
     bodyPartKoreanName:
       activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
   })
-
-  console.log(pageNum)
 
   const handleCard = (workoutId: number) => {
     navigate(`/workoutdetail/${workoutId}`)
@@ -52,7 +50,7 @@ const CardList = ({
     <S.CardWrapper $isShow={isShow}>
       {isShow && (
         <S.CardSearchTitle>
-          '{keyword}'이 포함된 검색 결과 {workouts.length}개를 찾았어요.
+          '{keyword}'이 포함된 검색 결과 {cardLength}개를 찾았어요.
         </S.CardSearchTitle>
       )}
       <S.CardList>

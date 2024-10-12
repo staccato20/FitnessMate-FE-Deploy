@@ -38,9 +38,9 @@ const TabList = ({
           <Tabs.TabList>
             {bodyParts?.map(({ koreanName, bodyPartId }) => (
               <Tabs.Tab
+                key={bodyPartId}
                 index={bodyPartId}
                 variant="fill"
-                key={bodyPartId}
                 onTabChange={handleTabChange}>
                 {koreanName}
               </Tabs.Tab>
