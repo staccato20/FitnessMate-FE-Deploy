@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react"
+import { Suspense, startTransition, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { AnimatePresence } from "framer-motion"
@@ -43,10 +43,12 @@ const Search = () => {
     if (!bodyParts) {
       return
     }
-    setActiveTab(index)
-    setCurrentPage(1)
-    setKeyword("")
-    methods.reset()
+    startTransition(() => {
+      setActiveTab(index)
+      setCurrentPage(1)
+      setKeyword("")
+      methods.reset()
+    })
   }
 
   const handlePage = (page: number) => {
