@@ -7,8 +7,20 @@ import { StrictPropsWithChildren } from "@typpes/type"
 interface TabPanelProps {
   index: number
 }
-const Tabs = ({ children }: StrictPropsWithChildren) => (
-  <TabsProvider>
+
+interface TabsProps {
+  activeTab: number
+  onTabChange: (index: number) => void
+}
+
+const Tabs = ({
+  children,
+  activeTab,
+  onTabChange,
+}: StrictPropsWithChildren<TabsProps>) => (
+  <TabsProvider
+    activeTab={activeTab}
+    onTabChange={onTabChange}>
     <>{children}</>
   </TabsProvider>
 )

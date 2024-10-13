@@ -16,6 +16,7 @@ const Card = ({ src, title, badges, ...props }: CardProps) => {
       <S.CardImg
         src={src}
         alt="운동 이미지"
+        loading="lazy"
       />
       <S.CardContents>
         <S.CardText>{title}</S.CardText>

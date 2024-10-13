@@ -48,7 +48,7 @@ export const Home = () => {
   const [isLoginModal, setIsLoginModal] = useState(false)
 
   const handleSearch = (data: SearchTypes) => {
-    navigate("searchworkout/1", { state: { keyword: data } })
+    navigate("searchworkout", { state: { keyword: data } })
   }
 
   const handleKeyWord = (item: string) => {
@@ -100,7 +100,10 @@ export const Home = () => {
           smooth={true}>
           <S.SecondButtonWrapper>
             경험하기
-            <Icon icon="DownArrow" />
+            <Icon
+              icon="DownArrow"
+              size={15}
+            />
           </S.SecondButtonWrapper>
         </Link>
       </S.Second>

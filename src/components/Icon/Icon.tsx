@@ -80,13 +80,24 @@ export const ICON_MAP = {
   DownArrowGray,
 }
 export type IconPropsType = {
-  icon: keyof typeof ICON_MAP | ""
-  className?: string
+  icon: keyof typeof ICON_MAP
+  size?: number
+  stroke?: string
+  color?: string
 }
 
-const Icon = ({ icon, ...props }: IconPropsType) => {
-  const IconComponent = icon && ICON_MAP[icon]
-  return IconComponent && <IconComponent {...props} />
+const Icon = ({ icon, size = 15, stroke, color }: IconPropsType) => {
+  const IconComponent = ICON_MAP[icon]
+  return (
+    IconComponent && (
+      <IconComponent
+        width={size}
+        stroke={stroke}
+        color={color}
+        height="auto"
+      />
+    )
+  )
 }
 
 export default Icon

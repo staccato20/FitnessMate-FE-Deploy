@@ -17,6 +17,8 @@ export const CardWrapper = styled.button`
 
 export const CardImg = styled.img`
   object-fit: cover;
+  max-width: 310px;
+  width: 100%;
   border-radius: 12px;
   border: 1px solid #f2f4f6;
 `

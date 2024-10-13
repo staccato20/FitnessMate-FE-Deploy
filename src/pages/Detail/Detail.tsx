@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom"
-import YouTube, { YouTubeProps } from "react-youtube"
 
 import Badge from "@components/Badge/Badge"
 import RoundButton from "@components/Button/RoundButton"
@@ -7,15 +6,6 @@ import RoundButton from "@components/Button/RoundButton"
 import Icon from "../../components/Icon/Icon"
 import { useGetWorkout } from "../../hooks/query/useGetWorkout"
 import * as S from "./StyledDetail"
-
-const opts: YouTubeProps["opts"] = {
-  width: "100%",
-  height: "408px",
-  playerVars: {
-    rel: 0,
-    modestbranding: 1,
-  },
-}
 
 const Detail = () => {
   const { workoutId } = useParams()
@@ -75,10 +65,9 @@ const Detail = () => {
             </S.ContentInfoWrapper>
           </S.ContentBox>
           <S.VideoWrapper>
-            <YouTube
-              opts={opts}
-              loading="lazy"
-              videoId={workout?.videoLink.split("=")[1]}
+            <iframe
+              style={{ width: "100%", height: "100%" }}
+              src={`https://www.youtube.com/embed/${workout?.videoLink.split("=")[1]}`}
             />
           </S.VideoWrapper>
         </S.ContentWrapper>

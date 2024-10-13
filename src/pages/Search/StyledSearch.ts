@@ -20,7 +20,6 @@ export const SearchContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 52px;
   align-items: center;
   position: relative;
 `
@@ -30,7 +29,6 @@ export const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
-
   width: 100%;
 `
 export const Title = styled.span`
@@ -61,6 +59,7 @@ export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>`
 
 export const TabsBox = styled.div`
   max-width: 1042px;
+  padding: 0 calc(100vh - 1100px);
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -81,7 +80,7 @@ export const SearchToggle = styled.button`
   font-size: 14px;
 `
 
-export const DropDownForm = styled(motion.form)`
+export const DropdownFormWrapper = styled(motion.form)`
   align-items: center;
   width: 100%;
   display: flex;
@@ -123,29 +122,40 @@ export const DropDownKeywordList = styled.ul`
   justify-content: flex-start;
 `
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
   max-width: 1032px;
-  display: flex;
+  gap: 36px;
   flex-direction: column;
-  gap: 18px;
+  display: flex;
+  z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
+  padding: 0 calc(100vh - 1100px);
 `
 
 export const CardList = styled.ul`
   display: grid;
+  padding-top: 52px;
   gap: 24px 48px;
-  grid-template-columns: repeat(auto-fit, minmax(29%, auto));
+  padding-bottom: 92px;
+  grid-template-columns: repeat(auto-fill, minmax(29%, auto));
 `
 
-export const PaginationWrapper = styled.div`
+export const PaginationWrapper = styled.div<{ $isShow: boolean }>`
   display: flex;
   gap: 18px;
   align-items: center;
+  z-index: ${({ $isShow }) => ($isShow ? 103 : 0)};
 `
 export const PaginationList = styled.ul`
   display: flex;
   align-items: center;
   gap: 12px;
+`
+
+export const CardSearchTitle = styled.span`
+  color: ${theme.Netural800};
+  ${fonts.h1};
+  font-size: 28px;
 `
 
 export const PaginationButton = styled.button<{ $isSelected?: boolean }>`

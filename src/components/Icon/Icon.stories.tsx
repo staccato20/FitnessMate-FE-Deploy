@@ -7,6 +7,10 @@ const meta: Meta<typeof Icon> = {
   title: "components/Icon",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  argTypes: {
+    fill: { control: "color" },
+    stroke: { control: "color" },
+  },
 }
 
 export default meta
@@ -15,5 +19,6 @@ type Story = StoryObj<typeof Icon>
 export const Primary: Story = {
   args: {
     icon: "ChangeCircle",
+    width: 20,
   },
 }

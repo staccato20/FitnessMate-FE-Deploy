@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "searchworkout/:pageId",
+        path: "searchworkout",
         element: <Search />,
       },
       {
