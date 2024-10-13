@@ -2,6 +2,7 @@ import { PropsWithChildren, useEffect, useState } from "react"
 
 const DeferredComponent = ({ children }: PropsWithChildren) => {
   const [isDeferred, setIsDeferred] = useState(false)
+  console.log(isDeferred)
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
