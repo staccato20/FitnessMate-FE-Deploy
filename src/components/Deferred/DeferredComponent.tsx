@@ -7,11 +7,11 @@ const DeferredComponent = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setIsDeferred(true)
-    }, 200)
+    }, 200000)
     return () => clearTimeout(timeOut)
   }, [])
 
-  if (!isDeferred) return null
+  if (!isDeferred) return <div style={{ width: "100%", height: "100vh" }}></div>
   return <>{children}</>
 }
 
