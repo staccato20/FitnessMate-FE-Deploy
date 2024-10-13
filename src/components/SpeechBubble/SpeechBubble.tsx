@@ -24,8 +24,8 @@ const SpeechBubbleMain = ({
     }>
     {isIcon && (
       <Icon
-        icon={"Tooltip"}
-        className="tooltip"
+        icon="Tooltip"
+        size={28}
       />
     )}
     {children}

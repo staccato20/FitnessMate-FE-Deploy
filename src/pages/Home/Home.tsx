@@ -100,10 +100,7 @@ export const Home = () => {
           smooth={true}>
           <S.SecondButtonWrapper>
             경험하기
-            <Icon
-              icon="DownArrow"
-              size={15}
-            />
+            <Icon icon="DownArrow" />
           </S.SecondButtonWrapper>
         </Link>
       </S.Second>

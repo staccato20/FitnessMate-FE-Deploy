@@ -34,6 +34,7 @@ const Prolog = () => {
       <S.Status>
         <IconButton
           icon="LeftArrowBold"
+          size={30}
           onClick={handleBackPage}
         />
         <ProgressBar

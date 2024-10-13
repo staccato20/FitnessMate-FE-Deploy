@@ -79,6 +79,7 @@ export const ICON_MAP = {
   CloseWhite,
   DownArrowGray,
 }
+
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP
   size?: number
@@ -86,15 +87,17 @@ export type IconPropsType = {
   color?: string
 }
 
-const Icon = ({ icon, size = 15, stroke, color }: IconPropsType) => {
+const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
   const IconComponent = ICON_MAP[icon]
+  const sizePx = `${size}px`
   return (
     IconComponent && (
       <IconComponent
-        width={size}
+        width={sizePx}
+        height={sizePx}
         stroke={stroke}
-        color={color}
-        height="auto"
+        fill={color}
+        {...props}
       />
     )
   )
