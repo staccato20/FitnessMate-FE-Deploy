@@ -136,6 +136,8 @@ export const CardList = styled.ul`
   gap: 24px 48px;
   padding-bottom: 92px;
   grid-template-columns: repeat(auto-fit, minmax(29%, auto));
+  min-height: 1200px;
+  background: white;
 `
 
 export const PaginationWrapper = styled.div<{ $isShow: boolean }>`

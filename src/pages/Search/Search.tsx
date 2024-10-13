@@ -56,7 +56,7 @@ const Search = () => {
   }
 
   return (
-    <S.SearchWrapper>
+    <S.SearchWrapper id="top">
       {isSearchMode && <S.BackOverlay />}
       <S.TitleWrapper>
         <S.Title>나에게 핏한</S.Title>
