@@ -86,7 +86,7 @@ export type IconPropsType = {
   color?: string
 }
 
-const Icon = ({ icon, size, stroke, color }: IconPropsType) => {
+const Icon = ({ icon, size = 15, stroke, color }: IconPropsType) => {
   const IconComponent = ICON_MAP[icon]
   return (
     IconComponent && (
