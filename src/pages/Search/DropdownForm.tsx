@@ -39,6 +39,7 @@ const DropdownForm = ({
       <S.DropDownBox>
         <IconButton
           icon="CloseBold"
+          size={22}
           className="close"
           onClick={handleToggle}
         />

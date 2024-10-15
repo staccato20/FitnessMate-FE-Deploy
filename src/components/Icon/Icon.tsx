@@ -36,7 +36,6 @@ import Star from "@assets/icon/star.svg?react"
 import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
 import UpArrow from "@assets/icon/up_arrow.svg?react"
-import LoadingBackground from "@assets/images/loadingbackground.svg?react"
 
 export const ICON_MAP = {
   Add,
@@ -73,12 +72,12 @@ export const ICON_MAP = {
   LeftArrowGrey,
   RightArrowWhite,
   Avatar,
-  LoadingBackground,
   CloseRoundSmall,
   SearchWhite,
   CloseWhite,
   DownArrowGray,
 }
+
 export type IconPropsType = {
   icon: keyof typeof ICON_MAP
   size?: number
@@ -86,15 +85,16 @@ export type IconPropsType = {
   color?: string
 }
 
-const Icon = ({ icon, size = 15, stroke, color }: IconPropsType) => {
+const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
   const IconComponent = ICON_MAP[icon]
+  const sizePx = `${size}px`
   return (
     IconComponent && (
       <IconComponent
-        width={size}
+        width={sizePx}
         stroke={stroke}
-        color={color}
-        height="auto"
+        fill={color}
+        {...props}
       />
     )
   )

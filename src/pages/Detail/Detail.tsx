@@ -24,7 +24,10 @@ const Detail = () => {
   return (
     <S.TotalWrapper>
       <S.BeforeButton onClick={handleBackPage}>
-        <Icon icon="LeftArrow" />
+        <Icon
+          icon="LeftArrow"
+          size={24}
+        />
         이전
       </S.BeforeButton>
       <S.DetailWrapper>

@@ -24,6 +24,6 @@ export const ProgressBarItem = styled.div<{
     $variant === "round" &&
     css`
     border-radius: 24px;
-      width: {(100 / 4) * ${$progress}%;
+      width: {(100 / 3) * ${$progress}%;
     `}
 `

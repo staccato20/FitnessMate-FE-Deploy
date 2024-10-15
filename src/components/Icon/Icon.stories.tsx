@@ -8,7 +8,7 @@ const meta: Meta<typeof Icon> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    fill: { control: "color" },
+    color: { control: "color" },
     stroke: { control: "color" },
   },
 }
@@ -19,6 +19,6 @@ type Story = StoryObj<typeof Icon>
 export const Primary: Story = {
   args: {
     icon: "ChangeCircle",
-    width: 20,
+    size: 20,
   },
 }

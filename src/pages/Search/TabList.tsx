@@ -52,7 +52,10 @@ const TabList = ({
           </Tabs.TabList>
         </Tabs>
         <S.SearchToggle onClick={handleToggle}>
-          <Icon icon="Search" />
+          <Icon
+            icon="Search"
+            size={16}
+          />
           운동 이름으로 검색
         </S.SearchToggle>
       </S.TabsBox>

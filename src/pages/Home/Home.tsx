@@ -58,7 +58,7 @@ export const Home = () => {
 
   const handleRecommend = () => {
     if (loginState) {
-      navigate("recommend/prolog")
+      navigate("recommend/bodypart")
     } else {
       setIsLoginModal(true)
     }
@@ -102,7 +102,7 @@ export const Home = () => {
             경험하기
             <Icon
               icon="DownArrow"
-              size={15}
+              size={19}
             />
           </S.SecondButtonWrapper>
         </Link>
@@ -186,6 +186,7 @@ export const Home = () => {
               <IconButton
                 icon="CloseRound"
                 type="button"
+                size={18}
                 onClick={() => {
                   setValue("search", "")
                 }}

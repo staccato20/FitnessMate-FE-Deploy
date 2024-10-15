@@ -1,5 +1,3 @@
-import YouTube, { YouTubeProps } from "react-youtube"
-
 import { AnimatePresence } from "framer-motion"
 
 import { useAccordion } from "@components/Accordion/Accordion"
@@ -16,15 +14,6 @@ import {
 import Icon from "@components/Icon/Icon"
 
 import { StrictPropsWithChildren } from "@typpes/type"
-
-const opts: YouTubeProps["opts"] = {
-  width: "100%",
-  height: 350,
-  playerVars: {
-    rel: 0,
-    modestbranding: 1,
-  },
-}
 
 interface ContentProps {
   videoId: string
@@ -54,7 +43,10 @@ const Content = ({
             <ContentText>{children}</ContentText>
             <ContentAI>
               <ContentAIleft>
-                <Icon icon="Star" />
+                <Icon
+                  icon="Star"
+                  size={32}
+                />
                 AI 추천 운동량
               </ContentAIleft>
               <ContentAIright>
@@ -64,10 +56,9 @@ const Content = ({
               </ContentAIright>
             </ContentAI>
             <VideoWrapper>
-              <YouTube
-                opts={opts}
-                loading="lazy"
-                videoId={videoId}
+              <iframe
+                style={{ width: "100%", height: "100%" }}
+                src={`https://www.youtube.com/embed/${videoId}`}
               />
             </VideoWrapper>
           </AnimationWrapper>

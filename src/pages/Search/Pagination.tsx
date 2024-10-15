@@ -4,6 +4,8 @@ import IconButton from "@components/IconButton/IconButton"
 
 import { usePageNumStore } from "@pages/Search/store/usePageNumStore"
 
+import theme from "@styles/theme"
+
 import * as S from "./StyledSearch"
 
 interface PaginationProps {
@@ -26,7 +28,9 @@ const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
     <S.PaginationWrapper $isShow={isShow}>
       <IconButton
         icon="LeftArrowBig"
+        size={20}
         onClick={handlePreviousPage}
+        color={currentPage === 1 ? theme.Netural500 : theme.Netural990}
         disabled={currentPage === 1}
       />
       <S.PaginationList>
@@ -48,6 +52,8 @@ const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
       </S.PaginationList>
       <IconButton
         icon="RightArrowBig"
+        size={20}
+        color={currentPage === pageNum ? theme.Netural500 : theme.Netural990}
         onClick={handleNextPage}
         disabled={currentPage === pageNum}
       />

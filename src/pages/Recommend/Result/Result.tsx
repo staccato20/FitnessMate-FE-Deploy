@@ -29,7 +29,10 @@ const Result = () => {
       <S.RecommendWrapper>
         <S.TitleWrapper>
           <S.TitleContainer>
-            <Icon icon="Star" />
+            <Icon
+              icon="Star"
+              size={30}
+            />
             <Title variant="big">
               {userInfo && userInfo.userName}님에게 맞는
               <br />

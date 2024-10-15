@@ -4,6 +4,19 @@ import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
+export const CoverWrapper = styled(motion.div)`
+  width: 452px;
+  height: 438px;
+  background: transparent;
+  background-image: url("/loadingbackground.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+`
+
 export const RecommendAllWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -13,25 +26,12 @@ export const RecommendAllWrapper = styled.div`
 export const RecommendWrapper = styled.div`
   max-width: 752px;
   margin: 0 auto;
-  padding-top: 90px;
+  padding-top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
 `
 
-export const CoverWrapper = styled(motion.div)`
-  width: 452px;
-  height: 438px;
-  background: transparent;
-  background-image: url("/src/assets/images/loadingbackground.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 50;
-`
 export const LoadingText = styled(motion.span)`
   position: absolute;
   top: 50%;
@@ -51,8 +51,8 @@ export const RecommendInner = styled.div`
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
-  height: calc(100vh - 400px);
   position: relative;
+  height: calc(-250px + 100vh);
 `
 
 export const Status = styled.div`
@@ -63,12 +63,23 @@ export const Status = styled.div`
   align-items: center;
 `
 
+export const RecommendGuideWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: 366px;
+`
+
 export const RecommendGuide = styled(motion.div)`
-  gap: 16px;
+  gap: 4px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export const RecommendSwitchGuide = styled.div`
@@ -81,13 +92,11 @@ export const RecommendSwitchGuide = styled.div`
 `
 
 export const RecommendMachineWrapper = styled(motion.ul)`
-  position: absolute;
-  top: 400px;
   max-width: 752px;
+  max-height: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  height: 502px;
 `
 
 export const RecommendUserInfo = styled.div`

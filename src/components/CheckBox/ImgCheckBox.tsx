@@ -19,10 +19,6 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
         sizeStyle: css`
           gap: 12px;
           width: 169px;
-          svg {
-            width: 58px;
-            height: 58px;
-          }
         `,
         borderStyle: css`
           border: ${isSelected
@@ -80,7 +76,12 @@ const ImgCheckBox = ({
         src={src}
         alt={alt}
       />
-      {isSelected && <Icon icon="CircleChecked" />}
+      {isSelected && (
+        <Icon
+          icon="CircleChecked"
+          size={variant === "big" ? 58 : 44}
+        />
+      )}
       <S.ImageCheckBoxText>{children}</S.ImageCheckBoxText>
     </S.ImgCheckBoxWrapper>
   )

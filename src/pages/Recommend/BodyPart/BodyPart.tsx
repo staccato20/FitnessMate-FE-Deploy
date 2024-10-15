@@ -40,7 +40,7 @@ const BodyPart = () => {
 
   const handleNextPage = () => {
     const koreanBodyParts = selectedBodyParts.map(
-      (idx) => bodyParts[idx].koreanName,
+      (idx) => bodyParts[idx - 1].koreanName,
     )
     setBodyPart(koreanBodyParts)
     navigate("/recommend/machine")
@@ -51,22 +51,25 @@ const BodyPart = () => {
       <S.Status>
         <IconButton
           icon="LeftArrowBold"
+          size={30}
           onClick={handleBackPage}
         />
         <ProgressBar
-          progress={2}
+          progress={1}
           variant="round"
         />
       </S.Status>
       <S.RecommendInner>
-        <S.RecommendGuide>
-          <Avatar />
-          <SpeechBubble>
-            <SpeechBubble.MainText>
-              어떤 부위의 운동을 추천해드릴까요?
-            </SpeechBubble.MainText>
-          </SpeechBubble>
-        </S.RecommendGuide>
+        <S.RecommendGuideWrapper>
+          <S.RecommendGuide>
+            <Avatar />
+            <SpeechBubble>
+              <SpeechBubble.MainText>
+                어떤 부위의 운동을 추천해드릴까요?
+              </SpeechBubble.MainText>
+            </SpeechBubble>
+          </S.RecommendGuide>
+        </S.RecommendGuideWrapper>
         <S.BodyPartWrapper>
           <S.TabWrapper key="상체">
             <S.TabTitle>{"상체"}</S.TabTitle>

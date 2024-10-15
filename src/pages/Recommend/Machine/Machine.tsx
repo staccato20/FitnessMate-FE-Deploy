@@ -41,7 +41,7 @@ const Machine = () => {
     if (time.get() >= 6000) {
       time.set(0)
     } else {
-      time.set(time.get() + 16) // time 값을 지속적으로 증가시켜 rotate 애니메이션 적용
+      time.set(time.get() + 16)
     }
   })
 
@@ -97,7 +97,7 @@ const Machine = () => {
       {postRecommend.isPending && (
         <>
           <S.CoverWrapper
-            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }} // 첫 시작 위치 및 애니메이션 설정
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
             animate={{
               x: "-50%",
               y: "-50%",
@@ -108,7 +108,7 @@ const Machine = () => {
             style={{ rotate, scale }}
           />
           <S.LoadingText
-            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }} // 첫 시작 위치 및 애니메이션 설정
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
             animate={{
               x: "-50%",
               y: "-50%",
@@ -126,28 +126,32 @@ const Machine = () => {
         <S.Status>
           <IconButton
             icon="LeftArrowBold"
+            size={30}
             onClick={handleBackPage}
           />
           <ProgressBar
-            progress={3}
+            progress={2}
             variant="round"
           />
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
-          <S.RecommendGuide
-            animate={
-              isScrollTop
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.8, y: -20 }
-            }
-            transition={{ ...animation.quick }}>
-            <Avatar />
-            <SpeechBubble>
-              <SpeechBubble.MainText>
-                사용 가능한 기구를 선택해주세요!
-              </SpeechBubble.MainText>
-            </SpeechBubble>
-          </S.RecommendGuide>
+          <S.RecommendGuideWrapper>
+            <S.RecommendGuide
+              initial={{ transform: "translate(-50%, -50%)" }}
+              animate={
+                isScrollTop
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.8, y: -20 }
+              }
+              transition={{ ...animation.quick }}>
+              <Avatar />
+              <SpeechBubble>
+                <SpeechBubble.MainText>
+                  사용 가능한 기구를 선택해주세요!
+                </SpeechBubble.MainText>
+              </SpeechBubble>
+            </S.RecommendGuide>
+          </S.RecommendGuideWrapper>
 
           <S.RecommendMachineWrapper
             animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
