@@ -8,7 +8,6 @@ import Login from "@pages/Login/Login"
 import Mypage from "@pages/MyPage/Mypage"
 import BodyPart from "@pages/Recommend/BodyPart/BodyPart"
 import Machine from "@pages/Recommend/Machine/Machine"
-import Prolog from "@pages/Recommend/Prolog/Prolog"
 import Result from "@pages/Recommend/Result/Result"
 import Search from "@pages/Search/Search"
 import BodyFigure from "@pages/Signup/BodyFigure/BodyFigure"
@@ -41,7 +40,6 @@ const router = createBrowserRouter([
       {
         path: "recommend",
         children: [
-          { path: "prolog", element: <Prolog /> },
           { path: "bodypart", element: <BodyPart /> },
           { path: "machine", element: <Machine /> },
           { path: "result", element: <Result /> },

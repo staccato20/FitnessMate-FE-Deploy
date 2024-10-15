@@ -55,7 +55,7 @@ const BodyPart = () => {
           onClick={handleBackPage}
         />
         <ProgressBar
-          progress={2}
+          progress={1}
           variant="round"
         />
       </S.Status>

@@ -58,7 +58,7 @@ export const Home = () => {
 
   const handleRecommend = () => {
     if (loginState) {
-      navigate("recommend/prolog")
+      navigate("recommend/bodypart")
     } else {
       setIsLoginModal(true)
     }

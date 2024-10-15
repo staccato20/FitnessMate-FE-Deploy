@@ -92,13 +92,11 @@ export const RecommendSwitchGuide = styled.div`
 `
 
 export const RecommendMachineWrapper = styled(motion.ul)`
-  position: absolute;
-  top: 400px;
   max-width: 752px;
+  max-height: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  height: 502px;
 `
 
 export const RecommendUserInfo = styled.div`
