@@ -18,6 +18,10 @@ jobs:
         run: |
           git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
 
+      - name: Remove all files in main Repo
+        run: |
+          rm -rf main/*  # 기존 파일 모두 삭제
+
       - name: Copy changes to main Repo
         run: |
           rsync -av --delete --exclude='.git' --exclude='node_modules/' --exclude='main/' . main/
