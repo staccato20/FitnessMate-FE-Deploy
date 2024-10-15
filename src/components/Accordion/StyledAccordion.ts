@@ -44,6 +44,8 @@ export const HeaderRightInfo = styled.span`
 export const VideoWrapper = styled(motion.div)`
   border-radius: 12px;
   overflow: hidden;
+  width: 100%;
+  height: 378px;
 `
 
 export const ContentWrapper = styled(motion.div)`
