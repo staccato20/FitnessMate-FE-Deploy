@@ -2,13 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import MainLayout from "@Layout/Mainlayout"
 
+import Detail from "@pages/Detail/Detail"
 import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
 import Mypage from "@pages/MyPage/Mypage"
 import BodyPart from "@pages/Recommend/BodyPart/BodyPart"
-import Loading from "@pages/Recommend/Loading/Loading"
 import Machine from "@pages/Recommend/Machine/Machine"
-import Prolog from "@pages/Recommend/Prolog/Prolog"
 import Result from "@pages/Recommend/Result/Result"
 import Search from "@pages/Search/Search"
 import BodyFigure from "@pages/Signup/BodyFigure/BodyFigure"
@@ -41,17 +40,20 @@ const router = createBrowserRouter([
       {
         path: "recommend",
         children: [
-          { path: "prolog", element: <Prolog /> },
           { path: "bodypart", element: <BodyPart /> },
           { path: "machine", element: <Machine /> },
-          { path: "loading", element: <Loading /> },
           { path: "result", element: <Result /> },
         ],
       },
       {
-        path: "searchworkout/1",
+        path: "searchworkout",
         element: <Search />,
       },
+      {
+        path: "workoutdetail/:workoutId",
+        element: <Detail />,
+      },
+
       {
         path: "mypage",
         element: <Mypage />,

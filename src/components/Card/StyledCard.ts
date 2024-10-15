@@ -3,17 +3,24 @@ import styled from "styled-components"
 import theme, { fonts } from "@styles/theme"
 
 export const CardWrapper = styled.button`
-  height: 100%;
-  width: 100%;
-  user-select: none;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.2s linear;
+    span {
+      color: ${theme.Brand600};
+    }
+  }
 `
 
 export const CardImg = styled.img`
   object-fit: cover;
+  max-width: 310px;
+  width: 100%;
   border-radius: 12px;
   border: 1px solid #f2f4f6;
-  max-width: 312px;
-  height: 250px;
 `
 export const CardContents = styled.div`
   display: flex;
@@ -33,5 +40,6 @@ export const BadgeList = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 4px;
 `

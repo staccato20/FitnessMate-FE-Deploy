@@ -8,9 +8,12 @@ import CircleCheckedGreen from "@assets/icon/circle_checked_green.svg?react"
 import CircleEmpty from "@assets/icon/circle_empty.svg?react"
 import CircleFill from "@assets/icon/circle_fill.svg?react"
 import Close from "@assets/icon/close.svg?react"
+import CloseBold from "@assets/icon/close_bold.svg?react"
 import CloseRound from "@assets/icon/close_round.svg?react"
+import CloseRoundSmall from "@assets/icon/close_round_small.svg?react"
+import CloseWhite from "@assets/icon/close_white.svg?react"
 import DownArrow from "@assets/icon/down_arrow.svg?react"
-import DownArrowGray from "@assets/icon/downarrow.svg?react"
+import DownArrowGray from "@assets/icon/down_arrow_gray.svg?react"
 import Ellipsis from "@assets/icon/ellipsis.svg?react"
 import ExclamationMark from "@assets/icon/exclamation_mark.svg?react"
 import LeftArrow from "@assets/icon/left_arrow.svg?react"
@@ -28,15 +31,17 @@ import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
 import RightArrowWhite from "@assets/icon/right_arrow_white.svg?react"
 import Search from "@assets/icon/search.svg?react"
 import SearchRound from "@assets/icon/search_round.svg?react"
+import SearchWhite from "@assets/icon/search_white.svg?react"
 import Star from "@assets/icon/star.svg?react"
 import Tooltip from "@assets/icon/tooltip.svg?react"
 import Trash from "@assets/icon/trash.svg?react"
-import LoadingBackground from "@assets/images/loadingbackground.svg?react"
+import UpArrow from "@assets/icon/up_arrow.svg?react"
 
 export const ICON_MAP = {
   Add,
   AddRound,
   ChangeCircle,
+  CloseBold,
   Check,
   Close,
   CircleCheckedGreen,
@@ -45,6 +50,7 @@ export const ICON_MAP = {
   CircleFill,
   CloseRound,
   DownArrow,
+  UpArrow,
   Ellipsis,
   ExclamationMark,
   LeftArrowBig,
@@ -66,17 +72,32 @@ export const ICON_MAP = {
   LeftArrowGrey,
   RightArrowWhite,
   Avatar,
+  CloseRoundSmall,
+  SearchWhite,
+  CloseWhite,
   DownArrowGray,
-  LoadingBackground,
-}
-export type IconPropsType = {
-  icon: keyof typeof ICON_MAP | ""
-  className?: string
 }
 
-const Icon = ({ icon, ...props }: IconPropsType) => {
-  const IconComponent = icon && ICON_MAP[icon]
-  return IconComponent && <IconComponent {...props} />
+export type IconPropsType = {
+  icon: keyof typeof ICON_MAP
+  size?: number
+  stroke?: string
+  color?: string
+}
+
+const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
+  const IconComponent = ICON_MAP[icon]
+  const sizePx = `${size}px`
+  return (
+    IconComponent && (
+      <IconComponent
+        width={sizePx}
+        stroke={stroke}
+        fill={color}
+        {...props}
+      />
+    )
+  )
 }
 
 export default Icon

@@ -1,37 +1,57 @@
-import styled, { Interpolation } from "styled-components"
+import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
-export const FooterWrapper = styled.div<{ $flex: Interpolation<object> }>`
-  position: fixed;
-  bottom: 0;
-  max-width: 720px;
-  width: 100%;
-  height: 90px;
-  z-index: 500;
-  margin: 0 auto;
+export const FooterInfoContentWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: ${({ $flex }) => $flex};
-  background: ${theme.Netural0};
+  gap: 32px;
 `
-
-export const FooterTopLine = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 100vw;
-  height: 1px;
-  background-color: ${theme.Netural300};
-  transform: translateX(-50%);
+export const FooterInfoContentTitle = styled.div`
+  color: ${theme.Netural990};
+  ${fonts.b7};
 `
-
-export const FooterText = styled.span`
-  ${fonts.b3};
-  color: ${theme.Brand600};
-`
-
-export const FooterSubText = styled.span`
-  ${fonts.b4};
+export const FooterInfoContent = styled.div`
   color: ${theme.Netural800};
+  font-size: 14px;
+  font-weight: 400;
+`
+
+export const FooterInfoContentList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`
+
+export const FooterInfoSubContentWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+`
+export const FooterInfoSubContentTitle = styled.span`
+  color: ${theme.Netural500};
+  font-size: 14px;
+  font-weight: 400;
+`
+
+export const Footer = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 589px;
+  background: ${theme.Netural200};
+`
+export const FooterWrapper = styled.div`
+  max-width: 1080px;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 112px;
+  left: 10%;
+  flex-direction: column;
+  gap: 35px;
+  img {
+    width: 60px;
+  }
+`
+export const FooterInfoList = styled.div`
+  display: flex;
+  gap: 133px;
 `

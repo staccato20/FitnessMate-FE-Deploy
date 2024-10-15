@@ -137,7 +137,7 @@ export const COMPLETE_Nav = [
     {
       title: "검색하기",
       message: "다양한 종류의 운동/보조제를 검색해보세요.",
-      url: "/searchworkout/1",
+      url: "/searchworkout",
     },
   ],
 ]

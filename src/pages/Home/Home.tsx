@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
-import { useUserInfo } from "hooks/query/useUserInfo"
-
 import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
@@ -12,19 +10,18 @@ import IconButton from "@components/IconButton/IconButton"
 import LoginModal from "@components/Modal/LoginModal"
 
 import homebanner from "@assets/images/homebanner.png"
-import logo from "@assets/images/logo.png"
 import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
 
 import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
 
+import { SearchTypes } from "@typpes/type"
+
+import { useUserInfo } from "@hooks/query/useUserInfo"
+
 import Input from "../../components/Input/Input"
 import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
-
-type Search = {
-  search: string
-}
 
 // const TABS = [
 //   {
@@ -43,15 +40,15 @@ type Search = {
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { data } = useUserInfo()
-  const loginState = data ? true : false
+  const { userInfo } = useUserInfo()
+  const loginState = userInfo ? true : false
 
-  const { register, handleSubmit, setValue, setFocus } = useForm<Search>()
+  const { register, handleSubmit, setValue, setFocus } = useForm<SearchTypes>()
 
   const [isLoginModal, setIsLoginModal] = useState(false)
 
-  const handleSearch = (data: Search) => {
-    navigate("searchworkout/1", { state: { keyword: data } })
+  const handleSearch = (data: SearchTypes) => {
+    navigate("searchworkout", { state: { keyword: data } })
   }
 
   const handleKeyWord = (item: string) => {
@@ -61,7 +58,7 @@ export const Home = () => {
 
   const handleRecommend = () => {
     if (loginState) {
-      navigate("recommend/prolog")
+      navigate("recommend/bodypart")
     } else {
       setIsLoginModal(true)
     }
@@ -69,7 +66,8 @@ export const Home = () => {
 
   const handleMyPage = () => {
     if (loginState) {
-      navigate("mypage")
+      alert("수정 중인 페이지입니다!")
+      // navigate("mypage")
     } else {
       setIsLoginModal(true)
     }
@@ -102,11 +100,14 @@ export const Home = () => {
           smooth={true}>
           <S.SecondButtonWrapper>
             경험하기
-            <Icon icon="DownArrow" />
+            <Icon
+              icon="DownArrow"
+              size={19}
+            />
           </S.SecondButtonWrapper>
         </Link>
       </S.Second>
-      <S.Third>
+      <S.Third id="link">
         <S.SlideList>
           <S.Slide>
             <S.Title>
@@ -185,6 +186,7 @@ export const Home = () => {
               <IconButton
                 icon="CloseRound"
                 type="button"
+                size={18}
                 onClick={() => {
                   setValue("search", "")
                 }}
@@ -212,44 +214,6 @@ export const Home = () => {
           </S.SearchKeywordForm>
         </S.SearchWrapper>
       </S.Fourth>
-      <S.Footer>
-        <S.FooterWrapper>
-          <img src={logo} />
-          <S.FooterInfoList>
-            <S.FooterInfoContentWrapper>
-              <S.FooterInfoContentList>
-                <S.FooterInfoContentTitle>개발</S.FooterInfoContentTitle>
-                <S.FooterInfoContent>이찬하</S.FooterInfoContent>
-                <S.FooterInfoContent>정지성</S.FooterInfoContent>
-                <S.FooterInfoContent>강민정</S.FooterInfoContent>
-                <S.FooterInfoContent>최훈오</S.FooterInfoContent>
-              </S.FooterInfoContentList>
-              <S.FooterInfoContentList>
-                <S.FooterInfoContentTitle>디자인</S.FooterInfoContentTitle>
-                <S.FooterInfoContent>김정욱</S.FooterInfoContent>
-                <S.FooterInfoContent>최시현</S.FooterInfoContent>
-              </S.FooterInfoContentList>
-            </S.FooterInfoContentWrapper>
-            <S.FooterInfoContentList>
-              <S.FooterInfoContentTitle>서비스</S.FooterInfoContentTitle>
-              <S.FooterInfoContent>검색하기</S.FooterInfoContent>
-              <S.FooterInfoContent>추천받기</S.FooterInfoContent>
-              <S.FooterInfoContent>내 운동</S.FooterInfoContent>
-            </S.FooterInfoContentList>
-            <S.FooterInfoContentList>
-              <S.FooterInfoContentTitle>문의</S.FooterInfoContentTitle>
-              <S.FooterInfoSubContentWrapper>
-                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
-                <S.FooterInfoContent>010-8544-1013</S.FooterInfoContent>
-              </S.FooterInfoSubContentWrapper>
-              <S.FooterInfoSubContentWrapper>
-                <S.FooterInfoSubContentTitle>전화</S.FooterInfoSubContentTitle>
-                <S.FooterInfoContent>jeuk1013@naver.com</S.FooterInfoContent>
-              </S.FooterInfoSubContentWrapper>
-            </S.FooterInfoContentList>
-          </S.FooterInfoList>
-        </S.FooterWrapper>
-      </S.Footer>
       {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
     </S.HomeContainer>
   )

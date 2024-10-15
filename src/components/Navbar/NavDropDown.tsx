@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 
-import { useDropDown } from "hooks/useDropDown"
-
 import Button from "@components/Button/Button"
 
 import authAPI from "@apis/domain/auth"
+
+import { useDropDown } from "@hooks/useDropDown"
 
 import * as S from "./StyledNavModal"
 
@@ -30,12 +30,14 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
   }
 
   const handleFixProfile = async () => {
-    navigate("/mypage/fixprofile")
+    alert("현재 수정중인 페이지입니다!")
+    // navigate("/mypage/fixprofile")
     toggleDropDown()
   }
 
   const handleFixBodyInfo = async () => {
-    navigate("/mypage/fixbodyinfo")
+    alert("현재 수정중인 페이지입니다!")
+    // navigate("/mypage/fixbodyinfo")
     toggleDropDown()
   }
 

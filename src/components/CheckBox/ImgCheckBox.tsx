@@ -21,7 +21,9 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
           width: 169px;
         `,
         borderStyle: css`
-          border: 3.5px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+          border: ${isSelected
+            ? `3.5px solid ${theme.Brand600}`
+            : `1px solid ${theme.Netural300}`};
         `,
       }
     case "small":
@@ -31,7 +33,9 @@ const getVariant = (variant: Variant, isSelected: boolean) => {
           width: 114px;
         `,
         borderStyle: css`
-          border: 3px solid ${isSelected ? theme.Brand600 : theme.Netural300};
+          border: ${isSelected
+            ? `3px solid ${theme.Brand600}`
+            : `1px solid ${theme.Netural300}`};
         `,
       }
     default:
@@ -72,7 +76,12 @@ const ImgCheckBox = ({
         src={src}
         alt={alt}
       />
-      {isSelected && <Icon icon="CircleChecked" />}
+      {isSelected && (
+        <Icon
+          icon="CircleChecked"
+          size={variant === "big" ? 58 : 44}
+        />
+      )}
       <S.ImageCheckBoxText>{children}</S.ImageCheckBoxText>
     </S.ImgCheckBoxWrapper>
   )

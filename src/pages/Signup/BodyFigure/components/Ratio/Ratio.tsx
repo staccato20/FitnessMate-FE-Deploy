@@ -18,12 +18,14 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
           <S.RatioButtonBox>
             <IconButton
               type="button"
+              size={28}
               icon="AddRound"
               onClick={() => handleRatio("+")}
             />
             <IconButton
               type="button"
               icon="MinusRound"
+              size={28}
               onClick={() => handleRatio("-")}
             />
           </S.RatioButtonBox>
@@ -37,6 +39,7 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
           </S.RatioContent>
           <S.RatioButtonBox>
             <IconButton
+              size={28}
               icon="MinusRound"
               type="button"
               onClick={() => handleRatio("-")}
@@ -44,6 +47,7 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }) => {
             <IconButton
               icon="AddRound"
               type="button"
+              size={28}
               onClick={() => handleRatio("+")}
             />
           </S.RatioButtonBox>

@@ -10,12 +10,13 @@ interface CardProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   badges: string[]
 }
 
-const Card = ({ src, title, badges }: CardProps) => {
+const Card = ({ src, title, badges, ...props }: CardProps) => {
   return (
-    <S.CardWrapper>
+    <S.CardWrapper {...props}>
       <S.CardImg
         src={src}
         alt="운동 이미지"
+        loading="lazy"
       />
       <S.CardContents>
         <S.CardText>{title}</S.CardText>

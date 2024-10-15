@@ -11,12 +11,13 @@ export interface User {
 }
 
 export interface Workout {
+  id: number
   englishName: string
   koreanName: string
-  imageURL: string
+  imgPath: string
   videoLink: string
   description: string
-  bodyPartKoreanName: string
+  bodyPartKoreanName: string[]
 }
 
 export interface Machine {
@@ -103,13 +104,15 @@ export interface PostRecommendIdPayload {
 }
 
 export interface Recommend {
-  workoutId: number
-  koreanName: string
+  id: number
   englishName: string
+  koreanName: string
+  imgPath: string
+  videoLink: string
+  description: string
+  atcetera: null
   machineName: string
   bodyPartKoreanName: string[]
-  description: string
-  imgPath: string
   weight: string
   repeat: string
   set: string
@@ -140,23 +143,24 @@ export interface DeleteBodyDataResponse {
 
 export interface GetWorkoutsPayload {
   page: number
-  searchKeyword?: string
-  bodyPartKoreanName: string[]
-}
-
-export interface GetWorkoutsResponse extends Workout {
-  id: number
+  searchKeyword: string
+  bodyPartKoreanName: string[] | []
 }
 
 export interface MachineList {
   englishName: string
   koreanName: string
+  imgPath: string
 }
 
-export interface GetBodyParts {
-  bodyPartKoreanName: MachineList[]
+export interface BodyPartList extends MachineList {
+  bodyPartId: number
 }
 
 export interface PostMachineListPayload {
   bodyPartKoreanName: string[]
+}
+
+export type SearchTypes = {
+  search: string
 }

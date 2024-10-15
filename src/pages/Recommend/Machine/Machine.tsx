@@ -2,21 +2,24 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
-import { useScroll } from "hooks/useScroll"
+import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 
 import Avatar from "@components/Avatar/Avatar"
+import Bottom from "@components/Bottom/Bottom"
 import RoundButton from "@components/Button/RoundButton"
 import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
-import Footer from "@components/Footer/Footer"
-import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import useGetMachineList from "@pages/Recommend/hooks/useGetMachineList"
-import { usePostRecommend } from "@pages/Recommend/hooks/usePostRecommend"
-import { usePostRecommendId } from "@pages/Recommend/hooks/usePostRecommendId"
 import { useRecommendStore } from "@pages/Recommend/store"
+
+import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
+import { usePostRecommendId } from "@hooks/mutation/usePostRecommendId"
+import { useGetMachineList } from "@hooks/query/useGetMachineList"
+import { useScroll } from "@hooks/useScroll"
+
+import { animation } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
 
@@ -25,15 +28,27 @@ const Machine = () => {
   const { bodyPart } = useRecommendStore()
   const postRecommendId = usePostRecommendId()
   const postRecommend = usePostRecommend()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { isScrollTop } = useScroll(scrollRef)
+
+  const time = useMotionValue(0)
+  const rotate = useTransform(time, [0, 6000], [0, 360], { clamp: false })
+  const scale = useTransform(time, [0, 3000, 6000], [1, 1.2, 1], {
+    clamp: true,
+  })
+
+  useAnimationFrame(() => {
+    if (time.get() >= 6000) {
+      time.set(0)
+    } else {
+      time.set(time.get() + 16)
+    }
+  })
 
   const { setResult } = useRecommendStore()
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
   const numChecked = machinesById.size
-
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const targetRef = useRef<HTMLDivElement>(null)
-  const position = useScroll(scrollRef)
   const navigate = useNavigate()
 
   const handleBackPage = () => {
@@ -57,6 +72,9 @@ const Machine = () => {
   }
 
   const handleRecommend = () => {
+    if (postRecommend.isPending) {
+      return
+    }
     const payload = {
       bodyPartKoreanName: bodyPart,
       machineKoreanName: [...machinesById].map((id) => machines[id].koreanName),
@@ -77,53 +95,71 @@ const Machine = () => {
   return (
     <>
       {postRecommend.isPending && (
-        <S.CoverWrapper>
-          <Icon icon="LoadingBackground" />
-          <S.LoadingText>
+        <>
+          <S.CoverWrapper
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
+            animate={{
+              x: "-50%",
+              y: "-50%",
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={animation.slow}
+            style={{ rotate, scale }}
+          />
+          <S.LoadingText
+            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
+            animate={{
+              x: "-50%",
+              y: "-50%",
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={animation.slow}>
             추천을 위한
             <br /> 분석을 시작했어요
           </S.LoadingText>
-        </S.CoverWrapper>
+        </>
       )}
+
       <S.RecommendWrapper>
         <S.Status>
           <IconButton
             icon="LeftArrowBold"
+            size={30}
             onClick={handleBackPage}
           />
           <ProgressBar
-            progress={3}
+            progress={2}
             variant="round"
           />
-          <S.RecommendSwitchGuide $isGuideSwitch={position > 103}>
-            <Avatar />
-            <SpeechBubble>
-              <SpeechBubble.MainText>
-                사용 가능한 기구를 선택해주세요!
-              </SpeechBubble.MainText>
-            </SpeechBubble>
-          </S.RecommendSwitchGuide>
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
-          <S.RecommendGuide
-            ref={targetRef}
-            $isGuideSwitch={position > 143}>
-            <Avatar />
-            <SpeechBubble isIcon>
-              <SpeechBubble.MainText>
-                사용 가능한 기구를 선택해주세요!
-              </SpeechBubble.MainText>
-              <SpeechBubble.SubText>
-                선택한 부위에 필요한 기구만 보여드렸어요
-              </SpeechBubble.SubText>
-            </SpeechBubble>
-          </S.RecommendGuide>
+          <S.RecommendGuideWrapper>
+            <S.RecommendGuide
+              initial={{ transform: "translate(-50%, -50%)" }}
+              animate={
+                isScrollTop
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.8, y: -20 }
+              }
+              transition={{ ...animation.quick }}>
+              <Avatar />
+              <SpeechBubble>
+                <SpeechBubble.MainText>
+                  사용 가능한 기구를 선택해주세요!
+                </SpeechBubble.MainText>
+              </SpeechBubble>
+            </S.RecommendGuide>
+          </S.RecommendGuideWrapper>
 
-          <S.RecommendMachineWrapper>
-            {machines?.map(({ englishName, koreanName, id }) => (
+          <S.RecommendMachineWrapper
+            animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
+            transition={{ ...animation.small }}>
+            {machines?.map(({ englishName, koreanName, id, imgPath }) => (
               <ImgCheckBox
                 key={englishName}
-                src="https://github.com/user-attachments/assets/6711e495-0014-42d3-9afd-490015d3adf5"
+                src={imgPath}
                 alt="테스트 이미지를 설명"
                 isSelected={machinesById.has(id)}
                 handleToggle={() => handleBodyPart(id)}
@@ -134,10 +170,10 @@ const Machine = () => {
           </S.RecommendMachineWrapper>
         </S.RecommendInner>
 
-        <Footer flex="space-between">
-          <Footer.Text>
-            {numChecked}개<Footer.SubText> 기구 선택됨</Footer.SubText>
-          </Footer.Text>
+        <Bottom flex="space-between">
+          <Bottom.Text>
+            {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
+          </Bottom.Text>
           <RoundButton
             onClick={handleRecommend}
             variant="blue"
@@ -152,10 +188,10 @@ const Machine = () => {
                 margin={6}
               />
             ) : (
-              "바로 추천받기"
+              "추천 시작하기"
             )}
           </RoundButton>
-        </Footer>
+        </Bottom>
       </S.RecommendWrapper>
     </>
   )

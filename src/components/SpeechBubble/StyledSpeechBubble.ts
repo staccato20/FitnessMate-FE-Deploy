@@ -17,7 +17,7 @@ export const SpeechBubbleWrapper = styled.div<{
   border: 1px solid ${theme.Netural400};
   background: ${theme.Netural0};
   border-collapse: collapse;
-  .tooltip {
+  svg {
     position: absolute;
     top: -10px;
   }

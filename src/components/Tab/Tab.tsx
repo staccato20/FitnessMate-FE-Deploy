@@ -11,14 +11,26 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: Variant
   index: number
   count?: number
+  onTabChange?: (index: number) => void
 }
 
-const Tab = ({ children, index, variant, count, ...props }: TabProps) => {
+const Tab = ({
+  children,
+  index,
+  variant,
+  count,
+  onTabChange,
+  ...props
+}: TabProps) => {
   const { activeTab, switchTab } = useTabs()
   const variantStyle = getVariant(variant, activeTab === index)
 
   const handleTab = () => {
     switchTab(index)
+    if (!onTabChange) {
+      return
+    }
+    onTabChange(index)
   }
 
   return (
