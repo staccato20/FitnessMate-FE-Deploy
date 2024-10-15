@@ -3,6 +3,8 @@ import { motion } from "framer-motion"
 
 import styled from "styled-components"
 
+import logo from "@assets/images/logo.png"
+
 import theme, { fonts } from "@styles/theme"
 
 export const FirstSubTitle = styled.span`
@@ -80,7 +82,7 @@ export const SecondText2 = styled(SecondText)`
   padding-left: 145px;
   &::before {
     content: "";
-    background-image: url("src/assets/images/logo.png");
+    background-image: url(${logo});
     background-size: 136px 32px;
     background-repeat: no-repeat;
     position: absolute;

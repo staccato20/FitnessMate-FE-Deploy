@@ -8,7 +8,7 @@ export const CoverWrapper = styled(motion.div)`
   width: 452px;
   height: 438px;
   background: transparent;
-  background-image: url("/src/assets/images/loadingbackground.svg");
+  background-image: url("/loadingbackground.svg");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
