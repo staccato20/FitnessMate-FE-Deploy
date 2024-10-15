@@ -38,8 +38,7 @@ export const Primary: Story = {
     disabled: false,
     variant: "black",
     children: "다음",
-    leftIcon: "",
-    rightIcon: "LeftArrowWhite",
+    rightIcon: "RightArrowWhite",
     size: "big",
   },
 }
