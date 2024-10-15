@@ -54,7 +54,10 @@ const Content = ({
             <ContentText>{children}</ContentText>
             <ContentAI>
               <ContentAIleft>
-                <Icon icon="Star" />
+                <Icon
+                  icon="Star"
+                  size={32}
+                />
                 AI 추천 운동량
               </ContentAIleft>
               <ContentAIright>

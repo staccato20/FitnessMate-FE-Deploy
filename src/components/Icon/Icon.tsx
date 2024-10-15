@@ -94,7 +94,6 @@ const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
     IconComponent && (
       <IconComponent
         width={sizePx}
-        height={sizePx}
         stroke={stroke}
         fill={color}
         {...props}

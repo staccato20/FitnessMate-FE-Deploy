@@ -40,7 +40,7 @@ const BodyPart = () => {
 
   const handleNextPage = () => {
     const koreanBodyParts = selectedBodyParts.map(
-      (idx) => bodyParts[idx].koreanName,
+      (idx) => bodyParts[idx - 1].koreanName,
     )
     setBodyPart(koreanBodyParts)
     navigate("/recommend/machine")

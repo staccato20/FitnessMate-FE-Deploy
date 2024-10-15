@@ -33,7 +33,10 @@ const Complete = () => {
                     <br />
                     <S.CompleteNavItemText>{nav.message}</S.CompleteNavItemText>
                   </S.CompleteNavItemTitle>
-                  <Icon icon="RightArrowBig" />
+                  <Icon
+                    icon="RightArrowBig"
+                    size={11}
+                  />
                 </S.CompleteNavItem>
               </S.CompleteNav>
             )

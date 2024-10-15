@@ -26,6 +26,7 @@ const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
     <S.PaginationWrapper $isShow={isShow}>
       <IconButton
         icon="LeftArrowBig"
+        size={11}
         onClick={handlePreviousPage}
         disabled={currentPage === 1}
       />
@@ -48,6 +49,7 @@ const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
       </S.PaginationList>
       <IconButton
         icon="RightArrowBig"
+        size={11}
         onClick={handleNextPage}
         disabled={currentPage === pageNum}
       />

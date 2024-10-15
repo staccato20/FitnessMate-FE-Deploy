@@ -32,10 +32,12 @@ const SearchField = ({
       <S.IconButtonWrapper>
         <IconButton
           icon="CloseWhite"
+          size={18}
           onClick={handleClose}
         />
         <IconButton
           icon="SearchWhite"
+          size={24}
           onClick={triggerSubmit}
         />
       </S.IconButtonWrapper>
