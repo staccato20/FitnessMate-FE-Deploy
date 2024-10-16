@@ -1,15 +1,24 @@
-import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import CancleModal from "@components/Modal/CancleModal"
-import LoginModal from "@components/Modal/LoginModal"
-import NavDropDown from "@components/Navbar/NavDropDown"
 
-import logo from "@assets/images/logo.png"
 
-import { useUserInfo } from "@hooks/query/useUserInfo"
+import CancleModal from "@components/Modal/CancleModal";
+import LoginModal from "@components/Modal/LoginModal";
+import NavDropDown from "@components/Navbar/NavDropDown";
 
-import * as S from "./StyledNavbar"
+
+
+import logo from "@assets/images/logo.png";
+
+
+
+import { useUserInfo } from "@hooks/query/useUserInfo";
+
+
+
+import * as S from "./StyledNavbar";
+
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -23,7 +32,7 @@ const Navbar = () => {
   }
 
   const handleMyPage = () => {
-    userName ? alert("수정 중인 페이지입니다!") : setIsLoginModal(true)
+    userName ? navigate("mypage") : setIsLoginModal(true)
   }
 
   const handleRecommend = () => {
