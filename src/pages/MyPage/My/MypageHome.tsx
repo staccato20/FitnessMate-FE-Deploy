@@ -73,7 +73,6 @@ const Mypagehome = () => {
         setSelectedRoutineId(myRoutines[0].routineId) // 루틴 ID 설정
         setBtnActive(myRoutines[0].routineIndex)
       } else {
-        console.log("루틴이 존재하지 않음.")
       }
     } catch (error) {
       console.error("Error fetching data:", error)
