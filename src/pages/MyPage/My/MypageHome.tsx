@@ -65,20 +65,20 @@
 //   // 운동 순서 수정 여부
 //   const [isWorkoutFix, setIsWorkoutFix] = useState<boolean>(false)
 
-//   // 기본 상태 세팅
-//   const fetchData = async () => {
-//     try {
-//       if (isRoutine) {
-//         console.log("루틴 목록:", myRoutines)
-//         setSelectedRoutineId(myRoutines[0].routineId) // 루틴 ID 설정
-//         setBtnActive(myRoutines[0].routineIndex)
-//       } else {
-//         console.log("루틴이 존재하지 않음.")
-//       }
-//     } catch (error) {
-//       console.error("Error fetching data:", error)
-//     }
-//   }
+// 기본 상태 세팅
+const fetchData = async () => {
+  try {
+    if (isRoutine) {
+      console.log("루틴 목록:", myRoutines)
+      setSelectedRoutineId(myRoutines[0].routineId) // 루틴 ID 설정
+      setBtnActive(myRoutines[0].routineIndex)
+    } else {
+      console.log("루틴이 존재하지 않음.")
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error)
+  }
+}
 
 //   useEffect(() => {
 //     if (isRoutine) {
