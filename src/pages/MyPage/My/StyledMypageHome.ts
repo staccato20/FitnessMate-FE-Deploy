@@ -1,357 +1,637 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
 
-export const HomeContainer = styled.ul`
-  width: 100%;
-  margin: 0 auto;
+export const MypageBackground = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
   display: flex;
-
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding-bottom: 300px;
+  background: ${theme.Netural200};
+  z-index: -999;
+`
 
-  .modalbutton {
-    position: fixed;
-    bottom: 70px;
+export const MypageContainer = styled.ul`
+  margin-top: 83px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+
+  .SupplementArea {
+    margin-top: 260px;
+    display: flex;
+    width: 270px;
+    height: fit-content;
+    padding: 18px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 18px;
+    background: ${theme.Netural50};
+    box-shadow: 0px 4px 8.1px 0px rgba(0, 0, 0, 0.03);
+
+    .supplementTitle {
+      padding: 0 26px;
+      color: ${theme.Netural990};
+      font-family: Pretendard;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 150%; /* 24px */
+      letter-spacing: -0.32px;
+    }
+
+    .supplementItem {
+      padding-left: 24px;
+      display: flex;
+      gap: 11px;
+      align-items: center;
+
+      .supplementImg {
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+      }
+
+      .supplementContent {
+        display: flex;
+        flex-direction: column;
+
+        .item_workoutName {
+          color: ${theme.Netural900};
+          font-family: Pretendard;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%; /* 22.5px */
+          letter-spacing: -0.3px;
+        }
+        .item_flavor-source {
+          color: ${theme.Netural600};
+          font-family: Pretendard;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%; /* 18px */
+          letter-spacing: -0.24px;
+        }
+      }
+    }
+  }
+
+  .MypageHomeArea {
+    width: 870px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
   }
 `
 
-export const HomeContent = styled.div`
-  width: 100%;
-  height: 100%;
+export const MypageTopContainer = styled.div`
+  width: 870px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: start;
   flex-direction: column;
-`
+  gap: 46px;
 
-export const FirstContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  height: 246px;
-
-  .firstTop {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${theme.Netural100};
-    font-size: 24px;
+  .mypageTitle {
+    color: red;
+    font-size: 28px;
     font-weight: 600;
-    margin-bottom: 8px;
+    line-height: 145%;
   }
 
-  .firstMiddle {
-    text-align: center;
+  .mypageTopContent {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     flex-direction: column;
-    margin-bottom: 24px;
-  }
+    gap: 24px;
+    margin-bottom: 30px;
 
-  .firstMiddle p {
-    text-align: center;
-    color: ${({ theme }) => theme.Netural990};
-    font-size: 38px;
-    font-weight: 700;
+    .myInformation {
+      display: flex;
+      gap: 8px;
+
+      .myName {
+        color: ${theme.Netural900};
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 150%;
+        letter-spacing: -0.176px;
+      }
+
+      .myWorkout {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .myWorkoutInformation {
+          color: ${theme.Netural700};
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 145%;
+        }
+        .line {
+          height: 16px;
+          border-left: 1px solid ${theme.Netural700};
+        }
+      }
+    }
   }
 `
 
-export const Toggle = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  .toggleSwitch_wrap {
+export const RoutinesContainer = styled.div`
+  .lengthRoutineContainer {
     display: flex;
-    gap: 20px;
+    gap: 6px;
     align-items: center;
+
+    .addRoutineButton {
+      width: 44px;
+      height: 44px;
+      background: ${theme.Netural300};
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .routineArea {
+      display: flex;
+      gap: 12px;
+      height: 44px;
+      padding: 0 12px 0 18px;
+      align-items: center;
+      border-radius: 30px;
+      background: ${theme.Netural300};
+      position: relative;
+
+      .routineName {
+        color: ${theme.Netural800};
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        letter-spacing: -0.192px;
+      }
+      .fixThisRoutine {
+        cursor: pointer;
+      }
+    }
+    .active {
+      background: ${theme.Netural990};
+      .routineName {
+        color: ${theme.Netural0};
+      }
+      .svgFill {
+        fill: ${theme.Netural0};
+      }
+    }
   }
 
-  .toggleSwitch {
-    position: relative;
-    display: inline-block;
-    width: 201px;
-    height: 50px;
-  }
-`
-
-export const SecondContent = styled.div`
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  .contents {
-    padding: 10px 0;
+  .noneRoutineContainer {
     display: flex;
-    gap: 42px;
-    flex-direction: column;
-  }
-`
-
-export const ContentsTitle = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  background: ${({ theme }) => theme.Netural100};
-  height: 75px;
-  margin-bottom: 24px;
-  position: sticky;
-  top: 63px;
-
-  .contents-title {
-    font-size: 18px;
-    color: ${({ theme }) => theme.Netural800};
-    font-weight: 500;
-  }
-`
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-
-  .btn {
-    display: flex;
+    width: 100%;
+    padding: 20px 18px;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    height: 47px;
-    color: ${({ theme }) => theme.Brand600};
+    border-radius: 16px;
+    background: ${theme.Netural0};
+
+    .noneRoutineTextArea {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .noneRoutineTopText {
+        color: ${theme.Netural900};
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 150%;
+        letter-spacing: -0.18px;
+      }
+      .noneRoutineBottomText {
+        color: ${theme.Brand600};
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 150%;
+        letter-spacing: -0.15px;
+      }
+    }
+
+    .addFirstRoutineButton {
+      display: flex;
+      padding: 14px 20px 14px 14px;
+      align-items: center;
+      gap: 4px;
+      border-radius: 28px;
+      background: ${theme.Brand600};
+
+      .addFirstRoutineButtonImg {
+        width: 24px;
+        height: 24px;
+      }
+      .addFirstRoutineButtonText {
+        color: ${theme.Netural0};
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        letter-spacing: -0.32px;
+      }
+    }
+  }
+`
+
+export const inputContent = styled.input`
+  &::-webkit-input-placeholder {
+    color: ${theme.Netural0};
+    font-weight: 600;
     font-size: 18px;
     letter-spacing: -0.36px;
-    background-color: ${({ theme }) => theme.Netural0};
-    box-shadow: 0px 4px 8px #0000000d;
-    border-radius: 6px;
+    line-height: 23.4px;
+  }
+  border: none;
+  width: 100%;
+  color: ${theme.Netural0};
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.36px;
+  line-height: 23.4px;
+`
 
-    &.active {
-      color: ${({ theme }) => theme.Netural0};
-      background-color: ${({ theme }) => theme.Brand600};
+export const RoutineFixModal = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 38px;
+  z-index: 300;
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  width: 152px;
+  height: 140px;
+  border-radius: 14px;
+  background: ${theme.Netural0};
+  box-shadow: 0px 1px 8.7px 0px rgba(0, 0, 0, 0.48);
+
+  .routineFixModalButton {
+    display: flex;
+    padding: 8px 12px 8px 6px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+
+    .routineFixModalIcon {
+      width: 20px;
+      height: 20px;
+    }
+    .routineFixModalText {
+      color: ${theme.Netural900};
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 150%;
+      letter-spacing: -0.28px;
     }
 
     &:hover {
-      opacity: 0.5;
+      background: rgba(51, 61, 75, 0.1);
+    }
+  }
+
+  .routineFixModalLine {
+    opacity: 0.2;
+    background: ${theme.Netural500};
+    height: 1px;
+    margin: 6px 0 6px 0;
+  }
+`
+
+export const MypageMiddleContainer = styled.div`
+  .list-container {
+    width: 870px;
+    display: flex;
+    flex-direction: column;
+
+    .item-container {
+      display: flex;
+
+      .numArea2 {
+        display: flex;
+        flex-direction: column;
+
+        .workoutCard {
+          display: flex;
+          gap: 12px;
+
+          .workoutNum {
+            padding: 14px 10px 0 10px;
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            gap: 13px;
+
+            .numCircle {
+              display: flex;
+              width: 28px;
+              min-height: 28px;
+              align-items: center;
+              justify-content: center;
+              border-radius: 45px;
+              border: 1px solid ${theme.Netural500};
+              background: ${theme.Netural100};
+              color: ${theme.Netural900};
+              text-align: center;
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 150%;
+              letter-spacing: -0.28px;
+            }
+            .line {
+              width: 2px;
+              height: 100%;
+              align-items: stretch;
+              border-radius: 1px;
+              background: ${theme.Netural400};
+            }
+          }
+          .last-item .line {
+            display: none;
+          }
+
+          .recommendCard {
+            margin-top: -20px;
+            display: flex;
+            flex-direction: column;
+            width: 716px;
+            border-radius: 18px;
+            background: ${theme.Netural0};
+            box-shadow: 0px 4px 8.1px 0px rgba(0, 0, 0, 0.03);
+            margin-bottom: 32px;
+            position: relative;
+
+            .cardHandler {
+              position: absolute;
+              top: 40%;
+              right: -42px;
+              width: 28px;
+              height: 36px;
+            }
+
+            .recommendCardContent {
+            }
+          }
+
+          .workoutCardContent {
+            width: 771px;
+            height: 169px;
+            background: ${theme.Netural0};
+            border-radius: 16px;
+            padding: 30px 22px;
+
+            // 그림자가 안 떠서 임시로
+            box-shadow: 0px 7px 15px #00000015;
+
+            .workoutName {
+              color: ${theme.Netural900};
+              font-size: 22px;
+              font-weight: 600;
+              letter-spacing: -0.44px;
+            }
+          }
+        }
+      }
     }
   }
 `
 
-export const WorkoutContent = styled.div`
-  width: 820px;
-  height: 190px;
-  padding: 24px;
+export const RecommendMainTopWrapper = styled.div`
+  padding: 18px 24px;
+  width: 100%;
   display: flex;
-  gap: 42px;
-  border-radius: 16px;
+  justify-content: space-between;
+  border-bottom: 1px solid
+    ${({ isOpenArray, theme }) =>
+      isOpenArray ? theme.Netural300 : theme.Netural200};
+`
+
+export const RecommendMainTopLeftWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 0px;
+`
+
+// 이거 없애고 싶음
+export const RecommendMainTopTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 4px;
+`
+
+export const RecommendMainWorkout = styled.span`
+  color: ${theme.Netural990};
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.4px;
+`
+
+// 이거 이름 바꾸고 싶음
+export const RecommendMainMachine = styled.span`
+  color: ${theme.Netural900};
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.44px;
+`
+
+export const RecommendMainBodyPart = styled.div`
+  display: flex;
+  .item_BodyPart {
+    color: ${theme.Netural600};
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+  }
+`
+
+export const RecommendMainTopRightWrapper = styled.button`
+  display: flex;
+  gap: 10px;
   align-items: center;
 
-  &:hover {
-    box-shadow: 0px 2px 12px #0000001a;
-  }
-
-  &:hover .item_workoutName {
-    color: ${theme.Brand600};
-  }
-
-  &:hover .deleteContent {
+  .amountContent {
     display: flex;
-  }
+    gap: 10px;
+    align-items: center;
 
-  img {
-    border-radius: 12px;
-    height: 142px;
-    width: 142px;
-  }
+    .amountItem {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
 
-  .contentItem {
+      .amountTitle {
+        color: ${theme.Netural600};
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        text-align: left;
+      }
+
+      .amountText {
+        display: flex;
+        align-items: flex-end;
+        color: ${theme.Netural900};
+        font-family: Pretendard;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: -0.52px;
+
+        .amountUnit {
+          color: ${theme.Netural600};
+          font-family: Pretendard;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: -0.28px;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+  .recommendMainBtn {
+    display: flex;
+    padding: 12px;
+    align-items: center;
+
+    .recommendMainBtnImg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .recommendMainBtnText {
+      color: ${theme.Netural0};
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: -0.26px;
+    }
+  }
+`
+
+// 없애고 싶음
+export const RecommendMainBtn = styled.button`
+  height: 47px;
+  display: flex;
+  padding: 14px;
+  align-items: center;
+  border-radius: 36px;
+  background: ${theme.Brand600};
+  color: ${theme.Netural0};
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+`
+
+export const RecommendMainMiddleWrapper = styled.div`
+  width: 100%;
+  // 대충 최대치 넣고 그 안에서는 열릴거니까. 높이값을 지정해주지 않으면 transition이 안 먹거든.
+  max-height: ${({ isOpenArray }) => (isOpenArray ? "1000px" : 0)};
+  opacity: ${({ isOpenArray }) => (isOpenArray ? 1 : 0)};
+  transition:
+    max-height 0.2s ease-out,
+    opacity 0.5s ease-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .recommendMainContent {
+    padding: 24px 22px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 24px;
+  }
+`
+
+export const RecommendDescriptionWrapper = styled.div`
+  padding: 0 12px;
+  color: ${theme.Netural800};
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 165%; /* 26.4px */
+  letter-spacing: -0.16px;
+`
+
+export const RecommendVideoWrapper = styled.div`
+  margin-left: 12px;
+  position: relative;
+  border-radius: 12px;
+  width: 219px;
+  height: 267px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .fitnessImg {
+    width: auto;
     height: 100%;
   }
-
-  .contentTopItem {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .itemsBodyPart {
-    display: flex;
-    gap: 13px;
-  }
-
-  .item_BodyPart {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.32px;
-    line-height: 24px;
-    margin-top: -1px;
-    color: ${theme.Netural990};
-  }
-
-  .item_workoutName {
-    font-size: 30px;
-    font-weight: 600;
-    color: ${theme.Netural990};
-    letter-spacing: -0.6px;
-    line-height: 45px;
-  }
-
-  .contentBottomItem {
-    display: flex;
-    gap: 30px;
-  }
-
-  .bottomTitle {
-    border: 1px solid ${theme.Netural800};
-    border-radius: 35px;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.28px;
-    color: ${theme.Netural800};
-    margin-top: -1px;
-  }
-
-  .workrate {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-
-  .workrateItem {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .workrateTitle {
-    font-size: 18px;
-    font-weight: 500;
-    color: "#e4e7eb";
-    letter-spacing: -0.36px;
-  }
-
-  .workrateContent {
-    font-size: 20px;
-    font-weight: 500;
-    color: ${theme.Netural900};
-    letter-spacing: -0.4px;
-  }
-
-  .noWorkrate {
-    background: ${theme.Netural100};
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    width: 470px;
-    align-items: center;
-  }
-
-  .noWorkrateContent {
-    color: ${theme.Netural900};
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.28px;
-  }
-
-  .writeWorkrate {
-    display: flex;
-    gap: 4px;
-    align-items: center;
+  .goTopRecommendVideo {
     cursor: pointer;
-  }
+    position: absolute;
+    left: 13px;
+    bottom: 15px;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: ${theme.Netural990};
+    box-shadow: 0px 4px 6.8px 0px rgba(0, 0, 0, 0.4);
 
-  .recommendWorkrate {
-    font-size: 14px;
-    font-weight: 500;
-    color: ${theme.Brand600};
-    letter-spacing: -0.28px;
-  }
-
-  .recommendImg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .deleteContent {
-    border-radius: 36px;
-    padding: 14px 24px;
-    background: ${theme.Error};
-    cursor: pointer;
-    color: ${theme.Error};
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.32px;
-    margin-top: -1px;
-    height: fit-content;
-    display: none;
+    .videoArrow {
+      width: 32px;
+      height: 32px;
+    }
   }
 `
 
-// modal button
-
-export const FixModalButton = styled.button`
-  width: 109px;
+export const RecommendMoreButton = styled.button`
+  display: flex;
+  width: 100%;
   height: 48px;
-  border-radius: 6px;
-  background-color: ${theme.Brand400};
-  box-shadow: 0px 4px 8px #0000000d;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+  padding: 14px 0px;
   justify-content: center;
-  gap: 10px;
-
-  img {
-    width: 28px;
-    height: 28px;
-  }
-
-  p {
-    font-weight: 500;
-    color: ${theme.Brand600};
-    font-size: 18px;
-    letter-spacing: -0.36px;
-  }
-`
-
-export const AddModalButton = styled.button`
-  width: 237px;
-  height: 56px;
-  border-radius: 35px;
-  background-color: ${theme.Brand600};
-  cursor: pointer;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  border-radius: 0px 0px 18px 18px;
+  border-top: 1px solid
+    ${({ isOpenArray, theme }) => (isOpenArray ? theme.Netural300 : `none`)};
+  // 글씨 바뀌는 딜레이
 
-  &:hover {
-    background-color: ${theme.Brand950};
-  }
-
-  img {
-    width: 24px;
-    height: 24px;
-  }
-
-  p {
+  .informationText {
+    color: ${theme.Netural800};
+    font-size: 14px;
     font-weight: 500;
-    color: ${theme.Netural0};
-    font-size: 18px;
-    letter-spacing: -0.36px;
+    line-height: 140%;
+    letter-spacing: -0.28px;
+    transition-delay: ${({ isOpenArray }) => (isOpenArray ? "0.5s" : "0.5s")};
   }
 `
