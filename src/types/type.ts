@@ -164,3 +164,43 @@ export interface PostMachineListPayload {
 export type SearchTypes = {
   search: string
 }
+
+export interface MyfitList {
+  userName: string
+  userAge: string
+  weight: number
+  height: number
+}
+
+export interface MyRoutines {
+  routineId: number
+  routineIndex: number
+  routineName: string
+}
+
+export interface MyWorkoutList {
+  myWorkoutId: number
+  myWorkoutIndex: number
+  weight: string
+  rep: string
+  setCount: string
+  workoutId: number
+  workoutName: string
+  imgPath: string
+  description: string
+  atcetera: null
+  bodyParts: string[]
+  machines: string[]
+}
+export interface MyRoutines {
+  routineId: number
+  routineIndex: number
+  routineName: string
+}
+
+export interface MyWorkoutIndex {
+  myWorkoutIndex: number
+  weight: string
+  rep: string
+  setCount: string
+}
