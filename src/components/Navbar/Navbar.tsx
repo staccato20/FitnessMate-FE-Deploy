@@ -46,8 +46,8 @@ const Navbar = () => {
       <S.NavLink>
         <S.NavTextContainer>
           <S.NavButton onClick={handleSearch}>검색하기</S.NavButton>
-          <S.NavButton onClick={handleRecommend}>추천받기</S.NavButton>
-          <S.NavButton onClick={handleMyPage}>내 운동</S.NavButton>
+          {/* <S.NavButton onClick={handleRecommend}>추천받기</S.NavButton>
+          <S.NavButton onClick={handleMyPage}>내 운동</S.NavButton> */}
         </S.NavTextContainer>
 
         {userName ? (
