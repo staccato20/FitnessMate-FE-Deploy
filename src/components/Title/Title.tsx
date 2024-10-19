@@ -20,7 +20,7 @@ const Title = ({ variant, children }: StrictPropsWithChildren<TitleProps>) => {
 const SubTopTitle = ({ children }: StrictPropsWithChildren) => (
   <S.SubTopTitleText className="topTitleText">{children}</S.SubTopTitleText>
 )
-// TitleMain을 두기
+
 const SubBottomTitle = ({ children, ...props }: StrictPropsWithChildren) => (
   <S.SubBottomTitleText
     className="bottomTitleText"

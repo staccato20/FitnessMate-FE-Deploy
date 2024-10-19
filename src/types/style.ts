@@ -23,7 +23,5 @@ interface Props {
   sex: string
   $status: number
   isClicked: boolean
-  $isLoginModal: boolean
-  $isCancleModal: boolean
   $isRecommend: boolean
 }

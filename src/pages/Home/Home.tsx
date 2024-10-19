@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
@@ -7,7 +6,6 @@ import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
-import LoginModal from "@components/Modal/LoginModal"
 
 import homebanner from "@assets/images/homebanner.png"
 import slide2 from "@assets/images/slide2.png"
@@ -45,8 +43,6 @@ export const Home = () => {
 
   const { register, handleSubmit, setValue, setFocus } = useForm<SearchTypes>()
 
-  const [isLoginModal, setIsLoginModal] = useState(false)
-
   const handleSearch = (data: SearchTypes) => {
     navigate("searchworkout", { state: { keyword: data } })
   }
@@ -60,7 +56,6 @@ export const Home = () => {
     if (loginState) {
       navigate("recommend/bodypart")
     } else {
-      setIsLoginModal(true)
     }
   }
 
@@ -69,7 +64,6 @@ export const Home = () => {
       alert("수정 중인 페이지입니다!")
       // navigate("mypage")
     } else {
-      setIsLoginModal(true)
     }
   }
 
@@ -214,7 +208,6 @@ export const Home = () => {
           </S.SearchKeywordForm>
         </S.SearchWrapper>
       </S.Fourth>
-      {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
     </S.HomeContainer>
   )
 }

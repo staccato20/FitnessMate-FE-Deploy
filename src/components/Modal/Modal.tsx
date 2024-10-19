@@ -1,0 +1,83 @@
+import { Children, PropsWithChildren } from "react"
+import { createPortal } from "react-dom"
+
+import { styled } from "styled-components"
+
+import IconButton from "@components/IconButton/IconButton"
+import ModalButtons from "@components/Modal/components/ModalButtons"
+import ModalContent from "@components/Modal/components/ModalContent"
+import ModalTitle from "@components/Modal/components/ModalTitle"
+
+import { useModal } from "@hooks/useModal"
+
+import theme from "@styles/theme"
+
+interface ModalMainProps {
+  isCloseButton?: boolean
+  name: string
+}
+
+const ModalMain = ({
+  children,
+  isCloseButton = false,
+  name,
+}: PropsWithChildren<ModalMainProps>) => {
+  const { isOpen, onClose } = useModal(name)
+  if (!isOpen) {
+    return null
+  }
+  console.log(Children.toArray(children))
+
+  return createPortal(
+    <BackOverlay>
+      <ModalWrapper $isCloseButton={isCloseButton}>
+        {isCloseButton && (
+          <IconButton
+            icon="CloseBold"
+            style={{ position: "absolute", top: "24px", right: "24px" }}
+            onClick={onClose}
+          />
+        )}
+        {children}
+      </ModalWrapper>
+    </BackOverlay>,
+    document.body,
+  )
+}
+
+const Modal = Object.assign(ModalMain, {
+  Buttons: ModalButtons,
+  Content: ModalContent,
+  Title: ModalTitle,
+})
+
+export default Modal
+
+const BackOverlay = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #00000033;
+  z-index: 1000;
+`
+
+const ModalWrapper = styled.div<{ $isCloseButton: boolean }>`
+  display: flex;
+  min-width: 520px;
+  padding: 24px;
+  padding-top: ${({ $isCloseButton }) => ($isCloseButton ? "48px" : "24px")};
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: ${theme.Netural0};
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.12);
+`
