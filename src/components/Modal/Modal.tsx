@@ -22,12 +22,18 @@ const ModalMain = ({
   isOpen,
   onClose,
 }: PropsWithChildren<ModalMainProps>) => {
+  const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
   if (!isOpen) {
     return null
   }
 
   return createPortal(
-    <BackOverlay>
+    <BackOverlay onClick={handleWrapperClick}>
       <ModalWrapper $isCloseButton={isCloseButton}>
         {isCloseButton && (
           <IconButton
