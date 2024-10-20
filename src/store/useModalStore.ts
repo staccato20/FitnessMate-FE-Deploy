@@ -7,7 +7,7 @@ export interface ModalStoreProps {
 
 export const useModalStore = create<ModalStoreProps>((set) => ({
   modalState: {
-    운동추천: false,
+    알림: false,
   },
   setModalState: (newState) =>
     set((state) => ({

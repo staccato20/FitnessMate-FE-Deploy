@@ -32,7 +32,7 @@ export const Primary: Story = {
   render: () => (
     <>
       <OpenButton />
-      <Modal name="운동추천">
+      <Modal>
         <Modal.Title>
           <Title variant="midA">
             페이지를 나가시겠어요?
@@ -54,9 +54,7 @@ export const Second: Story = {
   render: () => (
     <>
       <OpenButton />
-      <Modal
-        isCloseButton
-        name="운동추천">
+      <Modal isCloseButton>
         <Modal.Title>
           <Title variant="midA">
             페이지를 나가시겠어요?

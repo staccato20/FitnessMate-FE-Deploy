@@ -21,21 +21,6 @@ import Input from "../../components/Input/Input"
 import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
 
-// const TABS = [
-//   {
-//     title: "추천 받고",
-//     id: 0,
-//   },
-//   // {
-//   //   title: "결과 보고",
-//   //   id: 1,
-//   // },
-//   {
-//     title: "루틴 까지",
-//     id: 2,
-//   },
-// ]
-
 export const Home = () => {
   const navigate = useNavigate()
   const { userInfo } = useUserInfo()
@@ -138,24 +123,6 @@ export const Home = () => {
             />
           </S.Slide>
         </S.SlideList>
-
-        {/* <S.TabListWrapper>
-          <S.TabBackground
-            initial={false}
-            animate={{ x: selectedSlideNum * 45 + "%" }}
-            transition={{ type: "tween", duration: 0.2 }}></S.TabBackground>
-          <S.TabList>
-            {TABS.map(({ title, id }) => (
-              <S.TabButton
-                key={id}
-                onClick={() => handleSlideNum(id)}
-                className={selectedSlideNum === id ? "active" : ""}>
-                {selectedSlideNum === id && <Icon icon="CircleEmptyBlue" />}
-                {title}
-              </S.TabButton>
-            ))}
-          </S.TabList>
-        </S.TabListWrapper>  */}
       </S.Third>
       <S.Fourth>
         <S.SearchWrapper>
