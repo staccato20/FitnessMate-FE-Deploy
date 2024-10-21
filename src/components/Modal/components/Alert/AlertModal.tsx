@@ -5,7 +5,7 @@ import Title from "@components/Title/Title"
 import { useModal } from "@hooks/useModal"
 
 const AlertModal = () => {
-  const { isOpen, onClose } = useModal("내운동")
+  const { isOpen, onClose } = useModal("알림")
 
   return (
     <Modal

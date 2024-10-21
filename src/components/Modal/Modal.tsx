@@ -4,9 +4,9 @@ import { createPortal } from "react-dom"
 import { styled } from "styled-components"
 
 import IconButton from "@components/IconButton/IconButton"
-import ModalButtons from "@components/Modal/components/ModalButtons"
-import ModalContent from "@components/Modal/components/ModalContent"
-import ModalTitle from "@components/Modal/components/ModalTitle"
+import ModalButtons from "@components/Modal/ModalButtons"
+import ModalContent from "@components/Modal/ModalContent"
+import ModalTitle from "@components/Modal/ModalTitle"
 
 import theme from "@styles/theme"
 

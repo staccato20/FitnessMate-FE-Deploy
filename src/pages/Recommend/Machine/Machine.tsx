@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
@@ -13,6 +13,7 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { useRecommendStore } from "@pages/Recommend/store"
+import { BackOverlay } from "@pages/Search/StyledSearch"
 
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
 import { usePostRecommendId } from "@hooks/mutation/usePostRecommendId"
@@ -92,33 +93,45 @@ const Machine = () => {
     })
   }
 
+  useEffect(() => {
+    if (!postRecommend.isPending) {
+      document.body.style.overflow = "hidden"
+    }
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [postRecommend.isPending])
+
   return (
     <>
-      {postRecommend.isPending && (
+      {!postRecommend.isPending && (
         <>
-          <S.CoverWrapper
-            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
-            animate={{
-              x: "-50%",
-              y: "-50%",
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={animation.slow}
-            style={{ rotate, scale }}
-          />
-          <S.LoadingText
-            initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
-            animate={{
-              x: "-50%",
-              y: "-50%",
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={animation.slow}>
-            추천을 위한
-            <br /> 분석을 시작했어요
-          </S.LoadingText>
+          <BackOverlay />
+          <S.LayerWrapper>
+            <S.CoverWrapper
+              initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
+              animate={{
+                x: "-50%",
+                y: "-50%",
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={animation.slow}
+              style={{ rotate, scale }}
+            />
+            <S.LoadingText
+              initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
+              animate={{
+                x: "-50%",
+                y: "-50%",
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={animation.slow}>
+              추천을 위한
+              <br /> 분석을 시작했어요
+            </S.LoadingText>
+          </S.LayerWrapper>
         </>
       )}
 

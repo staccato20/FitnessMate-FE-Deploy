@@ -6,6 +6,7 @@ import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
+import HomeAlertModalButton from "@components/Modal/components/Alert/HomeAlertModalButton"
 
 import homebanner from "@assets/images/homebanner.png"
 import slide2 from "@assets/images/slide2.png"
@@ -40,14 +41,6 @@ export const Home = () => {
   const handleRecommend = () => {
     if (loginState) {
       navigate("recommend/bodypart")
-    } else {
-    }
-  }
-
-  const handleMyPage = () => {
-    if (loginState) {
-      alert("수정 중인 페이지입니다!")
-      // navigate("mypage")
     } else {
     }
   }
@@ -111,11 +104,7 @@ export const Home = () => {
               루틴도
               <br />한 번에 관리하세요
             </S.Title>
-            <Button
-              size="lg"
-              onClick={handleMyPage}>
-              루틴 관리
-            </Button>
+            <HomeAlertModalButton />
 
             <S.SlideImg
               src={slide}

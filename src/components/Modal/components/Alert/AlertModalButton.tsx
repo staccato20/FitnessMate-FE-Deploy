@@ -3,7 +3,7 @@ import { NavButton } from "@components/Navbar/StyledNavbar"
 import { useModal } from "@hooks/useModal"
 
 const AlertModalButton = () => {
-  const { onOpen } = useModal("내운동")
+  const { onOpen } = useModal("운동")
   return (
     <NavButton
       onClick={onOpen}

@@ -4,11 +4,23 @@ import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
+export const LayerWrapper = styled(motion.div)`
+  width: 452px;
+  height: 438px;
+  background-image: url("/blurlayer.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 49;
+  transform: translate(-50%, -50%);
+`
+
 export const CoverWrapper = styled(motion.div)`
   width: 452px;
   height: 438px;
-  background: transparent;
-  background-image: url("/loadingbackground.svg");
+  background-image: url("/loadinglayer.svg");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
