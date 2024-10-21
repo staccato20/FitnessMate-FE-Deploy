@@ -29,19 +29,18 @@ export const CoverWrapper = styled(motion.div)`
   z-index: 50;
 `
 
-export const RecommendAllWrapper = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  background: ${theme.Netural200};
-`
-
 export const RecommendWrapper = styled.div`
   max-width: 752px;
   margin: 0 auto;
   padding-top: 18px;
   display: flex;
+  gap: 32px;
   flex-direction: column;
   align-items: center;
+`
+
+export const ResultWrapper = styled(RecommendWrapper)`
+  padding-top: 57px;
 `
 
 export const LoadingText = styled(motion.span)`
@@ -147,13 +146,6 @@ export const UserInfoName = styled.span`
 
 export const UserInfoValue = styled(UserInfoName)`
   color: ${theme.Netural900};
-`
-
-export const ResultWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 32px;
 `
 
 export const TitleWrapper = styled.div`

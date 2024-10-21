@@ -94,7 +94,7 @@ const Machine = () => {
   }
 
   useEffect(() => {
-    if (!postRecommend.isPending) {
+    if (postRecommend.isPending) {
       document.body.style.overflow = "hidden"
     }
     return () => {
@@ -104,7 +104,7 @@ const Machine = () => {
 
   return (
     <>
-      {!postRecommend.isPending && (
+      {postRecommend.isPending && (
         <>
           <BackOverlay />
           <S.LayerWrapper>

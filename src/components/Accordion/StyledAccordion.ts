@@ -64,7 +64,7 @@ export const ContentAI = styled(motion.span)`
   display: flex;
   padding: 14px 16px;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
   border-radius: 10px;
   border: 2px solid #0b98ff;
   background: #eef7ff;
