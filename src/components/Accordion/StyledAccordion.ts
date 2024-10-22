@@ -51,7 +51,7 @@ export const VideoWrapper = styled(motion.div)`
 export const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 `
 
 export const ContentText = styled(motion.span)`

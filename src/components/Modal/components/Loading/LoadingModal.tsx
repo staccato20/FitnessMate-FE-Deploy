@@ -4,30 +4,31 @@ import Title from "@components/Title/Title"
 
 import { useModal } from "@hooks/useModal"
 
-const AlertModal = () => {
-  const { isOpen, onClose } = useModal("알림")
-
+const LoadingModal = () => {
+  const { isOpen, onClose } = useModal("로딩")
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}>
       <Modal.Title>
         <Title variant="midA">
-          현재 수정중인 페이지에요
+          추천 시간이 <br />
+          예상보다 길어지고 있어요
           <Title.SubBottomTitle>
-            10월 말에 출시될 예정이에요!
+            잠시 후 다시 시도해 주세요
           </Title.SubBottomTitle>
         </Title>
-        <Modal.Footer>
-          <Button
-            variant="main"
-            onClick={onClose}>
-            확인
-          </Button>
-        </Modal.Footer>
       </Modal.Title>
+      <Modal.Footer>
+        <Button
+          variant="main"
+          size="lg"
+          onClick={onClose}>
+          확인
+        </Button>
+      </Modal.Footer>
     </Modal>
   )
 }
 
-export default AlertModal
+export default LoadingModal

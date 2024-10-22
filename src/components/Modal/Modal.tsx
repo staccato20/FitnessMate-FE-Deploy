@@ -4,8 +4,8 @@ import { createPortal } from "react-dom"
 import { styled } from "styled-components"
 
 import IconButton from "@components/IconButton/IconButton"
-import ModalButtons from "@components/Modal/ModalButtons"
 import ModalContent from "@components/Modal/ModalContent"
+import ModalFooter from "@components/Modal/ModalFooter"
 import ModalTitle from "@components/Modal/ModalTitle"
 
 import theme from "@styles/theme"
@@ -50,9 +50,9 @@ const ModalMain = ({
 }
 
 const Modal = Object.assign(ModalMain, {
-  Buttons: ModalButtons,
   Content: ModalContent,
   Title: ModalTitle,
+  Footer: ModalFooter,
 })
 
 export default Modal

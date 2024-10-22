@@ -5,11 +5,10 @@ import {
   HeaderTop,
   HeaderWrapper,
 } from "@components/Accordion/StyledAccordion"
+import RecommendAlertModalButton from "@components/Modal/components/Alert/RecommendAlertModalButton"
 import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
-
-import RecommendAlertModalButton from "../Modal/components/RecommendAlertModalButton"
 
 interface HeaderProps {
   bodyParts: string

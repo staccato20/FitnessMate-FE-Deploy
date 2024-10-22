@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
 
+import { useRecommendStore } from "@store/store"
+
 import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import Title from "@components/Title/Title"
-
-import { useRecommendStore } from "@pages/Recommend/store"
 
 import { useUserInfo } from "../../../hooks/query/useUserInfo"
 import * as S from "../StyledRecommend"

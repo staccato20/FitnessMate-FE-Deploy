@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
+import { useRecommendStore } from "@store/store"
 import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 
 import Avatar from "@components/Avatar/Avatar"
@@ -12,7 +13,6 @@ import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
-import { useRecommendStore } from "@pages/Recommend/store"
 import { BackOverlay } from "@pages/Search/StyledSearch"
 
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
