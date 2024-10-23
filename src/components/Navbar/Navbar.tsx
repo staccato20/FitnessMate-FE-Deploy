@@ -1,42 +1,28 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"
 
+import NavDropDown from "@components/Navbar/NavDropDown"
 
+import logo from "@assets/images/logo.png"
 
-import CancleModal from "@components/Modal/CancleModal";
-import LoginModal from "@components/Modal/LoginModal";
-import NavDropDown from "@components/Navbar/NavDropDown";
+import { useUserInfo } from "@hooks/query/useUserInfo"
 
-
-
-import logo from "@assets/images/logo.png";
-
-
-
-import { useUserInfo } from "@hooks/query/useUserInfo";
-
-
-
-import * as S from "./StyledNavbar";
-
+import * as S from "./StyledNavbar"
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { userInfo } = useUserInfo()
   const userName = userInfo ? userInfo.userName : undefined
-  const [isLoginModal, setIsLoginModal] = useState(false)
-  const [isCancleModal, setIsCancleModal] = useState(false)
 
   const handleSearch = () => {
     navigate("searchworkout")
   }
 
   const handleMyPage = () => {
-    userName ? navigate("mypage") : setIsLoginModal(true)
+    userName && navigate("mypage")
   }
 
   const handleRecommend = () => {
-    userName ? navigate("recommend/bodypart") : setIsLoginModal(true)
+    userName && navigate("recommend/bodypart")
   }
 
   const handleHome = () => {
@@ -76,8 +62,6 @@ const Navbar = () => {
       <S.NavbarUnderLine $isHome={useLocation().pathname === "/"}>
         {}
       </S.NavbarUnderLine>
-      {isLoginModal && <LoginModal setIsLoginModal={setIsLoginModal} />}
-      {isCancleModal && <CancleModal setIsCancleModal={setIsCancleModal} />}
     </S.NavbarContainer>
   )
 }

@@ -53,7 +53,6 @@ const router = createBrowserRouter([
         path: "workoutdetail/:workoutId",
         element: <Detail />,
       },
-
       {
         path: "mypage",
         element: <Mypage />,

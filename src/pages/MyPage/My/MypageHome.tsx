@@ -23,10 +23,11 @@ import MyFitAPI from "../../../apis/domain/myfit"
 import { MyWorkoutIndex, MyWorkoutList } from "../../../types/type"
 // 루틴 더보기 모달
 import OutSideClick from "./Modal/OutSideClick"
-import WorkoutAddModal from "./Modal/workoutAddModal"
+// import WorkoutAddModal from "./Modal/workoutAddModal"
 import * as S from "./StyledMypageHome"
+
 // import "./myToggle.css";
-import ToggleSwitch from "./toggle"
+// import ToggleSwitch from "./toggle"
 
 /*
 const addRoutine: string = "path/to/addRoutine.svg";
