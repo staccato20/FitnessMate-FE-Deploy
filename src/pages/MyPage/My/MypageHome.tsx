@@ -390,12 +390,6 @@ const Mypagehome = () => {
       return
     }
 
-    // 처음 한 번만 clientX 값 설정
-    if (fixedClientX === null) {
-      const initialClientX = draggedDOM.getBoundingClientRect().left
-      setFixedClientX(initialClientX) // 처음 계산한 clientX 값을 상태로 저장
-    }
-
     // 부모 요소의 스타일 정보를 가져옴
     const parentStyle = window.getComputedStyle(draggedDOM.parentElement!)
     const gap = parseFloat(parentStyle.gap) || 0 // 부모의 gap 계산
@@ -413,6 +407,20 @@ const Mypagehome = () => {
         return total + curr.offsetHeight + (isLast ? 0 : marginBottom) + gap // 마지막 항목이면 marginBottom 제외
       }, parentPaddingTop) // 부모 요소의 상단 패딩을 포함하여 시작
 
+    // X 좌표 동적으로 계산 (드래그된 항목이 아닌 첫 번째 workoutCard를 기준으로)
+    const workoutCards = Array.from(
+      document.getElementsByClassName("workoutCard"),
+    ) as HTMLElement[]
+
+    // 드래그 중인 요소를 제외한 첫 번째 workoutCard 찾기
+    const nonDraggedWorkoutCard = workoutCards.find(
+      (card) => card.id !== draggableId,
+    )
+
+    const workoutCardLeft = nonDraggedWorkoutCard
+      ? nonDraggedWorkoutCard.getBoundingClientRect().left
+      : draggedDOM.getBoundingClientRect().left // 드래그 중인 요소가 아니면 그 요소의 left 값 사용
+
     // 최종적으로 계산된 높이를 기록
     console.log("Calculated clientY:", clientY)
 
@@ -420,10 +428,7 @@ const Mypagehome = () => {
       clientHeight: draggedDOM.offsetHeight, // 드래그된 요소의 높이 사용
       clientWidth: draggedDOM.offsetWidth, // 너비
       clientY, // 계산된 Y 좌표
-      clientX:
-        fixedClientX !== null
-          ? fixedClientX
-          : draggedDOM.getBoundingClientRect().left, // fixedClientX가 null이 아니면 사용
+      clientX: workoutCardLeft, // 드래그 중인 항목을 제외한 첫 번째 workoutCard의 X 좌표 사용
     })
   }
 
@@ -696,7 +701,7 @@ const Mypagehome = () => {
                         height: placeholderProps.clientHeight + "px",
                         width: placeholderProps.clientWidth + "px",
                         backgroundColor: "#e4eaf0",
-                        border: "3px" + " dashed" + " #bbc8d6",
+                        border: "3px" + " dashed" + " #d0d9e2",
                         transition:
                           "top 0.2s, left 0.2s, width 0.2s, height 0.2s",
                         display: isPlaceholderVisible ? "block" : "none", // 드래그 중에만 보여주기

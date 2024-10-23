@@ -313,6 +313,14 @@ export const MypageMiddleContainer = styled.div`
     display: flex;
     flex-direction: column;
 
+    .placeholder {
+      height: 193.33px;
+      background-color: lightblue;
+      border: 2px dashed #ccc;
+      transition: all 0.3s ease; /* 부드러운 전환 */
+      margin-bottom: 20px;
+    }
+
     .item-container {
       display: flex;
 
