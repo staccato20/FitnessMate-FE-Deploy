@@ -308,107 +308,95 @@ export const RoutineFixModal = styled.div`
 `
 
 export const MypageMiddleContainer = styled.div`
-  .list-container {
-    width: 870px;
+  display: flex;
+
+  .workoutNumList {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
-    .placeholder {
-      height: 193.33px;
-      background-color: lightblue;
-      border: 2px dashed #ccc;
-      transition: all 0.3s ease; /* 부드러운 전환 */
-      margin-bottom: 20px;
-    }
-
-    .item-container {
+    .workoutNum {
+      padding: 14px 10px 0 10px;
       display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      gap: 13px;
 
-      .numArea2 {
+      .numCircle {
+        display: flex;
+        width: 28px;
+        min-height: 28px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 45px;
+        border: 1px solid ${theme.Netural500};
+        background: ${theme.Netural100};
+        color: ${theme.Netural900};
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 150%;
+        letter-spacing: -0.28px;
+      }
+      .line {
+        width: 2px;
+        align-items: stretch;
+        border-radius: 1px;
+        background: ${theme.Netural400};
+      }
+    }
+    .last-item .line {
+      display: none;
+    }
+  }
+
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .workoutCard {
+      display: flex;
+      border-radius: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      background: ${theme.Netural0};
+
+      .recommendCard {
+        height: 113px;
         display: flex;
         flex-direction: column;
+        width: 771px;
+        border-radius: 18px;
+        margin-bottom: 32px;
+        position: relative;
 
-        .workoutCard {
-          display: flex;
-          gap: 12px;
+        .cardHandler {
+          position: absolute;
+          top: 40%;
+          right: -42px;
+          width: 28px;
+          height: 36px;
+        }
 
-          .workoutNum {
-            padding: 14px 10px 0 10px;
-            display: flex;
-            height: 100%;
-            flex-direction: column;
-            align-items: center;
-            justify-content: start;
-            gap: 13px;
+        .recommendCardContent {
+        }
+      }
 
-            .numCircle {
-              display: flex;
-              width: 28px;
-              min-height: 28px;
-              align-items: center;
-              justify-content: center;
-              border-radius: 45px;
-              border: 1px solid ${theme.Netural500};
-              background: ${theme.Netural100};
-              color: ${theme.Netural900};
-              text-align: center;
-              font-size: 14px;
-              font-weight: 600;
-              line-height: 150%;
-              letter-spacing: -0.28px;
-            }
-            .line {
-              width: 2px;
-              height: 100%;
-              align-items: stretch;
-              border-radius: 1px;
-              background: ${theme.Netural400};
-            }
-          }
-          .last-item .line {
-            display: none;
-          }
+      .workoutCardContent {
+        width: 771px;
+        height: 169px;
+        background: ${theme.Netural0};
+        border-radius: 16px;
+        padding: 30px 22px;
 
-          .recommendCard {
-            margin-top: -20px;
-            display: flex;
-            flex-direction: column;
-            width: 716px;
-            border-radius: 18px;
-            background: ${theme.Netural0};
-            box-shadow: 0px 4px 8.1px 0px rgba(0, 0, 0, 0.03);
-            margin-bottom: 32px;
-            position: relative;
-
-            .cardHandler {
-              position: absolute;
-              top: 40%;
-              right: -42px;
-              width: 28px;
-              height: 36px;
-            }
-
-            .recommendCardContent {
-            }
-          }
-
-          .workoutCardContent {
-            width: 771px;
-            height: 169px;
-            background: ${theme.Netural0};
-            border-radius: 16px;
-            padding: 30px 22px;
-
-            // 그림자가 안 떠서 임시로
-            box-shadow: 0px 7px 15px #00000015;
-
-            .workoutName {
-              color: ${theme.Netural900};
-              font-size: 22px;
-              font-weight: 600;
-              letter-spacing: -0.44px;
-            }
-          }
+        .workoutName {
+          color: ${theme.Netural900};
+          font-size: 22px;
+          font-weight: 600;
+          letter-spacing: -0.44px;
         }
       }
     }
