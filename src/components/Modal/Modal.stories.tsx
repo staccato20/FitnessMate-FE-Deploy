@@ -3,7 +3,9 @@ import { Meta, StoryObj } from "@storybook/react"
 import Button from "@components/Button/Button"
 import Modal from "@components/Modal/Modal"
 import AlertModal from "@components/Modal/components/Alert/AlertModal"
+import DeleteModal from "@components/Modal/components/Delete/DeleteModal"
 import LoadingModal from "@components/Modal/components/Loading/LoadingModal"
+import QuitModal from "@components/Modal/components/Quit/QuitModal"
 
 import { useModal } from "@hooks/useModal"
 
@@ -17,24 +19,17 @@ const meta: Meta<typeof Modal> = {
 export default meta
 type Story = StoryObj<typeof Modal>
 
-const AlertModalButton = () => {
-  const { onOpen } = useModal("알림")
-  return (
-    <Button
-      onClick={onOpen}
-      variant="main">
-      알림
-    </Button>
-  )
+interface TriggerProps {
+  name: string
 }
 
-const LoadingModalButton = () => {
-  const { onOpen } = useModal("로딩")
+const Trigger = ({ name }: TriggerProps) => {
+  const { onOpen } = useModal(name)
   return (
     <Button
       onClick={onOpen}
       variant="main">
-      로딩
+      {name}
     </Button>
   )
 }
@@ -42,7 +37,7 @@ const LoadingModalButton = () => {
 export const Alert: Story = {
   render: () => (
     <>
-      <AlertModalButton />
+      <Trigger name={"알림"} />
       <AlertModal />
     </>
   ),
@@ -51,8 +46,26 @@ export const Alert: Story = {
 export const Loading: Story = {
   render: () => (
     <>
-      <LoadingModalButton />
+      <Trigger name={"로딩"} />
       <LoadingModal />
+    </>
+  ),
+}
+
+export const Quit: Story = {
+  render: () => (
+    <>
+      <Trigger name={"나가기"} />
+      <QuitModal />
+    </>
+  ),
+}
+
+export const Delete: Story = {
+  render: () => (
+    <>
+      <Trigger name={"삭제"} />
+      <DeleteModal bodyPart={"가슴"} />
     </>
   ),
 }
