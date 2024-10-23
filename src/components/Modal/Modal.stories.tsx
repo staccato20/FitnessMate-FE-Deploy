@@ -6,6 +6,7 @@ import AlertModal from "@components/Modal/components/Alert/AlertModal"
 import DeleteModal from "@components/Modal/components/Delete/DeleteModal"
 import LoadingModal from "@components/Modal/components/Loading/LoadingModal"
 import QuitModal from "@components/Modal/components/Quit/QuitModal"
+import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 
 import { useModal } from "@hooks/useModal"
 
@@ -66,6 +67,18 @@ export const Delete: Story = {
     <>
       <Trigger name={"삭제"} />
       <DeleteModal bodyPart={"가슴"} />
+    </>
+  ),
+}
+
+export const RoutineStart: Story = {
+  render: () => (
+    <>
+      <Trigger name={"루틴시작"} />
+      <RoutineModal
+        machine={"데드리프트"}
+        isEmpty
+      />
     </>
   ),
 }

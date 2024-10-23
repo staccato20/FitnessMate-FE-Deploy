@@ -11,6 +11,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     나가기: false,
     로딩: false,
     삭제: false,
+    루틴시작: false,
   },
   setModalState: (newState) =>
     set((state) => ({
