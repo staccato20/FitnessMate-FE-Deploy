@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 // Drag & Drop
 import {
   DragDropContext,
+  DragUpdate,
   Draggable,
   DropResult,
   Droppable,
@@ -33,6 +34,20 @@ const pulsImg: string = "path/to/routineAdd.svg";
 const videoArrow: string = "path/to/videoArrow.svg";
 const itemMore: string = "path/to/Frame820.svg";
 */
+
+type PlaceholderProps = {
+  clientHeight: number
+  clientWidth: number
+  clientX: number
+  clientY: number
+}
+
+const defaultPlaceholder = {
+  clientHeight: 0,
+  clientWidth: 0,
+  clientX: 0,
+  clientY: 0,
+}
 
 const Mypagehome = () => {
   // 유저 이름
@@ -301,9 +316,13 @@ const Mypagehome = () => {
 
   // Drag & Drop
 
+  const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(false) // 드래그 중에만 placeholder를 보이게 함
+
   // 2. 여기서 순서를 바꿀 때, 그냥 routineWorkout을 가져왔더니 아래 map의 순서를 유지하려고 해서
   // itemList라는 배열 복사본을 만들어서 실제 사용자가 하는 동안에
   const handleDrop = async (droppedItem: DropResult) => {
+    // 드롭 후 placeholder 숨김
+    setIsPlaceholderVisible(false)
     console.log(droppedItem)
     // Ignore drop outside droppable container
     if (!droppedItem.destination) return
@@ -339,8 +358,73 @@ const Mypagehome = () => {
       console.log("이거", response)
       setIsWorkoutFix(true)
     } catch (error) {
+      // 드롭 후 placeholder 숨김
+      setIsPlaceholderVisible(false)
       console.error(error)
     }
+  }
+
+  const [placeholderProps, setPlaceholderProps] =
+    useState<PlaceholderProps>(defaultPlaceholder)
+
+  const [fixedClientX, setFixedClientX] = useState<number | null>(null) // 상태 선언
+
+  /// onDragUpdate에서 placeholder 위치 계산
+  const onDragUpdate = (update: DragUpdate) => {
+    console.log("onDragUpdate called", update)
+    // 드래그 중에 placeholder가 보이도록 설정
+    setIsPlaceholderVisible(true)
+
+    if (!update.destination) {
+      return
+    }
+
+    const draggableId = update.draggableId
+    const destinationIndex = update.destination.index
+
+    // draggableId로 DOM 요소 찾기 (getElementById 사용)
+    const draggedDOM = document.getElementById(draggableId)
+
+    if (!draggedDOM) {
+      console.log("draggedDOM is null")
+      return
+    }
+
+    // 처음 한 번만 clientX 값 설정
+    if (fixedClientX === null) {
+      const initialClientX = draggedDOM.getBoundingClientRect().left
+      setFixedClientX(initialClientX) // 처음 계산한 clientX 값을 상태로 저장
+    }
+
+    // 부모 요소의 스타일 정보를 가져옴
+    const parentStyle = window.getComputedStyle(draggedDOM.parentElement!)
+    const gap = parseFloat(parentStyle.gap) || 0 // 부모의 gap 계산
+    const parentPaddingTop = parseFloat(parentStyle.paddingTop) || 0
+
+    // 이전 항목들의 높이, 마진, 패딩, 갭을 모두 합산하여 Y 좌표 계산 (드롭할 항목까지 포함)
+    const clientY = [...draggedDOM.parentNode!.children]
+      .slice(0, destinationIndex + 2) // 드롭할 위치 이전 항목 + 드롭할 위치 항목 포함
+      .reduce((total, curr: any, index, array) => {
+        const style = window.getComputedStyle(curr)
+        const marginBottom = parseFloat(style.marginBottom) || 0 // 마진 계산
+
+        // 마지막 항목일 경우, marginBottom을 계산에서 제외
+        const isLast = index === array.length + 3
+        return total + curr.offsetHeight + (isLast ? 0 : marginBottom) + gap // 마지막 항목이면 marginBottom 제외
+      }, parentPaddingTop) // 부모 요소의 상단 패딩을 포함하여 시작
+
+    // 최종적으로 계산된 높이를 기록
+    console.log("Calculated clientY:", clientY)
+
+    setPlaceholderProps({
+      clientHeight: draggedDOM.offsetHeight, // 드래그된 요소의 높이 사용
+      clientWidth: draggedDOM.offsetWidth, // 너비
+      clientY, // 계산된 Y 좌표
+      clientX:
+        fixedClientX !== null
+          ? fixedClientX
+          : draggedDOM.getBoundingClientRect().left, // fixedClientX가 null이 아니면 사용
+    })
   }
 
   // const newRoutineWorkout = async () => {
@@ -477,125 +561,147 @@ const Mypagehome = () => {
             </div>
           </S.MypageTopContainer>
           <S.MypageMiddleContainer>
-            <DragDropContext onDragEnd={handleDrop}>
+            <DragDropContext
+              onDragEnd={handleDrop}
+              onDragUpdate={onDragUpdate}>
               <Droppable droppableId="list-container">
                 {(provided) => (
                   <div
                     className="list-container"
                     {...provided.droppableProps}
-                    ref={provided.innerRef}>
-                    <div className="item-container">
-                      <div className="numArea2">
-                        {itemList?.map((item, index) => (
-                          <Draggable
-                            key={item.workoutId}
-                            // 1. 문자열만 가능해서 이렇게 해주되, 식별하기 위함이라 myWorkoutId 등을 사용하려 했으나
-                            // 그럼 순서가 바뀌어도 각 요소가 가진 숫자가 그대로인데, dnd는 오름차순이어야만 함. 때문에 index로 설정
-                            draggableId={`${index}`}
-                            index={index}>
-                            {(provided) => (
-                              <div
-                                className="workoutCard"
-                                ref={provided.innerRef}
-                                {...provided.dragHandleProps}
-                                {...provided.draggableProps}>
-                                <div
-                                  className={`workoutNum ${index === itemList?.length - 1 ? "last-item" : ""}`}
-                                  key={index}>
-                                  <div className="numCircle">{index + 1}</div>
-                                  <div className="line"></div>
-                                </div>
-                                <div
-                                  className="recommendCard"
-                                  draggable>
-                                  <div className="recommendCardContent">
-                                    <S.RecommendMainTopWrapper>
-                                      <S.RecommendMainTopLeftWrapper>
-                                        <S.RecommendMainWorkout>
-                                          {item.workoutName}
-                                        </S.RecommendMainWorkout>
-                                        <S.RecommendMainBodyPart>
-                                          {item.bodyParts.map(
-                                            (
-                                              bodyPart: string,
-                                              index: number,
-                                            ) => (
-                                              <p
-                                                className="item_BodyPart"
-                                                key={index}>
-                                                {index ===
-                                                item.bodyParts?.length - 1
-                                                  ? bodyPart
-                                                  : `${bodyPart}, `}
-                                              </p>
-                                            ),
-                                          )}
-                                        </S.RecommendMainBodyPart>
-                                      </S.RecommendMainTopLeftWrapper>
-                                      <S.RecommendMainTopRightWrapper>
-                                        <div className="amountContent">
-                                          <div className="amountItem">
-                                            <p className="amountTitle">중량</p>
-                                            <span className="amountText">
-                                              {item.weight === null
-                                                ? 0
-                                                : item.weight}
-                                              <p className="amountUnit">kg</p>
-                                            </span>
-                                          </div>
-                                          <div className="amountItem">
-                                            <p className="amountTitle">횟수</p>
-                                            <span className="amountText">
-                                              {item.rep === null ? 0 : item.rep}
-                                              <p className="amountUnit">회</p>
-                                            </span>
-                                          </div>
-                                          <div className="amountItem">
-                                            <p className="amountTitle">
-                                              세트 수
-                                            </p>
-                                            <span className="amountText">
-                                              {item.setCount === null
-                                                ? 0
-                                                : item.setCount}
-                                              <p className="amountUnit">세트</p>
-                                            </span>
-                                          </div>
-                                        </div>
-                                        <div
-                                          className="recommendMainBtn"
-                                          onClick={() => {}}></div>
-                                      </S.RecommendMainTopRightWrapper>
-                                    </S.RecommendMainTopWrapper>
-                                    <S.RecommendMainMiddleWrapper>
-                                      <div className="recommendMainContent">
-                                        <S.RecommendDescriptionWrapper>
-                                          {item.description}
-                                        </S.RecommendDescriptionWrapper>
-                                        <S.RecommendVideoWrapper>
-                                          <img
-                                            src={item.imgPath}
-                                            className="fitnessImg"
-                                            alt="운동종류 이미지"></img>
-                                          <div className="goTopRecommendVideo"></div>
-                                        </S.RecommendVideoWrapper>
+                    ref={provided.innerRef}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                    }} // flex와 gap 사용
+                  >
+                    {itemList?.map((item, index) => (
+                      <Draggable
+                        key={item.workoutId}
+                        draggableId={`item-${item.workoutId}`}
+                        index={index}>
+                        {(providedSpace, snapshot) => (
+                          <div
+                            className="workoutCard"
+                            id={`item-${item.workoutId}`}
+                            ref={providedSpace.innerRef}
+                            {...providedSpace.dragHandleProps}
+                            {...providedSpace.draggableProps}
+                            style={{
+                              userSelect: "none",
+                              padding: "16px",
+                              margin: "0 0 10px 0",
+                              backgroundColor: snapshot.draggingOver
+                                ? "lightblue"
+                                : "white",
+                              ...providedSpace.draggableProps.style,
+                            }}>
+                            <div
+                              className={`workoutNum ${index === itemList?.length - 1 ? "last-item" : ""}`}
+                              key={index}>
+                              <div className="numCircle">{index + 1}</div>
+                              <div className="line"></div>
+                            </div>
+                            <div
+                              className="recommendCard"
+                              draggable>
+                              <div className="recommendCardContent">
+                                <S.RecommendMainTopWrapper>
+                                  <S.RecommendMainTopLeftWrapper>
+                                    <S.RecommendMainWorkout>
+                                      {item.workoutName}
+                                    </S.RecommendMainWorkout>
+                                    <S.RecommendMainBodyPart>
+                                      {item.bodyParts.map(
+                                        (bodyPart: string, index: number) => (
+                                          <p
+                                            className="item_BodyPart"
+                                            key={index}>
+                                            {index ===
+                                            item.bodyParts?.length - 1
+                                              ? bodyPart
+                                              : `${bodyPart}, `}
+                                          </p>
+                                        ),
+                                      )}
+                                    </S.RecommendMainBodyPart>
+                                  </S.RecommendMainTopLeftWrapper>
+                                  <S.RecommendMainTopRightWrapper>
+                                    <div className="amountContent">
+                                      <div className="amountItem">
+                                        <p className="amountTitle">중량</p>
+                                        <span className="amountText">
+                                          {item.weight === null
+                                            ? 0
+                                            : item.weight}
+                                          <p className="amountUnit">kg</p>
+                                        </span>
                                       </div>
-                                    </S.RecommendMainMiddleWrapper>
+                                      <div className="amountItem">
+                                        <p className="amountTitle">횟수</p>
+                                        <span className="amountText">
+                                          {item.rep === null ? 0 : item.rep}
+                                          <p className="amountUnit">회</p>
+                                        </span>
+                                      </div>
+                                      <div className="amountItem">
+                                        <p className="amountTitle">세트 수</p>
+                                        <span className="amountText">
+                                          {item.setCount === null
+                                            ? 0
+                                            : item.setCount}
+                                          <p className="amountUnit">세트</p>
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="recommendMainBtn"
+                                      onClick={() => {}}></div>
+                                  </S.RecommendMainTopRightWrapper>
+                                </S.RecommendMainTopWrapper>
+                                <S.RecommendMainMiddleWrapper>
+                                  <div className="recommendMainContent">
+                                    <S.RecommendDescriptionWrapper>
+                                      {item.description}
+                                    </S.RecommendDescriptionWrapper>
+                                    <S.RecommendVideoWrapper>
+                                      <img
+                                        src={item.imgPath}
+                                        className="fitnessImg"
+                                        alt="운동종류 이미지"></img>
+                                      <div className="goTopRecommendVideo"></div>
+                                    </S.RecommendVideoWrapper>
                                   </div>
-
-                                  <S.RecommendMoreButton>
-                                    <p className="informationText">
-                                      자세히 보기
-                                    </p>
-                                  </S.RecommendMoreButton>
-                                </div>
+                                </S.RecommendMainMiddleWrapper>
                               </div>
-                            )}
-                          </Draggable>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    </div>
+
+                              <S.RecommendMoreButton>
+                                <p className="informationText">자세히 보기</p>
+                              </S.RecommendMoreButton>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+
+                    {/* 커스텀 placeholder */}
+                    <div
+                      className="drop-placeholder"
+                      style={{
+                        position: "absolute",
+                        top: placeholderProps.clientY + "px",
+                        left: placeholderProps.clientX + "px",
+                        height: placeholderProps.clientHeight + "px",
+                        width: placeholderProps.clientWidth + "px",
+                        backgroundColor: "#e4eaf0",
+                        border: "3px" + " dashed" + " #bbc8d6",
+                        transition:
+                          "top 0.2s, left 0.2s, width 0.2s, height 0.2s",
+                        display: isPlaceholderVisible ? "block" : "none", // 드래그 중에만 보여주기
+                      }}
+                    />
                   </div>
                 )}
               </Droppable>
