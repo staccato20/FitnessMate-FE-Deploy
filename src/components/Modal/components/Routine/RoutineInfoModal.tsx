@@ -15,7 +15,7 @@ import { useModal } from "@hooks/useModal"
 import * as S from "./StyledRoutineModal"
 
 const RoutineInfoModal = () => {
-  const { isOpen, onClose } = useModal("루틴운동량")
+  const { isOpen, onClose } = useModal("루틴정보")
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
 
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({

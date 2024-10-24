@@ -111,7 +111,7 @@ export const RoutineInfo: Story = {
 
     return (
       <FormProvider {...methods}>
-        <Trigger name={"루틴운동량"} />
+        <Trigger name={"루틴정보"} />
         <RoutineInfoModal />
       </FormProvider>
     )
