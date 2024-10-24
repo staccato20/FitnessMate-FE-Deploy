@@ -1,7 +1,6 @@
-import styled from "styled-components"
-
 import Button from "@components/Button/Button"
 import Modal from "@components/Modal/Modal"
+import { ContentWrapper } from "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
 import { useModal } from "@hooks/useModal"
@@ -49,8 +48,3 @@ const RoutineModal = ({ isEmpty, machine }: RoutineModalProps) => {
   )
 }
 export default RoutineModal
-
-const ContentWrapper = styled.div`
-  height: 217px;
-  width: 100%;
-`

@@ -1,3 +1,5 @@
+import { FormProvider, useForm } from "react-hook-form"
+
 import { Meta, StoryObj } from "@storybook/react"
 
 import Button from "@components/Button/Button"
@@ -6,6 +8,7 @@ import AlertModal from "@components/Modal/components/Alert/AlertModal"
 import DeleteModal from "@components/Modal/components/Delete/DeleteModal"
 import LoadingModal from "@components/Modal/components/Loading/LoadingModal"
 import QuitModal from "@components/Modal/components/Quit/QuitModal"
+import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 
 import { useModal } from "@hooks/useModal"
@@ -81,4 +84,19 @@ export const RoutineStart: Story = {
       />
     </>
   ),
+}
+
+export const MakeRoutine: Story = {
+  render: () => {
+    const methods = useForm({
+      mode: "onChange",
+      defaultValues: { routineName: "" },
+    })
+    return (
+      <FormProvider {...methods}>
+        <Trigger name={"루틴생성"} />
+        <RoutineMakeModal />
+      </FormProvider>
+    )
+  },
 }

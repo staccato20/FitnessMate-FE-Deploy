@@ -71,7 +71,7 @@ const BackOverlay = styled.div`
 
 const ModalWrapper = styled.div<{ $isCloseButton: boolean }>`
   display: flex;
-  min-width: 520px;
+  min-width: 480px;
   padding: 24px;
   padding-top: ${({ $isCloseButton }) => ($isCloseButton ? "48px" : "24px")};
   flex-direction: column;
