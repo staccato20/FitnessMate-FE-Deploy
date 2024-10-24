@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form"
+import { SubmitHandler, useFormContext } from "react-hook-form"
 
 import styled from "styled-components"
 
@@ -7,17 +7,22 @@ import Modal from "@components/Modal/Modal"
 import { ContentWrapper } from "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
+import { RoutineNameTypes } from "@typpes/type"
+
 import { useModal } from "@hooks/useModal"
 
 import { fonts, theme } from "@styles/theme"
 
 const RoutineMakeModal = () => {
   const { isOpen, onClose } = useModal("루틴생성")
-  const { register, watch, handleSubmit, formState } = useFormContext()
+  const { register, watch, handleSubmit, formState } =
+    useFormContext<RoutineNameTypes>()
   const inputValue = watch("routineName", "")
 
-  const handleRoutineName = (value) => {
-    console.log(value)
+  const handleRoutineName: SubmitHandler<RoutineNameTypes> = ({
+    routineName,
+  }) => {
+    console.log(routineName)
   }
 
   const handleFormAdapter = () => {

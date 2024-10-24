@@ -11,6 +11,8 @@ import QuitModal from "@components/Modal/components/Quit/QuitModal"
 import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 
+import { RoutineNameTypes } from "@typpes/type"
+
 import { useModal } from "@hooks/useModal"
 
 const meta: Meta<typeof Modal> = {
@@ -88,10 +90,11 @@ export const RoutineStart: Story = {
 
 export const MakeRoutine: Story = {
   render: () => {
-    const methods = useForm({
+    const methods = useForm<RoutineNameTypes>({
       mode: "onChange",
       defaultValues: { routineName: "" },
     })
+
     return (
       <FormProvider {...methods}>
         <Trigger name={"루틴생성"} />

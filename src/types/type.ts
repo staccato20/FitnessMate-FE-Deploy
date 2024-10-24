@@ -204,3 +204,7 @@ export interface MyWorkoutIndex {
   rep: string
   setCount: string
 }
+
+export interface RoutineNameTypes {
+  routineName: string
+}
