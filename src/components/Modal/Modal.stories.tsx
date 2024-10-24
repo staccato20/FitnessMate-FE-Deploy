@@ -8,7 +8,7 @@ import AlertModal from "@components/Modal/components/Alert/AlertModal"
 import DeleteModal from "@components/Modal/components/Delete/DeleteModal"
 import LoadingModal from "@components/Modal/components/Loading/LoadingModal"
 import QuitModal from "@components/Modal/components/Quit/QuitModal"
-import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
+import RoutineInfoModal from "@components/Modal/components/Routine/RoutineInfoModal"
 import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 
@@ -105,14 +105,14 @@ export const RoutineMake: Story = {
   },
 }
 
-export const RoutineMachine: Story = {
+export const RoutineInfo: Story = {
   render: () => {
     const methods = useForm<RoutineInfoTypes>()
 
     return (
       <FormProvider {...methods}>
         <Trigger name={"루틴운동량"} />
-        <RoutineAddModal />
+        <RoutineInfoModal />
       </FormProvider>
     )
   },

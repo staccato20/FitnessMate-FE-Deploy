@@ -14,7 +14,7 @@ import { useModal } from "@hooks/useModal"
 
 import * as S from "./StyledRoutineModal"
 
-const RoutineAddModal = () => {
+const RoutineInfoModal = () => {
   const { isOpen, onClose } = useModal("루틴운동량")
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
 
@@ -92,4 +92,4 @@ const RoutineAddModal = () => {
   )
 }
 
-export default RoutineAddModal
+export default RoutineInfoModal
