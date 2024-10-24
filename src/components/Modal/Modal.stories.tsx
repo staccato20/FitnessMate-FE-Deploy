@@ -8,10 +8,11 @@ import AlertModal from "@components/Modal/components/Alert/AlertModal"
 import DeleteModal from "@components/Modal/components/Delete/DeleteModal"
 import LoadingModal from "@components/Modal/components/Loading/LoadingModal"
 import QuitModal from "@components/Modal/components/Quit/QuitModal"
+import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
 import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 
-import { RoutineNameTypes } from "@typpes/type"
+import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useModal } from "@hooks/useModal"
 
@@ -88,7 +89,7 @@ export const RoutineStart: Story = {
   ),
 }
 
-export const MakeRoutine: Story = {
+export const RoutineMake: Story = {
   render: () => {
     const methods = useForm<RoutineNameTypes>({
       mode: "onChange",
@@ -99,6 +100,19 @@ export const MakeRoutine: Story = {
       <FormProvider {...methods}>
         <Trigger name={"루틴생성"} />
         <RoutineMakeModal />
+      </FormProvider>
+    )
+  },
+}
+
+export const RoutineMachine: Story = {
+  render: () => {
+    const methods = useForm<RoutineInfoTypes>()
+
+    return (
+      <FormProvider {...methods}>
+        <Trigger name={"루틴운동량"} />
+        <RoutineAddModal />
       </FormProvider>
     )
   },

@@ -1,17 +1,18 @@
 import { SubmitHandler, useFormContext } from "react-hook-form"
 
-import styled from "styled-components"
-
 import Button from "@components/Button/Button"
 import Modal from "@components/Modal/Modal"
-import { ContentWrapper } from "@components/Modal/components/Routine/StyledRoutineModal"
+import {
+  ContentForm,
+  ContentWrapper,
+} from "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
 import { RoutineNameTypes } from "@typpes/type"
 
 import { useModal } from "@hooks/useModal"
 
-import { fonts, theme } from "@styles/theme"
+import * as S from "./StyledRoutineModal"
 
 const RoutineMakeModal = () => {
   const { isOpen, onClose } = useModal("루틴생성")
@@ -47,15 +48,15 @@ const RoutineMakeModal = () => {
       <Modal.Content>
         <ContentWrapper>
           <ContentForm onSubmit={handleSubmit(handleRoutineName)}>
-            <ContentInput
+            <S.ContentInput
               $isError={!!formState.errors.routineName}
               placeholder="어떤 이름이 좋을까요?"
               {...register("routineName", { required: true, maxLength: 7 })}
             />
-            <ContentInputLabel
+            <S.ContentInputLabel
               $isError={formState.isDirty && !!formState.errors.routineName}>
               {inputValue.length}/7자
-            </ContentInputLabel>
+            </S.ContentInputLabel>
           </ContentForm>
         </ContentWrapper>
       </Modal.Content>
@@ -72,44 +73,3 @@ const RoutineMakeModal = () => {
 }
 
 export default RoutineMakeModal
-
-const ContentForm = styled.form`
-  display: flex;
-  gap: 12px;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-const ContentInput = styled.input<{ $isError: boolean }>`
-  &::-webkit-input-placeholder {
-    color: ${theme.Netural500};
-    ${fonts.h1}
-  }
-  text-align: center;
-  width: 100%;
-  min-height: 36px;
-  ${fonts.h1};
-  color: ${({ $isError }) => ($isError ? theme.Error : theme.Netural900)};
-
-  &:focus::-webkit-input-placeholder,
-  textarea:focus::-webkit-input-placeholder {
-    color: transparent;
-  }
-
-  &:focus:-moz-placeholder,
-  textarea:focus:-moz-placeholder {
-    color: transparent;
-  }
-
-  &:focus:-ms-input-placeholder,
-  textarea:focus:-ms-input-placeholder {
-    color: transparent;
-  }
-`
-const ContentInputLabel = styled.span<{ $isError: boolean }>`
-  ${fonts.b7};
-  color: ${({ $isError }) => ($isError ? theme.Error : theme.Netural450)};
-`

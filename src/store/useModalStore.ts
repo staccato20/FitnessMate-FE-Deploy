@@ -13,6 +13,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     삭제: false,
     루틴시작: false,
     루틴생성: false,
+    루틴운동량: false,
   },
   setModalState: (newState) =>
     set((state) => ({
