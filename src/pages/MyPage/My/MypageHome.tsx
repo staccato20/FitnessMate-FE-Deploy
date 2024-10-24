@@ -26,16 +26,6 @@ import OutSideClick from "./Modal/OutSideClick"
 // import WorkoutAddModal from "./Modal/workoutAddModal"
 import * as S from "./StyledMypageHome"
 
-// import "./myToggle.css";
-// import ToggleSwitch from "./toggle"
-
-/*
-const addRoutine: string = "path/to/addRoutine.svg";
-const pulsImg: string = "path/to/routineAdd.svg";
-const videoArrow: string = "path/to/videoArrow.svg";
-const itemMore: string = "path/to/Frame820.svg";
-*/
-
 type PlaceholderProps = {
   clientHeight: number
   clientWidth: number
@@ -123,127 +113,6 @@ const Mypagehome = () => {
   // 운동 설명 비디오
   const [videoLink, setVideoLink] = useState<string | null>(null)
 
-  // 내 보조제
-  // const [mySupplements, setMySupplements] = useState([])
-
-  // const getSupplement = async (routinesArray) => {
-  //   const mySupplement = await TokenApi.get("/myfit/routines/supplement")
-  //   setMySupplements(mySupplement)
-  // }
-
-  // useEffect(() => {
-  //   getSupplement()
-  // }, [mySupplements.length])
-
-  // 첫 루틴 만들기
-
-  // const fixRoutines = async (routinesArray) => {
-  //   try {
-  //     const newRoutines = await TokenApi.post("myfit/routines/workout", {
-  //       routines: routinesArray,
-  //     })
-  //     console.log("이거", newRoutines)
-
-  //     setRoutinesData(routinesArray)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // 첫 루틴 만들기
-
-  // const firstRoutine = () => {
-  //   const firstRoutines = [
-  //     {
-  //       routineId: -1,
-  //       routineIndex: 0,
-  //       routineName: "가슴 집중 DAY",
-  //     },
-  //     {
-  //       routineId: -1,
-  //       routineIndex: 1,
-  //       routineName: " 집중 DAY",
-  //     },
-  //     {
-  //       routineId: -1,
-  //       routineIndex: 2,
-  //       routineName: "어깨 집중 DAY",
-  //     },
-  //     {
-  //       routineId: -1,
-  //       routineIndex: 3,
-  //       routineName: "하체 집중 DAY",
-  //     },
-  //   ]
-
-  //   fixRoutines(firstRoutines)
-  // }
-
-  // 새로운 루틴 만들기
-  // const addNewRoutine = async () => {
-  //   // routinesData.data에서 가장 큰 routineIndex 찾기
-  //   const maxRoutineIndex = Math.max(
-  //     ...routinesData.data.map((item) => item.routineIndex),
-  //   )
-
-  //   // 기존 루틴 데이터와 새로운 루틴 데이터를 하나의 배열로 결합
-  //   const routinesForServer = [
-  //     ...routinesData.data.map((item) => ({
-  //       routineId: item.routineId,
-  //       routineIndex: item.routineIndex,
-  //       routineName: item.routineName,
-  //     })),
-  //     {
-  //       routineId: -1,
-  //       routineIndex: maxRoutineIndex + 1,
-  //       routineName: "새로운 루틴",
-  //     },
-  //   ]
-
-  //   console.log(routinesData)
-  //   fixRoutines(routinesForServer)
-  // }
-
-  // 루틴 active 변화시키기
-
-  // const onClickChangeBtnActive = async (idx) => {
-  //   setBtnActive(idx)
-  // }
-
-  // const changeWorkout = async () => {
-  //   try {
-  //     const routinesWorkoutResult = await TokenApi.get(
-  //       `myfit/routines/workout/${routinesData.data[btnActive].routineId}`,
-  //     )
-  //     setRoutineWorkout(routinesWorkoutResult.data)
-  //     setItemList(routinesWorkoutResult.data)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   changeWorkout()
-  // }, [btnActive])
-
-  // 루틴 삭제하기
-
-  // const deleteThisRoutine = (item) => {
-  //   // 클릭된 div가 속한 루틴의 정보 추출
-  //   const { routineId } = item
-  //   console.log(item)
-
-  //   // 클릭된 루틴의 ID와 다른 루틴들로 새로운 배열 생성
-  //   const newRoutineData = routinesData.data.filter(
-  //     (routine) => routine.routineId !== routineId,
-  //   )
-
-  //   fixRoutines(newRoutineData)
-
-  //   // 모달 닫히기
-  //   setIsRoutineFixOpen("")
-  // }
-
   // 루틴 수정하기
 
   // 루틴 수정 여부
@@ -263,51 +132,7 @@ const Mypagehome = () => {
   }
   OutSideClick(inputButtonRef, handleCloseInput)
 
-  // const fixThisRoutineName = (e) => {
-  //   setActiveItemId(e.routineId)
-  //   // 클릭된 div가 속한 루틴의 정보 추출
-  //   const { routineName } = e
-  //   setSearchValue(routineName)
-
-  //   // input으로 변경
-  //   setIsRoutineFix(true)
-
-  //   // 모달 닫히기
-  //   setIsRoutineFixOpen("")
-  // }
-
-  // const handleChange = (e) => {
-  //   setSearchValue(e.target.value)
-  // }
-
-  // useEffect(() => {
-  //   // isRoutineFix가 true이고, input 요소가 존재하며, isClicked가 true일 때 포커스를 설정합니다.
-  //   if (isRoutineFix && inputRef.current && isClicked) {
-  //     inputRef.current.focus()
-  //   }
-  // }, [isRoutineFix, isClicked])
-
-  // const handleEnter = (e) => {
-  //   if (e.key === "Enter") {
-  //     const updatedRoutinesData = routinesData.data.map((item) => {
-  //       if (item.routineId === activeItemId) {
-  //         item.routineName = searchvalue
-  //       }
-  //       return item
-  //     })
-  //     fixRoutines(updatedRoutinesData)
-  //     // 모달 닫히기
-  //     setIsRoutineFix(false)
-  //   }
-  // }
-
-  // Routine Modal
-
   const [isRoutineFixOpen, setIsRoutineFixOpen] = useState("")
-
-  // const onClickFixRoutine = async (routineId) => {
-  //   setIsRoutineFixOpen(routineId)
-  // }
 
   const modalRef = useRef(null)
   const handleClose = () => {
@@ -336,8 +161,6 @@ const Mypagehome = () => {
     // Add dropped item
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem)
 
-    console.log("이거야", droppedItem)
-
     // 리스트의 모든 아이템의 인덱스를 다시 설정
     updatedList.forEach((item, index) => {
       item.myWorkoutIndex = index + 1 // 인덱스를 다시 1부터 재설정
@@ -351,13 +174,13 @@ const Mypagehome = () => {
       myWorkoutIndex: droppedItem.destination.index + 1, // number 타입 유지
       weight: updatedList[droppedItem.destination.index].weight
         ? updatedList[droppedItem.destination.index].weight.toString()
-        : "0", // null 또는 undefined인 경우 "0"으로 설정
+        : "0", // null 또는 undefined인 경우 0으로 설정
       rep: updatedList[droppedItem.destination.index].rep
         ? updatedList[droppedItem.destination.index].rep.toString()
-        : "0", // null 또는 undefined인 경우 "0"으로 설정
+        : "0", // null 또는 undefined인 경우 0으로 설정
       setCount: updatedList[droppedItem.destination.index].setCount
         ? updatedList[droppedItem.destination.index].setCount.toString()
-        : "0", // null 또는 undefined인 경우 "0"으로 설정
+        : "0", // null 또는 undefined인 경우 0으로 설정
     }
 
     // 3. 여기서 바뀐 배열을
@@ -378,9 +201,7 @@ const Mypagehome = () => {
   const [placeholderProps, setPlaceholderProps] =
     useState<PlaceholderProps>(defaultPlaceholder)
 
-  const [fixedClientX, setFixedClientX] = useState<number | null>(null) // 상태 선언
-
-  /// onDragUpdate에서 placeholder 위치 계산
+  // onDragUpdate에서 placeholder 위치 계산
   const onDragUpdate = (update: DragUpdate) => {
     console.log("onDragUpdate called", update)
     // 드래그 중에 placeholder가 보이도록 설정
@@ -401,85 +222,48 @@ const Mypagehome = () => {
       return
     }
 
-    // 부모 요소의 스타일 정보를 가져옴
-    const parentStyle = window.getComputedStyle(draggedDOM.parentElement!)
-    const gap = parseFloat(parentStyle.gap) || 0 // 부모의 gap 계산
-    const parentPaddingTop = parseFloat(parentStyle.paddingTop) || 0
+    // 부모 요소를 명시적으로 선택
+    const parent = document.querySelector(".list-container")
 
-    // 이전 항목들의 높이, 마진, 패딩, 갭을 모두 합산하여 Y 좌표 계산 (드롭할 항목까지 포함)
-    const clientY = [...draggedDOM.parentNode!.children]
-      .slice(0, destinationIndex + 2) // 드롭할 위치 이전 항목 + 드롭할 위치 항목 포함
-      .reduce(
-        (total, curr: any, index, array) => {
-          const style = window.getComputedStyle(curr)
-          const marginBottom = parseFloat(style.marginBottom) || 0 // 마진 계산
+    if (parent) {
+      // 부모 요소의 스타일 정보를 가져옴
+      const parentStyle = window.getComputedStyle(parent)
+      const gap = parseFloat(parentStyle.gap) || 0
 
-          // 마지막 항목일 경우, marginBottom을 계산에서 제외
-          const isLast = index === array.length
-          return total + curr.offsetHeight + (isLast ? 0 : marginBottom) // 마지막 항목이면 marginBottom 제외
-        },
-        parentPaddingTop + gap * (destinationIndex + 4),
-      ) // 부모 요소의 상단 패딩을 포함하여 시작
+      // 동일한 height와 marginBottom 값을 사용하여 Y 좌표 계산
+      const firstChild = draggedDOM.parentNode!.children[0] as HTMLElement // 첫 번째 항목을 기준으로 height와 marginBottom 값을 가져옴
+      const uniformHeight = firstChild.offsetHeight // 모든 항목에 동일한 height 적용
+      const uniformMarginBottom =
+        parseFloat(window.getComputedStyle(firstChild).marginBottom) || 0 // 모든 항목에 동일한 marginBottom 적용
 
-    // X 좌표 동적으로 계산 (드래그된 항목이 아닌 첫 번째 workoutCard를 기준으로)
-    const workoutCards = Array.from(
-      document.getElementsByClassName("workoutCard"),
-    ) as HTMLElement[]
+      const clientY =
+        (destinationIndex + 2.25) * uniformHeight + // 항목 높이에 따라 계산
+        (destinationIndex + 2) * (uniformMarginBottom + gap) // marginBottom과 gap 추가 계산
 
-    // 드래그 중인 요소를 제외한 첫 번째 workoutCard 찾기
-    const nonDraggedWorkoutCard = workoutCards.find(
-      (card) => card.id !== draggableId,
-    )
+      console.log("Calculated clientY:", clientY)
 
-    const workoutCardLeft = nonDraggedWorkoutCard
-      ? nonDraggedWorkoutCard.getBoundingClientRect().left
-      : draggedDOM.getBoundingClientRect().left // 드래그 중인 요소가 아니면 그 요소의 left 값 사용
+      // X 좌표 동적으로 계산 (드래그된 항목이 아닌 것 중 첫 번째 workoutCard를 기준으로)
+      const workoutCards = Array.from(
+        document.getElementsByClassName("workoutCard"),
+      ) as HTMLElement[]
 
-    // 최종적으로 계산된 높이를 기록
-    console.log("Calculated clientY:", clientY)
+      // 드래그 중인 요소를 제외한 첫 번째 workoutCard 찾기
+      const nonDraggedWorkoutCard = workoutCards.find(
+        (card) => card.id !== draggableId,
+      )
 
-    setPlaceholderProps({
-      clientHeight: draggedDOM.offsetHeight, // 드래그된 요소의 높이 사용
-      clientWidth: draggedDOM.offsetWidth, // 너비
-      clientY, // 계산된 Y 좌표
-      clientX: workoutCardLeft, // 드래그 중인 항목을 제외한 첫 번째 workoutCard의 X 좌표 사용
-    })
+      const workoutCardLeft = nonDraggedWorkoutCard
+        ? nonDraggedWorkoutCard.getBoundingClientRect().left
+        : draggedDOM.getBoundingClientRect().left // 드래그 중인 요소가 아니면 그 요소의 left 값 사용
+
+      setPlaceholderProps({
+        clientHeight: uniformHeight, // 드래그된 요소의 높이 사용
+        clientWidth: draggedDOM.offsetWidth, // 너비
+        clientY, // 계산된 Y 좌표
+        clientX: workoutCardLeft, // 드래그 중인 항목을 제외한 첫 번째 workoutCard의 X 좌표 사용
+      })
+    }
   }
-
-  // const newRoutineWorkout = async () => {
-  //   try {
-  //     const routinesWorkoutResult = await TokenApi.get(
-  //       `myfit/routines/workout/${routinesData.data[btnActive].routineId}`,
-  //     )
-  //     setRoutineWorkout(routinesWorkoutResult.data)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // 카드 자세히 보기 상태 배열 : 카드 각각의 열림 상태를 관리하기 위해 배열로
-  // const [isOpenArray, setIsOpenArray] = useState(
-  //   new Array(myWorkouts.length).fill(false),
-  // )
-
-  // // 카드 자세히 보기 상태 변경
-  // const handleInformationOpenClick = async (idx) => {
-  //   // 해당 카드의 isOpen 상태를 토글
-  //   const updatedIsOpenArray = [...isOpenArray]
-  //   updatedIsOpenArray[idx] = !updatedIsOpenArray[idx]
-  //   setIsOpenArray(updatedIsOpenArray)
-
-  //   // 운동 설명 비디오 링크 가져오기
-  //   const response = await userWorkoutAPI.get(`${myWorkouts[idx].workoutId}`)
-  //   const videoId = response.data.videoLink.split("=")[1]
-  //   setVideoLink(`https://www.youtube.com/embed/${videoId}`)
-  // }
-
-  // useEffect(() => {
-  //   newRoutineWorkout()
-  // }, [myWorkouts])
-
-  // console.log(workout);
 
   return (
     <>
@@ -586,28 +370,19 @@ const Mypagehome = () => {
                   className={`workoutNum ${index === itemList?.length - 1 ? "last-item" : ""}`}
                   key={index}>
                   <div className="numCircle">{index + 1}</div>
-                  <div
-                    className="line"
-                    style={{
-                      height: (placeholderProps.clientHeight / 5) * 4,
-                    }}></div>
+                  <div className="line"></div>
                 </div>
               ))}
             </div>
             <DragDropContext
               onDragEnd={handleDrop}
               onDragUpdate={onDragUpdate}>
-              <Droppable droppableId="list-container">
+              <Droppable droppableId="workout-list">
                 {(provided) => (
                   <div
                     className="list-container"
                     {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "20px",
-                    }}>
+                    ref={provided.innerRef}>
                     {itemList?.map((item, index) => (
                       <Draggable
                         key={item.workoutId}
@@ -621,7 +396,6 @@ const Mypagehome = () => {
                             {...providedSpace.dragHandleProps}
                             {...providedSpace.draggableProps}
                             style={{
-                              height: "177px",
                               backgroundColor: snapshot.draggingOver
                                 ? "lightblue"
                                 : "white",
@@ -721,7 +495,6 @@ const Mypagehome = () => {
                         height: placeholderProps.clientHeight + "px",
                         width: placeholderProps.clientWidth + "px",
                         backgroundColor: "#e4eaf0",
-                        marginBottom: "20px",
                         border: "2px" + " dashed" + " #d0d9e2",
                         transition:
                           "top 0.2s, left 0.2s, width 0.2s, height 0.2s",

@@ -313,12 +313,10 @@ export const MypageMiddleContainer = styled.div`
   .workoutNumList {
     display: flex;
     flex-direction: column;
-    height: 100%;
 
     .workoutNum {
       padding: 14px 10px 0 10px;
       display: flex;
-      height: 100%;
       flex-direction: column;
       align-items: center;
       justify-content: start;
@@ -342,6 +340,7 @@ export const MypageMiddleContainer = styled.div`
       }
       .line {
         width: 2px;
+        height: 142px;
         align-items: stretch;
         border-radius: 1px;
         background: ${theme.Netural400};
@@ -355,15 +354,13 @@ export const MypageMiddleContainer = styled.div`
   .list-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
     .workoutCard {
       display: flex;
       border-radius: 16px;
       padding: 16px;
-      border-radius: 16px;
       background: ${theme.Netural0};
-
+      margin-bottom: 20px;
       .recommendCard {
         height: 113px;
         display: flex;
@@ -371,7 +368,6 @@ export const MypageMiddleContainer = styled.div`
         width: 771px;
         border-radius: 18px;
         margin-bottom: 32px;
-        position: relative;
 
         .cardHandler {
           position: absolute;
