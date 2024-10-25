@@ -161,16 +161,20 @@ export const RoutineList = styled.div`
   }
 `
 
-export const RoutineItem = styled.button`
+export const RoutineItem = styled.button<{ $isSelected: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
+  border-radius: 12px;
+  background: ${({ $isSelected }) =>
+    $isSelected ? theme.Netural150 : theme.Netural0};
 `
 
-export const RoutineName = styled.span`
-  color: ${theme.Netural500};
+export const RoutineName = styled.span<{ $isSelected: boolean }>`
+  color: ${({ $isSelected }) =>
+    $isSelected ? theme.Brand600 : theme.Netural800};
   ${fonts.b2};
 `
 

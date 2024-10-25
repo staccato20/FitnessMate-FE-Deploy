@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import Modal from "@components/Modal/Modal"
@@ -12,9 +14,26 @@ import * as S from "./StyledRoutineModal"
 const RoutineAddModal = () => {
   const { isOpen, onClose } = useModal("루틴추가")
 
-  // const [selectedRoutines, setSelectedRoutines] = useState<number[]>([])
+  const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
 
   const { myRoutines: routines } = useGetMyRoutines()
+
+  const handleToggleRoutine = (routineId: number) => {
+    setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
+  }
+
+  const updateSet = (set: Set<number>, id: number) => {
+    const updatedSet = new Set(set)
+    if (updatedSet.has(id)) {
+      updatedSet.delete(id)
+    } else {
+      updatedSet.add(id)
+    }
+
+    return updatedSet
+  }
+
+  console.log(selectedRoutines)
 
   return (
     <Modal
@@ -40,9 +59,25 @@ const RoutineAddModal = () => {
           </S.AddRoutineButton>
           <S.RoutineList>
             {routines.map(({ routineId, routineName }) => (
-              <S.RoutineItem key={routineId}>
-                <S.RoutineName>{routineName}</S.RoutineName>
-                <S.RoutineState>추가됨</S.RoutineState>
+              <S.RoutineItem
+                key={routineId}
+                onClick={() => {
+                  handleToggleRoutine(routineId)
+                }}
+                $isSelected={selectedRoutines.has(routineId)}>
+                <S.RoutineName $isSelected={selectedRoutines.has(routineId)}>
+                  {routineName}
+                </S.RoutineName>
+                <S.RoutineState>
+                  <Icon
+                    icon={
+                      selectedRoutines.has(routineId)
+                        ? "AddBoldBlue"
+                        : "AddBoldGray"
+                    }
+                    size={32}
+                  />
+                </S.RoutineState>
               </S.RoutineItem>
             ))}
           </S.RoutineList>
