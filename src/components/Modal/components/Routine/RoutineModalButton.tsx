@@ -2,8 +2,8 @@ import RoundButton from "@components/Button/RoundButton"
 
 import { useModal } from "@hooks/useModal"
 
-const RecommendAlertModalButton = () => {
-  const { onOpen } = useModal("알림")
+const RecommendModalButton = () => {
+  const { onOpen } = useModal("루틴추가")
   return (
     <RoundButton
       leftIcon="Add"
@@ -15,4 +15,4 @@ const RecommendAlertModalButton = () => {
   )
 }
 
-export default RecommendAlertModalButton
+export default RecommendModalButton

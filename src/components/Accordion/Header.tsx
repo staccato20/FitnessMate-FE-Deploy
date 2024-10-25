@@ -5,7 +5,7 @@ import {
   HeaderTop,
   HeaderWrapper,
 } from "@components/Accordion/StyledAccordion"
-import RecommendAlertModalButton from "@components/Modal/components/Alert/RecommendAlertModalButton"
+import RoutineModalButton from "@components/Modal/components/Routine/RoutineModalButton"
 import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
@@ -32,7 +32,7 @@ const Header = ({
           </Title>
         </HeaderLeft>
         <HeaderRight>
-          <RecommendAlertModalButton />
+          <RoutineModalButton />
         </HeaderRight>
       </HeaderTop>
     </HeaderWrapper>

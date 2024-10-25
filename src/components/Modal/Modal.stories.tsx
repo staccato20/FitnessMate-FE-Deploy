@@ -2,6 +2,8 @@ import { FormProvider, useForm } from "react-hook-form"
 
 import { Meta, StoryObj } from "@storybook/react"
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
 import Button from "@components/Button/Button"
 import Modal from "@components/Modal/Modal"
 import AlertModal from "@components/Modal/components/Alert/AlertModal"
@@ -17,11 +19,53 @@ import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useModal } from "@hooks/useModal"
 
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: Infinity, refetchOnMount: true } },
+})
+
+const DUMMY_ROUTINES = [
+  {
+    routineId: 1349988,
+    routineIndex: 0,
+    routineName: "가슴 집중",
+  },
+  {
+    routineId: 1349989,
+    routineIndex: 1,
+    routineName: "집중",
+  },
+  {
+    routineId: 1349990,
+    routineIndex: 2,
+    routineName: "어깨 집중",
+  },
+  {
+    routineId: 1349991,
+    routineIndex: 3,
+    routineName: "하체 집중",
+  },
+  {
+    routineId: 1349992,
+    routineIndex: 4,
+    routineName: "새로운 루틴",
+  },
+]
+
 const meta: Meta<typeof Modal> = {
   component: Modal,
   title: "components/Modal",
   tags: ["autodocs"],
   parameters: { layout: "centered" },
+  decorators: [
+    (Story) => {
+      queryClient.setQueryData(["myRoutines"], DUMMY_ROUTINES)
+      return (
+        <QueryClientProvider client={queryClient}>
+          <Story />
+        </QueryClientProvider>
+      )
+    },
+  ],
 }
 
 export default meta

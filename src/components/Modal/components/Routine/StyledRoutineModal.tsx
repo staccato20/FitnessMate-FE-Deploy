@@ -134,7 +134,8 @@ export const AddRoutineButton = styled.button`
   align-items: center;
   color: ${theme.Netural800};
   ${fonts.b2};
-  padding: 16px 12px;
+  padding: 16px 12px 20px 12px;
+  width: 100%;
 `
 
 export const RoutineList = styled.div`
@@ -143,6 +144,21 @@ export const RoutineList = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  overflow: auto;
+  max-height: 250px;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
 `
 
 export const RoutineItem = styled.button`

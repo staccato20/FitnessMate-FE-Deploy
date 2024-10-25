@@ -5,6 +5,7 @@ import { useRecommendStore } from "@store/store"
 import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
+import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
 import Title from "@components/Title/Title"
 
 import { useUserInfo } from "../../../hooks/query/useUserInfo"
@@ -75,6 +76,7 @@ const Result = () => {
           ),
         )}
       </S.ResultList>
+      <RoutineAddModal />
     </S.ResultWrapper>
   )
 }

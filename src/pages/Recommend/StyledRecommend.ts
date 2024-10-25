@@ -168,7 +168,7 @@ export const ResultList = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 12px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 `
 
 export const BodyPartWrapper = styled.div`
