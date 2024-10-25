@@ -120,3 +120,45 @@ export const MachineButton = styled.button`
   color: ${theme.Netural700};
   ${fonts.b4};
 `
+
+export const ContentBigWrapper = styled.div`
+  max-height: 336px;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 24px;
+`
+
+export const AddRoutineButton = styled.button`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: ${theme.Netural800};
+  ${fonts.b2};
+  padding: 16px 12px;
+`
+
+export const RoutineList = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`
+
+export const RoutineItem = styled.button`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+`
+
+export const RoutineName = styled.span`
+  color: ${theme.Netural500};
+  ${fonts.b2};
+`
+
+export const RoutineState = styled.span`
+  color: ${theme.Netural600};
+  ${fonts.b6};
+`
