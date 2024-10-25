@@ -10,12 +10,7 @@ const ROUTINE_START = {
   EMPTY_SUBTITLE: ["아직 운동 루틴이 없어요"],
 }
 
-interface RoutineModalProps {
-  isEmpty: boolean
-  machine: string
-}
-
-const RoutineModal = ({ isEmpty, machine }: RoutineModalProps) => {
+const RoutineModal = () => {
   const { isOpen, onClose } = useModal("루틴시작")
   return (
     <Modal
@@ -24,13 +19,11 @@ const RoutineModal = ({ isEmpty, machine }: RoutineModalProps) => {
       isCloseButton>
       <Modal.Title>
         <Title variant="midA">
-          {isEmpty ? ROUTINE_START.EMPTY_TITLE[0] : `${machine}를 추가할`}
+          {ROUTINE_START.EMPTY_TITLE[0]}
           <br />
-          {isEmpty ? ROUTINE_START.EMPTY_TITLE[1] : "루틴을 선택해주세요"}
+          {ROUTINE_START.EMPTY_TITLE[1]}
           <Title.SubBottomTitle>
-            {isEmpty
-              ? ROUTINE_START.EMPTY_SUBTITLE
-              : `여러 개 선택할 수 있어요`}
+            {ROUTINE_START.EMPTY_SUBTITLE}
           </Title.SubBottomTitle>
         </Title>
       </Modal.Title>

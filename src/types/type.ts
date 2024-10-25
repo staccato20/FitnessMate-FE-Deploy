@@ -104,7 +104,7 @@ export interface PostRecommendIdPayload {
 }
 
 export interface Recommend {
-  id: number
+  workoutId: number
   englishName: string
   koreanName: string
   imgPath: string

@@ -33,8 +33,6 @@ const RoutineAddModal = () => {
     return updatedSet
   }
 
-  console.log(selectedRoutines)
-
   return (
     <Modal
       isOpen={isOpen}

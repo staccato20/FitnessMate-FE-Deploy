@@ -6,10 +6,12 @@ import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
+import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 import Title from "@components/Title/Title"
 
 import { useUserInfo } from "../../../hooks/query/useUserInfo"
 import * as S from "../StyledRecommend"
+import { RoutineModal } from '@components/Modal/components/Alert/AlertModal';
 
 const Result = () => {
   const navigate = useNavigate()
@@ -56,10 +58,10 @@ const Result = () => {
             bodyPartKoreanName,
             weight,
             repeat,
-            id,
+            workoutId,
             set,
           }) => (
-            <Accordion key={id}>
+            <Accordion key={workoutId}>
               <Accordion.Header
                 bodyParts={bodyPartKoreanName.toString()}
                 // count={1}
@@ -77,6 +79,7 @@ const Result = () => {
         )}
       </S.ResultList>
       <RoutineAddModal />
+      <RoutineModal />
     </S.ResultWrapper>
   )
 }
