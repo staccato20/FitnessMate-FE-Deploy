@@ -17,7 +17,10 @@ export interface Workout {
   imgPath: string
   videoLink: string
   description: string
+  atcetera: null
   bodyPartKoreanName: string[]
+  machineKoreanName: string[]
+  createdAt: string
 }
 
 export interface Machine {

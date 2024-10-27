@@ -12,13 +12,13 @@ import { StrictPropsWithChildren } from "@typpes/type"
 
 interface HeaderProps {
   bodyParts: string
-  // count?: number
+  onOpen: () => void
 }
 
 const Header = ({
   children,
   bodyParts,
-  // count,
+  onOpen,
 }: StrictPropsWithChildren<HeaderProps>) => {
   const { visible } = useAccordion()
 
@@ -32,7 +32,7 @@ const Header = ({
           </Title>
         </HeaderLeft>
         <HeaderRight>
-          <RoutineModalButton />
+          <RoutineModalButton onOpen={onOpen} />
         </HeaderRight>
       </HeaderTop>
     </HeaderWrapper>

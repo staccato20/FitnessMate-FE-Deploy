@@ -28,7 +28,7 @@ export const InputWarning = styled.span`
   font-size: 16px;
 `
 
-export const Input = styled.input<Props>`
+export const Input = styled.input`
   &::-webkit-input-placeholder {
     color: ${theme.Netural500};
     ${fonts.b4}

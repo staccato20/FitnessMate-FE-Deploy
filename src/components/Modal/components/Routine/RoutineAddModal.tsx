@@ -15,8 +15,7 @@ const RoutineAddModal = () => {
   const { isOpen, onClose } = useModal("루틴추가")
 
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
-
-  const { myRoutines: routines } = useGetMyRoutines()
+  const { data: routines = [] } = useGetMyRoutines()
 
   const handleToggleRoutine = (routineId: number) => {
     setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
@@ -29,7 +28,6 @@ const RoutineAddModal = () => {
     } else {
       updatedSet.add(id)
     }
-
     return updatedSet
   }
 
@@ -56,7 +54,7 @@ const RoutineAddModal = () => {
             추가하기
           </S.AddRoutineButton>
           <S.RoutineList>
-            {routines.map(({ routineId, routineName }) => (
+            {routines?.map(({ routineId, routineName }) => (
               <S.RoutineItem
                 key={routineId}
                 onClick={() => {

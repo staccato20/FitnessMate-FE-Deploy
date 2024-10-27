@@ -126,10 +126,7 @@ export const RoutineStart: Story = {
   render: () => (
     <>
       <Trigger name={"루틴시작"} />
-      <RoutineModal
-        machine={"데드리프트"}
-        isEmpty
-      />
+      <RoutineModal />
     </>
   ),
 }

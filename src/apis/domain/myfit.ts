@@ -9,7 +9,10 @@ import {
 
 const myFit = () => instance.get<MyfitList>("/api/myfit/userInfo")
 
-const myRoutines = () => instance.get<MyRoutines>("/api/myfit/routines/workout")
+const myRoutines = () =>
+  instance
+    .get<MyRoutines[]>("/api/myfit/routines/workout")
+    .then((res) => res.data)
 
 const modifyMyRoutine = async (params: MyRoutines) => {
   const { data } = await instance.post(`/api/myfit/routines/workout/`, params)
@@ -32,7 +35,9 @@ const modifyMyWorkout = async (myWorkoutId: number, params: MyWorkoutIndex) => {
 }
 
 const deleteMyWorkout = async (myWorkoutId: number) => {
-  await instance.get(`/myfit/routines/workout/delete/${myWorkoutId}`)
+  await instance
+    .get(`/myfit/routines/workout/delete/${myWorkoutId}`)
+    .then((res) => res.data)
 }
 
 const MyFitAPI = {

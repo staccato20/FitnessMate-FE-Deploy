@@ -9,20 +9,27 @@ import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModa
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 import Title from "@components/Title/Title"
 
+import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
+import { useModal } from "@hooks/useModal"
+
 import { useUserInfo } from "../../../hooks/query/useUserInfo"
 import * as S from "../StyledRecommend"
-import { RoutineModal } from '@components/Modal/components/Alert/AlertModal';
 
 const Result = () => {
   const navigate = useNavigate()
 
+  const { result } = useRecommendStore()
+  const { userInfo } = useUserInfo()
+  const { data: routines = [] } = useGetMyRoutines()
+
+  const { onOpen: addRoutine } = useModal("루틴추가")
+  const { onOpen: startRoutine } = useModal("루틴시작")
+
+  const onOpen = routines?.length > 0 ? addRoutine : startRoutine
+
   const handleHomePage = () => {
     navigate("/")
   }
-
-  const { result } = useRecommendStore()
-
-  const { userInfo } = useUserInfo()
 
   return (
     <S.ResultWrapper>
@@ -64,8 +71,7 @@ const Result = () => {
             <Accordion key={workoutId}>
               <Accordion.Header
                 bodyParts={bodyPartKoreanName.toString()}
-                // count={1}
-              >
+                onOpen={onOpen}>
                 {koreanName}
               </Accordion.Header>
               <Accordion.Content
