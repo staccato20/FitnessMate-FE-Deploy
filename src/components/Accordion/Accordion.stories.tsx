@@ -4,14 +4,7 @@ import Accordion from "@components/Accordion/Accordion"
 
 const DUMMY_DATA = (
   <Accordion>
-    <Accordion.Header
-      onClick={() => {
-        console.log("2")
-      }}
-      bodyParts={"가슴, 등"}
-      count={1}>
-      푸쉬업
-    </Accordion.Header>
+    <Accordion.Header bodyParts={"가슴, 등"}>푸쉬업</Accordion.Header>
     <Accordion.Content
       recommend={["20kg", "5세트", "12회"]}
       videoId="Og9pgOtL-04">

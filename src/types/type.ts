@@ -17,7 +17,10 @@ export interface Workout {
   imgPath: string
   videoLink: string
   description: string
+  atcetera: null
   bodyPartKoreanName: string[]
+  machineKoreanName: string[]
+  createdAt: string
 }
 
 export interface Machine {
@@ -104,7 +107,7 @@ export interface PostRecommendIdPayload {
 }
 
 export interface Recommend {
-  id: number
+  workoutId: number
   englishName: string
   koreanName: string
   imgPath: string
@@ -203,4 +206,14 @@ export interface MyWorkoutIndex {
   weight: string
   rep: string
   setCount: string
+}
+
+export interface RoutineNameTypes {
+  routineName: string
+}
+
+export interface RoutineInfoTypes {
+  weight: number
+  repeat: number
+  set: number
 }
