@@ -19,7 +19,7 @@ export const SpeechBubbleWrapper = styled.div<{
   border-collapse: collapse;
   svg {
     position: absolute;
-    top: -10px;
+    top: -14px;
   }
 `
 

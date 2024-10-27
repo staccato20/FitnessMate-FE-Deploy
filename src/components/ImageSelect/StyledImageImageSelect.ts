@@ -7,7 +7,7 @@ export const SelectList = styled.div`
   gap: 10px;
 `
 
-export const SelectItem = styled.button<Props>`
+export const SelectItem = styled.button<{ $isChecked: boolean }>`
   transition: all 0.3s ease-out;
   border-radius: 16px;
   background: ${({ $isChecked }) =>
@@ -34,7 +34,7 @@ export const SelectImg = styled.img`
   height: 60px;
 `
 
-export const SelectText = styled.span<Props>`
+export const SelectText = styled.span<{ $isChecked: boolean }>`
   transition: all 0.3s ease-out;
   color: ${({ $isChecked }) =>
     $isChecked ? theme.Brand950 : theme.Netural800};
