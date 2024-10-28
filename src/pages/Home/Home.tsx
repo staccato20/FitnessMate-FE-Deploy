@@ -82,16 +82,18 @@ export const Home = () => {
       <S.Third id="link">
         <S.SlideList>
           <S.Slide>
-            <S.Title>
-              추천을 위한
-              <br />
-              예리한 질문들
-            </S.Title>
-            <Button
-              size="lg"
-              onClick={handleRecommend}>
-              추천 받기
-            </Button>
+            <S.SlideLeft>
+              <S.Title>
+                추천을 위한
+                <br />
+                예리한 질문들
+              </S.Title>
+              <Button
+                size="lg"
+                onClick={handleRecommend}>
+                추천 받기
+              </Button>
+            </S.SlideLeft>
 
             <S.SlideImg
               src={slide2}
@@ -100,11 +102,13 @@ export const Home = () => {
           </S.Slide>
 
           <S.Slide>
-            <S.Title>
-              루틴도
-              <br />한 번에 관리하세요
-            </S.Title>
-            <HomeAlertModalButton />
+            <S.SlideLeft>
+              <S.Title>
+                루틴도
+                <br />한 번에 관리하세요
+              </S.Title>
+              <HomeAlertModalButton />
+            </S.SlideLeft>
 
             <S.SlideImg
               src={slide}
