@@ -12,7 +12,7 @@ export const NavbarContainer = styled.div<{ $isHome: boolean }>`
   height: 64px;
   display: flex;
   margin: 0 auto;
-  padding: 0px calc(50% - 720px);
+  padding: 0 5%;
   justify-content: space-between;
   align-items: center;
   background-color: ${({ $isHome }) =>
