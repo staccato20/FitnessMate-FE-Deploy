@@ -11,11 +11,19 @@ import Content from "./Content"
 interface AccordionContextProps {
   visible: boolean
   toggle: () => void
+  bodyParts: string
+  onOpen: () => void
+  handleWokroutId: (e: number) => void
+  workoutId: number
 }
 
 const AccordionContext = createContext<AccordionContextProps>({
   visible: false,
   toggle: () => {},
+  bodyParts: "",
+  onOpen: () => {},
+  handleWokroutId: () => {},
+  workoutId: -1,
 })
 
 export const useAccordion = () => {
@@ -28,7 +36,13 @@ export const useAccordion = () => {
   return context
 }
 
-const Accordion = ({ children }: StrictPropsWithChildren) => {
+const Accordion = ({
+  children,
+  bodyParts,
+  onOpen,
+  handleWokroutId,
+  workoutId,
+}: StrictPropsWithChildren<AccordionContextProps>) => {
   const [visible, setVisible] = useState(false)
 
   const toggle = () => {
@@ -36,7 +50,15 @@ const Accordion = ({ children }: StrictPropsWithChildren) => {
   }
 
   return (
-    <AccordionContext.Provider value={{ visible, toggle }}>
+    <AccordionContext.Provider
+      value={{
+        visible,
+        toggle,
+        bodyParts,
+        onOpen,
+        handleWokroutId,
+        workoutId,
+      }}>
       <AccordianWrapper $visible={visible}>{children}</AccordianWrapper>
     </AccordionContext.Provider>
   )

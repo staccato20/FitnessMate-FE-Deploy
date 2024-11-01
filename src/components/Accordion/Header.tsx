@@ -10,21 +10,8 @@ import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-interface HeaderProps {
-  bodyParts: string
-  onOpen: () => void
-  workoutId: number
-  setIsSelectedRoutine: (workoutId: number) => void
-}
-
-const Header = ({
-  children,
-  bodyParts,
-  onOpen,
-  setIsSelectedRoutine,
-  workoutId,
-}: StrictPropsWithChildren<HeaderProps>) => {
-  const { visible } = useAccordion()
+const Header = ({ children }: StrictPropsWithChildren) => {
+  const { visible, bodyParts, onOpen } = useAccordion()
 
   return (
     <HeaderWrapper>
@@ -36,11 +23,7 @@ const Header = ({
           </Title>
         </HeaderLeft>
         <HeaderRight>
-          <RoutineModalButton
-            onOpen={onOpen}
-            setIsSelectedRoutine={setIsSelectedRoutine}
-            workoutId={workoutId}
-          />
+          <RoutineModalButton onOpen={onOpen} />
         </HeaderRight>
       </HeaderTop>
     </HeaderWrapper>

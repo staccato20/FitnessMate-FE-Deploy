@@ -25,12 +25,16 @@ const Result = () => {
 
   const { onOpen: addRoutine } = useModal("루틴추가")
   const { onOpen: startRoutine } = useModal("루틴시작")
-  const [isSelectedRoutine, setIsSelectedRoutine] = useState(-1)
+  const [selectedWorkoutId, setSelectedWorkoutId] = useState(-1)
 
   const onOpen = routines?.length > 0 ? addRoutine : startRoutine
 
   const handleHomePage = () => {
     navigate("/")
+  }
+
+  const handleWokroutId = (workoutId: number) => {
+    setSelectedWorkoutId(workoutId)
   }
 
   return (
@@ -70,14 +74,13 @@ const Result = () => {
             workoutId,
             set,
           }) => (
-            <Accordion key={workoutId}>
-              <Accordion.Header
-                bodyParts={bodyPartKoreanName.toString()}
-                onOpen={onOpen}
-                setIsSelectedRoutine={setIsSelectedRoutine}
-                workoutId={workoutId}>
-                {koreanName}
-              </Accordion.Header>
+            <Accordion
+              key={workoutId}
+              handleWokroutId={handleWokroutId}
+              bodyParts={bodyPartKoreanName.toString()}
+              onOpen={onOpen}
+              workoutId={workoutId}>
+              <Accordion.Header>{koreanName}</Accordion.Header>
               <Accordion.Content
                 videoId={videoLink.split("=")[1]}
                 recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
@@ -88,7 +91,11 @@ const Result = () => {
           ),
         )}
       </S.ResultList>
-      <RoutineAddModal />
+      <RoutineAddModal
+        machine={result.recommends.find(
+          (recommend) => selectedWorkoutId === recommend.workoutId,
+        )}
+      />
       <RoutineModal />
     </S.ResultWrapper>
   )

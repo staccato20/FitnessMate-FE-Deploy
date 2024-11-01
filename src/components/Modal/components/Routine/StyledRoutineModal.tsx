@@ -170,11 +170,18 @@ export const RoutineItem = styled.button<{ $isSelected: boolean }>`
   border-radius: 12px;
   background: ${({ $isSelected }) =>
     $isSelected ? theme.Netural150 : theme.Netural0};
+  &:disabled {
+    cursor: default;
+  }
 `
 
-export const RoutineName = styled.span<{ $isSelected: boolean }>`
+export const RoutineName = styled.span<{
+  $isSelected: boolean
+  $isAdded: boolean
+}>`
   color: ${({ $isSelected }) =>
     $isSelected ? theme.Brand600 : theme.Netural800};
+  color: ${({ $isAdded }) => ($isAdded ? theme.Netural500 : theme.Netural800)};
   ${fonts.b2};
 `
 

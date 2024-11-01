@@ -6,20 +6,38 @@ import Modal from "@components/Modal/Modal"
 import "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
+import { Recommend } from "@typpes/type"
+
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
+import { useGetMyWorkouts } from "@hooks/query/useGetMyWorkouts"
 
 import { useModal } from "../../../../hooks/useModal"
 import * as S from "./StyledRoutineModal"
 
-const RoutineAddModal = () => {
+interface RoutineAddModalProps {
+  machine?: Recommend
+}
+
+const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
   const { isOpen, onClose } = useModal("루틴추가")
 
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
   const { data: routines = [] } = useGetMyRoutines()
 
-  const handleToggleRoutine = (routineId: number) => {
-    setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
-  }
+  const filteredRoutines = routines.map((routine) => {
+    const { data: workouts } = useGetMyWorkouts(routine.routineId)
+
+    if (
+      workouts?.some(
+        (workout) =>
+          machine && workout.workoutName.includes(machine.koreanName),
+      )
+    ) {
+      return { ...routine, isAdded: true }
+    } else {
+      return { ...routine, isAdded: false }
+    }
+  })
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)
@@ -31,6 +49,11 @@ const RoutineAddModal = () => {
     return updatedSet
   }
 
+  const handleToggleRoutine = (routineId: number) => {
+    setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
+  }
+  console.log(filteredRoutines)
+
   return (
     <Modal
       isOpen={isOpen}
@@ -38,7 +61,7 @@ const RoutineAddModal = () => {
       isCloseButton>
       <Modal.Title>
         <Title variant="midA">
-          데드리프트를 추가할
+          {machine?.koreanName}를 추가할
           <br />
           루틴을 선택해주세요
           <Title.SubBottomTitle>여러 개 선택할 수 있어요</Title.SubBottomTitle>
@@ -54,25 +77,32 @@ const RoutineAddModal = () => {
             추가하기
           </S.AddRoutineButton>
           <S.RoutineList>
-            {routines?.map(({ routineId, routineName }) => (
+            {filteredRoutines?.map(({ routineId, routineName, isAdded }) => (
               <S.RoutineItem
                 key={routineId}
                 onClick={() => {
                   handleToggleRoutine(routineId)
                 }}
-                $isSelected={selectedRoutines.has(routineId)}>
-                <S.RoutineName $isSelected={selectedRoutines.has(routineId)}>
+                $isSelected={selectedRoutines.has(routineId)}
+                disabled={isAdded}>
+                <S.RoutineName
+                  $isSelected={selectedRoutines.has(routineId)}
+                  $isAdded={isAdded}>
                   {routineName}
                 </S.RoutineName>
                 <S.RoutineState>
-                  <Icon
-                    icon={
-                      selectedRoutines.has(routineId)
-                        ? "AddBoldBlue"
-                        : "AddBoldGray"
-                    }
-                    size={32}
-                  />
+                  {isAdded ? (
+                    "추가됨"
+                  ) : (
+                    <Icon
+                      icon={
+                        selectedRoutines.has(routineId)
+                          ? "AddBoldBlue"
+                          : "AddBoldGray"
+                      }
+                      size={32}
+                    />
+                  )}
                 </S.RoutineState>
               </S.RoutineItem>
             ))}

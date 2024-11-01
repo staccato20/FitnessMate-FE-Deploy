@@ -15,8 +15,6 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { BackOverlay } from "@pages/Search/StyledSearch"
 
-import { Recommend } from "@typpes/type"
-
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
 import { usePostRecommendId } from "@hooks/mutation/usePostRecommendId"
 import { useGetMachineList } from "@hooks/query/useGetMachineList"
