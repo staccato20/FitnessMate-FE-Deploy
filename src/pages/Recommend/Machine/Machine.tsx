@@ -15,6 +15,8 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { BackOverlay } from "@pages/Search/StyledSearch"
 
+import { Recommend } from "@typpes/type"
+
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
 import { usePostRecommendId } from "@hooks/mutation/usePostRecommendId"
 import { useGetMachineList } from "@hooks/query/useGetMachineList"
@@ -85,6 +87,17 @@ const Machine = () => {
       onSuccess: (workoutRecommendationId) => {
         postRecommend.mutate(workoutRecommendationId, {
           onSuccess: (result) => {
+            const seenWorkoutIds = new Set()
+
+            result.recommends = result.recommends.filter((recommend) => {
+              if (seenWorkoutIds.has(recommend.workoutId)) {
+                return false
+              } else {
+                seenWorkoutIds.add(recommend.workoutId)
+                return true
+              }
+            })
+
             setResult(result)
             navigate("/recommend/result")
           },

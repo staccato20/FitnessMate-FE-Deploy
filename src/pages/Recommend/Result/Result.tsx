@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useRecommendStore } from "@store/store"
@@ -24,6 +25,7 @@ const Result = () => {
 
   const { onOpen: addRoutine } = useModal("루틴추가")
   const { onOpen: startRoutine } = useModal("루틴시작")
+  const [isSelectedRoutine, setIsSelectedRoutine] = useState(-1)
 
   const onOpen = routines?.length > 0 ? addRoutine : startRoutine
 
@@ -71,7 +73,9 @@ const Result = () => {
             <Accordion key={workoutId}>
               <Accordion.Header
                 bodyParts={bodyPartKoreanName.toString()}
-                onOpen={onOpen}>
+                onOpen={onOpen}
+                setIsSelectedRoutine={setIsSelectedRoutine}
+                workoutId={workoutId}>
                 {koreanName}
               </Accordion.Header>
               <Accordion.Content

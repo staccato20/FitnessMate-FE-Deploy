@@ -13,12 +13,16 @@ import { StrictPropsWithChildren } from "@typpes/type"
 interface HeaderProps {
   bodyParts: string
   onOpen: () => void
+  workoutId: number
+  setIsSelectedRoutine: (workoutId: number) => void
 }
 
 const Header = ({
   children,
   bodyParts,
   onOpen,
+  setIsSelectedRoutine,
+  workoutId,
 }: StrictPropsWithChildren<HeaderProps>) => {
   const { visible } = useAccordion()
 
@@ -32,7 +36,11 @@ const Header = ({
           </Title>
         </HeaderLeft>
         <HeaderRight>
-          <RoutineModalButton onOpen={onOpen} />
+          <RoutineModalButton
+            onOpen={onOpen}
+            setIsSelectedRoutine={setIsSelectedRoutine}
+            workoutId={workoutId}
+          />
         </HeaderRight>
       </HeaderTop>
     </HeaderWrapper>
