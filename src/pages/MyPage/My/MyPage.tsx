@@ -99,7 +99,7 @@ const MyPage = () => {
       try {
         const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
         setMyWorkouts(response) // 운동 리스트 설정
-        setMyWorkouts(response) // 운동 리스트 복사본
+        setWorkoutList(response.map((item) => ({ ...item }))) // 운동 리스트 복사본
         console.log("운동 목록:", response)
         setIsWorkoutFix(false)
       } catch (error) {
@@ -197,8 +197,8 @@ const MyPage = () => {
       console.log("이거", response)
       setIsWorkoutFix(true)
     } catch (error) {
-      // 드롭 후 placeholder 숨김
-      setIsPlaceholderVisible(false)
+      setIsPlaceholderVisible(false) // 드롭 후 placeholder 숨김
+      setMyWorkouts(workoutList) // 요청 실패 시 myWorkouts를 workoutList로 복원
       console.error(error)
     }
   }
