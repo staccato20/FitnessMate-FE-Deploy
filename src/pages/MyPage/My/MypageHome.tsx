@@ -169,7 +169,7 @@ const Mypagehome = () => {
     // UI 상태 즉시 업데이트
     setItemList(updatedList)
 
-    // weight, rep, setCount가 null이거나 undefined일 경우 기본값으로 0을 설정
+    // weight, rep, setCount가 null이거나 undefined일 경우 기본값으로 0을 설정, 주의사항도 추가
     const workout: MyWorkoutIndex = {
       myWorkoutIndex: droppedItem.destination.index + 1, // number 타입 유지
       weight: updatedList[droppedItem.destination.index].weight
@@ -181,6 +181,9 @@ const Mypagehome = () => {
       setCount: updatedList[droppedItem.destination.index].setCount
         ? updatedList[droppedItem.destination.index].setCount.toString()
         : "0", // null 또는 undefined인 경우 0으로 설정
+      caution: updatedList[droppedItem.destination.index].caution
+        ? updatedList[droppedItem.destination.index].caution.toString()
+        : "주의사항이 없습니다.", // null 또는 undefined인 경우 0으로 설정
     }
 
     // 3. 여기서 바뀐 배열을
@@ -475,7 +478,9 @@ const Mypagehome = () => {
                               </div>
 
                               <S.RecommendMoreButton>
-                                <p className="informationText">자세히 보기</p>
+                                <p className="informationText">
+                                  {item.caution}
+                                </p>
                               </S.RecommendMoreButton>
                             </div>
                           </div>
