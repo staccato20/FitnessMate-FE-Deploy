@@ -370,7 +370,7 @@ const MyPage = () => {
           </S.MypageTopContainer>
           <S.MypageMiddleContainer>
             <div className="workoutNumList">
-              {myWorkouts?.map((workout, index) => (
+              {myWorkouts?.map((index) => (
                 <div
                   className={`workoutNum ${index === myWorkouts?.length - 1 ? "last-item" : ""}`}
                   key={index}>
@@ -388,109 +388,115 @@ const MyPage = () => {
                     className="list-container"
                     {...provided.droppableProps}
                     ref={provided.innerRef}>
-                    {myWorkouts?.map((workout, index) => (
-                      <Draggable
-                        key={workout.workoutId}
-                        draggableId={`item-${workout.workoutId}`}
-                        index={index}>
-                        {(providedSpace, snapshot) => (
-                          <div
-                            className="workoutCard"
-                            id={`item-${workout.workoutId}`}
-                            ref={providedSpace.innerRef}
-                            {...providedSpace.dragHandleProps}
-                            {...providedSpace.draggableProps}
-                            style={{
-                              backgroundColor: snapshot.draggingOver
-                                ? "lightblue"
-                                : "white",
-                              ...providedSpace.draggableProps.style,
-                            }}>
+                    {myWorkouts?.map(
+                      (
+                        {
+                          workoutId,
+                          workoutName,
+                          bodyParts,
+                          weight,
+                          rep,
+                          setCount,
+                          description,
+                          imgPath,
+                          caution,
+                        },
+                        index,
+                      ) => (
+                        <Draggable
+                          key={workoutId}
+                          draggableId={`item-${workoutId}`}
+                          index={index}>
+                          {(providedSpace, snapshot) => (
                             <div
-                              className="recommendCard"
-                              draggable>
-                              <div className="recommendCardContent">
-                                <S.RecommendMainTopWrapper>
-                                  <S.RecommendMainTopLeftWrapper>
-                                    <S.RecommendMainWorkout>
-                                      {workout.workoutName}
-                                    </S.RecommendMainWorkout>
-                                    <S.RecommendMainBodyPart>
-                                      {workout.bodyParts.map(
-                                        (bodyPart: string, index: number) => (
-                                          <p
-                                            className="item_BodyPart"
-                                            key={index}>
-                                            {index ===
-                                            workout.bodyParts?.length - 1
-                                              ? bodyPart
-                                              : `${bodyPart}, `}
-                                          </p>
-                                        ),
-                                      )}
-                                    </S.RecommendMainBodyPart>
-                                  </S.RecommendMainTopLeftWrapper>
-                                  <S.RecommendMainTopRightWrapper>
-                                    <div className="amountContent">
-                                      <div className="amountItem">
-                                        <p className="amountTitle">중량</p>
-                                        <span className="amountText">
-                                          {workout.weight === null
-                                            ? 0
-                                            : workout.weight}
-                                          <p className="amountUnit">kg</p>
-                                        </span>
+                              className="workoutCard"
+                              id={`item-${workoutId}`}
+                              ref={providedSpace.innerRef}
+                              {...providedSpace.dragHandleProps}
+                              {...providedSpace.draggableProps}
+                              style={{
+                                backgroundColor: snapshot.draggingOver
+                                  ? "lightblue"
+                                  : "white",
+                                ...providedSpace.draggableProps.style,
+                              }}>
+                              <div
+                                className="recommendCard"
+                                draggable>
+                                <div className="recommendCardContent">
+                                  <S.RecommendMainTopWrapper>
+                                    <S.RecommendMainTopLeftWrapper>
+                                      <S.RecommendMainWorkout>
+                                        {workoutName}
+                                      </S.RecommendMainWorkout>
+                                      <S.RecommendMainBodyPart>
+                                        {bodyParts.map(
+                                          (bodyPart: string, index: number) => (
+                                            <p
+                                              className="item_BodyPart"
+                                              key={index}>
+                                              {index === bodyParts?.length - 1
+                                                ? bodyPart
+                                                : `${bodyPart}, `}
+                                            </p>
+                                          ),
+                                        )}
+                                      </S.RecommendMainBodyPart>
+                                    </S.RecommendMainTopLeftWrapper>
+                                    <S.RecommendMainTopRightWrapper>
+                                      <div className="amountContent">
+                                        <div className="amountItem">
+                                          <p className="amountTitle">중량</p>
+                                          <span className="amountText">
+                                            {weight === null ? 0 : weight}
+                                            <p className="amountUnit">kg</p>
+                                          </span>
+                                        </div>
+                                        <div className="amountItem">
+                                          <p className="amountTitle">횟수</p>
+                                          <span className="amountText">
+                                            {rep === null ? 0 : rep}
+                                            <p className="amountUnit">회</p>
+                                          </span>
+                                        </div>
+                                        <div className="amountItem">
+                                          <p className="amountTitle">세트 수</p>
+                                          <span className="amountText">
+                                            {setCount === null ? 0 : setCount}
+                                            <p className="amountUnit">세트</p>
+                                          </span>
+                                        </div>
                                       </div>
-                                      <div className="amountItem">
-                                        <p className="amountTitle">횟수</p>
-                                        <span className="amountText">
-                                          {workout.rep === null
-                                            ? 0
-                                            : workout.rep}
-                                          <p className="amountUnit">회</p>
-                                        </span>
-                                      </div>
-                                      <div className="amountItem">
-                                        <p className="amountTitle">세트 수</p>
-                                        <span className="amountText">
-                                          {workout.setCount === null
-                                            ? 0
-                                            : workout.setCount}
-                                          <p className="amountUnit">세트</p>
-                                        </span>
-                                      </div>
+                                      <div
+                                        className="recommendMainBtn"
+                                        onClick={() => {}}></div>
+                                    </S.RecommendMainTopRightWrapper>
+                                  </S.RecommendMainTopWrapper>
+                                  <S.RecommendMainMiddleWrapper>
+                                    <div className="recommendMainContent">
+                                      <S.RecommendDescriptionWrapper>
+                                        {description}
+                                      </S.RecommendDescriptionWrapper>
+                                      <S.RecommendVideoWrapper>
+                                        <img
+                                          src={imgPath}
+                                          className="fitnessImg"
+                                          alt="운동종류 이미지"></img>
+                                        <div className="goTopRecommendVideo"></div>
+                                      </S.RecommendVideoWrapper>
                                     </div>
-                                    <div
-                                      className="recommendMainBtn"
-                                      onClick={() => {}}></div>
-                                  </S.RecommendMainTopRightWrapper>
-                                </S.RecommendMainTopWrapper>
-                                <S.RecommendMainMiddleWrapper>
-                                  <div className="recommendMainContent">
-                                    <S.RecommendDescriptionWrapper>
-                                      {workout.description}
-                                    </S.RecommendDescriptionWrapper>
-                                    <S.RecommendVideoWrapper>
-                                      <img
-                                        src={workout.imgPath}
-                                        className="fitnessImg"
-                                        alt="운동종류 이미지"></img>
-                                      <div className="goTopRecommendVideo"></div>
-                                    </S.RecommendVideoWrapper>
-                                  </div>
-                                </S.RecommendMainMiddleWrapper>
-                              </div>
+                                  </S.RecommendMainMiddleWrapper>
+                                </div>
 
-                              <S.RecommendMoreButton>
-                                <p className="informationText">
-                                  {workout.caution}
-                                </p>
-                              </S.RecommendMoreButton>
+                                <S.RecommendMoreButton>
+                                  <p className="informationText">{caution}</p>
+                                </S.RecommendMoreButton>
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
+                          )}
+                        </Draggable>
+                      ),
+                    )}
                     {provided.placeholder}
 
                     {/* 커스텀 placeholder */}
