@@ -10,6 +10,7 @@ import {
   Droppable,
 } from "@hello-pangea/dnd"
 import { flatMap } from "async"
+import { machine } from "os"
 
 // user bodydata
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
@@ -65,9 +66,10 @@ const MyPage = () => {
   )
 
   // 운동 리스트 상태
-  const [myWorkouts, setMyWorkouts] = useState<any[]>([])
+  const [workoutList, setWorkoutList] = useState<any[]>([])
   // drag & drop 을 위한 운동 리스트 복사본
-  const [itemList, setItemList] = useState<any[]>([])
+  const [myWorkouts, setMyWorkouts] = useState<any[]>([])
+
   // 운동 순서 수정 여부
   const [isWorkoutFix, setIsWorkoutFix] = useState<boolean>(false)
 
@@ -97,7 +99,7 @@ const MyPage = () => {
       try {
         const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
         setMyWorkouts(response) // 운동 리스트 설정
-        setItemList(response) // 운동 리스트 복사본
+        setMyWorkouts(response) // 운동 리스트 복사본
         console.log("운동 목록:", response)
         setIsWorkoutFix(false)
       } catch (error) {
@@ -145,7 +147,7 @@ const MyPage = () => {
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(false) // 드래그 중에만 placeholder를 보이게 함
 
   // 2. 여기서 순서를 바꿀 때, 그냥 routineWorkout을 가져왔더니 아래 map의 순서를 유지하려고 해서
-  // itemList라는 배열 복사본을 만들어서 실제 사용자가 하는 동안에
+  // myWorkouts라는 배열 복사본을 만들어서 실제 사용자가 하는 동안에
   const handleDrop = async (droppedItem: DropResult) => {
     // 드롭 후 placeholder 숨김
     setIsPlaceholderVisible(false)
@@ -153,8 +155,8 @@ const MyPage = () => {
     // Ignore drop outside droppable container
     if (!droppedItem.destination) return
 
-    // itemList는 MyWorkoutList[] 타입이므로 updatedList도 동일한 타입으로 명시
-    const updatedList: MyWorkoutList[] = [...itemList]
+    // myWorkouts는 MyWorkoutList[] 타입이므로 updatedList도 동일한 타입으로 명시
+    const updatedList: MyWorkoutList[] = [...myWorkouts]
 
     // Remove dragged item
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1)
@@ -162,12 +164,12 @@ const MyPage = () => {
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem)
 
     // 리스트의 모든 아이템의 인덱스를 다시 설정
-    updatedList.forEach((item, index) => {
-      item.myWorkoutIndex = index + 1 // 인덱스를 다시 1부터 재설정
+    updatedList.forEach((workout, index) => {
+      workout.myWorkoutIndex = index + 1 // 인덱스를 다시 1부터 재설정
     })
 
     // UI 상태 즉시 업데이트
-    setItemList(updatedList)
+    setMyWorkouts(updatedList)
 
     // weight, rep, setCount가 null이거나 undefined일 경우 기본값으로 0을 설정, 주의사항도 추가
     const workout: MyWorkoutIndex = {
@@ -368,9 +370,9 @@ const MyPage = () => {
           </S.MypageTopContainer>
           <S.MypageMiddleContainer>
             <div className="workoutNumList">
-              {itemList?.map((item, index) => (
+              {myWorkouts?.map((workout, index) => (
                 <div
-                  className={`workoutNum ${index === itemList?.length - 1 ? "last-item" : ""}`}
+                  className={`workoutNum ${index === myWorkouts?.length - 1 ? "last-item" : ""}`}
                   key={index}>
                   <div className="numCircle">{index + 1}</div>
                   <div className="line"></div>
@@ -386,15 +388,15 @@ const MyPage = () => {
                     className="list-container"
                     {...provided.droppableProps}
                     ref={provided.innerRef}>
-                    {itemList?.map((item, index) => (
+                    {myWorkouts?.map((workout, index) => (
                       <Draggable
-                        key={item.workoutId}
-                        draggableId={`item-${item.workoutId}`}
+                        key={workout.workoutId}
+                        draggableId={`item-${workout.workoutId}`}
                         index={index}>
                         {(providedSpace, snapshot) => (
                           <div
                             className="workoutCard"
-                            id={`item-${item.workoutId}`}
+                            id={`item-${workout.workoutId}`}
                             ref={providedSpace.innerRef}
                             {...providedSpace.dragHandleProps}
                             {...providedSpace.draggableProps}
@@ -411,16 +413,16 @@ const MyPage = () => {
                                 <S.RecommendMainTopWrapper>
                                   <S.RecommendMainTopLeftWrapper>
                                     <S.RecommendMainWorkout>
-                                      {item.workoutName}
+                                      {workout.workoutName}
                                     </S.RecommendMainWorkout>
                                     <S.RecommendMainBodyPart>
-                                      {item.bodyParts.map(
+                                      {workout.bodyParts.map(
                                         (bodyPart: string, index: number) => (
                                           <p
                                             className="item_BodyPart"
                                             key={index}>
                                             {index ===
-                                            item.bodyParts?.length - 1
+                                            workout.bodyParts?.length - 1
                                               ? bodyPart
                                               : `${bodyPart}, `}
                                           </p>
@@ -433,25 +435,27 @@ const MyPage = () => {
                                       <div className="amountItem">
                                         <p className="amountTitle">중량</p>
                                         <span className="amountText">
-                                          {item.weight === null
+                                          {workout.weight === null
                                             ? 0
-                                            : item.weight}
+                                            : workout.weight}
                                           <p className="amountUnit">kg</p>
                                         </span>
                                       </div>
                                       <div className="amountItem">
                                         <p className="amountTitle">횟수</p>
                                         <span className="amountText">
-                                          {item.rep === null ? 0 : item.rep}
+                                          {workout.rep === null
+                                            ? 0
+                                            : workout.rep}
                                           <p className="amountUnit">회</p>
                                         </span>
                                       </div>
                                       <div className="amountItem">
                                         <p className="amountTitle">세트 수</p>
                                         <span className="amountText">
-                                          {item.setCount === null
+                                          {workout.setCount === null
                                             ? 0
-                                            : item.setCount}
+                                            : workout.setCount}
                                           <p className="amountUnit">세트</p>
                                         </span>
                                       </div>
@@ -464,11 +468,11 @@ const MyPage = () => {
                                 <S.RecommendMainMiddleWrapper>
                                   <div className="recommendMainContent">
                                     <S.RecommendDescriptionWrapper>
-                                      {item.description}
+                                      {workout.description}
                                     </S.RecommendDescriptionWrapper>
                                     <S.RecommendVideoWrapper>
                                       <img
-                                        src={item.imgPath}
+                                        src={workout.imgPath}
                                         className="fitnessImg"
                                         alt="운동종류 이미지"></img>
                                       <div className="goTopRecommendVideo"></div>
@@ -479,7 +483,7 @@ const MyPage = () => {
 
                               <S.RecommendMoreButton>
                                 <p className="informationText">
-                                  {item.caution}
+                                  {workout.caution}
                                 </p>
                               </S.RecommendMoreButton>
                             </div>
