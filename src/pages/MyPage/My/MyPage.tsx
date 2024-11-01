@@ -24,7 +24,7 @@ import { MyWorkoutIndex, MyWorkoutList } from "../../../types/type"
 // 루틴 더보기 모달
 import OutSideClick from "./Modal/OutSideClick"
 // import WorkoutAddModal from "./Modal/workoutAddModal"
-import * as S from "./StyledMypageHome"
+import * as S from "./StyledMyPage"
 
 type PlaceholderProps = {
   clientHeight: number
@@ -40,7 +40,7 @@ const defaultPlaceholder = {
   clientY: 0,
 }
 
-const Mypagehome = () => {
+const MyPage = () => {
   // 유저 이름
   const { userInfo } = useUserInfo()
   const userName = userInfo ? userInfo.userName : undefined
@@ -517,4 +517,4 @@ const Mypagehome = () => {
   )
 }
 
-export default Mypagehome
+export default MyPage
