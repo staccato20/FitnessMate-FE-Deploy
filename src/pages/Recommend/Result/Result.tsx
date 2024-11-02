@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useRecommendStore } from "@store/store"
@@ -7,8 +8,11 @@ import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
+import RoutineInfoModal from "@components/Modal/components/Routine/RoutineInfoModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 import Title from "@components/Title/Title"
+
+import { RoutineInfoTypes } from "@typpes/type"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
@@ -23,17 +27,20 @@ const Result = () => {
   const { userInfo } = useUserInfo()
   const { data: routines = [] } = useGetMyRoutines()
 
-  const { onOpen: addRoutine } = useModal("루틴추가")
-  const { onOpen: startRoutine } = useModal("루틴시작")
+  const methods = useForm<RoutineInfoTypes>()
+
+  const addRoutineModal = useModal("루틴추가")
+  const startRoutineModal = useModal("루틴시작")
   const [selectedWorkoutId, setSelectedWorkoutId] = useState(-1)
 
-  const onOpen = routines?.length > 0 ? addRoutine : startRoutine
+  const onOpen =
+    routines?.length > 0 ? addRoutineModal.onOpen : startRoutineModal.onOpen
 
   const handleHomePage = () => {
     navigate("/")
   }
 
-  const handleWokroutId = (workoutId: number) => {
+  const handleWorkoutId = (workoutId: number) => {
     setSelectedWorkoutId(workoutId)
   }
 
@@ -76,7 +83,7 @@ const Result = () => {
           }) => (
             <Accordion
               key={workoutId}
-              handleWokroutId={handleWokroutId}
+              handleWorkoutId={handleWorkoutId}
               bodyParts={bodyPartKoreanName.toString()}
               onOpen={onOpen}
               workoutId={workoutId}>
@@ -97,6 +104,9 @@ const Result = () => {
         )}
       />
       <RoutineModal />
+      <FormProvider {...methods}>
+        <RoutineInfoModal selectedWorkoutId={selectedWorkoutId} />
+      </FormProvider>
     </S.ResultWrapper>
   )
 }

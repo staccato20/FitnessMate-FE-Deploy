@@ -15,7 +15,7 @@ const Header = ({ children }: StrictPropsWithChildren) => {
 
   return (
     <HeaderWrapper>
-      <HeaderTop $visible={visible}>
+      <HeaderTop $visible={!!visible}>
         <HeaderLeft>
           <Title variant="midB">
             {children}

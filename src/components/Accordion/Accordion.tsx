@@ -9,11 +9,11 @@ import { StrictPropsWithChildren } from "@typpes/type"
 import Content from "./Content"
 
 interface AccordionContextProps {
-  visible: boolean
-  toggle: () => void
+  visible?: boolean
+  toggle?: () => void
   bodyParts: string
   onOpen: () => void
-  handleWokroutId: (e: number) => void
+  handleWorkoutId: (e: number) => void
   workoutId: number
 }
 
@@ -22,7 +22,7 @@ const AccordionContext = createContext<AccordionContextProps>({
   toggle: () => {},
   bodyParts: "",
   onOpen: () => {},
-  handleWokroutId: () => {},
+  handleWorkoutId: () => {},
   workoutId: -1,
 })
 
@@ -40,10 +40,10 @@ const Accordion = ({
   children,
   bodyParts,
   onOpen,
-  handleWokroutId,
+  handleWorkoutId,
   workoutId,
 }: StrictPropsWithChildren<AccordionContextProps>) => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState<boolean>(false)
 
   const toggle = () => {
     setVisible((prev) => !prev)
@@ -56,7 +56,7 @@ const Accordion = ({
         toggle,
         bodyParts,
         onOpen,
-        handleWokroutId,
+        handleWorkoutId,
         workoutId,
       }}>
       <AccordianWrapper $visible={visible}>{children}</AccordianWrapper>

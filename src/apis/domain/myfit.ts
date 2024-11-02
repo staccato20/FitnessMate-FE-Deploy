@@ -5,6 +5,7 @@ import {
   MyWorkoutIndex,
   MyWorkoutList,
   MyfitList,
+  RoutineInfo,
 } from "../../types/type"
 
 const myFit = () => instance.get<MyfitList>("/api/myfit/userInfo")
@@ -40,6 +41,14 @@ const deleteMyWorkout = async (myWorkoutId: number) => {
     .then((res) => res.data)
 }
 
+const addRoutine = async (routineInfo: RoutineInfo, routineId: number) => {
+  const { data } = await instance.post(
+    `/api/myfit/routines/workout/${routineId}`,
+    routineInfo,
+  )
+  return data
+}
+
 const MyFitAPI = {
   myFit,
   myRoutines,
@@ -47,5 +56,6 @@ const MyFitAPI = {
   modifyMyWorkout,
   myWorkouts,
   deleteMyWorkout,
+  addRoutine,
 }
 export default MyFitAPI

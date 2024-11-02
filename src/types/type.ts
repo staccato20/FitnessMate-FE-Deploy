@@ -179,6 +179,7 @@ export interface MyRoutines {
   routineId: number
   routineIndex: number
   routineName: string
+  isAdded?: boolean
 }
 
 export interface MyWorkoutList {
@@ -195,14 +196,16 @@ export interface MyWorkoutList {
   bodyParts: string[]
   machines: string[]
 }
-export interface MyRoutines {
-  routineId: number
-  routineIndex: number
-  routineName: string
-}
 
 export interface MyWorkoutIndex {
   myWorkoutIndex: number
+  weight: string
+  rep: string
+  setCount: string
+}
+
+export interface RoutineInfo {
+  workoutId: number
   weight: string
   rep: string
   setCount: string
@@ -213,7 +216,7 @@ export interface RoutineNameTypes {
 }
 
 export interface RoutineInfoTypes {
-  weight: number
-  repeat: number
-  set: number
+  weight: string
+  repeat: string
+  set: string
 }

@@ -1,15 +1,15 @@
 import { useState } from "react"
 
-import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import Modal from "@components/Modal/Modal"
+import RoutineInfoModalButton from "@components/Modal/components/Routine/RoutineInfoModalButton"
 import "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
 import { Recommend } from "@typpes/type"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
-import { useGetMyWorkouts } from "@hooks/query/useGetMyWorkouts"
+import { useGetRoutineQueries } from "@hooks/query/useGetRoutineQueries"
 
 import { useModal } from "../../../../hooks/useModal"
 import * as S from "./StyledRoutineModal"
@@ -20,17 +20,18 @@ interface RoutineAddModalProps {
 
 const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
   const { isOpen, onClose } = useModal("루틴추가")
+  const { onOpen } = useModal("루틴정보")
 
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
   const { data: routines = [] } = useGetMyRoutines()
 
-  const filteredRoutines = routines.map((routine) => {
-    const { data: workouts } = useGetMyWorkouts(routine.routineId)
+  const { data: workouts } = useGetRoutineQueries(routines)
 
+  const filteredRoutines = [...routines].map((routine, index) => {
     if (
-      workouts?.some(
+      workouts[index]?.some(
         (workout) =>
-          machine && workout.workoutName.includes(machine.koreanName),
+          machine && workout?.workoutName.includes(machine.koreanName),
       )
     ) {
       return { ...routine, isAdded: true }
@@ -52,7 +53,6 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
   const handleToggleRoutine = (routineId: number) => {
     setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
   }
-  console.log(filteredRoutines)
 
   return (
     <Modal
@@ -87,7 +87,7 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
                 disabled={isAdded}>
                 <S.RoutineName
                   $isSelected={selectedRoutines.has(routineId)}
-                  $isAdded={isAdded}>
+                  $isAdded={!!isAdded}>
                   {routineName}
                 </S.RoutineName>
                 <S.RoutineState>
@@ -110,11 +110,10 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
         </S.ContentBigWrapper>
       </Modal.Content>
       <Modal.Footer>
-        <Button
-          variant="main"
-          size="full">
-          다음
-        </Button>
+        <RoutineInfoModalButton
+          onOpen={onOpen}
+          onClose={onClose}
+        />
       </Modal.Footer>
     </Modal>
   )

@@ -10,20 +10,38 @@ import Title from "@components/Title/Title"
 
 import { RoutineInfoTypes } from "@typpes/type"
 
+import { usePostAddRoutine } from "@hooks/mutation/usePostAddRoutine"
 import { useModal } from "@hooks/useModal"
 
 import * as S from "./StyledRoutineModal"
 
-const RoutineInfoModal = () => {
+interface RoutineInfoModalProps {
+  selectedWorkoutId: number
+}
+
+const RoutineInfoModal = ({ selectedWorkoutId }: RoutineInfoModalProps) => {
   const { isOpen, onClose } = useModal("루틴정보")
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
+  const { mutate, isSuccess } = usePostAddRoutine()
 
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({
     weight,
     repeat,
     set,
   }) => {
-    console.log(weight, repeat, set)
+    mutate({
+      routineId: 1,
+      routineInfo: {
+        workoutId: selectedWorkoutId,
+        weight,
+        rep: repeat,
+        setCount: set,
+      },
+    })
+  }
+
+  if (isSuccess) {
+    onClose()
   }
 
   const handleFormAdapter = () => {
