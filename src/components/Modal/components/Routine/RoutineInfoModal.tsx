@@ -1,4 +1,7 @@
+import { useEffect } from "react"
 import { SubmitHandler, useFormContext } from "react-hook-form"
+
+import { useModalStore } from "@store/useModalStore"
 
 import Button from "@components/Button/Button"
 import Modal from "@components/Modal/Modal"
@@ -22,31 +25,39 @@ interface RoutineInfoModalProps {
 const RoutineInfoModal = ({ selectedWorkoutId }: RoutineInfoModalProps) => {
   const { isOpen, onClose } = useModal("루틴정보")
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
-  const { mutate, isSuccess } = usePostAddRoutine()
+  const { mutate, isSuccess, reset: resetMutation } = usePostAddRoutine()
+  const { routineState, resetRoutineState } = useModalStore()
 
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({
     weight,
     repeat,
     set,
   }) => {
-    mutate({
-      routineId: 1,
-      routineInfo: {
-        workoutId: selectedWorkoutId,
-        weight,
-        rep: repeat,
-        setCount: set,
-      },
+    routineState.forEach((routineId) => {
+      mutate({
+        routineId,
+        routineInfo: {
+          workoutId: selectedWorkoutId,
+          weight,
+          rep: repeat,
+          setCount: set,
+        },
+      })
     })
-  }
-
-  if (isSuccess) {
-    onClose()
+    resetRoutineState()
+    reset()
   }
 
   const handleFormAdapter = () => {
     handleSubmit(handleRoutine)()
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose()
+      resetMutation()
+    }
+  }, [isSuccess, onClose])
 
   return (
     <Modal

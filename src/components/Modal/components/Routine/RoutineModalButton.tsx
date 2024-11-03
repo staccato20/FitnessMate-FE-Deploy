@@ -5,7 +5,7 @@ interface RecommendModalButtonProps {
   onOpen: () => void
 }
 const RecommendModalButton = ({ onOpen }: RecommendModalButtonProps) => {
-  const { handleWokroutId, workoutId } = useAccordion()
+  const { handleWorkoutId, workoutId } = useAccordion()
 
   return (
     <RoundButton
@@ -14,7 +14,7 @@ const RecommendModalButton = ({ onOpen }: RecommendModalButtonProps) => {
       size="small"
       onClick={() => {
         onOpen()
-        handleWokroutId(workoutId)
+        handleWorkoutId(workoutId)
       }}>
       운동 루틴
     </RoundButton>

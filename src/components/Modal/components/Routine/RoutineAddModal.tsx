@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { useModalStore } from "@store/useModalStore"
+
 import Icon from "@components/Icon/Icon"
 import Modal from "@components/Modal/Modal"
 import RoutineInfoModalButton from "@components/Modal/components/Routine/RoutineInfoModalButton"
@@ -23,6 +25,7 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
   const { onOpen } = useModal("루틴정보")
 
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
+  const { setRoutineState } = useModalStore()
   const { data: routines = [] } = useGetMyRoutines()
 
   const { data: workouts } = useGetRoutineQueries(routines)
@@ -52,6 +55,11 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
 
   const handleToggleRoutine = (routineId: number) => {
     setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
+  }
+
+  const saveRoutineState = () => {
+    setRoutineState([...selectedRoutines])
+    setSelectedRoutines(new Set())
   }
 
   return (
@@ -113,6 +121,7 @@ const RoutineAddModal = ({ machine }: RoutineAddModalProps) => {
         <RoutineInfoModalButton
           onOpen={onOpen}
           onClose={onClose}
+          saveRoutineState={saveRoutineState}
         />
       </Modal.Footer>
     </Modal>

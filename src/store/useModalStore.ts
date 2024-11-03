@@ -3,6 +3,9 @@ import { create } from "zustand"
 export interface ModalStoreProps {
   modalState: Record<string, boolean>
   setModalState: (newState: Record<string, boolean>) => void
+  routineState: number[]
+  setRoutineState: (newState: number[]) => void
+  resetRoutineState: () => void
 }
 
 export const useModalStore = create<ModalStoreProps>((set) => ({
@@ -22,5 +25,14 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
         ...state.modalState,
         ...newState,
       },
+    })),
+  routineState: [],
+  setRoutineState: (newState) =>
+    set(() => ({
+      routineState: newState,
+    })),
+  resetRoutineState: () =>
+    set(() => ({
+      routineState: [],
     })),
 }))
