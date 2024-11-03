@@ -18,15 +18,11 @@ import { useModal } from "@hooks/useModal"
 
 import * as S from "./StyledRoutineModal"
 
-interface RoutineInfoModalProps {
-  selectedWorkoutId: number
-}
-
-const RoutineInfoModal = ({ selectedWorkoutId }: RoutineInfoModalProps) => {
+const RoutineInfoModal = () => {
   const { isOpen, onClose } = useModal("루틴정보")
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
   const { mutate, isSuccess, reset: resetMutation } = usePostAddRoutine()
-  const { routineState, resetRoutineState } = useModalStore()
+  const { routineState, resetRoutineState, workoutState } = useModalStore()
 
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({
     weight,
@@ -37,10 +33,11 @@ const RoutineInfoModal = ({ selectedWorkoutId }: RoutineInfoModalProps) => {
       mutate({
         routineId,
         routineInfo: {
-          workoutId: selectedWorkoutId,
+          workoutIds: [workoutState.workoutId],
           weight,
           rep: repeat,
           setCount: set,
+          caution: workoutState.caution,
         },
       })
     })

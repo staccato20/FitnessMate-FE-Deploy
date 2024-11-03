@@ -1,3 +1,5 @@
+import { useCallback } from "react"
+
 import { useQueries } from "@tanstack/react-query"
 
 import MyFitAPI from "@apis/domain/myfit"
@@ -11,9 +13,14 @@ export const useGetRoutineQueries = (routines: MyRoutines[]) => {
       queryFn: () => MyFitAPI.myWorkouts(routineId),
     })),
     combine: (results) => {
+      const refetchAll = useCallback(() => {
+        results.forEach((result) => result.refetch())
+      }, [results])
+
       return {
         data: results.map((result) => result.data),
         pending: results.some((result) => result.isPending),
+        refetchAll,
       }
     },
   })

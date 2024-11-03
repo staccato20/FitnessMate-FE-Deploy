@@ -12,6 +12,7 @@ const ROUTINE_START = {
 
 const RoutineModal = () => {
   const { isOpen, onClose } = useModal("루틴시작")
+
   return (
     <Modal
       isOpen={isOpen}

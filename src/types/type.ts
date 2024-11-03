@@ -195,6 +195,7 @@ export interface MyWorkoutList {
   atcetera: null
   bodyParts: string[]
   machines: string[]
+  caution: null
 }
 
 export interface MyWorkoutIndex {
@@ -205,10 +206,11 @@ export interface MyWorkoutIndex {
 }
 
 export interface RoutineInfo {
-  workoutId: number
+  workoutIds: number[]
   weight: string
   rep: string
   setCount: string
+  caution: null
 }
 
 export interface RoutineNameTypes {

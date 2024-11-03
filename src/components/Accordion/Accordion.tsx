@@ -4,7 +4,7 @@ import Header from "@components/Accordion/Header"
 import { AccordianWrapper } from "@components/Accordion/StyledAccordion"
 import Trigger from "@components/Accordion/Trigger"
 
-import { StrictPropsWithChildren } from "@typpes/type"
+import { Recommend, StrictPropsWithChildren } from "@typpes/type"
 
 import Content from "./Content"
 
@@ -13,8 +13,7 @@ interface AccordionContextProps {
   toggle?: () => void
   bodyParts: string
   onOpen: () => void
-  handleWorkoutId: (e: number) => void
-  workoutId: number
+  workout: Recommend
 }
 
 const AccordionContext = createContext<AccordionContextProps>({
@@ -22,8 +21,20 @@ const AccordionContext = createContext<AccordionContextProps>({
   toggle: () => {},
   bodyParts: "",
   onOpen: () => {},
-  handleWorkoutId: () => {},
-  workoutId: -1,
+  workout: {
+    koreanName: "",
+    videoLink: "",
+    description: "",
+    bodyPartKoreanName: [""],
+    weight: "0",
+    repeat: "0",
+    workoutId: 0,
+    set: "0",
+    englishName: "",
+    atcetera: null,
+    imgPath: "",
+    machineName: "",
+  },
 })
 
 export const useAccordion = () => {
@@ -40,8 +51,7 @@ const Accordion = ({
   children,
   bodyParts,
   onOpen,
-  handleWorkoutId,
-  workoutId,
+  workout,
 }: StrictPropsWithChildren<AccordionContextProps>) => {
   const [visible, setVisible] = useState<boolean>(false)
 
@@ -56,8 +66,7 @@ const Accordion = ({
         toggle,
         bodyParts,
         onOpen,
-        handleWorkoutId,
-        workoutId,
+        workout,
       }}>
       <AccordianWrapper $visible={visible}>{children}</AccordianWrapper>
     </AccordionContext.Provider>

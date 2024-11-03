@@ -1,11 +1,29 @@
 import { create } from "zustand"
 
+import { Recommend } from "@typpes/type"
+
 export interface ModalStoreProps {
   modalState: Record<string, boolean>
   setModalState: (newState: Record<string, boolean>) => void
   routineState: number[]
   setRoutineState: (newState: number[]) => void
   resetRoutineState: () => void
+  workoutState: {
+    koreanName: ""
+    videoLink: ""
+    description: ""
+    bodyPartKoreanName: [""]
+    weight: "0"
+    repeat: "0"
+    workoutId: 0
+    set: "0"
+    englishName: ""
+    atcetera: null
+    imgPath: ""
+    machineName: ""
+    caution: null
+  }
+  setWorkoutState: (newState: Recommend) => void
 }
 
 export const useModalStore = create<ModalStoreProps>((set) => ({
@@ -34,5 +52,10 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
   resetRoutineState: () =>
     set(() => ({
       routineState: [],
+    })),
+  workoutState: {},
+  setWorkoutState: (newState) =>
+    set(() => ({
+      workoutState: newState,
     })),
 }))
