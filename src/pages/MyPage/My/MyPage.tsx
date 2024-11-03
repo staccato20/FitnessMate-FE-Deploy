@@ -1,5 +1,5 @@
 // 내 운동 페이지
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 // Drag & Drop
 import {
@@ -9,8 +9,6 @@ import {
   DropResult,
   Droppable,
 } from "@hello-pangea/dnd"
-import { flatMap } from "async"
-import { machine } from "os"
 
 // user bodydata
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
@@ -47,16 +45,13 @@ const MyPage = () => {
   const userName = userInfo ? userInfo.userName : undefined
 
   // 유저 body data
-  const { bodyDatas = [] } = useGetFetchRecentData()
-  // 얘네는 body data 안에서 불러와야 해?
-  const [muscleMass, setMuscleMass] = useState<number | null>(null)
-  const [bodyFat, setBodyFat] = useState<number | null>(null)
+  const { bodyDatas } = useGetFetchRecentData()
+  const [bodyFigure, setBodyFigure] = useState<string | null>()
 
   // 루틴 목록
   const { myRoutines } = useGetMyRoutines()
   // 루틴 목록 여부 확인
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
-
   // 선택된 루틴
   const [btnActive, setBtnActive] = useState<number>(0)
 
@@ -77,9 +72,9 @@ const MyPage = () => {
   const fetchData = async () => {
     try {
       if (isRoutine) {
-        console.log("루틴 목록:", myRoutines)
         setSelectedRoutineId(myRoutines[0].routineId) // 루틴 ID 설정
         setBtnActive(myRoutines[0].routineIndex)
+        setBodyFigure(bodyDatas?.bodyFigure)
       } else {
       }
     } catch (error) {
@@ -111,9 +106,6 @@ const MyPage = () => {
       fetchWorkouts(selectedRoutineId) // 루틴 ID가 있을 때만 호출
     }
   }, [selectedRoutineId, isWorkoutFix])
-
-  // 운동 설명 비디오
-  const [videoLink, setVideoLink] = useState<string | null>(null)
 
   // 루틴 수정하기
 
@@ -283,7 +275,7 @@ const MyPage = () => {
                   <p className="myName">{userName}</p>
                   <div className="myWorkout">
                     <span className="myWorkoutInformation">
-                      골격근량: {muscleMass}, 체지방량: {bodyFat}
+                      체형: {bodyFigure}
                     </span>
                     <div className="line"></div>
                     <span className="myWorkoutInformation">분할 루틴중</span>
@@ -370,7 +362,7 @@ const MyPage = () => {
           </S.MypageTopContainer>
           <S.MypageMiddleContainer>
             <div className="workoutNumList">
-              {myWorkouts?.map((index) => (
+              {myWorkouts?.map((workout, index) => (
                 <div
                   className={`workoutNum ${index === myWorkouts?.length - 1 ? "last-item" : ""}`}
                   key={index}>

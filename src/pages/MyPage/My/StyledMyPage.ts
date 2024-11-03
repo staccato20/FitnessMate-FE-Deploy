@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
-import theme, { fonts } from "@styles/theme"
+import theme from "@styles/theme"
 
 export const MypageBackground = styled.div`
   width: 100vw;
@@ -404,9 +404,7 @@ export const RecommendMainTopWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid
-    ${({ isOpenArray, theme }) =>
-      isOpenArray ? theme.Netural300 : theme.Netural200};
+  border-bottom: 1px solid theme.Netural200};
 `
 
 export const RecommendMainTopLeftWrapper = styled.div`
@@ -541,8 +539,8 @@ export const RecommendMainBtn = styled.button`
 export const RecommendMainMiddleWrapper = styled.div`
   width: 100%;
   // 대충 최대치 넣고 그 안에서는 열릴거니까. 높이값을 지정해주지 않으면 transition이 안 먹거든.
-  max-height: ${({ isOpenArray }) => (isOpenArray ? "1000px" : 0)};
-  opacity: ${({ isOpenArray }) => (isOpenArray ? 1 : 0)};
+  max-height: 0;
+  opacity: 0;
   transition:
     max-height 0.2s ease-out,
     opacity 0.5s ease-out;
@@ -614,8 +612,7 @@ export const RecommendMoreButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 0px 0px 18px 18px;
-  border-top: 1px solid
-    ${({ isOpenArray, theme }) => (isOpenArray ? theme.Netural300 : `none`)};
+  border-top: 1px solid none;
   // 글씨 바뀌는 딜레이
 
   .informationText {
@@ -624,6 +621,6 @@ export const RecommendMoreButton = styled.button`
     font-weight: 500;
     line-height: 140%;
     letter-spacing: -0.28px;
-    transition-delay: ${({ isOpenArray }) => (isOpenArray ? "0.5s" : "0.5s")};
+    transition-delay: 0.5s;
   }
 `
