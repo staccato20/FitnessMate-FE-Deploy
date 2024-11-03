@@ -52,6 +52,8 @@ const MyPage = () => {
   const { myRoutines } = useGetMyRoutines()
   // 루틴 목록 여부 확인
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
+  // 루틴 분할 길이
+  const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
   // 선택된 루틴
   const [btnActive, setBtnActive] = useState<number>(0)
 
@@ -75,6 +77,7 @@ const MyPage = () => {
         setSelectedRoutineId(myRoutines[0].routineId) // 루틴 ID 설정
         setBtnActive(myRoutines[0].routineIndex)
         setBodyFigure(bodyDatas?.bodyFigure)
+        setMyRoutineLength(myRoutines.length)
       } else {
       }
     } catch (error) {
@@ -277,8 +280,10 @@ const MyPage = () => {
                     <span className="myWorkoutInformation">
                       체형: {bodyFigure}
                     </span>
-                    <div className="line"></div>
-                    <span className="myWorkoutInformation">분할 루틴중</span>
+                    •
+                    <span className="myWorkoutInformation">
+                      분할: {myRoutineLength}분할
+                    </span>
                   </div>
                 </div>
               </div>
