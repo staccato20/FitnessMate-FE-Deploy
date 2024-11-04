@@ -10,6 +10,8 @@ import Title from "@components/Title/Title"
 
 import { RoutineNameTypes } from "@typpes/type"
 
+import { usePostMakeRoutine } from "@hooks/mutation/usePostMakeRoutine"
+import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
 
 import * as S from "./StyledRoutineModal"
@@ -19,11 +21,18 @@ const RoutineMakeModal = () => {
   const { register, watch, handleSubmit, formState } =
     useFormContext<RoutineNameTypes>()
   const inputValue = watch("routineName", "")
+  const { data: routines = [] } = useGetMyRoutines()
+  const { mutate } = usePostMakeRoutine()
 
   const handleRoutineName: SubmitHandler<RoutineNameTypes> = ({
     routineName,
   }) => {
-    console.log(routineName)
+    mutate({
+      routines: [
+        ...routines,
+        { routineId: -1, routineIndex: routines.length + 1, routineName },
+      ],
+    })
   }
 
   const handleFormAdapter = () => {

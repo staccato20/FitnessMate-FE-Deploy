@@ -8,10 +8,11 @@ import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
 import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
 import RoutineInfoModal from "@components/Modal/components/Routine/RoutineInfoModal"
+import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 import Title from "@components/Title/Title"
 
-import { RoutineInfoTypes } from "@typpes/type"
+import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
@@ -27,12 +28,13 @@ const Result = () => {
   const { data: routines = [] } = useGetMyRoutines()
 
   const methods = useForm<RoutineInfoTypes>()
+  const methods2 = useForm<RoutineNameTypes>()
 
   const addRoutineModal = useModal("루틴추가")
   const startRoutineModal = useModal("루틴시작")
 
   const onOpen =
-    routines?.length > 0 ? addRoutineModal.onOpen : startRoutineModal.onOpen
+    routines?.length > 0 ? startRoutineModal.onOpen : addRoutineModal.onOpen
 
   const handleHomePage = () => {
     navigate("/")
@@ -97,6 +99,9 @@ const Result = () => {
       <RoutineModal />
       <FormProvider {...methods}>
         <RoutineInfoModal />
+      </FormProvider>
+      <FormProvider {...methods2}>
+        <RoutineMakeModal />
       </FormProvider>
     </S.ResultWrapper>
   )

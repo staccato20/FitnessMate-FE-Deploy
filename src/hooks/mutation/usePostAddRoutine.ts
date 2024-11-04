@@ -15,7 +15,7 @@ export const usePostAddRoutine = () => {
   return useMutation({
     mutationKey: ["usePostAddRoutine"],
     mutationFn: async ({ routineId, routineInfo }: usePostAddRoutineProps) =>
-      MyFitAPI.addRoutine(routineInfo, routineId),
+      await MyFitAPI.addRoutine(routineInfo, routineId),
     onError: () => {
       console.log("에러")
     },

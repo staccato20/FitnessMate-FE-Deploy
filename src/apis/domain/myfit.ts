@@ -15,8 +15,8 @@ const myRoutines = () =>
     .get<MyRoutines[]>("/api/myfit/routines/workout")
     .then((res) => res.data)
 
-const modifyMyRoutine = async (params: MyRoutines) => {
-  const { data } = await instance.post(`/api/myfit/routines/workout/`, params)
+const modifyMyRoutine = async (params: { routines: MyRoutines[] }) => {
+  const { data } = await instance.post(`/api/myfit/routines/workout`, params)
   return data
 }
 
