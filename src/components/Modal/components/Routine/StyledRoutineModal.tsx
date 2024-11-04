@@ -122,7 +122,6 @@ export const MachineButton = styled.button`
 `
 
 export const ContentBigWrapper = styled.div`
-  max-height: 336px;
   height: 100%;
   width: 100%;
   padding-bottom: 24px;
@@ -145,20 +144,6 @@ export const RoutineList = styled.div`
   gap: 12px;
   width: 100%;
   overflow: auto;
-  max-height: 250px;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
 `
 
 export const RoutineItem = styled.button<{ $isSelected: boolean }>`

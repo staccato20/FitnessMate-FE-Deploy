@@ -19,7 +19,7 @@ const RoutineAddModal = () => {
   const { isOpen, onClose } = useModal("루틴추가")
   const { onOpen } = useModal("루틴정보")
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
-  const { setRoutineState, workoutState, routineState } = useModalStore()
+  const { setRoutineState, workoutState } = useModalStore()
   const { data: routines = [] } = useGetMyRoutines()
   const { data: workouts, refetchAll } = useGetRoutineQueries(routines)
 
@@ -67,7 +67,7 @@ const RoutineAddModal = () => {
           <Title.SubBottomTitle>여러 개 선택할 수 있어요</Title.SubBottomTitle>
         </Title>
       </Modal.Title>
-      <Modal.Content>
+      <Modal.Content isFull>
         <S.ContentBigWrapper>
           <RoutineAddModalButton onClose={onClose} />
           <S.RoutineList>
