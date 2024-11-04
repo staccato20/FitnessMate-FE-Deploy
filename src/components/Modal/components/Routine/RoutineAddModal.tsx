@@ -18,12 +18,9 @@ import * as S from "./StyledRoutineModal"
 const RoutineAddModal = () => {
   const { isOpen, onClose } = useModal("루틴추가")
   const { onOpen } = useModal("루틴정보")
-
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
-  const { setRoutineState, workoutState } = useModalStore()
-
+  const { setRoutineState, workoutState, routineState } = useModalStore()
   const { data: routines = [] } = useGetMyRoutines()
-
   const { data: workouts, refetchAll } = useGetRoutineQueries(routines)
 
   const filteredRoutines = [...routines].map((routine, index) =>
@@ -108,6 +105,7 @@ const RoutineAddModal = () => {
       </Modal.Content>
       <Modal.Footer>
         <RoutineInfoModalButton
+          isDisabled={!selectedRoutines.size}
           onOpen={onOpen}
           onClose={onClose}
           saveRoutineState={saveRoutineState}

@@ -4,17 +4,20 @@ interface RoutineInfoModalButtonProps {
   onOpen: () => void
   onClose: () => void
   saveRoutineState: () => void
+  isDisabled: boolean
 }
 
 const RoutineInfoModalButton = ({
   onOpen,
   onClose,
   saveRoutineState,
+  isDisabled,
 }: RoutineInfoModalButtonProps) => {
   return (
     <Button
       variant="main"
       size="full"
+      disabled={isDisabled}
       onClick={() => {
         onOpen()
         onClose()
