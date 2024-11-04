@@ -8,21 +8,7 @@ export interface ModalStoreProps {
   routineState: number[]
   setRoutineState: (newState: number[]) => void
   resetRoutineState: () => void
-  workoutState: {
-    koreanName: ""
-    videoLink: ""
-    description: ""
-    bodyPartKoreanName: [""]
-    weight: "0"
-    repeat: "0"
-    workoutId: 0
-    set: "0"
-    englishName: ""
-    atcetera: null
-    imgPath: ""
-    machineName: ""
-    caution: null
-  }
+  workoutState: Recommend
   setWorkoutState: (newState: Recommend) => void
 }
 
@@ -36,6 +22,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     루틴생성: false,
     루틴정보: false,
     루틴추가: false,
+    루틴중복: false,
   },
   setModalState: (newState) =>
     set((state) => ({
@@ -53,7 +40,21 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     set(() => ({
       routineState: [],
     })),
-  workoutState: {},
+  workoutState: {
+    koreanName: "",
+    videoLink: "",
+    description: "",
+    bodyPartKoreanName: [""],
+    weight: "0",
+    repeat: "0",
+    workoutId: 0,
+    set: "0",
+    englishName: "",
+    atcetera: null,
+    imgPath: "",
+    machineName: "",
+    caution: null,
+  },
   setWorkoutState: (newState) =>
     set(() => ({
       workoutState: newState,

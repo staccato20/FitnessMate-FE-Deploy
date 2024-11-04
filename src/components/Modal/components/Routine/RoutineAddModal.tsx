@@ -4,6 +4,7 @@ import { useModalStore } from "@store/useModalStore"
 
 import Icon from "@components/Icon/Icon"
 import Modal from "@components/Modal/Modal"
+import RoutineAddModalButton from "@components/Modal/components/Routine/RoutineAddModalButton"
 import RoutineInfoModalButton from "@components/Modal/components/Routine/RoutineInfoModalButton"
 import "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
@@ -71,13 +72,7 @@ const RoutineAddModal = () => {
       </Modal.Title>
       <Modal.Content>
         <S.ContentBigWrapper>
-          <S.AddRoutineButton>
-            <Icon
-              icon="AddRoundGray"
-              size={32}
-            />
-            추가하기
-          </S.AddRoutineButton>
+          <RoutineAddModalButton onClose={onClose} />
           <S.RoutineList>
             {filteredRoutines?.map(({ routineId, routineName, isAdded }) => (
               <S.RoutineItem

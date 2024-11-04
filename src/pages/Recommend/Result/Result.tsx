@@ -34,7 +34,7 @@ const Result = () => {
   const startRoutineModal = useModal("루틴시작")
 
   const onOpen =
-    routines?.length > 0 ? startRoutineModal.onOpen : addRoutineModal.onOpen
+    routines?.length > 0 ? addRoutineModal.onOpen : startRoutineModal.onOpen
 
   const handleHomePage = () => {
     navigate("/")

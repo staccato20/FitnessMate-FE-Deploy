@@ -18,6 +18,7 @@ import * as S from "./StyledRoutineModal"
 
 const RoutineMakeModal = () => {
   const { isOpen, onClose } = useModal("루틴생성")
+  const { onOpen: openAddRoutine } = useModal("루틴추가")
   const { register, watch, handleSubmit, formState } =
     useFormContext<RoutineNameTypes>()
   const inputValue = watch("routineName", "")
@@ -37,6 +38,8 @@ const RoutineMakeModal = () => {
 
   const handleFormAdapter = () => {
     handleSubmit(handleRoutineName)()
+    onClose()
+    openAddRoutine()
   }
 
   return (
