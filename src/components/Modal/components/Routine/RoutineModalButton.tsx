@@ -3,9 +3,12 @@ import { useModalStore } from "@store/useModalStore"
 import { useAccordion } from "@components/Accordion/Accordion"
 import RoundButton from "@components/Button/RoundButton"
 
+import { Recommend } from "@typpes/type"
+
 interface RecommendModalButtonProps {
   onOpen: () => void
 }
+
 const RecommendModalButton = ({ onOpen }: RecommendModalButtonProps) => {
   const { workout } = useAccordion()
   const { setWorkoutState } = useModalStore()
@@ -17,7 +20,7 @@ const RecommendModalButton = ({ onOpen }: RecommendModalButtonProps) => {
       size="small"
       onClick={() => {
         onOpen()
-        setWorkoutState(workout)
+        setWorkoutState(workout as Recommend)
       }}>
       운동 루틴
     </RoundButton>

@@ -4,7 +4,7 @@ import Header from "@components/Accordion/Header"
 import { AccordianWrapper } from "@components/Accordion/StyledAccordion"
 import Trigger from "@components/Accordion/Trigger"
 
-import { Recommend, StrictPropsWithChildren } from "@typpes/type"
+import { Recommend, StrictPropsWithChildren, Workout } from "@typpes/type"
 
 import Content from "./Content"
 
@@ -13,7 +13,7 @@ interface AccordionContextProps {
   toggle?: () => void
   bodyParts: string
   onOpen: () => void
-  workout: Recommend
+  workout: Workout | Recommend
 }
 
 const AccordionContext = createContext<AccordionContextProps>({
@@ -22,18 +22,16 @@ const AccordionContext = createContext<AccordionContextProps>({
   bodyParts: "",
   onOpen: () => {},
   workout: {
+    id: -1,
+    englishName: "",
     koreanName: "",
+    imgPath: "",
     videoLink: "",
     description: "",
-    bodyPartKoreanName: [""],
-    weight: "0",
-    repeat: "0",
-    workoutId: 0,
-    set: "0",
-    englishName: "",
     atcetera: null,
-    imgPath: "",
-    machineName: "",
+    bodyPartKoreanName: [""],
+    machineKoreanName: [""],
+    createdAt: "",
   },
 })
 
