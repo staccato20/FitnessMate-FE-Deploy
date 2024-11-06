@@ -3,11 +3,11 @@ import { PropsWithChildren } from "react"
 import styled from "styled-components"
 
 interface ModalContentProps {
-  isFull: boolean
+  isFull?: boolean
 }
 const ModalContent = ({
   children,
-  isFull,
+  isFull = false,
 }: PropsWithChildren<ModalContentProps>) => {
   return <ModalContentWrapper $isFull={isFull}>{children}</ModalContentWrapper>
 }

@@ -16,9 +16,14 @@ import { useModal } from "@hooks/useModal"
 import * as S from "./StyledRoutineModal"
 
 const RoutineAddModal = () => {
-  const { isOpen, onClose } = useModal("루틴추가")
-  const { onOpen } = useModal("루틴정보")
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
+
+  const { isOpen, onClose } = useModal("루틴추가", {
+    beforeClose: () => {
+      setSelectedRoutines(new Set())
+    },
+  })
+  const { onOpen } = useModal("루틴정보")
   const { setRoutineState, workoutState } = useModalStore()
   const { data: routines = [] } = useGetMyRoutines()
   const { data: workouts, refetchAll } = useGetRoutineQueries(routines)

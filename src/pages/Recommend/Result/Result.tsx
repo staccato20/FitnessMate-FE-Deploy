@@ -6,6 +6,7 @@ import { useRecommendStore } from "@store/store"
 import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
+import RoutineDuplicateModal from "@components/Modal/components/Alert/RoutineDuplicateModal"
 import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
 import RoutineInfoModal from "@components/Modal/components/Routine/RoutineInfoModal"
 import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
@@ -103,6 +104,7 @@ const Result = () => {
       <FormProvider {...methods2}>
         <RoutineMakeModal />
       </FormProvider>
+      <RoutineDuplicateModal />
     </S.ResultWrapper>
   )
 }

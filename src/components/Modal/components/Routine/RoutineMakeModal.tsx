@@ -19,21 +19,28 @@ import * as S from "./StyledRoutineModal"
 const RoutineMakeModal = () => {
   const { isOpen, onClose } = useModal("루틴생성")
   const { onOpen: openAddRoutine } = useModal("루틴추가")
+  const { onOpen: openAlert } = useModal("루틴중복")
   const { register, watch, handleSubmit, formState } =
     useFormContext<RoutineNameTypes>()
-  const inputValue = watch("routineName", "")
   const { data: routines = [] } = useGetMyRoutines()
   const { mutate } = usePostMakeRoutine()
+
+  const inputValue = watch("routineName", "")
+  const isFullRoutine = routines.length >= 5
 
   const handleRoutineName: SubmitHandler<RoutineNameTypes> = ({
     routineName,
   }) => {
-    mutate({
-      routines: [
-        ...routines,
-        { routineId: -1, routineIndex: routines.length + 1, routineName },
-      ],
-    })
+    if (isFullRoutine) {
+      openAlert()
+    } else {
+      mutate({
+        routines: [
+          ...routines,
+          { routineId: -1, routineIndex: routines.length + 1, routineName },
+        ],
+      })
+    }
   }
 
   const handleFormAdapter = () => {
