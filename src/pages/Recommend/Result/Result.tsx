@@ -1,3 +1,4 @@
+import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useRecommendStore } from "@store/store"
@@ -5,9 +6,14 @@ import { useRecommendStore } from "@store/store"
 import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
 import Icon from "@components/Icon/Icon"
+import RoutineDuplicateModal from "@components/Modal/components/Alert/RoutineDuplicateModal"
 import RoutineAddModal from "@components/Modal/components/Routine/RoutineAddModal"
+import RoutineInfoModal from "@components/Modal/components/Routine/RoutineInfoModal"
+import RoutineMakeModal from "@components/Modal/components/Routine/RoutineMakeModal"
 import RoutineModal from "@components/Modal/components/Routine/RoutineModal"
 import Title from "@components/Title/Title"
+
+import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
@@ -22,10 +28,14 @@ const Result = () => {
   const { userInfo } = useUserInfo()
   const { data: routines = [] } = useGetMyRoutines()
 
-  const { onOpen: addRoutine } = useModal("루틴추가")
-  const { onOpen: startRoutine } = useModal("루틴시작")
+  const methods = useForm<RoutineInfoTypes>()
+  const methods2 = useForm<RoutineNameTypes>()
 
-  const onOpen = routines?.length > 0 ? addRoutine : startRoutine
+  const addRoutineModal = useModal("루틴추가")
+  const startRoutineModal = useModal("루틴시작")
+
+  const onOpen =
+    routines?.length > 0 ? addRoutineModal.onOpen : startRoutineModal.onOpen
 
   const handleHomePage = () => {
     navigate("/")
@@ -57,23 +67,24 @@ const Result = () => {
       </S.TitleWrapper>
 
       <S.ResultList>
-        {result.recommends.map(
-          ({
-            koreanName,
-            videoLink,
-            description,
-            bodyPartKoreanName,
-            weight,
-            repeat,
+        {result.recommends.map((workout) => {
+          const {
             workoutId,
+            koreanName,
+            description,
+            weight,
             set,
-          }) => (
-            <Accordion key={workoutId}>
-              <Accordion.Header
-                bodyParts={bodyPartKoreanName.toString()}
-                onOpen={onOpen}>
-                {koreanName}
-              </Accordion.Header>
+            repeat,
+            bodyPartKoreanName,
+            videoLink,
+          } = workout
+          return (
+            <Accordion
+              key={workoutId}
+              bodyParts={bodyPartKoreanName.toString()}
+              onOpen={onOpen}
+              workout={workout}>
+              <Accordion.Header>{koreanName}</Accordion.Header>
               <Accordion.Content
                 videoId={videoLink.split("=")[1]}
                 recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
@@ -81,11 +92,19 @@ const Result = () => {
               </Accordion.Content>
               <Accordion.Trigger />
             </Accordion>
-          ),
-        )}
+          )
+        })}
       </S.ResultList>
+
       <RoutineAddModal />
       <RoutineModal />
+      <FormProvider {...methods}>
+        <RoutineInfoModal />
+      </FormProvider>
+      <FormProvider {...methods2}>
+        <RoutineMakeModal />
+      </FormProvider>
+      <RoutineDuplicateModal />
     </S.ResultWrapper>
   )
 }

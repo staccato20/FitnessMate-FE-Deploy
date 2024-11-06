@@ -14,6 +14,7 @@ interface ModalMainProps {
   isCloseButton?: boolean
   isOpen: boolean
   onClose: () => void
+  disableInteraction?: boolean
 }
 
 const ModalMain = ({
@@ -21,9 +22,10 @@ const ModalMain = ({
   isCloseButton = false,
   isOpen,
   onClose,
+  disableInteraction = false,
 }: PropsWithChildren<ModalMainProps>) => {
   const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
+    if (e.target === e.currentTarget && !disableInteraction) {
       onClose()
     }
   }

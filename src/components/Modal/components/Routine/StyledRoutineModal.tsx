@@ -122,7 +122,6 @@ export const MachineButton = styled.button`
 `
 
 export const ContentBigWrapper = styled.div`
-  max-height: 336px;
   height: 100%;
   width: 100%;
   padding-bottom: 24px;
@@ -145,20 +144,6 @@ export const RoutineList = styled.div`
   gap: 12px;
   width: 100%;
   overflow: auto;
-  max-height: 250px;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
 `
 
 export const RoutineItem = styled.button<{ $isSelected: boolean }>`
@@ -170,11 +155,18 @@ export const RoutineItem = styled.button<{ $isSelected: boolean }>`
   border-radius: 12px;
   background: ${({ $isSelected }) =>
     $isSelected ? theme.Netural150 : theme.Netural0};
+  &:disabled {
+    cursor: default;
+  }
 `
 
-export const RoutineName = styled.span<{ $isSelected: boolean }>`
+export const RoutineName = styled.span<{
+  $isSelected: boolean
+  $isAdded: boolean
+}>`
   color: ${({ $isSelected }) =>
     $isSelected ? theme.Brand600 : theme.Netural800};
+  color: ${({ $isAdded }) => ($isAdded ? theme.Netural500 : theme.Netural800)};
   ${fonts.b2};
 `
 

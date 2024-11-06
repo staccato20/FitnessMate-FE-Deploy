@@ -19,7 +19,8 @@ const DeleteModal = ({ bodyPart }: DeleteModalProps) => {
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           '{bodyPart} 운동..' 루틴을 정말 삭제하시겠어요?

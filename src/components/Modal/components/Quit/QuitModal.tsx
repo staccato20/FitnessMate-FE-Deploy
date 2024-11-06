@@ -10,7 +10,8 @@ const QuitModal = () => {
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           페이지를 나가시겠어요?

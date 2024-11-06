@@ -12,11 +12,14 @@ const ROUTINE_START = {
 
 const RoutineModal = () => {
   const { isOpen, onClose } = useModal("루틴시작")
+  const { onOpen: makeRoutine } = useModal("루틴생성")
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      isCloseButton>
+      isCloseButton
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           {ROUTINE_START.EMPTY_TITLE[0]}
@@ -33,7 +36,11 @@ const RoutineModal = () => {
       <Modal.Footer>
         <Button
           variant="main"
-          size="full">
+          size="full"
+          onClick={() => {
+            onClose()
+            makeRoutine()
+          }}>
           루틴 생성하기
         </Button>
       </Modal.Footer>
