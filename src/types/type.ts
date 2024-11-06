@@ -119,6 +119,7 @@ export interface Recommend {
   weight: string
   repeat: string
   set: string
+  caution: null
 }
 export interface PostRecommendResponse {
   date: string

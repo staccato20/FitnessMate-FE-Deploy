@@ -19,6 +19,8 @@ import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useModal } from "@hooks/useModal"
 
+import RoutineDuplicateModal from "./components/Alert/RoutineDuplicateModal"
+
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: Infinity, refetchOnMount: true } },
 })
@@ -166,6 +168,17 @@ export const RoutineAdd: Story = {
       <>
         <Trigger name={"루틴추가"} />
         <RoutineAddModal />
+      </>
+    )
+  },
+}
+
+export const RoutineAlert: Story = {
+  render: () => {
+    return (
+      <>
+        <Trigger name={"루틴중복"} />
+        <RoutineDuplicateModal />
       </>
     )
   },

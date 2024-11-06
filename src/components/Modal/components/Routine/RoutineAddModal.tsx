@@ -63,7 +63,8 @@ const RoutineAddModal = () => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      isCloseButton>
+      isCloseButton
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           {workoutState?.koreanName}를 추가할

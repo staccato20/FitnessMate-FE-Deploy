@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 import { useModalStore } from "@store/useModalStore"
 
 interface ModalOptions {
@@ -19,6 +21,14 @@ export const useModal = (modalName: string, options: ModalOptions = {}) => {
     setModalState({ [modalName]: false })
     await afterClose?.()
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  }, [isOpen])
 
   return { isOpen, onOpen, onClose }
 }

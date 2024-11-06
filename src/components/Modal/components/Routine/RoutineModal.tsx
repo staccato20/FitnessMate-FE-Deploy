@@ -18,7 +18,8 @@ const RoutineModal = () => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      isCloseButton>
+      isCloseButton
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           {ROUTINE_START.EMPTY_TITLE[0]}

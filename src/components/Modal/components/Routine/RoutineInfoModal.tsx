@@ -60,7 +60,8 @@ const RoutineInfoModal = () => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      isCloseButton>
+      isCloseButton
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           운동을 루틴에 추가해보세요

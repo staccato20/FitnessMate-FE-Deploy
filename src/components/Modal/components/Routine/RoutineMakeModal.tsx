@@ -53,7 +53,8 @@ const RoutineMakeModal = () => {
     <Modal
       isCloseButton
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           새로 만들
