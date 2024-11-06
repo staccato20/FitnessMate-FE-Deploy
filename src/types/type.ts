@@ -119,6 +119,7 @@ export interface Recommend {
   weight: string
   repeat: string
   set: string
+  caution: null
 }
 export interface PostRecommendResponse {
   date: string
@@ -179,6 +180,7 @@ export interface MyRoutines {
   routineId: number
   routineIndex: number
   routineName: string
+  isAdded?: boolean
 }
 
 export interface MyWorkoutList {
@@ -194,11 +196,7 @@ export interface MyWorkoutList {
   atcetera: null
   bodyParts: string[]
   machines: string[]
-}
-export interface MyRoutines {
-  routineId: number
-  routineIndex: number
-  routineName: string
+  caution: null
 }
 
 export interface MyWorkoutIndex {
@@ -208,12 +206,20 @@ export interface MyWorkoutIndex {
   setCount: string
 }
 
+export interface RoutineInfo {
+  workoutIds: number[]
+  weight: string
+  rep: string
+  setCount: string
+  caution: null
+}
+
 export interface RoutineNameTypes {
   routineName: string
 }
 
 export interface RoutineInfoTypes {
-  weight: number
-  repeat: number
-  set: number
+  weight: string
+  repeat: string
+  set: string
 }

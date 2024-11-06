@@ -10,21 +10,12 @@ import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-interface HeaderProps {
-  bodyParts: string
-  onOpen: () => void
-}
-
-const Header = ({
-  children,
-  bodyParts,
-  onOpen,
-}: StrictPropsWithChildren<HeaderProps>) => {
-  const { visible } = useAccordion()
+const Header = ({ children }: StrictPropsWithChildren) => {
+  const { visible, bodyParts, onOpen } = useAccordion()
 
   return (
     <HeaderWrapper>
-      <HeaderTop $visible={visible}>
+      <HeaderTop $visible={!!visible}>
         <HeaderLeft>
           <Title variant="midB">
             {children}

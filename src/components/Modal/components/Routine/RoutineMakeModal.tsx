@@ -10,31 +10,51 @@ import Title from "@components/Title/Title"
 
 import { RoutineNameTypes } from "@typpes/type"
 
+import { usePostMakeRoutine } from "@hooks/mutation/usePostMakeRoutine"
+import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
 
 import * as S from "./StyledRoutineModal"
 
 const RoutineMakeModal = () => {
   const { isOpen, onClose } = useModal("루틴생성")
+  const { onOpen: openAddRoutine } = useModal("루틴추가")
+  const { onOpen: openAlert } = useModal("루틴중복")
   const { register, watch, handleSubmit, formState } =
     useFormContext<RoutineNameTypes>()
+  const { data: routines = [] } = useGetMyRoutines()
+  const { mutate } = usePostMakeRoutine()
+
   const inputValue = watch("routineName", "")
+  const isFullRoutine = routines.length >= 5
 
   const handleRoutineName: SubmitHandler<RoutineNameTypes> = ({
     routineName,
   }) => {
-    console.log(routineName)
+    if (isFullRoutine) {
+      openAlert()
+    } else {
+      mutate({
+        routines: [
+          ...routines,
+          { routineId: -1, routineIndex: routines.length + 1, routineName },
+        ],
+      })
+    }
   }
 
   const handleFormAdapter = () => {
     handleSubmit(handleRoutineName)()
+    onClose()
+    openAddRoutine()
   }
 
   return (
     <Modal
       isCloseButton
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
           새로 만들

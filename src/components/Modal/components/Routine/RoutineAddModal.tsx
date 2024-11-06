@@ -1,25 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-import Button from "@components/Button/Button"
+import { useModalStore } from "@store/useModalStore"
+
 import Icon from "@components/Icon/Icon"
 import Modal from "@components/Modal/Modal"
+import RoutineAddModalButton from "@components/Modal/components/Routine/RoutineAddModalButton"
+import RoutineInfoModalButton from "@components/Modal/components/Routine/RoutineInfoModalButton"
 import "@components/Modal/components/Routine/StyledRoutineModal"
 import Title from "@components/Title/Title"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
+import { useGetRoutineQueries } from "@hooks/query/useGetRoutineQueries"
+import { useModal } from "@hooks/useModal"
 
-import { useModal } from "../../../../hooks/useModal"
 import * as S from "./StyledRoutineModal"
 
 const RoutineAddModal = () => {
-  const { isOpen, onClose } = useModal("루틴추가")
-
   const [selectedRoutines, setSelectedRoutines] = useState(new Set<number>())
-  const { data: routines = [] } = useGetMyRoutines()
 
-  const handleToggleRoutine = (routineId: number) => {
-    setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
-  }
+  const { isOpen, onClose } = useModal("루틴추가", {
+    beforeClose: () => {
+      setSelectedRoutines(new Set())
+    },
+  })
+  const { onOpen } = useModal("루틴정보")
+  const { setRoutineState, workoutState } = useModalStore()
+  const { data: routines = [] } = useGetMyRoutines()
+  const { data: workouts, refetchAll } = useGetRoutineQueries(routines)
+
+  const filteredRoutines = [...routines].map((routine, index) =>
+    workouts[index]?.some((workout) =>
+      workout?.workoutName.includes(workoutState.koreanName),
+    )
+      ? { ...routine, isAdded: true }
+      : { ...routine, isAdded: false },
+  )
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)
@@ -31,48 +46,63 @@ const RoutineAddModal = () => {
     return updatedSet
   }
 
+  const handleToggleRoutine = (routineId: number) => {
+    setSelectedRoutines((prevSet) => updateSet(prevSet, routineId))
+  }
+
+  const saveRoutineState = () => {
+    setRoutineState([...selectedRoutines])
+    setSelectedRoutines(new Set())
+  }
+
+  useEffect(() => {
+    refetchAll()
+  }, [routines, refetchAll])
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      isCloseButton>
+      isCloseButton
+      disableInteraction>
       <Modal.Title>
         <Title variant="midA">
-          데드리프트를 추가할
+          {workoutState?.koreanName}를 추가할
           <br />
           루틴을 선택해주세요
           <Title.SubBottomTitle>여러 개 선택할 수 있어요</Title.SubBottomTitle>
         </Title>
       </Modal.Title>
-      <Modal.Content>
+      <Modal.Content isFull>
         <S.ContentBigWrapper>
-          <S.AddRoutineButton>
-            <Icon
-              icon="AddRoundGray"
-              size={32}
-            />
-            추가하기
-          </S.AddRoutineButton>
+          <RoutineAddModalButton onClose={onClose} />
           <S.RoutineList>
-            {routines?.map(({ routineId, routineName }) => (
+            {filteredRoutines?.map(({ routineId, routineName, isAdded }) => (
               <S.RoutineItem
                 key={routineId}
                 onClick={() => {
                   handleToggleRoutine(routineId)
                 }}
-                $isSelected={selectedRoutines.has(routineId)}>
-                <S.RoutineName $isSelected={selectedRoutines.has(routineId)}>
+                $isSelected={selectedRoutines.has(routineId)}
+                disabled={isAdded}>
+                <S.RoutineName
+                  $isSelected={selectedRoutines.has(routineId)}
+                  $isAdded={!!isAdded}>
                   {routineName}
                 </S.RoutineName>
                 <S.RoutineState>
-                  <Icon
-                    icon={
-                      selectedRoutines.has(routineId)
-                        ? "AddBoldBlue"
-                        : "AddBoldGray"
-                    }
-                    size={32}
-                  />
+                  {isAdded ? (
+                    "추가됨"
+                  ) : (
+                    <Icon
+                      icon={
+                        selectedRoutines.has(routineId)
+                          ? "AddBoldBlue"
+                          : "AddBoldGray"
+                      }
+                      size={32}
+                    />
+                  )}
                 </S.RoutineState>
               </S.RoutineItem>
             ))}
@@ -80,11 +110,12 @@ const RoutineAddModal = () => {
         </S.ContentBigWrapper>
       </Modal.Content>
       <Modal.Footer>
-        <Button
-          variant="main"
-          size="full">
-          다음
-        </Button>
+        <RoutineInfoModalButton
+          isDisabled={!selectedRoutines.size}
+          onOpen={onOpen}
+          onClose={onClose}
+          saveRoutineState={saveRoutineState}
+        />
       </Modal.Footer>
     </Modal>
   )
