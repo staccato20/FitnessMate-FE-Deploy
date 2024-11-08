@@ -10,9 +10,7 @@ const Tabs = ({ children }: StrictPropsWithChildren) => (
   </TabsProvider>
 )
 
-const TabList = ({ children }: StrictPropsWithChildren) => (
-  <TabsListWrapper>{children}</TabsListWrapper>
-)
+const TabList = ({ children }: StrictPropsWithChildren) => children
 
 interface TabPanelProps {
   index: number

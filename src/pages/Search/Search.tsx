@@ -1,12 +1,8 @@
-import { startTransition, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-import { AnimatePresence } from "framer-motion"
-
-import Icon from "@components/Icon/Icon"
 import { useTabs } from "@components/Tabs/TabsContext"
 
-import DropdownForm from "@pages/Search/DropdownForm"
 import Pagination from "@pages/Search/Pagination"
 
 import { SearchTypes } from "@typpes/type"
@@ -38,17 +34,17 @@ const Search = () => {
     switchTab(0)
   }
 
-  const handleTabChange = (index: number) => {
-    if (!bodyParts) {
-      return
-    }
-    startTransition(() => {
-      switchTab(index)
-      setCurrentPage(1)
-      setKeyword("")
-      methods.reset()
-    })
-  }
+  // const handleTabChange = (index: number) => {
+  //   if (!bodyParts) {
+  //     return
+  //   }
+  //   startTransition(() => {
+  //     switchTab(index)
+  //     setCurrentPage(1)
+  //     setKeyword("")
+  //     methods.reset()
+  //   })
+  // }
 
   const handlePage = (page: number) => {
     setCurrentPage(page)
@@ -61,34 +57,17 @@ const Search = () => {
         <S.Title>나에게 핏한</S.Title>
         <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
       </S.TitleWrapper>
+
       <S.SearchContent>
-        <S.NavTab>
-          <S.NavTabInner>
-            <TabList
-              handleTabChange={handleTabChange}
-              bodyParts={bodyParts}
-              currentPage={currentPage}
-              keyword={keyword}
-              isSearchMode={isSearchMode}
-            />
-            <S.SearchToggle onClick={handleToggle}>
-              <Icon
-                icon="Search"
-                size={26}
-              />
-              운동 이름으로 검색
-            </S.SearchToggle>
-          </S.NavTabInner>
-        </S.NavTab>
-        <AnimatePresence>
-          {isSearchMode && (
-            <DropdownForm
-              methods={methods}
-              handleSearch={handleSearch}
-              handleToggle={handleToggle}
-            />
-          )}
-        </AnimatePresence>
+        <TabList
+          bodyParts={bodyParts}
+          currentPage={currentPage}
+          keyword={keyword}
+          isSearchMode={isSearchMode}
+          handleToggle={handleToggle}
+          handleSearch={handleSearch}
+          methods={methods}
+        />
 
         <Pagination
           currentPage={currentPage}

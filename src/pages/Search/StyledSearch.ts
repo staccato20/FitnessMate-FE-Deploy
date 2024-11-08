@@ -6,30 +6,11 @@ import theme, { fonts } from "@styles/theme"
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  max-width: 1032px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 82px;
   padding: 62px 3% 52px 3%;
-`
-
-export const NavTab = styled.div`
-  width: 100vw;
-  background: #f9fafb;
-  z-index: 997;
-  padding: 0 5%;
-  position: sticky;
-  top: 63px;
-`
-
-export const NavTabInner = styled.div`
-  max-width: 1032px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 12px 0;
-  display: flex;
-  justify-content: space-between;
 `
 
 export const SearchContent = styled.div`
@@ -38,7 +19,27 @@ export const SearchContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+`
+
+export const NavTab = styled.div`
+  width: 100vw;
+  background: #f9fafb;
+  z-index: 997;
+  position: sticky;
+  top: 63px;
+  padding: 12px 3%;
+`
+export const NavTabInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1032px;
+  margin: 0 auto;
+`
+export const NavTabList = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `
 
 export const TitleWrapper = styled.div`
@@ -47,6 +48,7 @@ export const TitleWrapper = styled.div`
   gap: 12px;
   align-items: flex-start;
   width: 100%;
+  align-items: center;
 `
 export const Title = styled.span`
   color: ${theme.Netural600};
