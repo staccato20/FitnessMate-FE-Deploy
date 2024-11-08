@@ -2,10 +2,9 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 import Card from "@components/Card/Card"
+import { useTabs } from "@components/Tabs/TabsContext"
 
 import { usePageNumStore } from "@pages/Search/store/usePageNumStore"
-
-import { BodyPartList } from "@typpes/type"
 
 import { useGetWorkoutBatch } from "@hooks/query/useGetWorkoutBatch"
 
@@ -14,24 +13,23 @@ import * as S from "./StyledSearch"
 interface CardListProps {
   currentPage: number
   isSearchMode: boolean
-  activeTab: number
   keyword: string
-  bodyParts: BodyPartList[]
+  koreanName: string
 }
 
 const CardList = ({
   currentPage,
   isSearchMode,
-  activeTab,
   keyword,
-  bodyParts,
+  koreanName,
 }: CardListProps) => {
   const navigate = useNavigate()
+  const { activeTab } = useTabs()
+
   const { workouts, pageNum, cardLength } = useGetWorkoutBatch({
     page: currentPage,
     searchKeyword: isSearchMode ? keyword : "",
-    bodyPartKoreanName:
-      activeTab === 0 ? [] : [bodyParts[activeTab].koreanName],
+    bodyPartKoreanName: activeTab === 0 ? [] : [koreanName],
   })
 
   const handleCard = (workoutId: number) => {

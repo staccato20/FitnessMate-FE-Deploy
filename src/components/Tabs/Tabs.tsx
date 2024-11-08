@@ -4,23 +4,8 @@ import { TabsProvider, useTabs } from "@components/Tabs/TabsContext"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-interface TabPanelProps {
-  index: number
-}
-
-interface TabsProps {
-  activeTab: number
-  onTabChange: (index: number) => void
-}
-
-const Tabs = ({
-  children,
-  activeTab,
-  onTabChange,
-}: StrictPropsWithChildren<TabsProps>) => (
-  <TabsProvider
-    activeTab={activeTab}
-    onTabChange={onTabChange}>
+const Tabs = ({ children }: StrictPropsWithChildren) => (
+  <TabsProvider>
     <>{children}</>
   </TabsProvider>
 )
@@ -29,13 +14,18 @@ const TabList = ({ children }: StrictPropsWithChildren) => (
   <TabsListWrapper>{children}</TabsListWrapper>
 )
 
-const TabPanels = ({ children }: StrictPropsWithChildren) => <>{children}</>
+interface TabPanelProps {
+  index: number
+}
+
+const TabPanels = ({ children }: StrictPropsWithChildren) => children
 
 const TabPanel = ({
   children,
   index,
 }: StrictPropsWithChildren<TabPanelProps>) => {
   const { activeTab } = useTabs()
+
   return index === activeTab ? children : null
 }
 

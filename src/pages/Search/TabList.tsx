@@ -1,18 +1,28 @@
+import { Suspense } from "react"
+
+import CardSkeleton from "@components/Card/CardSkeleton"
+import DeferredComponent from "@components/Deferred/DeferredComponent"
 import Tabs from "@components/Tabs/Tabs"
+
+import CardList from "@pages/Search/CardList"
 
 import { BodyPartList } from "@typpes/type"
 
 interface TabListProps {
-  handleTabChange: (index: number) => void
   bodyParts: BodyPartList[]
-  activeTab: number
+  currentPage: number
+  isSearchMode: boolean
+  keyword: string
 }
 
-const TabList = ({ handleTabChange, bodyParts, activeTab }: TabListProps) => {
+const TabList = ({
+  bodyParts,
+  currentPage,
+  isSearchMode,
+  keyword,
+}: TabListProps) => {
   return (
-    <Tabs
-      activeTab={activeTab}
-      onTabChange={handleTabChange}>
+    <Tabs>
       <Tabs.TabList>
         {bodyParts?.map(({ koreanName, bodyPartId }) => (
           <Tabs.Tab
@@ -23,6 +33,27 @@ const TabList = ({ handleTabChange, bodyParts, activeTab }: TabListProps) => {
           </Tabs.Tab>
         ))}
       </Tabs.TabList>
+      <Tabs.TabPanels>
+        {bodyParts?.map(({ koreanName, bodyPartId }) => (
+          <Tabs.TabPanel
+            index={bodyPartId}
+            key={bodyPartId}>
+            <Suspense
+              fallback={
+                <DeferredComponent>
+                  <CardSkeleton />
+                </DeferredComponent>
+              }>
+              <CardList
+                currentPage={currentPage}
+                keyword={keyword}
+                koreanName={koreanName}
+                isSearchMode={isSearchMode}
+              />
+            </Suspense>
+          </Tabs.TabPanel>
+        ))}
+      </Tabs.TabPanels>
     </Tabs>
   )
 }

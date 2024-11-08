@@ -1,10 +1,8 @@
-import { Suspense, startTransition, useState } from "react"
+import { startTransition, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { AnimatePresence } from "framer-motion"
 
-import CardSkeleton from "@components/Card/CardSkeleton"
-import DeferredComponent from "@components/Deferred/DeferredComponent"
 import Icon from "@components/Icon/Icon"
 import { useTabs } from "@components/Tabs/TabsContext"
 
@@ -15,7 +13,6 @@ import { SearchTypes } from "@typpes/type"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
 
-import CardList from "./CardList"
 import * as S from "./StyledSearch"
 import TabList from "./TabList"
 
@@ -26,7 +23,7 @@ const Search = () => {
 
   const [isSearchMode, setIsSearchMode] = useState(false)
   const [keyword, setKeyword] = useState("")
-  const { activeTab, switchTab } = useTabs()
+  const { switchTab } = useTabs()
   const [currentPage, setCurrentPage] = useState(1)
 
   const handleToggle = () => {
@@ -70,7 +67,9 @@ const Search = () => {
             <TabList
               handleTabChange={handleTabChange}
               bodyParts={bodyParts}
-              activeTab={activeTab}
+              currentPage={currentPage}
+              keyword={keyword}
+              isSearchMode={isSearchMode}
             />
             <S.SearchToggle onClick={handleToggle}>
               <Icon
@@ -81,7 +80,6 @@ const Search = () => {
             </S.SearchToggle>
           </S.NavTabInner>
         </S.NavTab>
-
         <AnimatePresence>
           {isSearchMode && (
             <DropdownForm
@@ -92,20 +90,6 @@ const Search = () => {
           )}
         </AnimatePresence>
 
-        <Suspense
-          fallback={
-            <DeferredComponent>
-              <CardSkeleton />
-            </DeferredComponent>
-          }>
-          <CardList
-            bodyParts={bodyParts}
-            currentPage={currentPage}
-            keyword={keyword}
-            activeTab={activeTab}
-            isSearchMode={isSearchMode}
-          />
-        </Suspense>
         <Pagination
           currentPage={currentPage}
           handlePage={handlePage}
