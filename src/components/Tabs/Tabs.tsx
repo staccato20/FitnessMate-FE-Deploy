@@ -1,5 +1,4 @@
 import Tab from "@components/Tab/Tab"
-import { TabsListWrapper } from "@components/Tabs/StyledTabs"
 import { TabsProvider, useTabs } from "@components/Tabs/TabsContext"
 
 import { StrictPropsWithChildren } from "@typpes/type"
