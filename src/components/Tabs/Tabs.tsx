@@ -1,5 +1,5 @@
 import Tab from "@components/Tab/Tab"
-import { TabPanelsWrapper, TabsListWrapper } from "@components/Tabs/StyledTabs"
+import { TabsListWrapper } from "@components/Tabs/StyledTabs"
 import { TabsProvider, useTabs } from "@components/Tabs/TabsContext"
 
 import { StrictPropsWithChildren } from "@typpes/type"
@@ -29,9 +29,7 @@ const TabList = ({ children }: StrictPropsWithChildren) => (
   <TabsListWrapper>{children}</TabsListWrapper>
 )
 
-const TabPanels = ({ children }: StrictPropsWithChildren) => (
-  <TabPanelsWrapper>{children}</TabPanelsWrapper>
-)
+const TabPanels = ({ children }: StrictPropsWithChildren) => <>{children}</>
 
 const TabPanel = ({
   children,

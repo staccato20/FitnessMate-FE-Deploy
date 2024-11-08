@@ -5,6 +5,8 @@ import { AnimatePresence } from "framer-motion"
 
 import CardSkeleton from "@components/Card/CardSkeleton"
 import DeferredComponent from "@components/Deferred/DeferredComponent"
+import Icon from "@components/Icon/Icon"
+import { useTabs } from "@components/Tabs/TabsContext"
 
 import DropdownForm from "@pages/Search/DropdownForm"
 import Pagination from "@pages/Search/Pagination"
@@ -24,7 +26,7 @@ const Search = () => {
 
   const [isSearchMode, setIsSearchMode] = useState(false)
   const [keyword, setKeyword] = useState("")
-  const [activeTab, setActiveTab] = useState(0)
+  const { activeTab, switchTab } = useTabs()
   const [currentPage, setCurrentPage] = useState(1)
 
   const handleToggle = () => {
@@ -36,7 +38,7 @@ const Search = () => {
   const handleSearch = ({ search }: SearchTypes) => {
     setKeyword(search)
     setCurrentPage(1)
-    setActiveTab(0)
+    switchTab(0)
   }
 
   const handleTabChange = (index: number) => {
@@ -44,7 +46,7 @@ const Search = () => {
       return
     }
     startTransition(() => {
-      setActiveTab(index)
+      switchTab(index)
       setCurrentPage(1)
       setKeyword("")
       methods.reset()
@@ -63,12 +65,22 @@ const Search = () => {
         <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
       </S.TitleWrapper>
       <S.SearchContent>
-        <TabList
-          handleTabChange={handleTabChange}
-          handleToggle={handleToggle}
-          bodyParts={bodyParts}
-          activeTab={activeTab}
-        />
+        <S.NavTab>
+          <S.NavTabInner>
+            <TabList
+              handleTabChange={handleTabChange}
+              bodyParts={bodyParts}
+              activeTab={activeTab}
+            />
+            <S.SearchToggle onClick={handleToggle}>
+              <Icon
+                icon="Search"
+                size={26}
+              />
+              운동 이름으로 검색
+            </S.SearchToggle>
+          </S.NavTabInner>
+        </S.NavTab>
 
         <AnimatePresence>
           {isSearchMode && (
