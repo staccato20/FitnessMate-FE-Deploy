@@ -19,6 +19,7 @@ import { useUserInfo } from "@hooks/query/useUserInfo"
 
 // my workouts
 import MyFitAPI from "../../../apis/domain/myfit"
+// type
 import { MyWorkoutIndex, MyWorkoutList } from "../../../types/type"
 // 루틴 더보기 모달
 import OutSideClick from "./Modal/OutSideClick"
@@ -63,9 +64,9 @@ const MyPage = () => {
   )
 
   // 운동 리스트 상태
-  const [workoutList, setWorkoutList] = useState<any[]>([])
+  const [workoutList, setWorkoutList] = useState<MyWorkoutList[]>([])
   // drag & drop 을 위한 운동 리스트 복사본
-  const [myWorkouts, setMyWorkouts] = useState<any[]>([])
+  const [myWorkouts, setMyWorkouts] = useState<MyWorkoutList[]>([])
 
   // 운동 순서 수정 여부
   const [isWorkoutFix, setIsWorkoutFix] = useState<boolean>(false)
@@ -94,6 +95,7 @@ const MyPage = () => {
     const fetchWorkouts = async (routineId: number) => {
       try {
         const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
+        console.log(response)
         setMyWorkouts(response) // 운동 리스트 설정
         setWorkoutList(response.map((item) => ({ ...item }))) // 운동 리스트 복사본
         setIsWorkoutFix(false)
