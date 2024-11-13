@@ -80,9 +80,7 @@ const MyPage = () => {
         setMyRoutineLength(myRoutines.length)
       } else {
       }
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -98,11 +96,8 @@ const MyPage = () => {
         const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
         setMyWorkouts(response) // 운동 리스트 설정
         setWorkoutList(response.map((item) => ({ ...item }))) // 운동 리스트 복사본
-        console.log("운동 목록:", response)
         setIsWorkoutFix(false)
-      } catch (error) {
-        console.error("Error fetching workouts:", error)
-      }
+      } catch (error) {}
     }
 
     if (selectedRoutineId) {
@@ -189,12 +184,10 @@ const MyPage = () => {
         updatedList[droppedItem.destination.index].myWorkoutId,
         workout,
       )
-      console.log("이거", response)
       setIsWorkoutFix(true)
     } catch (error) {
       setIsPlaceholderVisible(false) // 드롭 후 placeholder 숨김
       setMyWorkouts(workoutList) // 요청 실패 시 myWorkouts를 workoutList로 복원
-      console.error(error)
     }
   }
 
@@ -203,7 +196,6 @@ const MyPage = () => {
 
   // onDragUpdate에서 placeholder 위치 계산
   const onDragUpdate = (update: DragUpdate) => {
-    console.log("onDragUpdate called", update)
     // 드래그 중에 placeholder가 보이도록 설정
     setIsPlaceholderVisible(true)
 
@@ -218,7 +210,6 @@ const MyPage = () => {
     const draggedDOM = document.getElementById(draggableId)
 
     if (!draggedDOM) {
-      console.log("draggedDOM is null")
       return
     }
 
@@ -239,8 +230,6 @@ const MyPage = () => {
       const clientY =
         (destinationIndex + 2.25) * uniformHeight + // 항목 높이에 따라 계산
         (destinationIndex + 2) * (uniformMarginBottom + gap) // marginBottom과 gap 추가 계산
-
-      console.log("Calculated clientY:", clientY)
 
       // X 좌표 동적으로 계산 (드래그된 항목이 아닌 것 중 첫 번째 workoutCard를 기준으로)
       const workoutCards = Array.from(
