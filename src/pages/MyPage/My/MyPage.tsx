@@ -10,6 +10,12 @@ import {
   Droppable,
 } from "@hello-pangea/dnd"
 
+// my workouts
+import MyFitAPI from "@apis/domain/myfit"
+
+// type
+import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
+
 // user bodydata
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 // my routines
@@ -17,13 +23,8 @@ import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 // user name
 import { useUserInfo } from "@hooks/query/useUserInfo"
 
-// my workouts
-import MyFitAPI from "../../../apis/domain/myfit"
-// type
-import { MyWorkoutIndex, MyWorkoutList } from "../../../types/type"
 // 루틴 더보기 모달
 import OutSideClick from "./Modal/OutSideClick"
-// import WorkoutAddModal from "./Modal/workoutAddModal"
 import * as S from "./StyledMyPage"
 
 type PlaceholderProps = {
@@ -182,7 +183,7 @@ const MyPage = () => {
 
     // 3. 여기서 바뀐 배열을
     try {
-      const response = await MyFitAPI.modifyMyWorkout(
+      await MyFitAPI.modifyMyWorkout(
         updatedList[droppedItem.destination.index].myWorkoutId,
         workout,
       )
