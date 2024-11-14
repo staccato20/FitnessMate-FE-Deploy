@@ -2,10 +2,8 @@ import { useQuery } from "@tanstack/react-query"
 
 import bodyDataAPI from "@apis/domain/bodydata"
 
-import { GetBodyDataResponse } from "../../types/type"
-
 export const useGetFetchRecentData = () => {
-  const { data: getbodyData } = useQuery<GetBodyDataResponse>({
+  const { data: getbodyData } = useQuery({
     queryKey: ["useGetFetchRecentData"],
     queryFn: async () => {
       const response = await bodyDataAPI.fetchRecentData()
