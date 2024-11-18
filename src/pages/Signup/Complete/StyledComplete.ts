@@ -8,11 +8,6 @@ export const CompleteNav = styled.div`
   gap: 18px;
   width: 100%;
 `
-export const CompleteNavTitle = styled.span`
-  color: ${theme.Netural900};
-  font-size: 22px;
-  font-weight: 600;
-`
 
 export const CompleteNavList = styled.span`
   display: flex;

@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { useState } from "react"
 
 export const useSlide = () => {
   const [ratioValue, setRatioValue] = useState(5)
 
-  const handleRatio = (flag) => {
+  const handleRatio = (flag: string) => {
     if (flag === "+") {
       setRatioValue((prev) => {
         return prev < 9 ? prev + 1 : prev
