@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useState } from "react"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
@@ -11,18 +11,11 @@ const TabsContext = createContext({
 
 const useTabs = () => useContext(TabsContext)
 
-interface TabsProviderProps {
-  activeTab: number
-  onTabChange: (index: number) => void
-}
+const TabsProvider = ({ children }: StrictPropsWithChildren) => {
+  const [activeTab, setActiveTab] = useState(DEFAULT_INDEX)
 
-const TabsProvider = ({
-  children,
-  activeTab,
-  onTabChange,
-}: StrictPropsWithChildren<TabsProviderProps>) => {
   const switchTab = (tabIndex: number) => {
-    onTabChange(tabIndex)
+    setActiveTab(tabIndex)
   }
 
   return (

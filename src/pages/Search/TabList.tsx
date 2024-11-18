@@ -1,65 +1,94 @@
-import { useRef } from "react"
+import { Suspense } from "react"
 
+import { AnimatePresence } from "framer-motion"
+
+import CardSkeleton from "@components/Card/CardSkeleton"
+import DeferredComponent from "@components/Deferred/DeferredComponent"
 import Icon from "@components/Icon/Icon"
 import Tabs from "@components/Tabs/Tabs"
 
-import { BodyPartList } from "@typpes/type"
+import CardList from "@pages/Search/CardList"
+import DropdownForm from "@pages/Search/DropdownForm"
 
-import { useScroll } from "@hooks/useScroll"
+import { BodyPartList } from "@typpes/type"
 
 import * as S from "./StyledSearch"
 
 interface TabListProps {
-  handleTabChange: (index: number) => void
-  handleToggle: () => void
   bodyParts: BodyPartList[]
-  activeTab: number
+  currentPage: number
+  isSearchMode: boolean
+  keyword: string
+  handleToggle: () => void
+  methods: any
+  handleSearch: ({ search }: { search: string }) => void
 }
 
 const TabList = ({
-  handleTabChange,
-  handleToggle,
   bodyParts,
-  activeTab,
+  currentPage,
+  isSearchMode,
+  keyword,
+  handleToggle,
+  handleSearch,
+  methods,
 }: TabListProps) => {
-  const { position } = useScroll()
-  const targetRef = useRef<HTMLDivElement>(null)
-  const targetHeight = targetRef.current
-    ? targetRef.current?.getBoundingClientRect().top -
-      targetRef.current?.clientHeight
-    : -1
-
-  const isTabFixed = position > targetHeight
-
   return (
-    <S.TabsWrapper
-      $isTabFixed={isTabFixed}
-      ref={targetRef}>
-      <S.TabsBox>
-        <Tabs
-          activeTab={activeTab}
-          onTabChange={handleTabChange}>
-          <Tabs.TabList>
-            {bodyParts?.map(({ koreanName, bodyPartId }) => (
-              <Tabs.Tab
-                key={bodyPartId}
-                index={bodyPartId}
-                variant="fill"
-                onTabChange={handleTabChange}>
-                {koreanName}
-              </Tabs.Tab>
-            ))}
-          </Tabs.TabList>
-        </Tabs>
-        <S.SearchToggle onClick={handleToggle}>
-          <Icon
-            icon="Search"
-            size={16}
+    <Tabs>
+      <Tabs.TabList>
+        <S.NavTab>
+          <S.NavTabInner>
+            <S.NavTabList>
+              {bodyParts?.map(({ koreanName, bodyPartId }) => (
+                <Tabs.Tab
+                  key={bodyPartId}
+                  index={bodyPartId}
+                  variant="fill">
+                  {koreanName}
+                </Tabs.Tab>
+              ))}
+            </S.NavTabList>
+            <S.SearchToggle onClick={handleToggle}>
+              <Icon
+                icon="Search"
+                size={26}
+              />
+              운동 이름으로 검색
+            </S.SearchToggle>
+          </S.NavTabInner>
+        </S.NavTab>
+      </Tabs.TabList>
+      <AnimatePresence>
+        {isSearchMode && (
+          <DropdownForm
+            methods={methods}
+            handleSearch={handleSearch}
+            handleToggle={handleToggle}
           />
-          운동 이름으로 검색
-        </S.SearchToggle>
-      </S.TabsBox>
-    </S.TabsWrapper>
+        )}
+      </AnimatePresence>
+      <Tabs.TabPanels>
+        {bodyParts?.map(({ koreanName, bodyPartId }) => (
+          <Tabs.TabPanel
+            index={bodyPartId}
+            key={bodyPartId}>
+            <Suspense
+              fallback={
+                <DeferredComponent>
+                  <CardSkeleton />
+                </DeferredComponent>
+              }>
+              <CardList
+                currentPage={currentPage}
+                keyword={keyword}
+                koreanName={koreanName}
+                isSearchMode={isSearchMode}
+              />
+            </Suspense>
+          </Tabs.TabPanel>
+        ))}
+      </Tabs.TabPanels>
+    </Tabs>
   )
 }
 

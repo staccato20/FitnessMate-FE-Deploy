@@ -1,18 +1,16 @@
 import { motion } from "framer-motion"
 
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  max-width: 1032px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 82px;
-  padding-top: 62px;
-  padding-bottom: 50px;
+  padding: 62px 3% 52px 3%;
 `
 
 export const SearchContent = styled.div`
@@ -21,7 +19,27 @@ export const SearchContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+`
+
+export const NavTab = styled.div`
+  width: 100vw;
+  background: #f9fafb;
+  z-index: 997;
+  position: sticky;
+  top: 63px;
+  padding: 12px 3%;
+`
+export const NavTabInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1032px;
+  margin: 0 auto;
+`
+export const NavTabList = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `
 
 export const TitleWrapper = styled.div`
@@ -30,6 +48,7 @@ export const TitleWrapper = styled.div`
   gap: 12px;
   align-items: flex-start;
   width: 100%;
+  align-items: center;
 `
 export const Title = styled.span`
   color: ${theme.Netural600};
@@ -41,29 +60,7 @@ export const SubTitle = styled.span`
   font-size: 30px;
 `
 
-export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>`
-  z-index: 997;
-  width: 100vw;
-  height: 60px;
-  padding: 9px 0px;
-  border: 1px solid ${theme.Netural200};
-  background: ${theme.Netural100};
-  ${({ $isTabFixed }) =>
-    $isTabFixed
-      ? css`
-          position: sticky;
-          top: 62px;
-        `
-      : css``}
-`
-
-export const TabsBox = styled.div`
-  max-width: 1042px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
+export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>``
 
 export const SearchToggle = styled.button`
   border-radius: 37px;
