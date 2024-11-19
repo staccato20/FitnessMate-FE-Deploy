@@ -1,5 +1,4 @@
-// @ts-nocheck
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -28,7 +27,10 @@ export const InputWarning = styled.span`
   font-size: 16px;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{
+  $isError: boolean
+  $isDirty: boolean
+}>`
   &::-webkit-input-placeholder {
     color: ${theme.Netural500};
     ${fonts.b4}
@@ -37,11 +39,6 @@ export const Input = styled.input`
   border-radius: 10px;
   padding: 16px;
   width: 100%;
-  ${(props) => css`
-    ${Object.keys(props)
-      .map((key) => `${key}: ${props[key]};`)
-      .join("")}
-  `}
   border: ${({ $isError, $isDirty }) => getBorderStyle($isError, $isDirty)};
 `
 

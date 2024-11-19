@@ -1,47 +1,195 @@
-// @ts-nocheck
-import { useForm } from "react-hook-form"
+import { ChangeEvent } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
+import { omit } from "lodash"
 
+import styled from "styled-components"
+
+import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
+import theme from "@styles/theme"
+
+import { formAdapter } from "@utils/formAdapter"
+
 import * as S from "../StyledSignup"
-import ProfileForm from "./components/ProfileForm"
 
 const Profile = () => {
   const { setProfile } = useSignupStore()
+
   const navigate = useNavigate()
-  const methods = useForm({
+
+  const { handleSubmit, formState, register, getValues, trigger } = useForm<
+    typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE
+  >({
     mode: "onChange",
     defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["PROFILE"],
   })
-  const { handleSubmit, formState } = methods
 
-  const handleNextPage = (formValue) => {
+  const onSubmit: SubmitHandler<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE> = (
+    formValue,
+  ) => {
     if (formState.isValid) {
-      delete formValue["passwordCheck"]
-      setProfile(formValue)
+      const updatedProfoile = omit(formValue, ["passwordCheck"])
+      setProfile(updatedProfoile)
       navigate(`/signup/bodyinfo`)
     }
   }
 
+  const checkPassWord = (value: string) =>
+    value === getValues("password") || "비밀번호가 일치하지 않습니다."
+
   return (
-    <S.SignupForm onSubmit={handleSubmit(handleNextPage)}>
+    <S.SignupWrapper>
       <S.SignupTitle>
         <ProgressBar progress={1} />
         회원 정보를 입력해주세요
       </S.SignupTitle>
-      <ProfileForm methods={methods} />
+      <ProfileFormWrapper onSubmit={handleSubmit(onSubmit)}>
+        <Input>
+          <Input.Label
+            isRequired
+            htmlFor="userName">
+            이름
+          </Input.Label>
+          <Input.Input
+            props={{
+              ...formAdapter({
+                register,
+                validator: SIGNUP_INPUTS["userName"],
+                name: "userName",
+                $isDirty: formState.dirtyFields.userName,
+                $isError: formState.errors.userName,
+              }),
+              ...INPUT_STYLE.PROFILE,
+            }}
+          />
+          <Input.Error>{formState.errors?.userName?.message}</Input.Error>
+        </Input>
+        <Input>
+          <Input.Label
+            isRequired
+            htmlFor="birthDate">
+            생년월일
+          </Input.Label>
+          <Input.Input
+            props={{
+              ...formAdapter({
+                register,
+                validator: SIGNUP_INPUTS["birthDate"],
+                name: "birthDate",
+                $isDirty: formState.dirtyFields.birthDate,
+                $isError: formState.errors.birthDate,
+              }),
+              ...INPUT_STYLE.PROFILE,
+            }}
+          />
+          <Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
+        </Input>
+        <Input>
+          <Input.Label
+            isRequired
+            htmlFor="loginEmail">
+            이메일
+          </Input.Label>
+          <Input.Input
+            props={{
+              ...formAdapter({
+                register,
+                validator: SIGNUP_INPUTS["loginEmail"],
+                name: "loginEmail",
+                $isDirty: formState.dirtyFields.loginEmail,
+                $isError: formState.errors.loginEmail,
+              }),
+              ...INPUT_STYLE.PROFILE,
+            }}
+          />
+          <Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
+        </Input>
+        <Input>
+          <Input.Label
+            isRequired
+            htmlFor="password">
+            비밀번호
+          </Input.Label>
+          <Input.Input
+            type={"password"}
+            props={{
+              ...formAdapter({
+                register,
+                validator: SIGNUP_INPUTS["password"],
+                name: "password",
+                $isDirty: formState.dirtyFields.password,
+                $isError: formState.errors.password,
+                onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                  register("password").onChange(e)
+                  if (formState.dirtyFields.passwordCheck) {
+                    trigger("passwordCheck")
+                  }
+                },
+              }),
+              ...INPUT_STYLE.PROFILE,
+            }}
+          />
+          <Input.Error>{formState.errors?.password?.message}</Input.Error>
+        </Input>
+        <Input>
+          <Input.Label
+            isRequired
+            htmlFor="passwordCheck">
+            비밀번호 확인
+          </Input.Label>
+          <Input.Input
+            type={"password"}
+            props={{
+              ...formAdapter({
+                register,
+                validator: {
+                  ...SIGNUP_INPUTS["passwordCheck"],
+                  validate: {
+                    required: {
+                      value: true,
+                      message: "비밀번호 확인은 필수 입력입니다.",
+                    },
+                    validate: checkPassWord,
+                  },
+                },
+                name: "passwordCheck",
+                $isDirty: formState.dirtyFields.passwordCheck,
+                $isError: formState.errors.passwordCheck,
+              }),
+            }}
+            {...INPUT_STYLE.PROFILE}
+          />
+          <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
+        </Input>
+      </ProfileFormWrapper>
       <SignupButton
         $isValid={formState.isValid}
         nextUrl="bodyinfo"
       />
-    </S.SignupForm>
+    </S.SignupWrapper>
   )
 }
 
 export default Profile
+const ProfileFormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`
+
+const INPUT_STYLE = {
+  PROFILE: { background: `${theme.Netural100}` },
+  FIGURE: {
+    background: `${theme.Netural0}`,
+    width: "70px",
+    border: "1px solid #A2B2C2",
+  },
+}
