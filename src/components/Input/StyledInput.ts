@@ -9,19 +9,6 @@ const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
   return $isError ? `3px solid ${theme.Error}` : `3px solid ${theme.Brand600}`
 }
 
-export const InputName = styled.label`
-  cursor: default;
-  color: ${theme.Netural990};
-  font-size: 18px;
-  display: flex;
-  gap: 5px;
-`
-
-export const EseentialSymbol = styled.span`
-  color: ${theme.Error};
-  font-size: 18px;
-`
-
 export const InputWarning = styled.span`
   color: ${theme.Error};
   font-size: 16px;
