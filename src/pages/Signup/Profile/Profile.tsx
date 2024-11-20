@@ -39,6 +39,13 @@ const Profile = () => {
     }
   }
 
+  const triggerPasswordCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    register("password").onChange(e)
+    if (formState.dirtyFields.passwordCheck) {
+      trigger("passwordCheck")
+    }
+  }
+
   const checkPassWord = (value: string) =>
     value === getValues("password") || "비밀번호가 일치하지 않습니다."
 
@@ -56,15 +63,13 @@ const Profile = () => {
             이름
           </Input.Label>
           <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["userName"],
-                name: "userName",
-                $isDirty: formState.dirtyFields.userName,
-                $isError: formState.errors.userName,
-              }),
-            }}
+            props={formAdapter({
+              register,
+              name: "userName",
+              validator: SIGNUP_INPUTS["userName"],
+              $isDirty: !!formState.dirtyFields.userName,
+              $isError: !!formState.errors.userName,
+            })}
           />
           <Input.Error>{formState.errors?.userName?.message}</Input.Error>
         </Input>
@@ -80,8 +85,8 @@ const Profile = () => {
                 register,
                 validator: SIGNUP_INPUTS["birthDate"],
                 name: "birthDate",
-                $isDirty: formState.dirtyFields.birthDate,
-                $isError: formState.errors.birthDate,
+                $isDirty: !!formState.dirtyFields.birthDate,
+                $isError: !!formState.errors.birthDate,
               }),
             }}
           />
@@ -99,8 +104,8 @@ const Profile = () => {
                 register,
                 validator: SIGNUP_INPUTS["loginEmail"],
                 name: "loginEmail",
-                $isDirty: formState.dirtyFields.loginEmail,
-                $isError: formState.errors.loginEmail,
+                $isDirty: !!formState.dirtyFields.loginEmail,
+                $isError: !!formState.errors.loginEmail,
               }),
             }}
           />
@@ -113,20 +118,14 @@ const Profile = () => {
             비밀번호
           </Input.Label>
           <Input.Input
-            type={"password"}
             props={{
               ...formAdapter({
                 register,
                 validator: SIGNUP_INPUTS["password"],
                 name: "password",
-                $isDirty: formState.dirtyFields.password,
-                $isError: formState.errors.password,
-                onChange: (e: ChangeEvent<HTMLInputElement>) => {
-                  register("password").onChange(e)
-                  if (formState.dirtyFields.passwordCheck) {
-                    trigger("passwordCheck")
-                  }
-                },
+                $isDirty: !!formState.dirtyFields.password,
+                $isError: !!formState.errors.password,
+                onChange: triggerPasswordCheck,
               }),
             }}
           />
@@ -139,23 +138,16 @@ const Profile = () => {
             비밀번호 확인
           </Input.Label>
           <Input.Input
-            type={"password"}
             props={{
               ...formAdapter({
                 register,
                 validator: {
                   ...SIGNUP_INPUTS["passwordCheck"],
-                  validate: {
-                    required: {
-                      value: true,
-                      message: "비밀번호 확인은 필수 입력입니다.",
-                    },
-                    validate: checkPassWord,
-                  },
+                  validate: { validate: checkPassWord },
                 },
                 name: "passwordCheck",
-                $isDirty: formState.dirtyFields.passwordCheck,
-                $isError: formState.errors.passwordCheck,
+                $isDirty: !!formState.dirtyFields.passwordCheck,
+                $isError: !!formState.errors.passwordCheck,
               }),
             }}
           />

@@ -4,27 +4,26 @@ import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme.js"
 
-interface InputInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  props: any
+interface InputInputProps {
+  props: InputHTMLAttributes<HTMLInputElement> & {
+    $isDirty?: boolean
+    $isError?: boolean
+  }
 }
 
-const InputInput = ({ props, ...rest }: InputInputProps) => {
+const InputInput = ({
+  props: { $isDirty = false, $isError = false, ...rest },
+}: InputInputProps) => {
   return (
     <Input
-      {...props}
       {...rest}
+      $isDirty={$isDirty}
+      $isError={$isError}
     />
   )
 }
 
 export default InputInput
-
-const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
-  if (!$isDirty) {
-    return `1px solid ${theme.Netural500}`
-  }
-  return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand600}`
-}
 
 export const Input = styled.input<{
   $isError: boolean
@@ -40,3 +39,10 @@ export const Input = styled.input<{
   width: 100%;
   border: ${({ $isError, $isDirty }) => getBorderStyle($isError, $isDirty)};
 `
+
+const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
+  if (!$isDirty) {
+    return `1px solid ${theme.Netural500}`
+  }
+  return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand600}`
+}
