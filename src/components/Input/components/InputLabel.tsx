@@ -1,6 +1,6 @@
 import { LabelHTMLAttributes, PropsWithChildren } from "react"
 
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -14,23 +14,26 @@ const InputLabel = ({
   ...props
 }: PropsWithChildren<InputLabelProps>) => {
   return (
-    <InputName {...props}>
+    <InputName
+      $isRequired={isRequired}
+      {...props}>
       {children}
-      {isRequired && <EseentialSymbol>*</EseentialSymbol>}
     </InputName>
   )
 }
 
 export default InputLabel
 
-const InputName = styled.label`
-  color: ${theme.Netural990};
+const InputName = styled.label<{ $isRequired: boolean }>`
+  color: ${theme.Netural800};
   ${fonts.b6};
-  display: flex;
-  gap: 5px;
-`
-
-const EseentialSymbol = styled.span`
-  color: ${theme.Error};
-  ${fonts.b6};
+  ${({ $isRequired }) =>
+    $isRequired &&
+    css`
+      &::after {
+        content: " *";
+        color: ${theme.Error};
+        ${fonts.b6};
+      }
+    `}
 `

@@ -13,8 +13,6 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
-import theme from "@styles/theme"
-
 import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "../StyledSignup"
@@ -66,7 +64,6 @@ const Profile = () => {
                 $isDirty: formState.dirtyFields.userName,
                 $isError: formState.errors.userName,
               }),
-              ...INPUT_STYLE.PROFILE,
             }}
           />
           <Input.Error>{formState.errors?.userName?.message}</Input.Error>
@@ -86,7 +83,6 @@ const Profile = () => {
                 $isDirty: formState.dirtyFields.birthDate,
                 $isError: formState.errors.birthDate,
               }),
-              ...INPUT_STYLE.PROFILE,
             }}
           />
           <Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
@@ -106,7 +102,6 @@ const Profile = () => {
                 $isDirty: formState.dirtyFields.loginEmail,
                 $isError: formState.errors.loginEmail,
               }),
-              ...INPUT_STYLE.PROFILE,
             }}
           />
           <Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
@@ -133,7 +128,6 @@ const Profile = () => {
                   }
                 },
               }),
-              ...INPUT_STYLE.PROFILE,
             }}
           />
           <Input.Error>{formState.errors?.password?.message}</Input.Error>
@@ -164,7 +158,6 @@ const Profile = () => {
                 $isError: formState.errors.passwordCheck,
               }),
             }}
-            {...INPUT_STYLE.PROFILE}
           />
           <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
         </Input>
@@ -178,18 +171,10 @@ const Profile = () => {
 }
 
 export default Profile
+
 const ProfileFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
 `
-
-const INPUT_STYLE = {
-  PROFILE: { background: `${theme.Netural100}` },
-  FIGURE: {
-    background: `${theme.Netural0}`,
-    width: "70px",
-    border: "1px solid #A2B2C2",
-  },
-}
