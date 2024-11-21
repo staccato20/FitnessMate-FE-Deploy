@@ -26,7 +26,5 @@ export const formAdapter = ({
   ...props
 }: formAdapterProps) => {
   const { validate, attributes } = validator
-  console.log(props)
-
   return { ...register(name, { ...validate }), ...{ ...attributes, ...props } }
 }

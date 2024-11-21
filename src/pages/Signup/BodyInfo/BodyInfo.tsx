@@ -1,8 +1,9 @@
-// @ts-nocheck
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
+
+import styled from "styled-components"
 
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
@@ -10,20 +11,22 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { SEX_GROUP, SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
+import { BodyInfoPayload } from "@typpes/type"
+
 import { formAdapter } from "@utils/formAdapter"
 
-import * as GS from "../StyledSignup"
-import * as S from "./StyledBodyInfo"
+import * as S from "../StyledSignup"
 
 const BodyInfo = () => {
-  const methods = useForm({
+  const methods = useForm<BodyInfoPayload>({
     mode: "onChange",
-    defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["BODYINFO"],
   })
+
   const { formState, handleSubmit, register } = methods
   const { setBodyInfo } = useSignupStore()
   const navigate = useNavigate()
-  const handleNextPage = (bodyInfoForm) => {
+
+  const onSubmit = (bodyInfoForm: BodyInfoPayload) => {
     if (formState.isValid) {
       setBodyInfo({
         ...bodyInfoForm,
@@ -35,12 +38,12 @@ const BodyInfo = () => {
   }
 
   return (
-    <GS.SignupForm onSubmit={handleSubmit(handleNextPage)}>
-      <GS.SignupTitle>
-        <ProgressBar status={2} />
+    <S.SignupForm onSubmit={handleSubmit(onSubmit)}>
+      <S.SignupTitle>
+        <ProgressBar progress={2} />
         신체 정보를 입력해주세요
-      </GS.SignupTitle>
-      <S.BodyInfoContainer>
+      </S.SignupTitle>
+      <BodyInfoContainer>
         <Input>
           <Input.Label
             isRequired
@@ -48,12 +51,11 @@ const BodyInfo = () => {
             성별
           </Input.Label>
           <Input.Select
+            name="sex"
             list={SEX_GROUP}
             methods={methods}
           />
-          <Input.Error>{formState.errors?.sex?.message}</Input.Error>
         </Input>
-
         <Input>
           <Input.Label
             isRequired
@@ -61,14 +63,13 @@ const BodyInfo = () => {
             키
           </Input.Label>
           <Input.Input
-            type={"number"}
             props={{
               ...formAdapter({
                 register,
                 validator: SIGNUP_INPUTS["height"],
                 name: "height",
-                $isDirty: formState.dirtyFields.height,
-                $isError: formState.errors.height,
+                $isDirty: !!formState.dirtyFields.height,
+                $isError: !!formState.errors.height,
               }),
             }}
           />
@@ -81,26 +82,33 @@ const BodyInfo = () => {
             몸무게
           </Input.Label>
           <Input.Input
-            type={"number"}
             props={{
               ...formAdapter({
                 register,
                 validator: SIGNUP_INPUTS["weight"],
                 name: "weight",
-                $isDirty: formState.dirtyFields.weight,
-                $isError: formState.errors.weight,
+                $isDirty: !!formState.dirtyFields.weight,
+                $isError: !!formState.errors.weight,
               }),
             }}
           />
           <Input.Error>{formState.errors?.weight?.message}</Input.Error>
         </Input>
-      </S.BodyInfoContainer>
+      </BodyInfoContainer>
       <SignupButton
         $isValid={formState.isValid}
         nextUrl="bodyfigure"
       />
-    </GS.SignupForm>
+    </S.SignupForm>
   )
 }
 
 export default BodyInfo
+
+const BodyInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+`

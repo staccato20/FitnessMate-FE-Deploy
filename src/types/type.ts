@@ -40,6 +40,12 @@ export interface BodyData {
   upDownBalance: number
 }
 
+export interface BodyInfoPayload {
+  sex: string
+  height: number
+  weight: number
+}
+
 export interface SignupPayload {
   userName: string
   loginEmail: string

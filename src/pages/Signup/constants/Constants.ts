@@ -9,8 +9,8 @@ export const SIGNUP_INPUTS = {
     },
     BODYINFO: {
       sex: "남성",
-      height: "",
-      weight: "",
+      height: 0,
+      weight: 0,
     },
     BODYFIGURE: {
       upDownBalance: 0,
@@ -115,7 +115,10 @@ export const SIGNUP_INPUTS = {
   },
 }
 
-export const SEX_GROUP = ["남성", "여성"]
+export const SEX_GROUP = [
+  { groupName: "남성", imgSrc: `/src/assets/images/남성.png`, id: 0 },
+  { groupName: "여성", imgSrc: `/src/assets/images/여성.png`, id: 1 },
+]
 
 export const BODYINFO_LIST = [
   ["height", "키"],
