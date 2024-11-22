@@ -32,7 +32,6 @@ const BodyFigure = () => {
   })
   const { formState, handleSubmit, getValues } = methods
   const { profile, bodyinfo } = useSignupStore()
-  const navigate = useNavigate()
 
   const onSubmit = async (bodyfigureData: BodyFigureData) => {
     const { bodyFat, muscleMass } = bodyfigureData
@@ -50,14 +49,6 @@ const BodyFigure = () => {
               : muscleMass,
         },
       }
-      // try {
-      //   const response = await authAPI.postUser(submission)
-      //   if (response.status === 200) {
-      //     navigate("/signup/complete")
-      //   }
-      // } catch (error) {
-      //   console.log(error)
-      // }
     }
   }
 
