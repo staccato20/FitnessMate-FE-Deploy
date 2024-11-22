@@ -19,7 +19,9 @@ const SignupButton = ({ $isValid, nextUrl }: SignupButtonProps) => {
 
   const handleNextPage = (e: React.MouseEvent) => {
     e.preventDefault()
-    navigate(`/signup/${nextUrl}`)
+    if (nextUrl) {
+      navigate(`/signup/${nextUrl}`)
+    }
   }
 
   return (

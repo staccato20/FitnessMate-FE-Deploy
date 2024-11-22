@@ -27,13 +27,14 @@ const BodyInfo = () => {
   const navigate = useNavigate()
 
   const onSubmit = (bodyInfoForm: BodyInfoPayload) => {
+    console.log("gg")
     if (formState.isValid) {
       setBodyInfo({
         ...bodyInfoForm,
         height: Number(bodyInfoForm.height),
         weight: Number(bodyInfoForm.weight),
       })
-      navigate("/signup/bodyfigure")
+      // navigate("/signup/bodyfigure")
     }
   }
 
@@ -95,10 +96,7 @@ const BodyInfo = () => {
           <Input.Error>{formState.errors?.weight?.message}</Input.Error>
         </Input>
       </BodyInfoContainer>
-      <SignupButton
-        $isValid={formState.isValid}
-        nextUrl="bodyfigure"
-      />
+      <SignupButton $isValid={formState.isValid} />
     </S.SignupForm>
   )
 }
