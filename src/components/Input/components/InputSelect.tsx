@@ -33,6 +33,7 @@ const InputSelect = <T extends FieldValues, K extends Path<T>>({
         <label key={id}>
           <input
             type="radio"
+            id={name}
             value={groupName}
             {...register(name)}
           />

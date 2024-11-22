@@ -16,9 +16,10 @@ const InputInput = ({
 }: InputInputProps) => {
   return (
     <Input
-      {...rest}
       $isDirty={$isDirty}
       $isError={$isError}
+      id={rest.name}
+      {...rest}
     />
   )
 }

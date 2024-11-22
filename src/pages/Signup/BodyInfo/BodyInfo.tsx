@@ -27,14 +27,14 @@ const BodyInfo = () => {
   const navigate = useNavigate()
 
   const onSubmit = (bodyInfoForm: BodyInfoPayload) => {
-    console.log("gg")
+    const { height, weight } = bodyInfoForm
     if (formState.isValid) {
       setBodyInfo({
         ...bodyInfoForm,
-        height: Number(bodyInfoForm.height),
-        weight: Number(bodyInfoForm.weight),
+        height: Number(height),
+        weight: Number(weight),
       })
-      // navigate("/signup/bodyfigure")
+      navigate("/signup/bodyfigure")
     }
   }
 

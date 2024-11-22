@@ -5,23 +5,15 @@ import Button from "@components/Button/Button"
 import * as S from "../StyledSignup"
 
 interface SignupButtonProps {
-  nextUrl?: string
   $isValid: boolean
 }
 
-const SignupButton = ({ $isValid, nextUrl }: SignupButtonProps) => {
+const SignupButton = ({ $isValid }: SignupButtonProps) => {
   const navigate = useNavigate()
 
   const handleBackPage = (e: React.MouseEvent) => {
     e.preventDefault()
     navigate(-1)
-  }
-
-  const handleNextPage = (e: React.MouseEvent) => {
-    e.preventDefault()
-    if (nextUrl) {
-      navigate(`/signup/${nextUrl}`)
-    }
   }
 
   return (
@@ -34,7 +26,6 @@ const SignupButton = ({ $isValid, nextUrl }: SignupButtonProps) => {
       </Button>
       <Button
         type="submit"
-        onClick={handleNextPage}
         variant="main"
         disabled={!$isValid}
         size="lg">

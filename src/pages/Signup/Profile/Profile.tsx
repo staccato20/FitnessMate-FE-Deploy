@@ -154,10 +154,7 @@ const Profile = () => {
           <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
         </Input>
       </ProfileFormWrapper>
-      <SignupButton
-        $isValid={formState.isValid}
-        nextUrl="bodyinfo"
-      />
+      <SignupButton $isValid={formState.isValid} />
     </S.SignupWrapper>
   )
 }

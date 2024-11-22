@@ -81,11 +81,7 @@ const BodyFigure = () => {
           />
         </FormProvider>
       </S.BodyFigureWrapper>
-      <SignupButton
-        $isValid={formState.isValid}
-        nextUrl="complete">
-        회원가입 완료
-      </SignupButton>
+      <SignupButton $isValid={formState.isValid}>회원가입 완료</SignupButton>
     </GS.SignupForm>
   )
 }
