@@ -1,13 +1,10 @@
 import { FormProvider, useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
 
 import styled from "styled-components"
 
 import ProgressBar from "@components/Progressbar/ProgressBar"
-
-import authAPI from "@apis/domain/auth"
 
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
@@ -24,12 +21,13 @@ import * as S from "../StyledSignup"
 
 const BodyFigure = () => {
   const { ratioValue, ratioText, handleRatio } = useRatio()
-
   const { selectedMenu, handleSelectMenu } = useSelectMenu()
   const { selectedFigure, handleSelectFigure } = useSelectFigure()
+
   const methods = useForm<BodyFigureData>({
     mode: "onChange",
   })
+
   const { formState, handleSubmit, getValues } = methods
   const { profile, bodyinfo } = useSignupStore()
 

@@ -96,7 +96,7 @@ const BodyInfo = () => {
           <Input.Error>{formState.errors?.weight?.message}</Input.Error>
         </Input>
       </BodyInfoContainer>
-      <SignupButton $isValid={formState.isValid} />
+      <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
     </S.SignupForm>
   )
 }

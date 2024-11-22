@@ -76,7 +76,7 @@ export const SIGNUP_INPUTS = {
       placeholder: "숫자만 입력",
     },
     validate: {
-      valueAsNumber: true,
+      valueAsNumber: true as unknown as false,
       required: { value: true, message: "키는 필수 입력입니다." },
       pattern: {
         value: /^\d{3}$/,
@@ -89,7 +89,7 @@ export const SIGNUP_INPUTS = {
       placeholder: "숫자만 입력",
     },
     validate: {
-      valueAsNumber: true,
+      valueAsNumber: true as unknown as false,
       required: { value: true, message: "몸무게는 필수 입력입니다." },
       pattern: {
         value: /^\d{2,3}$/,
@@ -98,8 +98,11 @@ export const SIGNUP_INPUTS = {
     },
   },
   bodyFat: {
+    attributes: {
+      placeholder: "",
+    },
     validate: {
-      valueAsNumber: true,
+      valueAsNumber: true as unknown as false,
       required: { value: true, message: "" },
       pattern: {
         value: /^\d{2}$/,
@@ -108,8 +111,11 @@ export const SIGNUP_INPUTS = {
     },
   },
   muscleMass: {
+    attributes: {
+      placeholder: "",
+    },
     validate: {
-      valueAsNumber: true,
+      valueAsNumber: true as unknown as false,
       required: { value: true, message: "" },
       pattern: {
         value: /^\d{2}$/,

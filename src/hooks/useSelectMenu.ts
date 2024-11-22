@@ -7,5 +7,5 @@ export const useSelectMenu = () => {
     setSelectedMenu(idx)
   }
 
-  return { selectedMenu, setSelectedMenu, handleSelectMenu }
+  return { selectedMenu, handleSelectMenu }
 }

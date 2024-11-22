@@ -7,7 +7,7 @@ import {
 } from "react-hook-form"
 
 type ValidatorType = {
-  attributes: InputHTMLAttributes<HTMLInputElement>
+  attributes?: InputHTMLAttributes<HTMLInputElement>
   validate: RegisterOptions
 }
 interface formAdapterProps {

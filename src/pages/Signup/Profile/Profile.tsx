@@ -154,7 +154,7 @@ const Profile = () => {
           <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
         </Input>
       </ProfileFormWrapper>
-      <SignupButton $isValid={formState.isValid} />
+      <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
     </S.SignupWrapper>
   )
 }

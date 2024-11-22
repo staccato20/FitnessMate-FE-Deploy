@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useFormContext } from "react-hook-form"
 
 import Input from "@components/Input/Input"
@@ -9,57 +8,38 @@ import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "./StyledFigure"
 
-const FigureOptionDirectItem = () => {
-  const methods = useFormContext()
+const BodyFigureData = [
+  { name: "muscleMass", label: "골격근량" },
+  { name: "bodyFat", label: "체지방량" },
+] as const
 
-  const { register, formState } = methods
+const FigureOptionDirectItem = () => {
+  const { register, formState } = useFormContext()
+
   return (
     <S.FigureOptionDirectItemWrapper>
       <S.FigureOptionDirectItemList>
-        <S.FigureOptionDirectItemOption>
-          <S.FigureOptionDirectItemOptionBox>
-            <Input>
-              <Input.Label htmlFor="bodyFat">골격근량</Input.Label>
-              <S.FigureOptionInputWrapper>
-                <Input.Input
-                  type={"number"}
-                  props={{
-                    ...formAdapter({
+        {BodyFigureData.map(({ name, label }) => (
+          <S.FigureOptionDirectItemOption>
+            <S.FigureOptionDirectItemOptionBox>
+              <Input>
+                <Input.Label htmlFor={name}>{label}</Input.Label>
+                <S.FigureOptionInputWrapper>
+                  <Input.Input
+                    props={formAdapter({
                       register,
-                      validator: SIGNUP_INPUTS["bodyFat"],
-                      name: "bodyFat",
-                      $isDirty: formState.dirtyFields.bodyFat,
-                      $isError: formState.errors.bodyFat,
-                    }),
-                  }}
-                />
-                <Input.Text>kg</Input.Text>
-              </S.FigureOptionInputWrapper>
-            </Input>
-          </S.FigureOptionDirectItemOptionBox>
-        </S.FigureOptionDirectItemOption>
-        <S.FigureOptionDirectItemOption>
-          <S.FigureOptionDirectItemOptionBox>
-            <Input>
-              <Input.Label htmlFor="muscleMass">체지방량</Input.Label>
-              <S.FigureOptionInputWrapper>
-                <Input.Input
-                  type={"number"}
-                  props={{
-                    ...formAdapter({
-                      register,
-                      validator: SIGNUP_INPUTS["muscleMass"],
-                      name: "muscleMass",
-                      $isDirty: formState.dirtyFields.muscleMass,
-                      $isError: formState.errors.muscleMass,
-                    }),
-                  }}
-                />
-                <Input.Text>kg</Input.Text>
-              </S.FigureOptionInputWrapper>
-            </Input>
-          </S.FigureOptionDirectItemOptionBox>
-        </S.FigureOptionDirectItemOption>
+                      name,
+                      validator: SIGNUP_INPUTS[name],
+                      $isDirty: !!formState.dirtyFields[name],
+                      $isError: !!formState.errors[name],
+                    })}
+                  />
+                  <Input.Text>kg</Input.Text>
+                </S.FigureOptionInputWrapper>
+              </Input>
+            </S.FigureOptionDirectItemOptionBox>
+          </S.FigureOptionDirectItemOption>
+        ))}
       </S.FigureOptionDirectItemList>
       <S.FigureOptioneDirectItemMessage>
         <S.FigureOptioneDirectItemInnerMessage>
