@@ -1,4 +1,5 @@
 import { FieldValues, Path, PathValue, UseFormReturn } from "react-hook-form"
+import { Fragment } from "react/jsx-runtime"
 
 import styled from "styled-components"
 
@@ -11,9 +12,9 @@ interface SelectGroup<T extends FieldValues, K extends Path<T>> {
 }
 
 interface InputSelectProps<T extends FieldValues, K extends Path<T>> {
+  name: Path<T>
   list: SelectGroup<T, K>[]
   methods: UseFormReturn<T>
-  name: Path<T>
 }
 
 const InputSelect = <T extends FieldValues, K extends Path<T>>({
@@ -30,11 +31,12 @@ const InputSelect = <T extends FieldValues, K extends Path<T>>({
   return (
     <SelectList>
       {list.map(({ groupName, imgSrc, id }) => (
-        <label key={id}>
+        <Fragment key={id}>
           <input
             type="radio"
             id={name}
             value={groupName}
+            aria-label={groupName}
             {...register(name)}
           />
           <SelectItem
@@ -51,7 +53,7 @@ const InputSelect = <T extends FieldValues, K extends Path<T>>({
               {groupName}
             </SelectText>
           </SelectItem>
-        </label>
+        </Fragment>
       ))}
     </SelectList>
   )
