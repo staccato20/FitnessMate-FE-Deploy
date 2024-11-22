@@ -1,21 +1,17 @@
 import { useState } from "react"
 
-export const useSlide = () => {
+export const useRatio = () => {
   const [ratioValue, setRatioValue] = useState(5)
+  let ratioText = ""
 
   const handleRatio = (flag: string) => {
     if (flag === "+") {
-      setRatioValue((prev) => {
-        return prev < 9 ? prev + 1 : prev
-      })
+      setRatioValue((prev) => (prev < 9 ? prev + 1 : prev))
     } else if (flag === "-") {
-      setRatioValue((prev) => {
-        return prev > 1 ? prev - 1 : prev
-      })
+      setRatioValue((prev) => (prev > 1 ? prev - 1 : prev))
     }
   }
 
-  let ratioText
   if (Number(ratioValue) < 5) {
     ratioText = "하체가 상체보다 더 발달했어요"
   }

@@ -40,6 +40,11 @@ export interface BodyData {
   upDownBalance: number
 }
 
+export interface BodyFigureData {
+  bodyFat: number
+  muscleMass: number
+}
+
 export interface BodyInfoPayload {
   sex: string
   height: number

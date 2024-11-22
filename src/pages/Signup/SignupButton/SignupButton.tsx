@@ -2,13 +2,18 @@ import { useNavigate } from "react-router-dom"
 
 import Button from "@components/Button/Button"
 
+import { StrictPropsWithChildren } from "@typpes/type"
+
 import * as S from "../StyledSignup"
 
 interface SignupButtonProps {
   $isValid: boolean
 }
 
-const SignupButton = ({ $isValid }: SignupButtonProps) => {
+const SignupButton = ({
+  $isValid,
+  children,
+}: StrictPropsWithChildren<SignupButtonProps>) => {
   const navigate = useNavigate()
 
   const handleBackPage = (e: React.MouseEvent) => {
@@ -25,11 +30,11 @@ const SignupButton = ({ $isValid }: SignupButtonProps) => {
         이전
       </Button>
       <Button
-        type="submit"
-        variant="main"
         disabled={!$isValid}
-        size="lg">
-        다음으로
+        size="lg"
+        variant="main"
+        type="submit">
+        {children}
       </Button>
     </S.ButtonContainer>
   )
