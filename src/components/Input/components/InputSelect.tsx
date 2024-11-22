@@ -83,9 +83,9 @@ const SelectItem = styled.button<{ $isChecked: boolean }>`
   gap: 8px;
   &:hover {
     background: ${theme.Netural100};
-    border: 2px solid
+    border: 3px solid
       ${({ $isChecked }) =>
-        $isChecked ? `2px solid ${theme.Brand600}` : "#e4e7eb"};
+        $isChecked ? `${theme.Brand600}` : `${theme.Netural300}`};
   }
 `
 const SelectImg = styled.img`
