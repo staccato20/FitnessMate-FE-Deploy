@@ -136,9 +136,34 @@ export const BODYINFO_LIST = [
 ]
 
 export const CATEGORY_LIST = [
-  ["근육질 체형", [10, 40]],
-  ["마른 체형", [15, 30]],
-  ["보통 체형", [18, 35]],
-  ["통통한 체형", [20, 35]],
-  ["뚱뚱한 체형", [25, 35]],
+  {
+    id: 0,
+    name: "근육질 체형",
+    bodyFat: 10,
+    muscleMass: 40,
+  },
+  {
+    id: 1,
+    name: "마른 체형",
+    bodyFat: 15,
+    muscleMass: 30,
+  },
+  {
+    id: 2,
+    name: "보통 체형",
+    bodyFat: 18,
+    muscleMass: 35,
+  },
+  {
+    id: 3,
+    name: "통통한 체형",
+    bodyFat: 20,
+    muscleMass: 35,
+  },
+  {
+    id: 4,
+    name: "뚱뚱한 체형",
+    bodyFat: 25,
+    muscleMass: 35,
+  },
 ]

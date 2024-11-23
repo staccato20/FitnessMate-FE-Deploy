@@ -7,22 +7,18 @@ import styled from "styled-components"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
+import { FigureProvider } from "@pages/Signup/BodyFigure/components/Figure/FigureContext"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
-import { CATEGORY_LIST } from "@pages/Signup/constants/Constants"
 
 import { BodyFigureData } from "@typpes/type"
 
 import { useRatio } from "@hooks/useRatio"
-import { useSelectFigure } from "@hooks/useSelectFigure"
-import { useSelectMenu } from "@hooks/useSelectMenu"
 
 import * as S from "../StyledSignup"
 
 const BodyFigure = () => {
   const { ratioValue, ratioText, handleRatio } = useRatio()
-  const { selectedMenu, handleSelectMenu } = useSelectMenu()
-  const { selectedFigure, handleSelectFigure } = useSelectFigure()
 
   const methods = useForm<BodyFigureData>({
     mode: "onChange",
@@ -32,22 +28,18 @@ const BodyFigure = () => {
   const { profile, bodyinfo } = useSignupStore()
 
   const onSubmit = async (bodyfigureData: BodyFigureData) => {
-    const { bodyFat, muscleMass } = bodyfigureData
-    if (formState.isValid) {
-      const submission = {
-        ...profile,
-        ...bodyinfo,
-        ...{
-          upDownBalance: ratioValue / 10.0,
-          bodyFat:
-            selectedMenu === 0 ? CATEGORY_LIST[selectedFigure][1][0] : bodyFat,
-          muscleMass:
-            selectedMenu === 0
-              ? CATEGORY_LIST[selectedFigure][1][1]
-              : muscleMass,
-        },
-      }
-    }
+    // const { bodyFat, muscleMass } = bodyfigureData
+    // if (formState.isValid) {
+    //   const submission = {
+    //     ...profile,
+    //     ...bodyinfo,
+    //     ...{
+    //       upDownBalance: ratioValue / 10.0,
+    //       bodyFat:,
+    //       muscleMass:
+    //     },
+    //   }
+    // }
   }
 
   return (
@@ -62,14 +54,11 @@ const BodyFigure = () => {
           ratioText={ratioText}
           handleRatio={handleRatio}
         />
-        <FormProvider {...methods}>
-          <Figure
-            selectedMenu={selectedMenu}
-            handleSelectMenu={handleSelectMenu}
-            selectedFigure={selectedFigure}
-            handleSelectFigure={handleSelectFigure}
-          />
-        </FormProvider>
+        <FigureProvider>
+          <FormProvider {...methods}>
+            <Figure />
+          </FormProvider>
+        </FigureProvider>
       </BodyFigureWrapper>
       <SignupButton $isValid={formState.isValid}>회원가입 완료</SignupButton>
     </S.SignupForm>

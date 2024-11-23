@@ -11,6 +11,7 @@ interface RatioProps {
 const RATIO_LIST = [
   {
     name: "상체 비중",
+    id: 0,
     ratios: [
       { icon: "AddRound", operator: "+" },
       { icon: "MinusRound", operator: "-" },
@@ -18,6 +19,7 @@ const RATIO_LIST = [
   },
   {
     name: "하체 비중",
+    id: 1,
     ratios: [
       { icon: "MinusRound", operator: "-" },
       { icon: "AddRound", operator: "+" },
@@ -30,8 +32,8 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }: RatioProps) => {
     <S.RatioWrapper>
       <S.RatioTitle>상/하체 균형을 조절해주세요</S.RatioTitle>
       <S.RatioBoxWrapper>
-        {RATIO_LIST.map(({ name, ratios }) => (
-          <S.RatioBox>
+        {RATIO_LIST.map(({ name, id, ratios }) => (
+          <S.RatioBox key={id}>
             <S.RatioContent>
               <S.RatioBoxTitle>{name}</S.RatioBoxTitle>
               <S.RatioPercentBox>
@@ -46,7 +48,7 @@ const Ratio = ({ ratioValue, ratioText, handleRatio }: RatioProps) => {
             <S.RatioButtonBox>
               {ratios.map(({ icon, operator }) => (
                 <IconButton
-                  type="button"
+                  key={icon}
                   size={28}
                   icon={icon}
                   onClick={() => handleRatio(operator)}
