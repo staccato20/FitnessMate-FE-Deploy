@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
 
@@ -15,30 +16,35 @@ import { BodyFigureData } from "@typpes/type"
 
 import { useRatio } from "@hooks/useRatio"
 
+import { usePostSignup } from "../../../hooks/mutation/usePostSignup"
 import * as S from "../StyledSignup"
 
 const BodyFigure = () => {
   const { ratioValue, ratioText, handleRatio } = useRatio()
+  const navigate = useNavigate()
+
+  const { mutate, isSuccess } = usePostSignup()
 
   const methods = useForm<BodyFigureData>({
     mode: "onChange",
   })
 
-  const { formState, handleSubmit, getValues } = methods
+  const { formState, handleSubmit } = methods
   const { profile, bodyinfo } = useSignupStore()
 
   const onSubmit = async (bodyfigureData: BodyFigureData) => {
-    // const { bodyFat, muscleMass } = bodyfigureData
-    // if (formState.isValid) {
-    //   const submission = {
-    //     ...profile,
-    //     ...bodyinfo,
-    //     ...{
-    //       upDownBalance: ratioValue / 10.0,
-    //       bodyFat:,
-    //       muscleMass:
-    //     },
-    //   }
+    const submission = {
+      ...profile,
+      ...bodyinfo,
+      ...{
+        upDownBalance: ratioValue / 10.0,
+        ...bodyfigureData,
+      },
+    }
+    console.log(mutate(submission))
+
+    // if (isSuccess) {
+    //   navigate("/signup/complete")
     // }
   }
 

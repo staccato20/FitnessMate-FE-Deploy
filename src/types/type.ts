@@ -31,7 +31,7 @@ export interface Machine {
 }
 
 export interface BodyData {
-  date: string
+  birthDate: string
   bodyDataId: number
   height: number
   weight: number
@@ -56,7 +56,7 @@ export interface SignupPayload {
   loginEmail: string
   password: string
   sex: string
-  Date: string
+  birthDate: string
   height: number
   weight: number
   bodyFat: number
