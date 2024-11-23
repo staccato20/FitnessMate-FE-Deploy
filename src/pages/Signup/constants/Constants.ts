@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react"
+
 export const SIGNUP_INPUTS = {
   DEFAULT_VALUES: {
     PROFILE: {
@@ -80,7 +82,7 @@ export const SIGNUP_INPUTS = {
       required: { value: true, message: "키는 필수 입력입니다." },
       pattern: {
         value: /^\d{3}$/,
-        message: "키는 세자리로만 입력이 가능합니다.",
+        message: "키는 세자리 로만 입력이 가능합니다.",
       },
     },
   },
@@ -133,7 +135,7 @@ export const SEX_GROUP = [
 export const BODYINFO_LIST = [
   ["height", "키"],
   ["weight", "몸무게"],
-]
+] as const
 
 export const CATEGORY_LIST = [
   {
@@ -166,4 +168,40 @@ export const CATEGORY_LIST = [
     bodyFat: 25,
     muscleMass: 35,
   },
-]
+] as const
+
+export const SIGNUP_LIST: Array<{
+  id: number
+  name: Exclude<
+    keyof typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE,
+    "passwordCheck"
+  >
+  label: string
+  isRequired: boolean
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+}> = [
+  {
+    id: 0,
+    name: "userName",
+    label: "이름",
+    isRequired: true,
+  },
+  {
+    id: 1,
+    name: "birthDate",
+    label: "생년월일",
+    isRequired: true,
+  },
+  {
+    id: 2,
+    name: "loginEmail",
+    label: "이메일",
+    isRequired: true,
+  },
+  {
+    id: 3,
+    name: "password",
+    label: "비밀번호",
+    isRequired: true,
+  },
+] as const

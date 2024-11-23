@@ -40,4 +40,5 @@ export const ButtonContainer = styled.div`
   gap: 6px;
   display: flex;
   align-items: center;
+  padding-top: 88px;
 `

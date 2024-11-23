@@ -12,6 +12,7 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
+import { createSignupList } from "@pages/Signup/utils/createSignupList"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -44,6 +45,7 @@ const Profile = () => {
       trigger("passwordCheck")
     }
   }
+  const SIGNUP_LIST = createSignupList(triggerPasswordCheck)
 
   const checkPassWord = (value: string) =>
     value === getValues("password") || "비밀번호가 일치하지 않습니다."
@@ -55,85 +57,32 @@ const Profile = () => {
         회원 정보를 입력해주세요
       </S.SignupTitle>
       <ProfileFormWrapper onSubmit={handleSubmit(onSubmit)}>
+        {SIGNUP_LIST.map(({ id, name, label, isRequired, onChange }) => (
+          <Input key={id}>
+            <Input.Label
+              isRequired={isRequired}
+              htmlFor={name}>
+              {label}
+            </Input.Label>
+            <Input.Input
+              props={{
+                ...formAdapter({
+                  register,
+                  name,
+                  validator: SIGNUP_INPUTS[name],
+                  $isDirty: !!formState.dirtyFields[name],
+                  $isError: !!formState.errors[name],
+                  ...(onChange ? { onChange } : {}),
+                }),
+              }}
+            />
+            <Input.Error>{formState?.errors[name]?.message}</Input.Error>
+          </Input>
+        ))}
         <Input>
           <Input.Label
-            isRequired
-            htmlFor="userName">
-            이름
-          </Input.Label>
-          <Input.Input
-            props={formAdapter({
-              register,
-              name: "userName",
-              validator: SIGNUP_INPUTS["userName"],
-              $isDirty: !!formState.dirtyFields.userName,
-              $isError: !!formState.errors.userName,
-            })}
-          />
-          <Input.Error>{formState.errors?.userName?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="birthDate">
-            생년월일
-          </Input.Label>
-          <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["birthDate"],
-                name: "birthDate",
-                $isDirty: !!formState.dirtyFields.birthDate,
-                $isError: !!formState.errors.birthDate,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.birthDate?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="loginEmail">
-            이메일
-          </Input.Label>
-          <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["loginEmail"],
-                name: "loginEmail",
-                $isDirty: !!formState.dirtyFields.loginEmail,
-                $isError: !!formState.errors.loginEmail,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.loginEmail?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="password">
-            비밀번호
-          </Input.Label>
-          <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["password"],
-                name: "password",
-                $isDirty: !!formState.dirtyFields.password,
-                $isError: !!formState.errors.password,
-                onChange: triggerPasswordCheck,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.password?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="passwordCheck">
+            htmlFor="passwordCheck"
+            isRequired>
             비밀번호 확인
           </Input.Label>
           <Input.Input
@@ -150,10 +99,9 @@ const Profile = () => {
               }),
             }}
           />
-          <Input.Error>{formState.errors?.passwordCheck?.message}</Input.Error>
         </Input>
+        <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
       </ProfileFormWrapper>
-      <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
     </S.SignupWrapper>
   )
 }
