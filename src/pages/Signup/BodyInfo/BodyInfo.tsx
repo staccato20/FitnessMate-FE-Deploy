@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
 
-import styled from "styled-components"
-
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
@@ -16,6 +14,7 @@ import { BodyInfoPayload } from "@typpes/type"
 import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "../StyledSignup"
+import { BODYINFO_LIST } from "../constants/Constants"
 
 const BodyInfo = () => {
   const methods = useForm<BodyInfoPayload>({
@@ -44,7 +43,7 @@ const BodyInfo = () => {
         <ProgressBar progress={2} />
         신체 정보를 입력해주세요
       </S.SignupTitle>
-      <BodyInfoContainer>
+      <S.FormWrapper>
         <Input>
           <Input.Label
             isRequired
@@ -57,56 +56,31 @@ const BodyInfo = () => {
             methods={methods}
           />
         </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="height">
-            키
-          </Input.Label>
-          <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["height"],
-                name: "height",
-                $isDirty: !!formState.dirtyFields.height,
-                $isError: !!formState.errors.height,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.height?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="weight">
-            몸무게
-          </Input.Label>
-          <Input.Input
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["weight"],
-                name: "weight",
-                $isDirty: !!formState.dirtyFields.weight,
-                $isError: !!formState.errors.weight,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.weight?.message}</Input.Error>
-        </Input>
-      </BodyInfoContainer>
+        {BODYINFO_LIST.map(({ id, label, name }) => (
+          <Input key={id}>
+            <Input.Label
+              isRequired
+              htmlFor={name}>
+              {label}
+            </Input.Label>
+            <Input.Input
+              props={{
+                ...formAdapter({
+                  register,
+                  validator: SIGNUP_INPUTS[name],
+                  name,
+                  $isDirty: !!formState.dirtyFields[name],
+                  $isError: !!formState.errors[name],
+                }),
+              }}
+            />
+            <Input.Error>{formState?.errors[name]?.message}</Input.Error>
+          </Input>
+        ))}
+      </S.FormWrapper>
       <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
     </S.SignupForm>
   )
 }
 
 export default BodyInfo
-
-const BodyInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  width: 100%;
-`

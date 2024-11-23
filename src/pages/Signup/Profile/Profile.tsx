@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { useSignupStore } from "@store/useSignupStore"
 import { omit } from "lodash"
 
-import styled from "styled-components"
-
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
@@ -33,7 +31,6 @@ const Profile = () => {
   const onSubmit: SubmitHandler<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE> = (
     formValue,
   ) => {
-    console.log(formValue)
     const updatedProfoile = omit(formValue, ["passwordCheck"])
     setProfile(updatedProfoile)
     navigate(`/signup/bodyinfo`)
@@ -56,7 +53,7 @@ const Profile = () => {
         <ProgressBar progress={1} />
         회원 정보를 입력해주세요
       </S.SignupTitle>
-      <ProfileFormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
         {SIGNUP_LIST.map(({ id, name, label, isRequired, onChange }) => (
           <Input key={id}>
             <Input.Label
@@ -101,16 +98,9 @@ const Profile = () => {
           />
         </Input>
         <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
-      </ProfileFormWrapper>
+      </S.FormWrapper>
     </S.SignupWrapper>
   )
 }
 
 export default Profile
-
-const ProfileFormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-`

@@ -40,5 +40,13 @@ export const ButtonContainer = styled.div`
   gap: 6px;
   display: flex;
   align-items: center;
-  padding-top: 88px;
+  padding-top: 64px;
+`
+
+export const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: flex-start;
 `

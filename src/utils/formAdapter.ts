@@ -25,6 +25,7 @@ export const formAdapter = ({
   name,
   ...props
 }: formAdapterProps) => {
+  console.log(validator.validate.pattern)
   const { validate, attributes } = validator
   return { ...register(name, { ...validate }), ...{ ...attributes, ...props } }
 }

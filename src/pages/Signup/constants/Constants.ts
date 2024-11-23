@@ -78,7 +78,6 @@ export const SIGNUP_INPUTS = {
       placeholder: "숫자만 입력",
     },
     validate: {
-      valueAsNumber: true as unknown as false,
       required: { value: true, message: "키는 필수 입력입니다." },
       pattern: {
         value: /^\d{3}$/,
@@ -91,7 +90,6 @@ export const SIGNUP_INPUTS = {
       placeholder: "숫자만 입력",
     },
     validate: {
-      valueAsNumber: true as unknown as false,
       required: { value: true, message: "몸무게는 필수 입력입니다." },
       pattern: {
         value: /^\d{2,3}$/,
@@ -104,7 +102,6 @@ export const SIGNUP_INPUTS = {
       placeholder: "",
     },
     validate: {
-      valueAsNumber: true as unknown as false,
       required: { value: true, message: "" },
       pattern: {
         value: /^\d{2}$/,
@@ -117,7 +114,6 @@ export const SIGNUP_INPUTS = {
       placeholder: "",
     },
     validate: {
-      valueAsNumber: true as unknown as false,
       required: { value: true, message: "" },
       pattern: {
         value: /^\d{2}$/,
@@ -133,8 +129,8 @@ export const SEX_GROUP = [
 ]
 
 export const BODYINFO_LIST = [
-  ["height", "키"],
-  ["weight", "몸무게"],
+  { id: 1, name: "height", label: "키" },
+  { id: 2, name: "weight", label: "몸무게" },
 ] as const
 
 export const CATEGORY_LIST = [
