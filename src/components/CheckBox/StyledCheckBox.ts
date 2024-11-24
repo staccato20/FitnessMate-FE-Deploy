@@ -27,30 +27,9 @@ export const CheckBoxImg = styled.img<isCheckedProps>`
   margin: ${({ $isChecked }) => ($isChecked ? "0px" : "2px")};
 `
 export const CheckBoxText = styled.span`
-  color: var(--Neutral-950, #272e38);
+  ${theme.Netural950};
   text-align: center;
   font-size: 16px;
-`
-
-export const FigureCheckBoxWrapper = styled.button<isCheckedProps>`
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 6px 18px;
-  align-items: center;
-  border-radius: 12px;
-  background: ${({ $isChecked }) => ($isChecked ? "#f2f4f6" : "#fff")};
-  height: 50px;
-  &:hover {
-    background: ${({ $isChecked }) =>
-      $isChecked ? `#f2f4f6` : `${theme.Netural200}`};
-  }
-`
-
-export const FigureCheckBoxText = styled.span<isCheckedProps>`
-  color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
-  text-align: center;
-  font-size: 14px;
 `
 
 export const ImgCheckBoxWrapper = styled.button<{

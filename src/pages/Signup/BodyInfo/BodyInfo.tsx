@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
@@ -10,37 +9,41 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { SEX_GROUP, SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
+import { BodyInfoPayload } from "@typpes/type"
+
 import { formAdapter } from "@utils/formAdapter"
 
-import * as GS from "../StyledSignup"
-import * as S from "./StyledBodyInfo"
+import * as S from "../StyledSignup"
+import { BODYINFO_LIST } from "../constants/Constants"
 
 const BodyInfo = () => {
-  const methods = useForm({
+  const methods = useForm<BodyInfoPayload>({
     mode: "onChange",
-    defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["BODYINFO"],
   })
+
   const { formState, handleSubmit, register } = methods
   const { setBodyInfo } = useSignupStore()
   const navigate = useNavigate()
-  const handleNextPage = (bodyInfoForm) => {
+
+  const onSubmit = (bodyInfoForm: BodyInfoPayload) => {
+    const { height, weight } = bodyInfoForm
     if (formState.isValid) {
       setBodyInfo({
         ...bodyInfoForm,
-        height: Number(bodyInfoForm.height),
-        weight: Number(bodyInfoForm.weight),
+        height: Number(height),
+        weight: Number(weight),
       })
       navigate("/signup/bodyfigure")
     }
   }
 
   return (
-    <GS.SignupForm onSubmit={handleSubmit(handleNextPage)}>
-      <GS.SignupTitle>
-        <ProgressBar status={2} />
+    <S.SignupWrapper>
+      <S.SignupTitle>
+        <ProgressBar progress={2} />
         신체 정보를 입력해주세요
-      </GS.SignupTitle>
-      <S.BodyInfoContainer>
+      </S.SignupTitle>
+      <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
         <Input>
           <Input.Label
             isRequired
@@ -48,58 +51,35 @@ const BodyInfo = () => {
             성별
           </Input.Label>
           <Input.Select
+            name="sex"
             list={SEX_GROUP}
             methods={methods}
           />
-          <Input.Error>{formState.errors?.sex?.message}</Input.Error>
         </Input>
-
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="height">
-            키
-          </Input.Label>
-          <Input.Input
-            type={"number"}
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["height"],
-                name: "height",
-                $isDirty: formState.dirtyFields.height,
-                $isError: formState.errors.height,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.height?.message}</Input.Error>
-        </Input>
-        <Input>
-          <Input.Label
-            isRequired
-            htmlFor="weight">
-            몸무게
-          </Input.Label>
-          <Input.Input
-            type={"number"}
-            props={{
-              ...formAdapter({
-                register,
-                validator: SIGNUP_INPUTS["weight"],
-                name: "weight",
-                $isDirty: formState.dirtyFields.weight,
-                $isError: formState.errors.weight,
-              }),
-            }}
-          />
-          <Input.Error>{formState.errors?.weight?.message}</Input.Error>
-        </Input>
-      </S.BodyInfoContainer>
-      <SignupButton
-        $isValid={formState.isValid}
-        nextUrl="bodyfigure"
-      />
-    </GS.SignupForm>
+        {BODYINFO_LIST.map(({ id, label, name }) => (
+          <Input key={id}>
+            <Input.Label
+              isRequired
+              htmlFor={name}>
+              {label}
+            </Input.Label>
+            <Input.Input
+              props={{
+                ...formAdapter({
+                  register,
+                  validator: SIGNUP_INPUTS[name],
+                  name,
+                  $isDirty: !!formState.dirtyFields[name],
+                  $isError: !!formState.errors[name],
+                }),
+              }}
+            />
+            <Input.Error>{formState?.errors[name]?.message}</Input.Error>
+          </Input>
+        ))}
+        <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
+      </S.FormWrapper>
+    </S.SignupWrapper>
   )
 }
 

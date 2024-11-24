@@ -12,6 +12,7 @@ const MainLayout = () => {
   const path = location.pathname
   const isRecommend = path.includes("recommend")
   const isLogin = path.includes("login")
+  const isSignup = path.includes("signup")
   const { setIsRecommendPage } = usePathStore()
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const MainLayout = () => {
       <ScrollToTop />
       <Navbar />
       <Outlet />
-      {!isRecommend && !isLogin && <Footer />}
+      {!isRecommend && !isLogin && !isSignup && <Footer />}
     </>
   )
 }

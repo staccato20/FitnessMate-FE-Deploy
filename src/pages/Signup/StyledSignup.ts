@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
 
 export const SignupWrapper = styled.div`
   padding-top: 100px;
@@ -30,12 +30,9 @@ export const SignupContainer = styled.div`
 `
 
 export const SignupTitle = styled.span`
-  align-items: center;
-  width: 100%;
-  color: ${theme.Netural800};
+  color: ${theme.Netural990};
+  ${fonts.h1};
   font-size: 30px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
 `
 
 export const ButtonContainer = styled.div`
@@ -43,4 +40,13 @@ export const ButtonContainer = styled.div`
   gap: 6px;
   display: flex;
   align-items: center;
+  padding-top: 64px;
+`
+
+export const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: flex-start;
 `
