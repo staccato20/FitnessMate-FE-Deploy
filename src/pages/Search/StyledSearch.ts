@@ -83,10 +83,12 @@ export const DropdownFormWrapper = styled(motion.form)`
   justify-content: center;
   z-index: 105;
   overflow: hidden;
+  position: relative;
+  max-width: 1032px;
   .close {
     position: absolute;
-    top: 150px;
-    right: 30px;
+    top: 75px;
+    right: 25px;
   }
 `
 
@@ -107,7 +109,7 @@ export const DropDownBox = styled.div`
 
 export const DropDownKeywordTitle = styled.span`
   ${fonts.b4};
-  color: ${theme.Netural600};
+  color: ${theme.Brand600};
   padding-left: 6px;
 `
 
