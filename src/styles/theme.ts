@@ -71,6 +71,7 @@ export const theme = {
   Netural950: "#272e38",
   Netural990: "#191f28",
   Error: "#ef444c",
+  ErrorWeak: "#FFF5F5",
   Success: "#2edd6a",
   Purple: "#5950D3",
 }

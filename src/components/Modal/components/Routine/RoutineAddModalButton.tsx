@@ -1,13 +1,22 @@
+import { ButtonHTMLAttributes } from "react"
+
 import Icon from "@components/Icon/Icon"
 import { AddRoutineButton } from "@components/Modal/components/Routine/StyledRoutineModal"
 
 import { useModal } from "@hooks/useModal"
 
-interface RoutineAddModalButtonProps {
+import * as S from "./StyledRoutineModal"
+
+interface RoutineAddModalButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClose: () => void
+  isFullRoutine?: boolean
 }
 
-const RoutineAddModalButton = ({ onClose }: RoutineAddModalButtonProps) => {
+const RoutineAddModalButton = ({
+  onClose,
+  isFullRoutine = false,
+}: RoutineAddModalButtonProps) => {
   const { onOpen } = useModal("루틴생성")
 
   return (
@@ -15,12 +24,21 @@ const RoutineAddModalButton = ({ onClose }: RoutineAddModalButtonProps) => {
       onClick={() => {
         onOpen()
         onClose()
-      }}>
-      <Icon
-        icon="AddRoundGray"
-        size={32}
-      />
-      추가하기
+      }}
+      disabled={isFullRoutine}>
+      <S.ButtonNavBox $isFullRoutine={isFullRoutine}>
+        <Icon
+          icon="AddRoundGray"
+          size={32}
+        />
+        추가하기
+      </S.ButtonNavBox>
+
+      {isFullRoutine && (
+        <S.FullRoutineWarning>
+          루틴은 최대 5개까지만 만들 수 있어요
+        </S.FullRoutineWarning>
+      )}
     </AddRoutineButton>
   )
 }

@@ -28,6 +28,8 @@ const RoutineAddModal = () => {
   const { data: routines = [] } = useGetMyRoutines()
   const { data: workouts, refetchAll } = useGetRoutineQueries(routines)
 
+  const isFullRoutine = routines.length >= 5
+
   const filteredRoutines = [...routines].map((routine, index) =>
     workouts[index]?.some((workout) =>
       workout?.workoutName.includes(workoutState.koreanName),
@@ -75,7 +77,10 @@ const RoutineAddModal = () => {
       </Modal.Title>
       <Modal.Content isFull>
         <S.ContentBigWrapper>
-          <RoutineAddModalButton onClose={onClose} />
+          <RoutineAddModalButton
+            onClose={onClose}
+            isFullRoutine={isFullRoutine}
+          />
           <S.RoutineList>
             {filteredRoutines?.map(({ routineId, routineName, isAdded }) => (
               <S.RoutineItem
@@ -97,10 +102,10 @@ const RoutineAddModal = () => {
                     <Icon
                       icon={
                         selectedRoutines.has(routineId)
-                          ? "AddBoldBlue"
-                          : "AddBoldGray"
+                          ? "CheckBlue"
+                          : "CheckGray"
                       }
-                      size={32}
+                      size={24}
                     />
                   )}
                 </S.RoutineState>

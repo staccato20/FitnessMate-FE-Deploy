@@ -13,7 +13,7 @@ export const LayerWrapper = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 49;
+  z-index: 202;
   transform: translate(-50%, -50%);
 `
 
@@ -26,7 +26,6 @@ export const CoverWrapper = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 50;
 `
 
 export const RecommendWrapper = styled.div`
@@ -47,9 +46,8 @@ export const LoadingText = styled(motion.span)`
   position: absolute;
   top: 50%;
   left: 50%;
-  ${fonts.h3};
+  ${fonts.h2};
   text-align: center;
-  z-index: 100;
 `
 
 export const RecommendInner = styled.div`
