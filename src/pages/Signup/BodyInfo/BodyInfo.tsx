@@ -2,19 +2,18 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
+import { BODYINFO_LIST, SEX_GROUP, SIGNUP_INPUTS } from "constants/validation"
 
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
-import { SEX_GROUP, SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
 import { BodyInfoPayload } from "@typpes/type"
 
 import { formAdapter } from "@utils/formAdapter"
 
 import * as S from "../StyledSignup"
-import { BODYINFO_LIST } from "../constants/Constants"
 
 const BodyInfo = () => {
   const methods = useForm<BodyInfoPayload>({

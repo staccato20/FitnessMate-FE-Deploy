@@ -1,9 +1,10 @@
 import { useFormContext } from "react-hook-form"
 
+import { CATEGORY_LIST } from "constants/validation"
+
 import Icon from "@components/Icon/Icon"
 
 import { useFigure } from "@pages/Signup/BodyFigure/components/Figure/FigureContext"
-import { CATEGORY_LIST } from "@pages/Signup/constants/Constants"
 
 import * as S from "./StyledFigure"
 
