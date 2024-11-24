@@ -17,7 +17,7 @@ export const BeforeButton = styled.button`
   gap: 2px;
   padding: 10px 10px 10px 0;
   color: ${theme.Brand600};
-  ${fonts.b6};
+  ${fonts.b3};
 `
 
 export const DetailWrapper = styled.div`
