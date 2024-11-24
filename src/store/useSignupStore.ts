@@ -1,6 +1,5 @@
+import { SIGNUP_INPUTS } from "constants/validation"
 import { create } from "zustand"
-
-import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 
 type Profile = typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE
 type WithoutPasswordCheck = Omit<Profile, "passwordCheck">

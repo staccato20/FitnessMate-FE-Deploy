@@ -16,6 +16,7 @@ interface formAdapterProps {
   name: string
   $isDirty?: boolean
   $isError?: boolean
+  type?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 

@@ -3,13 +3,13 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
+import { SIGNUP_INPUTS } from "constants/validation"
 import { omit } from "lodash"
 
 import Input from "@components/Input/Input"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
-import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
 import { createSignupList } from "@pages/Signup/utils/createSignupList"
 
 import { formAdapter } from "@utils/formAdapter"

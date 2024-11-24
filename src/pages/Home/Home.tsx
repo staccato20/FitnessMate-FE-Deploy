@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
+import { SEARCH_INPUTS } from "constants/validation"
+
 import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
 import Icon from "@components/Icon/Icon"
@@ -11,8 +13,6 @@ import HomeAlertModalButton from "@components/Modal/components/Alert/HomeAlertMo
 import homebanner from "@assets/images/homebanner.png"
 import slide2 from "@assets/images/slide2.png"
 import slide from "@assets/images/slide.png"
-
-import { SEARCH_INPUTS } from "@pages/Home/constants/Constants"
 
 import { SearchTypes } from "@typpes/type"
 
@@ -127,7 +127,6 @@ export const Home = () => {
             <S.SearchInputWrapper>
               <Input>
                 <Input.Input
-                  type="search"
                   props={{
                     ...formAdapter({
                       register,
