@@ -11,6 +11,7 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   gap: 82px;
   padding: 62px 3% 52px 3%;
+  max-width: 1032px;
 `
 
 export const SearchContent = styled.div`
@@ -23,7 +24,6 @@ export const SearchContent = styled.div`
 
 export const NavTab = styled.div`
   width: 100vw;
-  background: #f9fafb;
   z-index: 200;
   position: sticky;
   top: 63px;
@@ -35,6 +35,7 @@ export const NavTabInner = styled.div`
   justify-content: space-between;
   max-width: 1032px;
   margin: 0 auto;
+  padding: 0 3%;
 `
 export const NavTabList = styled.div`
   display: flex;
@@ -45,10 +46,9 @@ export const NavTabList = styled.div`
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 8px;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
 `
 export const Title = styled.span`
   color: ${theme.Netural600};
@@ -128,6 +128,7 @@ export const CardWrapper = styled.div<{ $isShow: boolean }>`
   max-width: 1032px;
   gap: 36px;
   flex-direction: column;
+  padding: 0 1%;
   display: flex;
   z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `

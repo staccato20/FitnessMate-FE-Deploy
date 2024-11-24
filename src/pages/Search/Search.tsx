@@ -43,7 +43,7 @@ const Search = () => {
       {isSearchMode && <S.BackOverlay />}
       <S.TitleWrapper>
         <S.Title>나에게 핏한</S.Title>
-        <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
+        <S.SubTitle>운동을 검색해보세요</S.SubTitle>
       </S.TitleWrapper>
 
       <S.SearchContent>
