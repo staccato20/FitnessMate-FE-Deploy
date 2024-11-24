@@ -78,7 +78,10 @@ const Machine = () => {
     }
     const payload = {
       bodyPartKoreanName: bodyPart,
-      machineKoreanName: [...machinesById].map((id) => machines[id].koreanName),
+      machineKoreanName:
+        numChecked > 0
+          ? [...machinesById].map((id) => machines[id].koreanName)
+          : [...machines].map(({ koreanName }) => koreanName),
     }
 
     postRecommendId(payload, {
@@ -198,23 +201,41 @@ const Machine = () => {
           <Bottom.Text>
             {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
           </Bottom.Text>
-          <RoundButton
-            onClick={handleRecommend}
-            variant="blue"
-            rightIcon="RightArrowWhite"
-            size="big"
-            isPending={postRecommend.isPending}
-            disabled={!numChecked}>
-            {postRecommend.isPending ? (
-              <BeatLoader
-                size="7"
-                color="#DDEAF4"
-                margin={6}
-              />
-            ) : (
-              "추천 시작하기"
-            )}
-          </RoundButton>
+          {numChecked > 0 ? (
+            <RoundButton
+              onClick={handleRecommend}
+              variant="blue"
+              rightIcon="RightArrowWhite"
+              size="big"
+              isPending={postRecommend.isPending}>
+              {postRecommend.isPending ? (
+                <BeatLoader
+                  size="7"
+                  color="#DDEAF4"
+                  margin={6}
+                />
+              ) : (
+                "추천 시작하기"
+              )}
+            </RoundButton>
+          ) : (
+            <RoundButton
+              onClick={handleRecommend}
+              variant="black"
+              rightIcon="RightArrowWhite"
+              size="big"
+              isPending={postRecommend.isPending}>
+              {postRecommend.isPending ? (
+                <BeatLoader
+                  size="7"
+                  color="#DDEAF4"
+                  margin={6}
+                />
+              ) : (
+                "기구 선택 없이 추천 받기"
+              )}
+            </RoundButton>
+          )}
         </Bottom>
       </S.RecommendWrapper>
     </>
