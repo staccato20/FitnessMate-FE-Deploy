@@ -13,9 +13,9 @@ import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 
 import { BodyFigureData } from "@typpes/type"
 
+import { usePostSignup } from "@hooks/mutation/usePostSignup"
 import { useRatio } from "@hooks/useRatio"
 
-import { usePostSignup } from "../../../hooks/mutation/usePostSignup"
 import * as S from "../StyledSignup"
 
 const BodyFigure = () => {

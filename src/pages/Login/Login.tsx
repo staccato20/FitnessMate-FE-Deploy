@@ -2,12 +2,12 @@ import { useRef } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
+import { LOGIN_INPUTS } from "constants/validation"
+
 import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
 
 import authAPI from "@apis/domain/auth"
-
-import { LOGIN_INPUTS } from "@pages/Login/constants/Constants"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -65,7 +65,6 @@ const Login = () => {
         <S.InputFrame>
           <Input>
             <Input.Input
-              type="text"
               props={{
                 ...formAdapter({
                   register,
@@ -77,7 +76,6 @@ const Login = () => {
           </Input>
           <Input>
             <Input.Input
-              type="password"
               props={{
                 ...formAdapter({
                   register,

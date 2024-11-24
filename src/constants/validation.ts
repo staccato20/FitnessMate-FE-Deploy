@@ -47,6 +47,7 @@ export const SIGNUP_INPUTS = {
   loginEmail: {
     attributes: {
       placeholder: "이메일을 입력해주세요",
+      type: "email",
     },
     validate: {
       required: { value: true, message: "이메일은 필수 입력입니다." },
@@ -59,6 +60,7 @@ export const SIGNUP_INPUTS = {
   password: {
     attributes: {
       placeholder: "8자리 이상 영문, 숫자 조합",
+      type: "password",
     },
     validate: {
       required: { value: true, message: "비밀번호는 필수 입력입니다." },
@@ -71,11 +73,13 @@ export const SIGNUP_INPUTS = {
   passwordCheck: {
     attributes: {
       placeholder: "비밀번호 확인",
+      type: "password",
     },
   },
   height: {
     attributes: {
       placeholder: "숫자만 입력",
+      type: "number",
     },
     validate: {
       required: { value: true, message: "키는 필수 입력입니다." },
@@ -88,6 +92,7 @@ export const SIGNUP_INPUTS = {
   weight: {
     attributes: {
       placeholder: "숫자만 입력",
+      type: "number",
     },
     validate: {
       required: { value: true, message: "몸무게는 필수 입력입니다." },
@@ -100,6 +105,7 @@ export const SIGNUP_INPUTS = {
   bodyFat: {
     attributes: {
       placeholder: "",
+      type: "number",
     },
     validate: {
       required: { value: true, message: "" },
@@ -112,6 +118,7 @@ export const SIGNUP_INPUTS = {
   muscleMass: {
     attributes: {
       placeholder: "",
+      type: "number",
     },
     validate: {
       required: { value: true, message: "" },
@@ -201,3 +208,46 @@ export const SIGNUP_LIST: Array<{
     isRequired: true,
   },
 ] as const
+
+export const LOGIN_INPUTS = {
+  DEFAULT_VALUES: {
+    userName: "",
+    password: "",
+  },
+  userName: {
+    attributes: {
+      placeholder: "아이디",
+    },
+    validate: {
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^[가-힣]{3,8}$/,
+        message: "",
+      },
+    },
+  },
+  password: {
+    attributes: {
+      placeholder: "비밀번호",
+      type: "password",
+    },
+    validate: {
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+        message: "",
+      },
+    },
+  },
+}
+
+export const SEARCH_INPUTS = {
+  search: {
+    validate: {
+      required: { value: true, message: "" },
+    },
+    attributes: {
+      placeholder: "어떤 운동이 좋을까요?",
+    },
+  },
+}

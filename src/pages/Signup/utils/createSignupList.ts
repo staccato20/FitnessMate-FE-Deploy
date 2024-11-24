@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react"
 
-import { SIGNUP_LIST } from "@pages/Signup/constants/Constants"
+import { SIGNUP_LIST } from "constants/validation"
 
 export const createSignupList = (
   onChange: (e: ChangeEvent<HTMLInputElement>) => void,

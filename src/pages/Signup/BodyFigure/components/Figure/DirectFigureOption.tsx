@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form"
 
-import Input from "@components/Input/Input"
+import { SIGNUP_INPUTS } from "constants/validation"
 
-import { SIGNUP_INPUTS } from "@pages/Signup/constants/Constants"
+import Input from "@components/Input/Input"
 
 import { formAdapter } from "@utils/formAdapter"
 
