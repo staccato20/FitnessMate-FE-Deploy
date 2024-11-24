@@ -38,4 +38,3 @@ export const CompleteNavItemText = styled.span`
   color: ${theme.Netural990};
   font-size: 16px;
 `
-export const CompleteNavItemImg = styled.img``

@@ -55,7 +55,7 @@ export const DirectFigureOptionItem = styled.div`
 `
 
 export const DirectFigureOptionMessage = styled.div`
-  color: var(--Neutral-800, #4e5968);
+  ${theme.Netural800};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -66,12 +66,12 @@ export const DirectFigureOptionMessage = styled.div`
 `
 
 export const DirectFigureOptionInnerMessage = styled.span`
-  color: var(--Neutral-950, #272e38);
+  ${theme.Netural950};
   font-size: 16px;
 `
 
 export const DirectFigureOptionInnerMessage2 = styled.span`
-  color: var(--Neutral-800, #4e5968);
+  ${theme.Netural800};
   font-size: 15px;
 `
 

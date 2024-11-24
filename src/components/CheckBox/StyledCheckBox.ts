@@ -27,7 +27,7 @@ export const CheckBoxImg = styled.img<isCheckedProps>`
   margin: ${({ $isChecked }) => ($isChecked ? "0px" : "2px")};
 `
 export const CheckBoxText = styled.span`
-  color: var(--Neutral-950, #272e38);
+  ${theme.Netural950};
   text-align: center;
   font-size: 16px;
 `

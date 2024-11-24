@@ -31,7 +31,6 @@ const Profile = () => {
   const onSubmit: SubmitHandler<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE> = (
     formValue,
   ) => {
-    console.log(formValue)
     const updatedProfoile = omit(formValue, ["passwordCheck"])
     setProfile(updatedProfoile)
     navigate(`/signup/bodyinfo`)
