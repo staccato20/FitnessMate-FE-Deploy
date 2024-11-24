@@ -1,5 +1,4 @@
 import { FormProvider, useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 
 import { useSignupStore } from "@store/useSignupStore"
 
@@ -21,9 +20,8 @@ import * as S from "../StyledSignup"
 
 const BodyFigure = () => {
   const { ratioValue, ratioText, handleRatio } = useRatio()
-  const navigate = useNavigate()
 
-  const { mutate, isSuccess } = usePostSignup()
+  const { mutate } = usePostSignup()
 
   const methods = useForm<BodyFigureData>({
     mode: "onChange",
@@ -41,11 +39,8 @@ const BodyFigure = () => {
         ...bodyfigureData,
       },
     }
-    console.log(mutate(submission))
 
-    // if (isSuccess) {
-    //   navigate("/signup/complete")
-    // }
+    mutate(submission)
   }
 
   return (

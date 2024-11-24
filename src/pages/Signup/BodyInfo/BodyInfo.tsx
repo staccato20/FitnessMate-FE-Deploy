@@ -38,12 +38,12 @@ const BodyInfo = () => {
   }
 
   return (
-    <S.SignupForm onSubmit={handleSubmit(onSubmit)}>
+    <S.SignupWrapper>
       <S.SignupTitle>
         <ProgressBar progress={2} />
         신체 정보를 입력해주세요
       </S.SignupTitle>
-      <S.FormWrapper>
+      <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
         <Input>
           <Input.Label
             isRequired
@@ -77,9 +77,9 @@ const BodyInfo = () => {
             <Input.Error>{formState?.errors[name]?.message}</Input.Error>
           </Input>
         ))}
+        <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
       </S.FormWrapper>
-      <SignupButton $isValid={formState.isValid}>다음으로</SignupButton>
-    </S.SignupForm>
+    </S.SignupWrapper>
   )
 }
 

@@ -43,7 +43,7 @@ export const ButtonContainer = styled.div`
   padding-top: 64px;
 `
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;

@@ -21,8 +21,8 @@ const RATIO_LIST = [
     name: "하체 비중",
     id: 1,
     ratios: [
-      { icon: "MinusRound", operator: "-" },
-      { icon: "AddRound", operator: "+" },
+      { icon: "MinusRound", operator: "+" },
+      { icon: "AddRound", operator: "-" },
     ],
   },
 ] as const
