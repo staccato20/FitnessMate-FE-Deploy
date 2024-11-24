@@ -24,7 +24,7 @@ export const SearchContent = styled.div`
 export const NavTab = styled.div`
   width: 100vw;
   background: #f9fafb;
-  z-index: 997;
+  z-index: 200;
   position: sticky;
   top: 63px;
   padding: 12px 3%;
@@ -62,16 +62,18 @@ export const SubTitle = styled.span`
 
 export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>``
 
-export const SearchToggle = styled.button`
+export const SearchToggle = styled.button<{ $isSearchMode: boolean }>`
   border-radius: 37px;
   border: 1px solid ${theme.Netural500};
   display: flex;
   align-items: center;
-  padding: 10px 18px;
+  padding: 10px 16px;
   justify-content: center;
-  gap: 7px;
-  color: ${theme.Netural500};
-  background: ${theme.Netural0};
+  gap: 8px;
+  color: ${({ $isSearchMode }) =>
+    $isSearchMode ? theme.Netural600 : theme.Netural500};
+  background: ${({ $isSearchMode }) =>
+    $isSearchMode ? theme.Netural300 : theme.Netural0};
   ${fonts.d1};
   font-size: 14px;
 `
@@ -85,6 +87,7 @@ export const DropdownFormWrapper = styled(motion.form)`
   overflow: hidden;
   position: relative;
   max-width: 1032px;
+  z-index: 210;
   .close {
     position: absolute;
     top: 75px;
@@ -174,6 +177,13 @@ export const BackOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: ${theme.Netural0};
-  opacity: 0.2;
-  z-index: 40;
+  opacity: 0.6;
+  z-index: 201;
+`
+
+export const DropDownSubText = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.b4};
+  padding-left: 8px;
+  margin-bottom: -21px;
 `

@@ -43,6 +43,7 @@ const DropdownForm = ({
           className="close"
           onClick={handleToggle}
         />
+        <S.DropDownSubText>전체 부위에서 검색..</S.DropDownSubText>
         <FormProvider {...methods}>
           <SearchField
             triggerSubmit={triggerSubmit}

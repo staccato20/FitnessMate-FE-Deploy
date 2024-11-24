@@ -34,18 +34,6 @@ const Search = () => {
     switchTab(0)
   }
 
-  // const handleTabChange = (index: number) => {
-  //   if (!bodyParts) {
-  //     return
-  //   }
-  //   startTransition(() => {
-  //     switchTab(index)
-  //     setCurrentPage(1)
-  //     setKeyword("")
-  //     methods.reset()
-  //   })
-  // }
-
   const handlePage = (page: number) => {
     setCurrentPage(page)
   }
