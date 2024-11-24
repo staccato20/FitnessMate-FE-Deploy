@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react"
+
 export const SIGNUP_INPUTS = {
   DEFAULT_VALUES: {
     PROFILE: {
@@ -9,8 +11,8 @@ export const SIGNUP_INPUTS = {
     },
     BODYINFO: {
       sex: "남성",
-      height: "",
-      weight: "",
+      height: 0,
+      weight: 0,
     },
     BODYFIGURE: {
       upDownBalance: 0,
@@ -79,7 +81,7 @@ export const SIGNUP_INPUTS = {
       required: { value: true, message: "키는 필수 입력입니다." },
       pattern: {
         value: /^\d{3}$/,
-        message: "키는 세자리로만 입력이 가능합니다.",
+        message: "키는 세자리 로만 입력이 가능합니다.",
       },
     },
   },
@@ -96,6 +98,9 @@ export const SIGNUP_INPUTS = {
     },
   },
   bodyFat: {
+    attributes: {
+      placeholder: "",
+    },
     validate: {
       required: { value: true, message: "" },
       pattern: {
@@ -105,6 +110,9 @@ export const SIGNUP_INPUTS = {
     },
   },
   muscleMass: {
+    attributes: {
+      placeholder: "",
+    },
     validate: {
       required: { value: true, message: "" },
       pattern: {
@@ -115,44 +123,81 @@ export const SIGNUP_INPUTS = {
   },
 }
 
-export const COMPLETE_Nav = [
-  [
-    "recommend",
-    {
-      title: "추천 받기",
-      message: "AI가 신체 정보에 알맞은 운동/보조제를 추천해드려요.",
-      url: "/recommend/prolog",
-    },
-  ],
-  [
-    "routine",
-    {
-      title: "루틴 만들기",
-      message: "추천 받은 운동으로 루틴을 만들어 보세요.",
-      url: "/mypage",
-    },
-  ],
-  [
-    "search",
-    {
-      title: "검색하기",
-      message: "다양한 종류의 운동/보조제를 검색해보세요.",
-      url: "/searchworkout",
-    },
-  ],
+export const SEX_GROUP = [
+  { groupName: "남성", imgSrc: `/src/assets/images/남성.png`, id: 0 },
+  { groupName: "여성", imgSrc: `/src/assets/images/여성.png`, id: 1 },
 ]
-
-export const SEX_GROUP = ["남성", "여성"]
 
 export const BODYINFO_LIST = [
-  ["height", "키"],
-  ["weight", "몸무게"],
-]
+  { id: 1, name: "height", label: "키" },
+  { id: 2, name: "weight", label: "몸무게" },
+] as const
 
 export const CATEGORY_LIST = [
-  ["근육질 체형", [10, 40]],
-  ["마른 체형", [15, 30]],
-  ["보통 체형", [18, 35]],
-  ["통통한 체형", [20, 35]],
-  ["뚱뚱한 체형", [25, 35]],
-]
+  {
+    id: 0,
+    name: "근육질 체형",
+    bodyFat: 10,
+    muscleMass: 40,
+  },
+  {
+    id: 1,
+    name: "마른 체형",
+    bodyFat: 15,
+    muscleMass: 30,
+  },
+  {
+    id: 2,
+    name: "보통 체형",
+    bodyFat: 18,
+    muscleMass: 35,
+  },
+  {
+    id: 3,
+    name: "통통한 체형",
+    bodyFat: 20,
+    muscleMass: 35,
+  },
+  {
+    id: 4,
+    name: "뚱뚱한 체형",
+    bodyFat: 25,
+    muscleMass: 35,
+  },
+] as const
+
+export const SIGNUP_LIST: Array<{
+  id: number
+  name: Exclude<
+    keyof typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE,
+    "passwordCheck"
+  >
+  label: string
+  isRequired: boolean
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+}> = [
+  {
+    id: 0,
+    name: "userName",
+    label: "이름",
+    isRequired: true,
+  },
+  {
+    id: 1,
+    name: "birthDate",
+    label: "생년월일",
+    isRequired: true,
+  },
+  {
+    id: 2,
+    name: "loginEmail",
+    label: "이메일",
+    isRequired: true,
+  },
+  {
+    id: 3,
+    name: "password",
+    label: "비밀번호",
+    isRequired: true,
+  },
+] as const

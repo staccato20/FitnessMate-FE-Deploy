@@ -1,5 +1,3 @@
-import { RecoilRoot } from "recoil"
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import { ThemeProvider } from "styled-components"
@@ -25,9 +23,7 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <RecoilRoot>
-            <Navigator />
-          </RecoilRoot>
+          <Navigator />
         </ThemeProvider>
       </QueryClientProvider>
     </div>

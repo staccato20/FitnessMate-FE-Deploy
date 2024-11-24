@@ -1,13 +1,39 @@
-// @ts-nocheck
-import * as S from "../StyledInput"
+import { LabelHTMLAttributes, PropsWithChildren } from "react"
 
-const InputLabel = ({ children, isRequired, ...props }) => {
+import styled, { css } from "styled-components"
+
+import theme, { fonts } from "@styles/theme"
+
+interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  isRequired?: boolean
+}
+
+const InputLabel = ({
+  children,
+  isRequired = false,
+  ...props
+}: PropsWithChildren<InputLabelProps>) => {
   return (
-    <S.InputName {...props}>
+    <InputName
+      $isRequired={isRequired}
+      {...props}>
       {children}
-      {isRequired && <S.EseentialSymbol>*</S.EseentialSymbol>}
-    </S.InputName>
+    </InputName>
   )
 }
 
 export default InputLabel
+
+const InputName = styled.label<{ $isRequired: boolean }>`
+  color: ${theme.Netural800};
+  ${fonts.b1};
+  ${({ $isRequired }) =>
+    $isRequired &&
+    css`
+      &::after {
+        content: " *";
+        color: ${theme.Error};
+        ${fonts.b6};
+      }
+    `}
+`

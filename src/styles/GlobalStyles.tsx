@@ -33,7 +33,7 @@ ${reset}
     body{
         width:100%;
         height:100vh;
-        overflow-x:hidden;
+        overflow-x:hidden !important;
         line-height: 1;    
         background:${({ $isRecommendPage }) => ($isRecommendPage ? theme.Netural200 : theme.Netural0)}
         

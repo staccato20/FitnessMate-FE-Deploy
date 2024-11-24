@@ -2,16 +2,6 @@ import { styled } from "styled-components"
 
 import theme from "@styles/theme"
 
-const RatioButton = styled.button`
-  border-radius: 34px;
-  background: ${theme.Netural800};
-  display: flex;
-  width: 28px;
-  height: 28px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-`
 export const RatioWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,17 +50,8 @@ export const RatioPercent = styled.span`
   color: ${theme.Netural990};
   font-size: 30px;
 `
-export const RatioPlusButton = styled(RatioButton)`
-  background: ${theme.Netural300};
-`
-export const RatioMinusButton = styled(RatioButton)`
-  border: 1px solid ${theme.Netural300};
-  background: ${theme.Netural200};
-`
 export const RatioMessage = styled.span`
   color: ${theme.Netural900};
   font-size: 15px;
   text-align: center;
 `
-export const RatioPlusButtonImg = styled.img``
-export const RatioMinusButtonImg = styled.img``
