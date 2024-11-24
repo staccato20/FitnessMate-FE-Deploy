@@ -4,7 +4,7 @@ import theme, { fonts } from "@styles/theme"
 
 export const InputWrapper = styled.div<{ $width: string }>`
   display: flex;
-  padding: 10px 12px 10px 20px;
+  padding: 10px 18px 10px 20px;
   justify-content: space-between;
   align-items: center;
   border-radius: 16px;
@@ -17,10 +17,7 @@ export const InputWrapper = styled.div<{ $width: string }>`
 export const IconButtonWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  button {
-    padding: 8px;
-  }
+  gap: 27px;
 `
 
 export const Input = styled.input`

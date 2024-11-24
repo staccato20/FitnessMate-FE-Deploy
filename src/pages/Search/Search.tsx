@@ -34,18 +34,6 @@ const Search = () => {
     switchTab(0)
   }
 
-  // const handleTabChange = (index: number) => {
-  //   if (!bodyParts) {
-  //     return
-  //   }
-  //   startTransition(() => {
-  //     switchTab(index)
-  //     setCurrentPage(1)
-  //     setKeyword("")
-  //     methods.reset()
-  //   })
-  // }
-
   const handlePage = (page: number) => {
     setCurrentPage(page)
   }
@@ -55,7 +43,7 @@ const Search = () => {
       {isSearchMode && <S.BackOverlay />}
       <S.TitleWrapper>
         <S.Title>나에게 핏한</S.Title>
-        <S.SubTitle>운동과 보조제를 검색해보세요</S.SubTitle>
+        <S.SubTitle>운동을 검색해보세요</S.SubTitle>
       </S.TitleWrapper>
 
       <S.SearchContent>

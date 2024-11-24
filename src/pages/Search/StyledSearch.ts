@@ -11,6 +11,7 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   gap: 82px;
   padding: 62px 3% 52px 3%;
+  max-width: 1032px;
 `
 
 export const SearchContent = styled.div`
@@ -23,8 +24,7 @@ export const SearchContent = styled.div`
 
 export const NavTab = styled.div`
   width: 100vw;
-  background: #f9fafb;
-  z-index: 997;
+  z-index: 200;
   position: sticky;
   top: 63px;
   padding: 12px 3%;
@@ -35,6 +35,7 @@ export const NavTabInner = styled.div`
   justify-content: space-between;
   max-width: 1032px;
   margin: 0 auto;
+  padding: 0 3%;
 `
 export const NavTabList = styled.div`
   display: flex;
@@ -45,10 +46,9 @@ export const NavTabList = styled.div`
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 8px;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
 `
 export const Title = styled.span`
   color: ${theme.Netural600};
@@ -62,16 +62,18 @@ export const SubTitle = styled.span`
 
 export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>``
 
-export const SearchToggle = styled.button`
+export const SearchToggle = styled.button<{ $isSearchMode: boolean }>`
   border-radius: 37px;
   border: 1px solid ${theme.Netural500};
   display: flex;
   align-items: center;
-  padding: 10px 18px;
+  padding: 10px 16px;
   justify-content: center;
-  gap: 7px;
-  color: ${theme.Netural500};
-  background: ${theme.Netural0};
+  gap: 8px;
+  color: ${({ $isSearchMode }) =>
+    $isSearchMode ? theme.Netural600 : theme.Netural500};
+  background: ${({ $isSearchMode }) =>
+    $isSearchMode ? theme.Netural300 : theme.Netural0};
   ${fonts.d1};
   font-size: 14px;
 `
@@ -83,10 +85,13 @@ export const DropdownFormWrapper = styled(motion.form)`
   justify-content: center;
   z-index: 105;
   overflow: hidden;
+  position: relative;
+  max-width: 1032px;
+  z-index: 210;
   .close {
     position: absolute;
-    top: 150px;
-    right: 30px;
+    top: 75px;
+    right: 25px;
   }
 `
 
@@ -107,7 +112,7 @@ export const DropDownBox = styled.div`
 
 export const DropDownKeywordTitle = styled.span`
   ${fonts.b4};
-  color: ${theme.Netural600};
+  color: ${theme.Brand600};
   padding-left: 6px;
 `
 
@@ -123,6 +128,7 @@ export const CardWrapper = styled.div<{ $isShow: boolean }>`
   max-width: 1032px;
   gap: 36px;
   flex-direction: column;
+  padding: 0 1%;
   display: flex;
   z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `
@@ -172,6 +178,13 @@ export const BackOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: ${theme.Netural0};
-  opacity: 0.2;
-  z-index: 40;
+  opacity: 0.6;
+  z-index: 201;
+`
+
+export const DropDownSubText = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.b4};
+  padding-left: 8px;
+  margin-bottom: -21px;
 `
