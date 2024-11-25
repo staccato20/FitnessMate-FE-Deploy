@@ -33,11 +33,18 @@ export const InputFrame = styled.div`
   gap: 14px;
 `
 
-export const AutomaticLogin = styled.div`
+export const Option = styled.div`
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Auto = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  padding-left: 4px;
 `
 
 export const AutoCheckBox = styled.input`
@@ -49,14 +56,20 @@ export const AutoCheckBox = styled.input`
   border: 2px solid ${theme.Netural600};
   &:checked {
     appearance: checkbox;
-    background: ${({ theme }) => theme.Brand};
   }
 `
 
-export const AutomaticLoginLabel = styled.label`
+export const AutoLabel = styled.label`
+  cursor: pointer;
   color: ${theme.Netural600};
   ${fonts.b1};
   user-select: none;
+`
+
+export const FindPass = styled.button`
+  color: ${theme.Brand600};
+  ${fonts.h4};
+  font-weight: 500;
 `
 
 export const ButtonContainer = styled.div`

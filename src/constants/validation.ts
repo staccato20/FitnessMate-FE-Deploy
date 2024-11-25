@@ -217,12 +217,16 @@ export const LOGIN_INPUTS = {
   userName: {
     attributes: {
       placeholder: "아이디",
+      type: "email",
     },
     validate: {
-      required: { value: true, message: "" },
+      required: {
+        value: true,
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
+      },
       pattern: {
         value: /^[가-힣]{3,8}$/,
-        message: "",
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
       },
     },
   },
@@ -232,10 +236,13 @@ export const LOGIN_INPUTS = {
       type: "password",
     },
     validate: {
-      required: { value: true, message: "" },
+      required: {
+        value: true,
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
+      },
       pattern: {
         value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
-        message: "",
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
       },
     },
   },
@@ -251,3 +258,8 @@ export const SEARCH_INPUTS = {
     },
   },
 }
+
+export const LOGIN_LIST = [
+  { id: 0, name: "userName" },
+  { id: 1, name: "password" },
+] as const
