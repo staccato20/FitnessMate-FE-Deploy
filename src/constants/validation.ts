@@ -211,10 +211,10 @@ export const SIGNUP_LIST: Array<{
 
 export const LOGIN_INPUTS = {
   DEFAULT_VALUES: {
-    userName: "",
+    loginEmail: "",
     password: "",
   },
-  userName: {
+  loginEmail: {
     attributes: {
       placeholder: "아이디",
       type: "email",
@@ -222,11 +222,7 @@ export const LOGIN_INPUTS = {
     validate: {
       required: {
         value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
-      },
-      pattern: {
-        value: /^[가-힣]{3,8}$/,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
       },
     },
   },
@@ -238,11 +234,7 @@ export const LOGIN_INPUTS = {
     validate: {
       required: {
         value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
-      },
-      pattern: {
-        value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다.",
+        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
       },
     },
   },
@@ -260,6 +252,6 @@ export const SEARCH_INPUTS = {
 }
 
 export const LOGIN_LIST = [
-  { id: 0, name: "userName" },
+  { id: 0, name: "loginEmail" },
   { id: 1, name: "password" },
 ] as const

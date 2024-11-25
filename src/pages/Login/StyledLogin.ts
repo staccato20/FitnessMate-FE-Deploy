@@ -77,3 +77,9 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 12px;
 `
+
+export const Warning = styled.span`
+  color: ${theme.Error};
+  ${fonts.b4};
+  padding-top: 23.5px;
+`
