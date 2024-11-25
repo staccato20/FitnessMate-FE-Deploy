@@ -60,7 +60,7 @@ export const RecommendInner = styled.div`
     display: none; /* Chrome, Safari, Opera*/
   }
   position: relative;
-  height: calc(-250px + 100vh);
+  height: calc(-210px + 100vh);
 `
 
 export const Status = styled.div<{ $isScrollTop: boolean }>`
