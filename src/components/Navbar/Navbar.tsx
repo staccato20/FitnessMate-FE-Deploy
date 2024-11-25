@@ -13,6 +13,7 @@ import * as S from "./StyledNavbar"
 const Navbar = () => {
   const navigate = useNavigate()
   const { userInfo } = useUserInfo()
+
   const userName = userInfo ? userInfo.userName : undefined
 
   const handleSearch = () => {
