@@ -150,7 +150,7 @@ const Machine = () => {
       )}
 
       <S.RecommendWrapper>
-        <S.Status>
+        <S.Status $isScrollTop={isScrollTop}>
           <IconButton
             icon="LeftArrowBold"
             size={30}

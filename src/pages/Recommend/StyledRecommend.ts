@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -33,7 +33,6 @@ export const RecommendWrapper = styled.div`
   margin: 0 auto;
   padding-top: 18px;
   display: flex;
-  gap: 32px;
   flex-direction: column;
   align-items: center;
 `
@@ -64,12 +63,30 @@ export const RecommendInner = styled.div`
   height: calc(-250px + 100vh);
 `
 
-export const Status = styled.div`
+export const Status = styled.div<{ $isScrollTop: boolean }>`
   position: relative;
   width: 100%;
   display: flex;
   gap: 17px;
   align-items: center;
+  &::after {
+    ${({ $isScrollTop }) =>
+      $isScrollTop
+        ? css``
+        : css`
+            position: absolute;
+            bottom: -35px;
+            content: "";
+            width: 100%;
+            height: 36px;
+            z-index: 5;
+            background: linear-gradient(
+              180deg,
+              #fbfcfc 30.5%,
+              rgba(251, 252, 252, 0) 100%
+            );
+          `}
+  }
 `
 
 export const RecommendGuideWrapper = styled.div`
