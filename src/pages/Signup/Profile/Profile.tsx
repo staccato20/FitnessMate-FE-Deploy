@@ -33,7 +33,7 @@ const Profile = () => {
   ) => {
     const updatedProfoile = omit(formValue, ["passwordCheck"])
     setProfile(updatedProfoile)
-    navigate(`/signup/bodyinfo`)
+    navigate("/signup/bodyinfo")
   }
 
   const triggerPasswordCheck = (e: ChangeEvent<HTMLInputElement>) => {
