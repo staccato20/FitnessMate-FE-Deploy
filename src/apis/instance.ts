@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 
 import authAPI from "@apis/domain/auth"
 
@@ -9,9 +9,16 @@ const axiosConfig: AxiosRequestConfig = {
 export const instance = axios.create(axiosConfig)
 
 instance.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("accessToken")
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
+  if (config.url === "/api/auth/refresh") {
+    const refreshToken = localStorage.getItem("refreshToken")
+    if (refreshToken) {
+      config.headers.Authorization = `Bearer ${refreshToken}`
+    }
+  } else {
+    const accessToken = localStorage.getItem("accessToken")
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
   }
   return config
 })
@@ -36,38 +43,31 @@ instance.interceptors.response.use(
     }
 
     if (error.response.data.status === "EXPIRED_ACCESS_TOKEN_EXCEPTION") {
-      const rememberMe = localStorage.getItem("rememberMe")
       const refreshToken = localStorage.getItem("refreshToken")
-
-      if (!rememberMe || !refreshToken) {
+      if (!refreshToken) {
         return
       }
+      try {
+        const originalRequest = error.config
+        const response = await authAPI.getAccessToken()
 
-      const isKeepLogin = JSON.parse(rememberMe)
-
-      if (isKeepLogin) {
-        try {
-          const originalRequest = error.config
-          const response = await authAPI.getAccessToken()
+        if (response) {
           const newAccessToken = response.data.accessToken
           localStorage.setItem("accessToken", newAccessToken)
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
           return await axios(originalRequest)
-        } catch (err) {
-          if (err instanceof AxiosError) {
-            if (!err.response) {
-              return
-            }
-            if (
-              err.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION"
-            ) {
-              alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
-            }
-          }
         }
-      } else {
-        alert("토큰이 만료되었습니다. 다시 로그인해주세요.")
+      } catch (err) {
+        // refresh 만료 -> 재 로그인 알림
+        console.log(err)
       }
+    }
+
+    if (error.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
+      console.log("refresh Token 만료")
+      localStorage.removeItem("accessToken")
+      localStorage.removeItem("refreshToken")
+      localStorage.removeItem("rememberMe")
     }
   },
 )
