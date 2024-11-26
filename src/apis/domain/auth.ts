@@ -31,12 +31,9 @@ const deleteUser = (data: PostUserDeletePayload) =>
 const login = (data: PostLoginPayload) =>
   instance.post<PostLoginResponse>("/api/auth/login", data)
 
-// refresh토큰 필요
 const logout = () => instance.get("/api/auth/logout")
 
-// refersh 토큰 필요
 const getAccessToken = () =>
-  // header에 refreshToken 넣기
   instance.get<GetAccessTokenResponse>("/api/auth/refresh")
 
 const authAPI = {
