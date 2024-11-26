@@ -70,6 +70,7 @@ const Detail = () => {
           </S.ContentBox>
           <S.VideoWrapper>
             <iframe
+              title={workout?.videoLink}
               style={{ width: "100%", height: "100%" }}
               src={`https://www.youtube.com/embed/${workout?.videoLink.split("=")[1]}`}
             />

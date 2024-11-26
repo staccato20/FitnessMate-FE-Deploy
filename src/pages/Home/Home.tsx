@@ -41,7 +41,6 @@ export const Home = () => {
   const handleRecommend = () => {
     if (loginState) {
       navigate("recommend/bodypart")
-    } else {
     }
   }
 
