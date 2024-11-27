@@ -33,16 +33,15 @@ export const FooterInfoSubContentTitle = styled.p`
 `
 
 export const Footer = styled.div`
-  position: relative;
+  position: fixed;
+  bottom: 0;
   width: 100vw;
-  height: 589px;
   background: ${theme.Netural200};
 `
 export const FooterWrapper = styled.div`
   display: flex;
-  position: absolute;
   top: 112px;
-  padding: 0 5%;
+  padding: 5%;
   flex-direction: column;
   gap: 35px;
   img {
