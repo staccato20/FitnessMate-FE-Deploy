@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-scroll"
 
+import { useUserStore } from "@store/useUserStore"
 import { SEARCH_INPUTS } from "constants/validation"
 
 import Button from "@components/Button/Button"
@@ -16,16 +17,13 @@ import slide from "@assets/images/slide.png"
 
 import { SearchTypes } from "@typpes/type"
 
-import { useUserInfo } from "@hooks/query/useUserInfo"
-
 import Input from "../../components/Input/Input"
 import { formAdapter } from "../../utils/formAdapter"
 import * as S from "./StyledHome"
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { userInfo } = useUserInfo()
-  const loginState = userInfo ? true : false
+  const { isLogin } = useUserStore()
 
   const { register, handleSubmit, setValue, setFocus } = useForm<SearchTypes>()
 
@@ -39,9 +37,8 @@ export const Home = () => {
   }
 
   const handleRecommend = () => {
-    if (loginState) {
+    if (isLogin) {
       navigate("recommend/bodypart")
-    } else {
     }
   }
 

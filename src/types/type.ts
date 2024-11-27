@@ -74,13 +74,11 @@ export interface UpdateUserPayload {
   userName: string
   birthDate: string
 }
-export interface UpdateUserResponse {}
 
 export interface UpdateUserPasswordPayload {
   oldPassword: string
   newPassword: string
 }
-export interface UpdateUserPasswordResponse {}
 
 export interface PostUserDeletePayload {
   password: string
