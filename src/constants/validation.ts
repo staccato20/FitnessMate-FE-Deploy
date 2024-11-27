@@ -211,17 +211,18 @@ export const SIGNUP_LIST: Array<{
 
 export const LOGIN_INPUTS = {
   DEFAULT_VALUES: {
-    userName: "",
+    loginEmail: "",
     password: "",
   },
-  userName: {
+  loginEmail: {
     attributes: {
       placeholder: "아이디",
+      type: "email",
     },
     validate: {
       required: { value: true, message: "" },
       pattern: {
-        value: /^[가-힣]{3,8}$/,
+        value: /^(.+)@(\S+)$/,
         message: "",
       },
     },
@@ -251,6 +252,11 @@ export const SEARCH_INPUTS = {
     },
   },
 }
+
+export const LOGIN_LIST = [
+  { id: 0, name: "loginEmail" },
+  { id: 1, name: "password" },
+] as const
 
 export const UPDATE_LIST = {
   PROFILE: [
