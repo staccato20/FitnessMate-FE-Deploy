@@ -17,7 +17,6 @@ import Title from "@components/Title/Title"
 import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
-import { useUserInfo } from "@hooks/query/useUserInfo"
 import { useModal } from "@hooks/useModal"
 
 import * as S from "../StyledRecommend"
@@ -26,7 +25,7 @@ const Result = () => {
   const navigate = useNavigate()
 
   const { result } = useRecommendStore()
-  const { userName } = useUserInfo()
+
   const { isLogin, user } = useUserStore()
   const { data: routines = [] } = useGetMyRoutines()
 
