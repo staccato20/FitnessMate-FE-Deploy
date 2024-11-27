@@ -8,7 +8,7 @@ import { useUserStore } from "../../store/useUserStore"
 export const useUserInfo = () => {
   const { isLogin, saveUser, logout } = useUserStore()
   const userInfo = useQuery({
-    queryKey: ["userInfo"],
+    queryKey: ["USERINFO"],
     queryFn: async () => await authAPI.fetchUser(),
   })
 

@@ -17,7 +17,7 @@ const MainLayout = () => {
 
   useEffect(() => {
     setIsRecommendPage(path)
-  }, [location])
+  }, [location, path, setIsRecommendPage])
 
   return (
     <>

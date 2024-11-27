@@ -13,17 +13,21 @@ export const useLogin = (
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   return useMutation({
-    mutationKey: [],
+    mutationKey: ["login"],
     mutationFn: (submission: PostLoginPayload) => authAPI.login(submission),
-    onSuccess: ({
-      status,
-      data: { accessToken, refreshToken, rememberMe },
-    }) => {
+    onSuccess: async ({ status, data: { accessToken, refreshToken } }) => {
       if (status === 200) {
-        queryClient.invalidateQueries({ queryKey: ["userInfo"] })
+        await queryClient.invalidateQueries({
+          queryKey: ["USERINFO"],
+          exact: true,
+        })
+        await queryClient.refetchQueries({
+          queryKey: ["USERINFO"],
+          exact: true,
+        }) // 강제 새로고침
         localStorage.setItem("accessToken", accessToken)
         localStorage.setItem("refreshToken", refreshToken)
-        localStorage.setItem("rememberMe", rememberMe.toString())
+        localStorage.setItem("rememberMe", "true")
         navigate("/")
       }
     },
