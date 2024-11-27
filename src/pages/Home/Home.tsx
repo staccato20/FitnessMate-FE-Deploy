@@ -4,6 +4,7 @@ import { Link } from "react-scroll"
 
 import { useUserStore } from "@store/useUserStore"
 import { SEARCH_INPUTS } from "constants/validation"
+import { useStore } from "zustand"
 
 import Button from "@components/Button/Button"
 import Chip from "@components/Chip/Chip"
@@ -23,7 +24,7 @@ import * as S from "./StyledHome"
 
 export const Home = () => {
   const navigate = useNavigate()
-  const { isLogin } = useUserStore()
+  const isLogin = useStore(useUserStore, (state) => state.isLogin)
 
   const { register, handleSubmit, setValue, setFocus } = useForm<SearchTypes>()
 
