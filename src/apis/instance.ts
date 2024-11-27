@@ -9,7 +9,7 @@ const axiosConfig: AxiosRequestConfig = {
 export const instance = axios.create(axiosConfig)
 
 instance.interceptors.request.use((config) => {
-  if (config.url === "/api/auth/refresh") {
+  if (config.url === "/api/auth/refresh" || config.url === "/api/auth/logout") {
     const refreshToken = localStorage.getItem("refreshToken")
     if (refreshToken) {
       config.headers.Authorization = `Bearer ${refreshToken}`
@@ -36,10 +36,7 @@ instance.interceptors.response.use(
     }
 
     if (error.response.data.status === "ALREADY_LOGOUT_EXCEPTION") {
-      const refreshToken = localStorage.getItem("refreshToken")
-      const originalRequest = error.config
-      originalRequest.headers.Authorization = `Bearer ${refreshToken}`
-      return await axios(originalRequest)
+      console.log("이미 로그인 되었음")
     }
 
     if (error.response.data.status === "EXPIRED_ACCESS_TOKEN_EXCEPTION") {
