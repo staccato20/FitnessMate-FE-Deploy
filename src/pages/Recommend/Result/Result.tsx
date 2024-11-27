@@ -2,6 +2,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { useRecommendStore } from "@store/store"
+import { useUserStore } from "@store/useUserStore"
 
 import Accordion from "@components/Accordion/Accordion"
 import Button from "@components/Button/Button"
@@ -18,14 +19,13 @@ import { RoutineInfoTypes, RoutineNameTypes } from "@typpes/type"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
 
-import { useUserInfo } from "../../../hooks/query/useUserInfo"
 import * as S from "../StyledRecommend"
 
 const Result = () => {
   const navigate = useNavigate()
 
   const { result } = useRecommendStore()
-  const { userInfo } = useUserInfo()
+  const { isLogin, user } = useUserStore()
   const { data: routines = [] } = useGetMyRoutines()
 
   const methods = useForm<RoutineInfoTypes>()
@@ -50,7 +50,7 @@ const Result = () => {
             size={30}
           />
           <Title variant="big">
-            {userInfo && userInfo.userName}님에게 맞는
+            {isLogin && user?.userName}님에게 맞는
             <br />
             {result.recommends.length}가지 운동을 추천했어요.
             <Title.SubBottomTitle>

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 
 import { usePathStore } from "@store/usePathStore"
+import { useUserStore } from "@store/useUserStore"
 
 import Footer from "@components/Footer/Footer"
 import Navbar from "@components/Navbar/Navbar"
@@ -14,10 +15,12 @@ const MainLayout = () => {
   const isLogin = path.includes("login")
   const isSignup = path.includes("signup")
   const { setIsRecommendPage } = usePathStore()
+  const { checkLogin } = useUserStore()
 
   useEffect(() => {
     setIsRecommendPage(path)
-  }, [location, path, setIsRecommendPage])
+    checkLogin()
+  }, [location, path, setIsRecommendPage, checkLogin])
 
   return (
     <>
