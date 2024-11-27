@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 
+import { useUserStore } from "@store/useUserStore"
 import { UPDATE_INPUTS, UPDATE_LIST } from "constants/validation"
 
 import styled from "styled-components"
@@ -8,27 +9,28 @@ import Input from "@components/Input/Input"
 
 import { User } from "@typpes/type"
 
-import { useUserInfo } from "@hooks/query/useUserInfo"
-
 import theme, { fonts } from "@styles/theme"
 
 import { formAdapter } from "@utils/formAdapter"
 
 const UpdateProfile = () => {
-  const { data: { userName, loginEmail, birthDate } = {} } = useUserInfo()
-
+  const { isLogin, user } = useUserStore()
   const { register } = useForm<Omit<User, "sex">>({
     mode: "onChange",
     defaultValues: {
-      userName,
-      birthDate,
-      loginEmail,
+      userName: user?.userName,
+      birthDate: user?.birthDate,
+      loginEmail: user?.loginEmail,
     },
   })
 
+  if (!isLogin) {
+    return null
+  }
+
   return (
     <UpdateProfileForm>
-      <UpdateProfileTitle>{userName}님의 회원정보</UpdateProfileTitle>
+      <UpdateProfileTitle>{user?.userName}님의 회원정보</UpdateProfileTitle>
       <UpdateProfileList>
         {UPDATE_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
           <Input key={id}>

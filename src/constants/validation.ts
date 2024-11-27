@@ -211,18 +211,18 @@ export const SIGNUP_LIST: Array<{
 
 export const LOGIN_INPUTS = {
   DEFAULT_VALUES: {
-    loginEmail: "",
+    userName: "",
     password: "",
   },
-  loginEmail: {
+  userName: {
     attributes: {
       placeholder: "아이디",
-      type: "email",
     },
     validate: {
-      required: {
-        value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^[가-힣]{3,8}$/,
+        message: "",
       },
     },
   },
@@ -232,9 +232,10 @@ export const LOGIN_INPUTS = {
       type: "password",
     },
     validate: {
-      required: {
-        value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+        message: "",
       },
     },
   },
@@ -251,7 +252,36 @@ export const SEARCH_INPUTS = {
   },
 }
 
-export const LOGIN_LIST = [
-  { id: 0, name: "loginEmail" },
-  { id: 1, name: "password" },
-] as const
+export const UPDATE_LIST = {
+  PROFILE: [
+    { id: 0, name: "userName", label: "이름", isDisabled: true },
+    { id: 1, name: "birthDate", label: "생년월일", isDisabled: true },
+    { id: 2, name: "loginEmail", label: "이메일", isDisabled: false },
+  ],
+} as const
+
+export const UPDATE_INPUTS = {
+  PROFILE: {
+    userName: {
+      validate: { disabled: true },
+    },
+    birthDate: {
+      validate: {
+        disabled: true,
+      },
+    },
+    loginEmail: {
+      attributes: {
+        type: "email",
+      },
+      validate: {
+        disabled: false,
+        required: { value: true, message: "" },
+        pattern: {
+          value: /^(.+)@(\S+)$/,
+          message: "유효하지 않은 이메일입니다",
+        },
+      },
+    },
+  },
+}
