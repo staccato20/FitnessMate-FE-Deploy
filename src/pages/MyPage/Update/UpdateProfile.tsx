@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 import { useUserStore } from "@store/useUserStore"
 import { UPDATE_INPUTS, UPDATE_LIST } from "constants/validation"
 
 import styled from "styled-components"
 
+import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
 
 import { User } from "@typpes/type"
@@ -15,7 +17,7 @@ import { formAdapter } from "@utils/formAdapter"
 
 const UpdateProfile = () => {
   const { isLogin, user } = useUserStore()
-  const { register } = useForm<Omit<User, "sex">>({
+  const { register, formState, handleSubmit } = useForm<Omit<User, "sex">>({
     mode: "onChange",
     defaultValues: {
       userName: user?.userName,
@@ -23,19 +25,29 @@ const UpdateProfile = () => {
       loginEmail: user?.loginEmail,
     },
   })
+  const navigate = useNavigate()
+
+  const handleUpdatePaswordPage = () => {
+    navigate("/mypage/password")
+  }
+
+  const onSubmit = () => {}
 
   if (!isLogin) {
     return null
   }
 
   return (
-    <UpdateProfileForm>
+    <UpdateProfileForm
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}>
       <UpdateProfileTitle>{user?.userName}님의 회원정보</UpdateProfileTitle>
       <UpdateProfileList>
         {UPDATE_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
           <Input key={id}>
             <Input.Label htmlFor={name}>{label}</Input.Label>
             <Input.Input
+              variant="edit"
               props={{
                 ...formAdapter({
                   register,
@@ -46,9 +58,30 @@ const UpdateProfile = () => {
                 defaultValue: name,
               }}
             />
+            <Input.Error>{formState?.errors[name]?.message}</Input.Error>
           </Input>
         ))}
       </UpdateProfileList>
+      <UpdatePasswordButton
+        type="button"
+        onClick={handleUpdatePaswordPage}>
+        비밀번호 변경하기
+      </UpdatePasswordButton>
+      <UpdateButtonContainer>
+        <Button
+          variant="text"
+          size="full"
+          type="button">
+          취소
+        </Button>
+
+        <Button
+          variant="main"
+          size="full"
+          type="submit">
+          회원정보 변경 완료
+        </Button>
+      </UpdateButtonContainer>
     </UpdateProfileForm>
   )
 }
@@ -62,8 +95,7 @@ export const UpdateProfileForm = styled.form`
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  gap: 52px;
-  padding-bottom: 30px;
+  gap: 45px;
 `
 
 export const UpdateProfileTitle = styled.span`
@@ -74,5 +106,20 @@ export const UpdateProfileTitle = styled.span`
 export const UpdateProfileList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 37px;
+`
+
+export const UpdatePasswordButton = styled.button`
+  color: ${theme.Brand700};
+  ${fonts.b3};
+  font-weight: 700;
+  text-align: left;
+  width: fit-content;
+  padding-top: 10px;
+`
+
+export const UpdateButtonContainer = styled.div`
+  padding-top: 180px;
+  display: flex;
+  align-items: center;
 `
