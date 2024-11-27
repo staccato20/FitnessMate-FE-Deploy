@@ -58,13 +58,12 @@ instance.interceptors.response.use(
           return await axios(originalRequest)
         }
       } catch (err) {
-        // refresh 만료 -> 재 로그인 알림
         console.log(err)
       }
     }
 
     if (error.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
-      console.log("refresh Token 만료")
+      // 장시간 로그인하여 로그아웃 되었습니다. 재로그인 해주세요!
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("rememberMe")
