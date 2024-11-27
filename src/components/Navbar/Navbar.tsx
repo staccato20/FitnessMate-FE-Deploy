@@ -8,13 +8,11 @@ import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
 
-import { useStore } from "../../store/useStore"
 import * as S from "./StyledNavbar"
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const user = useStore(useUserStore, (state) => state.user)
-  const isLogin = useStore(useUserStore, (state) => state.isLogin)
+  const { user, isLogin } = useUserStore()
 
   const handleSearch = () => {
     navigate("searchworkout")
