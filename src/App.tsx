@@ -6,6 +6,8 @@ import Navigator from "@routes/Navigator"
 
 import theme from "@styles/theme"
 
+import { ReactQueryDevtools } from "../node_modules/@tanstack/react-query-devtools/src/index"
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -22,6 +24,7 @@ const App = () => {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <ThemeProvider theme={theme}>
           <Navigator />
         </ThemeProvider>
