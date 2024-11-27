@@ -55,7 +55,16 @@ const UpdateProfile = () => {
 
 export default UpdateProfile
 
-export const UpdateProfileForm = styled.form``
+export const UpdateProfileForm = styled.form`
+  padding-top: 100px;
+  width: 474px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  gap: 52px;
+  padding-bottom: 30px;
+`
 
 export const UpdateProfileTitle = styled.span`
   ${theme.Netural990};
