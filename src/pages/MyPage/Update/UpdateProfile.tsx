@@ -36,6 +36,10 @@ const UpdateProfile = () => {
     navigate("/mypage/password")
   }
 
+  const handleHome = () => {
+    navigate("/")
+  }
+
   if (!isLogin) {
     navigate("/")
     return null
@@ -81,7 +85,8 @@ const UpdateProfile = () => {
         <Button
           variant="text"
           size="full"
-          type="button">
+          type="button"
+          onClick={handleHome}>
           취소
         </Button>
 
