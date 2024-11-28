@@ -269,24 +269,34 @@ export const UPDATE_LIST = {
 export const UPDATE_INPUTS = {
   PROFILE: {
     userName: {
-      validate: { disabled: false },
+      attributes: {
+        placeholder: "2자리 이상",
+      },
+      validate: {
+        disabled: false,
+        required: { value: true, message: "이름은 필수 입력입니다." },
+        pattern: {
+          value: /^[가-힣]{3,8}$/,
+          message: "유효하지 않은 아이디입니다.",
+        },
+      },
     },
     birthDate: {
+      attributes: {
+        placeholder: "YYYY-MM-DD",
+      },
       validate: {
+        required: { value: true, message: "생년월일은 필수 입력입니다." },
+        pattern: {
+          value: /^\d{4}-\d{2}-\d{2}$/,
+          message: "유효하지 않은 생년월일입니다.",
+        },
         disabled: false,
       },
     },
     loginEmail: {
-      attributes: {
-        type: "email",
-      },
       validate: {
         disabled: true,
-        required: { value: true, message: "" },
-        pattern: {
-          value: /^(.+)@(\S+)$/,
-          message: "유효하지 않은 이메일입니다",
-        },
       },
     },
   },

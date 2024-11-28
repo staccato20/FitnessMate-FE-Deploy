@@ -61,6 +61,8 @@ const UpdateProfile = () => {
                   register,
                   name,
                   validator: UPDATE_INPUTS.PROFILE[name],
+                  $isDirty: !!formState.dirtyFields[name],
+                  $isError: !!formState.errors[name],
                 }),
                 disabled: isDisabled,
                 defaultValue: name,

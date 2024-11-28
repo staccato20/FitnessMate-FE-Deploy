@@ -12,8 +12,7 @@ const VARIANTS = {
     background: ${theme.Netural0};
     ${fonts.b4};
     color: ${theme.Netural900};
-    border: 1px solid;
-    ${theme.Netural400};
+    border: 1px solid ${theme.Netural400};
   `,
   edit: css`
     padding: 14px;
@@ -26,9 +25,18 @@ const VARIANTS = {
 
 const getBorderStyle = ($isError: boolean, $isDirty: boolean) => {
   if (!$isDirty) {
-    return ""
+    return css``
   }
-  return $isError ? `2px solid ${theme.Error}` : `2px solid ${theme.Brand600}`
+
+  if ($isError) {
+    return css`
+      border: 2px solid ${theme.Error};
+    `
+  }
+
+  return css`
+    border: 2px solid ${theme.Brand600};
+  `
 }
 
 interface InputInputProps {
@@ -36,15 +44,15 @@ interface InputInputProps {
     $isDirty?: boolean
     $isError?: boolean
   }
-  variant: Variant
+  variant?: Variant
 }
 
 const InputInput = ({
-  props: { $isDirty = false, $isError = false, ...rest },
+  props: { $isDirty = true, $isError = false, ...rest },
   variant = "main",
 }: InputInputProps) => {
   const variantStyle = VARIANTS[variant]
-  const borderStyle = getBorderStyle($isDirty, $isError)
+  const borderStyle = getBorderStyle($isError, $isDirty)
   return (
     <Input
       $isDirty={$isDirty}
@@ -65,8 +73,6 @@ export const Input = styled.input<{
   $variantStyle: Interpolation<object>
   $borderStyle: Interpolation<object>
 }>`
-  ${({ $variantStyle }) => $variantStyle};
-
   width: 100%;
   border-radius: 10px;
 
@@ -75,10 +81,13 @@ export const Input = styled.input<{
     ${fonts.b4};
   }
 
+  ${({ $variantStyle }) => $variantStyle};
+
   &:disabled {
     background: ${theme.Netural100};
     border: 1.5px solid var(--gray-20, #f2f4f6);
     color: var(--Gray-40, #b0b8c1);
   }
+
   ${({ $borderStyle }) => $borderStyle};
 `
