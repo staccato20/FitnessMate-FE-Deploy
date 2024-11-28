@@ -10,7 +10,7 @@ export const useEditProfile = () => {
     mutationKey: ["postUpdateProfile"],
     mutationFn: (req: UpdateUserPayload) => authAPI.editUser(req),
     onSuccess: () => {
-      queryClient.refetchQueries({
+      queryClient.invalidateQueries({
         queryKey: ["USERINFO"],
         exact: true,
       })
