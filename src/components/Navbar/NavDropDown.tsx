@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 import Button from "@components/Button/Button"
 
 import { useLogout } from "@hooks/mutation/useLogout"
@@ -12,10 +14,10 @@ interface NavDropDownProps {
 const NavDropDown = ({ userName }: NavDropDownProps) => {
   const { isOpen, dropDownRef, toggleDropDown } = useDropDown()
   const { mutate: logout } = useLogout()
+  const navigate = useNavigate()
 
   const handleFixProfile = async () => {
-    alert("현재 수정중인 페이지입니다!")
-    // navigate("/mypage/fixprofile")
+    navigate("/mypage/profile")
     toggleDropDown()
   }
 

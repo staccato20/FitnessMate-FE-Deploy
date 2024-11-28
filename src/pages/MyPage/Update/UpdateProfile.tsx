@@ -89,7 +89,7 @@ const UpdateProfile = () => {
 export default UpdateProfile
 
 export const UpdateProfileForm = styled.form`
-  padding-top: 100px;
+  padding-top: 75px;
   width: 474px;
   display: flex;
   flex-direction: column;
@@ -116,6 +116,16 @@ export const UpdatePasswordButton = styled.button`
   text-align: left;
   width: fit-content;
   padding-top: 10px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: ${theme.Brand700};
+  }
 `
 
 export const UpdateButtonContainer = styled.div`
