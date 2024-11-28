@@ -33,8 +33,6 @@ export const FooterInfoSubContentTitle = styled.p`
 `
 
 export const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
   width: 100vw;
   background: ${theme.Netural200};
 `
