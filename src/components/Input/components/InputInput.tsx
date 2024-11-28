@@ -17,10 +17,10 @@ const VARIANTS = {
   `,
   edit: css`
     padding: 14px;
+    border: 1px solid ${theme.Netural200};
     background: ${theme.Netural100};
+    color: ${theme.Netural990};
     ${fonts.b1};
-    border: 1.5px solid var(--gray-20, #f2f4f6);
-    color: var(--Gray-40, #b0b8c1);
   `,
 }
 
@@ -76,9 +76,9 @@ export const Input = styled.input<{
   }
 
   &:disabled {
-    border: 1px solid ${theme.Netural200};
     background: ${theme.Netural100};
-    color: ${theme.Netural990};
+    border: 1.5px solid var(--gray-20, #f2f4f6);
+    color: var(--Gray-40, #b0b8c1);
   }
   ${({ $borderStyle }) => $borderStyle};
 `
