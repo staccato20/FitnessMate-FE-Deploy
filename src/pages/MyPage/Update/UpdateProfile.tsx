@@ -9,13 +9,18 @@ import styled from "styled-components"
 import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
 
+import { UpdateUserPayload } from "@typpes/type"
 import { User } from "@typpes/type"
 
 import theme, { fonts } from "@styles/theme"
 
 import { formAdapter } from "@utils/formAdapter"
 
+import { useEditProfile } from "../../../hooks/mutation/useEditProfile"
+
 const UpdateProfile = () => {
+  const navigate = useNavigate()
+
   const { isLogin, user } = useUserStore()
   const { register, formState, handleSubmit } = useForm<Omit<User, "sex">>({
     mode: "onChange",
@@ -25,16 +30,19 @@ const UpdateProfile = () => {
       loginEmail: user?.loginEmail,
     },
   })
-  const navigate = useNavigate()
+  const { mutate: editUser } = useEditProfile()
 
   const handleUpdatePaswordPage = () => {
     navigate("/mypage/password")
   }
 
-  const onSubmit = () => {}
-
   if (!isLogin) {
+    navigate("/")
     return null
+  }
+
+  const onSubmit = ({ userName, birthDate }: UpdateUserPayload) => {
+    editUser({ userName, birthDate })
   }
 
   return (

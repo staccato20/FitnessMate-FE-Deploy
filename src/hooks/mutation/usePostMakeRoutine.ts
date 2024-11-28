@@ -9,7 +9,7 @@ export const usePostMakeRoutine = () => {
   return useMutation({
     mutationKey: ["usePostMakeRoutine"],
     mutationFn: async (params: { routines: MyRoutines[] }) =>
-      await MyFitAPI.modifyMyRoutine(params),
+      await MyFitAPI.editMyRoutine(params),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myRoutines"] })
     },

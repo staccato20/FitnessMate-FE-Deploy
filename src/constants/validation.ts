@@ -260,20 +260,20 @@ export const LOGIN_LIST = [
 
 export const UPDATE_LIST = {
   PROFILE: [
-    { id: 0, name: "userName", label: "이름", isDisabled: true },
-    { id: 1, name: "birthDate", label: "생년월일", isDisabled: true },
-    { id: 2, name: "loginEmail", label: "이메일", isDisabled: false },
+    { id: 0, name: "userName", label: "이름", isDisabled: false },
+    { id: 1, name: "birthDate", label: "생년월일", isDisabled: false },
+    { id: 2, name: "loginEmail", label: "이메일", isDisabled: true },
   ],
 } as const
 
 export const UPDATE_INPUTS = {
   PROFILE: {
     userName: {
-      validate: { disabled: true },
+      validate: { disabled: false },
     },
     birthDate: {
       validate: {
-        disabled: true,
+        disabled: false,
       },
     },
     loginEmail: {
@@ -281,7 +281,7 @@ export const UPDATE_INPUTS = {
         type: "email",
       },
       validate: {
-        disabled: false,
+        disabled: true,
         required: { value: true, message: "" },
         pattern: {
           value: /^(.+)@(\S+)$/,
