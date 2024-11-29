@@ -1,7 +1,7 @@
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import { useUserStore } from "@store/useUserStore"
 import { UPDATE_INPUTS, UPDATE_LIST } from "constants/validation"
 
 import styled from "styled-components"
@@ -12,22 +12,26 @@ import Input from "@components/Input/Input"
 import { UpdateUserPayload } from "@typpes/type"
 import { User } from "@typpes/type"
 
+import { useEditProfile } from "@hooks/mutation/useEditProfile"
+import { useUserInfo } from "@hooks/query/useUserInfo"
+
 import theme, { fonts } from "@styles/theme"
 
 import { formAdapter } from "@utils/formAdapter"
 
-import { useEditProfile } from "../../../hooks/mutation/useEditProfile"
-
 const UpdateProfile = () => {
   const navigate = useNavigate()
 
-  const { isLogin, user } = useUserStore()
-  const { register, formState, handleSubmit } = useForm<Omit<User, "sex">>({
+  const { userInfo } = useUserInfo()
+
+  const { register, formState, handleSubmit, reset } = useForm<
+    Omit<User, "sex">
+  >({
     mode: "onChange",
     defaultValues: {
-      userName: user?.userName,
-      birthDate: user?.birthDate,
-      loginEmail: user?.loginEmail,
+      userName: "",
+      birthDate: "",
+      loginEmail: "",
     },
   })
   const { mutate: editUser } = useEditProfile()
@@ -40,20 +44,25 @@ const UpdateProfile = () => {
     navigate("/")
   }
 
-  if (!isLogin) {
-    navigate("/")
-    return null
-  }
-
   const onSubmit = ({ userName, birthDate }: UpdateUserPayload) => {
     editUser({ userName, birthDate })
   }
+
+  useEffect(() => {
+    if (userInfo) {
+      reset({
+        userName: userInfo.userName,
+        birthDate: userInfo.birthDate,
+        loginEmail: userInfo.loginEmail,
+      })
+    }
+  }, [userInfo, reset])
 
   return (
     <UpdateProfileForm
       noValidate
       onSubmit={handleSubmit(onSubmit)}>
-      <UpdateProfileTitle>{user?.userName}님의 회원정보</UpdateProfileTitle>
+      <UpdateProfileTitle>{userInfo?.userName}님의 회원정보</UpdateProfileTitle>
       <UpdateProfileList>
         {UPDATE_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
           <Input key={id}>
@@ -69,7 +78,6 @@ const UpdateProfile = () => {
                   $isError: !!formState.errors[name],
                 }),
                 disabled: isDisabled,
-                defaultValue: name,
               }}
             />
             <Input.Error>{formState?.errors[name]?.message}</Input.Error>
