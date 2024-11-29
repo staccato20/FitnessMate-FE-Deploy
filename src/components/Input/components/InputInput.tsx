@@ -48,7 +48,7 @@ interface InputInputProps {
 }
 
 const InputInput = ({
-  props: { $isDirty = true, $isError = false, ...rest },
+  props: { $isDirty = false, $isError = false, ...rest },
   variant = "main",
 }: InputInputProps) => {
   const variantStyle = VARIANTS[variant]
