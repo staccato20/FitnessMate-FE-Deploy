@@ -32,14 +32,17 @@ export const NavTab = styled.div`
 `
 export const NavTabInner = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   max-width: 1032px;
   margin: 0 auto;
   padding: 0 3%;
 `
 export const NavTabList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
 `
