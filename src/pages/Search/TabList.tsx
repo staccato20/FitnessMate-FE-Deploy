@@ -51,12 +51,10 @@ const TabList = ({
                 </Tabs.Tab>
               ))}
             </S.NavTabList>
-            <S.SearchToggle
-              onClick={handleToggle}
-              $isSearchMode={isSearchMode}>
+            <S.SearchToggle onClick={handleToggle}>
               <Icon
                 icon="Search"
-                size={16}
+                size={22}
               />
               운동 이름으로 검색
             </S.SearchToggle>

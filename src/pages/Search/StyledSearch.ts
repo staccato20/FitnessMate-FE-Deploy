@@ -61,22 +61,15 @@ export const SubTitle = styled.span`
   font-size: 30px;
 `
 
-export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>``
-
-export const SearchToggle = styled.button<{ $isSearchMode: boolean }>`
+export const SearchToggle = styled.button`
   border-radius: 37px;
-  border: 1px solid ${theme.Netural500};
   display: flex;
   align-items: center;
-  padding: 10px 16px;
-  justify-content: center;
-  gap: 8px;
-  color: ${({ $isSearchMode }) =>
-    $isSearchMode ? theme.Netural600 : theme.Netural500};
-  background: ${({ $isSearchMode }) =>
-    $isSearchMode ? theme.Netural300 : theme.Netural0};
-  ${fonts.d1};
-  font-size: 14px;
+  padding: 12px 20px 12px 18px;
+  gap: 6px;
+  color: ${theme.Netural550};
+  background: ${theme.Netural200};
+  ${fonts.b7};
 `
 
 export const DropdownFormWrapper = styled(motion.form)`
