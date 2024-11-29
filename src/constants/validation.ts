@@ -291,7 +291,6 @@ export const UPDATE_INPUTS = {
           value: /^\d{4}-\d{2}-\d{2}$/,
           message: "유효하지 않은 생년월일입니다.",
         },
-        disabled: false,
       },
     },
     loginEmail: {

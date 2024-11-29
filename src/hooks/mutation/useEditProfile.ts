@@ -12,7 +12,6 @@ export const useEditProfile = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["USERINFO"],
-        exact: true,
       })
     },
   })
