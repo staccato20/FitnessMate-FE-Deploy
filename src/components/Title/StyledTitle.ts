@@ -65,6 +65,18 @@ export const VARIANTS = {
       ${fonts.b5};
     }
   `,
+  midC: css`
+    .topIconTitle {
+      color: ${theme.Netural900};
+      ${fonts.h3};
+      display: flex;
+      align-items: center;
+    }
+    .bottomTitleText {
+      color: ${theme.Netural550};
+      ${fonts.b6};
+    }
+  `,
   small: css`
     color: ${theme.Netural990};
     ${fonts.h3};

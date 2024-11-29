@@ -7,7 +7,7 @@ interface TitleProps {
   variant: (typeof Variant)[number]
 }
 
-export const Variant = ["big", "midA", "midB", "small"] as const
+export const Variant = ["big", "midA", "midB", "midC", "small"] as const
 
 const Title = ({ variant, children }: StrictPropsWithChildren<TitleProps>) => {
   const variantStyle = VARIANTS[variant]
@@ -21,6 +21,10 @@ const SubTopTitle = ({ children }: StrictPropsWithChildren) => (
   <S.SubTopTitleText className="topTitleText">{children}</S.SubTopTitleText>
 )
 
+const SubTopIconTitle = ({ children }: StrictPropsWithChildren) => (
+  <S.SubTopTitleText className="topIconTitle">{children}</S.SubTopTitleText>
+)
+
 const SubBottomTitle = ({ children, ...props }: StrictPropsWithChildren) => (
   <S.SubBottomTitleText
     className="bottomTitleText"
@@ -31,5 +35,6 @@ const SubBottomTitle = ({ children, ...props }: StrictPropsWithChildren) => (
 
 Title.SubTopTitle = SubTopTitle
 Title.SubBottomTitle = SubBottomTitle
+Title.SubTopIconTitle = SubTopIconTitle
 
 export default Title
