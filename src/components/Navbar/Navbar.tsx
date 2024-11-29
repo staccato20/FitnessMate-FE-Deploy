@@ -58,9 +58,7 @@ const Navbar = () => {
           </S.LoginButton>
         )}
       </S.NavLink>
-      <S.NavbarUnderLine $isHome={useLocation().pathname === "/"}>
-        {}
-      </S.NavbarUnderLine>
+      <S.NavbarUnderLine $isHome={useLocation().pathname === "/"} />
       <RoutineModal />
     </S.NavbarContainer>
   )

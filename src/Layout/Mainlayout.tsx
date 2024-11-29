@@ -14,6 +14,7 @@ const MainLayout = () => {
   const isRecommend = path.includes("recommend")
   const isLogin = path.includes("login")
   const isSignup = path.includes("signup")
+  const isMyPage = path.includes("mypage")
   const { setIsRecommendPage } = usePathStore()
   const { checkLogin } = useUserStore()
 
@@ -27,7 +28,7 @@ const MainLayout = () => {
       <ScrollToTop />
       <Navbar />
       <Outlet />
-      {!isRecommend && !isLogin && !isSignup && <Footer />}
+      {!isRecommend && !isLogin && !isSignup && !isMyPage && <Footer />}
     </>
   )
 }

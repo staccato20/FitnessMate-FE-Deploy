@@ -131,8 +131,8 @@ export const SIGNUP_INPUTS = {
 }
 
 export const SEX_GROUP = [
-  { groupName: "남성", imgSrc: `/src/assets/images/남성.png`, id: 0 },
-  { groupName: "여성", imgSrc: `/src/assets/images/여성.png`, id: 1 },
+  { groupName: "남성", imgSrc: "/src/assets/images/남성.png", id: 0 },
+  { groupName: "여성", imgSrc: "/src/assets/images/여성.png", id: 1 },
 ]
 
 export const BODYINFO_LIST = [
@@ -220,9 +220,10 @@ export const LOGIN_INPUTS = {
       type: "email",
     },
     validate: {
-      required: {
-        value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^(.+)@(\S+)$/,
+        message: "",
       },
     },
   },
@@ -232,9 +233,10 @@ export const LOGIN_INPUTS = {
       type: "password",
     },
     validate: {
-      required: {
-        value: true,
-        message: "이메일 또는 비밀번호를 잘못 입력했습니다",
+      required: { value: true, message: "" },
+      pattern: {
+        value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+        message: "",
       },
     },
   },
@@ -255,3 +257,46 @@ export const LOGIN_LIST = [
   { id: 0, name: "loginEmail" },
   { id: 1, name: "password" },
 ] as const
+
+export const UPDATE_LIST = {
+  PROFILE: [
+    { id: 0, name: "userName", label: "이름", isDisabled: false },
+    { id: 1, name: "birthDate", label: "생년월일", isDisabled: false },
+    { id: 2, name: "loginEmail", label: "이메일", isDisabled: true },
+  ],
+} as const
+
+export const UPDATE_INPUTS = {
+  PROFILE: {
+    userName: {
+      attributes: {
+        placeholder: "2자리 이상",
+      },
+      validate: {
+        disabled: false,
+        required: { value: true, message: "이름은 필수 입력입니다." },
+        pattern: {
+          value: /^[가-힣]{3,8}$/,
+          message: "유효하지 않은 아이디입니다.",
+        },
+      },
+    },
+    birthDate: {
+      attributes: {
+        placeholder: "YYYY-MM-DD",
+      },
+      validate: {
+        required: { value: true, message: "생년월일은 필수 입력입니다." },
+        pattern: {
+          value: /^\d{4}-\d{2}-\d{2}$/,
+          message: "유효하지 않은 생년월일입니다.",
+        },
+      },
+    },
+    loginEmail: {
+      validate: {
+        disabled: true,
+      },
+    },
+  },
+}

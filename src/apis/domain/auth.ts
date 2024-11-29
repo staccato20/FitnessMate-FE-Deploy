@@ -16,10 +16,10 @@ import {
 const postUser = (data: SignupPayload) =>
   instance.post<SignupResponse>("/api/user/auth", data)
 
-const modifyUser = (data: UpdateUserPayload) =>
+const editUser = (data: UpdateUserPayload) =>
   instance.post("/api/user/private", data)
 
-const modifyPassword = (data: PostNewPasswordPayload) =>
+const editPassword = (data: PostNewPasswordPayload) =>
   instance.post<PostNewPasswordResponse>("/api/user/private/password", data)
 
 const fetchUser = () =>
@@ -38,8 +38,8 @@ const getAccessToken = () =>
 
 const authAPI = {
   postUser,
-  modifyUser,
-  modifyPassword,
+  editUser,
+  editPassword,
   fetchUser,
   deleteUser,
   login,

@@ -1,15 +1,16 @@
 import { useEffect } from "react"
 
+import { useUserStore } from "@store/useUserStore"
+
 import { useQuery } from "@tanstack/react-query"
 
-import authAPI from "../../apis/domain/auth"
-import { useUserStore } from "../../store/useUserStore"
+import authAPI from "@apis/domain/auth"
 
 export const useUserInfo = () => {
   const { isLogin, saveUser, logout } = useUserStore()
   const userInfo = useQuery({
     queryKey: ["USERINFO"],
-    queryFn: async () => await authAPI.fetchUser(),
+    queryFn: () => authAPI.fetchUser(),
   })
 
   useEffect(() => {

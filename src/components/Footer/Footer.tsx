@@ -6,7 +6,10 @@ const Footer = () => {
   return (
     <S.Footer>
       <S.FooterWrapper>
-        <img src={logo} />
+        <img
+          src={logo}
+          alt="로고 이미지"
+        />
         <S.FooterInfoList>
           <S.FooterInfoContentWrapper>
             <S.FooterInfoContentList>
