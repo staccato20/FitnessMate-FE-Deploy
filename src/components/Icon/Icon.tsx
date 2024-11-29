@@ -24,9 +24,11 @@ import LeftArrowGrey from "@assets/icon/left_arrow_grey.svg?react"
 import LeftArrowWhite from "@assets/icon/left_arrow_white.svg?react"
 import MinusRound from "@assets/icon/minus_round.svg?react"
 import Pencil from "@assets/icon/pencil.svg?react"
+import PencilGrey from "@assets/icon/pencil_grey.svg?react"
 import PencilRound from "@assets/icon/pencil_round.svg?react"
 import PlayRound from "@assets/icon/play_round.svg?react"
 import RightArrowBig from "@assets/icon/right_arrow_big.svg?react"
+import RightArrowGrey from "@assets/icon/right_arrow_grey.svg?react"
 import RightArrowRound from "@assets/icon/right_arrow_round.svg?react"
 import RightArrowWhite from "@assets/icon/right_arrow_white.svg?react"
 import Search from "@assets/icon/search.svg?react"
@@ -56,6 +58,7 @@ export const ICON_MAP = {
   LeftArrowBig,
   LeftArrow,
   MinusRound,
+  PencilGrey,
   PencilRound,
   Pencil,
   PlayRound,
@@ -71,6 +74,7 @@ export const ICON_MAP = {
   LeftArrowWhite,
   LeftArrowGrey,
   RightArrowWhite,
+  RightArrowGrey,
   Avatar,
   CloseRoundSmall,
   SearchWhite,
