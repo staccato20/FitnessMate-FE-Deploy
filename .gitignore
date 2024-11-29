@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 .eslintcache
+.gitignore
+/.husky/
 *.local
 
 # Editor directories and files
