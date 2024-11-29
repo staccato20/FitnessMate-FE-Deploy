@@ -1,6 +1,8 @@
 // 내 운동 페이지
 import { useEffect, useRef, useState } from "react"
 
+import EmptyRoutine from "@components/EmptyRoutine/EmptyRoutine"
+
 // user bodydata
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 // my routines
@@ -25,7 +27,7 @@ const MyPage = () => {
   // 루틴 목록
   const { myRoutines } = useGetMyRoutines()
   // 루틴 목록 여부 확인
-  const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
+  const isRoutine = Array.isArray(myRoutines) && myRoutines.length < 0
   // 루틴 분할 길이
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
   // 선택된 루틴
@@ -165,19 +167,7 @@ const MyPage = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="noneRoutineContainer">
-                    <div className="noneRoutineTextArea">
-                      <p className="noneRoutineTopText">
-                        아직 추가한 루틴이 없어요.
-                      </p>
-                      <p className="noneRoutineBottomText">
-                        나만의 운동 루틴을 만들어보세요!
-                      </p>
-                    </div>
-                    <button className="addFirstRoutineButton">
-                      <p className="addFirstRoutineButtonText">추가하기</p>
-                    </button>
-                  </div>
+                  <EmptyRoutine />
                 )}
               </S.RoutinesContainer>
             </div>

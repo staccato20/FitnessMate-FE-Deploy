@@ -7,7 +7,7 @@ interface TitleProps {
   variant: (typeof Variant)[number]
 }
 
-export const Variant = ["big", "midA", "midB", "midC", "small"] as const
+export const Variant = ["big", "midA", "midB", "midC", "midD", "small"] as const
 
 const Title = ({ variant, children }: StrictPropsWithChildren<TitleProps>) => {
   const variantStyle = VARIANTS[variant]

@@ -77,6 +77,17 @@ export const VARIANTS = {
       ${fonts.b6};
     }
   `,
+  midD: css`
+    gap: 2px;
+    .topTitleText {
+      color: ${theme.Netural950};
+      ${fonts.b1};
+    }
+    .bottomTitleText {
+      color: ${theme.Brand700};
+      ${fonts.b7};
+    }
+  `,
   small: css`
     color: ${theme.Netural990};
     ${fonts.h3};
