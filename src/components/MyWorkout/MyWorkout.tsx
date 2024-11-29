@@ -1,19 +1,21 @@
-import { DraggableProvided, DraggableStateSnapshot } from "@hello-pangea/dnd"
+import { DraggableProvided } from "@hello-pangea/dnd"
 
+import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import {
   BottomTitle,
   BottomWrapper,
   DetailIconButtonWrapper,
   FixIconButtonWrapper,
+  HandleIconButtonWrapper,
   HeaderLeft,
   HeaderRight,
   HeaderRightInfo,
   HeaderRightInfoContent,
   HeaderRightInfoUnit,
   HeaderWrapper,
+  MyWorkoutContent,
   MyWorkoutWrapper,
-  TopLine,
 } from "@components/MyWorkout/StyledMyWorkout"
 import Title from "@components/Title/Title"
 
@@ -32,12 +34,11 @@ interface MyWorkoutProps {
   draggableProps: DraggableProvided["draggableProps"]
   dragHandleProps: DraggableProvided["dragHandleProps"]
   innerRef: (element: HTMLElement | null) => void
-  isDragging: boolean // 드래깅 상태
+  isDragging: boolean
 }
 
 const MyWorkout = ({
   children,
-  onClick,
   bodyParts,
   setCount,
   rep,
@@ -54,61 +55,67 @@ const MyWorkout = ({
     <MyWorkoutWrapper
       ref={innerRef}
       {...draggableProps}
-      {...dragHandleProps}
-      isDragging={isDragging}>
-      <HeaderWrapper>
-        <HeaderLeft onClick={onClick}>
-          <Title variant="midC">
-            <Title.SubTopIconTitle>
-              {children}
-              <DetailIconButtonWrapper>
-                <IconButton
-                  icon="RightArrowGrey"
-                  size={24}
-                  onClick={handleFixWorkout}
-                  color={theme.Netural500}
-                />
-              </DetailIconButtonWrapper>
-            </Title.SubTopIconTitle>
-            <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
-          </Title>
-        </HeaderLeft>
-        <HeaderRight>
-          <HeaderRightInfo>
-            중량
-            <HeaderRightInfoContent>
-              {weight}
-              <HeaderRightInfoUnit>kg</HeaderRightInfoUnit>
-            </HeaderRightInfoContent>
-          </HeaderRightInfo>
-          <HeaderRightInfo>
-            횟수
-            <HeaderRightInfoContent>
-              {rep}
-              <HeaderRightInfoUnit>회</HeaderRightInfoUnit>
-            </HeaderRightInfoContent>
-          </HeaderRightInfo>
-          <HeaderRightInfo>
-            세트 수
-            <HeaderRightInfoContent>
-              {setCount}
-              <HeaderRightInfoUnit>세트</HeaderRightInfoUnit>
-            </HeaderRightInfoContent>
-          </HeaderRightInfo>
-        </HeaderRight>
-      </HeaderWrapper>
-      <TopLine />
-      <BottomWrapper>
-        <BottomTitle>주의사항</BottomTitle>
-        {caution}
-      </BottomWrapper>
-      <FixIconButtonWrapper>
-        <IconButton
-          icon="PencilGrey"
-          size={18}
-          onClick={handleFixWorkout}
+      {...dragHandleProps}>
+      <MyWorkoutContent isDragging={isDragging}>
+        <HeaderWrapper>
+          <HeaderLeft>
+            <Title variant="midC">
+              <Title.SubTopIconTitle>
+                {children}
+                <DetailIconButtonWrapper>
+                  <IconButton
+                    icon="RightArrowGrey"
+                    size={24}
+                    onClick={handleFixWorkout}
+                    color={theme.Netural500}
+                  />
+                </DetailIconButtonWrapper>
+              </Title.SubTopIconTitle>
+              <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
+            </Title>
+          </HeaderLeft>
+          <HeaderRight>
+            <HeaderRightInfo>
+              중량
+              <HeaderRightInfoContent>
+                {weight}
+                <HeaderRightInfoUnit>kg</HeaderRightInfoUnit>
+              </HeaderRightInfoContent>
+            </HeaderRightInfo>
+            <HeaderRightInfo>
+              횟수
+              <HeaderRightInfoContent>
+                {rep}
+                <HeaderRightInfoUnit>회</HeaderRightInfoUnit>
+              </HeaderRightInfoContent>
+            </HeaderRightInfo>
+            <HeaderRightInfo>
+              세트 수
+              <HeaderRightInfoContent>
+                {setCount}
+                <HeaderRightInfoUnit>세트</HeaderRightInfoUnit>
+              </HeaderRightInfoContent>
+            </HeaderRightInfo>
+          </HeaderRight>
+        </HeaderWrapper>
+        <BottomWrapper>
+          <BottomTitle>주의사항</BottomTitle>
+          {caution}
+        </BottomWrapper>
+        <FixIconButtonWrapper>
+          <IconButton
+            icon="PencilGrey"
+            size={18}
+            onClick={handleFixWorkout}
+          />
+        </FixIconButtonWrapper>
+      </MyWorkoutContent>
+      <HandleIconButtonWrapper>
+        <Icon
+          icon="handle"
+          size={24}
         />
-      </FixIconButtonWrapper>
+      </HandleIconButtonWrapper>
     </MyWorkoutWrapper>
   )
 }

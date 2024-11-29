@@ -1,17 +1,20 @@
-import { motion } from "framer-motion"
-
 import styled from "styled-components"
 
 import theme, { fonts } from "@styles/theme"
 
-export const MyWorkoutWrapper = styled.div<{ isDragging: boolean }>`
+export const MyWorkoutWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+`
+
+export const MyWorkoutContent = styled.div<{ isDragging: boolean }>`
   width: 770px;
   z-index: 2;
-  height: 150px;
+  height: 157px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   padding: 22px 22px 18px 22px;
   margin-bottom: 19px;
 
@@ -65,14 +68,7 @@ export const HeaderRightInfoUnit = styled.span`
   ${fonts.d1}
 `
 
-export const TopLine = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: ${theme.Netural200};
-  left: 50%;
-`
-
-export const BottomWrapper = styled.button`
+export const BottomWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -82,7 +78,7 @@ export const BottomWrapper = styled.button`
   ${fonts.b7}
 `
 
-export const BottomTitle = styled.button`
+export const BottomTitle = styled.div`
   display: flex;
   width: 60px;
   height: 27px;
@@ -91,6 +87,7 @@ export const BottomTitle = styled.button`
   color: #ff9500;
   ${fonts.b7};
   background-color: #fff6e3;
+  border-radius: 6px;
 `
 
 export const FixIconButtonWrapper = styled.div`
@@ -104,4 +101,8 @@ export const FixIconButtonWrapper = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 8px;
+`
+
+export const HandleIconButtonWrapper = styled.div`
+  padding-top: 54.5px;
 `

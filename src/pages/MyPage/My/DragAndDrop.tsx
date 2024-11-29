@@ -114,7 +114,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
               {highlightedFrameIndex !== null && (
                 <PlaceholderWrapper
                   isVisible={highlightedFrameIndex !== null}
-                  top={`${highlightedFrameIndex * (150 + 19)}px`}
+                  top={`${highlightedFrameIndex * (157 + 19)}px`}
                 />
               )}
               {myWorkouts?.map((workout, index) => (

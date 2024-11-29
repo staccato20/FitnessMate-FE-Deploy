@@ -1,3 +1,4 @@
+import { DraggableProvided } from "@hello-pangea/dnd"
 import type { Meta, StoryObj } from "@storybook/react"
 
 import MyWorkout from "@components/MyWorkout/MyWorkout"
@@ -5,14 +6,19 @@ import MyWorkout from "@components/MyWorkout/MyWorkout"
 const DUMMY_DATA = (
   <MyWorkout
     onClick={() => {
-      console.log("2")
+      console.log("Clicked")
     }}
     children="벤치 프레스"
     bodyParts={"가슴, 등"}
     weight="20"
     setCount="5"
     rep="12"
-    caution="허리가 굽어지지 않도록 주의가 필요해요!"></MyWorkout>
+    caution="허리가 굽어지지 않도록 주의가 필요해요!"
+    draggableProps={{} as DraggableProvided["draggableProps"]}
+    dragHandleProps={{} as DraggableProvided["dragHandleProps"]}
+    innerRef={() => {}}
+    isDragging={false}
+  />
 )
 
 const meta: Meta<typeof MyWorkout> = {

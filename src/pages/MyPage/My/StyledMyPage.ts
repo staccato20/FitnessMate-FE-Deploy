@@ -408,7 +408,7 @@ export const PlaceholderWrapper = styled.div<{
 }>`
   position: absolute;
   height: 150px;
-  width: 100%;
+  width: 770px;
   border-radius: 20px;
   z-index: 1;
   pointer-events: none;
