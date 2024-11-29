@@ -1,21 +1,6 @@
 // 내 운동 페이지
 import { useEffect, useRef, useState } from "react"
 
-// Drag & Drop
-import {
-  DragDropContext,
-  DragUpdate,
-  Draggable,
-  DropResult,
-  Droppable,
-} from "@hello-pangea/dnd"
-
-// my workouts
-import MyFitAPI from "@apis/domain/myfit"
-
-// type
-import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
-
 // user bodydata
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 // my routines
@@ -23,23 +8,10 @@ import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 // user name
 import { useUserInfo } from "@hooks/query/useUserInfo"
 
+import DragAndDrop from "./DragAndDrop"
 // 루틴 더보기 모달
 import OutSideClick from "./Modal/OutSideClick"
 import * as S from "./StyledMyPage"
-
-type PlaceholderProps = {
-  clientHeight: number
-  clientWidth: number
-  clientX: number
-  clientY: number
-}
-
-const defaultPlaceholder = {
-  clientHeight: 0,
-  clientWidth: 0,
-  clientX: 0,
-  clientY: 0,
-}
 
 const MyPage = () => {
   // 유저 이름
@@ -64,14 +36,6 @@ const MyPage = () => {
     null,
   )
 
-  // 운동 리스트 상태
-  const [workoutList, setWorkoutList] = useState<MyWorkoutList[]>([])
-  // drag & drop 을 위한 운동 리스트 복사본
-  const [myWorkouts, setMyWorkouts] = useState<MyWorkoutList[]>([])
-
-  // 운동 순서 수정 여부
-  const [isWorkoutFix, setIsWorkoutFix] = useState<boolean>(false)
-
   // 기본 상태 세팅
   const fetchData = async () => {
     try {
@@ -90,23 +54,6 @@ const MyPage = () => {
       fetchData()
     }
   }, [myRoutines]) // myRoutines가 변경될 때 fetchData 호출
-
-  // selectedRoutineId가 변경될 때마다 운동 리스트 가져오기
-  useEffect(() => {
-    const fetchWorkouts = async (routineId: number) => {
-      try {
-        const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
-        console.log(response)
-        setMyWorkouts(response) // 운동 리스트 설정
-        setWorkoutList(response.map((item) => ({ ...item }))) // 운동 리스트 복사본
-        setIsWorkoutFix(false)
-      } catch (error) {}
-    }
-
-    if (selectedRoutineId) {
-      fetchWorkouts(selectedRoutineId) // 루틴 ID가 있을 때만 호출
-    }
-  }, [selectedRoutineId, isWorkoutFix])
 
   // 루틴 수정하기
 
@@ -134,128 +81,6 @@ const MyPage = () => {
     setIsRoutineFixOpen("")
   }
   OutSideClick(modalRef, handleClose)
-
-  // Drag & Drop
-
-  const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(false) // 드래그 중에만 placeholder를 보이게 함
-
-  // 2. 여기서 순서를 바꿀 때, 그냥 routineWorkout을 가져왔더니 아래 map의 순서를 유지하려고 해서
-  // myWorkouts라는 배열 복사본을 만들어서 실제 사용자가 하는 동안에
-  const handleDrop = async (droppedItem: DropResult) => {
-    // 드롭 후 placeholder 숨김
-    setIsPlaceholderVisible(false)
-
-    // Ignore drop outside droppable container
-    if (!droppedItem.destination) return
-
-    // myWorkouts는 MyWorkoutList[] 타입이므로 updatedList도 동일한 타입으로 명시
-    const updatedList: MyWorkoutList[] = [...myWorkouts]
-
-    // Remove dragged item
-    const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1)
-    // Add dropped item
-    updatedList.splice(droppedItem.destination.index, 0, reorderedItem)
-
-    // 리스트의 모든 아이템의 인덱스를 다시 설정
-    updatedList.forEach((workout, index) => {
-      workout.myWorkoutIndex = index + 1 // 인덱스를 다시 1부터 재설정
-    })
-
-    // UI 상태 즉시 업데이트
-    setMyWorkouts(updatedList)
-
-    // weight, rep, setCount가 null이거나 undefined일 경우 기본값으로 0을 설정, 주의사항도 추가
-    const workout: MyWorkoutIndex = {
-      myWorkoutIndex: droppedItem.destination.index + 1, // number 타입 유지
-      weight: updatedList[droppedItem.destination.index].weight
-        ? updatedList[droppedItem.destination.index].weight.toString()
-        : "0", // null 또는 undefined인 경우 0으로 설정
-      rep: updatedList[droppedItem.destination.index].rep
-        ? updatedList[droppedItem.destination.index].rep.toString()
-        : "0", // null 또는 undefined인 경우 0으로 설정
-      setCount: updatedList[droppedItem.destination.index].setCount
-        ? updatedList[droppedItem.destination.index].setCount.toString()
-        : "0", // null 또는 undefined인 경우 0으로 설정
-      caution: updatedList[droppedItem.destination.index].caution
-        ? updatedList[droppedItem.destination.index].caution.toString()
-        : "주의사항이 없습니다.", // null 또는 undefined인 경우 0으로 설정
-    }
-
-    // 3. 여기서 바뀐 배열을
-    try {
-      await MyFitAPI.modifyMyWorkout(
-        updatedList[droppedItem.destination.index].myWorkoutId,
-        workout,
-      )
-      setIsWorkoutFix(true)
-    } catch (error) {
-      setIsPlaceholderVisible(false) // 드롭 후 placeholder 숨김
-      setMyWorkouts(workoutList) // 요청 실패 시 myWorkouts를 workoutList로 복원
-    }
-  }
-
-  const [placeholderProps, setPlaceholderProps] =
-    useState<PlaceholderProps>(defaultPlaceholder)
-
-  // onDragUpdate에서 placeholder 위치 계산
-  const onDragUpdate = (update: DragUpdate) => {
-    // 드래그 중에 placeholder가 보이도록 설정
-    setIsPlaceholderVisible(true)
-
-    if (!update.destination) {
-      return
-    }
-
-    const draggableId = update.draggableId
-    const destinationIndex = update.destination.index
-
-    // draggableId로 DOM 요소 찾기 (getElementById 사용)
-    const draggedDOM = document.getElementById(draggableId)
-
-    if (!draggedDOM) {
-      return
-    }
-
-    // 부모 요소를 명시적으로 선택
-    const parent = document.querySelector(".list-container")
-
-    if (parent) {
-      // 부모 요소의 스타일 정보를 가져옴
-      const parentStyle = window.getComputedStyle(parent)
-      const gap = parseFloat(parentStyle.gap) || 0
-
-      // 동일한 height와 marginBottom 값을 사용하여 Y 좌표 계산
-      const firstChild = draggedDOM.parentNode!.children[0] as HTMLElement // 첫 번째 항목을 기준으로 height와 marginBottom 값을 가져옴
-      const uniformHeight = firstChild.offsetHeight // 모든 항목에 동일한 height 적용
-      const uniformMarginBottom =
-        parseFloat(window.getComputedStyle(firstChild).marginBottom) || 0 // 모든 항목에 동일한 marginBottom 적용
-
-      const clientY =
-        (destinationIndex + 2.25) * uniformHeight + // 항목 높이에 따라 계산
-        (destinationIndex + 2) * (uniformMarginBottom + gap) // marginBottom과 gap 추가 계산
-
-      // X 좌표 동적으로 계산 (드래그된 항목이 아닌 것 중 첫 번째 workoutCard를 기준으로)
-      const workoutCards = Array.from(
-        document.getElementsByClassName("workoutCard"),
-      ) as HTMLElement[]
-
-      // 드래그 중인 요소를 제외한 첫 번째 workoutCard 찾기
-      const nonDraggedWorkoutCard = workoutCards.find(
-        (card) => card.id !== draggableId,
-      )
-
-      const workoutCardLeft = nonDraggedWorkoutCard
-        ? nonDraggedWorkoutCard.getBoundingClientRect().left
-        : draggedDOM.getBoundingClientRect().left // 드래그 중인 요소가 아니면 그 요소의 left 값 사용
-
-      setPlaceholderProps({
-        clientHeight: uniformHeight, // 드래그된 요소의 높이 사용
-        clientWidth: draggedDOM.offsetWidth, // 너비
-        clientY, // 계산된 Y 좌표
-        clientX: workoutCardLeft, // 드래그 중인 항목을 제외한 첫 번째 workoutCard의 X 좌표 사용
-      })
-    }
-  }
 
   return (
     <>
@@ -358,157 +183,7 @@ const MyPage = () => {
             </div>
           </S.MypageTopContainer>
           <S.MypageMiddleContainer>
-            <div className="workoutNumList">
-              {myWorkouts?.map((workout, index) => (
-                <div
-                  className={`workoutNum ${index === myWorkouts?.length - 1 ? "last-item" : ""}`}
-                  key={index}>
-                  <div className="numCircle">{index + 1}</div>
-                  <div className="line"></div>
-                </div>
-              ))}
-            </div>
-            <DragDropContext
-              onDragEnd={handleDrop}
-              onDragUpdate={onDragUpdate}>
-              <Droppable droppableId="workout-list">
-                {(provided) => (
-                  <div
-                    className="list-container"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}>
-                    {myWorkouts?.map(
-                      (
-                        {
-                          workoutId,
-                          workoutName,
-                          bodyParts,
-                          weight,
-                          rep,
-                          setCount,
-                          description,
-                          imgPath,
-                          caution,
-                        },
-                        index,
-                      ) => (
-                        <Draggable
-                          key={workoutId}
-                          draggableId={`item-${workoutId}`}
-                          index={index}>
-                          {(providedSpace, snapshot) => (
-                            <div
-                              className="workoutCard"
-                              id={`item-${workoutId}`}
-                              ref={providedSpace.innerRef}
-                              {...providedSpace.dragHandleProps}
-                              {...providedSpace.draggableProps}
-                              style={{
-                                backgroundColor: snapshot.draggingOver
-                                  ? "lightblue"
-                                  : "white",
-                                ...providedSpace.draggableProps.style,
-                              }}>
-                              <div
-                                className="recommendCard"
-                                draggable>
-                                <div className="recommendCardContent">
-                                  <S.RecommendMainTopWrapper>
-                                    <S.RecommendMainTopLeftWrapper>
-                                      <S.RecommendMainWorkout>
-                                        {workoutName}
-                                      </S.RecommendMainWorkout>
-                                      <S.RecommendMainBodyPart>
-                                        {bodyParts.map(
-                                          (bodyPart: string, index: number) => (
-                                            <p
-                                              className="item_BodyPart"
-                                              key={index}>
-                                              {index === bodyParts?.length - 1
-                                                ? bodyPart
-                                                : `${bodyPart}, `}
-                                            </p>
-                                          ),
-                                        )}
-                                      </S.RecommendMainBodyPart>
-                                    </S.RecommendMainTopLeftWrapper>
-                                    <S.RecommendMainTopRightWrapper>
-                                      <div className="amountContent">
-                                        <div className="amountItem">
-                                          <p className="amountTitle">중량</p>
-                                          <span className="amountText">
-                                            {weight === null ? 0 : weight}
-                                            <p className="amountUnit">kg</p>
-                                          </span>
-                                        </div>
-                                        <div className="amountItem">
-                                          <p className="amountTitle">횟수</p>
-                                          <span className="amountText">
-                                            {rep === null ? 0 : rep}
-                                            <p className="amountUnit">회</p>
-                                          </span>
-                                        </div>
-                                        <div className="amountItem">
-                                          <p className="amountTitle">세트 수</p>
-                                          <span className="amountText">
-                                            {setCount === null ? 0 : setCount}
-                                            <p className="amountUnit">세트</p>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className="recommendMainBtn"
-                                        onClick={() => {}}></div>
-                                    </S.RecommendMainTopRightWrapper>
-                                  </S.RecommendMainTopWrapper>
-                                  <S.RecommendMainMiddleWrapper>
-                                    <div className="recommendMainContent">
-                                      <S.RecommendDescriptionWrapper>
-                                        {description}
-                                      </S.RecommendDescriptionWrapper>
-                                      <S.RecommendVideoWrapper>
-                                        <img
-                                          src={imgPath}
-                                          className="fitnessImg"
-                                          alt="운동종류 이미지"></img>
-                                        <div className="goTopRecommendVideo"></div>
-                                      </S.RecommendVideoWrapper>
-                                    </div>
-                                  </S.RecommendMainMiddleWrapper>
-                                </div>
-
-                                <S.RecommendMoreButton>
-                                  <p className="informationText">{caution}</p>
-                                </S.RecommendMoreButton>
-                              </div>
-                            </div>
-                          )}
-                        </Draggable>
-                      ),
-                    )}
-                    {provided.placeholder}
-
-                    {/* 커스텀 placeholder */}
-                    <div
-                      className="drop-placeholder"
-                      style={{
-                        position: "absolute",
-                        borderRadius: "16px",
-                        top: placeholderProps.clientY + "px",
-                        left: placeholderProps.clientX + "px",
-                        height: placeholderProps.clientHeight + "px",
-                        width: placeholderProps.clientWidth + "px",
-                        backgroundColor: "#e4eaf0",
-                        border: "2px" + " dashed" + " #d0d9e2",
-                        transition:
-                          "top 0.2s, left 0.2s, width 0.2s, height 0.2s",
-                        display: isPlaceholderVisible ? "block" : "none", // 드래그 중에만 보여주기
-                      }}
-                    />
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
+            <DragAndDrop selectedRoutineId={selectedRoutineId} />
           </S.MypageMiddleContainer>
         </div>
       </S.MypageContainer>

@@ -306,6 +306,9 @@ export const RoutineFixModal = styled.div`
     margin: 6px 0 6px 0;
   }
 `
+export const DragAndDropWrapper = styled.div`
+  display: flex;
+`
 
 export const MypageMiddleContainer = styled.div`
   display: flex;
@@ -354,7 +357,7 @@ export const MypageMiddleContainer = styled.div`
   .list-container {
     display: flex;
     flex-direction: column;
-
+    position: relative;
     .workoutCard {
       display: flex;
       border-radius: 16px;
@@ -397,6 +400,24 @@ export const MypageMiddleContainer = styled.div`
       }
     }
   }
+`
+
+export const PlaceholderWrapper = styled.div<{
+  isVisible: boolean
+  top: string
+}>`
+  position: absolute;
+  height: 150px;
+  width: 100%;
+  border-radius: 20px;
+  z-index: 1;
+  pointer-events: none;
+  top: ${({ top }) => top};
+  background: ${({ isVisible }) =>
+    isVisible ? `${theme.Netural300}` : "transparent"};
+  transition:
+    background 0.2s ease,
+    border 0.2s ease;
 `
 
 export const RecommendMainTopWrapper = styled.div`
