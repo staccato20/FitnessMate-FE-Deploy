@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useArgs } from "@storybook/preview-api"
 import type { Meta, StoryObj } from "@storybook/react"
 
