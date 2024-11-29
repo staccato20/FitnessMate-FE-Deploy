@@ -15,7 +15,12 @@ import MyFitAPI from "@apis/domain/myfit"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
-import { DragAndDropWrapper, PlaceholderWrapper } from "./StyledMyPage"
+import {
+  DragAndDropWrapper,
+  PlaceholderWrapper,
+  WorkoutNumList,
+} from "./StyledMyPage"
+import * as S from "./StyledMyPage"
 
 interface DragAndDropProps {
   selectedRoutineId?: number | null
@@ -91,16 +96,14 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
 
   return (
     <DragAndDropWrapper>
-      <div className="workoutNumList">
+      <WorkoutNumList>
         {myWorkouts?.map((workout, index) => (
-          <div
-            className={`workoutNum ${index === myWorkouts?.length - 1 ? "last-item" : ""}`}
-            key={index}>
-            <div className="numCircle">{index + 1}</div>
+          <S.WorkoutNum key={index}>
+            <S.NumCircle>{index + 1}</S.NumCircle>
             <div className="line"></div>
-          </div>
+          </S.WorkoutNum>
         ))}
-      </div>
+      </WorkoutNumList>
       <DragDropContext
         onDragUpdate={onDragUpdate}
         onDragEnd={handleDrop}>
@@ -114,7 +117,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
               {highlightedFrameIndex !== null && (
                 <PlaceholderWrapper
                   isVisible={highlightedFrameIndex !== null}
-                  top={`${highlightedFrameIndex * (157 + 19)}px`}
+                  top={`${highlightedFrameIndex * (157 + 13)}px`}
                 />
               )}
               {myWorkouts?.map((workout, index) => (

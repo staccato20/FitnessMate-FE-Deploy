@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import theme from "@styles/theme"
+import theme, { fonts } from "@styles/theme"
 
 export const MypageBackground = styled.div`
   width: 100vw;
@@ -308,51 +308,11 @@ export const RoutineFixModal = styled.div`
 `
 export const DragAndDropWrapper = styled.div`
   display: flex;
+  gap: 18px;
 `
 
 export const MypageMiddleContainer = styled.div`
   display: flex;
-
-  .workoutNumList {
-    display: flex;
-    flex-direction: column;
-
-    .workoutNum {
-      padding: 14px 10px 0 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      gap: 13px;
-
-      .numCircle {
-        display: flex;
-        width: 28px;
-        min-height: 28px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 45px;
-        border: 1px solid ${theme.Netural500};
-        background: ${theme.Netural100};
-        color: ${theme.Netural900};
-        text-align: center;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 150%;
-        letter-spacing: -0.28px;
-      }
-      .line {
-        width: 2px;
-        height: 142px;
-        align-items: stretch;
-        border-radius: 1px;
-        background: ${theme.Netural400};
-      }
-    }
-    .last-item .line {
-      display: none;
-    }
-  }
 
   .list-container {
     display: flex;
@@ -400,6 +360,44 @@ export const MypageMiddleContainer = styled.div`
       }
     }
   }
+`
+
+export const WorkoutNumList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+`
+
+export const WorkoutNum = styled.div`
+  padding: 20px 2px 0 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  .line {
+    width: 3px;
+    height: 100px;
+    align-items: stretch;
+    border-radius: 10px;
+    background: ${theme.Netural300};
+  }
+
+  &:last-child .line {
+    display: none;
+  }
+`
+
+export const NumCircle = styled.div`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 38.571px;
+  background: ${theme.Netural700};
+  color: ${theme.Netural0};
+  ${fonts.d2}
 `
 
 export const PlaceholderWrapper = styled.div<{

@@ -16,7 +16,7 @@ export const MyWorkoutContent = styled.div<{ isDragging: boolean }>`
   flex-direction: column;
   gap: 24px;
   padding: 22px 22px 18px 22px;
-  margin-bottom: 19px;
+  margin-bottom: 13px;
 
   align-items: center;
   border-radius: 20px 20px 16px 16px;
