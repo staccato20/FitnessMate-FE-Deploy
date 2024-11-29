@@ -25,6 +25,7 @@ const Result = () => {
   const navigate = useNavigate()
 
   const { result } = useRecommendStore()
+
   const { isLogin, user } = useUserStore()
   const { data: routines = [] } = useGetMyRoutines()
 

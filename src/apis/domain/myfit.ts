@@ -15,8 +15,8 @@ const myRoutines = () =>
     .get<MyRoutines[]>("/api/myfit/routines/workout")
     .then((res) => res.data)
 
-const modifyMyRoutine = async (params: { routines: MyRoutines[] }) => {
-  const { data } = await instance.post(`/api/myfit/routines/workout`, params)
+const editMyRoutine = async (params: { routines: MyRoutines[] }) => {
+  const { data } = await instance.post("/api/myfit/routines/workout", params)
   return data
 }
 
@@ -27,7 +27,7 @@ const myWorkouts = async (routineId: number) => {
   return data
 }
 
-const modifyMyWorkout = async (myWorkoutId: number, params: MyWorkoutIndex) => {
+const editMyWorkout = async (myWorkoutId: number, params: MyWorkoutIndex) => {
   const { data } = await instance.post(
     `/api/myfit/routines/workout/update/${myWorkoutId}`,
     params,
@@ -52,8 +52,8 @@ const addRoutine = async (routineInfo: RoutineInfo, routineId: number) => {
 const MyFitAPI = {
   myFit,
   myRoutines,
-  modifyMyRoutine,
-  modifyMyWorkout,
+  editMyRoutine,
+  editMyWorkout,
   myWorkouts,
   deleteMyWorkout,
   addRoutine,
