@@ -28,6 +28,7 @@ export const NavTab = styled.div`
   position: sticky;
   top: 63px;
   padding: 12px 3%;
+  background: ${theme.Netural0};
 `
 export const NavTabInner = styled.div`
   display: flex;
