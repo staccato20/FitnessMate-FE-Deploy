@@ -91,7 +91,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
   return (
     <S.DragAndDropWrapper>
       <S.WorkoutNumList>
-        {myWorkouts?.map((workout, index) => (
+        {myWorkouts?.map((_, index) => (
           <S.WorkoutNum key={index}>
             <S.NumCircle>{index + 1}</S.NumCircle>
             <div className="line"></div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import EmptyRoutine from "@components/EmptyRoutine/EmptyRoutine"
 import Icon from "@components/Icon/Icon"
@@ -10,8 +10,6 @@ import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import DragAndDrop from "./DragAndDrop"
-// 루틴 더보기 모달
-import OutSideClick from "./Modal/OutSideClick"
 import * as S from "./StyledMyPage"
 
 const MyPage = () => {
@@ -49,37 +47,6 @@ const MyPage = () => {
     }
   }, [myRoutines])
 
-  // 루틴 수정하기
-
-  // 루틴 수정 여부
-  const [isRoutineFix, setIsRoutineFix] = useState(false)
-  // 특정 루틴 수정
-  const [activeItemId, setActiveItemId] = useState(null)
-
-  // isClicked를 통해 검색창 클릭 여부에 따라 스타일 다르게 함
-  const [isClicked, setIsClicked] = useState(false)
-
-  const [searchvalue, setSearchValue] = useState("루틴 이름")
-
-  const inputRef = useRef(null) // ref 생성
-  const inputButtonRef = useRef(null) // ref 생성
-  const handleCloseInput = () => {
-    setIsRoutineFix(false)
-  }
-  OutSideClick(inputButtonRef, handleCloseInput)
-
-  const [isRoutineFixOpen, setIsRoutineFixOpen] = useState("")
-
-  const modalRef = useRef(null)
-  const handleFixMyInformation = () => {
-    setIsRoutineFixOpen("")
-  }
-
-  const handleClose = () => {
-    setIsRoutineFixOpen("")
-  }
-  OutSideClick(modalRef, handleClose)
-
   return (
     <>
       <S.MypageBackground />
@@ -97,7 +64,6 @@ const MyPage = () => {
                     <IconButton
                       icon="RightArrowGrey"
                       size={24}
-                      onClick={handleFixMyInformation}
                     />
                   </S.FixIconButtonWrapper>
                 </Title.SubTopIconTitle>
@@ -125,27 +91,11 @@ const MyPage = () => {
                   <button className="addRoutineButton"></button>
                   {myRoutines?.map((routine) => (
                     <button
-                      ref={inputButtonRef}
                       key={routine.routineId}
                       id={routine.routineId.toString()}
                       value={routine.routineIndex}
                       className={`routineArea ${typeof routine.routineIndex === "number" && routine.routineIndex === btnActive ? "active" : ""}`}>
-                      {isRoutineFix && activeItemId === routine.routineId ? (
-                        <S.inputContent
-                          ref={inputRef}
-                          className="routineName"
-                          value={searchvalue}
-                          onFocus={() => {
-                            setIsClicked(true)
-                          }}
-                          onBlur={() => {
-                            setIsClicked(false)
-                          }}
-                          autoFocus
-                        />
-                      ) : (
-                        <p className="routineName">{routine.routineName}</p>
-                      )}
+                      <p className="routineName">{routine.routineName}</p>
                     </button>
                   ))}
                 </div>
