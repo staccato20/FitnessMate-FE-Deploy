@@ -8,7 +8,6 @@ export const StyledTab = styled.button<{
   border: none;
   ${(p) => p.$variantStyle}
   display: flex;
-  gap: 3px;
   justify-content: center;
   align-items: center;
   position: relative;

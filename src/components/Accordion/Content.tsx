@@ -7,24 +7,30 @@ import {
   ContentAIleft,
   ContentAIright,
   ContentAIrightItem,
+  ContentCaution,
+  ContentCautionText,
+  ContentCautionTitle,
   ContentText,
   ContentWrapper,
+  Video,
+  VideoTitle,
   VideoWrapper,
 } from "@components/Accordion/StyledAccordion"
 import Icon from "@components/Icon/Icon"
 
-import { StrictPropsWithChildren } from "@typpes/type"
-
 interface ContentProps {
   videoId: string
   recommend: string[]
+  description: string
+  caution: string
 }
 
 const Content = ({
-  children,
+  description,
+  caution,
   recommend,
   videoId,
-}: StrictPropsWithChildren<ContentProps>) => {
+}: ContentProps) => {
   const { visible } = useAccordion()
 
   return (
@@ -40,7 +46,11 @@ const Content = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: "spring", duration: 0, bounce: 0 }}>
-            <ContentText>{children}</ContentText>
+            <ContentText>{description}</ContentText>
+            <ContentCaution>
+              <ContentCautionTitle>주의사항</ContentCautionTitle>
+              <ContentCautionText>{caution}</ContentCautionText>
+            </ContentCaution>
             <ContentAI>
               <ContentAIleft>
                 <Icon
@@ -56,10 +66,14 @@ const Content = ({
               </ContentAIright>
             </ContentAI>
             <VideoWrapper>
-              <iframe
-                style={{ width: "100%", height: "100%" }}
-                src={`https://www.youtube.com/embed/${videoId}`}
-              />
+              <VideoTitle>운동 영상</VideoTitle>
+              <Video>
+                <iframe
+                  title={videoId}
+                  style={{ width: "100%", height: "100%" }}
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                />
+              </Video>
             </VideoWrapper>
           </AnimationWrapper>
         </ContentWrapper>

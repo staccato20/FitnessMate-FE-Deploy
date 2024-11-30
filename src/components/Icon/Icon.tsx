@@ -1,3 +1,5 @@
+import { SVGProps } from "react"
+
 import Add from "@assets/icon/add.svg?react"
 import AddBoldBlue from "@assets/icon/add_bold_blue.svg?react"
 import AddBoldGray from "@assets/icon/add_bold_gray.svg?react"
@@ -84,14 +86,14 @@ export const ICON_MAP = {
   AddBoldGray,
 }
 
-export type IconPropsType = {
+export interface IconProps extends SVGProps<SVGSVGElement> {
   icon: keyof typeof ICON_MAP
   size?: number
   stroke?: string
   color?: string
 }
 
-const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
+const Icon = ({ icon, size = 15, stroke, color, ...props }: IconProps) => {
   const IconComponent = ICON_MAP[icon]
   const sizePx = `${size}px`
   return (
