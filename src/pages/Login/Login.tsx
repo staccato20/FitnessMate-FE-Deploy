@@ -28,7 +28,7 @@ const Login = () => {
   }
 
   const onSubmit = (submission: Omit<PostLoginPayload, "rememberMe">) => {
-    login({ ...submission, rememberMe: false })
+    login({ ...submission, rememberMe: true })
   }
 
   return (
