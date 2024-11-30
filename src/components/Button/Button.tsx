@@ -2,14 +2,15 @@ import { ButtonHTMLAttributes } from "react"
 
 import { SIZES, StyledButton, VARIANTS } from "@components/Button/StyledButton"
 
+import { StrictPropsWithChildren } from "@typpes/type"
+
 export type Variant = "main" | "weak" | "grey" | "text"
-export type Size = "sm" | "md" | "lg"
+export type Size = "sm" | "md" | "lg" | "full"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   size?: Size
   variant?: Variant
-  children: string
   onClick?: (e: React.MouseEvent) => void
 }
 
@@ -20,7 +21,7 @@ const Button = ({
   children,
   onClick,
   ...props
-}: ButtonProps) => {
+}: StrictPropsWithChildren<ButtonProps>) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variant]
   return (

@@ -6,6 +6,10 @@ import Detail from "@pages/Detail/Detail"
 import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
 import MyPage from "@pages/MyPage/My/MyPage"
+import UpdateBodyFigure from "@pages/MyPage/Update/UpdateBodyFigure"
+import UpdateBodyInfo from "@pages/MyPage/Update/UpdateBodyInfo"
+import UpdatePassword from "@pages/MyPage/Update/UpdatePassword"
+import UpdateProfile from "@pages/MyPage/Update/UpdateProfile"
 import BodyPart from "@pages/Recommend/BodyPart/BodyPart"
 import Machine from "@pages/Recommend/Machine/Machine"
 import Result from "@pages/Recommend/Result/Result"
@@ -56,6 +60,12 @@ const router = createBrowserRouter([
       {
         path: "mypage",
         element: <MyPage />,
+        children: [
+          { path: "profile", element: <UpdateProfile /> },
+          { path: "bodyfigure", element: <UpdateBodyFigure /> },
+          { path: "bodyinfo", element: <UpdateBodyInfo /> },
+          { path: "password", element: <UpdatePassword /> },
+        ],
       },
     ],
   },

@@ -42,16 +42,30 @@ export const HeaderRightInfo = styled.span`
 `
 
 export const VideoWrapper = styled(motion.div)`
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`
+
+export const Video = styled(motion.div)`
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
   height: 378px;
 `
 
+export const VideoTitle = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.b3};
+`
+
 export const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  padding-bottom: 24px;
+  width: 100%;
+  gap: 24px;
 `
 
 export const ContentText = styled(motion.span)`
@@ -64,15 +78,15 @@ export const ContentAI = styled(motion.span)`
   display: flex;
   padding: 14px 16px;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
   border-radius: 10px;
-  border: 2px solid #0b98ff;
-  background: #eef7ff;
+  border: 1px solid #5083ff;
+  background: linear-gradient(91deg, #eef7ff 8.33%, #f6f3ff 97.03%);
 `
 
 export const ContentAIleft = styled(motion.span)`
-  color: ${theme.Brand600};
-  ${fonts.b6};
+  color: ${theme.Purple};
+  ${fonts.b5};
   display: flex;
   align-items: center;
   gap: 8px;
@@ -90,8 +104,8 @@ export const ContentAIright = styled.div`
 `
 
 export const ContentAIrightItem = styled.div`
-  color: ${theme.Brand600};
-  ${fonts.h4};
+  color: ${theme.Purple};
+  ${fonts.b2};
 `
 
 export const HeaderTrigger = styled.button`
@@ -110,7 +124,7 @@ export const HeaderTrigger = styled.button`
 export const TopLine = styled.div`
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 1px;
   transform: translateX(-50%);
   background-color: ${theme.Netural200};
@@ -120,5 +134,20 @@ export const TopLine = styled.div`
 export const AnimationWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+`
+
+export const ContentCaution = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`
+
+export const ContentCautionTitle = styled.span`
+  color: ${theme.Caution};
+  ${fonts.b7};
+`
+
+export const ContentCautionText = styled(ContentCautionTitle)`
+  color: ${theme.Netural900};
 `

@@ -39,7 +39,8 @@ const Pagination = ({ currentPage, handlePage, isShow }: PaginationProps) => {
             <Link
               to="top"
               spy={true}
-              smooth={true}>
+              smooth={true}
+              key={page}>
               <S.PaginationButton
                 key={page}
                 $isSelected={currentPage === page}

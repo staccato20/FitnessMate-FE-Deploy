@@ -1,35 +1,41 @@
-import { Children, PropsWithChildren } from "react"
+import { PropsWithChildren } from "react"
 import { createPortal } from "react-dom"
 
 import { styled } from "styled-components"
 
 import IconButton from "@components/IconButton/IconButton"
-import ModalButtons from "@components/Modal/components/ModalButtons"
-import ModalContent from "@components/Modal/components/ModalContent"
-import ModalTitle from "@components/Modal/components/ModalTitle"
-
-import { useModal } from "@hooks/useModal"
+import ModalContent from "@components/Modal/ModalContent"
+import ModalFooter from "@components/Modal/ModalFooter"
+import ModalTitle from "@components/Modal/ModalTitle"
 
 import theme from "@styles/theme"
 
 interface ModalMainProps {
   isCloseButton?: boolean
-  name: string
+  isOpen: boolean
+  onClose: () => void
+  disableInteraction?: boolean
 }
 
 const ModalMain = ({
   children,
   isCloseButton = false,
-  name,
+  isOpen,
+  onClose,
+  disableInteraction = false,
 }: PropsWithChildren<ModalMainProps>) => {
-  const { isOpen, onClose } = useModal(name)
+  const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget && !disableInteraction) {
+      onClose()
+    }
+  }
+
   if (!isOpen) {
     return null
   }
-  console.log(Children.toArray(children))
 
   return createPortal(
-    <BackOverlay>
+    <BackOverlay onClick={handleWrapperClick}>
       <ModalWrapper $isCloseButton={isCloseButton}>
         {isCloseButton && (
           <IconButton
@@ -46,9 +52,9 @@ const ModalMain = ({
 }
 
 const Modal = Object.assign(ModalMain, {
-  Buttons: ModalButtons,
   Content: ModalContent,
   Title: ModalTitle,
+  Footer: ModalFooter,
 })
 
 export default Modal
@@ -67,7 +73,7 @@ const BackOverlay = styled.div`
 
 const ModalWrapper = styled.div<{ $isCloseButton: boolean }>`
   display: flex;
-  min-width: 520px;
+  min-width: 480px;
   padding: 24px;
   padding-top: ${({ $isCloseButton }) => ($isCloseButton ? "48px" : "24px")};
   flex-direction: column;

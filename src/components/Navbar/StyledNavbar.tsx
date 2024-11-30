@@ -12,13 +12,11 @@ export const NavbarContainer = styled.div<{ $isHome: boolean }>`
   height: 64px;
   display: flex;
   margin: 0 auto;
-  padding: 0px calc(50% - 720px);
+  padding: 0 5%;
   justify-content: space-between;
   align-items: center;
   background-color: ${({ $isHome }) =>
-    $isHome
-      ? "linear-gradient(185deg, #dce9f2 13.28%, #bbcbe4 77.52%);"
-      : theme.Netural0};
+    $isHome ? "transparent" : theme.Netural0};
 `
 
 export const LogoButton = styled.button``

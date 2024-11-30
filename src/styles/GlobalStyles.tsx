@@ -20,6 +20,7 @@ ${reset}
     }
     html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
     a, dl, dt, dd, ol, ul, li, form, label, table,button{
+        
         margin: 0;
         padding: 0;
         border: 0;
@@ -32,7 +33,7 @@ ${reset}
     body{
         width:100%;
         height:100vh;
-        overflow-x:hidden;
+        overflow-x:hidden !important;
         line-height: 1;    
         background:${({ $isRecommendPage }) => ($isRecommendPage ? theme.Netural200 : theme.Netural0)}
         
@@ -57,6 +58,8 @@ ${reset}
         &:focus{
             outline:none;
         }
+        padding:0;
+        margin:0;
     }
     input[type='number']::-webkit-outer-spin-button,
     input[type='number']::-webkit-inner-spin-button {

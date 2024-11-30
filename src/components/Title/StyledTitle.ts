@@ -9,7 +9,6 @@ export const TitleWrapper = styled.div<{
   gap: 4px;
   flex-direction: column;
   ${({ $variantStyle }) => $variantStyle};
-  font-weight: 500;
   &.bold {
     font-weight: 700;
   }

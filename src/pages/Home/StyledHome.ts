@@ -11,14 +11,23 @@ export const FirstSubTitle = styled.span`
   color: ${theme.Netural900};
   ${fonts.h1};
   font-size: 32px;
+  @media only screen and (max-width: 720px) {
+    font-size: 22px;
+  }
 `
 export const FirstTitle = styled(FirstSubTitle)`
   font-size: 82px;
+  @media only screen and (max-width: 720px) {
+    font-size: 42px;
+  }
 `
 
 export const HomeBanner = styled.img`
   max-width: 766px;
   width: 40%;
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 `
 
 export const First = styled.li`
@@ -44,6 +53,10 @@ export const FirstContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  @media only screen and (max-width: 1024px) {
+    align-items: center;
+    width: 100%;
+  }
 `
 
 export const SecondTextWrapper = styled.div``
@@ -74,6 +87,10 @@ export const SecondText = styled.p`
   color: ${theme.Netural900};
   ${fonts.h2};
   font-weight: 500;
+  @media only screen and (max-width: 720px) {
+    font-size: 17px;
+  }
+  padding-bottom: 15px;
 `
 export const SecondText2 = styled(SecondText)`
   font-size: 34px;
@@ -86,10 +103,13 @@ export const SecondText2 = styled(SecondText)`
     background-size: 136px 32px;
     background-repeat: no-repeat;
     position: absolute;
-    top: 5px;
+    top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
+  }
+  @media only screen and (max-width: 720px) {
+    font-size: 22px;
   }
 `
 
@@ -111,6 +131,7 @@ export const SlideList = styled.ul`
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 `
 
 export const SlideTextWrapper = styled.div``
@@ -118,39 +139,51 @@ export const SlideTextWrapper = styled.div``
 export const Title = styled.span`
   ${fonts.h1};
   font-size: 47px;
-  position: absolute;
-  top: 62px;
-  left: 70px;
+  @media only screen and (max-width: 1100px) {
+    font-size: 22px;
+  }
 `
 
 export const Slide = styled.li`
-  overflow: hidden;
-  width: 1118px;
+  padding: 50px;
+  max-width: 1118px;
+  width: 100%;
   height: 602px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   border-radius: 32px;
   border: 1px solid var(--Gray-40, #b0b8c1);
   background: #f9fafc;
-  position: relative;
-  button {
-    position: absolute;
-    bottom: 58px;
-    left: 58px;
+  @media only screen and (max-width: 1100px) {
+    width: 80%;
   }
+  @media only screen and (max-width: 720px) {
+    height: 300px;
+  }
+`
+
+export const SlideLeft = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 `
 
 export const SlideImg = styled.img`
   object-fit: contain;
-  position: absolute;
   top: 57px;
-  right: -110px;
-  width: 927px;
+  right: 0px;
+  max-width: 600px;
   height: 537px;
+  @media only screen and (max-width: 1100px) {
+    width: 80%;
+  }
+  @media only screen and (max-width: 720px) {
+    display: none;
+  }
 `
-
-export const SlideWrapper = styled.div``
 
 export const TabListWrapper = styled.div`
   position: relative;
@@ -172,6 +205,7 @@ export const TabButton = styled.button`
   padding: 10px 16px;
   display: flex;
   align-items: center;
+
   gap: 8px;
   ${fonts.b1};
   &.active {
@@ -216,6 +250,7 @@ export const SearchWrapper = styled.div`
   max-width: 627px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 4%;
 `
 
 export const SearchTop = styled.div`
@@ -273,4 +308,5 @@ export const SearchKeywordList = styled.ul`
   width: 100%;
   justify-content: flex-start;
   gap: 8px;
+  flex-wrap: wrap;
 `

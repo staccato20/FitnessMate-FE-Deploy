@@ -1,17 +1,18 @@
 import { useLocation, useNavigate } from "react-router-dom"
 
+import { useUserStore } from "@store/useUserStore"
+
+import RoutineModal from "@components/Modal/components/Alert/AlertModal"
+import RoutineModalButton from "@components/Modal/components/Alert/AlertModalButton"
 import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
-
-import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import * as S from "./StyledNavbar"
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const { userInfo } = useUserInfo()
-  const userName = userInfo ? userInfo.userName : undefined
+  const { user, isLogin } = useUserStore()
 
   const handleSearch = () => {
     navigate("searchworkout")
@@ -22,7 +23,9 @@ const Navbar = () => {
   }
 
   const handleRecommend = () => {
-    userName && navigate("recommend/bodypart")
+    if (isLogin) {
+      navigate("recommend/bodypart")
+    }
   }
 
   const handleHome = () => {
@@ -45,11 +48,11 @@ const Navbar = () => {
         <S.NavTextContainer>
           <S.NavButton onClick={handleSearch}>검색하기</S.NavButton>
           <S.NavButton onClick={handleRecommend}>추천받기</S.NavButton>
-          <S.NavButton onClick={handleMyPage}>내 운동</S.NavButton>
+          <RoutineModalButton />
         </S.NavTextContainer>
 
-        {userName ? (
-          <NavDropDown userName={userName} />
+        {isLogin ? (
+          <NavDropDown userName={user?.userName} />
         ) : (
           <S.LoginButton
             variant="text"
@@ -59,9 +62,8 @@ const Navbar = () => {
           </S.LoginButton>
         )}
       </S.NavLink>
-      <S.NavbarUnderLine $isHome={useLocation().pathname === "/"}>
-        {}
-      </S.NavbarUnderLine>
+      <S.NavbarUnderLine $isHome={useLocation().pathname === "/"} />
+      <RoutineModal />
     </S.NavbarContainer>
   )
 }

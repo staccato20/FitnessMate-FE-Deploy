@@ -5,11 +5,6 @@ import MyFitAPI from "../../apis/domain/myfit"
 export const useGetMyRoutines = () => {
   const { data: myRoutines = [] } = useQuery({
     queryKey: ["myRoutines"],
-    queryFn: async () => {
-      const response = await MyFitAPI.myRoutines()
-      return Array.isArray(response.data) ? response.data : []
-    },
+    queryFn: async () => await MyFitAPI.myRoutines(),
   })
-
-  return { myRoutines }
 }

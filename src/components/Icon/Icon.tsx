@@ -1,5 +1,10 @@
+import { SVGProps } from "react"
+
 import Add from "@assets/icon/add.svg?react"
+import AddBoldBlue from "@assets/icon/add_bold_blue.svg?react"
+import AddBoldGray from "@assets/icon/add_bold_gray.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
+import AddRoundGray from "@assets/icon/add_round_gray.svg?react"
 import Avatar from "@assets/icon/avatar.svg?react"
 import ChangeCircle from "@assets/icon/change_circle.svg?react"
 import Check from "@assets/icon/check.svg?react"
@@ -83,23 +88,26 @@ export const ICON_MAP = {
   SearchWhite,
   CloseWhite,
   DownArrowGray,
-  handle,
+  AddRoundGray,
+  AddBoldBlue,
+  AddBoldGray,
 }
 
-export type IconPropsType = {
+export interface IconProps extends SVGProps<SVGSVGElement> {
   icon: keyof typeof ICON_MAP
   size?: number
   stroke?: string
   color?: string
 }
 
-const Icon = ({ icon, size = 15, stroke, color, ...props }: IconPropsType) => {
+const Icon = ({ icon, size = 15, stroke, color, ...props }: IconProps) => {
   const IconComponent = ICON_MAP[icon]
   const sizePx = `${size}px`
   return (
     IconComponent && (
       <IconComponent
         width={sizePx}
+        height={sizePx}
         stroke={stroke}
         fill={color}
         {...props}

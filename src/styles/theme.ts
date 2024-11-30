@@ -25,11 +25,11 @@ export const fonts = {
   h3: FONT({ weight: 600, size: 20 }),
   h4: FONT({ weight: 600, size: 18 }),
 
+  b1: FONT({ weight: 500, size: 18 }),
   b2: FONT({ weight: 600, size: 17 }),
   b3: FONT({ weight: 600, size: 16 }),
   b4: FONT({ weight: 500, size: 16 }),
   b5: FONT({ weight: 600, size: 15 }),
-  b1: FONT({ weight: 500, size: 18 }),
   b6: FONT({ weight: 500, size: 15 }),
   b7: FONT({ weight: 600, size: 15 }),
 
@@ -74,6 +74,7 @@ export const theme = {
   Error: "#ef444c",
   Success: "#2edd6a",
   Purple: "#5950D3",
+  Caution: "#E7A10A",
 }
 
 export const animation = {

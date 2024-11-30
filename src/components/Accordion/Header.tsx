@@ -2,32 +2,20 @@ import { useAccordion } from "@components/Accordion/Accordion"
 import {
   HeaderLeft,
   HeaderRight,
-  HeaderRightInfo,
   HeaderTop,
   HeaderWrapper,
 } from "@components/Accordion/StyledAccordion"
-import RoundButton from "@components/Button/RoundButton"
+import RoutineModalButton from "@components/Modal/components/Routine/RoutineModalButton"
 import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-interface HeaderProps {
-  bodyParts: string
-  count?: number
-  onClick: () => void
-}
-
-const Header = ({
-  children,
-  onClick,
-  bodyParts,
-  count,
-}: StrictPropsWithChildren<HeaderProps>) => {
-  const { visible } = useAccordion()
+const Header = ({ children }: StrictPropsWithChildren) => {
+  const { visible, bodyParts, onOpen } = useAccordion()
 
   return (
     <HeaderWrapper>
-      <HeaderTop $visible={visible}>
+      <HeaderTop $visible={!!visible}>
         <HeaderLeft>
           <Title variant="midB">
             {children}
@@ -35,16 +23,7 @@ const Header = ({
           </Title>
         </HeaderLeft>
         <HeaderRight>
-          <HeaderRightInfo>
-            {count && count > 0 && `${count}개 루틴에 이미 추가됨`}
-          </HeaderRightInfo>
-          <RoundButton
-            leftIcon="Add"
-            variant="blue"
-            size="small"
-            onClick={onClick}>
-            운동 루틴
-          </RoundButton>
+          <RoutineModalButton onOpen={onOpen} />
         </HeaderRight>
       </HeaderTop>
     </HeaderWrapper>

@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 import Button from "@components/Button/Button"
 
-import authAPI from "@apis/domain/auth"
-
+import { useLogout } from "@hooks/mutation/useLogout"
 import { useDropDown } from "@hooks/useDropDown"
 
 import * as S from "./StyledNavModal"
@@ -13,25 +12,12 @@ interface NavDropDownProps {
 }
 
 const NavDropDown = ({ userName }: NavDropDownProps) => {
-  const navigate = useNavigate()
   const { isOpen, dropDownRef, toggleDropDown } = useDropDown()
-
-  const handleLogout = async () => {
-    try {
-      await authAPI.logout()
-      localStorage.clear()
-      navigate("/")
-      window.location.reload()
-    } catch (err) {
-      localStorage.clear()
-      navigate("/")
-      window.location.reload()
-    }
-  }
+  const { mutate: logout } = useLogout()
+  const navigate = useNavigate()
 
   const handleFixProfile = async () => {
-    alert("현재 수정중인 페이지입니다!")
-    // navigate("/mypage/fixprofile")
+    navigate("/mypage/profile")
     toggleDropDown()
   }
 
@@ -54,7 +40,7 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
           <S.NavDropDownList>
             <Button
               variant="text"
-              onClick={handleLogout}>
+              onClick={() => logout()}>
               로그아웃
             </Button>
             <Button

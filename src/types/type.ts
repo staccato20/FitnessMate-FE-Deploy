@@ -17,7 +17,10 @@ export interface Workout {
   imgPath: string
   videoLink: string
   description: string
+  atcetera: null
   bodyPartKoreanName: string[]
+  machineKoreanName: string[]
+  createdAt: string
 }
 
 export interface Machine {
@@ -28,7 +31,7 @@ export interface Machine {
 }
 
 export interface BodyData {
-  date: string
+  birthDate: string
   bodyDataId: number
   height: number
   weight: number
@@ -37,12 +40,23 @@ export interface BodyData {
   upDownBalance: number
 }
 
+export interface BodyFigureData {
+  bodyFat: number
+  muscleMass: number
+}
+
+export interface BodyInfoPayload {
+  sex: string
+  height: number
+  weight: number
+}
+
 export interface SignupPayload {
   userName: string
   loginEmail: string
   password: string
   sex: string
-  Date: string
+  birthDate: string
   height: number
   weight: number
   bodyFat: number
@@ -60,13 +74,11 @@ export interface UpdateUserPayload {
   userName: string
   birthDate: string
 }
-export interface UpdateUserResponse {}
 
 export interface UpdateUserPasswordPayload {
   oldPassword: string
   newPassword: string
 }
-export interface UpdateUserPasswordResponse {}
 
 export interface PostUserDeletePayload {
   password: string
@@ -104,7 +116,7 @@ export interface PostRecommendIdPayload {
 }
 
 export interface Recommend {
-  id: number
+  workoutId: number
   englishName: string
   koreanName: string
   imgPath: string
@@ -116,6 +128,7 @@ export interface Recommend {
   weight: string
   repeat: string
   set: string
+  caution: string
 }
 export interface PostRecommendResponse {
   date: string
@@ -176,6 +189,7 @@ export interface MyRoutines {
   routineId: number
   routineIndex: number
   routineName: string
+  isAdded?: boolean
 }
 
 export interface MyWorkoutList {
@@ -192,11 +206,7 @@ export interface MyWorkoutList {
   atcetera: null
   bodyParts: string[]
   machines: string[]
-}
-export interface MyRoutines {
-  routineId: number
-  routineIndex: number
-  routineName: string
+  caution: string
 }
 
 export interface MyWorkoutIndex {
@@ -205,4 +215,22 @@ export interface MyWorkoutIndex {
   rep: string
   setCount: string
   caution: string
+}
+
+export interface RoutineInfo {
+  workoutIds: number[]
+  weight: string
+  rep: string
+  setCount: string
+  caution: string
+}
+
+export interface RoutineNameTypes {
+  routineName: string
+}
+
+export interface RoutineInfoTypes {
+  weight: string
+  repeat: string
+  set: string
 }

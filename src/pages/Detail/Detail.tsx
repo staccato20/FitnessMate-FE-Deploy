@@ -27,6 +27,7 @@ const Detail = () => {
         <Icon
           icon="LeftArrow"
           size={24}
+          fill="none"
         />
         이전
       </S.BeforeButton>
@@ -36,6 +37,7 @@ const Detail = () => {
           <RoundButton
             leftIcon="Add"
             variant="blue"
+            size="small"
             onClick={handleRoutine}>
             루틴에 추가
           </RoundButton>
@@ -69,6 +71,7 @@ const Detail = () => {
           </S.ContentBox>
           <S.VideoWrapper>
             <iframe
+              title={workout?.videoLink}
               style={{ width: "100%", height: "100%" }}
               src={`https://www.youtube.com/embed/${workout?.videoLink.split("=")[1]}`}
             />
