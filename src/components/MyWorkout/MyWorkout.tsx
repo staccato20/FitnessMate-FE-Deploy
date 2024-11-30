@@ -2,26 +2,11 @@ import { DraggableProvided } from "@hello-pangea/dnd"
 
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
-import {
-  BottomTitle,
-  BottomWrapper,
-  DetailIconButtonWrapper,
-  FixIconButtonWrapper,
-  HandleIconButtonWrapper,
-  HeaderLeft,
-  HeaderRight,
-  HeaderRightInfo,
-  HeaderRightInfoContent,
-  HeaderRightInfoUnit,
-  HeaderWrapper,
-  MyWorkoutContent,
-  MyWorkoutWrapper,
-} from "@components/MyWorkout/StyledMyWorkout"
 import Title from "@components/Title/Title"
 
 import { StrictPropsWithChildren } from "@typpes/type"
 
-import theme from "@styles/theme"
+import * as S from "./StyledMyWorkout"
 
 interface MyWorkoutProps {
   children: string
@@ -52,71 +37,70 @@ const MyWorkout = ({
   const handleFixWorkout = () => {}
 
   return (
-    <MyWorkoutWrapper
+    <S.MyWorkoutWrapper
       ref={innerRef}
       {...draggableProps}
       {...dragHandleProps}>
-      <MyWorkoutContent isDragging={isDragging}>
-        <HeaderWrapper>
-          <HeaderLeft>
+      <S.MyWorkoutContent isDragging={isDragging}>
+        <S.HeaderWrapper>
+          <S.HeaderLeft>
             <Title variant="midC">
               <Title.SubTopIconTitle>
                 {children}
-                <DetailIconButtonWrapper>
+                <S.DetailIconButtonWrapper>
                   <IconButton
                     icon="RightArrowGrey"
                     size={24}
                     onClick={handleFixWorkout}
-                    color={theme.Netural500}
                   />
-                </DetailIconButtonWrapper>
+                </S.DetailIconButtonWrapper>
               </Title.SubTopIconTitle>
               <Title.SubBottomTitle>{bodyParts}</Title.SubBottomTitle>
             </Title>
-          </HeaderLeft>
-          <HeaderRight>
-            <HeaderRightInfo>
+          </S.HeaderLeft>
+          <S.HeaderRight>
+            <S.HeaderRightInfo>
               중량
-              <HeaderRightInfoContent>
+              <S.HeaderRightInfoContent>
                 {weight}
-                <HeaderRightInfoUnit>kg</HeaderRightInfoUnit>
-              </HeaderRightInfoContent>
-            </HeaderRightInfo>
-            <HeaderRightInfo>
+                <S.HeaderRightInfoUnit>kg</S.HeaderRightInfoUnit>
+              </S.HeaderRightInfoContent>
+            </S.HeaderRightInfo>
+            <S.HeaderRightInfo>
               횟수
-              <HeaderRightInfoContent>
+              <S.HeaderRightInfoContent>
                 {rep}
-                <HeaderRightInfoUnit>회</HeaderRightInfoUnit>
-              </HeaderRightInfoContent>
-            </HeaderRightInfo>
-            <HeaderRightInfo>
+                <S.HeaderRightInfoUnit>회</S.HeaderRightInfoUnit>
+              </S.HeaderRightInfoContent>
+            </S.HeaderRightInfo>
+            <S.HeaderRightInfo>
               세트 수
-              <HeaderRightInfoContent>
+              <S.HeaderRightInfoContent>
                 {setCount}
-                <HeaderRightInfoUnit>세트</HeaderRightInfoUnit>
-              </HeaderRightInfoContent>
-            </HeaderRightInfo>
-          </HeaderRight>
-        </HeaderWrapper>
-        <BottomWrapper>
-          <BottomTitle>주의사항</BottomTitle>
+                <S.HeaderRightInfoUnit>세트</S.HeaderRightInfoUnit>
+              </S.HeaderRightInfoContent>
+            </S.HeaderRightInfo>
+          </S.HeaderRight>
+        </S.HeaderWrapper>
+        <S.BottomWrapper>
+          <S.BottomTitle>주의사항</S.BottomTitle>
           {caution}
-        </BottomWrapper>
-        <FixIconButtonWrapper>
+        </S.BottomWrapper>
+        <S.FixIconButtonWrapper>
           <IconButton
             icon="PencilGrey"
             size={18}
             onClick={handleFixWorkout}
           />
-        </FixIconButtonWrapper>
-      </MyWorkoutContent>
-      <HandleIconButtonWrapper>
+        </S.FixIconButtonWrapper>
+      </S.MyWorkoutContent>
+      <S.HandleIconButtonWrapper>
         <Icon
           icon="handle"
           size={24}
         />
-      </HandleIconButtonWrapper>
-    </MyWorkoutWrapper>
+      </S.HandleIconButtonWrapper>
+    </S.MyWorkoutWrapper>
   )
 }
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-// Drag & Drop
 import {
   DragDropContext,
   DragUpdate,
@@ -15,11 +14,6 @@ import MyFitAPI from "@apis/domain/myfit"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
-import {
-  DragAndDropWrapper,
-  PlaceholderWrapper,
-  WorkoutNumList,
-} from "./StyledMyPage"
 import * as S from "./StyledMyPage"
 
 interface DragAndDropProps {
@@ -95,15 +89,15 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
   }
 
   return (
-    <DragAndDropWrapper>
-      <WorkoutNumList>
+    <S.DragAndDropWrapper>
+      <S.WorkoutNumList>
         {myWorkouts?.map((workout, index) => (
           <S.WorkoutNum key={index}>
             <S.NumCircle>{index + 1}</S.NumCircle>
             <div className="line"></div>
           </S.WorkoutNum>
         ))}
-      </WorkoutNumList>
+      </S.WorkoutNumList>
       <DragDropContext
         onDragUpdate={onDragUpdate}
         onDragEnd={handleDrop}>
@@ -115,7 +109,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
               ref={provided.innerRef}
               style={{ position: "relative" }}>
               {highlightedFrameIndex !== null && (
-                <PlaceholderWrapper
+                <S.PlaceholderWrapper
                   isVisible={highlightedFrameIndex !== null}
                   top={`${highlightedFrameIndex * (157 + 13)}px`}
                 />
@@ -149,7 +143,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
           )}
         </Droppable>
       </DragDropContext>
-    </DragAndDropWrapper>
+    </S.DragAndDropWrapper>
   )
 }
 
