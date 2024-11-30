@@ -64,6 +64,7 @@ export const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
+  width: 100%;
   gap: 24px;
 `
 
