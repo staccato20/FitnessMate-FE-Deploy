@@ -63,6 +63,7 @@ export const VideoTitle = styled.span`
 export const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  padding-bottom: 24px;
   gap: 24px;
 `
 
@@ -122,7 +123,7 @@ export const HeaderTrigger = styled.button`
 export const TopLine = styled.div`
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 1px;
   transform: translateX(-50%);
   background-color: ${theme.Netural200};
