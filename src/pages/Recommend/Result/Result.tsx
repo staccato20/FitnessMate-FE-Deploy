@@ -78,6 +78,7 @@ const Result = () => {
             repeat,
             bodyPartKoreanName,
             videoLink,
+            caution,
           } = workout
           return (
             <Accordion
@@ -88,9 +89,10 @@ const Result = () => {
               <Accordion.Header>{koreanName}</Accordion.Header>
               <Accordion.Content
                 videoId={videoLink.split("=")[1]}
-                recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}>
-                {description}
-              </Accordion.Content>
+                recommend={[`${weight}kg`, `${set}세트`, `${repeat}회`]}
+                description={description}
+                caution={caution}
+              />
               <Accordion.Trigger />
             </Accordion>
           )
