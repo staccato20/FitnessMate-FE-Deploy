@@ -128,7 +128,7 @@ export const CardWrapper = styled.div<{ $isShow: boolean }>`
   flex-direction: column;
   margin-top: 52px;
   padding: 4px 9px 92px 9px;
-  z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
+  z-index: ${({ $isShow }) => ($isShow ? 300 : 0)};
 `
 
 export const CardList = styled.ul`
@@ -141,7 +141,7 @@ export const PaginationWrapper = styled.div<{ $isShow: boolean }>`
   display: flex;
   gap: 18px;
   align-items: center;
-  z-index: ${({ $isShow }) => ($isShow ? 103 : 0)};
+  z-index: ${({ $isShow }) => ($isShow ? 300 : 0)};
 `
 export const PaginationList = styled.ul`
   display: flex;
