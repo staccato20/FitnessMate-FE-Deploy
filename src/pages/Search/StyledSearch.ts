@@ -11,7 +11,7 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   gap: 82px;
   padding: 62px 3% 52px 3%;
-  max-width: 1032px;
+  max-width: 1142px;
 `
 
 export const SearchContent = styled.div`
@@ -27,7 +27,7 @@ export const NavTab = styled.div`
   z-index: 200;
   position: sticky;
   top: 63px;
-  padding: 12px 3%;
+  padding: 6px 3%;
   background: ${theme.Netural0};
 `
 export const NavTabInner = styled.div`
@@ -36,9 +36,9 @@ export const NavTabInner = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  max-width: 1032px;
+  max-width: 1110px;
   margin: 0 auto;
-  padding: 0 3%;
+  padding: 0 2%;
 `
 export const NavTabList = styled.div`
   display: flex;
@@ -122,19 +122,18 @@ export const DropDownKeywordList = styled.ul`
 
 export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
-  max-width: 1032px;
-  gap: 36px;
-  flex-direction: column;
-  padding: 0 1%;
+  max-width: 1110px;
+  gap: 18px;
   display: flex;
+  flex-direction: column;
+  margin-top: 52px;
+  padding: 4px 9px 92px 9px;
   z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
 `
 
 export const CardList = styled.ul`
   display: grid;
-  padding-top: 52px;
   gap: 24px 48px;
-  padding-bottom: 92px;
   grid-template-columns: repeat(auto-fill, minmax(29%, auto));
 `
 
@@ -148,6 +147,15 @@ export const PaginationList = styled.ul`
   display: flex;
   align-items: center;
   gap: 12px;
+`
+
+export const CardTitle = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.h3};
+`
+
+export const CarSubTitle = styled(CardTitle)`
+  font-weight: 400;
 `
 
 export const CardSearchTitle = styled.span`
