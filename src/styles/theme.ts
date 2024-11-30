@@ -64,6 +64,7 @@ export const theme = {
   Netural400: "#d0d9e2",
   Netural450: "#bbc8d6",
   Netural500: "#a2b2c2",
+  Netural550: "#818D9D",
   Netural600: "#6b7684",
   Netural700: "#626d7d",
   Netural800: "#4e5968",
@@ -73,6 +74,7 @@ export const theme = {
   Error: "#ef444c",
   Success: "#2edd6a",
   Purple: "#5950D3",
+  Caution: "#E7A10A",
 }
 
 export const animation = {

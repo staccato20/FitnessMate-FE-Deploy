@@ -27,6 +27,7 @@ const Detail = () => {
         <Icon
           icon="LeftArrow"
           size={24}
+          fill="none"
         />
         이전
       </S.BeforeButton>

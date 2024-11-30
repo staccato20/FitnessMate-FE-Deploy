@@ -6,7 +6,7 @@ import { useUserStore } from "@store/useUserStore"
 
 import Footer from "@components/Footer/Footer"
 import Navbar from "@components/Navbar/Navbar"
-import ScrollToTop from "@components/ScrollTop/ScrollTop"
+import { ScrollToTop } from "@components/ScrollToTop/ScrollToTop"
 
 const MainLayout = () => {
   const location = useLocation()

@@ -1,5 +1,3 @@
-import { useCallback } from "react"
-
 import { useQueries } from "@tanstack/react-query"
 
 import MyFitAPI from "@apis/domain/myfit"
@@ -13,10 +11,8 @@ export const useGetRoutineQueries = (routines: MyRoutines[]) => {
       queryFn: () => MyFitAPI.myWorkouts(routineId),
     })),
     combine: (results) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const refetchAll = useCallback(() => {
-        results.forEach((result) => result.refetch())
-      }, [results])
+      const refetchAll = () => results.forEach((result) => result.refetch())
+
       return {
         refetchAll,
         data: results.map((result) => result.data),

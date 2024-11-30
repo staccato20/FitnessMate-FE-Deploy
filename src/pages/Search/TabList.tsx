@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import { UseFormReturn } from "react-hook-form"
 
 import { AnimatePresence } from "framer-motion"
 
@@ -11,6 +12,7 @@ import CardList from "@pages/Search/CardList"
 import DropdownForm from "@pages/Search/DropdownForm"
 
 import { BodyPartList } from "@typpes/type"
+import { SearchTypes } from "@typpes/type"
 
 import * as S from "./StyledSearch"
 
@@ -20,7 +22,8 @@ interface TabListProps {
   isSearchMode: boolean
   keyword: string
   handleToggle: () => void
-  methods: any
+  methods: UseFormReturn<SearchTypes>
+
   handleSearch: ({ search }: { search: string }) => void
 }
 
@@ -48,12 +51,10 @@ const TabList = ({
                 </Tabs.Tab>
               ))}
             </S.NavTabList>
-            <S.SearchToggle
-              onClick={handleToggle}
-              $isSearchMode={isSearchMode}>
+            <S.SearchToggle onClick={handleToggle}>
               <Icon
                 icon="Search"
-                size={16}
+                size={22}
               />
               운동 이름으로 검색
             </S.SearchToggle>

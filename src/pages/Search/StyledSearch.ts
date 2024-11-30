@@ -11,7 +11,7 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   gap: 82px;
   padding: 62px 3% 52px 3%;
-  max-width: 1032px;
+  max-width: 1142px;
 `
 
 export const SearchContent = styled.div`
@@ -27,18 +27,22 @@ export const NavTab = styled.div`
   z-index: 200;
   position: sticky;
   top: 63px;
-  padding: 12px 3%;
+  padding: 6px 3%;
+  background: ${theme.Netural0};
 `
 export const NavTabInner = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  max-width: 1032px;
+  gap: 20px;
+  max-width: 1110px;
   margin: 0 auto;
-  padding: 0 3%;
+  padding: 0 2%;
 `
 export const NavTabList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
 `
@@ -60,22 +64,15 @@ export const SubTitle = styled.span`
   font-size: 30px;
 `
 
-export const TabsWrapper = styled.div<{ $isTabFixed: boolean }>``
-
-export const SearchToggle = styled.button<{ $isSearchMode: boolean }>`
+export const SearchToggle = styled.button`
   border-radius: 37px;
-  border: 1px solid ${theme.Netural500};
   display: flex;
   align-items: center;
-  padding: 10px 16px;
-  justify-content: center;
-  gap: 8px;
-  color: ${({ $isSearchMode }) =>
-    $isSearchMode ? theme.Netural600 : theme.Netural500};
-  background: ${({ $isSearchMode }) =>
-    $isSearchMode ? theme.Netural300 : theme.Netural0};
-  ${fonts.d1};
-  font-size: 14px;
+  padding: 12px 20px 12px 18px;
+  gap: 6px;
+  color: ${theme.Netural550};
+  background: ${theme.Netural200};
+  ${fonts.b7};
 `
 
 export const DropdownFormWrapper = styled(motion.form)`
@@ -125,19 +122,18 @@ export const DropDownKeywordList = styled.ul`
 
 export const CardWrapper = styled.div<{ $isShow: boolean }>`
   width: 100%;
-  max-width: 1032px;
-  gap: 36px;
-  flex-direction: column;
-  padding: 0 1%;
+  max-width: 1110px;
+  gap: 18px;
   display: flex;
-  z-index: ${({ $isShow }) => ($isShow ? 105 : 0)};
+  flex-direction: column;
+  margin-top: 52px;
+  padding: 4px 9px 92px 9px;
+  z-index: ${({ $isShow }) => ($isShow ? 300 : 0)};
 `
 
 export const CardList = styled.ul`
   display: grid;
-  padding-top: 52px;
   gap: 24px 48px;
-  padding-bottom: 92px;
   grid-template-columns: repeat(auto-fill, minmax(29%, auto));
 `
 
@@ -145,12 +141,21 @@ export const PaginationWrapper = styled.div<{ $isShow: boolean }>`
   display: flex;
   gap: 18px;
   align-items: center;
-  z-index: ${({ $isShow }) => ($isShow ? 103 : 0)};
+  z-index: ${({ $isShow }) => ($isShow ? 300 : 0)};
 `
 export const PaginationList = styled.ul`
   display: flex;
   align-items: center;
   gap: 12px;
+`
+
+export const CardTitle = styled.span`
+  color: ${theme.Netural900};
+  ${fonts.h3};
+`
+
+export const CarSubTitle = styled(CardTitle)`
+  font-weight: 400;
 `
 
 export const CardSearchTitle = styled.span`
