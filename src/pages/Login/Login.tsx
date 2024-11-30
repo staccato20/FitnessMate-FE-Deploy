@@ -1,4 +1,3 @@
-import { useRef } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
@@ -24,14 +23,12 @@ const Login = () => {
   const navigate = useNavigate()
   const { mutate: login } = useLogin(setError)
 
-  const rememberMeState = useRef<HTMLInputElement>(null)
-
   const handleSignup = () => {
     navigate("/signup/profile")
   }
 
   const onSubmit = (submission: Omit<PostLoginPayload, "rememberMe">) => {
-    login({ ...submission, rememberMe: !!rememberMeState.current?.checked })
+    login({ ...submission, rememberMe: false })
   }
 
   return (
@@ -54,17 +51,7 @@ const Login = () => {
               />
             </Input>
           ))}
-          <S.Option>
-            <S.Auto>
-              <S.AutoCheckBox
-                type="checkbox"
-                id="rememberMe"
-                ref={rememberMeState}
-              />
-              <S.AutoLabel htmlFor="rememberMe">로그인 유지</S.AutoLabel>
-            </S.Auto>
-            <S.FindPass type="button">비밀번호 찾기</S.FindPass>
-          </S.Option>
+          <S.FindPass type="button">비밀번호 찾기</S.FindPass>
           <S.Warning>{formState.errors.root?.message}</S.Warning>
         </S.InputFrame>
 

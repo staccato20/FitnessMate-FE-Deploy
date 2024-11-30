@@ -33,43 +33,12 @@ export const InputFrame = styled.div`
   gap: 14px;
 `
 
-export const Option = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const Auto = styled.div`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding-left: 4px;
-`
-
-export const AutoCheckBox = styled.input`
-  appearance: none;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  border: 2px solid ${theme.Netural600};
-  &:checked {
-    appearance: checkbox;
-  }
-`
-
-export const AutoLabel = styled.label`
-  cursor: pointer;
-  color: ${theme.Netural600};
-  ${fonts.b1};
-  user-select: none;
-`
-
 export const FindPass = styled.button`
   color: ${theme.Brand600};
   ${fonts.h4};
   font-weight: 500;
+  width: fit-content;
+  padding-left: 2px;
 `
 
 export const ButtonContainer = styled.div`

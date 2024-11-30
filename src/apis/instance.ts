@@ -12,6 +12,7 @@ instance.interceptors.request.use((config) => {
   if (config.url === "/api/auth/refresh" || config.url === "/api/auth/logout") {
     const refreshToken = localStorage.getItem("refreshToken")
     if (refreshToken) {
+      console.log("리프레쉬 토큰 보냄")
       config.headers.Authorization = `Bearer ${refreshToken}`
     }
   } else {
@@ -64,6 +65,7 @@ instance.interceptors.response.use(
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("rememberMe")
+      window.location.href = "/"
     }
   },
 )
