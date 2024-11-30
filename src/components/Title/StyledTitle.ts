@@ -25,6 +25,13 @@ export const SubBottomTitleText = styled.span`
   color: ${theme.Netural800};
 `
 
+export const SubBottomTitleWrapper = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: ${theme.Netural800};
+`
+
 export const VARIANTS = {
   big: css`
     color: ${theme.Netural900};
@@ -86,6 +93,22 @@ export const VARIANTS = {
     .bottomTitleText {
       color: ${theme.Brand700};
       ${fonts.b7};
+    }
+  `,
+  midE: css`
+    .topIconTitle {
+      color: ${theme.Netural900};
+      ${fonts.h4};
+      display: flex;
+      align-items: center;
+    }
+    .bottomTitleContentText {
+      color: ${theme.Netural550};
+      ${fonts.b6};
+    }
+    .bottomTitleText {
+      color: ${theme.Netural900};
+      ${fonts.b6};
     }
   `,
   small: css`
