@@ -1,8 +1,6 @@
-import { motion } from "framer-motion"
-
 import styled from "styled-components"
 
-import theme, { fonts } from "@styles/theme"
+import theme from "@styles/theme"
 
 export const EmptyRoutineWrapper = styled.div`
   display: flex;
