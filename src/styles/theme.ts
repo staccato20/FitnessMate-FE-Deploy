@@ -75,6 +75,7 @@ export const theme = {
   ErrorWeak: "#FFF5F5",
   Success: "#2edd6a",
   Purple: "#5950D3",
+  Caution: "#E7A10A",
 }
 
 export const animation = {
