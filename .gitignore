@@ -12,7 +12,7 @@ dist
 dist-ssr
 .eslintcache
 .gitignore
-/.husky/
+.husky
 *.local
 
 # Editor directories and files
