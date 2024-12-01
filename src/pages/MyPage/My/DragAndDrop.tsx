@@ -79,7 +79,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
     }
 
     try {
-      await MyFitAPI.modifyMyWorkout(
+      await MyFitAPI.editMyWorkout(
         updatedList[droppedItem.destination.index].myWorkoutId,
         workout,
       )

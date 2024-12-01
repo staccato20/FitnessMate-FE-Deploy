@@ -206,7 +206,6 @@ export interface MyWorkoutList {
   atcetera: null
   bodyParts: string[]
   machines: string[]
-  caution: string
 }
 
 export interface MyWorkoutIndex {
