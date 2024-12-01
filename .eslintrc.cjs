@@ -27,7 +27,6 @@ module.exports = {
     },
   },
   rules: {
-    "no-console": "error",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": [
       2,
