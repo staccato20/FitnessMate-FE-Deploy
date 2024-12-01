@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, ReactNode } from "react"
 import styled, { Interpolation, css } from "styled-components"
 
 import Icon from "@components/Icon/Icon"
-import { IconPropsType } from "@components/Icon/Icon"
+import { IconProps } from "@components/Icon/Icon"
 
 import theme, { fonts } from "@styles/theme"
 
@@ -88,8 +88,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
   children: ReactNode
   onClick?: (e: React.MouseEvent) => void
-  leftIcon?: IconPropsType["icon"]
-  rightIcon?: IconPropsType["icon"]
+  leftIcon?: IconProps["icon"]
+  rightIcon?: IconProps["icon"]
   size?: Size
   isPending?: boolean
 }
