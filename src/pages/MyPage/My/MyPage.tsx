@@ -24,7 +24,6 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-  const [activeTab, setActiveTab] = useState<number | null>(null)
 
   const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
     null,
@@ -34,7 +33,6 @@ const MyPage = () => {
     try {
       if (isRoutine) {
         setSelectedRoutineId(myRoutines[0].routineId)
-        setActiveTab(myRoutines[0].routineIndex)
         setBodyFigure(bodyDatas?.bodyFigure)
         setMyRoutineLength(myRoutines.length)
       } else {
@@ -49,7 +47,7 @@ const MyPage = () => {
   }, [myRoutines])
 
   const handleTabClick = (routineIndex: number, routineId: number) => {
-    setActiveTab(routineIndex)
+    console.log(routineIndex)
     setSelectedRoutineId(routineId)
   }
 
