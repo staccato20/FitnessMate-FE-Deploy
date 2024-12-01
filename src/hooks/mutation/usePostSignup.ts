@@ -19,7 +19,7 @@ export const usePostSignup = () => {
       navigate("/signup/complete")
     },
     onError: () => {
-      console.log("회원가입 에러")
+      console.error("회원가입 에러")
     },
   })
 }
