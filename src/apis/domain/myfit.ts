@@ -10,10 +10,7 @@ import {
 
 const myFit = () => instance.get<MyfitList>("/api/myfit/userInfo")
 
-const myRoutines = () =>
-  instance
-    .get<MyRoutines[]>("/api/myfit/routines/workout")
-    .then((res) => res.data)
+const myRoutines = () => instance.get<MyRoutines>("/api/myfit/routines/workout")
 
 const editMyRoutine = async (params: { routines: MyRoutines[] }) => {
   const { data } = await instance.post("/api/myfit/routines/workout", params)

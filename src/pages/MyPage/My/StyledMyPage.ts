@@ -17,7 +17,6 @@ export const MypageContainer = styled.ul`
   margin-top: 48px;
   display: flex;
   justify-content: center;
-  margin-bottom: 150px;
 `
 
 export const MypageHomeArea = styled.ul`
@@ -25,6 +24,7 @@ export const MypageHomeArea = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  margin-bottom: 100px;
 `
 
 export const MypageTopContainer = styled.div`
