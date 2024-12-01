@@ -12,7 +12,7 @@ export const usePostRecommendId = () => {
     },
 
     onError: () => {
-      console.log("에러")
+      console.error("에러")
     },
   })
 
