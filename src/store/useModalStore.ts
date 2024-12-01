@@ -53,7 +53,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     atcetera: null,
     imgPath: "",
     machineName: "",
-    caution: null,
+    caution: "",
   },
   setWorkoutState: (newState) =>
     set(() => ({
