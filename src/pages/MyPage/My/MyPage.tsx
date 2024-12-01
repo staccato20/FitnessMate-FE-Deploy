@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 
+import Button from "@components/Button/Button"
 import EmptyRoutine from "@components/EmptyRoutine/EmptyRoutine"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
+import Tabs from "@components/Tabs/Tabs"
 import Title from "@components/Title/Title"
 
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
@@ -22,7 +24,7 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-  const [btnActive, setBtnActive] = useState<number>(0)
+  const [activeTab, setActiveTab] = useState<number | null>(null)
 
   const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
     null,
@@ -32,9 +34,8 @@ const MyPage = () => {
     try {
       if (isRoutine) {
         setSelectedRoutineId(myRoutines[0].routineId)
-        setBtnActive(myRoutines[0].routineIndex)
+        setActiveTab(myRoutines[0].routineIndex)
         setBodyFigure(bodyDatas?.bodyFigure)
-        console.log(bodyDatas?.bodyFigure)
         setMyRoutineLength(myRoutines.length)
       } else {
       }
@@ -46,6 +47,11 @@ const MyPage = () => {
       fetchData()
     }
   }, [myRoutines])
+
+  const handleTabClick = (routineIndex: number, routineId: number) => {
+    setActiveTab(routineIndex)
+    setSelectedRoutineId(routineId)
+  }
 
   return (
     <>
@@ -85,25 +91,52 @@ const MyPage = () => {
                 </S.MyBodyInfotmation>
               </Title>
             </S.MyInformation>
-            <S.RoutinesContainer>
-              {isRoutine ? (
-                <div className="lengthRoutineContainer">
-                  <button className="addRoutineButton"></button>
-                  {myRoutines?.map((routine) => (
-                    <button
-                      key={routine.routineId}
-                      id={routine.routineId.toString()}
-                      value={routine.routineIndex}
-                      className={`routineArea ${typeof routine.routineIndex === "number" && routine.routineIndex === btnActive ? "active" : ""}`}>
-                      <p className="routineName">{routine.routineName}</p>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <EmptyRoutine />
-              )}
-            </S.RoutinesContainer>
+            {isRoutine ? (
+              <S.RoutinesContainer>
+                <S.RoutineList>
+                  <Tabs>
+                    <Tabs.TabList>
+                      {myRoutines?.map((routine, index) => {
+                        const { routineId, routineName } = routine
+                        return (
+                          <Tabs.Tab
+                            key={routineId}
+                            index={index}
+                            variant="line"
+                            onClick={() => {
+                              handleTabClick(index, routineId)
+                            }}
+                            isFirstChild={true}>
+                            {routineName}
+                          </Tabs.Tab>
+                        )
+                      })}
+                    </Tabs.TabList>
+                  </Tabs>
+                  <S.AddIconButtonWrapper>
+                    <IconButton
+                      icon="AddGrey"
+                      size={14}
+                    />
+                  </S.AddIconButtonWrapper>
+                </S.RoutineList>
+                <Button
+                  variant="text"
+                  size="tmd">
+                  편집
+                </Button>
+              </S.RoutinesContainer>
+            ) : (
+              <EmptyRoutine />
+            )}
           </S.MypageTopContainer>
+          <S.AddWorkoutWraper>
+            <IconButton
+              icon="AddRoundGray"
+              size={32}
+            />
+            운동 추가하기
+          </S.AddWorkoutWraper>
           <DragAndDrop selectedRoutineId={selectedRoutineId} />
         </S.MypageHomeArea>
       </S.MypageContainer>
