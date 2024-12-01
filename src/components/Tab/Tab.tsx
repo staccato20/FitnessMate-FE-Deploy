@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes, MouseEvent } from "react"
 
 import { StyledTab, StyledTabCount } from "@components/Tab/StyledTab"
 import { getVariant } from "@components/Tab/getVariant"
@@ -11,14 +11,27 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: Variant
   index: number
   count?: number
+  isFirstChild?: boolean
 }
 
-const Tab = ({ children, index, variant, count, ...props }: TabProps) => {
+const Tab = ({
+  children,
+  index,
+  variant,
+  count,
+  onClick,
+  isFirstChild = false,
+  ...props
+}: TabProps) => {
   const { activeTab, switchTab } = useTabs()
-  const variantStyle = getVariant(variant, activeTab === index)
+  const isSelected = activeTab === index
+  const variantStyle = getVariant(variant, isSelected, isFirstChild)
 
-  const handleTab = () => {
+  const handleTab = (event: MouseEvent<HTMLButtonElement>) => {
     switchTab(index)
+    if (onClick) {
+      onClick(event)
+    }
   }
 
   return (

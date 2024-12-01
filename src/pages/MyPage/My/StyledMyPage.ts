@@ -23,7 +23,7 @@ export const MypageHomeArea = styled.ul`
   width: 870px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 12px;
   margin-bottom: 100px;
 `
 
@@ -60,68 +60,37 @@ export const FixIconButtonWrapper = styled.div`
 `
 
 export const RoutinesContainer = styled.div`
-  .lengthRoutineContainer {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-
-    .addRoutineButton {
-      width: 44px;
-      height: 44px;
-      background: ${theme.Netural300};
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .routineArea {
-      display: flex;
-      gap: 12px;
-      height: 44px;
-      padding: 0 12px 0 18px;
-      align-items: center;
-      border-radius: 30px;
-      background: ${theme.Netural300};
-      position: relative;
-
-      .routineName {
-        color: ${theme.Netural800};
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 150%;
-        letter-spacing: -0.192px;
-      }
-      .fixThisRoutine {
-        cursor: pointer;
-      }
-    }
-    .active {
-      background: ${theme.Netural990};
-      .routineName {
-        color: ${theme.Netural0};
-      }
-      .svgFill {
-        fill: ${theme.Netural0};
-      }
-    }
-  }
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
 `
 
-export const inputContent = styled.input`
-  &::-webkit-input-placeholder {
-    color: ${theme.Netural0};
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: -0.36px;
-    line-height: 23.4px;
-  }
-  border: none;
+export const RoutineList = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
   width: 100%;
-  color: ${theme.Netural0};
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.36px;
-  line-height: 23.4px;
+  border-bottom: 1px solid ${theme.Netural300};
+`
+
+export const AddIconButtonWrapper = styled.div`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.Netural300};
+  border-radius: 6px;
+`
+
+export const AddWorkoutWraper = styled.div`
+  display: flex;
+  padding: 16px 8px;
+  align-items: center;
+  gap: 12px;
+  color: ${theme.Netural800};
+  ${fonts.b2}
 `
 
 export const DragAndDropWrapper = styled.div`
