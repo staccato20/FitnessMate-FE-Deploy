@@ -18,6 +18,10 @@ const Navbar = () => {
     navigate("searchworkout")
   }
 
+  const handleMyPage = () => {
+    userName && navigate("mypage")
+  }
+
   const handleRecommend = () => {
     if (isLogin) {
       navigate("recommend/bodypart")
