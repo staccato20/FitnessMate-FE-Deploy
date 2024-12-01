@@ -96,7 +96,7 @@ const MyWorkout = ({
       </S.MyWorkoutContent>
       <S.HandleIconButtonWrapper>
         <Icon
-          icon="handle"
+          icon="Handle"
           size={24}
         />
       </S.HandleIconButtonWrapper>
