@@ -19,7 +19,7 @@ const MyPage = () => {
   const { bodyDatas } = useGetFetchRecentData()
   const [bodyFigure, setBodyFigure] = useState<string | null>()
 
-  const { myRoutines } = useGetMyRoutines()
+  const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
   const [btnActive, setBtnActive] = useState<number>(0)
