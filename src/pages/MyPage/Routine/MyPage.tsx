@@ -24,7 +24,6 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-
   const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
     null,
   )
@@ -122,13 +121,13 @@ const MyPage = () => {
               <EmptyRoutine />
             )}
           </S.MypageTopContainer>
-          <S.AddWorkoutWraper>
+          <S.AddWorkoutWrapper>
             <IconButton
               icon="AddRoundGray"
               size={32}
             />
             운동 추가하기
-          </S.AddWorkoutWraper>
+          </S.AddWorkoutWrapper>
           <DragAndDrop selectedRoutineId={selectedRoutineId} />
         </S.MypageHomeArea>
       </S.MypageContainer>

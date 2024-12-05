@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import {
   DragDropContext,
@@ -14,6 +14,8 @@ import MyFitAPI from "@apis/domain/myfit"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
+import useGetMyWorkout from "@hooks/query/useGetMyWorkout"
+
 import * as S from "./StyledMyPage"
 
 interface DragAndDropProps {
@@ -21,27 +23,12 @@ interface DragAndDropProps {
 }
 
 const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
-  const [myWorkouts, setMyWorkouts] = useState<MyWorkoutList[]>([])
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
     number | null
   >(null)
-  const [isRemoveSuccess, setIsRemoveSuccess] = useState(false)
 
-  useEffect(() => {
-    const fetchWorkouts = async (routineId: number) => {
-      const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
-      setMyWorkouts(response)
-    }
-
-    if (selectedRoutineId !== undefined && selectedRoutineId !== null) {
-      fetchWorkouts(selectedRoutineId)
-    }
-  }, [selectedRoutineId, isRemoveSuccess])
-
-  const handleRemove = () => {
-    setIsRemoveSuccess((prev) => !prev)
-  }
-
+  const { myWorkouts, setMyWorkouts, handleRemove } =
+    useGetMyWorkout(selectedRoutineId)
   const onDragUpdate = (update: DragUpdate) => {
     if (update.destination) {
       setHighlightedFrameIndex(update.destination.index) // 드래그가 놓일 위치 저장
