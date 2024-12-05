@@ -21,7 +21,7 @@ export const MyWorkoutContent = styled.div<{ isDragging: boolean }>`
   align-items: center;
   border-radius: 20px 20px 16px 16px;
   box-shadow: ${({ isDragging }) =>
-    isDragging ? `0px 1px 18px 0px rgba(0, 0, 0, 0.12)` : "none"};
+    isDragging ? "0px 1px 18px 0px rgba(0, 0, 0, 0.12)" : "none"};
   background: ${theme.Netural0};
 `
 

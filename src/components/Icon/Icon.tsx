@@ -1,8 +1,6 @@
 import { SVGProps } from "react"
 
 import Add from "@assets/icon/add.svg?react"
-import AddBoldBlue from "@assets/icon/add_bold_blue.svg?react"
-import AddBoldGray from "@assets/icon/add_bold_gray.svg?react"
 import AddGrey from "@assets/icon/add_grey.svg?react"
 import AddRound from "@assets/icon/add_round.svg?react"
 import AddRoundGray from "@assets/icon/add_round_gray.svg?react"
@@ -91,8 +89,6 @@ export const ICON_MAP = {
   CloseWhite,
   DownArrowGray,
   AddRoundGray,
-  AddBoldBlue,
-  AddBoldGray,
   Handle,
 }
 

@@ -28,7 +28,7 @@ export const useGetFetchRecentData = () => {
       bodyFigure = "뚱뚱"
     }
 
-    let myBodyData = {
+    const myBodyData = {
       height: getbodyData.height,
       bodyFigure: bodyFigure,
     }

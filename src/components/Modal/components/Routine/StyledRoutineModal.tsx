@@ -125,23 +125,27 @@ export const ContentBigWrapper = styled.div`
   height: 100%;
   width: 100%;
   padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `
 
 export const AddRoutineButton = styled.button`
   display: flex;
-  gap: 12px;
   align-items: center;
-  color: ${theme.Netural800};
-  ${fonts.b2};
-  padding: 16px 12px 20px 12px;
+  justify-content: space-between;
+  padding: 16px 0;
   width: 100%;
+  &:disabled {
+    cursor: default;
+  }
 `
 
 export const RoutineList = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   width: 100%;
   overflow: auto;
 `
@@ -151,7 +155,7 @@ export const RoutineItem = styled.button<{ $isSelected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 16px 0;
   border-radius: 12px;
   background: ${({ $isSelected }) =>
     $isSelected ? theme.Netural150 : theme.Netural0};
@@ -164,13 +168,30 @@ export const RoutineName = styled.span<{
   $isSelected: boolean
   $isAdded: boolean
 }>`
+  color: ${({ $isAdded }) => ($isAdded ? theme.Netural500 : theme.Netural800)};
   color: ${({ $isSelected }) =>
     $isSelected ? theme.Brand600 : theme.Netural800};
-  color: ${({ $isAdded }) => ($isAdded ? theme.Netural500 : theme.Netural800)};
   ${fonts.b2};
 `
 
 export const RoutineState = styled.span`
   color: ${theme.Netural600};
   ${fonts.b6};
+`
+
+export const ButtonNavBox = styled.div<{ $isFullRoutine: boolean }>`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: ${theme.Netural800};
+  ${fonts.b2};
+  opacity: ${({ $isFullRoutine }) => ($isFullRoutine ? "0.5" : "1")};
+`
+
+export const FullRoutineWarning = styled.span`
+  padding: 8px 10px;
+  color: ${theme.Error};
+  ${fonts.d1};
+  border-radius: 6px;
+  background: ${theme.ErrorWeak};
 `
