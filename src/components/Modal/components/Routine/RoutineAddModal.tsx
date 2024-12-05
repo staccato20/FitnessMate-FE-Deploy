@@ -24,7 +24,7 @@ const RoutineAddModal = () => {
     },
   })
   const { onOpen } = useModal("루틴정보")
-  const { setRoutineState, workoutState } = useModalStore()
+  const { setRoutineState, workoutState = { koreanName: "" } } = useModalStore()
   const { data: routines = [] } = useGetMyRoutines()
   const { data: workouts, refetchAll } = useGetRoutineQueries(routines)
 
@@ -32,7 +32,7 @@ const RoutineAddModal = () => {
 
   const filteredRoutines = [...routines].map((routine, index) =>
     workouts[index]?.some((workout) =>
-      workout?.workoutName.includes(workoutState.koreanName),
+      workout?.workoutName?.includes(workoutState?.koreanName || ""),
     )
       ? { ...routine, isAdded: true }
       : { ...routine, isAdded: false },

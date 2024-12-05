@@ -4,7 +4,11 @@ import { Variant } from "@components/Tab/Tab"
 
 import theme, { fonts } from "@styles/theme"
 
-export const getVariant = (variant: Variant, isSelected: boolean) => {
+export const getVariant = (
+  variant: Variant,
+  isSelected: boolean,
+  isFirstChild: boolean,
+) => {
   switch (variant) {
     case "fill":
       return css`
@@ -21,9 +25,9 @@ export const getVariant = (variant: Variant, isSelected: boolean) => {
       return css`
         color: ${isSelected ? theme.Netural950 : theme.Netural700};
         position: relative;
-        padding: 10px;
+        padding: ${isFirstChild ? "10px 10px 10px 0" : "10px 10px 10px 10px"};
         ${fonts.b2};
-        border-radius: 8px;
+        border-radius: ${isFirstChild ? 0 : "8px"};
         &:hover {
           background: ${theme.Netural200};
         }
@@ -34,7 +38,7 @@ export const getVariant = (variant: Variant, isSelected: boolean) => {
             content: "";
             position: absolute;
             bottom: 0;
-            width: calc(100% - 20px);
+            width: ${isFirstChild ? "calc(100% - 10px)" : "calc(100% - 20px)"};
             border-radius: 2px;
             border-bottom: 3px solid ${theme.Netural900};
           }

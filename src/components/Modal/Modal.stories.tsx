@@ -133,33 +133,37 @@ export const RoutineStart: Story = {
   ),
 }
 
-export const RoutineMake: Story = {
-  render: () => {
-    const methods = useForm<RoutineNameTypes>({
-      mode: "onChange",
-      defaultValues: { routineName: "" },
-    })
+const RoutineMakeStory = () => {
+  const methods = useForm<RoutineNameTypes>({
+    mode: "onChange",
+    defaultValues: { routineName: "" },
+  })
 
-    return (
-      <FormProvider {...methods}>
-        <Trigger name={"루틴생성"} />
-        <RoutineMakeModal />
-      </FormProvider>
-    )
-  },
+  return (
+    <FormProvider {...methods}>
+      <Trigger name={"루틴생성"} />
+      <RoutineMakeModal />
+    </FormProvider>
+  )
+}
+
+export const RoutineMake: Story = {
+  render: () => <RoutineMakeStory />,
+}
+
+const RoutineInfoStory = () => {
+  const methods = useForm<RoutineInfoTypes>()
+
+  return (
+    <FormProvider {...methods}>
+      <Trigger name={"루틴정보"} />
+      <RoutineInfoModal />
+    </FormProvider>
+  )
 }
 
 export const RoutineInfo: Story = {
-  render: () => {
-    const methods = useForm<RoutineInfoTypes>()
-
-    return (
-      <FormProvider {...methods}>
-        <Trigger name={"루틴정보"} />
-        <RoutineInfoModal />
-      </FormProvider>
-    )
-  },
+  render: () => <RoutineInfoStory />,
 }
 
 export const RoutineAdd: Story = {

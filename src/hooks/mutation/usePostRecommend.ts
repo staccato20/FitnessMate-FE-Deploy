@@ -11,7 +11,7 @@ export const usePostRecommend = () => {
     retryDelay: 1000 * 1,
 
     onError: () => {
-      console.log("에러")
+      console.error("에러")
     },
   })
 }

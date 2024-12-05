@@ -5,6 +5,7 @@ import MainLayout from "@Layout/Mainlayout"
 import Detail from "@pages/Detail/Detail"
 import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
+import MyPage from "@pages/MyPage/My/MyPage"
 import UpdateBodyFigure from "@pages/MyPage/Update/UpdateBodyFigure"
 import UpdateBodyInfo from "@pages/MyPage/Update/UpdateBodyInfo"
 import UpdatePassword from "@pages/MyPage/Update/UpdatePassword"
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: "mypage",
+        element: <MyPage />,
         children: [
           { path: "profile", element: <UpdateProfile /> },
           { path: "bodyfigure", element: <UpdateBodyFigure /> },
