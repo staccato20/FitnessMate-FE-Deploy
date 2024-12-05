@@ -5,10 +5,7 @@ import MyWorkout from "@components/MyWorkout/MyWorkout"
 
 const DUMMY_DATA = (
   <MyWorkout
-    onClick={() => {
-      console.log("Clicked")
-    }}
-    children="벤치 프레스"
+    onClick={() => {}}
     bodyParts={"가슴, 등"}
     weight="20"
     setCount="5"
@@ -17,8 +14,9 @@ const DUMMY_DATA = (
     draggableProps={{} as DraggableProvided["draggableProps"]}
     dragHandleProps={{} as DraggableProvided["dragHandleProps"]}
     innerRef={() => {}}
-    isDragging={false}
-  />
+    isDragging={false}>
+    "벤치 프레스"
+  </MyWorkout>
 )
 
 const meta: Meta<typeof MyWorkout> = {
