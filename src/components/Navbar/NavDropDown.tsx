@@ -23,7 +23,6 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
 
   const handleFixBodyInfo = async () => {
     alert("현재 수정중인 페이지입니다!")
-    // navigate("/mypage/fixbodyinfo")
     toggleDropDown()
   }
 

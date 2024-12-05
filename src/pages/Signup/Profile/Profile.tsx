@@ -11,6 +11,7 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { createSignupList } from "@pages/Signup/utils/createSignupList"
+import { getBirthFormat } from "@pages/Signup/utils/getBirthFormat"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -21,13 +22,11 @@ const Profile = () => {
 
   const navigate = useNavigate()
 
-  const { handleSubmit, formState, register, getValues, trigger } = useForm<
-    typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE
-  >({
-    mode: "onChange",
-    defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["PROFILE"],
-  })
-
+  const { handleSubmit, formState, register, getValues, trigger, setValue } =
+    useForm<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE>({
+      mode: "onChange",
+      defaultValues: SIGNUP_INPUTS.DEFAULT_VALUES["PROFILE"],
+    })
   const onSubmit: SubmitHandler<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE> = (
     formValue,
   ) => {
@@ -42,7 +41,14 @@ const Profile = () => {
       trigger("passwordCheck")
     }
   }
-  const SIGNUP_LIST = createSignupList(triggerPasswordCheck)
+
+  const handleBirthDate = (e: ChangeEvent<HTMLInputElement>) => {
+    register("birthDate").onChange(e)
+    setValue("birthDate", getBirthFormat(e.target.value))
+    trigger("birthDate")
+  }
+
+  const SIGNUP_LIST = createSignupList(handleBirthDate, triggerPasswordCheck)
 
   const checkPassWord = (value: string) =>
     value === getValues("password") || "비밀번호가 일치하지 않습니다."

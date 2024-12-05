@@ -9,6 +9,8 @@ import styled from "styled-components"
 import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
 
+import { getBirthFormat } from "@pages/Signup/utils/getBirthFormat"
+
 import { UpdateUserPayload } from "@typpes/type"
 import { User } from "@typpes/type"
 
@@ -24,16 +26,18 @@ const UpdateProfile = () => {
 
   const { userInfo } = useUserInfo()
 
-  const { register, formState, handleSubmit, reset } = useForm<
-    Omit<User, "sex">
-  >({
-    mode: "onChange",
-    defaultValues: {
-      userName: "",
-      birthDate: "",
-      loginEmail: "",
-    },
-  })
+  const { register, formState, handleSubmit, reset, watch, setValue, trigger } =
+    useForm<Omit<User, "sex">>({
+      mode: "onChange",
+      defaultValues: {
+        userName: "",
+        birthDate: "",
+        loginEmail: "",
+      },
+    })
+
+  const birthDateValue = watch("birthDate")
+
   const { mutate: editUser } = useEditProfile()
 
   const handleUpdatePaswordPage = () => {
@@ -57,6 +61,11 @@ const UpdateProfile = () => {
       })
     }
   }, [userInfo, reset])
+
+  useEffect(() => {
+    setValue("birthDate", getBirthFormat(birthDateValue))
+    trigger("birthDate")
+  }, [birthDateValue, setValue, trigger])
 
   return (
     <UpdateProfileForm
