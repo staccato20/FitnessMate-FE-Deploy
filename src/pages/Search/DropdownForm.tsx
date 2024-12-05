@@ -23,6 +23,7 @@ const DropdownForm = ({
 }: DropdownFormProps) => {
   const handleClickKeyword = (keyword: string) => {
     methods.setValue("search", keyword)
+    triggerSubmit()
   }
 
   const triggerSubmit = () => {
