@@ -25,6 +25,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
     number | null
   >(null)
+  const [isRemoveSuccess, setIsRemoveSuccess] = useState(false)
 
   useEffect(() => {
     const fetchWorkouts = async (routineId: number) => {
@@ -35,7 +36,11 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
     if (selectedRoutineId !== undefined && selectedRoutineId !== null) {
       fetchWorkouts(selectedRoutineId)
     }
-  }, [selectedRoutineId])
+  }, [selectedRoutineId, isRemoveSuccess])
+
+  const handleRemove = () => {
+    setIsRemoveSuccess((prev) => !prev)
+  }
 
   const onDragUpdate = (update: DragUpdate) => {
     if (update.destination) {
@@ -117,28 +122,43 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
                   top={`${highlightedFrameIndex * (157 + 13)}px`}
                 />
               )}
-              {myWorkouts?.map((workout, index) => (
-                <Draggable
-                  key={workout.workoutId}
-                  draggableId={`item-${workout.workoutId}`}
-                  index={index}>
-                  {(providedSpace, snapshot) => (
-                    <MyWorkout
-                      bodyParts={workout.bodyParts.join(", ")}
-                      caution={workout.caution || "주의사항이 없습니다."}
-                      setCount={workout.setCount?.toString() || "0"}
-                      rep={workout.rep?.toString() || "0"}
-                      weight={workout.weight?.toString() || "0"}
-                      onClick={() => {}}
-                      draggableProps={providedSpace.draggableProps}
-                      dragHandleProps={providedSpace.dragHandleProps}
-                      innerRef={providedSpace.innerRef}
-                      isDragging={snapshot.isDragging}>
-                      {workout.workoutName}
-                    </MyWorkout>
-                  )}
-                </Draggable>
-              ))}
+              {myWorkouts?.map((workout, index) => {
+                const {
+                  workoutId,
+                  myWorkoutId,
+                  bodyParts,
+                  caution,
+                  setCount,
+                  rep,
+                  weight,
+                  workoutName,
+                } = workout
+                return (
+                  <Draggable
+                    key={workoutId}
+                    draggableId={`item-${workoutId}`}
+                    index={index}>
+                    {(providedSpace, snapshot) => (
+                      <MyWorkout
+                        workoutId={workoutId}
+                        myWorkoutId={myWorkoutId}
+                        bodyParts={bodyParts.join(", ")}
+                        caution={caution || "주의사항이 없습니다."}
+                        setCount={setCount?.toString() || "0"}
+                        rep={rep?.toString() || "0"}
+                        weight={weight?.toString() || "0"}
+                        onClick={() => {}}
+                        draggableProps={providedSpace.draggableProps}
+                        dragHandleProps={providedSpace.dragHandleProps}
+                        innerRef={providedSpace.innerRef}
+                        isDragging={snapshot.isDragging}
+                        isRemoveSuccess={handleRemove}>
+                        {workoutName}
+                      </MyWorkout>
+                    )}
+                  </Draggable>
+                )
+              })}
               {provided.placeholder}
             </div>
           )}
