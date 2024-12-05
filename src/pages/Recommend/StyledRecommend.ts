@@ -20,7 +20,7 @@ export const LayerWrapper = styled(motion.div)`
 export const CoverWrapper = styled(motion.div)`
   width: 452px;
   height: 438px;
-  background-image: url("/loadinglayer.svg");
+  background-image: url("/loadinglayer.png");
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
