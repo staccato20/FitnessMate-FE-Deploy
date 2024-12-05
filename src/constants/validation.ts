@@ -28,16 +28,20 @@ export const SIGNUP_INPUTS = {
       required: { value: true, message: "이름은 필수 입력입니다." },
       pattern: {
         value: /^[가-힣]{3,8}$/,
-        message: "유효하지 않은 아이디입니다.",
+        message: "유효하지 않은 이름입니다.",
       },
     },
   },
   birthDate: {
     attributes: {
       placeholder: "YYYY-MM-DD",
+      maxLength: 10,
     },
     validate: {
-      required: { value: true, message: "생년월일은 필수 입력입니다." },
+      required: {
+        value: true,
+        message: "생년월일은 필수 입력입니다.",
+      },
       pattern: {
         value: /^\d{4}-\d{2}-\d{2}$/,
         message: "유효하지 않은 생년월일입니다.",
@@ -216,7 +220,7 @@ export const LOGIN_INPUTS = {
   },
   loginEmail: {
     attributes: {
-      placeholder: "아이디",
+      placeholder: "이메일",
       type: "email",
     },
     validate: {
@@ -277,13 +281,14 @@ export const UPDATE_INPUTS = {
         required: { value: true, message: "이름은 필수 입력입니다." },
         pattern: {
           value: /^[가-힣]{3,8}$/,
-          message: "유효하지 않은 아이디입니다.",
+          message: "유효하지 않은 이름입니다.",
         },
       },
     },
     birthDate: {
       attributes: {
         placeholder: "YYYY-MM-DD",
+        maxLength: 10,
       },
       validate: {
         required: { value: true, message: "생년월일은 필수 입력입니다." },

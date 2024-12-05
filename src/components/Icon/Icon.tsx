@@ -7,6 +7,8 @@ import AddRoundGray from "@assets/icon/add_round_gray.svg?react"
 import Avatar from "@assets/icon/avatar.svg?react"
 import ChangeCircle from "@assets/icon/change_circle.svg?react"
 import Check from "@assets/icon/check.svg?react"
+import CheckBlue from "@assets/icon/check_blue.svg?react"
+import CheckGray from "@assets/icon/check_gray.svg?react"
 import CircleChecked from "@assets/icon/circle_checked.svg?react"
 import CircleCheckedGreen from "@assets/icon/circle_checked_green.svg?react"
 import CircleEmpty from "@assets/icon/circle_empty.svg?react"
@@ -90,6 +92,8 @@ export const ICON_MAP = {
   DownArrowGray,
   AddRoundGray,
   Handle,
+  CheckBlue,
+  CheckGray,
 }
 
 export interface IconProps extends SVGProps<SVGSVGElement> {

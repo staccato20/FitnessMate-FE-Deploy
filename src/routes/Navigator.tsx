@@ -59,8 +59,8 @@ const router = createBrowserRouter([
       },
       {
         path: "mypage",
-        element: <MyPage />,
         children: [
+          { path: "", element: <MyPage /> },
           { path: "profile", element: <UpdateProfile /> },
           { path: "bodyfigure", element: <UpdateBodyFigure /> },
           { path: "bodyinfo", element: <UpdateBodyInfo /> },

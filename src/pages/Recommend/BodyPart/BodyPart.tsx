@@ -12,30 +12,32 @@ import ProgressBar from "@components/Progressbar/ProgressBar"
 import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
+import { useScroll } from "@hooks/useScroll"
 
 import * as S from "../StyledRecommend"
 
 const BodyPart = () => {
   const { bodyParts = [] } = useGetBodyPart("recommend")
-
   const [selectedBodyParts, setSelectedBodyParts] = useState<number[]>([])
-
   const { setBodyPart } = useRecommendStore()
 
   const isReady = selectedBodyParts.some((v) => v)
 
   const navigate = useNavigate()
+  const { isScrollTop } = useScroll()
 
   const handleBackPage = () => {
     navigate(-1)
   }
 
   const handleBodyPart = (bodyPartIdx: number) => {
-    selectedBodyParts.includes(bodyPartIdx)
-      ? setSelectedBodyParts([
-          ...selectedBodyParts.filter((idx) => idx !== bodyPartIdx),
-        ])
-      : setSelectedBodyParts([...selectedBodyParts, bodyPartIdx])
+    if (selectedBodyParts.includes(bodyPartIdx)) {
+      setSelectedBodyParts([
+        ...selectedBodyParts.filter((idx) => idx !== bodyPartIdx),
+      ])
+    } else {
+      setSelectedBodyParts([...selectedBodyParts, bodyPartIdx])
+    }
   }
 
   const handleNextPage = () => {
@@ -48,7 +50,7 @@ const BodyPart = () => {
 
   return (
     <S.RecommendWrapper>
-      <S.Status>
+      <S.Status $isScrollTop={isScrollTop}>
         <IconButton
           icon="LeftArrowBold"
           size={30}
