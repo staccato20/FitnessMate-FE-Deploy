@@ -20,7 +20,7 @@ interface DragAndDropProps {
   selectedRoutineId?: number | null
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = (selectedRoutineId) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
   const [myWorkouts, setMyWorkouts] = useState<MyWorkoutList[]>([])
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
     number | null
@@ -32,7 +32,9 @@ const DragAndDrop: React.FC<DragAndDropProps> = (selectedRoutineId) => {
       setMyWorkouts(response)
     }
 
-    if (selectedRoutineId) fetchWorkouts(Number(selectedRoutineId))
+    if (selectedRoutineId !== undefined && selectedRoutineId !== null) {
+      fetchWorkouts(selectedRoutineId)
+    }
   }, [selectedRoutineId])
 
   const onDragUpdate = (update: DragUpdate) => {
