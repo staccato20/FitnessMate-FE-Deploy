@@ -7,7 +7,15 @@ import { theme } from "@styles/theme"
 
 const GlobalStyle = createGlobalStyle<{ $isRecommendPage: boolean }>`
 ${reset}
-    // 적용시킬 css 입력
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 300 500 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
     a{
         text-decoration: none;
         color: inherit;
@@ -16,18 +24,18 @@ ${reset}
         box-sizing: border-box;    
         font-weight:500;
         line-height:normal;
-        
     }
     html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
     a, dl, dt, dd, ol, ul, li, form, label, table,button{
-        
         margin: 0;
         padding: 0;
         border: 0;
         font-size: 10px;
         vertical-align: baseline;
-         font-family: 'Pretendard';
-         line-height:normal;
+        font-family: 'Pretendard Variable', sans-serif;
+        font-weight:500;
+        line-height:normal;
+        -webkit-font-smoothing: antialiased;
 
     }
     body{
@@ -43,15 +51,14 @@ ${reset}
         list-style: none;
     }
     button {
-        font-family: 'Pretendard', sans-serif;
+        font-family: 'Pretendard Variable', sans-serif;
         border: 0;
         background: transparent;
         cursor: pointer;
         outline:none;
     }
-    // 입력창 클릭 시 테두리, 흰 배경 제거
     input{
-        font-family: 'Pretendard', sans-serif;
+        font-family: 'Pretendard Variable', sans-serif;
         outline:none;
         border:none;
         background:none;
