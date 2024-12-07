@@ -13,6 +13,8 @@ import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useGetRoutineQueries } from "@hooks/query/useGetRoutineQueries"
 import { useModal } from "@hooks/useModal"
 
+import { checkKorean } from "@utils/checkKorean"
+
 import * as S from "./StyledRoutineModal"
 
 const RoutineAddModal = () => {
@@ -69,7 +71,7 @@ const RoutineAddModal = () => {
       disableInteraction>
       <Modal.Title>
         <Title variant="midA">
-          {workoutState?.koreanName}를 추가할
+          {checkKorean(workoutState?.koreanName)} 추가할
           <br />
           루틴을 선택해주세요
           <Title.SubBottomTitle>여러 개 선택할 수 있어요</Title.SubBottomTitle>
