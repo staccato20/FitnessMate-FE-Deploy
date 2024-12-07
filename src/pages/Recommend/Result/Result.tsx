@@ -70,7 +70,7 @@ const Result = () => {
       </S.TitleWrapper>
 
       <S.ResultList>
-        {result.recommends.map((workout) => {
+        {result.recommends.map((workout, idx) => {
           const {
             workoutId,
             koreanName,
@@ -85,6 +85,7 @@ const Result = () => {
           return (
             <Accordion
               key={workoutId}
+              idx={idx}
               bodyParts={bodyPartKoreanName.toString()}
               onOpen={onOpen}
               workout={workout}>

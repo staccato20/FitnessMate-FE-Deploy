@@ -14,6 +14,7 @@ interface AccordionContextProps {
   bodyParts: string
   onOpen: () => void
   workout: Workout | Recommend
+  idx?: number
 }
 
 const AccordionContext = createContext<AccordionContextProps>({
@@ -50,8 +51,9 @@ const Accordion = ({
   bodyParts,
   onOpen,
   workout,
+  idx,
 }: StrictPropsWithChildren<AccordionContextProps>) => {
-  const [visible, setVisible] = useState<boolean>(false)
+  const [visible, setVisible] = useState<boolean>(idx === 0 ? true : false)
 
   const toggle = () => {
     setVisible((prev) => !prev)
