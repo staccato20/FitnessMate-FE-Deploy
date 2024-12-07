@@ -188,6 +188,8 @@ export const ButtonNavBox = styled.div<{ $isFullRoutine: boolean }>`
   color: ${theme.Netural800};
   ${fonts.b2};
   opacity: ${({ $isFullRoutine }) => ($isFullRoutine ? "0.5" : "1")};
+  cursor: ${({ $isFullRoutine }) =>
+    $isFullRoutine ? "not-allowed" : "pointer"};
 `
 
 export const FullRoutineWarning = styled.span`
