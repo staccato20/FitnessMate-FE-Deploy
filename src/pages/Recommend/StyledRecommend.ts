@@ -39,6 +39,9 @@ export const RecommendWrapper = styled.div`
 
 export const ResultWrapper = styled(RecommendWrapper)`
   padding-top: 57px;
+  display: flex;
+  flex-direction: columnm;
+  gap: 32px;
 `
 
 export const LoadingText = styled(motion.span)`
@@ -169,6 +172,15 @@ export const TitleWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 14px;
+`
+
+export const TitleEmphasize = styled.span`
+  ${fonts.h1};
+  font-weight: 700;
+  &::after {
+    content: "을 추천했어요.";
+    font-weight: 600;
+  }
 `
 
 export const TitleContainer = styled.div`

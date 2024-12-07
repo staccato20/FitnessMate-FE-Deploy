@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react"
 
 import Header from "@components/Accordion/Header"
-import { AccordianWrapper } from "@components/Accordion/StyledAccordion"
+import { AccordionWrapper } from "@components/Accordion/StyledAccordion"
 import Trigger from "@components/Accordion/Trigger"
 
 import { Recommend, StrictPropsWithChildren, Workout } from "@typpes/type"
@@ -66,7 +66,7 @@ const Accordion = ({
         onOpen,
         workout,
       }}>
-      <AccordianWrapper $visible={visible}>{children}</AccordianWrapper>
+      <AccordionWrapper $visible={visible}>{children}</AccordionWrapper>
     </AccordionContext.Provider>
   )
 }

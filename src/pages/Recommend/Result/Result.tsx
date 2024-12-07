@@ -53,7 +53,9 @@ const Result = () => {
           <Title variant="big">
             {isLogin && user?.userName}님에게 맞는
             <br />
-            {result.recommends.length}가지 운동을 추천했어요.
+            <S.TitleEmphasize>
+              {result.recommends.length}가지 운동
+            </S.TitleEmphasize>
             <Title.SubBottomTitle>
               내 운동 루틴에 추가해보세요.
             </Title.SubBottomTitle>
