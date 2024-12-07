@@ -61,6 +61,8 @@ const RoutineAddModal = () => {
     refetchAll()
   }, [routines, refetchAll])
 
+  console.log(filteredRoutines)
+
   return (
     <Modal
       isOpen={isOpen}
@@ -88,11 +90,10 @@ const RoutineAddModal = () => {
                 onClick={() => {
                   handleToggleRoutine(routineId)
                 }}
-                $isSelected={selectedRoutines.has(routineId)}
                 disabled={isAdded}>
                 <S.RoutineName
                   $isSelected={selectedRoutines.has(routineId)}
-                  $isAdded={!!isAdded}>
+                  $isAdded={isAdded}>
                   {routineName}
                 </S.RoutineName>
                 <S.RoutineState>
