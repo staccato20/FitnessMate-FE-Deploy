@@ -61,8 +61,6 @@ const RoutineAddModal = () => {
     refetchAll()
   }, [routines, refetchAll])
 
-  console.log(filteredRoutines)
-
   return (
     <Modal
       isOpen={isOpen}
