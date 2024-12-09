@@ -83,9 +83,7 @@ export const RecommendInner = styled.div`
   height: calc(-205px + 100vh);
 `
 
-export const RecommendGuideWrapper = styled(motion.div)<{
-  $isScrollTop?: boolean
-}>`
+export const RecommendGuideWrapper = styled(motion.div)`
   position: relative;
   height: 100%;
   width: 100%;

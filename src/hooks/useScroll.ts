@@ -4,16 +4,10 @@ export const useScroll = (scrollRef?: RefObject<HTMLDivElement>) => {
   const target = scrollRef ? scrollRef.current : window
 
   const [position, setPosition] = useState(0)
-  const [isScrollTop, setIsScrollTop] = useState(true)
 
   const handleScroll = useCallback(() => {
     if (scrollRef && scrollRef.current) {
       setPosition(scrollRef.current.scrollTop)
-      if (scrollRef.current.scrollTop > 10) {
-        setIsScrollTop(false)
-      } else {
-        setIsScrollTop(true)
-      }
     } else {
       setPosition(window.scrollY)
     }
@@ -26,5 +20,5 @@ export const useScroll = (scrollRef?: RefObject<HTMLDivElement>) => {
     }
   }, [handleScroll, scrollRef, target])
 
-  return { position, isScrollTop }
+  return { position, isScrollTop: position < 10 }
 }

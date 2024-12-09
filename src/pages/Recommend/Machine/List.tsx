@@ -6,7 +6,7 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { MachineList } from "@typpes/type"
 
-import { animation } from "@styles/theme"
+import { getScrollAnimation } from "@utils/getScrollAnimaion"
 
 import * as S from "../StyledRecommend"
 
@@ -29,17 +29,11 @@ const List = ({
   machinesById,
   handleBodyPart,
 }: ListProps) => {
+  const { guideAnimation, machineAnimation } = getScrollAnimation(isScrollTop)
+
   return (
     <S.RecommendInner ref={scrollRef}>
-      <S.RecommendGuideWrapper
-        $isScrollTop={isScrollTop}
-        initial={{ opacity: 1, scale: 1, y: 0 }}
-        animate={
-          isScrollTop
-            ? { opacity: 1, scale: 1, y: 0 }
-            : { opacity: 0, scale: 0.8, y: -20 }
-        }
-        transition={{ ...animation.quick }}>
+      <S.RecommendGuideWrapper {...guideAnimation}>
         <S.RecommendGuide>
           <Avatar />
           <SpeechBubble>
@@ -50,9 +44,7 @@ const List = ({
         </S.RecommendGuide>
       </S.RecommendGuideWrapper>
 
-      <S.RecommendMachineWrapper
-        animate={isScrollTop ? { y: "366px" } : { y: "80px" }}
-        transition={{ ...animation.small }}>
+      <S.RecommendMachineWrapper {...machineAnimation}>
         {machines?.map(({ englishName, koreanName, id, imgPath }) => (
           <ImgCheckBox
             key={englishName}
