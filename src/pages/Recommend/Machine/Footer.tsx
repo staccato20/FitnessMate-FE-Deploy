@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
 import { UseMutationResult } from "@tanstack/react-query"
@@ -29,16 +28,11 @@ const Footer = ({
   machines,
   bodyPart,
 }: FooterProps) => {
-  const navigate = useNavigate()
-
   const selectedMachineLength = machinesById.size
 
-  const postRecommendId = usePostRecommendId()
+  const { mutate: postRecommendId } = usePostRecommendId()
 
   const handleRecommend = () => {
-    if (postRecommend.isPending) {
-      return
-    }
     const payload = {
       bodyPartKoreanName: bodyPart,
       machineKoreanName:
@@ -47,26 +41,7 @@ const Footer = ({
           : [...machines].map(({ koreanName }) => koreanName),
     }
 
-    postRecommendId(payload, {
-      onSuccess: (workoutRecommendationId) => {
-        postRecommend.mutate(workoutRecommendationId, {
-          onSuccess: (result) => {
-            const seenWorkoutIds = new Set()
-
-            result.recommends = result.recommends.filter((recommend) => {
-              if (seenWorkoutIds.has(recommend.workoutId)) {
-                return false
-              } else {
-                seenWorkoutIds.add(recommend.workoutId)
-                return true
-              }
-            })
-
-            navigate("/recommend/result", { state: result })
-          },
-        })
-      },
-    })
+    postRecommendId(payload)
   }
 
   return (

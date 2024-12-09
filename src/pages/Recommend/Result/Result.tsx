@@ -32,6 +32,7 @@ const Result = () => {
   const navigate = useNavigate()
 
   const { state: result } = useLocation() as RouteState
+  console.log(result)
 
   const { isLogin, user } = useUserStore()
   const { data: routines = [] } = useGetMyRoutines()

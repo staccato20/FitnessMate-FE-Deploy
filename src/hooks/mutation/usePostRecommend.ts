@@ -13,8 +13,7 @@ export const usePostRecommend = () => {
     onError: () => {
       console.error("에러")
     },
-    onSuccess: (result) => {
-      console.log(result)
+    onSuccess: () => {
       document.body.style.overflow = "auto"
     },
     onMutate: () => {
