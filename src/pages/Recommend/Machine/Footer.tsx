@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 
-import { useRecommendStore } from "@store/store"
-
 import { UseMutationResult } from "@tanstack/react-query"
 
 import Bottom from "@components/Bottom/Bottom"
@@ -22,17 +20,20 @@ interface FooterProps {
     unknown
   >
   machines: MachineList[]
+  bodyPart: string[]
 }
 
-const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
+const Footer = ({
+  machinesById,
+  postRecommend,
+  machines,
+  bodyPart,
+}: FooterProps) => {
   const navigate = useNavigate()
 
   const selectedMachineLength = machinesById.size
 
-  const { bodyPart } = useRecommendStore()
   const postRecommendId = usePostRecommendId()
-
-  const { setResult } = useRecommendStore()
 
   const handleRecommend = () => {
     if (postRecommend.isPending) {
@@ -61,8 +62,7 @@ const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
               }
             })
 
-            setResult(result)
-            navigate("/recommend/result")
+            navigate("/recommend/result", { state: result })
           },
         })
       },
@@ -74,41 +74,24 @@ const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
       <Bottom.Text>
         {selectedMachineLength}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
       </Bottom.Text>
-      {selectedMachineLength > 0 ? (
-        <RoundButton
-          onClick={handleRecommend}
-          variant="blue"
-          rightIcon="RightArrowWhite"
-          size="big"
-          isPending={postRecommend.isPending}>
-          {postRecommend.isPending ? (
-            <BeatLoader
-              size="7"
-              color="#DDEAF4"
-              margin={6}
-            />
-          ) : (
-            "추천 시작하기"
-          )}
-        </RoundButton>
-      ) : (
-        <RoundButton
-          onClick={handleRecommend}
-          variant="black"
-          rightIcon="RightArrowWhite"
-          size="big"
-          isPending={postRecommend.isPending}>
-          {postRecommend.isPending ? (
-            <BeatLoader
-              size="7"
-              color="#DDEAF4"
-              margin={6}
-            />
-          ) : (
-            "기구 선택 없이 추천 받기"
-          )}
-        </RoundButton>
-      )}
+      <RoundButton
+        onClick={handleRecommend}
+        variant={selectedMachineLength > 0 ? "blue" : "black"}
+        rightIcon="RightArrowWhite"
+        size="big"
+        isPending={postRecommend.isPending}>
+        {postRecommend.isPending ? (
+          <BeatLoader
+            size="7"
+            color="#DDEAF4"
+            margin={6}
+          />
+        ) : selectedMachineLength > 0 ? (
+          "추천 시작하기"
+        ) : (
+          "기구 선택 없이 추천 받기"
+        )}
+      </RoundButton>
     </Bottom>
   )
 }

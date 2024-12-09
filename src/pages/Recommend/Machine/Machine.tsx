@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
@@ -15,6 +15,10 @@ import { useScroll } from "@hooks/useScroll"
 
 import * as S from "../StyledRecommend"
 
+interface RouteState {
+  state: string[]
+}
+
 const Machine = () => {
   const navigate = useNavigate()
 
@@ -23,7 +27,9 @@ const Machine = () => {
   const { isScrollTop } = useScroll(scrollRef)
   const { coverAnimation, textAnimation } = useLoading()
 
-  const { data: machines = [] } = useGetMachineList()
+  const { state: bodyPart } = useLocation() as RouteState
+
+  const { data: machines = [] } = useGetMachineList(bodyPart)
   const postRecommend = usePostRecommend()
 
   const updateSet = (set: Set<number>, id: number) => {
@@ -76,6 +82,7 @@ const Machine = () => {
         />
       </S.RecommendWrapper>
       <Footer
+        bodyPart={bodyPart}
         machinesById={machinesById}
         postRecommend={postRecommend}
         machines={machines}

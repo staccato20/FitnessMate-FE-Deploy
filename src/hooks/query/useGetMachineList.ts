@@ -1,11 +1,8 @@
-import { useRecommendStore } from "@store/store"
-
 import { useQuery } from "@tanstack/react-query"
 
 import machineAPI from "@apis/domain/machine"
 
-export const useGetMachineList = () => {
-  const { bodyPart } = useRecommendStore()
+export const useGetMachineList = (bodyPart: string[]) => {
   return useQuery({
     queryKey: ["getMachineList", bodyPart],
     queryFn: async () =>

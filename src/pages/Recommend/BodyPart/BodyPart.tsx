@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { useRecommendStore } from "@store/store"
-
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
@@ -16,7 +14,6 @@ import * as S from "../StyledRecommend"
 const BodyPart = () => {
   const { bodyParts = [] } = useGetBodyPart("recommend")
   const [selectedBodyParts, setSelectedBodyParts] = useState<number[]>([])
-  const { setBodyPart } = useRecommendStore()
 
   const navigate = useNavigate()
 
@@ -38,8 +35,8 @@ const BodyPart = () => {
     const koreanBodyParts = selectedBodyParts.map(
       (idx) => bodyParts[idx - 1].koreanName,
     )
-    setBodyPart(koreanBodyParts)
-    navigate("/recommend/machine")
+
+    navigate("/recommend/machine", { state: koreanBodyParts })
   }
 
   return (
@@ -61,7 +58,7 @@ const BodyPart = () => {
         handleBodyPart={handleBodyPart}
       />
       <Footer
-        selectedBodyParts={selectedBodyParts}
+        selectedBodyPartLength={selectedBodyParts.length}
         handleNextPage={handleNextPage}
       />
     </S.RecommendWrapper>
