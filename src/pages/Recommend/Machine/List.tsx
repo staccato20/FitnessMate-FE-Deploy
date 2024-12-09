@@ -15,7 +15,7 @@ interface MachineListWithId extends MachineList {
 }
 
 interface ListProps {
-  isScrollTop: boolean
+  isScrollTop?: boolean
   scrollRef: ForwardedRef<HTMLDivElement>
   machines: MachineListWithId[]
   machinesById: Set<number>
@@ -23,7 +23,7 @@ interface ListProps {
 }
 
 const List = ({
-  isScrollTop,
+  isScrollTop = true,
   scrollRef,
   machines,
   machinesById,

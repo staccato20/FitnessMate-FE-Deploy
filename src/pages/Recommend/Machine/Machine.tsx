@@ -33,6 +33,29 @@ const Machine = () => {
     clamp: true,
   })
 
+  const CoverAnimation = {
+    initial: { x: "-50%", y: "-50%", opacity: 0, scale: 0.8 },
+    animate: {
+      x: "-50%",
+      y: "-50%",
+      opacity: 1,
+      scale: 1,
+    },
+    transition: animation.slow,
+    style: { rotate, scale },
+  }
+
+  const TextAnimation = {
+    initial: { x: "-50%", y: "-50%", opacity: 0, scale: 0.8 },
+    animate: {
+      x: "-50%",
+      y: "-50%",
+      opacity: 1,
+      scale: 1,
+    },
+    transition: animation.slow,
+  }
+
   useAnimationFrame(() => {
     if (time.get() >= 6000) {
       time.set(0)
@@ -61,26 +84,8 @@ const Machine = () => {
         <>
           <BackOverlay />
           <S.LayerWrapper>
-            <S.CoverWrapper
-              initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
-              animate={{
-                x: "-50%",
-                y: "-50%",
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={animation.slow}
-              style={{ rotate, scale }}
-            />
-            <S.LoadingText
-              initial={{ x: "-50%", y: "-50%", opacity: 0, scale: 0.8 }}
-              animate={{
-                x: "-50%",
-                y: "-50%",
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={animation.slow}>
+            <S.CoverWrapper {...CoverAnimation} />
+            <S.LoadingText {...TextAnimation}>
               추천을 위한
               <br /> 분석을 시작했어요
             </S.LoadingText>
