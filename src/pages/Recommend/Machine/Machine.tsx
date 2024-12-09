@@ -20,10 +20,11 @@ const Machine = () => {
 
   const [machinesById, setMachinesById] = useState(new Set<number>())
   const scrollRef = useRef<HTMLDivElement>(null)
-  const { data: machines = [] } = useGetMachineList()
-  const postRecommend = usePostRecommend()
   const { isScrollTop } = useScroll(scrollRef)
   const { coverAnimation, textAnimation } = useLoading()
+
+  const { data: machines = [] } = useGetMachineList()
+  const postRecommend = usePostRecommend()
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)

@@ -27,7 +27,7 @@ interface FooterProps {
 const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
   const navigate = useNavigate()
 
-  const numChecked = machinesById.size
+  const selectedMachineLength = machinesById.size
 
   const { bodyPart } = useRecommendStore()
   const postRecommendId = usePostRecommendId()
@@ -41,7 +41,7 @@ const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
     const payload = {
       bodyPartKoreanName: bodyPart,
       machineKoreanName:
-        numChecked > 0
+        selectedMachineLength > 0
           ? [...machinesById].map((id) => machines[id].koreanName)
           : [...machines].map(({ koreanName }) => koreanName),
     }
@@ -72,9 +72,9 @@ const Footer = ({ machinesById, postRecommend, machines }: FooterProps) => {
   return (
     <Bottom flex="space-between">
       <Bottom.Text>
-        {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
+        {selectedMachineLength}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
       </Bottom.Text>
-      {numChecked > 0 ? (
+      {selectedMachineLength > 0 ? (
         <RoundButton
           onClick={handleRecommend}
           variant="blue"
