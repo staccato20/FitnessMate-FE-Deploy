@@ -89,7 +89,7 @@ export const RecommendGuideWrapper = styled(motion.div)<{
   position: relative;
   height: 100%;
   width: 100%;
-  height: 366px;
+  height: 400px;
 `
 
 export const RecommendGuide = styled(motion.div)`

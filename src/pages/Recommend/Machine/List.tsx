@@ -51,7 +51,7 @@ const List = ({
       </S.RecommendGuideWrapper>
 
       <S.RecommendMachineWrapper
-        animate={isScrollTop ? { y: "366px" } : { y: "70px" }}
+        animate={isScrollTop ? { y: "366px" } : { y: "80px" }}
         transition={{ ...animation.small }}>
         {machines?.map(({ englishName, koreanName, id, imgPath }) => (
           <ImgCheckBox
