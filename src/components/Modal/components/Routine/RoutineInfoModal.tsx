@@ -19,6 +19,8 @@ import * as S from "./StyledRoutineModal"
 
 const RoutineInfoModal = () => {
   const { isOpen, onClose } = useModal("루틴정보")
+  const { onClose: closeAddModal } = useModal("루틴추가")
+
   const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
   const { mutate, reset: resetMutation } = usePostAddRoutine()
   const {
@@ -60,6 +62,7 @@ const RoutineInfoModal = () => {
           onSuccess: () => {
             onClose()
             resetMutation()
+            closeAddModal()
           },
         },
       )

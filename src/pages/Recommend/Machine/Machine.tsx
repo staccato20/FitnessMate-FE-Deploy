@@ -1,22 +1,16 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { BeatLoader } from "react-spinners"
 
-import { useRecommendStore } from "@store/store"
 import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
 
-import Avatar from "@components/Avatar/Avatar"
-import Bottom from "@components/Bottom/Bottom"
-import RoundButton from "@components/Button/RoundButton"
-import ImgCheckBox from "@components/CheckBox/ImgCheckBox"
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
-import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
+import Footer from "@pages/Recommend/Machine/Footer"
+import List from "@pages/Recommend/Machine/List"
 import { BackOverlay } from "@pages/Search/StyledSearch"
 
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
-import { usePostRecommendId } from "@hooks/mutation/usePostRecommendId"
 import { useGetMachineList } from "@hooks/query/useGetMachineList"
 import { useScroll } from "@hooks/useScroll"
 
@@ -25,11 +19,12 @@ import { animation } from "@styles/theme"
 import * as S from "../StyledRecommend"
 
 const Machine = () => {
-  const { data: machines = [] } = useGetMachineList()
-  const { bodyPart } = useRecommendStore()
-  const postRecommendId = usePostRecommendId()
-  const postRecommend = usePostRecommend()
+  const navigate = useNavigate()
+
+  const [machinesById, setMachinesById] = useState(new Set<number>())
   const scrollRef = useRef<HTMLDivElement>(null)
+  const { data: machines = [] } = useGetMachineList()
+  const postRecommend = usePostRecommend()
   const { isScrollTop } = useScroll(scrollRef)
 
   const time = useMotionValue(0)
@@ -45,16 +40,6 @@ const Machine = () => {
       time.set(time.get() + 16)
     }
   })
-
-  const { setResult } = useRecommendStore()
-
-  const [machinesById, setMachinesById] = useState(new Set<number>())
-  const numChecked = machinesById.size
-  const navigate = useNavigate()
-
-  const handleBackPage = () => {
-    navigate(-1)
-  }
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)
@@ -72,49 +57,9 @@ const Machine = () => {
     setMachinesById((prevSet) => updateSet(prevSet, id))
   }
 
-  const handleRecommend = () => {
-    if (postRecommend.isPending) {
-      return
-    }
-    const payload = {
-      bodyPartKoreanName: bodyPart,
-      machineKoreanName:
-        numChecked > 0
-          ? [...machinesById].map((id) => machines[id].koreanName)
-          : [...machines].map(({ koreanName }) => koreanName),
-    }
-
-    postRecommendId(payload, {
-      onSuccess: (workoutRecommendationId) => {
-        postRecommend.mutate(workoutRecommendationId, {
-          onSuccess: (result) => {
-            const seenWorkoutIds = new Set()
-
-            result.recommends = result.recommends.filter((recommend) => {
-              if (seenWorkoutIds.has(recommend.workoutId)) {
-                return false
-              } else {
-                seenWorkoutIds.add(recommend.workoutId)
-                return true
-              }
-            })
-
-            setResult(result)
-            navigate("/recommend/result")
-          },
-        })
-      },
-    })
+  const handleBackPage = () => {
+    navigate(-1)
   }
-
-  useEffect(() => {
-    if (postRecommend.isPending) {
-      document.body.style.overflow = "hidden"
-    }
-    return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [postRecommend.isPending])
 
   return (
     <>
@@ -161,83 +106,19 @@ const Machine = () => {
             variant="round"
           />
         </S.Status>
-        <S.RecommendInner ref={scrollRef}>
-          <S.RecommendGuideWrapper>
-            <S.RecommendGuide
-              initial={{ transform: "translate(-50%, -50%)" }}
-              animate={
-                isScrollTop
-                  ? { opacity: 1, scale: 1, y: 0 }
-                  : { opacity: 0, scale: 0.8, y: -20 }
-              }
-              transition={{ ...animation.quick }}>
-              <Avatar />
-              <SpeechBubble>
-                <SpeechBubble.MainText>
-                  사용 가능한 기구를 선택해주세요!
-                </SpeechBubble.MainText>
-              </SpeechBubble>
-            </S.RecommendGuide>
-          </S.RecommendGuideWrapper>
-
-          <S.RecommendMachineWrapper
-            animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
-            transition={{ ...animation.small }}>
-            {machines?.map(({ englishName, koreanName, id, imgPath }) => (
-              <ImgCheckBox
-                key={englishName}
-                src={imgPath}
-                alt="테스트 이미지를 설명"
-                isSelected={machinesById.has(id)}
-                handleToggle={() => handleBodyPart(id)}
-                variant="big">
-                {koreanName}
-              </ImgCheckBox>
-            ))}
-          </S.RecommendMachineWrapper>
-        </S.RecommendInner>
-
-        <Bottom flex="space-between">
-          <Bottom.Text>
-            {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
-          </Bottom.Text>
-          {numChecked > 0 ? (
-            <RoundButton
-              onClick={handleRecommend}
-              variant="blue"
-              rightIcon="RightArrowWhite"
-              size="big"
-              isPending={postRecommend.isPending}>
-              {postRecommend.isPending ? (
-                <BeatLoader
-                  size="7"
-                  color="#DDEAF4"
-                  margin={6}
-                />
-              ) : (
-                "추천 시작하기"
-              )}
-            </RoundButton>
-          ) : (
-            <RoundButton
-              onClick={handleRecommend}
-              variant="black"
-              rightIcon="RightArrowWhite"
-              size="big"
-              isPending={postRecommend.isPending}>
-              {postRecommend.isPending ? (
-                <BeatLoader
-                  size="7"
-                  color="#DDEAF4"
-                  margin={6}
-                />
-              ) : (
-                "기구 선택 없이 추천 받기"
-              )}
-            </RoundButton>
-          )}
-        </Bottom>
+        <List
+          isScrollTop={isScrollTop}
+          scrollRef={scrollRef}
+          machines={machines}
+          machinesById={machinesById}
+          handleBodyPart={handleBodyPart}
+        />
       </S.RecommendWrapper>
+      <Footer
+        machinesById={machinesById}
+        postRecommend={postRecommend}
+        machines={machines}
+      />
     </>
   )
 }
