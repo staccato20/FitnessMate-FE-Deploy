@@ -1,8 +1,6 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
-
 import IconButton from "@components/IconButton/IconButton"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
@@ -12,9 +10,8 @@ import { BackOverlay } from "@pages/Search/StyledSearch"
 
 import { usePostRecommend } from "@hooks/mutation/usePostRecommend"
 import { useGetMachineList } from "@hooks/query/useGetMachineList"
+import { useLoading } from "@hooks/useLodaing"
 import { useScroll } from "@hooks/useScroll"
-
-import { animation } from "@styles/theme"
 
 import * as S from "../StyledRecommend"
 
@@ -26,43 +23,7 @@ const Machine = () => {
   const { data: machines = [] } = useGetMachineList()
   const postRecommend = usePostRecommend()
   const { isScrollTop } = useScroll(scrollRef)
-
-  const time = useMotionValue(0)
-  const rotate = useTransform(time, [0, 6000], [0, 360], { clamp: false })
-  const scale = useTransform(time, [0, 3000, 6000], [1, 1.2, 1], {
-    clamp: true,
-  })
-
-  const CoverAnimation = {
-    initial: { x: "-50%", y: "-50%", opacity: 0, scale: 0.8 },
-    animate: {
-      x: "-50%",
-      y: "-50%",
-      opacity: 1,
-      scale: 1,
-    },
-    transition: animation.slow,
-    style: { rotate, scale },
-  }
-
-  const TextAnimation = {
-    initial: { x: "-50%", y: "-50%", opacity: 0, scale: 0.8 },
-    animate: {
-      x: "-50%",
-      y: "-50%",
-      opacity: 1,
-      scale: 1,
-    },
-    transition: animation.slow,
-  }
-
-  useAnimationFrame(() => {
-    if (time.get() >= 6000) {
-      time.set(0)
-    } else {
-      time.set(time.get() + 16)
-    }
-  })
+  const { coverAnimation, textAnimation } = useLoading()
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)
@@ -84,8 +45,8 @@ const Machine = () => {
         <>
           <BackOverlay />
           <S.LayerWrapper>
-            <S.CoverWrapper {...CoverAnimation} />
-            <S.LoadingText {...TextAnimation}>
+            <S.CoverWrapper {...coverAnimation} />
+            <S.LoadingText {...textAnimation}>
               추천을 위한
               <br /> 분석을 시작했어요
             </S.LoadingText>
