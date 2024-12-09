@@ -29,7 +29,6 @@ const Footer = ({
   bodyPart,
 }: FooterProps) => {
   const selectedMachineLength = machinesById.size
-
   const { mutate: postRecommendId } = usePostRecommendId()
 
   const handleRecommend = () => {
@@ -40,8 +39,11 @@ const Footer = ({
           ? [...machinesById].map((id) => machines[id].koreanName)
           : [...machines].map(({ koreanName }) => koreanName),
     }
-
-    postRecommendId(payload)
+    postRecommendId(payload, {
+      onSuccess: (workoutRecommendId) => {
+        postRecommend.mutate(workoutRecommendId)
+      },
+    })
   }
 
   return (
