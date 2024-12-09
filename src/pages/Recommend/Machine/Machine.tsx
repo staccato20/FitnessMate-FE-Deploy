@@ -43,13 +43,7 @@ const Machine = () => {
 
   const updateSet = (set: Set<number>, id: number) => {
     const updatedSet = new Set(set)
-
-    if (updatedSet.has(id)) {
-      updatedSet.delete(id)
-    } else {
-      updatedSet.add(id)
-    }
-
+    void (updatedSet.has(id) ? updatedSet.delete(id) : updatedSet.add(id))
     return updatedSet
   }
 

@@ -31,15 +31,16 @@ const List = ({
 }: ListProps) => {
   return (
     <S.RecommendInner ref={scrollRef}>
-      <S.RecommendGuideWrapper>
-        <S.RecommendGuide
-          initial={{ transform: "translate(-50%, -50%)" }}
-          animate={
-            isScrollTop
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 0, scale: 0.8, y: -20 }
-          }
-          transition={{ ...animation.quick }}>
+      <S.RecommendGuideWrapper
+        $isScrollTop={isScrollTop}
+        initial={{ opacity: 1, scale: 1, y: 0 }}
+        animate={
+          isScrollTop
+            ? { opacity: 1, scale: 1, y: 0 }
+            : { opacity: 0, scale: 0.8, y: -20 }
+        }
+        transition={{ ...animation.quick }}>
+        <S.RecommendGuide>
           <Avatar />
           <SpeechBubble>
             <SpeechBubble.MainText>
@@ -50,7 +51,7 @@ const List = ({
       </S.RecommendGuideWrapper>
 
       <S.RecommendMachineWrapper
-        animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
+        animate={isScrollTop ? { y: "366px" } : { y: "70px" }}
         transition={{ ...animation.small }}>
         {machines?.map(({ englishName, koreanName, id, imgPath }) => (
           <ImgCheckBox
