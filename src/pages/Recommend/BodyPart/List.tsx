@@ -12,6 +12,22 @@ interface ListProps {
   bodyParts: BodyPartList[]
   selectedBodyParts: number[]
 }
+const BODYPART_TAB = [
+  {
+    label: "상체",
+    startIndex: 0,
+    lastIndex: 6,
+  },
+  {
+    label: "하체",
+    startIndex: 6,
+    lastIndex: undefined,
+  },
+]
+
+const BODYPART_DEFAULT_IMGURL =
+  "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
+
 const List = ({ handleBodyPart, bodyParts, selectedBodyParts }: ListProps) => {
   return (
     <S.BodyPartWrapper>
@@ -25,51 +41,29 @@ const List = ({ handleBodyPart, bodyParts, selectedBodyParts }: ListProps) => {
           </SpeechBubble>
         </GS.RecommendGuide>
       </GS.RecommendGuideWrapper>
-      <S.TabWrapper key="상체">
-        <S.TabTitle>{"상체"}</S.TabTitle>
-        <S.TabList>
-          {bodyParts.slice(0, 6).map(({ koreanName, imgPath, bodyPartId }) => (
-            <ImgCheckBox
-              key={bodyPartId}
-              src={
-                imgPath
-                  ? imgPath
-                  : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
-              }
-              alt="테스트 이미지"
-              handleToggle={() => {
-                handleBodyPart(bodyPartId)
-              }}
-              isSelected={selectedBodyParts.includes(bodyPartId)}
-              variant="small">
-              {koreanName}
-            </ImgCheckBox>
-          ))}
-        </S.TabList>
-      </S.TabWrapper>
-      <S.TabWrapper key="하체">
-        <S.TabTitle>{"하체"}</S.TabTitle>
-        <S.TabList>
-          {bodyParts
-            .slice(6)
-            .map(({ englishName, koreanName, imgPath, bodyPartId }) => (
-              <ImgCheckBox
-                key={englishName}
-                src={
-                  imgPath
-                    ? imgPath
-                    : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
-                }
-                alt="테스트 이미지"
-                handleToggle={() => {
-                  handleBodyPart(bodyPartId)
-                }}
-                isSelected={selectedBodyParts.includes(bodyPartId)}
-                variant="small">
-                {koreanName}
-              </ImgCheckBox>
-            ))}
-        </S.TabList>
+      <S.TabWrapper>
+        {BODYPART_TAB.map(({ label, startIndex, lastIndex }) => (
+          <S.TabBox key={label}>
+            <S.TabTitle>{label}</S.TabTitle>
+            <S.TabList>
+              {bodyParts
+                .slice(startIndex, lastIndex)
+                .map(({ koreanName, imgPath, bodyPartId }) => (
+                  <ImgCheckBox
+                    key={bodyPartId}
+                    src={imgPath ? imgPath : BODYPART_DEFAULT_IMGURL}
+                    alt="운동부위 이미지"
+                    handleToggle={() => {
+                      handleBodyPart(bodyPartId)
+                    }}
+                    isSelected={selectedBodyParts.includes(bodyPartId)}
+                    variant="small">
+                    {koreanName}
+                  </ImgCheckBox>
+                ))}
+            </S.TabList>
+          </S.TabBox>
+        ))}
       </S.TabWrapper>
     </S.BodyPartWrapper>
   )

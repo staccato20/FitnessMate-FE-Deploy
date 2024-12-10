@@ -22,7 +22,7 @@ import {
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import { useModal } from "@hooks/useModal"
 
-import * as S from "../StyledRecommend"
+import * as S from "./StyledResult"
 
 interface RouteState {
   state: PostRecommendResponse
@@ -32,7 +32,6 @@ const Result = () => {
   const navigate = useNavigate()
 
   const { state: result } = useLocation() as RouteState
-  console.log(result)
 
   const { isLogin, user } = useUserStore()
   const { data: routines = [] } = useGetMyRoutines()

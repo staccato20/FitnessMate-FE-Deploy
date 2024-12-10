@@ -3,12 +3,12 @@ import { motion } from "framer-motion"
 import styled, { css } from "styled-components"
 
 export const RecommendWrapper = styled.div`
-  max-width: 752px;
+  max-width: 836px;
   margin: 0 auto;
-  padding-top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 18px 2% 18px 2%;
 `
 
 export const Status = styled.div<{ $isScrollTop: boolean }>`

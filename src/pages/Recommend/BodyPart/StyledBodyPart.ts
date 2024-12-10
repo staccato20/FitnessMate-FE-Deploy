@@ -5,9 +5,16 @@ import theme, { fonts } from "@styles/theme"
 export const BodyPartWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 205px);
 `
 
 export const TabWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+`
+
+export const TabBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -19,7 +26,7 @@ export const TabTitle = styled.div`
   ${fonts.b3};
 `
 
-export const TabList = styled.div`
+export const TabList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   width: 100%;

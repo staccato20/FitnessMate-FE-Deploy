@@ -8,7 +8,8 @@ import { MachineList } from "@typpes/type"
 
 import { getScrollAnimation } from "@utils/getScrollAnimaion"
 
-import * as S from "../StyledRecommend"
+import * as GS from "../StyledRecommend"
+import * as S from "./StyledMachine"
 
 interface MachineListWithId extends MachineList {
   id: number
@@ -33,16 +34,16 @@ const List = ({
 
   return (
     <S.RecommendInner ref={scrollRef}>
-      <S.RecommendGuideWrapper {...guideAnimation}>
-        <S.RecommendGuide>
+      <GS.RecommendGuideWrapper {...guideAnimation}>
+        <GS.RecommendGuide>
           <Avatar />
           <SpeechBubble>
             <SpeechBubble.MainText>
               사용 가능한 기구를 선택해주세요!
             </SpeechBubble.MainText>
           </SpeechBubble>
-        </S.RecommendGuide>
-      </S.RecommendGuideWrapper>
+        </GS.RecommendGuide>
+      </GS.RecommendGuideWrapper>
 
       <S.RecommendMachineWrapper {...machineAnimation}>
         {machines?.map(({ englishName, koreanName, id, imgPath }) => (
