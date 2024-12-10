@@ -14,7 +14,8 @@ import { useGetMachineList } from "@hooks/query/useGetMachineList"
 import { useLoading } from "@hooks/useLodaing"
 import { useScroll } from "@hooks/useScroll"
 
-import * as S from "../StyledRecommend"
+import * as GS from "../StyledRecommend"
+import * as S from "./StyledMachine"
 
 interface RouteState {
   state: string[]
@@ -62,8 +63,8 @@ const Machine = () => {
         </>
       )}
 
-      <S.RecommendWrapper>
-        <S.Status $isScrollTop={isScrollTop}>
+      <GS.RecommendWrapper>
+        <GS.Status $isScrollTop={isScrollTop}>
           <IconButton
             icon="LeftArrowBold"
             size={30}
@@ -73,7 +74,7 @@ const Machine = () => {
             progress={2}
             variant="round"
           />
-        </S.Status>
+        </GS.Status>
         <List
           isScrollTop={isScrollTop}
           scrollRef={scrollRef}
@@ -81,7 +82,7 @@ const Machine = () => {
           machinesById={machinesById}
           handleBodyPart={handleBodyPart}
         />
-      </S.RecommendWrapper>
+      </GS.RecommendWrapper>
       <Footer
         bodyPart={bodyPart}
         machinesById={machinesById}

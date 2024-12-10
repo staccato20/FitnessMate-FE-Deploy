@@ -4,7 +4,8 @@ import SpeechBubble from "@components/SpeechBubble/SpeechBubble"
 
 import { BodyPartList } from "@typpes/type"
 
-import * as S from "../StyledRecommend"
+import * as GS from "../StyledRecommend"
+import * as S from "./StyledBodyPart"
 
 interface ListProps {
   handleBodyPart: (bodyPartIdx: number) => void
@@ -14,16 +15,16 @@ interface ListProps {
 const List = ({ handleBodyPart, bodyParts, selectedBodyParts }: ListProps) => {
   return (
     <S.BodyPartWrapper>
-      <S.RecommendGuideWrapper>
-        <S.RecommendGuide>
+      <GS.RecommendGuideWrapper>
+        <GS.RecommendGuide>
           <Avatar />
           <SpeechBubble>
             <SpeechBubble.MainText>
               어떤 부위의 운동을 추천해드릴까요?
             </SpeechBubble.MainText>
           </SpeechBubble>
-        </S.RecommendGuide>
-      </S.RecommendGuideWrapper>
+        </GS.RecommendGuide>
+      </GS.RecommendGuideWrapper>
       <S.TabWrapper key="상체">
         <S.TabTitle>{"상체"}</S.TabTitle>
         <S.TabList>

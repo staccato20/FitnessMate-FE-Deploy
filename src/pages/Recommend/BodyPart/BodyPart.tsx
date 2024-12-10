@@ -9,7 +9,7 @@ import List from "@pages/Recommend/BodyPart/List"
 
 import { useGetBodyPart } from "@hooks/query/useGetBodyPart"
 
-import * as S from "../StyledRecommend"
+import * as GS from "../StyledRecommend"
 
 const BodyPart = () => {
   const { bodyParts = [] } = useGetBodyPart("recommend")
@@ -40,8 +40,8 @@ const BodyPart = () => {
   }
 
   return (
-    <S.RecommendWrapper>
-      <S.Status $isScrollTop={true}>
+    <GS.RecommendWrapper>
+      <GS.Status $isScrollTop={true}>
         <IconButton
           icon="LeftArrowBold"
           size={30}
@@ -51,7 +51,7 @@ const BodyPart = () => {
           progress={1}
           variant="round"
         />
-      </S.Status>
+      </GS.Status>
       <List
         bodyParts={bodyParts}
         selectedBodyParts={selectedBodyParts}
@@ -61,7 +61,7 @@ const BodyPart = () => {
         selectedBodyPartLength={selectedBodyParts.length}
         handleNextPage={handleNextPage}
       />
-    </S.RecommendWrapper>
+    </GS.RecommendWrapper>
   )
 }
 export default BodyPart
