@@ -1,45 +1,46 @@
-import Icon from "@components/Icon/Icon"
-
-import MyFitAPI from "@apis/domain/myfit"
+import { StrictPropsWithChildren } from "@typpes/type"
 
 import * as S from "./StyledDropDown"
+import { POSITION, VARIANTS } from "./StyledDropDown"
+
+export type Position = "my" | "nav"
+export type Variant = "grey" | "red"
+
+interface DropDownProps {
+  variant?: Variant
+  position?: Position
+  onClick?: (e: React.MouseEvent) => void
+}
 
 const DropDown = ({
-  myWorkoutId,
-  isRemoveSuccess,
-}: {
-  myWorkoutId: number
-  isRemoveSuccess: () => void
-}) => {
-  const isRemoveWorkout = async (myWorkoutId: number) => {
-    try {
-      await MyFitAPI.deleteMyWorkout(myWorkoutId)
-      isRemoveSuccess()
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  position,
+  children,
+}: StrictPropsWithChildren<DropDownProps>) => {
+  const positionStyle = position ? POSITION[position] : undefined
+
   return (
-    <S.DropDownWrapper>
-      <S.DropDownButton>
-        <div className="fixWorkout">운동량 수정하기</div>
-        <Icon
-          icon="PencilDarkGrey"
-          size={18}
-        />
-      </S.DropDownButton>
-      <S.DropDownButton
-        onClick={() => {
-          isRemoveWorkout(myWorkoutId)
-        }}>
-        <div className="removeWorkout">운동 삭제하기</div>
-        <Icon
-          icon="RedTrash"
-          size={18}
-        />
-      </S.DropDownButton>
+    <S.DropDownWrapper $positionStyle={positionStyle}>
+      {children}
     </S.DropDownWrapper>
   )
 }
+
+const DropDownButton = ({
+  variant = "grey",
+  onClick,
+  children,
+}: StrictPropsWithChildren<DropDownProps>) => {
+  const variantStyle = VARIANTS[variant]
+
+  return (
+    <S.DropDownButton
+      $variantStyle={variantStyle}
+      onClick={onClick}>
+      {children}
+    </S.DropDownButton>
+  )
+}
+
+DropDown.DropDownButton = DropDownButton
 
 export default DropDown
