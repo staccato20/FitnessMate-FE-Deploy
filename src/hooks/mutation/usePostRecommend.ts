@@ -4,19 +4,23 @@ import { useMutation } from "@tanstack/react-query"
 
 import recommendAPI from "@apis/domain/recommend"
 
+import { useModal } from "@hooks/useModal"
+
 export const usePostRecommend = () => {
   const navigate = useNavigate()
+  const { onOpen } = useModal("로딩")
 
   return useMutation({
     mutationKey: ["usePostRecommendId"],
     mutationFn: async (workoutRecommendId: number) =>
       recommendAPI.workoutHistory(workoutRecommendId),
-    retry: 120,
+    retry: 10,
     retryDelay: 1000 * 1,
 
     onError: () => {
-      console.error("에러")
+      onOpen()
     },
+
     onSuccess: (result) => {
       const seenWorkoutIds = new Set()
 

@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 
 import IconButton from "@components/IconButton/IconButton"
+import AlertLoadingModal from "@components/Modal/components/Alert/AlertLoadingModal"
 import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import Footer from "@pages/Recommend/Machine/Footer"
@@ -87,6 +88,7 @@ const Machine = () => {
         postRecommend={postRecommend}
         machines={machines}
       />
+      <AlertLoadingModal />
     </>
   )
 }
