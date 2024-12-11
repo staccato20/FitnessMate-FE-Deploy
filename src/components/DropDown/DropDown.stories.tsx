@@ -21,7 +21,7 @@ export const MyWorkout: Story = {
       <DropDown.DropDownButton variant="grey">
         운동량 수정하기
         <Icon
-          icon="PencilDarkGrey"
+          icon="PencilGrey"
           size={18}
         />
       </DropDown.DropDownButton>
