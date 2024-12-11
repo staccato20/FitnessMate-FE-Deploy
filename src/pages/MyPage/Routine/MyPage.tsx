@@ -9,13 +9,13 @@ import Title from "@components/Title/Title"
 
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
-import { useUserInfo } from "@hooks/query/useUserInfo"
+import { useGetUserInfo } from "@hooks/query/useGetUserInfo"
 
 import DragAndDrop from "./DragAndDrop"
 import * as S from "./StyledMyPage"
 
 const MyPage = () => {
-  const { userInfo } = useUserInfo()
+  const { userInfo } = useGetUserInfo()
   const userName = userInfo ? userInfo.userName : undefined
 
   const { bodyDatas } = useGetFetchRecentData()

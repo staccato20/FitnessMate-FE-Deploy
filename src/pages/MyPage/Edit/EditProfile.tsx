@@ -13,7 +13,7 @@ import { EditUserPayload } from "@typpes/type"
 import { User } from "@typpes/type"
 
 import { useEditProfile } from "@hooks/mutation/useEditProfile"
-import { useUserInfo } from "@hooks/query/useUserInfo"
+import { useGetUserInfo } from "@hooks/query/useGetUserInfo"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -22,7 +22,7 @@ import * as S from "./StyledEditProfile"
 const EditProfile = () => {
   const navigate = useNavigate()
 
-  const { userInfo } = useUserInfo()
+  const { userInfo } = useGetUserInfo()
 
   const { register, formState, handleSubmit, reset, watch, setValue, trigger } =
     useForm<Omit<User, "sex">>({
