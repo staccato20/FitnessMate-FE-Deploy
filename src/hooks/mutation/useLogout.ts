@@ -18,7 +18,6 @@ export const useLogout = () => {
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("rememberMe")
-      // queryClient.removeQueries({ queryKey: ["userInfo"] })
       navigate("/")
     },
   })
