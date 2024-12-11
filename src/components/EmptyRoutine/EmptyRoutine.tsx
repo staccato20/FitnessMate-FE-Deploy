@@ -1,7 +1,6 @@
 import RoundButton from "@components/Button/RoundButton"
+import { EmptyRoutineWrapper } from "@components/EmptyRoutine/StyledEmptyRoutine"
 import Title from "@components/Title/Title"
-
-import { EmptyRoutineWrapper } from "@pages/MyPage/Routine/EmptyRoutine/StyledEmptyRoutine"
 
 const EmptyRoutine = () => {
   const onClick = () => {}

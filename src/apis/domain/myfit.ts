@@ -37,7 +37,7 @@ const editMyWorkout = async (myWorkoutId: number, params: MyWorkoutIndex) => {
 
 const deleteMyWorkout = async (myWorkoutId: number) => {
   await instance
-    .get(`/api/myfit/routines/workout/delete/${myWorkoutId}`)
+    .get(`/myfit/routines/workout/delete/${myWorkoutId}`)
     .then((res) => res.data)
 }
 
