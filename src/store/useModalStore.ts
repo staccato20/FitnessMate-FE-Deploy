@@ -18,6 +18,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
     나가기: false,
     로딩: false,
     삭제: false,
+    성공: false,
     루틴시작: false,
     루틴생성: false,
     루틴정보: false,

@@ -6,6 +6,7 @@ import { omit } from "lodash"
 
 import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
+import SuccessModal from "@components/Modal/components/Success/SuccessModal"
 
 import { EditUserPasswordPayload } from "@typpes/type"
 
@@ -21,20 +22,32 @@ interface PasswordPayload extends EditUserPasswordPayload {
 
 const EditPassword = () => {
   const navigate = useNavigate()
-  const { mutate: editPassword } = usePostEditPassword()
+  const { mutate: editPassword, isSuccess, data } = usePostEditPassword()
 
-  const { register, formState, handleSubmit } = useForm<PasswordPayload>({
-    mode: "onChange",
-    defaultValues: {
-      oldPassword: "",
-      newPassword: "",
-      newPasswordCheck: "",
+  const { register, formState, handleSubmit, reset } = useForm<PasswordPayload>(
+    {
+      mode: "onChange",
+      defaultValues: {
+        oldPassword: "",
+        newPassword: "",
+        newPasswordCheck: "",
+      },
     },
-  })
+  )
 
   const onSubmit = (formValue: PasswordPayload) => {
     const editedPasswordPayload = omit(formValue, ["newPasswordCheck"])
     editPassword(editedPasswordPayload)
+    if (isSuccess && data.data === "ok") {
+      reset(
+        {
+          oldPassword: "",
+          newPassword: "",
+          newPasswordCheck: "",
+        },
+        { keepDefaultValues: false },
+      )
+    }
   }
 
   const handleBack = () => {
@@ -94,6 +107,7 @@ const EditPassword = () => {
           비밀번호 변경 완료
         </Button>
       </S.EditButtonContainer>
+      <SuccessModal />
     </S.EditProfileForm>
   )
 }
