@@ -17,7 +17,7 @@ import * as S from "./StyledMyPage"
 
 const MyPage = () => {
   const { userInfo } = useUserInfo()
-  const userName = userInfo ? userInfo.userName : undefined
+  const userName = userInfo?.userName || "사용자명"
 
   const { bodyDatas } = useGetFetchRecentData()
 
