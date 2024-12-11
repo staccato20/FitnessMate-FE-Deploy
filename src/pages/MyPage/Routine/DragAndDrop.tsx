@@ -10,7 +10,7 @@ import {
 
 import { useQueryClient } from "@tanstack/react-query"
 
-import MyWorkout from "@components/MyWorkout/MyWorkout"
+import MyWorkout from "@pages/MyPage/Routine/MyWorkout/MyWorkout"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 
 import Button from "@components/Button/Button"
-import EmptyRoutine from "@components/EmptyRoutine/EmptyRoutine"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import Tabs from "@components/Tabs/Tabs"
 import Title from "@components/Title/Title"
+
+import EmptyRoutine from "@pages/MyPage/Routine/EmptyRoutine/EmptyRoutine"
 
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
