@@ -5,6 +5,7 @@ import MyWorkout from "@components/MyWorkout/MyWorkout"
 
 const DUMMY_DATA = (
   <MyWorkout
+    routineId={600002}
     myWorkoutId={249959}
     workoutId={249959}
     onClick={() => {}}
@@ -16,8 +17,7 @@ const DUMMY_DATA = (
     draggableProps={{} as DraggableProvided["draggableProps"]}
     dragHandleProps={{} as DraggableProvided["dragHandleProps"]}
     innerRef={() => {}}
-    isDragging={false}
-    isRemoveSuccess={() => {}}>
+    isDragging={false}>
     "머신 풀 오버"
   </MyWorkout>
 )
