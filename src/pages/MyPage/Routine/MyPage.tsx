@@ -9,7 +9,7 @@ import Title from "@components/Title/Title"
 
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
-import useGetMyWorkout from "@hooks/query/useGetMyWorkout"
+import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
 import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import DragAndDrop from "./DragAndDrop"
@@ -25,10 +25,8 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-  const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
-    null,
-  )
-  const { isWorkout } = useGetMyWorkout(selectedRoutineId)
+  const [selectedRoutineId, setSelectedRoutineId] = useState<number>(0)
+  const { isWorkout } = useGetMyWorkouts(selectedRoutineId)
 
   useEffect(() => {
     try {
