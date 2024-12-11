@@ -1,12 +1,11 @@
 import { instance } from "@apis/instance"
 
 import {
+  EditUserPasswordPayload,
   EditUserPayload,
   GetAccessTokenResponse,
   PostLoginPayload,
   PostLoginResponse,
-  PostNewPasswordPayload,
-  PostNewPasswordResponse,
   PostUserDeletePayload,
   SignupPayload,
   SignupResponse,
@@ -19,8 +18,8 @@ const postUser = (data: SignupPayload) =>
 const editUser = (data: EditUserPayload) =>
   instance.post("/api/user/private", data)
 
-const editPassword = (data: PostNewPasswordPayload) =>
-  instance.post<PostNewPasswordResponse>("/api/user/private/password", data)
+const editPassword = (data: EditUserPasswordPayload) =>
+  instance.post("/api/user/private/password", data)
 
 const fetchUser = () =>
   instance.get<User>("/api/user/private").then((res) => res.data)

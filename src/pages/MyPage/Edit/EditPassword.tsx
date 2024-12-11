@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
 import { EDIT_INPUTS, EDIT_LIST } from "constants/validation"
+import { omit } from "lodash"
 
 import Button from "@components/Button/Button"
 import Input from "@components/Input/Input"
 
 import { EditUserPasswordPayload } from "@typpes/type"
+
+import { usePostEditPassword } from "@hooks/mutation/usePostEditPassword"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -18,19 +21,20 @@ interface PasswordPayload extends EditUserPasswordPayload {
 
 const EditPassword = () => {
   const navigate = useNavigate()
+  const { mutate: editPassword } = usePostEditPassword()
 
-  const { register, formState, handleSubmit, watch, setValue, trigger } =
-    useForm<PasswordPayload>({
-      mode: "onChange",
-      defaultValues: {
-        oldPassword: "",
-        newPassword: "",
-        newPasswordCheck: "",
-      },
-    })
+  const { register, formState, handleSubmit } = useForm<PasswordPayload>({
+    mode: "onChange",
+    defaultValues: {
+      oldPassword: "",
+      newPassword: "",
+      newPasswordCheck: "",
+    },
+  })
 
-  const onSubmit = (value: PasswordPayload) => {
-    console.log(value)
+  const onSubmit = (formValue: PasswordPayload) => {
+    const editedPasswordPayload = omit(formValue, ["newPasswordCheck"])
+    editPassword(editedPasswordPayload)
   }
 
   const handleBack = () => {

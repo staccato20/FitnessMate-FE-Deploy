@@ -3,7 +3,8 @@ import styled from "styled-components"
 import theme, { fonts } from "@styles/theme"
 
 export const EditProfileForm = styled.form`
-  padding-top: 63px;
+  padding: 63px 0 30px 0;
+  padding-bottom: 30px;
   width: 474px;
   display: flex;
   flex-direction: column;
