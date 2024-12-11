@@ -90,19 +90,7 @@ export const BottomTitle = styled.div`
   border-radius: 6px;
 `
 
-export const FixIconButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background-color: ${theme.Netural150};
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-`
-
 export const HandleIconButtonWrapper = styled.div`
-  padding-top: 54.5px;
+  padding-top: 60.5px;
+  cursor: grab;
 `
