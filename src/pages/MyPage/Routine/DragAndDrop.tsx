@@ -12,10 +12,9 @@ import { useQueryClient } from "@tanstack/react-query"
 
 import MyWorkout from "@components/MyWorkout/MyWorkout"
 
-import MyFitAPI from "@apis/domain/myfit"
-
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
+import useEditWorkout from "@hooks/query/useEditWorkoutList"
 import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
 
 import * as S from "./StyledMyPage"
@@ -26,11 +25,14 @@ interface DragAndDropProps {
 
 const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
   const queryClient = useQueryClient()
+
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
     number | null
   >(null)
 
   const { myWorkouts } = useGetMyWorkouts(selectedRoutineId || 0)
+  const editWorkout = useEditWorkout(selectedRoutineId)
+
   const onDragUpdate = (update: DragUpdate) => {
     if (update.destination) {
       setHighlightedFrameIndex(update.destination.index)
@@ -39,13 +41,12 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
     }
   }
 
-  const handleDrop = async (droppedItem: DropResult) => {
+  const handleDrop = (droppedItem: DropResult) => {
     setHighlightedFrameIndex(null)
 
     if (!droppedItem.destination) return
 
     const updatedList: MyWorkoutList[] = [...myWorkouts]
-
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1)
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem)
 
@@ -53,33 +54,26 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
       workout.myWorkoutIndex = index + 1
     })
 
+    const myWorkoutId = updatedList[droppedItem.destination.index].myWorkoutId
+
     const workout: MyWorkoutIndex = {
       myWorkoutIndex: droppedItem.destination.index + 1,
-      weight: updatedList[droppedItem.destination.index].weight
-        ? updatedList[droppedItem.destination.index].weight.toString()
-        : "0",
-      rep: updatedList[droppedItem.destination.index].rep
-        ? updatedList[droppedItem.destination.index].rep.toString()
-        : "0",
-      setCount: updatedList[droppedItem.destination.index].setCount
-        ? updatedList[droppedItem.destination.index].setCount.toString()
-        : "0",
-      caution: updatedList[droppedItem.destination.index].caution
-        ? updatedList[droppedItem.destination.index].caution.toString()
-        : "주의사항이 없습니다.",
+      weight:
+        updatedList[droppedItem.destination.index].weight?.toString() || "0",
+      rep: updatedList[droppedItem.destination.index].rep?.toString() || "0",
+      setCount:
+        updatedList[droppedItem.destination.index].setCount?.toString() || "0",
+      caution:
+        updatedList[droppedItem.destination.index].caution ||
+        "주의사항이 없습니다.",
     }
 
-    try {
-      await MyFitAPI.editMyWorkout(
-        updatedList[droppedItem.destination.index].myWorkoutId,
-        workout,
-      )
-      queryClient.invalidateQueries({
-        queryKey: ["workoutList", selectedRoutineId],
-      })
-    } catch (error) {
-      console.error(error)
-    }
+    queryClient.setQueryData<MyWorkoutList[]>(
+      ["workoutList", selectedRoutineId],
+      updatedList,
+    )
+
+    editWorkout.mutate({ myWorkoutId, workout })
   }
 
   return (
