@@ -14,7 +14,7 @@ import MyWorkout from "@pages/MyPage/Routine/MyWorkout/MyWorkout"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
-import useEditWorkout from "@hooks/query/useEditWorkoutList"
+import useEditWorkout from "@hooks/mutation/useEditWorkoutList"
 import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
 
 import * as S from "./StyledMyPage"
