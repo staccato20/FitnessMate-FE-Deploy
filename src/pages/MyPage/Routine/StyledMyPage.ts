@@ -59,16 +59,21 @@ export const FixIconButtonWrapper = styled.div`
   border-radius: 8px;
 `
 
+export const RoutineListWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+`
+
 export const RoutinesContainer = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-top: 10px;
 `
 
 export const RoutineList = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 2px;
   align-items: center;
   width: 100%;
   border-bottom: 1px solid ${theme.Netural300};

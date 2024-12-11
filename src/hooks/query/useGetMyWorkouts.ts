@@ -14,12 +14,10 @@ export const useGetMyWorkouts = (routineId: number) => {
     enabled: !!routineId,
   })
 
-  const isWorkout = (query.data && query.data.length > 0) || false
-
   return {
+    ...query,
     myWorkouts: query.data || [],
-    isWorkout,
-    refetch: query.refetch,
+    isWorkout: query.data && query.data.length > 0,
   }
 }
 
