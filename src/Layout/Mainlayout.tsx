@@ -10,22 +10,24 @@ import { ScrollToTop } from "@components/ScrollToTop/ScrollToTop"
 const MainLayout = () => {
   const location = useLocation()
   const path = location.pathname
-  const isRecommend = path.includes("recommend")
-  const isLogin = path.includes("login")
-  const isSignup = path.includes("signup")
-  const isMyPage = path.includes("mypage")
+  const hasNotFooter =
+    path.includes("login") ||
+    path.includes("signup") ||
+    path.includes("mypage") ||
+    path.includes("recommend")
+
   const { checkLogin } = useUserStore()
 
   useEffect(() => {
     checkLogin()
-  }, [location, path, checkLogin])
+  }, [checkLogin, location])
 
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Outlet />
-      {!isRecommend && !isLogin && !isSignup && !isMyPage && <Footer />}
+      {!hasNotFooter && <Footer />}
     </>
   )
 }
