@@ -107,7 +107,7 @@ const MyWorkout = ({
       <S.HandleIconButtonWrapper {...dragHandleProps}>
         <Icon
           icon="Handle"
-          size={24}
+          size={28}
         />
       </S.HandleIconButtonWrapper>
     </S.MyWorkoutWrapper>
