@@ -268,6 +268,11 @@ export const EDIT_LIST = {
     { id: 1, name: "birthDate", label: "생년월일", isDisabled: false },
     { id: 2, name: "loginEmail", label: "이메일", isDisabled: true },
   ],
+  PASSWORD: [
+    { id: 0, name: "oldPassword", label: "현재 비밀번호" },
+    { id: 1, name: "newPassword", label: "신규 비밀번호" },
+    { id: 2, name: "newPasswordCheck", label: "" },
+  ],
 } as const
 
 export const EDIT_INPUTS = {
@@ -301,6 +306,44 @@ export const EDIT_INPUTS = {
     loginEmail: {
       validate: {
         disabled: true,
+      },
+    },
+  },
+  PASSWORD: {
+    oldPassword: {
+      attributes: {
+        placeholder: "현재 비밀번호를 입력해주세요",
+      },
+      validate: {
+        required: { value: true, message: "" },
+        pattern: {
+          value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+          message: "비밀번호 생성 규칙에 맞지 않습니다.",
+        },
+      },
+    },
+    newPassword: {
+      attributes: {
+        placeholder: "신규 비밀번호 입력",
+      },
+      validate: {
+        required: { value: true, message: "" },
+        pattern: {
+          value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+          message: "비밀번호 생성 규칙에 맞지 않습니다.",
+        },
+      },
+    },
+    newPasswordCheck: {
+      attributes: {
+        placeholder: "신규 비밀번호 재입력",
+      },
+      validate: {
+        required: { value: true, message: "" },
+        pattern: {
+          value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
+          message: "비밀번호 생성 규칙에 맞지 않습니다.",
+        },
       },
     },
   },

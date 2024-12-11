@@ -13,5 +13,4 @@ export default InputError
 const Warning = styled.span`
   color: ${theme.Error};
   ${fonts.b4};
-  font-weight: 400;
 `

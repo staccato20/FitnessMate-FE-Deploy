@@ -69,33 +69,37 @@ const EditProfile = () => {
     <S.EditProfileForm
       noValidate
       onSubmit={handleSubmit(onSubmit)}>
-      <S.EditProfileTitle>{userInfo?.userName}님의 회원정보</S.EditProfileTitle>
-      <S.EditProfileList>
-        {EDIT_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
-          <Input key={id}>
-            <Input.Label htmlFor={name}>{label}</Input.Label>
-            <Input.Input
-              variant="edit"
-              props={{
-                ...formAdapter({
-                  register,
-                  name,
-                  validator: EDIT_INPUTS.PROFILE[name],
-                  $isDirty: !!formState.dirtyFields[name],
-                  $isError: !!formState.errors[name],
-                }),
-                disabled: isDisabled,
-              }}
-            />
-            <Input.Error>{formState?.errors[name]?.message}</Input.Error>
-          </Input>
-        ))}
-      </S.EditProfileList>
-      <S.EditPasswordButton
-        type="button"
-        onClick={handleEditPaswordPage}>
-        비밀번호 변경하기
-      </S.EditPasswordButton>
+      <S.EditFormWrapper>
+        <S.EditProfileTitle>
+          {userInfo?.userName}님의 회원정보
+        </S.EditProfileTitle>
+        <S.EditProfileList>
+          {EDIT_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
+            <Input key={id}>
+              <Input.Label htmlFor={name}>{label}</Input.Label>
+              <Input.Input
+                variant="edit"
+                props={{
+                  ...formAdapter({
+                    register,
+                    name,
+                    validator: EDIT_INPUTS.PROFILE[name],
+                    $isDirty: !!formState.dirtyFields[name],
+                    $isError: !!formState.errors[name],
+                  }),
+                  disabled: isDisabled,
+                }}
+              />
+              <Input.Error>{formState?.errors[name]?.message}</Input.Error>
+            </Input>
+          ))}
+        </S.EditProfileList>
+        <S.EditPasswordButton
+          type="button"
+          onClick={handleEditPaswordPage}>
+          비밀번호 변경하기
+        </S.EditPasswordButton>
+      </S.EditFormWrapper>
       <S.EditButtonContainer>
         <Button
           variant="text"

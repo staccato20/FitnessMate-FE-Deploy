@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import { HtmlHTMLAttributes, PropsWithChildren } from "react"
 
 import styled from "styled-components"
 
@@ -8,8 +8,11 @@ import InputLabel from "@components/Input/components/InputLabel"
 import InputSelect from "@components/Input/components/InputSelect"
 import InputText from "@components/Input/components/InputText"
 
-const InputMain = ({ children }: PropsWithChildren) => (
-  <InputWrapper>{children}</InputWrapper>
+const InputMain = ({
+  children,
+  ...props
+}: PropsWithChildren<HtmlHTMLAttributes<HTMLDivElement>>) => (
+  <InputWrapper {...props}>{children}</InputWrapper>
 )
 
 const Input = Object.assign(InputMain, {
