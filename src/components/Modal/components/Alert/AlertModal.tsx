@@ -13,9 +13,9 @@ const AlertModal = () => {
       onClose={onClose}>
       <Modal.Title>
         <Title variant="midA">
-          현재 수정중인 페이지에요
+          오류가 발생했어요
           <Title.SubBottomTitle>
-            10월 말에 출시될 예정이에요!
+            현재 비밀번호를 다시 확인해주세요
           </Title.SubBottomTitle>
         </Title>
         <Modal.Footer>

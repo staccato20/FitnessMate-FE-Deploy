@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 import { useUserStore } from "@store/useUserStore"
 
-import RoutineModal from "@components/Modal/components/Alert/AlertModal"
 import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
@@ -64,7 +63,6 @@ const Navbar = () => {
         )}
       </S.NavLink>
       <S.NavbarUnderLine $isHome={useLocation().pathname === "/"} />
-      <RoutineModal />
     </S.NavbarContainer>
   )
 }
