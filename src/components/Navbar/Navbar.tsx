@@ -2,8 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 import { useUserStore } from "@store/useUserStore"
 
+import NavDropDown from "@components/DropDown/components/NavDropDown"
 import RoutineModal from "@components/Modal/components/Alert/AlertModal"
-import NavDropDown from "@components/Navbar/NavDropDown"
 
 import logo from "@assets/images/logo.png"
 

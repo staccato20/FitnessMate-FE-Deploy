@@ -21,12 +21,13 @@ const MyWorkoutDropDown = ({
   const { isOpen, dropDownRef, toggleDropDown } = useDropDown()
 
   return (
-    <S.MyWorkoutDropDownWrapper>
-      <S.FixIconButtonWrapper ref={dropDownRef}>
+    <>
+      <S.FixIconButtonWrapper
+        ref={dropDownRef}
+        onClick={toggleDropDown}>
         <IconButton
           icon="PencilGrey"
           size={18}
-          onClick={toggleDropDown}
         />
       </S.FixIconButtonWrapper>
       {isOpen && (
@@ -49,7 +50,7 @@ const MyWorkoutDropDown = ({
           </DropDown.DropDownButton>
         </DropDown>
       )}
-    </S.MyWorkoutDropDownWrapper>
+    </>
   )
 }
 

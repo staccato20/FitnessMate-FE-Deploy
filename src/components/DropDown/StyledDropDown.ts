@@ -7,7 +7,6 @@ export const DropDownWrapper = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  width: 161px;
   padding: 6px;
   gap: 4px;
   border-radius: 12px;
@@ -27,11 +26,6 @@ export const DropDownButton = styled.button<{
   align-items: center;
   border-radius: 8px;
   ${({ $variantStyle }) => $variantStyle};
-
-  &:hover {
-    background: ${theme.Netural200};
-    cursor: pointer;
-  }
 `
 
 export const Line = styled.div`
@@ -43,10 +37,19 @@ export const VARIANTS = {
   grey: css`
     color: ${theme.Netural700};
     ${fonts.d1};
+
+    &:hover {
+      color: ${theme.Netural800};
+      background: ${theme.Netural200};
+    }
   `,
   red: css`
     color: ${theme.Error};
     ${fonts.d1};
+
+    &:hover {
+      background: ${theme.ErrorWeak};
+    }
   `,
 }
 
@@ -58,14 +61,12 @@ export const POSITION = {
   `,
   nav: css`
     position: absolute;
-    top: 14px;
+    top: 56px;
     right: 0;
   `,
 }
 
-export const MyWorkoutDropDownWrapper = styled.div``
-
-export const FixIconButtonWrapper = styled.div`
+export const FixIconButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,4 +77,19 @@ export const FixIconButtonWrapper = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 8px;
+`
+
+export const DropDownContainer = styled.div`
+  position: relative;
+`
+
+export const NavNameButton = styled.button`
+  font-size: 18px;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: ${theme.Brand600};
+  &:hover {
+    background-color: ${theme.Netural200};
+  }
 `

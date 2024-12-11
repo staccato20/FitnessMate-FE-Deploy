@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 
 export const useDropDown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const dropDownRef = useRef<HTMLDivElement>(null)
+  const dropDownRef = useRef<HTMLButtonElement>(null)
 
   const handleOutSideClick = (e: Event) => {
     const current = dropDownRef.current
