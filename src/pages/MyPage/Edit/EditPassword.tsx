@@ -78,24 +78,17 @@ const EditPassword = () => {
                       ...EDIT_INPUTS.PASSWORD[name],
                       validate: {
                         ...EDIT_INPUTS.PASSWORD[name].validate,
-                        validate: async (value) => {
-                          const newPasswordCheck = watch("newPasswordCheck")
-                          const newPassword = watch("newPassword")
-                          if (name === "newPassword") {
-                            trigger("newPasswordCheck")
-                            return (
-                              value === newPasswordCheck ||
-                              "비밀번호가 일치하지 않습니다."
-                            )
-                          }
+                        validate: (value) => {
                           if (name === "newPasswordCheck") {
-                            trigger("newPassword")
+                            const newPassword = watch("newPassword")
                             return (
                               value === newPassword ||
                               "비밀번호가 일치하지 않습니다."
                             )
+                          } else {
+                            trigger("newPasswordCheck")
+                            return true
                           }
-                          return true
                         },
                       },
                     },
