@@ -312,7 +312,7 @@ export const EDIT_INPUTS = {
   PASSWORD: {
     oldPassword: {
       attributes: {
-        placeholder: "현재 비밀번호를 입력해주세요",
+        placeholder: "현재 비밀번호",
       },
       validate: {
         required: { value: true, message: "" },
@@ -338,13 +338,7 @@ export const EDIT_INPUTS = {
       attributes: {
         placeholder: "신규 비밀번호 재입력",
       },
-      validate: {
-        required: { value: true, message: "" },
-        pattern: {
-          value: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/,
-          message: "비밀번호 생성 규칙에 맞지 않습니다.",
-        },
-      },
+      validate: {},
     },
   },
 }

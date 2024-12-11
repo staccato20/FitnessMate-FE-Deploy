@@ -20,33 +20,27 @@ interface PasswordPayload extends EditUserPasswordPayload {
   newPasswordCheck: string
 }
 
+const DEFAULT_VALUES = {
+  oldPassword: "",
+  newPassword: "",
+  newPasswordCheck: "",
+}
+
 const EditPassword = () => {
   const navigate = useNavigate()
   const { mutate: editPassword, isSuccess, data } = usePostEditPassword()
 
-  const { register, formState, handleSubmit, reset } = useForm<PasswordPayload>(
-    {
+  const { register, formState, handleSubmit, reset, watch, trigger } =
+    useForm<PasswordPayload>({
       mode: "onChange",
-      defaultValues: {
-        oldPassword: "",
-        newPassword: "",
-        newPasswordCheck: "",
-      },
-    },
-  )
+      defaultValues: DEFAULT_VALUES,
+    })
 
   const onSubmit = (formValue: PasswordPayload) => {
     const editedPasswordPayload = omit(formValue, ["newPasswordCheck"])
     editPassword(editedPasswordPayload)
     if (isSuccess && data.data === "ok") {
-      reset(
-        {
-          oldPassword: "",
-          newPassword: "",
-          newPasswordCheck: "",
-        },
-        { keepDefaultValues: false },
-      )
+      reset(DEFAULT_VALUES, { keepDefaultValues: false })
     }
   }
 
@@ -80,7 +74,31 @@ const EditPassword = () => {
                   ...formAdapter({
                     register,
                     name,
-                    validator: EDIT_INPUTS.PASSWORD[name],
+                    validator: {
+                      ...EDIT_INPUTS.PASSWORD[name],
+                      validate: {
+                        ...EDIT_INPUTS.PASSWORD[name].validate,
+                        validate: async (value) => {
+                          const newPasswordCheck = watch("newPasswordCheck")
+                          const newPassword = watch("newPassword")
+                          if (name === "newPassword") {
+                            trigger("newPasswordCheck")
+                            return (
+                              value === newPasswordCheck ||
+                              "비밀번호가 일치하지 않습니다."
+                            )
+                          }
+                          if (name === "newPasswordCheck") {
+                            trigger("newPassword")
+                            return (
+                              value === newPassword ||
+                              "비밀번호가 일치하지 않습니다."
+                            )
+                          }
+                          return true
+                        },
+                      },
+                    },
                     $isDirty: !!formState.dirtyFields[name],
                     $isError: !!formState.errors[name],
                   }),
