@@ -1,6 +1,7 @@
 import { instance } from "@apis/instance"
 
 import {
+  EditUserPayload,
   GetAccessTokenResponse,
   PostLoginPayload,
   PostLoginResponse,
@@ -9,14 +10,13 @@ import {
   PostUserDeletePayload,
   SignupPayload,
   SignupResponse,
-  UpdateUserPayload,
   User,
 } from "@typpes/type"
 
 const postUser = (data: SignupPayload) =>
   instance.post<SignupResponse>("/api/user/auth", data)
 
-const editUser = (data: UpdateUserPayload) =>
+const editUser = (data: EditUserPayload) =>
   instance.post("/api/user/private", data)
 
 const editPassword = (data: PostNewPasswordPayload) =>

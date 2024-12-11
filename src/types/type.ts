@@ -70,12 +70,12 @@ export interface SignupResponse {
   rememberMe: boolean
 }
 
-export interface UpdateUserPayload {
+export interface EditUserPayload {
   userName: string
   birthDate: string
 }
 
-export interface UpdateUserPasswordPayload {
+export interface EditUserPasswordPayload {
   oldPassword: string
   newPassword: string
 }

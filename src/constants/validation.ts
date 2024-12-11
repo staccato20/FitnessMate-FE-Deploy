@@ -262,7 +262,7 @@ export const LOGIN_LIST = [
   { id: 1, name: "password" },
 ] as const
 
-export const UPDATE_LIST = {
+export const EDIT_LIST = {
   PROFILE: [
     { id: 0, name: "userName", label: "이름", isDisabled: false },
     { id: 1, name: "birthDate", label: "생년월일", isDisabled: false },
@@ -270,7 +270,7 @@ export const UPDATE_LIST = {
   ],
 } as const
 
-export const UPDATE_INPUTS = {
+export const EDIT_INPUTS = {
   PROFILE: {
     userName: {
       attributes: {
