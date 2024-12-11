@@ -1,14 +1,26 @@
 import { useQuery } from "@tanstack/react-query"
 
+import { MyWorkoutList } from "@typpes/type"
+
 import MyFitAPI from "../../apis/domain/myfit"
 
 export const useGetMyWorkouts = (routineId: number) => {
-  return useQuery({
-    queryKey: ["getMyWorkouts", routineId],
+  const query = useQuery<MyWorkoutList[]>({
+    queryKey: ["workoutList", routineId],
     queryFn: async () => {
       const response = await MyFitAPI.myWorkouts(routineId)
       return Array.isArray(response) ? response : []
     },
-    enabled: !!routineId, // routineId가 있을 때만 실행
+    enabled: !!routineId,
   })
+
+  const isWorkout = (query.data && query.data.length > 0) || false
+
+  return {
+    myWorkouts: query.data || [],
+    isWorkout,
+    refetch: query.refetch,
+  }
 }
+
+export default useGetMyWorkouts

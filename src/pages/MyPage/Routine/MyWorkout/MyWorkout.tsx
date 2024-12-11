@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom"
+
 import { DraggableProvided } from "@hello-pangea/dnd"
 
+import MyWorkoutDropDown from "@components/DropDown/components/MyWorkoutDropDown"
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
 import Title from "@components/Title/Title"
@@ -9,6 +12,9 @@ import { StrictPropsWithChildren } from "@typpes/type"
 import * as S from "./StyledMyWorkout"
 
 interface MyWorkoutProps {
+  routineId: number
+  workoutId: number
+  myWorkoutId: number
   children: string
   bodyParts: string
   caution: string
@@ -23,6 +29,9 @@ interface MyWorkoutProps {
 }
 
 const MyWorkout = ({
+  routineId,
+  workoutId,
+  myWorkoutId,
   children,
   bodyParts,
   setCount,
@@ -34,13 +43,15 @@ const MyWorkout = ({
   innerRef,
   isDragging,
 }: StrictPropsWithChildren<MyWorkoutProps>) => {
-  const handleFixWorkout = () => {}
+  const navigate = useNavigate()
+  const handleDetailWorkout = (workoutId: number) => {
+    navigate(`/workoutdetail/${workoutId}`)
+  }
 
   return (
     <S.MyWorkoutWrapper
       ref={innerRef}
-      {...draggableProps}
-      {...dragHandleProps}>
+      {...draggableProps}>
       <S.MyWorkoutContent isDragging={isDragging}>
         <S.HeaderWrapper>
           <S.HeaderLeft>
@@ -51,7 +62,9 @@ const MyWorkout = ({
                   <IconButton
                     icon="RightArrowGrey"
                     size={24}
-                    onClick={handleFixWorkout}
+                    onClick={() => {
+                      handleDetailWorkout(workoutId)
+                    }}
                   />
                 </S.DetailIconButtonWrapper>
               </Title.SubTopIconTitle>
@@ -86,18 +99,15 @@ const MyWorkout = ({
           <S.BottomTitle>주의사항</S.BottomTitle>
           {caution}
         </S.BottomWrapper>
-        <S.FixIconButtonWrapper>
-          <IconButton
-            icon="PencilGrey"
-            size={18}
-            onClick={handleFixWorkout}
-          />
-        </S.FixIconButtonWrapper>
+        <MyWorkoutDropDown
+          myWorkoutId={myWorkoutId}
+          routineId={routineId}
+        />
       </S.MyWorkoutContent>
-      <S.HandleIconButtonWrapper>
+      <S.HandleIconButtonWrapper {...dragHandleProps}>
         <Icon
           icon="Handle"
-          size={24}
+          size={28}
         />
       </S.HandleIconButtonWrapper>
     </S.MyWorkoutWrapper>
