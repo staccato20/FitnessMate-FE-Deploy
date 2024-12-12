@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
+import { useUserStore } from "@store/useUserStore"
 import { EDIT_INPUTS, EDIT_LIST } from "constants/validation"
 
 import Button from "@components/Button/Button"
@@ -13,7 +14,6 @@ import { EditUserPayload } from "@typpes/type"
 import { User } from "@typpes/type"
 
 import { useEditProfile } from "@hooks/mutation/useEditProfile"
-import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import { formAdapter } from "@utils/formAdapter"
 
@@ -22,15 +22,15 @@ import * as S from "./StyledEditProfile"
 const EditProfile = () => {
   const navigate = useNavigate()
 
-  const { userInfo } = useUserInfo()
+  const { user } = useUserStore()
 
-  const { register, formState, handleSubmit, reset, watch, setValue, trigger } =
+  const { register, formState, handleSubmit, watch, setValue, trigger } =
     useForm<Omit<User, "sex">>({
       mode: "onChange",
       defaultValues: {
-        userName: "",
-        birthDate: "",
-        loginEmail: "",
+        userName: user?.userName,
+        birthDate: user?.birthDate,
+        loginEmail: user?.loginEmail,
       },
     })
 
@@ -51,16 +51,6 @@ const EditProfile = () => {
   }
 
   useEffect(() => {
-    if (userInfo) {
-      reset({
-        userName: userInfo.userName,
-        birthDate: userInfo.birthDate,
-        loginEmail: userInfo.loginEmail,
-      })
-    }
-  }, [userInfo, reset])
-
-  useEffect(() => {
     setValue("birthDate", getBirthFormat(birthDateValue))
     trigger("birthDate")
   }, [birthDateValue, setValue, trigger])
@@ -70,9 +60,7 @@ const EditProfile = () => {
       noValidate
       onSubmit={handleSubmit(onSubmit)}>
       <S.EditFormWrapper>
-        <S.EditProfileTitle>
-          {userInfo?.userName}님의 회원정보
-        </S.EditProfileTitle>
+        <S.EditProfileTitle>{user?.userName}님의 회원정보</S.EditProfileTitle>
         <S.EditProfileList>
           {EDIT_LIST.PROFILE.map(({ id, name, label, isDisabled }) => (
             <Input key={id}>
@@ -108,7 +96,6 @@ const EditProfile = () => {
           onClick={handleHome}>
           취소
         </Button>
-
         <Button
           variant="main"
           size="full"

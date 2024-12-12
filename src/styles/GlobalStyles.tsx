@@ -1,11 +1,8 @@
-import { usePathStore } from "@store/usePathStore"
 import reset from "styled-reset"
 
 import { createGlobalStyle } from "styled-components"
 
-import { theme } from "@styles/theme"
-
-const GlobalStyle = createGlobalStyle<{ $isRecommendPage: boolean }>`
+const GlobalStyle = createGlobalStyle`
 ${reset}
 
 @font-face {
@@ -43,7 +40,6 @@ ${reset}
         height:100vh;
         overflow-x:hidden !important;
         line-height: 1;    
-        background:${({ $isRecommendPage }) => ($isRecommendPage ? theme.Netural200 : theme.Netural0)}
         
     }
 
@@ -79,9 +75,7 @@ ${reset}
 `
 
 const GlobalStyles = () => {
-  const { isRecommendPage } = usePathStore()
-
-  return <GlobalStyle $isRecommendPage={isRecommendPage} />
+  return <GlobalStyle />
 }
 
 export default GlobalStyles
