@@ -56,10 +56,7 @@ const BodyPart = () => {
           size={30}
           onClick={handleBackPage}
         />
-        <ProgressBar
-          progress={1}
-          variant="round"
-        />
+        <ProgressBar progress={1} />
       </S.Status>
       <S.RecommendInner>
         <S.RecommendGuideWrapper>
