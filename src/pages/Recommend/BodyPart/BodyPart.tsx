@@ -48,84 +48,17 @@ const BodyPart = () => {
           onClick={handleBackPage}
         />
         <ProgressBar progress={1} />
-      </S.Status>
-      <S.RecommendInner>
-        <S.RecommendGuideWrapper>
-          <S.RecommendGuide>
-            <Avatar />
-            <SpeechBubble>
-              <SpeechBubble.MainText>
-                어떤 부위의 운동을 추천해드릴까요?
-              </SpeechBubble.MainText>
-            </SpeechBubble>
-          </S.RecommendGuide>
-        </S.RecommendGuideWrapper>
-        <S.BodyPartWrapper>
-          <S.TabWrapper key="상체">
-            <S.TabTitle>{"상체"}</S.TabTitle>
-            <S.TabList>
-              {bodyParts
-                .slice(0, 6)
-                .map(({ koreanName, imgPath, bodyPartId }) => (
-                  <ImgCheckBox
-                    key={bodyPartId}
-                    src={
-                      imgPath
-                        ? imgPath
-                        : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
-                    }
-                    alt="테스트 이미지"
-                    handleToggle={() => {
-                      handleBodyPart(bodyPartId)
-                    }}
-                    isSelected={selectedBodyParts.includes(bodyPartId)}
-                    variant="small">
-                    {koreanName}
-                  </ImgCheckBox>
-                ))}
-            </S.TabList>
-          </S.TabWrapper>
-          <S.TabWrapper key="하체">
-            <S.TabTitle>{"하체"}</S.TabTitle>
-            <S.TabList>
-              {bodyParts
-                .slice(6)
-                .map(({ englishName, koreanName, imgPath, bodyPartId }) => (
-                  <ImgCheckBox
-                    key={englishName}
-                    src={
-                      imgPath
-                        ? imgPath
-                        : "https://www.chosun.com/resizer/v2/5O2JMBBB2NHEZOKWLS2AZYKPWU.jpg?auth=3bd18164c19b9c5b2d492ceec653597eb3e73630ac6a350cba4813bd585a1c21&width=616"
-                    }
-                    alt="테스트 이미지"
-                    handleToggle={() => {
-                      handleBodyPart(bodyPartId)
-                    }}
-                    isSelected={selectedBodyParts.includes(bodyPartId)}
-                    variant="small">
-                    {koreanName}
-                  </ImgCheckBox>
-                ))}
-            </S.TabList>
-          </S.TabWrapper>
-        </S.BodyPartWrapper>
-      </S.RecommendInner>
-      <Bottom flex="space-between">
-        <Bottom.Text>
-          {selectedBodyParts.length}개
-          <Bottom.SubText> 부위 선택됨</Bottom.SubText>
-        </Bottom.Text>
-        <RoundButton
-          onClick={handleNextPage}
-          variant="black"
-          size="big"
-          rightIcon="RightArrowWhite"
-          disabled={!isReady}>
-          다음
-        </RoundButton>
-      </Bottom>
-    </S.RecommendWrapper>
+      </GS.Status>
+      <List
+        bodyParts={bodyParts}
+        selectedBodyParts={selectedBodyParts}
+        handleBodyPart={handleBodyPart}
+      />
+      <Footer
+        selectedBodyPartLength={selectedBodyParts.length}
+        handleNextPage={handleNextPage}
+      />
+    </GS.RecommendWrapper>
   )
 }
 export default BodyPart
