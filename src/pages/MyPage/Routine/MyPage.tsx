@@ -24,7 +24,6 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-
   const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
     null,
   )

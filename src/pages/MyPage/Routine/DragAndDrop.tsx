@@ -28,11 +28,15 @@ const DragAndDrop: React.FC<DragAndDropProps> = (selectedRoutineId) => {
 
   useEffect(() => {
     const fetchWorkouts = async (routineId: number) => {
-      const response: MyWorkoutList[] = await MyFitAPI.myWorkouts(routineId)
-      setMyWorkouts(response)
+      try {
+        const response = await MyFitAPI.myWorkouts(routineId)
+        setMyWorkouts(response)
+      } catch (err) {
+        console.log(err)
+      }
     }
 
-    if (selectedRoutineId) fetchWorkouts(Number(selectedRoutineId))
+    fetchWorkouts(Number(selectedRoutineId))
   }, [selectedRoutineId])
 
   const onDragUpdate = (update: DragUpdate) => {
