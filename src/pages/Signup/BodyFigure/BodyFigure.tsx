@@ -4,8 +4,6 @@ import { useSignupStore } from "@store/useSignupStore"
 
 import styled from "styled-components"
 
-import ProgressBar from "@components/Progressbar/ProgressBar"
-
 import Figure from "@pages/Signup/BodyFigure/components/Figure/Figure"
 import { FigureProvider } from "@pages/Signup/BodyFigure/components/Figure/FigureContext"
 import Ratio from "@pages/Signup/BodyFigure/components/Ratio/Ratio"
@@ -45,10 +43,10 @@ const BodyFigure = () => {
 
   return (
     <S.SignupForm onSubmit={handleSubmit(onSubmit)}>
-      <S.SignupTitle>
-        <ProgressBar progress={3} />
-        체형 정보를 입력해주세요
-      </S.SignupTitle>
+      <S.SignupTitleWrapper>
+        <S.StatusText>3/3단계</S.StatusText>
+        <S.SignupTitle>체형 정보를 입력해주세요</S.SignupTitle>
+      </S.SignupTitleWrapper>
       <BodyFigureWrapper>
         <Ratio
           ratioValue={ratioValue}

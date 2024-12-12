@@ -156,10 +156,7 @@ const Machine = () => {
             size={30}
             onClick={handleBackPage}
           />
-          <ProgressBar
-            progress={2}
-            variant="round"
-          />
+          <ProgressBar progress={2} />
         </S.Status>
         <S.RecommendInner ref={scrollRef}>
           <S.RecommendGuideWrapper>
