@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import { useUserStore } from "@store/useUserStore"
+
 import Button from "@components/Button/Button"
 import EmptyRoutine from "@components/EmptyRoutine/EmptyRoutine"
 import Icon from "@components/Icon/Icon"
@@ -9,14 +11,12 @@ import Title from "@components/Title/Title"
 
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
-import { useUserInfo } from "@hooks/query/useUserInfo"
 
 import DragAndDrop from "./DragAndDrop"
 import * as S from "./StyledMyPage"
 
 const MyPage = () => {
-  const { userInfo } = useUserInfo()
-  const userName = userInfo ? userInfo.userName : undefined
+  const { user } = useUserStore()
 
   const { bodyDatas } = useGetFetchRecentData()
   const [bodyFigure, setBodyFigure] = useState<string | null>()
@@ -24,7 +24,6 @@ const MyPage = () => {
   const { data: myRoutines = [] } = useGetMyRoutines()
   const isRoutine = Array.isArray(myRoutines) && myRoutines.length > 0
   const [myRoutineLength, setMyRoutineLength] = useState<number>(0)
-
   const [selectedRoutineId, setSelectedRoutineId] = useState<number | null>(
     null,
   )
@@ -57,7 +56,7 @@ const MyPage = () => {
             <S.MyInformation>
               <Title variant="midE">
                 <Title.SubTopIconTitle>
-                  {userName}
+                  {user?.userName}
                   <S.FixIconButtonWrapper>
                     <IconButton
                       icon="RightArrowGrey"

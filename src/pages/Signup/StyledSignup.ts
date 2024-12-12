@@ -29,10 +29,21 @@ export const SignupContainer = styled.div`
   flex-direction: column;
 `
 
+export const SignupTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`
+
 export const SignupTitle = styled.span`
   color: ${theme.Netural990};
   ${fonts.h1};
   font-size: 30px;
+`
+
+export const StatusText = styled.span`
+  color: ${theme.Brand750};
+  ${fonts.b6};
 `
 
 export const ButtonContainer = styled.div`

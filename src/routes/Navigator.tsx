@@ -5,11 +5,12 @@ import MainLayout from "@Layout/Mainlayout"
 import Detail from "@pages/Detail/Detail"
 import Home from "@pages/Home/Home"
 import Login from "@pages/Login/Login"
+import EditBodyFigure from "@pages/MyPage/Edit/EditBodyFigure"
+import EditBodyInfo from "@pages/MyPage/Edit/EditBodyInfo"
+import EditPassword from "@pages/MyPage/Edit/EditPassword"
+import EditProfile from "@pages/MyPage/Edit/EditProfile"
 import MyPage from "@pages/MyPage/Routine/MyPage"
-import UpdateBodyFigure from "@pages/MyPage/Update/UpdateBodyFigure"
-import UpdateBodyInfo from "@pages/MyPage/Update/UpdateBodyInfo"
-import UpdatePassword from "@pages/MyPage/Update/UpdatePassword"
-import UpdateProfile from "@pages/MyPage/Update/UpdateProfile"
+import NotFound from "@pages/NotFound/NotFound"
 import BodyPart from "@pages/Recommend/BodyPart/BodyPart"
 import Machine from "@pages/Recommend/Machine/Machine"
 import Result from "@pages/Recommend/Result/Result"
@@ -22,6 +23,8 @@ import Profile from "@pages/Signup/Profile/Profile"
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
+    errorElement: <NotFound />,
+
     children: [
       {
         index: true,
@@ -61,10 +64,10 @@ const router = createBrowserRouter([
         path: "mypage",
         children: [
           { path: "", element: <MyPage /> },
-          { path: "profile", element: <UpdateProfile /> },
-          { path: "bodyfigure", element: <UpdateBodyFigure /> },
-          { path: "bodyinfo", element: <UpdateBodyInfo /> },
-          { path: "password", element: <UpdatePassword /> },
+          { path: "profile", element: <EditProfile /> },
+          { path: "bodyfigure", element: <EditBodyFigure /> },
+          { path: "bodyinfo", element: <EditBodyInfo /> },
+          { path: "password", element: <EditPassword /> },
         ],
       },
     ],

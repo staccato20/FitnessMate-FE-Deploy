@@ -70,26 +70,85 @@ const Machine = () => {
             size={30}
             onClick={handleBackPage}
           />
-          <ProgressBar
-            progress={2}
-            variant="round"
-          />
-        </GS.Status>
-        <List
-          isScrollTop={isScrollTop}
-          scrollRef={scrollRef}
-          machines={machines}
-          machinesById={machinesById}
-          handleBodyPart={handleBodyPart}
-        />
-      </GS.RecommendWrapper>
-      <Footer
-        bodyPart={bodyPart}
-        machinesById={machinesById}
-        postRecommend={postRecommend}
-        machines={machines}
-      />
-      <AlertLoadingModal />
+          <ProgressBar progress={2} />
+        </S.Status>
+        <S.RecommendInner ref={scrollRef}>
+          <S.RecommendGuideWrapper>
+            <S.RecommendGuide
+              initial={{ transform: "translate(-50%, -50%)" }}
+              animate={
+                isScrollTop
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.8, y: -20 }
+              }
+              transition={{ ...animation.quick }}>
+              <Avatar />
+              <SpeechBubble>
+                <SpeechBubble.MainText>
+                  사용 가능한 기구를 선택해주세요!
+                </SpeechBubble.MainText>
+              </SpeechBubble>
+            </S.RecommendGuide>
+          </S.RecommendGuideWrapper>
+
+          <S.RecommendMachineWrapper
+            animate={isScrollTop ? { y: "0px" } : { y: "-450px" }}
+            transition={{ ...animation.small }}>
+            {machines?.map(({ englishName, koreanName, id, imgPath }) => (
+              <ImgCheckBox
+                key={englishName}
+                src={imgPath}
+                alt="테스트 이미지를 설명"
+                isSelected={machinesById.has(id)}
+                handleToggle={() => handleBodyPart(id)}
+                variant="big">
+                {koreanName}
+              </ImgCheckBox>
+            ))}
+          </S.RecommendMachineWrapper>
+        </S.RecommendInner>
+
+        <Bottom flex="space-between">
+          <Bottom.Text>
+            {numChecked}개<Bottom.SubText> 기구 선택됨</Bottom.SubText>
+          </Bottom.Text>
+          {numChecked > 0 ? (
+            <RoundButton
+              onClick={handleRecommend}
+              variant="blue"
+              rightIcon="RightArrowWhite"
+              size="big"
+              isPending={postRecommend.isPending}>
+              {postRecommend.isPending ? (
+                <BeatLoader
+                  size="7"
+                  color="#DDEAF4"
+                  margin={6}
+                />
+              ) : (
+                "추천 시작하기"
+              )}
+            </RoundButton>
+          ) : (
+            <RoundButton
+              onClick={handleRecommend}
+              variant="black"
+              rightIcon="RightArrowWhite"
+              size="big"
+              isPending={postRecommend.isPending}>
+              {postRecommend.isPending ? (
+                <BeatLoader
+                  size="7"
+                  color="#DDEAF4"
+                  margin={6}
+                />
+              ) : (
+                "기구 선택 없이 추천 받기"
+              )}
+            </RoundButton>
+          )}
+        </Bottom>
+      </S.RecommendWrapper>
     </>
   )
 }

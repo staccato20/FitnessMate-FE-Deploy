@@ -74,7 +74,7 @@ export const Input = styled.input<{
   $borderStyle: Interpolation<object>
 }>`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
 
   &::-webkit-input-placeholder {
     color: ${theme.Netural500};

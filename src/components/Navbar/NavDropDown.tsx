@@ -21,11 +21,6 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
     toggleDropDown()
   }
 
-  const handleFixBodyInfo = async () => {
-    alert("현재 수정중인 페이지입니다!")
-    toggleDropDown()
-  }
-
   return (
     <S.NavDropDownWrapper ref={dropDownRef}>
       <S.NavButton onClick={toggleDropDown}>{userName}님</S.NavButton>
@@ -46,11 +41,6 @@ const NavDropDown = ({ userName }: NavDropDownProps) => {
               variant="text"
               onClick={handleFixProfile}>
               계정 정보 수정
-            </Button>
-            <Button
-              variant="text"
-              onClick={handleFixBodyInfo}>
-              신체 정보 수정
             </Button>
           </S.NavDropDownList>
         </S.NavDropDownListWrapper>

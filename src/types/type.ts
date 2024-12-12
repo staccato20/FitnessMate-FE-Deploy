@@ -70,12 +70,12 @@ export interface SignupResponse {
   rememberMe: boolean
 }
 
-export interface UpdateUserPayload {
+export interface EditUserPayload {
   userName: string
   birthDate: string
 }
 
-export interface UpdateUserPasswordPayload {
+export interface EditUserPasswordPayload {
   oldPassword: string
   newPassword: string
 }
@@ -94,21 +94,10 @@ export type PostLoginResponse = SignupResponse
 
 export type GetAccessTokenResponse = SignupResponse
 
-export interface PostNewPasswordPayload {
-  mailAdderss: string
-}
-
-export interface PostNewPasswordResponse {
-  status: "ok" | "fail"
-  message: string
-}
-
-export interface GetVerifyCodePayload {
-  mailAdderss: string
-  verificationCode: string
-}
-
-export type GetVerifyCodeResponse = PostNewPasswordResponse
+// export interface PostEditPasswordResponse {
+//   status: "ok" | "fail"
+//   message: string
+// }
 
 export interface PostRecommendIdPayload {
   bodyPartKoreanName: string[]

@@ -7,7 +7,6 @@ import { SIGNUP_INPUTS } from "constants/validation"
 import { omit } from "lodash"
 
 import Input from "@components/Input/Input"
-import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 import { createSignupList } from "@pages/Signup/utils/createSignupList"
@@ -30,8 +29,8 @@ const Profile = () => {
   const onSubmit: SubmitHandler<typeof SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE> = (
     formValue,
   ) => {
-    const updatedProfoile = omit(formValue, ["passwordCheck"])
-    setProfile(updatedProfoile)
+    const editedProfoile = omit(formValue, ["passwordCheck"])
+    setProfile(editedProfoile)
     navigate("/signup/bodyinfo")
   }
 
@@ -55,10 +54,10 @@ const Profile = () => {
 
   return (
     <S.SignupWrapper>
-      <S.SignupTitle>
-        <ProgressBar progress={1} />
-        회원 정보를 입력해주세요
-      </S.SignupTitle>
+      <S.SignupTitleWrapper>
+        <S.StatusText>1/3단계</S.StatusText>
+        <S.SignupTitle>회원 정보를 입력해주세요</S.SignupTitle>
+      </S.SignupTitleWrapper>
       <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
         {SIGNUP_LIST.map(({ id, name, label, isRequired, onChange }) => (
           <Input key={id}>
