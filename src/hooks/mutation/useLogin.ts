@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import { useUserStore } from "@store/useUserStore"
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 
 import authAPI from "@apis/domain/auth"
 
@@ -12,8 +12,7 @@ import { PostLoginPayload } from "@typpes/type"
 export const useLogin = (
   setError: UseFormSetError<{ loginEmail: string; password: string }>,
 ) => {
-  const queryClient = useQueryClient()
-  const { saveUser, logout } = useUserStore()
+  const { saveUser } = useUserStore()
 
   const navigate = useNavigate()
   return useMutation({
@@ -21,25 +20,21 @@ export const useLogin = (
     mutationFn: (submission: PostLoginPayload) => authAPI.login(submission),
     onSuccess: async ({ status, data: { accessToken, refreshToken } }) => {
       if (status === 200) {
-        queryClient.refetchQueries({
-          queryKey: ["USERINFO"],
-          exact: true,
-        })
         localStorage.setItem("accessToken", accessToken)
         localStorage.setItem("refreshToken", refreshToken)
         localStorage.setItem("rememberMe", "true")
 
-        const userInfo = await queryClient.fetchQuery({
-          queryKey: ["USERINFO2"],
-          queryFn: () => authAPI.fetchUser(),
+        await authAPI.fetchUser().then((res) => {
+          saveUser(res)
         })
-        if (userInfo) {
-          saveUser(userInfo)
-        } else {
-          logout()
-        }
-
         navigate("/")
+      } else {
+        if (setError) {
+          setError("root", {
+            type: "server",
+            message: "이메일 또는 비밀번호를 잘못 입력했습니다",
+          })
+        }
       }
     },
     onError: () => {
@@ -52,3 +47,7 @@ export const useLogin = (
     },
   })
 }
+
+// 로그인 => 로그인 요청 api 호출
+// 성공 -> 유저패칭훅(accesstoken으로 api 호출하고 전역에 유저정보랑 로그인 상태 담음)
+// 실패 -> form 에러
