@@ -3,20 +3,18 @@ import { useState } from "react"
 import {
   DragDropContext,
   DragUpdate,
-  Draggable,
   DropResult,
   Droppable,
 } from "@hello-pangea/dnd"
 
 import { useQueryClient } from "@tanstack/react-query"
 
-import MyWorkout from "@pages/MyPage/Routine/MyWorkout/MyWorkout"
-
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
 import useEditWorkout from "@hooks/mutation/useEditWorkoutList"
 import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
 
+import MyWorkoutItem from "./MyWorkoutItem"
 import * as S from "./StyledMyPage"
 
 interface DragAndDropProps {
@@ -102,43 +100,14 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
                   top={`${highlightedFrameIndex * (157 + 13)}px`}
                 />
               )}
-              {myWorkouts.map((workout, index) => {
-                const {
-                  workoutId,
-                  myWorkoutId,
-                  bodyParts,
-                  caution,
-                  setCount,
-                  rep,
-                  weight,
-                  workoutName,
-                } = workout
-                return (
-                  <Draggable
-                    key={workoutId}
-                    draggableId={`item-${workoutId}`}
-                    index={index}>
-                    {(providedSpace, snapshot) => (
-                      <MyWorkout
-                        routineId={selectedRoutineId || 0}
-                        workoutId={workoutId}
-                        myWorkoutId={myWorkoutId}
-                        bodyParts={bodyParts.join(", ")}
-                        caution={caution || "주의사항이 없습니다."}
-                        setCount={setCount?.toString() || "0"}
-                        rep={rep?.toString() || "0"}
-                        weight={weight?.toString() || "0"}
-                        onClick={() => {}}
-                        draggableProps={providedSpace.draggableProps}
-                        dragHandleProps={providedSpace.dragHandleProps}
-                        innerRef={providedSpace.innerRef}
-                        isDragging={snapshot.isDragging}>
-                        {workoutName}
-                      </MyWorkout>
-                    )}
-                  </Draggable>
-                )
-              })}
+              {myWorkouts.map((workout, index) => (
+                <MyWorkoutItem
+                  key={workout.workoutId}
+                  workout={workout}
+                  index={index}
+                  routineId={selectedRoutineId || 0}
+                />
+              ))}
               {provided.placeholder}
             </div>
           )}
