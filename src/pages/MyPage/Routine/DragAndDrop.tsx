@@ -21,7 +21,7 @@ interface DragAndDropProps {
   selectedRoutineId: number
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ selectedRoutineId }) => {
+const DragAndDrop = ({ selectedRoutineId }: DragAndDropProps) => {
   const queryClient = useQueryClient()
 
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
