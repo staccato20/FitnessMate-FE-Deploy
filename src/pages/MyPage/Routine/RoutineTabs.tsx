@@ -24,14 +24,14 @@ const RoutineTabs = ({ myRoutines, onTabChange }: RoutineTabsProps) => {
       <S.RoutineList>
         <Tabs>
           <Tabs.TabList>
-            {myRoutines.map((routine, index) => (
+            {myRoutines.map(({ routineId, routineName }, index) => (
               <Tabs.Tab
-                key={routine.routineId}
+                key={routineId}
                 index={index}
                 variant="line"
                 onClick={() => handleTabClick(index)}
                 isFirstChild={true}>
-                {routine.routineName}
+                {routineName}
               </Tabs.Tab>
             ))}
           </Tabs.TabList>
