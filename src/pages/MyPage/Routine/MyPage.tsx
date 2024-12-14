@@ -28,7 +28,7 @@ const MyPage = () => {
   const isRoutine = isRoutineFetched && myRoutines.length > 0
   const myRoutineLength = isRoutine ? myRoutines.length : 0
   const [selectedRoutineId, setSelectedRoutineId] = useState<number>(
-    isRoutine ? myRoutines[0].routineId : 0,
+    myRoutines.length > 0 ? myRoutines[0].routineId : -1,
   )
 
   const { isWorkout } = useGetMyWorkouts(selectedRoutineId)
