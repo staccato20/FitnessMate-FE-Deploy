@@ -4,7 +4,7 @@ import { PostRecommendIdPayload, PostRecommendResponse } from "../../types/type"
 
 const workoutId = async (params: PostRecommendIdPayload) => {
   const { data } = await instance.post<number>(
-    `/api/recommendation/workout`,
+    "/api/recommendation/workout",
     params,
   )
   return data

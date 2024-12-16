@@ -92,7 +92,7 @@ export const FigureCheckBoxButton = styled.button<{ $isChecked: boolean }>`
   height: 50px;
   &:hover {
     background: ${({ $isChecked }) =>
-      $isChecked ? `#f2f4f6` : `${theme.Netural200}`};
+      $isChecked ? "#f2f4f6" : `${theme.Netural200}`};
   }
 `
 
