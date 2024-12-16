@@ -1,6 +1,6 @@
 addReviewers: true
 
-addAssigness: author
+addAssignees: author
 
 reviewers:
   - Whoknow77
