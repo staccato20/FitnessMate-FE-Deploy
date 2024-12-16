@@ -22,7 +22,7 @@ interface ContentProps {
   videoId: number
   recommend: number
   description: number
-  caution: number
+  caution: string
 }
 
 const Content = ({
