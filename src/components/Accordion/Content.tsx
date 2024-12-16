@@ -20,9 +20,9 @@ import Icon from "@components/Icon/Icon"
 
 interface ContentProps {
   videoId: number
-  recommend: string[]
-  description: string
-  caution: string
+  recommend: number
+  description: number
+  caution: number
 }
 
 const Content = ({

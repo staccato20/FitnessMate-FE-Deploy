@@ -53,7 +53,8 @@
     "build-storybook": "storybook build",
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
+    "lint": "eslint --cache"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
