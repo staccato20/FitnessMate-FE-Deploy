@@ -54,7 +54,7 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
-    "lint": "eslint \"src/**/*\""
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
