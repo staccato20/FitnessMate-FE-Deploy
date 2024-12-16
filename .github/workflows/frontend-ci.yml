@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: 20.9.0
 
-      - name: Clean Workspace
-        run: git clean -fdx
-
       - name: Install dependencies
         run: npm i
 
