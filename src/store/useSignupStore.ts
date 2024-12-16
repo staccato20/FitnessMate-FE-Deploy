@@ -18,7 +18,7 @@ interface useSignupStoreProps {
 }
 
 export const useSignupStore = create<useSignupStoreProps>((set) => ({
-  profile: (({ passwordCheck, ...rest }) => rest)(
+  profile: (({ passwordCheck: _passwordCheck, ...rest }) => rest)(
     SIGNUP_INPUTS.DEFAULT_VALUES.PROFILE,
   ),
   bodyinfo: SIGNUP_INPUTS.DEFAULT_VALUES.BODYINFO,

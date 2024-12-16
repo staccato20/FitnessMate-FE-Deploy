@@ -39,7 +39,7 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     "react/no-unescaped-entities": 0,
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/no-deprecated-options": "error",

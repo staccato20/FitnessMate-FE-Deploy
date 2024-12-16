@@ -75,7 +75,7 @@ const SelectItem = styled.button<{ $isChecked: boolean }>`
   background: ${({ $isChecked }) =>
     $isChecked ? theme.Netural100 : theme.Netural0};
   border: ${({ $isChecked }) =>
-    $isChecked ? `3px solid ${theme.Brand600}` : `3px solid transparent`};
+    $isChecked ? `3px solid ${theme.Brand600}` : "3px solid transparent"};
   display: flex;
   width: 126px;
   height: 126px;

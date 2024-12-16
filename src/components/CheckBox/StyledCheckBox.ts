@@ -16,7 +16,7 @@ export const CheckBoxWrapper = styled.button<isCheckedProps>`
   align-items: center;
   border-radius: 12px;
   border: ${({ $isChecked }) =>
-    $isChecked ? `1px solid #0b98ff` : `1px solid #A2B2C2`};
+    $isChecked ? "1px solid #0b98ff" : "1px solid #A2B2C2"};
   background: ${({ $isChecked }) => ($isChecked ? "#ecf7ff" : "#fff")};
   height: 50px;
 `
