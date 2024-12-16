@@ -19,7 +19,7 @@ import {
 import Icon from "@components/Icon/Icon"
 
 interface ContentProps {
-  videoId: string
+  videoId: number
   recommend: string[]
   description: string
   caution: string
