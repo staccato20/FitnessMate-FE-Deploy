@@ -100,6 +100,7 @@ export const VARIANTS = {
       ${fonts.h4};
       display: flex;
       align-items: center;
+      gap: 8px;
     }
     .bottomTitleContentText {
       color: ${theme.Netural550};

@@ -32,6 +32,7 @@ import LeftArrowGrey from "@assets/icon/left_arrow_grey.svg?react"
 import LeftArrowWhite from "@assets/icon/left_arrow_white.svg?react"
 import MinusRound from "@assets/icon/minus_round.svg?react"
 import Pencil from "@assets/icon/pencil.svg?react"
+import PencilDarkGrey from "@assets/icon/pencil_darkgrey.svg?react"
 import PencilGrey from "@assets/icon/pencil_grey.svg?react"
 import PencilRound from "@assets/icon/pencil_round.svg?react"
 import PlayRound from "@assets/icon/play_round.svg?react"
@@ -70,6 +71,7 @@ export const ICON_MAP = {
   LeftArrow,
   MinusRound,
   PencilGrey,
+  PencilDarkGrey,
   PencilRound,
   Pencil,
   PlayRound,

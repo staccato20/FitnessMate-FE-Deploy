@@ -48,15 +48,13 @@ export const MyBodyInfotmation = styled.div`
 
 export const FixIconButtonWrapper = styled.div`
   display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background-color: ${theme.Netural150};
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  background-color: ${theme.Netural300};
+  border-radius: 6px;
 `
 
 export const RoutineListWrapper = styled.div`

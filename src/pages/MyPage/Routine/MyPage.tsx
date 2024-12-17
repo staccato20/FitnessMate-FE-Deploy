@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import Icon from "@components/Icon/Icon"
 import IconButton from "@components/IconButton/IconButton"
@@ -16,6 +17,12 @@ import RoutineTabs from "./RoutineTabs"
 import * as S from "./StyledMyPage"
 
 const MyPage = () => {
+  const navigate = useNavigate()
+
+  const handleFixProfile = async () => {
+    navigate("/mypage/profile")
+  }
+
   const { userInfo } = useUserInfo()
   const userName = userInfo?.userName || "사용자명"
 
@@ -50,10 +57,10 @@ const MyPage = () => {
               <Title variant="midE">
                 <Title.SubTopIconTitle>
                   {userName}
-                  <S.FixIconButtonWrapper>
+                  <S.FixIconButtonWrapper onClick={handleFixProfile}>
                     <IconButton
-                      icon="RightArrowGrey"
-                      size={24}
+                      icon="PencilDarkGrey"
+                      size={14}
                     />
                   </S.FixIconButtonWrapper>
                 </Title.SubTopIconTitle>
