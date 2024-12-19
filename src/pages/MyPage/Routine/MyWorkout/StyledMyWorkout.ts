@@ -62,6 +62,68 @@ export const HeaderRightInfoContent = styled.span`
   color: ${theme.Netural900};
   ${fonts.h2}
 `
+export const CustomCursor = styled.span`
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1px);
+  transform: translateY(-50%);
+  width: 2px;
+  height: 24px;
+  border-radius: 2px;
+  background-color: ${theme.Brand500};
+  visibility: hidden;
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+`
+
+export const HeaderRightInfoArea = styled.div<{ width: string }>`
+  display: flex;
+  height: 33px;
+  align-items: center;
+  justify-content: right;
+  position: relative;
+  width: ${(props) => props.width};
+  margin-right: 2px;
+
+  &:focus-within ${CustomCursor} {
+    visibility: visible;
+    animation: blink 1s steps(1, start) infinite;
+  }
+`
+
+export const HeaderRightInfoInput = styled.input`
+  display: inline-flex;
+  align-items: center;
+  color: ${theme.Netural900};
+  ${fonts.h2};
+  width: 100%;
+  max-width: 100%;
+  text-align: right;
+  caret-color: transparent;
+
+  &::-webkit-input-placeholder {
+    color: ${theme.Netural450};
+  }
+`
+
+export const InputWidthItem = styled.span`
+  position: absolute;
+  visibility: hidden;
+  whitespace: pre;
+  fontsize: inherit;
+  fontfamily: inherit;
+  letterspacing: inherit;
+  lineheight: inherit;
+`
+
 export const HeaderRightInfoUnit = styled.span`
   padding: 0 0 2px 2px;
   color: ${theme.Netural550};
@@ -88,6 +150,18 @@ export const BottomTitle = styled.div`
   ${fonts.b7};
   background-color: #fff6e3;
   border-radius: 6px;
+`
+export const CompleteIconButtonWrapper = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: ${theme.Brand50};
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
 `
 
 export const HandleIconButtonWrapper = styled.div`
