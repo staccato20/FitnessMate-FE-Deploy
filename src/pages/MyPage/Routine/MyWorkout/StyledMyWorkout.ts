@@ -151,14 +151,17 @@ export const BottomTitle = styled.div`
   background-color: #fff6e3;
   border-radius: 6px;
 `
-export const CompleteIconButtonWrapper = styled.button`
+export const CompleteIconButtonWrapper = styled.button<{
+  isDisabled?: boolean
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   top: 14px;
   right: 14px;
-  background-color: ${theme.Brand50};
+  background-color: ${(props) =>
+    props.isDisabled ? theme.Netural200 : theme.Brand50};
   width: 32px;
   height: 32px;
   border-radius: 8px;
