@@ -24,6 +24,10 @@ const RoutineInfoModal = () => {
   const { mutate, isSuccess, reset: resetMutation } = usePostAddRoutine()
   const { routineState, resetRoutineState, workoutState } = useModalStore()
 
+  const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "")
+  }
+
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({
     weight,
     repeat,
@@ -79,6 +83,7 @@ const RoutineInfoModal = () => {
                   placeholder="20"
                   maxLength={3}
                   {...register("weight", { required: true })}
+                  onInput={handleNumberInput}
                 />
                 <S.Unit>kg</S.Unit>
               </S.MachineInputItem>
@@ -87,6 +92,7 @@ const RoutineInfoModal = () => {
                   placeholder="12"
                   maxLength={2}
                   {...register("repeat", { required: true })}
+                  onInput={handleNumberInput}
                 />
                 <S.Unit>회</S.Unit>
               </S.MachineInputItem>
@@ -95,6 +101,7 @@ const RoutineInfoModal = () => {
                   placeholder="5"
                   maxLength={2}
                   {...register("set", { required: true })}
+                  onInput={handleNumberInput}
                 />
                 <S.Unit>세트</S.Unit>
               </S.MachineInputItem>
