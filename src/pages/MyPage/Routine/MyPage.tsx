@@ -10,7 +10,7 @@ import EmptyRoutine from "@pages/MyPage/Routine/EmptyRoutine/EmptyRoutine"
 import { useGetFetchRecentData } from "@hooks/query/useGetFetchRecentBodyData"
 import { useGetMyRoutines } from "@hooks/query/useGetMyRoutines"
 import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
-import { useUserInfo } from "@hooks/query/useUserInfo"
+import { useGetUserInfo } from "@hooks/query/useGetUserInfo"
 
 import DragAndDrop from "./DragAndDrop"
 import RoutineTabs from "./RoutineTabs"
@@ -23,7 +23,7 @@ const MyPage = () => {
     navigate("/mypage/profile")
   }
 
-  const { userInfo } = useUserInfo()
+  const { userInfo } = useGetUserInfo()
   const userName = userInfo?.userName || "사용자명"
 
   const { bodyDatas } = useGetFetchRecentData()
