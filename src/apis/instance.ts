@@ -60,7 +60,6 @@ instance.interceptors.response.use(
     }
 
     if (error.response.data.status === "EXPIRED_REFRESH_TOKEN_EXCEPTION") {
-      alert("장시간 로그인하여 로그아웃 되었습니다. 재로그인 해주세요!")
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
       localStorage.removeItem("rememberMe")

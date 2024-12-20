@@ -1,19 +1,18 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useUserStore } from "@store/useUserStore"
+
+import { useMutation } from "@tanstack/react-query"
 
 import authAPI from "@apis/domain/auth"
 
 import { EditUserPayload } from "@typpes/type"
 
 export const useEditProfile = () => {
-  const queryClient = useQueryClient()
-
+  const { saveUser } = useUserStore()
   return useMutation({
     mutationKey: ["postEditProfile"],
     mutationFn: (req: EditUserPayload) => authAPI.editUser(req),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["USERINFO"],
-      })
+      authAPI.fetchUser().then((res) => saveUser(res))
     },
   })
 }
