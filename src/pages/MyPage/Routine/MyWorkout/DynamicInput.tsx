@@ -28,6 +28,14 @@ const DynamicInput = ({ value, placeholder, onChange }: DynamicInputProps) => {
     } as unknown as React.ChangeEvent<HTMLInputElement>)
   }
 
+  const handleBlur = () => {
+    if (!value.trim()) {
+      onChange({
+        target: { value: placeholder },
+      } as unknown as React.ChangeEvent<HTMLInputElement>)
+    }
+  }
+
   return (
     <S.HeaderRightInfoArea width={`${width}px`}>
       <S.HeaderRightInfoInput
@@ -35,6 +43,7 @@ const DynamicInput = ({ value, placeholder, onChange }: DynamicInputProps) => {
         value={localValue}
         placeholder={placeholder}
         onChange={handleInputChange}
+        onBlur={handleBlur}
         maxLength={2}
       />
       <S.InputWidthItem ref={spanRef}>

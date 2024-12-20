@@ -55,7 +55,6 @@ const MyWorkout = ({
   const [weightValue, setWeightValue] = useState(weight)
   const [repValue, setRepValue] = useState(rep)
   const [setCountValue, setSetCountValue] = useState(setCount)
-  const isDisabled = !weightValue || !repValue || !setCountValue
 
   const { mutate: editWorkout } = useEditWorkoutList(routineId)
 
@@ -174,13 +173,11 @@ const MyWorkout = ({
           {caution}
         </S.BottomWrapper>
         {isEditMode ? (
-          <S.CompleteIconButtonWrapper
-            isDisabled={isDisabled}
-            title={isDisabled ? "모든 값을 입력해야 합니다" : ""}>
+          <S.CompleteIconButtonWrapper>
             <IconButton
-              icon={isDisabled ? "CheckGray" : "CheckBlue"} // 아이콘 변경
+              icon="CheckBlue"
               size={18}
-              onClick={isDisabled ? undefined : handleSave} // 비활성화 시 클릭 방지
+              onClick={handleSave}
             />
           </S.CompleteIconButtonWrapper>
         ) : (
