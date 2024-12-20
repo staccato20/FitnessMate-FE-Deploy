@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import authAPI from "@apis/domain/auth"
 
-export const useUserInfo = () => {
+export const useGetUserInfo = () => {
   const { isLogin, saveUser, logout } = useUserStore()
   const userInfo = useQuery({
     queryKey: ["USERINFO"],

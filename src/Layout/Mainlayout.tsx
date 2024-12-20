@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 
-import { usePathStore } from "@store/usePathStore"
 import { useUserStore } from "@store/useUserStore"
 
 import Footer from "@components/Footer/Footer"
@@ -11,24 +10,24 @@ import { ScrollToTop } from "@components/ScrollToTop/ScrollToTop"
 const MainLayout = () => {
   const location = useLocation()
   const path = location.pathname
-  const isRecommend = path.includes("recommend")
-  const isLogin = path.includes("login")
-  const isSignup = path.includes("signup")
-  const isMyPage = path.includes("mypage")
-  const { setIsRecommendPage } = usePathStore()
+  const hasNotFooter =
+    path.includes("login") ||
+    path.includes("signup") ||
+    path.includes("mypage") ||
+    path.includes("recommend")
+
   const { checkLogin } = useUserStore()
 
   useEffect(() => {
-    setIsRecommendPage(path)
     checkLogin()
-  }, [location, path, setIsRecommendPage, checkLogin])
+  }, [checkLogin, location])
 
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Outlet />
-      {!isRecommend && !isLogin && !isSignup && !isMyPage && <Footer />}
+      {!hasNotFooter && <Footer />}
     </>
   )
 }

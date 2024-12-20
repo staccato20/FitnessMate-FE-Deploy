@@ -5,7 +5,6 @@ import { useSignupStore } from "@store/useSignupStore"
 import { BODYINFO_LIST, SEX_GROUP, SIGNUP_INPUTS } from "constants/validation"
 
 import Input from "@components/Input/Input"
-import ProgressBar from "@components/Progressbar/ProgressBar"
 
 import SignupButton from "@pages/Signup/SignupButton/SignupButton"
 
@@ -38,10 +37,10 @@ const BodyInfo = () => {
 
   return (
     <S.SignupWrapper>
-      <S.SignupTitle>
-        <ProgressBar progress={2} />
-        신체 정보를 입력해주세요
-      </S.SignupTitle>
+      <S.SignupTitleWrapper>
+        <S.StatusText>2/3단계</S.StatusText>
+        <S.SignupTitle>신체 정보를 입력해주세요</S.SignupTitle>
+      </S.SignupTitleWrapper>
       <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
         <Input>
           <Input.Label

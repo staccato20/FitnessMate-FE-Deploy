@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { SubmitHandler, useFormContext } from "react-hook-form"
 
 import { useModalStore } from "@store/useModalStore"
@@ -20,12 +19,26 @@ import * as S from "./StyledRoutineModal"
 
 const RoutineInfoModal = () => {
   const { isOpen, onClose } = useModal("루틴정보")
-  const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
-  const { mutate, isSuccess, reset: resetMutation } = usePostAddRoutine()
-  const { routineState, resetRoutineState, workoutState } = useModalStore()
+  const { onClose: closeAddModal } = useModal("루틴추가")
 
-  const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, "")
+  const { register, handleSubmit, reset } = useFormContext<RoutineInfoTypes>()
+  const { mutate, reset: resetMutation } = usePostAddRoutine()
+  const {
+    routineState,
+    resetRoutineState,
+    workoutState: {
+      workoutId,
+      caution,
+      set: defaultSet,
+      weight: defaultWeight,
+      repeat: defaultRepeat,
+    },
+  } = useModalStore()
+
+  const defaultInput = {
+    set: defaultSet,
+    weight: defaultWeight,
+    repeat: defaultRepeat,
   }
 
   const handleRoutine: SubmitHandler<RoutineInfoTypes> = ({
@@ -34,16 +47,25 @@ const RoutineInfoModal = () => {
     set,
   }) => {
     routineState.forEach((routineId) => {
-      mutate({
-        routineId,
-        routineInfo: {
-          workoutIds: [workoutState.workoutId],
-          weight,
-          rep: repeat,
-          setCount: set,
-          caution: workoutState.caution,
+      mutate(
+        {
+          routineId,
+          routineInfo: {
+            workoutIds: [workoutId],
+            weight,
+            rep: repeat,
+            setCount: set,
+            caution: caution,
+          },
         },
-      })
+        {
+          onSuccess: () => {
+            onClose()
+            resetMutation()
+            closeAddModal()
+          },
+        },
+      )
     })
     resetRoutineState()
     reset()
@@ -52,13 +74,6 @@ const RoutineInfoModal = () => {
   const handleFormAdapter = () => {
     handleSubmit(handleRoutine)()
   }
-
-  useEffect(() => {
-    if (isSuccess) {
-      onClose()
-      resetMutation()
-    }
-  }, [isSuccess, onClose])
 
   return (
     <Modal
@@ -78,33 +93,16 @@ const RoutineInfoModal = () => {
         <ContentWrapper>
           <ContentMachineForm onSubmit={handleSubmit(handleRoutine)}>
             <S.MachineInputList>
-              <S.MachineInputItem key={0}>
-                <S.MachineInput
-                  placeholder="20"
-                  maxLength={3}
-                  {...register("weight", { required: true })}
-                  onInput={handleNumberInput}
-                />
-                <S.Unit>kg</S.Unit>
-              </S.MachineInputItem>
-              <S.MachineInputItem key={1}>
-                <S.MachineInput
-                  placeholder="12"
-                  maxLength={2}
-                  {...register("repeat", { required: true })}
-                  onInput={handleNumberInput}
-                />
-                <S.Unit>회</S.Unit>
-              </S.MachineInputItem>
-              <S.MachineInputItem key={2}>
-                <S.MachineInput
-                  placeholder="5"
-                  maxLength={2}
-                  {...register("set", { required: true })}
-                  onInput={handleNumberInput}
-                />
-                <S.Unit>세트</S.Unit>
-              </S.MachineInputItem>
+              {MACHINE_INFO_INPUT.map(({ key, name, label, maxLength }) => (
+                <S.MachineInputItem key={key}>
+                  <S.MachineInput
+                    defaultValue={defaultInput[name]}
+                    maxLength={maxLength}
+                    {...register(name, { required: true })}
+                  />
+                  <S.Unit>{label}</S.Unit>
+                </S.MachineInputItem>
+              ))}
             </S.MachineInputList>
             <S.MachineButton
               type="reset"
@@ -127,3 +125,9 @@ const RoutineInfoModal = () => {
 }
 
 export default RoutineInfoModal
+
+const MACHINE_INFO_INPUT = [
+  { key: 0, name: "weight", label: "kg", maxLength: 3 },
+  { key: 1, name: "repeat", label: "회", maxLength: 2 },
+  { key: 2, name: "set", label: "세트", maxLength: 2 },
+] as const
