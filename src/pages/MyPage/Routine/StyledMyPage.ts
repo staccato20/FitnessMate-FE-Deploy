@@ -48,27 +48,30 @@ export const MyBodyInfotmation = styled.div`
 
 export const FixIconButtonWrapper = styled.div`
   display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background-color: ${theme.Netural150};
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  background-color: ${theme.Netural300};
+  border-radius: 6px;
+`
+
+export const RoutineListWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
 `
 
 export const RoutinesContainer = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-top: 10px;
 `
 
 export const RoutineList = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 2px;
   align-items: center;
   width: 100%;
   border-bottom: 1px solid ${theme.Netural300};
@@ -84,13 +87,25 @@ export const AddIconButtonWrapper = styled.div`
   border-radius: 6px;
 `
 
-export const AddWorkoutWraper = styled.div`
+export const AddWorkoutWrapper = styled.div`
   display: flex;
   padding: 16px 8px;
   align-items: center;
   gap: 12px;
   color: ${theme.Netural800};
   ${fonts.b2}
+`
+
+export const EmptyWorkoutWrapper = styled.div`
+  width: 100%;
+  margin-top: 37px;
+  padding: 98px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-direction: column;
+  color: ${theme.Netural900};
+  ${fonts.h4}
 `
 
 export const DragAndDropWrapper = styled.div`

@@ -1,96 +1,80 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import {
   DragDropContext,
   DragUpdate,
-  Draggable,
   DropResult,
   Droppable,
 } from "@hello-pangea/dnd"
 
-import MyWorkout from "@components/MyWorkout/MyWorkout"
-
-import MyFitAPI from "@apis/domain/myfit"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { MyWorkoutIndex, MyWorkoutList } from "@typpes/type"
 
+import useEditWorkout from "@hooks/mutation/useEditWorkoutList"
+import useGetMyWorkouts from "@hooks/query/useGetMyWorkouts"
+
+import MyWorkoutItem from "./MyWorkoutItem"
 import * as S from "./StyledMyPage"
 
 interface DragAndDropProps {
-  selectedRoutineId?: number | null
+  selectedRoutineId: number
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = (selectedRoutineId) => {
-  const [myWorkouts, setMyWorkouts] = useState<MyWorkoutList[]>([])
+const DragAndDrop = ({ selectedRoutineId }: DragAndDropProps) => {
+  const queryClient = useQueryClient()
+
   const [highlightedFrameIndex, setHighlightedFrameIndex] = useState<
     number | null
   >(null)
 
-  useEffect(() => {
-    const fetchWorkouts = async (routineId: number) => {
-      try {
-        const response = await MyFitAPI.myWorkouts(routineId)
-        setMyWorkouts(response)
-      } catch (err) {
-        console.log(err)
-      }
-    }
+  const { myWorkouts } = useGetMyWorkouts(selectedRoutineId, {
+    enabled: !!selectedRoutineId,
+  })
 
-    fetchWorkouts(Number(selectedRoutineId))
-  }, [selectedRoutineId])
+  const editWorkout = useEditWorkout(selectedRoutineId)
 
   const onDragUpdate = (update: DragUpdate) => {
     if (update.destination) {
-      setHighlightedFrameIndex(update.destination.index) // 드래그가 놓일 위치 저장
+      setHighlightedFrameIndex(update.destination.index)
     } else {
-      setHighlightedFrameIndex(null) // 드래그 가능한 위치가 없을 때 초기화
+      setHighlightedFrameIndex(null)
     }
   }
 
-  const handleDrop = async (droppedItem: DropResult) => {
-    setHighlightedFrameIndex(null) // 드롭 후 placeholder 숨김
+  const handleDrop = (droppedItem: DropResult) => {
+    setHighlightedFrameIndex(null)
 
     if (!droppedItem.destination) return
 
     const updatedList: MyWorkoutList[] = [...myWorkouts]
-
-    // drag item 삭제
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1)
-    // drop item 추가
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem)
 
     updatedList.forEach((workout, index) => {
-      workout.myWorkoutIndex = index + 1 // 인덱스를 다시 1부터 재설정
+      workout.myWorkoutIndex = index + 1
     })
 
-    // UI 상태 즉시 업데이트
-    setMyWorkouts(updatedList)
+    const myWorkoutId = updatedList[droppedItem.destination.index].myWorkoutId
 
     const workout: MyWorkoutIndex = {
       myWorkoutIndex: droppedItem.destination.index + 1,
-      weight: updatedList[droppedItem.destination.index].weight
-        ? updatedList[droppedItem.destination.index].weight.toString()
-        : "0",
-      rep: updatedList[droppedItem.destination.index].rep
-        ? updatedList[droppedItem.destination.index].rep.toString()
-        : "0",
-      setCount: updatedList[droppedItem.destination.index].setCount
-        ? updatedList[droppedItem.destination.index].setCount.toString()
-        : "0",
-      caution: updatedList[droppedItem.destination.index].caution
-        ? updatedList[droppedItem.destination.index].caution.toString()
-        : "주의사항이 없습니다.",
+      weight:
+        updatedList[droppedItem.destination.index].weight?.toString() || "0",
+      rep: updatedList[droppedItem.destination.index].rep?.toString() || "0",
+      setCount:
+        updatedList[droppedItem.destination.index].setCount?.toString() || "0",
+      caution:
+        updatedList[droppedItem.destination.index].caution ||
+        "주의사항이 없습니다.",
     }
 
-    try {
-      await MyFitAPI.editMyWorkout(
-        updatedList[droppedItem.destination.index].myWorkoutId,
-        workout,
-      )
-    } catch (error) {
-      console.error(error)
-      setMyWorkouts(myWorkouts) // 요청 실패 시 이전 상태로 복원
-    }
+    queryClient.setQueryData<MyWorkoutList[]>(
+      ["workoutList", selectedRoutineId],
+      updatedList,
+    )
+
+    editWorkout.mutate({ myWorkoutId, workout })
   }
 
   return (
@@ -119,27 +103,13 @@ const DragAndDrop: React.FC<DragAndDropProps> = (selectedRoutineId) => {
                   top={`${highlightedFrameIndex * (157 + 13)}px`}
                 />
               )}
-              {myWorkouts?.map((workout, index) => (
-                <Draggable
+              {myWorkouts.map((workout, index) => (
+                <MyWorkoutItem
                   key={workout.workoutId}
-                  draggableId={`item-${workout.workoutId}`}
-                  index={index}>
-                  {(providedSpace, snapshot) => (
-                    <MyWorkout
-                      bodyParts={workout.bodyParts.join(", ")}
-                      caution={workout.caution || "주의사항이 없습니다."}
-                      setCount={workout.setCount?.toString() || "0"}
-                      rep={workout.rep?.toString() || "0"}
-                      weight={workout.weight?.toString() || "0"}
-                      onClick={() => {}}
-                      draggableProps={providedSpace.draggableProps}
-                      dragHandleProps={providedSpace.dragHandleProps}
-                      innerRef={providedSpace.innerRef}
-                      isDragging={snapshot.isDragging}>
-                      {workout.workoutName}
-                    </MyWorkout>
-                  )}
-                </Draggable>
+                  workout={workout}
+                  index={index}
+                  routineId={selectedRoutineId || 0}
+                />
               ))}
               {provided.placeholder}
             </div>
