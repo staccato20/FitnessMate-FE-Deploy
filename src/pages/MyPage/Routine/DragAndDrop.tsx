@@ -28,7 +28,10 @@ const DragAndDrop = ({ selectedRoutineId }: DragAndDropProps) => {
     number | null
   >(null)
 
-  const { myWorkouts } = useGetMyWorkouts(selectedRoutineId || 0)
+  const { myWorkouts } = useGetMyWorkouts(selectedRoutineId, {
+    enabled: !!selectedRoutineId,
+  })
+
   const editWorkout = useEditWorkout(selectedRoutineId)
 
   const onDragUpdate = (update: DragUpdate) => {
