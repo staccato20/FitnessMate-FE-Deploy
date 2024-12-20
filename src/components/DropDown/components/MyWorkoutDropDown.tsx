@@ -10,11 +10,13 @@ import * as S from "../StyledDropDown"
 interface MyWorkoutDropDownProps {
   myWorkoutId: number
   routineId: number
+  onEditClick: () => void
 }
 
 const MyWorkoutDropDown = ({
   myWorkoutId,
   routineId,
+  onEditClick,
 }: MyWorkoutDropDownProps) => {
   const { mutate: removeWorkout } = useDeleteMyWorkout()
 
@@ -32,7 +34,12 @@ const MyWorkoutDropDown = ({
       </S.FixIconButtonWrapper>
       {isOpen && (
         <DropDown position="my">
-          <DropDown.DropDownButton variant="grey">
+          <DropDown.DropDownButton
+            variant="grey"
+            onClick={() => {
+              toggleDropDown()
+              onEditClick()
+            }}>
             운동량 수정하기
             <Icon
               icon="PencilGrey"

@@ -43,7 +43,8 @@ const MyWorkoutItem = ({
           draggableProps={providedSpace.draggableProps}
           dragHandleProps={providedSpace.dragHandleProps}
           innerRef={providedSpace.innerRef}
-          isDragging={snapshot.isDragging}>
+          isDragging={snapshot.isDragging}
+          index={index}>
           {workoutName}
         </MyWorkout>
       )}
