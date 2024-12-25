@@ -16,7 +16,7 @@ jobs:
 
       - name: Copy changes to deploy Repo
         run: |
-          rsync -av --delete --exclude='.git' --exclude='node_modules/' . clone/
+          rsync -av --delete --exclude='.git' --exclude='node_modules/' --progress . clone/
           ls -al clone/
 
       - name: Commit and Push changes to deploy repo main branch
