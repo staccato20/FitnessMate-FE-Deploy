@@ -16,12 +16,12 @@ jobs:
 
       - name: Copy changes to deploy Repo
         run: |
-          rsync -av --delete --exclude='.git' --exclude='node_modules/' . main/
-          ls -al main/
+          rsync -av --delete --exclude='.git' --exclude='node_modules/' . clone/
+          ls -al clone/
 
       - name: Commit and Push changes to deploy repo main branch
         run: |
-          cd main
+          cd clone
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git status 
