@@ -17,18 +17,18 @@ export const CardWrapper = styled.button`
 
 export const CardImg = styled.img`
   object-fit: cover;
-  max-width: 310px;
+  max-width: 31rem;
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid #f2f4f6;
+  border-radius: 1.2rem;
+  border: 0.1rem solid #f2f4f6;
 `
 export const CardContents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
+  gap: 1.8rem;
   width: 100%;
-  padding: 24px 8px;
+  padding: 2.4rem 0.8rem;
 `
 
 export const CardText = styled.span`
@@ -41,5 +41,5 @@ export const BadgeList = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 0.4rem;
 `

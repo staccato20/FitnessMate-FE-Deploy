@@ -13,6 +13,7 @@ ${reset}
   src: url("../assets/fonts/PretendardVariable.woff2") format("woff2-variations");
 }
 
+
     html{
         font-size: 62.5%;
     }
@@ -26,12 +27,12 @@ ${reset}
         font-weight:500;
         line-height:normal;
     }
-    html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
+    body, div, span, h1, h2, h3, h4, h5, h6, p, 
     a, dl, dt, dd, ol, ul, li, form, label, table,button{
         margin: 0;
         padding: 0;
         border: 0;
-        font-size: 10px;
+        font-size: 1rem;
         vertical-align: baseline;
         font-family: 'Pretendard Variable', sans-serif;
         font-weight:500;
@@ -39,6 +40,8 @@ ${reset}
         -webkit-font-smoothing: antialiased;
 
     }
+
+
     body{
         width:100%;
         height:100vh;

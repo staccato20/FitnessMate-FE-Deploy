@@ -46,10 +46,10 @@ export const Primary: Story = {
     return (
       <div
         style={{
-          width: "400px",
+          width: "40rem",
           display: "flex",
           flexDirection: "column",
-          gap: "30px",
+          gap: "3rem",
         }}>
         {DUMMY_LIST.map(
           ({
