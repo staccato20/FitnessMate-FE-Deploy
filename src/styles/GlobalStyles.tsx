@@ -13,6 +13,10 @@ ${reset}
   src: url("../assets/fonts/PretendardVariable.woff2") format("woff2-variations");
 }
 
+    html{
+        font-size: 62.5%;
+    }
+
     a{
         text-decoration: none;
         color: inherit;
