@@ -60,7 +60,8 @@ const EditPassword = () => {
             <Input
               key={id}
               style={{
-                marginTop: id === EDIT_LIST.PASSWORD.length - 1 ? "-29px" : "0",
+                marginTop:
+                  id === EDIT_LIST.PASSWORD.length - 1 ? "-2.9rem" : "0",
               }}>
               {label && (
                 <Input.Label
