@@ -1,11 +1,14 @@
-name: Push to deploy Repo
+name: Push to Deploy Repo
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
-  push-to-personal-repo:
+  push-to-deploy-repo:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,27 +17,24 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Ensure clean clone directory
+      - name: Clone Deploy Repo
         run: |
-          if [ -d "clone" ]; then
-            rm -rf clone
-          fi
+          git clone https://github.com/staccato20/FitnessMate-FE-Deploy.git deploy
 
-      - name: Clone deploy Repo
+      - name: Remove all files in Deploy Repo
         run: |
-          git clone https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git clone
+          rm -rf deploy/*
 
-      - name: Copy changes to deploy Repo
+      - name: Copy files to Deploy Repo
         run: |
-          rsync -av --delete --exclude='.git' --exclude='node_modules/' --progress . clone/
-          ls -al clone/
+          rsync -av --delete --exclude='.git' --exclude='node_modules/' --exclude='deploy/' . deploy/
+          ls -al deploy/ 
 
-      - name: Commit and Push changes to deploy repo main branch
+      - name: Commit and Push changes to Deploy Repo
         run: |
-          cd clone
+          cd deploy
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git status
           git add -A
           git commit -m "Update from Frontend repo by ${{ github.actor }}" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git main --force
+          git push https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git main
