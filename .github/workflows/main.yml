@@ -14,6 +14,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Ensure clean clone directory
+        run: |
+          if [ -d "clone" ]; then
+            rm -rf clone
+          fi
+
       - name: Clone deploy Repo
         run: |
           git clone https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git clone
