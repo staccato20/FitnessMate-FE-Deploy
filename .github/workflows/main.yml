@@ -14,6 +14,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Clone deploy Repo (if not already cloned)
+        run: |
+          if [ ! -d "clone" ]; then
+            git clone https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git clone
+          fi
+
       - name: Copy changes to deploy Repo
         run: |
           rsync -av --delete --exclude='.git' --exclude='node_modules/' --progress . clone/
@@ -27,4 +33,4 @@ jobs:
           git status
           git add -A
           git commit -m "Update from Frontend repo by ${{ github.actor }}" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git main --force
+          git push origin main --force
