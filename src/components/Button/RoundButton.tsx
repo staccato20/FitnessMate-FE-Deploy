@@ -58,15 +58,6 @@ const SIZE = {
       height: 2.4rem;
     }
   `,
-  middle: css`
-    padding: 14px 20px 14px 14px;
-    ${fonts.b4};
-    gap: 4px;
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  `,
   small: css`
     padding: 1rem 1.6rem 1rem 1.2rem;
     ${fonts.b7};

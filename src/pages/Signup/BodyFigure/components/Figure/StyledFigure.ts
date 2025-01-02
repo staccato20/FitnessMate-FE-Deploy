@@ -99,26 +99,5 @@ export const FigureCheckBoxButton = styled.button<{ $isChecked: boolean }>`
 export const FigureCheckBoxText = styled.span<{ $isChecked: boolean }>`
   color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
   text-align: center;
-  font-size: 1.4rem;
-`
-
-export const FigureCheckBoxButton = styled.button<{ $isChecked: boolean }>`
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 6px 18px;
-  align-items: center;
-  border-radius: 12px;
-  background: ${({ $isChecked }) => ($isChecked ? "#f2f4f6" : "#fff")};
-  height: 50px;
-  &:hover {
-    background: ${({ $isChecked }) =>
-      $isChecked ? "#f2f4f6" : `${theme.Netural200}`};
-  }
-`
-
-export const FigureCheckBoxText = styled.span<{ $isChecked: boolean }>`
-  color: ${({ $isChecked }) => ($isChecked ? "#272e38" : "#6b7684")};
-  text-align: center;
   font-size: 14px;
 `
