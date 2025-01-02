@@ -1,11 +1,14 @@
-name: Push to forked Repo
+name: Push to Deploy Repo
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
-  push-to-personal-repo:
+  push-to-deploy-repo:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,25 +17,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone main Repo
+      - name: Clone Deploy Repo
         run: |
-          git clone https://github.com/staccato20/FitnessMate-FE-Deploy main
+          git clone https://github.com/staccato20/FitnessMate-FE-Deploy.git deploy
 
-      - name: Remove all files in main Repo
+      - name: Remove all files in Deploy Repo
         run: |
-          rm -rf main/*  # 기존 파일 모두 삭제
+          rm -rf deploy/*
 
-      - name: Copy changes to main Repo
+      - name: Copy files to Deploy Repo
         run: |
-          rsync -av --delete --exclude='.git' --exclude='node_modules/' --exclude='main/' . main/
-          ls -al main/  # 복사된 파일 목록 확인
+          rsync -av --delete --exclude='.git' --exclude='node_modules/' --exclude='deploy/' . deploy/
+          ls -al deploy/ # 복사된 파일 확인
 
-      - name: Commit and Push changes to main repo main branch
+      - name: Commit and Push changes to Deploy Repo
         run: |
-          cd main
+          cd deploy
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git status  # 변경된 파일 목록 확인
-          git add -A  # 모든 변경 사항 추가
+          git add -A
           git commit -m "Update from Frontend repo by ${{ github.actor }}" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.FITMATE_STACCATO20 }}@github.com/staccato20/FitnessMate-FE-Deploy.git main
