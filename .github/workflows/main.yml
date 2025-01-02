@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Frontend repo
+      - name: Checkout current repo
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Clone Deploy Repo
         run: |
@@ -28,7 +28,7 @@ jobs:
       - name: Copy files to Deploy Repo
         run: |
           rsync -av --delete --exclude='.git' --exclude='node_modules/' --exclude='deploy/' . deploy/
-          ls -al deploy/ # 복사된 파일 확인
+          ls -al deploy/ 
 
       - name: Commit and Push changes to Deploy Repo
         run: |
