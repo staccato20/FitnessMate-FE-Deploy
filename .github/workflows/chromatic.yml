@@ -10,11 +10,13 @@ jobs:
   chromatic:
     runs-on: ubuntu-latest
     steps:
+      # 1. 코드 체크아웃
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # 2. 종속성 캐싱
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v4
@@ -22,16 +24,12 @@ jobs:
           path: "**/node_modules"
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
+      # 3. 종속성 설치
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Debug Secret Value
-        run: |
-          echo "CHROMATIC_PROJECT_TOKEN is set: ${CHROMATIC_PROJECT_TOKEN:+true}"
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
+      # 4. Chromatic 실행
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
@@ -41,6 +39,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 5. PR 코멘트 추가
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         env:
@@ -48,8 +47,9 @@ jobs:
         with:
           message: "🚀 Storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
 
+      # 6. Discord 알림 전송
       - name: Send StorybookUrl to Discord
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "Storybook link -> ${{ steps.chromatic.outputs.storybookUrl }}"
+          content: "storybook link -> ${{ steps.chromatic.outputs.storybookUrl }}"
